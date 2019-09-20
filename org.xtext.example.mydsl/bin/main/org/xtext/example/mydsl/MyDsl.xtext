@@ -1,0 +1,67 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Domain:
+	'specification' name=ID '{'
+	objects+=Object*
+	constraints+=Constraint*
+	scenarios+=Scenario* '}'
+;
+
+Scenario:
+	'scenario' name=ID '{'
+	scenariocontents+=ScenarioContent*
+	'}'
+;
+
+ScenarioContent:
+	alt+=Alt | message+=Message | par+=Par
+;
+
+Message:
+	 'message' name=Name (required?='required')? (fail?='fail')? (strict?='strict')?  
+	 sender=[Object] '->' receiver=[Object]
+	 (past?='past')? (future?='future')? (constraint?='constraint')?
+	 ('{')? (c=[Constraint])? ('}')? ';'
+
+;
+
+Name:
+	ID '(' (ID|Number)? ')'
+;
+
+terminal Number:
+	('0'..'9')*
+;
+
+ObjectType:
+	'object' name=ID
+;
+
+Object:
+	object+=ObjectType name=ID ';'
+;
+
+Constraint:
+	'constraint' name=ID '{'
+	messages+=Message* '}'
+;
+
+Alt:
+	'alt' expressions+=Expression*
+;
+
+Expression:
+	'(' (ID)? ('=')? ('>')? ('<')? ('>=')? ('<=')? (ID|Number)? ')' '{'
+	messages+=Message*
+	'}'
+;
+
+Par:
+	'par' '{' parexpression+=ParExpression* '}'
+;
+
+ParExpression:
+	'case' name=ID '{' messages+=Message* '}'
+;
