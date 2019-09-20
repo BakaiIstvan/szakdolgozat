@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 '('=25
 ')'=26
 ','=37
@@ -20,8 +21,40 @@
 'past'=21
 'required'=17
 'scenario'=15
+=======
+'('=18
+')'=19
+','=27
+'->'=33
+';'=23
+'<'=41
+'<='=43
+'='=39
+'>'=40
+'>='=42
+'alt'=38
+'appear'=17
+'attribute'=24
+'case'=45
+'changeTo'=21
+'conditionsAt'=22
+'constraint'=36
+'contextfragment'=16
+'contextmodel'=15
+'distance'=20
+'entity'=25
+'fail'=31
+'future'=35
+'message'=29
+'object'=37
+'par'=44
+'past'=34
+'relation'=26
+'required'=30
+'scenario'=28
+>>>>>>> Added Xtext for context dependent behavior
 'specification'=12
-'strict'=19
+'strict'=32
 '{'=13
 '}'=14
 RULE_ANY_OTHER=11
@@ -58,3 +91,14 @@ T__34=34
 T__35=35
 T__36=36
 T__37=37
+<<<<<<< HEAD
+=======
+T__38=38
+T__39=39
+T__40=40
+T__41=41
+T__42=42
+T__43=43
+T__44=44
+T__45=45
+>>>>>>> Added Xtext for context dependent behavior

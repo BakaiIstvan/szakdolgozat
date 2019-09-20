@@ -15,8 +15,14 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeType;
 import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ContextChange;
+import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -24,6 +30,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
@@ -45,11 +52,29 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ALT:
 				sequence_Alt(context, (Alt) semanticObject); 
 				return; 
+			case MyDslPackage.ATTRIBUTE:
+				sequence_Attribute(context, (Attribute) semanticObject); 
+				return; 
+			case MyDslPackage.CHANGE_TYPE:
+				sequence_ChangeType(context, (ChangeType) semanticObject); 
+				return; 
 			case MyDslPackage.CONSTRAINT:
 				sequence_Constraint(context, (Constraint) semanticObject); 
 				return; 
+			case MyDslPackage.CONTEXT_CHANGE:
+				sequence_ContextChange(context, (ContextChange) semanticObject); 
+				return; 
+			case MyDslPackage.CONTEXT_FRAGMENT:
+				sequence_ContextFragment(context, (ContextFragment) semanticObject); 
+				return; 
+			case MyDslPackage.CONTEXT_MODEL:
+				sequence_ContextModel(context, (ContextModel) semanticObject); 
+				return; 
 			case MyDslPackage.DOMAIN:
 				sequence_Domain(context, (Domain) semanticObject); 
+				return; 
+			case MyDslPackage.ENTITY:
+				sequence_Entity(context, (Entity) semanticObject); 
 				return; 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
@@ -71,6 +96,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.PAR_EXPRESSION:
 				sequence_ParExpression(context, (ParExpression) semanticObject); 
+				return; 
+			case MyDslPackage.RELATION:
+				sequence_Relation(context, (Relation) semanticObject); 
 				return; 
 			case MyDslPackage.SCENARIO:
 				sequence_Scenario(context, (Scenario) semanticObject); 
@@ -97,6 +125,36 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Attribute returns Attribute
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.ATTRIBUTE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ATTRIBUTE__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ChangeType returns ChangeType
+	 *
+	 * Constraint:
+	 *     (entity=[Entity|ID] | entity=[Entity|ID] | attribute=[Attribute|ID])
+	 */
+	protected void sequence_ChangeType(ISerializationContext context, ChangeType semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Constraint returns Constraint
 	 *
 	 * Constraint:
@@ -109,12 +167,69 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     ContextChange returns ContextChange
+	 *
+	 * Constraint:
+	 *     (change+=ChangeType name=ID)
+	 */
+	protected void sequence_ContextChange(ISerializationContext context, ContextChange semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextFragment returns ContextFragment
+	 *
+	 * Constraint:
+	 *     (name=ID entities+=Entity* relations+=Relation*)
+	 */
+	protected void sequence_ContextFragment(ISerializationContext context, ContextFragment semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextModel returns ContextModel
+	 *
+	 * Constraint:
+	 *     (name=ID entities+=Entity* relations+=Relation*)
+	 */
+	protected void sequence_ContextModel(ISerializationContext context, ContextModel semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Domain returns Domain
 	 *
 	 * Constraint:
-	 *     (name=ID objects+=Object* constraints+=Constraint* scenarios+=Scenario*)
+	 *     (
+	 *         name=ID 
+	 *         contextmodels+=ContextModel* 
+	 *         contextfragments+=ContextFragment* 
+	 *         entities+=Entity* 
+	 *         contextchanges+=ContextChange* 
+	 *         objects+=Object* 
+	 *         constraints+=Constraint* 
+	 *         scenarios+=Scenario*
+	 *     )
 	 */
 	protected void sequence_Domain(ISerializationContext context, Domain semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Entity returns Entity
+	 *
+	 * Constraint:
+	 *     (name=ID attributes+=Attribute*)
+	 */
+	protected void sequence_Entity(ISerializationContext context, Entity semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -216,6 +331,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     parexpression+=ParExpression+
 	 */
 	protected void sequence_Par(ISerializationContext context, Par semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Relation returns Relation
+	 *
+	 * Constraint:
+	 *     (name=ID sender=[Entity|ID] receiver=[Entity|ID] attributes+=Attribute*)
+	 */
+	protected void sequence_Relation(ISerializationContext context, Relation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -31,10 +31,21 @@ public class MyDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
+			builder.put(grammarAccess.getChangeTypeAccess().getAlternatives(), "rule__ChangeType__Alternatives");
 			builder.put(grammarAccess.getScenarioContentAccess().getAlternatives(), "rule__ScenarioContent__Alternatives");
 			builder.put(grammarAccess.getNameAccess().getAlternatives_2(), "rule__Name__Alternatives_2");
 			builder.put(grammarAccess.getExpressionAccess().getAlternatives_7(), "rule__Expression__Alternatives_7");
 			builder.put(grammarAccess.getDomainAccess().getGroup(), "rule__Domain__Group__0");
+			builder.put(grammarAccess.getContextModelAccess().getGroup(), "rule__ContextModel__Group__0");
+			builder.put(grammarAccess.getContextFragmentAccess().getGroup(), "rule__ContextFragment__Group__0");
+			builder.put(grammarAccess.getChangeTypeAccess().getGroup_0(), "rule__ChangeType__Group_0__0");
+			builder.put(grammarAccess.getChangeTypeAccess().getGroup_1(), "rule__ChangeType__Group_1__0");
+			builder.put(grammarAccess.getChangeTypeAccess().getGroup_2(), "rule__ChangeType__Group_2__0");
+			builder.put(grammarAccess.getChangeTypeAccess().getGroup_3(), "rule__ChangeType__Group_3__0");
+			builder.put(grammarAccess.getContextChangeAccess().getGroup(), "rule__ContextChange__Group__0");
+			builder.put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
+			builder.put(grammarAccess.getEntityAccess().getGroup(), "rule__Entity__Group__0");
+			builder.put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
 			builder.put(grammarAccess.getScenarioAccess().getGroup(), "rule__Scenario__Group__0");
 			builder.put(grammarAccess.getMessageAccess().getGroup(), "rule__Message__Group__0");
 			builder.put(grammarAccess.getNameAccess().getGroup(), "rule__Name__Group__0");
@@ -47,9 +58,31 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParExpressionAccess().getGroup(), "rule__ParExpression__Group__0");
 			builder.put(grammarAccess.getLoopAccess().getGroup(), "rule__Loop__Group__0");
 			builder.put(grammarAccess.getDomainAccess().getNameAssignment_1(), "rule__Domain__NameAssignment_1");
-			builder.put(grammarAccess.getDomainAccess().getObjectsAssignment_3(), "rule__Domain__ObjectsAssignment_3");
-			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_4(), "rule__Domain__ConstraintsAssignment_4");
-			builder.put(grammarAccess.getDomainAccess().getScenariosAssignment_5(), "rule__Domain__ScenariosAssignment_5");
+			builder.put(grammarAccess.getDomainAccess().getContextmodelsAssignment_3(), "rule__Domain__ContextmodelsAssignment_3");
+			builder.put(grammarAccess.getDomainAccess().getContextfragmentsAssignment_4(), "rule__Domain__ContextfragmentsAssignment_4");
+			builder.put(grammarAccess.getDomainAccess().getEntitiesAssignment_5(), "rule__Domain__EntitiesAssignment_5");
+			builder.put(grammarAccess.getDomainAccess().getContextchangesAssignment_6(), "rule__Domain__ContextchangesAssignment_6");
+			builder.put(grammarAccess.getDomainAccess().getObjectsAssignment_7(), "rule__Domain__ObjectsAssignment_7");
+			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_8(), "rule__Domain__ConstraintsAssignment_8");
+			builder.put(grammarAccess.getDomainAccess().getScenariosAssignment_9(), "rule__Domain__ScenariosAssignment_9");
+			builder.put(grammarAccess.getContextModelAccess().getNameAssignment_1(), "rule__ContextModel__NameAssignment_1");
+			builder.put(grammarAccess.getContextModelAccess().getEntitiesAssignment_3(), "rule__ContextModel__EntitiesAssignment_3");
+			builder.put(grammarAccess.getContextModelAccess().getRelationsAssignment_4(), "rule__ContextModel__RelationsAssignment_4");
+			builder.put(grammarAccess.getContextFragmentAccess().getNameAssignment_1(), "rule__ContextFragment__NameAssignment_1");
+			builder.put(grammarAccess.getContextFragmentAccess().getEntitiesAssignment_3(), "rule__ContextFragment__EntitiesAssignment_3");
+			builder.put(grammarAccess.getContextFragmentAccess().getRelationsAssignment_4(), "rule__ContextFragment__RelationsAssignment_4");
+			builder.put(grammarAccess.getChangeTypeAccess().getEntityAssignment_0_2(), "rule__ChangeType__EntityAssignment_0_2");
+			builder.put(grammarAccess.getChangeTypeAccess().getEntityAssignment_1_2(), "rule__ChangeType__EntityAssignment_1_2");
+			builder.put(grammarAccess.getChangeTypeAccess().getAttributeAssignment_2_1(), "rule__ChangeType__AttributeAssignment_2_1");
+			builder.put(grammarAccess.getContextChangeAccess().getChangeAssignment_0(), "rule__ContextChange__ChangeAssignment_0");
+			builder.put(grammarAccess.getContextChangeAccess().getNameAssignment_1(), "rule__ContextChange__NameAssignment_1");
+			builder.put(grammarAccess.getAttributeAccess().getNameAssignment_1(), "rule__Attribute__NameAssignment_1");
+			builder.put(grammarAccess.getEntityAccess().getNameAssignment_1(), "rule__Entity__NameAssignment_1");
+			builder.put(grammarAccess.getEntityAccess().getAttributesAssignment_3(), "rule__Entity__AttributesAssignment_3");
+			builder.put(grammarAccess.getRelationAccess().getNameAssignment_1(), "rule__Relation__NameAssignment_1");
+			builder.put(grammarAccess.getRelationAccess().getSenderAssignment_3(), "rule__Relation__SenderAssignment_3");
+			builder.put(grammarAccess.getRelationAccess().getReceiverAssignment_5(), "rule__Relation__ReceiverAssignment_5");
+			builder.put(grammarAccess.getRelationAccess().getAttributesAssignment_8(), "rule__Relation__AttributesAssignment_8");
 			builder.put(grammarAccess.getScenarioAccess().getNameAssignment_1(), "rule__Scenario__NameAssignment_1");
 			builder.put(grammarAccess.getScenarioAccess().getScenariocontentsAssignment_3(), "rule__Scenario__ScenariocontentsAssignment_3");
 			builder.put(grammarAccess.getScenarioContentAccess().getAltAssignment_0(), "rule__ScenarioContent__AltAssignment_0");

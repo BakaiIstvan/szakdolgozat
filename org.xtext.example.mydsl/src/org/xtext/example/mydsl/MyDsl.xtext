@@ -6,9 +6,51 @@ generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
 Domain:
 	'specification' name=ID '{'
+	contextmodels+=ContextModel*
+	contextfragments+=ContextFragment*
+	entities+=Entity*
+	contextchanges+=ContextChange*
 	objects+=Object*
 	constraints+=Constraint*
 	scenarios+=Scenario* '}'
+;
+
+ContextModel:
+	'contextmodel' name=ID '{'
+		entities+=Entity*
+		relations+=Relation*
+	'}'
+;
+
+ContextFragment:
+	'contextfragment' name=ID '{'
+		entities+=Entity*
+		relations+=Relation*
+	'}'
+;
+
+ChangeType:
+	'appear' '(' entity=[Entity] ')'| 'distance' '(' entity=[Entity] ')' | 'changeTo'(attribute=[Attribute]) | 'conditionsAt' '(' ')'
+;
+
+ContextChange:
+	change+=ChangeType name=ID ';'
+;
+
+Attribute:
+	'attribute' name=ID ';'
+;
+
+Entity:
+	'entity' name=ID '{'
+		attributes+=Attribute*
+	'}'
+;
+
+Relation:
+	'relation' name=ID '(' sender=[Entity] ',' receiver=[Entity] ')''{'
+		attributes+=Attribute*
+	'}'
 ;
 
 Scenario:

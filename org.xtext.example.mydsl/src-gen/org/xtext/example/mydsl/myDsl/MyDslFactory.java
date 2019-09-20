@@ -33,6 +33,69 @@ public interface MyDslFactory extends EFactory
   Domain createDomain();
 
   /**
+   * Returns a new object of class '<em>Context Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Model</em>'.
+   * @generated
+   */
+  ContextModel createContextModel();
+
+  /**
+   * Returns a new object of class '<em>Context Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Fragment</em>'.
+   * @generated
+   */
+  ContextFragment createContextFragment();
+
+  /**
+   * Returns a new object of class '<em>Change Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Change Type</em>'.
+   * @generated
+   */
+  ChangeType createChangeType();
+
+  /**
+   * Returns a new object of class '<em>Context Change</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Change</em>'.
+   * @generated
+   */
+  ContextChange createContextChange();
+
+  /**
+   * Returns a new object of class '<em>Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute</em>'.
+   * @generated
+   */
+  Attribute createAttribute();
+
+  /**
+   * Returns a new object of class '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity</em>'.
+   * @generated
+   */
+  Entity createEntity();
+
+  /**
+   * Returns a new object of class '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relation</em>'.
+   * @generated
+   */
+  Relation createRelation();
+
+  /**
    * Returns a new object of class '<em>Scenario</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

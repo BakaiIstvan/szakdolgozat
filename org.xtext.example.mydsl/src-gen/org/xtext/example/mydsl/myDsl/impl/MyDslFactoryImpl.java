@@ -12,8 +12,14 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeType;
 import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ContextChange;
+import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -22,6 +28,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
@@ -78,6 +85,13 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     switch (eClass.getClassifierID())
     {
       case MyDslPackage.DOMAIN: return createDomain();
+      case MyDslPackage.CONTEXT_MODEL: return createContextModel();
+      case MyDslPackage.CONTEXT_FRAGMENT: return createContextFragment();
+      case MyDslPackage.CHANGE_TYPE: return createChangeType();
+      case MyDslPackage.CONTEXT_CHANGE: return createContextChange();
+      case MyDslPackage.ATTRIBUTE: return createAttribute();
+      case MyDslPackage.ENTITY: return createEntity();
+      case MyDslPackage.RELATION: return createRelation();
       case MyDslPackage.SCENARIO: return createScenario();
       case MyDslPackage.SCENARIO_CONTENT: return createScenarioContent();
       case MyDslPackage.MESSAGE: return createMessage();
@@ -103,6 +117,83 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     DomainImpl domain = new DomainImpl();
     return domain;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextModel createContextModel()
+  {
+    ContextModelImpl contextModel = new ContextModelImpl();
+    return contextModel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextFragment createContextFragment()
+  {
+    ContextFragmentImpl contextFragment = new ContextFragmentImpl();
+    return contextFragment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ChangeType createChangeType()
+  {
+    ChangeTypeImpl changeType = new ChangeTypeImpl();
+    return changeType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextChange createContextChange()
+  {
+    ContextChangeImpl contextChange = new ContextChangeImpl();
+    return contextChange;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Attribute createAttribute()
+  {
+    AttributeImpl attribute = new AttributeImpl();
+    return attribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entity createEntity()
+  {
+    EntityImpl entity = new EntityImpl();
+    return entity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Relation createRelation()
+  {
+    RelationImpl relation = new RelationImpl();
+    return relation;
   }
 
   /**
