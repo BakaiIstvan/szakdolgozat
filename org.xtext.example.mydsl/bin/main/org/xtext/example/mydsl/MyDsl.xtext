@@ -16,7 +16,7 @@ Scenario:
 ;
 
 ScenarioContent:
-	alt+=Alt | message+=Message | par+=Par
+	alt+=Alt | message+=Message | par+=Par | loop+=Loop
 ;
 
 Message:
@@ -45,7 +45,8 @@ Object:
 
 Constraint:
 	'constraint' name=ID '{'
-	messages+=Message* '}'
+		messages+=Message* 
+	'}'
 ;
 
 Alt:
@@ -64,4 +65,10 @@ Par:
 
 ParExpression:
 	'case' name=ID '{' messages+=Message* '}'
+;
+
+Loop:
+	'loop' '(' min+=Number ',' max+=Number ')' '{' 
+		messages+=Message*
+	'}'
 ;

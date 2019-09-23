@@ -14,6 +14,7 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
@@ -139,6 +140,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseParExpression(ParExpression object)
       {
         return createParExpressionAdapter();
+      }
+      @Override
+      public Adapter caseLoop(Loop object)
+      {
+        return createLoopAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -323,6 +329,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createParExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Loop <em>Loop</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.Loop
+   * @generated
+   */
+  public Adapter createLoopAdapter()
   {
     return null;
   }

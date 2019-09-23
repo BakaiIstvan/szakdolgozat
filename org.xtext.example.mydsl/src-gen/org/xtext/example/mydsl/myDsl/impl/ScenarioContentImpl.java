@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Par;
@@ -34,6 +35,7 @@ import org.xtext.example.mydsl.myDsl.ScenarioContent;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getAlt <em>Alt</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getPar <em>Par</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getLoop <em>Loop</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,6 +71,16 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<Par> par;
+
+  /**
+   * The cached value of the '{@link #getLoop() <em>Loop</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLoop()
+   * @generated
+   * @ordered
+   */
+  protected EList<Loop> loop;
 
   /**
    * <!-- begin-user-doc -->
@@ -138,6 +150,20 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Loop> getLoop()
+  {
+    if (loop == null)
+    {
+      loop = new EObjectContainmentEList<Loop>(Loop.class, this, MyDslPackage.SCENARIO_CONTENT__LOOP);
+    }
+    return loop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -149,6 +175,8 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getMessage()).basicRemove(otherEnd, msgs);
       case MyDslPackage.SCENARIO_CONTENT__PAR:
         return ((InternalEList<?>)getPar()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.SCENARIO_CONTENT__LOOP:
+        return ((InternalEList<?>)getLoop()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -169,6 +197,8 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return getMessage();
       case MyDslPackage.SCENARIO_CONTENT__PAR:
         return getPar();
+      case MyDslPackage.SCENARIO_CONTENT__LOOP:
+        return getLoop();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -196,6 +226,10 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         getPar().clear();
         getPar().addAll((Collection<? extends Par>)newValue);
         return;
+      case MyDslPackage.SCENARIO_CONTENT__LOOP:
+        getLoop().clear();
+        getLoop().addAll((Collection<? extends Loop>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -219,6 +253,9 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.SCENARIO_CONTENT__PAR:
         getPar().clear();
         return;
+      case MyDslPackage.SCENARIO_CONTENT__LOOP:
+        getLoop().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -239,6 +276,8 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return message != null && !message.isEmpty();
       case MyDslPackage.SCENARIO_CONTENT__PAR:
         return par != null && !par.isEmpty();
+      case MyDslPackage.SCENARIO_CONTENT__LOOP:
+        return loop != null && !loop.isEmpty();
     }
     return super.eIsSet(featureID);
   }

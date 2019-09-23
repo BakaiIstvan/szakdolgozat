@@ -14,6 +14,7 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -107,6 +108,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass parExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass loopEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -289,6 +297,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getScenarioContent_Par()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getScenarioContent_Loop()
+  {
+    return (EReference)scenarioContentEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -576,6 +594,46 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getLoop()
+  {
+    return loopEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLoop_Min()
+  {
+    return (EAttribute)loopEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLoop_Max()
+  {
+    return (EAttribute)loopEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLoop_Messages()
+  {
+    return (EReference)loopEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public MyDslFactory getMyDslFactory()
   {
     return (MyDslFactory)getEFactoryInstance();
@@ -615,6 +673,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__ALT);
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__MESSAGE);
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__PAR);
+    createEReference(scenarioContentEClass, SCENARIO_CONTENT__LOOP);
 
     messageEClass = createEClass(MESSAGE);
     createEAttribute(messageEClass, MESSAGE__NAME);
@@ -651,6 +710,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     parExpressionEClass = createEClass(PAR_EXPRESSION);
     createEAttribute(parExpressionEClass, PAR_EXPRESSION__NAME);
     createEReference(parExpressionEClass, PAR_EXPRESSION__MESSAGES);
+
+    loopEClass = createEClass(LOOP);
+    createEAttribute(loopEClass, LOOP__MIN);
+    createEAttribute(loopEClass, LOOP__MAX);
+    createEReference(loopEClass, LOOP__MESSAGES);
   }
 
   /**
@@ -698,6 +762,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getScenarioContent_Alt(), this.getAlt(), null, "alt", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenarioContent_Message(), this.getMessage(), null, "message", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenarioContent_Par(), this.getPar(), null, "par", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getScenarioContent_Loop(), this.getLoop(), null, "loop", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMessage_Name(), ecorePackage.getEString(), "name", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -734,6 +799,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEClass(parExpressionEClass, ParExpression.class, "ParExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParExpression_Name(), ecorePackage.getEString(), "name", null, 0, 1, ParExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParExpression_Messages(), this.getMessage(), null, "messages", null, 0, -1, ParExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLoop_Min(), ecorePackage.getEString(), "min", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoop_Max(), ecorePackage.getEString(), "max", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoop_Messages(), this.getMessage(), null, "messages", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

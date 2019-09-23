@@ -45,6 +45,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
 			builder.put(grammarAccess.getParAccess().getGroup(), "rule__Par__Group__0");
 			builder.put(grammarAccess.getParExpressionAccess().getGroup(), "rule__ParExpression__Group__0");
+			builder.put(grammarAccess.getLoopAccess().getGroup(), "rule__Loop__Group__0");
 			builder.put(grammarAccess.getDomainAccess().getNameAssignment_1(), "rule__Domain__NameAssignment_1");
 			builder.put(grammarAccess.getDomainAccess().getObjectsAssignment_3(), "rule__Domain__ObjectsAssignment_3");
 			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_4(), "rule__Domain__ConstraintsAssignment_4");
@@ -54,6 +55,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getScenarioContentAccess().getAltAssignment_0(), "rule__ScenarioContent__AltAssignment_0");
 			builder.put(grammarAccess.getScenarioContentAccess().getMessageAssignment_1(), "rule__ScenarioContent__MessageAssignment_1");
 			builder.put(grammarAccess.getScenarioContentAccess().getParAssignment_2(), "rule__ScenarioContent__ParAssignment_2");
+			builder.put(grammarAccess.getScenarioContentAccess().getLoopAssignment_3(), "rule__ScenarioContent__LoopAssignment_3");
 			builder.put(grammarAccess.getMessageAccess().getNameAssignment_1(), "rule__Message__NameAssignment_1");
 			builder.put(grammarAccess.getMessageAccess().getRequiredAssignment_2(), "rule__Message__RequiredAssignment_2");
 			builder.put(grammarAccess.getMessageAccess().getFailAssignment_3(), "rule__Message__FailAssignment_3");
@@ -74,6 +76,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParAccess().getParexpressionAssignment_2(), "rule__Par__ParexpressionAssignment_2");
 			builder.put(grammarAccess.getParExpressionAccess().getNameAssignment_1(), "rule__ParExpression__NameAssignment_1");
 			builder.put(grammarAccess.getParExpressionAccess().getMessagesAssignment_3(), "rule__ParExpression__MessagesAssignment_3");
+			builder.put(grammarAccess.getLoopAccess().getMinAssignment_2(), "rule__Loop__MinAssignment_2");
+			builder.put(grammarAccess.getLoopAccess().getMaxAssignment_4(), "rule__Loop__MaxAssignment_4");
+			builder.put(grammarAccess.getLoopAccess().getMessagesAssignment_7(), "rule__Loop__MessagesAssignment_7");
 		}
 	}
 	
