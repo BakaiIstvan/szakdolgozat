@@ -27,11 +27,8 @@ import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
-<<<<<<< HEAD
 import org.xtext.example.mydsl.myDsl.Loop;
-=======
 import org.xtext.example.mydsl.myDsl.MatchMessage;
->>>>>>> [xText] Added new message type: contextMessage
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
@@ -122,11 +119,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
 				return; 
-<<<<<<< HEAD
 			case MyDslPackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
 				return; 
-=======
 			case MyDslPackage.MATCH_MESSAGE:
 				if (rule == grammarAccess.getContextMessageRule()) {
 					sequence_ContextMessage_MatchMessage(context, (MatchMessage) semanticObject); 
@@ -138,7 +133,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 					return; 
 				}
 				else break;
->>>>>>> [xText] Added new message type: contextMessage
 			case MyDslPackage.MESSAGE:
 				sequence_Message(context, (Message) semanticObject); 
 				return; 
@@ -395,14 +389,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-<<<<<<< HEAD
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
 	 *     (min=Number max=Number messages+=Message*)
 	 */
 	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
-=======
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ContextMessageContent returns MatchMessage
 	 *     MatchMessage returns MatchMessage
 	 *
@@ -410,7 +408,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (name=ID content=[ContextFragment|ID]?)
 	 */
 	protected void sequence_MatchMessage(ISerializationContext context, MatchMessage semanticObject) {
->>>>>>> [xText] Added new message type: contextMessage
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -509,11 +506,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ScenarioContent returns ScenarioContent
 	 *
 	 * Constraint:
-<<<<<<< HEAD
-	 *     (alt+=Alt | message+=Message | par+=Par | loop+=Loop)
-=======
-	 *     (alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage)
->>>>>>> [xText] Added new message type: contextMessage
+	 *     (alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage)
 	 */
 	protected void sequence_ScenarioContent(ISerializationContext context, ScenarioContent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

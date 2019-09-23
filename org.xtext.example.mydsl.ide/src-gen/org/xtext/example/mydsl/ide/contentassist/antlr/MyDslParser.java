@@ -95,11 +95,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getScenarioContentAccess().getAltAssignment_0(), "rule__ScenarioContent__AltAssignment_0");
 			builder.put(grammarAccess.getScenarioContentAccess().getMessageAssignment_1(), "rule__ScenarioContent__MessageAssignment_1");
 			builder.put(grammarAccess.getScenarioContentAccess().getParAssignment_2(), "rule__ScenarioContent__ParAssignment_2");
-<<<<<<< HEAD
 			builder.put(grammarAccess.getScenarioContentAccess().getLoopAssignment_3(), "rule__ScenarioContent__LoopAssignment_3");
-=======
-			builder.put(grammarAccess.getScenarioContentAccess().getContextmessageAssignment_3(), "rule__ScenarioContent__ContextmessageAssignment_3");
->>>>>>> [xText] Added new message type: contextMessage
+			builder.put(grammarAccess.getScenarioContentAccess().getContextmessageAssignment_4(), "rule__ScenarioContent__ContextmessageAssignment_4");
 			builder.put(grammarAccess.getMessageAccess().getNameAssignment_1(), "rule__Message__NameAssignment_1");
 			builder.put(grammarAccess.getMessageAccess().getRequiredAssignment_2(), "rule__Message__RequiredAssignment_2");
 			builder.put(grammarAccess.getMessageAccess().getFailAssignment_3(), "rule__Message__FailAssignment_3");

@@ -24,11 +24,8 @@ import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
-<<<<<<< HEAD
 import org.xtext.example.mydsl.myDsl.Loop;
-=======
 import org.xtext.example.mydsl.myDsl.MatchMessage;
->>>>>>> [xText] Added new message type: contextMessage
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;

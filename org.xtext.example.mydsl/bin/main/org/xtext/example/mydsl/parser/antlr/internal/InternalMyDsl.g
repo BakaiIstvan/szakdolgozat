@@ -951,30 +951,38 @@ ruleScenarioContent returns [EObject current=null]
 		(
 			(
 				{
-<<<<<<< HEAD
 					newCompositeNode(grammarAccess.getScenarioContentAccess().getLoopLoopParserRuleCall_3_0());
 				}
 				lv_loop_3_0=ruleLoop
-=======
-					newCompositeNode(grammarAccess.getScenarioContentAccess().getContextmessageContextMessageParserRuleCall_3_0());
-				}
-				lv_contextmessage_3_0=ruleContextMessage
->>>>>>> [xText] Added new message type: contextMessage
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getScenarioContentRule());
 					}
 					add(
 						$current,
-<<<<<<< HEAD
 						"loop",
 						lv_loop_3_0,
 						"org.xtext.example.mydsl.MyDsl.Loop");
-=======
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getScenarioContentAccess().getContextmessageContextMessageParserRuleCall_4_0());
+				}
+				lv_contextmessage_4_0=ruleContextMessage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getScenarioContentRule());
+					}
+					add(
+						$current,
 						"contextmessage",
-						lv_contextmessage_3_0,
+						lv_contextmessage_4_0,
 						"org.xtext.example.mydsl.MyDsl.ContextMessage");
->>>>>>> [xText] Added new message type: contextMessage
 					afterParserOrEnumRuleCall();
 				}
 			)

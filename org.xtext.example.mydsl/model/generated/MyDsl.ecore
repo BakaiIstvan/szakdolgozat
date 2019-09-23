@@ -68,13 +68,10 @@
         eType="#//Message" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="par" upperBound="-1" eType="#//Par"
         containment="true"/>
-<<<<<<< HEAD
     <eStructuralFeatures xsi:type="ecore:EReference" name="loop" upperBound="-1" eType="#//Loop"
         containment="true"/>
-=======
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextmessage" upperBound="-1"
         eType="#//ContextMessage" containment="true"/>
->>>>>>> [xText] Added new message type: contextMessage
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Message">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

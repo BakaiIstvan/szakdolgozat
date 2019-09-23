@@ -549,25 +549,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMessageMessageParserRuleCall_1_0 = (RuleCall)cMessageAssignment_1.eContents().get(0);
 		private final Assignment cParAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cParParParserRuleCall_2_0 = (RuleCall)cParAssignment_2.eContents().get(0);
-<<<<<<< HEAD
 		private final Assignment cLoopAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cLoopLoopParserRuleCall_3_0 = (RuleCall)cLoopAssignment_3.eContents().get(0);
+		private final Assignment cContextmessageAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cContextmessageContextMessageParserRuleCall_4_0 = (RuleCall)cContextmessageAssignment_4.eContents().get(0);
 		
 		//ScenarioContent:
-		//	alt+=Alt | message+=Message | par+=Par | loop+=Loop;
+		//	alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//alt+=Alt | message+=Message | par+=Par | loop+=Loop
-=======
-		private final Assignment cContextmessageAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cContextmessageContextMessageParserRuleCall_3_0 = (RuleCall)cContextmessageAssignment_3.eContents().get(0);
-		
-		//ScenarioContent:
-		//	alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage
->>>>>>> [xText] Added new message type: contextMessage
+		//alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//alt+=Alt
@@ -588,19 +579,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Par
 		public RuleCall getParParParserRuleCall_2_0() { return cParParParserRuleCall_2_0; }
 		
-<<<<<<< HEAD
 		//loop+=Loop
 		public Assignment getLoopAssignment_3() { return cLoopAssignment_3; }
 		
 		//Loop
 		public RuleCall getLoopLoopParserRuleCall_3_0() { return cLoopLoopParserRuleCall_3_0; }
-=======
+		
 		//contextmessage+=ContextMessage
-		public Assignment getContextmessageAssignment_3() { return cContextmessageAssignment_3; }
+		public Assignment getContextmessageAssignment_4() { return cContextmessageAssignment_4; }
 		
 		//ContextMessage
-		public RuleCall getContextmessageContextMessageParserRuleCall_3_0() { return cContextmessageContextMessageParserRuleCall_3_0; }
->>>>>>> [xText] Added new message type: contextMessage
+		public RuleCall getContextmessageContextMessageParserRuleCall_4_0() { return cContextmessageContextMessageParserRuleCall_4_0; }
 	}
 	public class MessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Message");
@@ -1552,11 +1541,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ScenarioContent:
-<<<<<<< HEAD
-	//	alt+=Alt | message+=Message | par+=Par | loop+=Loop;
-=======
-	//	alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage;
->>>>>>> [xText] Added new message type: contextMessage
+	//	alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage;
 	public ScenarioContentElements getScenarioContentAccess() {
 		return pScenarioContent;
 	}

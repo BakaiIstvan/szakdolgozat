@@ -1,29 +1,3 @@
-<<<<<<< HEAD
-'('=19
-')'=20
-','=32
-'->'=17
-';'=18
-'<'=26
-'<='=28
-'='=24
-'>'=25
-'>='=27
-'alt'=23
-'case'=30
-'constraint'=22
-'fail'=34
-'future'=37
-'loop'=31
-'message'=16
-'object'=21
-'par'=29
-'past'=36
-'required'=33
-'scenario'=15
-'specification'=12
-'strict'=35
-=======
 '('=18
 ')'=19
 ','=27
@@ -46,23 +20,19 @@
 'disappear'=32
 'distance'=20
 'entity'=25
-'fail'=44
-'future'=47
+'fail'=45
+'future'=48
+'loop'=43
 'match'=31
 'message'=29
 'object'=33
 'par'=41
-'past'=46
+'past'=47
 'relation'=26
-'required'=43
+'required'=44
 'scenario'=28
 'specification'=12
-<<<<<<< HEAD
-'strict'=43
->>>>>>> Added Xtext for context dependent behavior
-=======
-'strict'=45
->>>>>>> [xText] Added new message type: contextMessage
+'strict'=46
 '{'=13
 '}'=14
 RULE_ANY_OTHER=11
@@ -99,8 +69,6 @@ T__34=34
 T__35=35
 T__36=36
 T__37=37
-<<<<<<< HEAD
-=======
 T__38=38
 T__39=39
 T__40=40
@@ -109,9 +77,6 @@ T__42=42
 T__43=43
 T__44=44
 T__45=45
-<<<<<<< HEAD
->>>>>>> Added Xtext for context dependent behavior
-=======
 T__46=46
 T__47=47
->>>>>>> [xText] Added new message type: contextMessage
+T__48=48

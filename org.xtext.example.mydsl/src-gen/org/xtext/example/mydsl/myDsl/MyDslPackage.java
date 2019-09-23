@@ -509,21 +509,22 @@ public interface MyDslPackage extends EPackage
   int SCENARIO_CONTENT__PAR = 2;
 
   /**
-<<<<<<< HEAD
    * The feature id for the '<em><b>Loop</b></em>' containment reference list.
-=======
-   * The feature id for the '<em><b>Contextmessage</b></em>' containment reference list.
->>>>>>> [xText] Added new message type: contextMessage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-<<<<<<< HEAD
   int SCENARIO_CONTENT__LOOP = 3;
-=======
-  int SCENARIO_CONTENT__CONTEXTMESSAGE = 3;
->>>>>>> [xText] Added new message type: contextMessage
+
+  /**
+   * The feature id for the '<em><b>Contextmessage</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCENARIO_CONTENT__CONTEXTMESSAGE = 4;
 
   /**
    * The number of structural features of the '<em>Scenario Content</em>' class.
@@ -532,7 +533,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SCENARIO_CONTENT_FEATURE_COUNT = 4;
+  int SCENARIO_CONTENT_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -1260,6 +1261,52 @@ public interface MyDslPackage extends EPackage
    */
   int PAR_EXPRESSION_FEATURE_COUNT = 2;
 
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.LoopImpl <em>Loop</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.LoopImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
+   * @generated
+   */
+  int LOOP = 25;
+
+  /**
+   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__MIN = 0;
+
+  /**
+   * The feature id for the '<em><b>Max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__MAX = 1;
+
+  /**
+   * The feature id for the '<em><b>Messages</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__MESSAGES = 2;
+
+  /**
+   * The number of structural features of the '<em>Loop</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_FEATURE_COUNT = 3;
+
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Domain <em>Domain</em>}'.
@@ -1560,58 +1607,7 @@ public interface MyDslPackage extends EPackage
    * @see #getEntity()
    * @generated
    */
-<<<<<<< HEAD
-  int PAR_EXPRESSION_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.LoopImpl <em>Loop</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.mydsl.myDsl.impl.LoopImpl
-   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
-   * @generated
-   */
-  int LOOP = 11;
-
-  /**
-   * The feature id for the '<em><b>Min</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOOP__MIN = 0;
-
-  /**
-   * The feature id for the '<em><b>Max</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOOP__MAX = 1;
-
-  /**
-   * The feature id for the '<em><b>Messages</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOOP__MESSAGES = 2;
-
-  /**
-   * The number of structural features of the '<em>Loop</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOOP_FEATURE_COUNT = 3;
-
-=======
   EReference getEntity_Attributes();
->>>>>>> Added Xtext for context dependent behavior
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Relation <em>Relation</em>}'.
@@ -1743,7 +1739,6 @@ public interface MyDslPackage extends EPackage
   EReference getScenarioContent_Par();
 
   /**
-<<<<<<< HEAD
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getLoop <em>Loop</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1753,7 +1748,8 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getScenarioContent_Loop();
-=======
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage <em>Contextmessage</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1763,7 +1759,6 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getScenarioContent_Contextmessage();
->>>>>>> [xText] Added new message type: contextMessage
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Message <em>Message</em>}'.
@@ -2608,20 +2603,20 @@ public interface MyDslPackage extends EPackage
     EReference SCENARIO_CONTENT__PAR = eINSTANCE.getScenarioContent_Par();
 
     /**
-<<<<<<< HEAD
      * The meta object literal for the '<em><b>Loop</b></em>' containment reference list feature.
-=======
-     * The meta object literal for the '<em><b>Contextmessage</b></em>' containment reference list feature.
->>>>>>> [xText] Added new message type: contextMessage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-<<<<<<< HEAD
     EReference SCENARIO_CONTENT__LOOP = eINSTANCE.getScenarioContent_Loop();
-=======
+
+    /**
+     * The meta object literal for the '<em><b>Contextmessage</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     EReference SCENARIO_CONTENT__CONTEXTMESSAGE = eINSTANCE.getScenarioContent_Contextmessage();
->>>>>>> [xText] Added new message type: contextMessage
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.

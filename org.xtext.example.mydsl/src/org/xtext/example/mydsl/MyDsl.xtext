@@ -60,11 +60,8 @@ Scenario:
 ;
 
 ScenarioContent:
-<<<<<<< HEAD
-	alt+=Alt | message+=Message | par+=Par | loop+=Loop
-=======
-	alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage
->>>>>>> [xText] Added new message type: contextMessage
+	alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage
+
 ;
 
 Message:

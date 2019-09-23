@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-'('=25
-')'=26
-','=37
-'->'=20
-';'=24
-'<'=31
-'<='=33
-'='=29
-'>'=30
-'>='=32
-'alt'=28
-'case'=35
-'constraint'=23
-'fail'=18
-'future'=22
-'loop'=36
-'message'=16
-'object'=27
-'par'=34
-'past'=21
-'required'=17
-'scenario'=15
-=======
 '('=18
 ')'=19
 ','=27
@@ -46,6 +22,7 @@
 'entity'=25
 'fail'=31
 'future'=35
+'loop'=48
 'match'=37
 'message'=29
 'object'=39
@@ -54,7 +31,6 @@
 'relation'=26
 'required'=30
 'scenario'=28
->>>>>>> Added Xtext for context dependent behavior
 'specification'=12
 'strict'=32
 '{'=13
@@ -93,8 +69,6 @@ T__34=34
 T__35=35
 T__36=36
 T__37=37
-<<<<<<< HEAD
-=======
 T__38=38
 T__39=39
 T__40=40
@@ -103,9 +77,6 @@ T__42=42
 T__43=43
 T__44=44
 T__45=45
-<<<<<<< HEAD
->>>>>>> Added Xtext for context dependent behavior
-=======
 T__46=46
 T__47=47
->>>>>>> [xText] Added new message type: contextMessage
+T__48=48
