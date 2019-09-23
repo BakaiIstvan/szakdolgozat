@@ -19,6 +19,53 @@ import org.xtext.example.mydsl.myDsl.Message
 class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		fsa.generateFile("ContextModel.java",
+			'''
+				import java.util.ArrayList;
+				
+				public class ContextModel {
+				    ArrayList<Entity> entities;
+				    ArrayList<Relation> relations;
+				}
+			''')
+		
+		fsa.generateFile("ContextFragment.java",
+			'''
+				import java.util.ArrayList;
+				
+				public class ContextFragment {
+				    ArrayList<Entity> entities;
+				    ArrayList<Relation> relations;
+				}
+			''')
+			
+		fsa.generateFile("Entity.java",
+			'''
+				import java.util.ArrayList;
+				
+				public class Entity {
+				    private String name;
+				    ArrayList<Attribute> attributess;
+				}
+			''')
+			
+		fsa.generateFile("Attribute.java",
+			'''
+				public class Attribute {
+				    private int value;
+				    private String name;
+				}
+			''')
+			
+		fsa.generateFile("Relation.java",
+			'''
+				public class Relation {
+				    private Entity sender;
+				    private Entity receiver;
+				    private String name;
+				}
+			''')
+		
 		fsa.generateFile("State.java", 
 			'''
 				public class State {
