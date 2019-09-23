@@ -12,6 +12,7 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
@@ -157,6 +158,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         ParExpression parExpression = (ParExpression)theEObject;
         T result = caseParExpression(parExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.LOOP:
+      {
+        Loop loop = (Loop)theEObject;
+        T result = caseLoop(loop);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -336,6 +344,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseParExpression(ParExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoop(Loop object)
   {
     return null;
   }

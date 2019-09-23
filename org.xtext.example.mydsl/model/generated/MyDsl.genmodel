@@ -20,6 +20,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/alt"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/message"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/par"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/loop"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Message">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Message/name"/>
@@ -56,6 +57,11 @@
     <genClasses ecoreClass="MyDsl.ecore#//ParExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ParExpression/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ParExpression/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//Loop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Loop/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Loop/max"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Loop/messages"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

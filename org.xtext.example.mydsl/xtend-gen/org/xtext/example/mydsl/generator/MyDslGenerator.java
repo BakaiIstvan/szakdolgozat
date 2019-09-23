@@ -15,6 +15,7 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
@@ -793,6 +794,9 @@ public class MyDslGenerator extends AbstractGenerator {
         _builder.append("ArrayList<Automaton> parauto;");
         _builder.newLine();
         _builder.append("\t\t");
+        _builder.append("Automaton loopauto;");
+        _builder.newLine();
+        _builder.append("\t\t");
         _builder.append("Automaton expression;");
         _builder.newLine();
         _builder.append("\t\t");
@@ -803,6 +807,250 @@ public class MyDslGenerator extends AbstractGenerator {
         {
           EList<ScenarioContent> _scenariocontents = scenario.getScenariocontents();
           for(final ScenarioContent sc : _scenariocontents) {
+            {
+              EList<Loop> _loop = sc.getLoop();
+              for(final Loop l : _loop) {
+                _builder.append("\t\t");
+                _builder.append("loopauto = new Automaton(\"loopauto\" + counter);");
+                _builder.newLine();
+                {
+                  EList<Message> _messages = l.getMessages();
+                  for(final Message m : _messages) {
+                    {
+                      boolean _isConstraint = m.isConstraint();
+                      if (_isConstraint) {
+                        _builder.append("\t\t");
+                        _builder.append("str = \"\" ");
+                        _builder.newLine();
+                        {
+                          EList<Message> _messages_1 = m.getC().getMessages();
+                          for(final Message msg : _messages_1) {
+                            _builder.append("\t\t");
+                            _builder.append("+ \"!\" + \"");
+                            String _name_2 = msg.getSender().getName();
+                            _builder.append(_name_2, "\t\t");
+                            _builder.append("\" + \".\" + \"");
+                            String _name_3 = msg.getName();
+                            _builder.append(_name_3, "\t\t");
+                            _builder.append("\" + \".\" + \"");
+                            String _name_4 = msg.getReceiver().getName();
+                            _builder.append(_name_4, "\t\t");
+                            _builder.append("\" + \" & \"");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("\t\t\t\t\t\t\t\t\t");
+                          }
+                        }
+                        _builder.append(";");
+                        _builder.newLineIfNotEmpty();
+                        _builder.append("\t\t");
+                        _builder.append("str= str.substring(0, str.length() - 3);");
+                        _builder.newLine();
+                      }
+                    }
+                    {
+                      boolean _isStrict = m.isStrict();
+                      boolean _not = (!_isStrict);
+                      if (_not) {
+                        {
+                          boolean _isRequired = m.isRequired();
+                          if (_isRequired) {
+                            {
+                              boolean _isFuture = m.isFuture();
+                              if (_isFuture) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_required_future = this.compile_required_future(m);
+                                _builder.append(_compile_required_future, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              boolean _isPast = m.isPast();
+                              if (_isPast) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_required_past = this.compile_required_past(m);
+                                _builder.append(_compile_required_past, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              if (((!m.isPast()) && (!m.isFuture()))) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_required = this.compile_required(m);
+                                _builder.append(_compile_required, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                          }
+                        }
+                        {
+                          boolean _isFail = m.isFail();
+                          if (_isFail) {
+                            {
+                              boolean _isPast_1 = m.isPast();
+                              if (_isPast_1) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_fail_past = this.compile_fail_past(m);
+                                _builder.append(_compile_fail_past, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              if (((!m.isPast()) && (!m.isFuture()))) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_fail = this.compile_fail(m);
+                                _builder.append(_compile_fail, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                          }
+                        }
+                        {
+                          if (((!m.isFail()) && (!m.isRequired()))) {
+                            {
+                              boolean _isFuture_1 = m.isFuture();
+                              if (_isFuture_1) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_future = this.compile_future(m);
+                                _builder.append(_compile_future, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              boolean _isPast_2 = m.isPast();
+                              if (_isPast_2) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_past = this.compile_past(m);
+                                _builder.append(_compile_past, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              if (((!m.isPast()) && (!m.isFuture()))) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_msg = this.compile_msg(m);
+                                _builder.append(_compile_msg, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    _builder.append("\t\t");
+                    _builder.newLine();
+                    {
+                      boolean _isStrict_1 = m.isStrict();
+                      if (_isStrict_1) {
+                        {
+                          boolean _isRequired_1 = m.isRequired();
+                          if (_isRequired_1) {
+                            {
+                              boolean _isFuture_2 = m.isFuture();
+                              if (_isFuture_2) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_strict_required_future = this.compile_strict_required_future(m);
+                                _builder.append(_compile_strict_required_future, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              if (((!m.isPast()) && (!m.isFuture()))) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_strict_required = this.compile_strict_required(m);
+                                _builder.append(_compile_strict_required, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                          }
+                        }
+                        {
+                          boolean _isFail_1 = m.isFail();
+                          if (_isFail_1) {
+                            {
+                              if (((!m.isPast()) && (!m.isFuture()))) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_strict_fail = this.compile_strict_fail(m);
+                                _builder.append(_compile_strict_fail, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                          }
+                        }
+                        {
+                          if (((!m.isFail()) && (!m.isRequired()))) {
+                            {
+                              boolean _isFuture_3 = m.isFuture();
+                              if (_isFuture_3) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_strict_future = this.compile_strict_future(m);
+                                _builder.append(_compile_strict_future, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              if (((!m.isPast()) && (!m.isFuture()))) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_strict = this.compile_strict(m);
+                                _builder.append(_compile_strict, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("loopauto.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                _builder.append("\t\t");
+                _builder.append("a.merge(loopSetup(loopauto, ");
+                String _min = l.getMin();
+                _builder.append(_min, "\t\t");
+                _builder.append(", ");
+                String _max = l.getMax();
+                _builder.append(_max, "\t\t");
+                _builder.append("));");
+                _builder.newLineIfNotEmpty();
+              }
+            }
             {
               EList<Par> _par = sc.getPar();
               for(final Par p : _par) {
@@ -816,27 +1064,27 @@ public class MyDslGenerator extends AbstractGenerator {
                     _builder.append("expression = new Automaton(\"expauto\" + counter);");
                     _builder.newLine();
                     {
-                      EList<Message> _messages = pe.getMessages();
-                      for(final Message m : _messages) {
+                      EList<Message> _messages_2 = pe.getMessages();
+                      for(final Message m_1 : _messages_2) {
                         {
-                          boolean _isConstraint = m.isConstraint();
-                          if (_isConstraint) {
+                          boolean _isConstraint_1 = m_1.isConstraint();
+                          if (_isConstraint_1) {
                             _builder.append("\t\t");
                             _builder.append("str = \"\" ");
                             _builder.newLine();
                             {
-                              EList<Message> _messages_1 = m.getC().getMessages();
-                              for(final Message msg : _messages_1) {
+                              EList<Message> _messages_3 = m_1.getC().getMessages();
+                              for(final Message msg_1 : _messages_3) {
                                 _builder.append("\t\t");
                                 _builder.append("+ \"!\" + \"");
-                                String _name_2 = msg.getSender().getName();
-                                _builder.append(_name_2, "\t\t");
+                                String _name_5 = msg_1.getSender().getName();
+                                _builder.append(_name_5, "\t\t");
                                 _builder.append("\" + \".\" + \"");
-                                String _name_3 = msg.getName();
-                                _builder.append(_name_3, "\t\t");
+                                String _name_6 = msg_1.getName();
+                                _builder.append(_name_6, "\t\t");
                                 _builder.append("\" + \".\" + \"");
-                                String _name_4 = msg.getReceiver().getName();
-                                _builder.append(_name_4, "\t\t");
+                                String _name_7 = msg_1.getReceiver().getName();
+                                _builder.append(_name_7, "\t\t");
                                 _builder.append("\" + \" & \"");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t\t\t\t\t\t\t\t\t");
@@ -850,18 +1098,18 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isStrict = m.isStrict();
-                          boolean _not = (!_isStrict);
-                          if (_not) {
+                          boolean _isStrict_2 = m_1.isStrict();
+                          boolean _not_1 = (!_isStrict_2);
+                          if (_not_1) {
                             {
-                              boolean _isRequired = m.isRequired();
-                              if (_isRequired) {
+                              boolean _isRequired_2 = m_1.isRequired();
+                              if (_isRequired_2) {
                                 {
-                                  boolean _isFuture = m.isFuture();
-                                  if (_isFuture) {
+                                  boolean _isFuture_4 = m_1.isFuture();
+                                  if (_isFuture_4) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_required_future = this.compile_required_future(m);
-                                    _builder.append(_compile_required_future, "\t\t");
+                                    CharSequence _compile_required_future_1 = this.compile_required_future(m_1);
+                                    _builder.append(_compile_required_future_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -869,11 +1117,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  boolean _isPast = m.isPast();
-                                  if (_isPast) {
+                                  boolean _isPast_3 = m_1.isPast();
+                                  if (_isPast_3) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_required_past = this.compile_required_past(m);
-                                    _builder.append(_compile_required_past, "\t\t");
+                                    CharSequence _compile_required_past_1 = this.compile_required_past(m_1);
+                                    _builder.append(_compile_required_past_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -881,10 +1129,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m.isPast()) && (!m.isFuture()))) {
+                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_required = this.compile_required(m);
-                                    _builder.append(_compile_required, "\t\t");
+                                    CharSequence _compile_required_1 = this.compile_required(m_1);
+                                    _builder.append(_compile_required_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -894,14 +1142,14 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail = m.isFail();
-                              if (_isFail) {
+                              boolean _isFail_2 = m_1.isFail();
+                              if (_isFail_2) {
                                 {
-                                  boolean _isPast_1 = m.isPast();
-                                  if (_isPast_1) {
+                                  boolean _isPast_4 = m_1.isPast();
+                                  if (_isPast_4) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_fail_past = this.compile_fail_past(m);
-                                    _builder.append(_compile_fail_past, "\t\t");
+                                    CharSequence _compile_fail_past_1 = this.compile_fail_past(m_1);
+                                    _builder.append(_compile_fail_past_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -909,10 +1157,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m.isPast()) && (!m.isFuture()))) {
+                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_fail = this.compile_fail(m);
-                                    _builder.append(_compile_fail, "\t\t");
+                                    CharSequence _compile_fail_1 = this.compile_fail(m_1);
+                                    _builder.append(_compile_fail_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -922,13 +1170,13 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              if (((!m.isFail()) && (!m.isRequired()))) {
+                              if (((!m_1.isFail()) && (!m_1.isRequired()))) {
                                 {
-                                  boolean _isFuture_1 = m.isFuture();
-                                  if (_isFuture_1) {
+                                  boolean _isFuture_5 = m_1.isFuture();
+                                  if (_isFuture_5) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_future = this.compile_future(m);
-                                    _builder.append(_compile_future, "\t\t");
+                                    CharSequence _compile_future_1 = this.compile_future(m_1);
+                                    _builder.append(_compile_future_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -936,11 +1184,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  boolean _isPast_2 = m.isPast();
-                                  if (_isPast_2) {
+                                  boolean _isPast_5 = m_1.isPast();
+                                  if (_isPast_5) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_past = this.compile_past(m);
-                                    _builder.append(_compile_past, "\t\t");
+                                    CharSequence _compile_past_1 = this.compile_past(m_1);
+                                    _builder.append(_compile_past_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -948,10 +1196,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m.isPast()) && (!m.isFuture()))) {
+                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_msg = this.compile_msg(m);
-                                    _builder.append(_compile_msg, "\t\t");
+                                    CharSequence _compile_msg_1 = this.compile_msg(m_1);
+                                    _builder.append(_compile_msg_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -965,17 +1213,17 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\t\t");
                         _builder.newLine();
                         {
-                          boolean _isStrict_1 = m.isStrict();
-                          if (_isStrict_1) {
+                          boolean _isStrict_3 = m_1.isStrict();
+                          if (_isStrict_3) {
                             {
-                              boolean _isRequired_1 = m.isRequired();
-                              if (_isRequired_1) {
+                              boolean _isRequired_3 = m_1.isRequired();
+                              if (_isRequired_3) {
                                 {
-                                  boolean _isFuture_2 = m.isFuture();
-                                  if (_isFuture_2) {
+                                  boolean _isFuture_6 = m_1.isFuture();
+                                  if (_isFuture_6) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict_required_future = this.compile_strict_required_future(m);
-                                    _builder.append(_compile_strict_required_future, "\t\t");
+                                    CharSequence _compile_strict_required_future_1 = this.compile_strict_required_future(m_1);
+                                    _builder.append(_compile_strict_required_future_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -983,10 +1231,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m.isPast()) && (!m.isFuture()))) {
+                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict_required = this.compile_strict_required(m);
-                                    _builder.append(_compile_strict_required, "\t\t");
+                                    CharSequence _compile_strict_required_1 = this.compile_strict_required(m_1);
+                                    _builder.append(_compile_strict_required_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -996,13 +1244,13 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_1 = m.isFail();
-                              if (_isFail_1) {
+                              boolean _isFail_3 = m_1.isFail();
+                              if (_isFail_3) {
                                 {
-                                  if (((!m.isPast()) && (!m.isFuture()))) {
+                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict_fail = this.compile_strict_fail(m);
-                                    _builder.append(_compile_strict_fail, "\t\t");
+                                    CharSequence _compile_strict_fail_1 = this.compile_strict_fail(m_1);
+                                    _builder.append(_compile_strict_fail_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -1012,13 +1260,13 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              if (((!m.isFail()) && (!m.isRequired()))) {
+                              if (((!m_1.isFail()) && (!m_1.isRequired()))) {
                                 {
-                                  boolean _isFuture_3 = m.isFuture();
-                                  if (_isFuture_3) {
+                                  boolean _isFuture_7 = m_1.isFuture();
+                                  if (_isFuture_7) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict_future = this.compile_strict_future(m);
-                                    _builder.append(_compile_strict_future, "\t\t");
+                                    CharSequence _compile_strict_future_1 = this.compile_strict_future(m_1);
+                                    _builder.append(_compile_strict_future_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -1026,10 +1274,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m.isPast()) && (!m.isFuture()))) {
+                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict = this.compile_strict(m);
-                                    _builder.append(_compile_strict, "\t\t");
+                                    CharSequence _compile_strict_1 = this.compile_strict(m_1);
+                                    _builder.append(_compile_strict_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("expression.collapse(b);");
@@ -1066,29 +1314,29 @@ public class MyDslGenerator extends AbstractGenerator {
                     _builder.append("expression = new Automaton(\"expauto\" + counter);");
                     _builder.newLine();
                     {
-                      EList<Message> _messages_2 = e.getMessages();
-                      for(final Message m_1 : _messages_2) {
+                      EList<Message> _messages_4 = e.getMessages();
+                      for(final Message m_2 : _messages_4) {
                         {
-                          boolean _isConstraint_1 = m_1.isConstraint();
-                          if (_isConstraint_1) {
+                          boolean _isConstraint_2 = m_2.isConstraint();
+                          if (_isConstraint_2) {
                             _builder.append("\t\t");
                             _builder.append("\t");
                             _builder.append("str = \"\" ");
                             _builder.newLine();
                             {
-                              EList<Message> _messages_3 = m_1.getC().getMessages();
-                              for(final Message msg_1 : _messages_3) {
+                              EList<Message> _messages_5 = m_2.getC().getMessages();
+                              for(final Message msg_2 : _messages_5) {
                                 _builder.append("\t\t");
                                 _builder.append("\t");
                                 _builder.append("+ \"!\" + \"");
-                                String _name_5 = msg_1.getSender().getName();
-                                _builder.append(_name_5, "\t\t\t");
+                                String _name_8 = msg_2.getSender().getName();
+                                _builder.append(_name_8, "\t\t\t");
                                 _builder.append("\" + \".\" + \"");
-                                String _name_6 = msg_1.getName();
-                                _builder.append(_name_6, "\t\t\t");
+                                String _name_9 = msg_2.getName();
+                                _builder.append(_name_9, "\t\t\t");
                                 _builder.append("\" + \".\" + \"");
-                                String _name_7 = msg_1.getReceiver().getName();
-                                _builder.append(_name_7, "\t\t\t");
+                                String _name_10 = msg_2.getReceiver().getName();
+                                _builder.append(_name_10, "\t\t\t");
                                 _builder.append("\" + \" & \"");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t\t\t\t\t\t\t\t\t");
@@ -1103,19 +1351,19 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isStrict_2 = m_1.isStrict();
-                          boolean _not_1 = (!_isStrict_2);
-                          if (_not_1) {
+                          boolean _isStrict_4 = m_2.isStrict();
+                          boolean _not_2 = (!_isStrict_4);
+                          if (_not_2) {
                             {
-                              boolean _isRequired_2 = m_1.isRequired();
-                              if (_isRequired_2) {
+                              boolean _isRequired_4 = m_2.isRequired();
+                              if (_isRequired_4) {
                                 {
-                                  boolean _isFuture_4 = m_1.isFuture();
-                                  if (_isFuture_4) {
+                                  boolean _isFuture_8 = m_2.isFuture();
+                                  if (_isFuture_8) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_required_future_1 = this.compile_required_future(m_1);
-                                    _builder.append(_compile_required_future_1, "\t\t\t");
+                                    CharSequence _compile_required_future_2 = this.compile_required_future(m_2);
+                                    _builder.append(_compile_required_future_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1124,12 +1372,12 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  boolean _isPast_3 = m_1.isPast();
-                                  if (_isPast_3) {
+                                  boolean _isPast_6 = m_2.isPast();
+                                  if (_isPast_6) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_required_past_1 = this.compile_required_past(m_1);
-                                    _builder.append(_compile_required_past_1, "\t\t\t");
+                                    CharSequence _compile_required_past_2 = this.compile_required_past(m_2);
+                                    _builder.append(_compile_required_past_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1138,11 +1386,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
+                                  if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_required_1 = this.compile_required(m_1);
-                                    _builder.append(_compile_required_1, "\t\t\t");
+                                    CharSequence _compile_required_2 = this.compile_required(m_2);
+                                    _builder.append(_compile_required_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1153,15 +1401,15 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_2 = m_1.isFail();
-                              if (_isFail_2) {
+                              boolean _isFail_4 = m_2.isFail();
+                              if (_isFail_4) {
                                 {
-                                  boolean _isPast_4 = m_1.isPast();
-                                  if (_isPast_4) {
+                                  boolean _isPast_7 = m_2.isPast();
+                                  if (_isPast_7) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_fail_past_1 = this.compile_fail_past(m_1);
-                                    _builder.append(_compile_fail_past_1, "\t\t\t");
+                                    CharSequence _compile_fail_past_2 = this.compile_fail_past(m_2);
+                                    _builder.append(_compile_fail_past_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1170,11 +1418,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
+                                  if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_fail_1 = this.compile_fail(m_1);
-                                    _builder.append(_compile_fail_1, "\t\t\t");
+                                    CharSequence _compile_fail_2 = this.compile_fail(m_2);
+                                    _builder.append(_compile_fail_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1185,14 +1433,14 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              if (((!m_1.isFail()) && (!m_1.isRequired()))) {
+                              if (((!m_2.isFail()) && (!m_2.isRequired()))) {
                                 {
-                                  boolean _isFuture_5 = m_1.isFuture();
-                                  if (_isFuture_5) {
+                                  boolean _isFuture_9 = m_2.isFuture();
+                                  if (_isFuture_9) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_future_1 = this.compile_future(m_1);
-                                    _builder.append(_compile_future_1, "\t\t\t");
+                                    CharSequence _compile_future_2 = this.compile_future(m_2);
+                                    _builder.append(_compile_future_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1201,12 +1449,12 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  boolean _isPast_5 = m_1.isPast();
-                                  if (_isPast_5) {
+                                  boolean _isPast_8 = m_2.isPast();
+                                  if (_isPast_8) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_past_1 = this.compile_past(m_1);
-                                    _builder.append(_compile_past_1, "\t\t\t");
+                                    CharSequence _compile_past_2 = this.compile_past(m_2);
+                                    _builder.append(_compile_past_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1215,11 +1463,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
+                                  if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_msg_1 = this.compile_msg(m_1);
-                                    _builder.append(_compile_msg_1, "\t\t\t");
+                                    CharSequence _compile_msg_2 = this.compile_msg(m_2);
+                                    _builder.append(_compile_msg_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1235,18 +1483,18 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\t");
                         _builder.newLine();
                         {
-                          boolean _isStrict_3 = m_1.isStrict();
-                          if (_isStrict_3) {
+                          boolean _isStrict_5 = m_2.isStrict();
+                          if (_isStrict_5) {
                             {
-                              boolean _isRequired_3 = m_1.isRequired();
-                              if (_isRequired_3) {
+                              boolean _isRequired_5 = m_2.isRequired();
+                              if (_isRequired_5) {
                                 {
-                                  boolean _isFuture_6 = m_1.isFuture();
-                                  if (_isFuture_6) {
+                                  boolean _isFuture_10 = m_2.isFuture();
+                                  if (_isFuture_10) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_required_future_1 = this.compile_strict_required_future(m_1);
-                                    _builder.append(_compile_strict_required_future_1, "\t\t\t");
+                                    CharSequence _compile_strict_required_future_2 = this.compile_strict_required_future(m_2);
+                                    _builder.append(_compile_strict_required_future_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1255,11 +1503,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
+                                  if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_required_1 = this.compile_strict_required(m_1);
-                                    _builder.append(_compile_strict_required_1, "\t\t\t");
+                                    CharSequence _compile_strict_required_2 = this.compile_strict_required(m_2);
+                                    _builder.append(_compile_strict_required_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1270,14 +1518,14 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_3 = m_1.isFail();
-                              if (_isFail_3) {
+                              boolean _isFail_5 = m_2.isFail();
+                              if (_isFail_5) {
                                 {
-                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
+                                  if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_fail_1 = this.compile_strict_fail(m_1);
-                                    _builder.append(_compile_strict_fail_1, "\t\t\t");
+                                    CharSequence _compile_strict_fail_2 = this.compile_strict_fail(m_2);
+                                    _builder.append(_compile_strict_fail_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1288,14 +1536,14 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              if (((!m_1.isFail()) && (!m_1.isRequired()))) {
+                              if (((!m_2.isFail()) && (!m_2.isRequired()))) {
                                 {
-                                  boolean _isFuture_7 = m_1.isFuture();
-                                  if (_isFuture_7) {
+                                  boolean _isFuture_11 = m_2.isFuture();
+                                  if (_isFuture_11) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_future_1 = this.compile_strict_future(m_1);
-                                    _builder.append(_compile_strict_future_1, "\t\t\t");
+                                    CharSequence _compile_strict_future_2 = this.compile_strict_future(m_2);
+                                    _builder.append(_compile_strict_future_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1304,11 +1552,11 @@ public class MyDslGenerator extends AbstractGenerator {
                                   }
                                 }
                                 {
-                                  if (((!m_1.isPast()) && (!m_1.isFuture()))) {
+                                  if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_1 = this.compile_strict(m_1);
-                                    _builder.append(_compile_strict_1, "\t\t\t");
+                                    CharSequence _compile_strict_2 = this.compile_strict(m_2);
+                                    _builder.append(_compile_strict_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
                                     _builder.append("\t");
@@ -1336,26 +1584,26 @@ public class MyDslGenerator extends AbstractGenerator {
             }
             {
               EList<Message> _message = sc.getMessage();
-              for(final Message m_2 : _message) {
+              for(final Message m_3 : _message) {
                 {
-                  boolean _isConstraint_2 = m_2.isConstraint();
-                  if (_isConstraint_2) {
+                  boolean _isConstraint_3 = m_3.isConstraint();
+                  if (_isConstraint_3) {
                     _builder.append("\t\t");
                     _builder.append("str = \"\" ");
                     _builder.newLine();
                     {
-                      EList<Message> _messages_4 = m_2.getC().getMessages();
-                      for(final Message msg_2 : _messages_4) {
+                      EList<Message> _messages_6 = m_3.getC().getMessages();
+                      for(final Message msg_3 : _messages_6) {
                         _builder.append("\t\t");
                         _builder.append("+ \"!\" + \"");
-                        String _name_8 = msg_2.getSender().getName();
-                        _builder.append(_name_8, "\t\t");
+                        String _name_11 = msg_3.getSender().getName();
+                        _builder.append(_name_11, "\t\t");
                         _builder.append("\" + \".\" + \"");
-                        String _name_9 = msg_2.getName();
-                        _builder.append(_name_9, "\t\t");
+                        String _name_12 = msg_3.getName();
+                        _builder.append(_name_12, "\t\t");
                         _builder.append("\" + \".\" + \"");
-                        String _name_10 = msg_2.getReceiver().getName();
-                        _builder.append(_name_10, "\t\t");
+                        String _name_13 = msg_3.getReceiver().getName();
+                        _builder.append(_name_13, "\t\t");
                         _builder.append("\" + \" & \"");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t\t\t\t\t\t\t\t");
@@ -1369,18 +1617,18 @@ public class MyDslGenerator extends AbstractGenerator {
                   }
                 }
                 {
-                  boolean _isStrict_4 = m_2.isStrict();
-                  boolean _not_2 = (!_isStrict_4);
-                  if (_not_2) {
+                  boolean _isStrict_6 = m_3.isStrict();
+                  boolean _not_3 = (!_isStrict_6);
+                  if (_not_3) {
                     {
-                      boolean _isRequired_4 = m_2.isRequired();
-                      if (_isRequired_4) {
+                      boolean _isRequired_6 = m_3.isRequired();
+                      if (_isRequired_6) {
                         {
-                          boolean _isFuture_8 = m_2.isFuture();
-                          if (_isFuture_8) {
+                          boolean _isFuture_12 = m_3.isFuture();
+                          if (_isFuture_12) {
                             _builder.append("\t\t");
-                            CharSequence _compile_required_future_2 = this.compile_required_future(m_2);
-                            _builder.append(_compile_required_future_2, "\t\t");
+                            CharSequence _compile_required_future_3 = this.compile_required_future(m_3);
+                            _builder.append(_compile_required_future_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1388,11 +1636,11 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isPast_6 = m_2.isPast();
-                          if (_isPast_6) {
+                          boolean _isPast_9 = m_3.isPast();
+                          if (_isPast_9) {
                             _builder.append("\t\t");
-                            CharSequence _compile_required_past_2 = this.compile_required_past(m_2);
-                            _builder.append(_compile_required_past_2, "\t\t");
+                            CharSequence _compile_required_past_3 = this.compile_required_past(m_3);
+                            _builder.append(_compile_required_past_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1400,10 +1648,10 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          if (((!m_2.isPast()) && (!m_2.isFuture()))) {
+                          if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_required_2 = this.compile_required(m_2);
-                            _builder.append(_compile_required_2, "\t\t");
+                            CharSequence _compile_required_3 = this.compile_required(m_3);
+                            _builder.append(_compile_required_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1413,14 +1661,14 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isFail_4 = m_2.isFail();
-                      if (_isFail_4) {
+                      boolean _isFail_6 = m_3.isFail();
+                      if (_isFail_6) {
                         {
-                          boolean _isPast_7 = m_2.isPast();
-                          if (_isPast_7) {
+                          boolean _isPast_10 = m_3.isPast();
+                          if (_isPast_10) {
                             _builder.append("\t\t");
-                            CharSequence _compile_fail_past_2 = this.compile_fail_past(m_2);
-                            _builder.append(_compile_fail_past_2, "\t\t");
+                            CharSequence _compile_fail_past_3 = this.compile_fail_past(m_3);
+                            _builder.append(_compile_fail_past_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1428,10 +1676,10 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          if (((!m_2.isPast()) && (!m_2.isFuture()))) {
+                          if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_fail_2 = this.compile_fail(m_2);
-                            _builder.append(_compile_fail_2, "\t\t");
+                            CharSequence _compile_fail_3 = this.compile_fail(m_3);
+                            _builder.append(_compile_fail_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1441,13 +1689,13 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      if (((!m_2.isFail()) && (!m_2.isRequired()))) {
+                      if (((!m_3.isFail()) && (!m_3.isRequired()))) {
                         {
-                          boolean _isFuture_9 = m_2.isFuture();
-                          if (_isFuture_9) {
+                          boolean _isFuture_13 = m_3.isFuture();
+                          if (_isFuture_13) {
                             _builder.append("\t\t");
-                            CharSequence _compile_future_2 = this.compile_future(m_2);
-                            _builder.append(_compile_future_2, "\t\t");
+                            CharSequence _compile_future_3 = this.compile_future(m_3);
+                            _builder.append(_compile_future_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1455,11 +1703,11 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isPast_8 = m_2.isPast();
-                          if (_isPast_8) {
+                          boolean _isPast_11 = m_3.isPast();
+                          if (_isPast_11) {
                             _builder.append("\t\t");
-                            CharSequence _compile_past_2 = this.compile_past(m_2);
-                            _builder.append(_compile_past_2, "\t\t");
+                            CharSequence _compile_past_3 = this.compile_past(m_3);
+                            _builder.append(_compile_past_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1467,10 +1715,10 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          if (((!m_2.isPast()) && (!m_2.isFuture()))) {
+                          if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_msg_2 = this.compile_msg(m_2);
-                            _builder.append(_compile_msg_2, "\t\t");
+                            CharSequence _compile_msg_3 = this.compile_msg(m_3);
+                            _builder.append(_compile_msg_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1484,17 +1732,17 @@ public class MyDslGenerator extends AbstractGenerator {
                 _builder.append("\t\t");
                 _builder.newLine();
                 {
-                  boolean _isStrict_5 = m_2.isStrict();
-                  if (_isStrict_5) {
+                  boolean _isStrict_7 = m_3.isStrict();
+                  if (_isStrict_7) {
                     {
-                      boolean _isRequired_5 = m_2.isRequired();
-                      if (_isRequired_5) {
+                      boolean _isRequired_7 = m_3.isRequired();
+                      if (_isRequired_7) {
                         {
-                          boolean _isFuture_10 = m_2.isFuture();
-                          if (_isFuture_10) {
+                          boolean _isFuture_14 = m_3.isFuture();
+                          if (_isFuture_14) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_required_future_2 = this.compile_strict_required_future(m_2);
-                            _builder.append(_compile_strict_required_future_2, "\t\t");
+                            CharSequence _compile_strict_required_future_3 = this.compile_strict_required_future(m_3);
+                            _builder.append(_compile_strict_required_future_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1502,10 +1750,10 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          if (((!m_2.isPast()) && (!m_2.isFuture()))) {
+                          if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_required_2 = this.compile_strict_required(m_2);
-                            _builder.append(_compile_strict_required_2, "\t\t");
+                            CharSequence _compile_strict_required_3 = this.compile_strict_required(m_3);
+                            _builder.append(_compile_strict_required_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1515,13 +1763,13 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isFail_5 = m_2.isFail();
-                      if (_isFail_5) {
+                      boolean _isFail_7 = m_3.isFail();
+                      if (_isFail_7) {
                         {
-                          if (((!m_2.isPast()) && (!m_2.isFuture()))) {
+                          if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_fail_2 = this.compile_strict_fail(m_2);
-                            _builder.append(_compile_strict_fail_2, "\t\t");
+                            CharSequence _compile_strict_fail_3 = this.compile_strict_fail(m_3);
+                            _builder.append(_compile_strict_fail_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1531,13 +1779,13 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      if (((!m_2.isFail()) && (!m_2.isRequired()))) {
+                      if (((!m_3.isFail()) && (!m_3.isRequired()))) {
                         {
-                          boolean _isFuture_11 = m_2.isFuture();
-                          if (_isFuture_11) {
+                          boolean _isFuture_15 = m_3.isFuture();
+                          if (_isFuture_15) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_future_2 = this.compile_strict_future(m_2);
-                            _builder.append(_compile_strict_future_2, "\t\t");
+                            CharSequence _compile_strict_future_3 = this.compile_strict_future(m_3);
+                            _builder.append(_compile_strict_future_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1545,10 +1793,10 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          if (((!m_2.isPast()) && (!m_2.isFuture()))) {
+                          if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_2 = this.compile_strict(m_2);
-                            _builder.append(_compile_strict_2, "\t\t");
+                            CharSequence _compile_strict_3 = this.compile_strict(m_3);
+                            _builder.append(_compile_strict_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
                             _builder.append("a.collapse(b);");
@@ -1680,7 +1928,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("for (ArrayList<Automaton> alist : list) {");
     _builder.newLine();
     _builder.append("            ");
-    _builder.append("Automaton newauto = new Automaton(\"id\");");
+    _builder.append("Automaton newauto = new Automaton(\"listConverter\");");
     _builder.newLine();
     _builder.append("            ");
     _builder.append("for (Automaton auto : alist) {");
@@ -1698,6 +1946,43 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("        ");
+    _builder.append("return result;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ArrayList<Automaton> loopSetup(Automaton loopauto, int min, int max) {");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("ArrayList<Automaton> result = new ArrayList<>();");
+    _builder.newLine();
+    _builder.append("\t    ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("for (int i = min; i <= max; i++) {");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("Automaton newauto = new Automaton(\"loopauto\");");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("for (int j = 0; j < i; j++) {");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("newauto.collapse(loopauto);");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("result.add(newauto);");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t            ");
     _builder.append("return result;");
     _builder.newLine();
     _builder.append("    ");
@@ -1721,8 +2006,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("PrintWriter writer = new PrintWriter(\"");
-    String _name_11 = s.getName();
-    _builder.append(_name_11, "\t\t");
+    String _name_14 = s.getName();
+    _builder.append(_name_14, "\t\t");
     _builder.append("\" + \".txt\", \"UTF-8\");");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");

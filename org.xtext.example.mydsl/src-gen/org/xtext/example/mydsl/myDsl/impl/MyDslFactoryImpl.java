@@ -15,6 +15,7 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -87,6 +88,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.EXPRESSION: return createExpression();
       case MyDslPackage.PAR: return createPar();
       case MyDslPackage.PAR_EXPRESSION: return createParExpression();
+      case MyDslPackage.LOOP: return createLoop();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -211,6 +213,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ParExpressionImpl parExpression = new ParExpressionImpl();
     return parExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Loop createLoop()
+  {
+    LoopImpl loop = new LoopImpl();
+    return loop;
   }
 
   /**

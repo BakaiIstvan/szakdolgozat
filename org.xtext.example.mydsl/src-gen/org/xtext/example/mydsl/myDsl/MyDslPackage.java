@@ -187,13 +187,22 @@ public interface MyDslPackage extends EPackage
   int SCENARIO_CONTENT__PAR = 2;
 
   /**
+   * The feature id for the '<em><b>Loop</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCENARIO_CONTENT__LOOP = 3;
+
+  /**
    * The number of structural features of the '<em>Scenario Content</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCENARIO_CONTENT_FEATURE_COUNT = 3;
+  int SCENARIO_CONTENT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -527,6 +536,52 @@ public interface MyDslPackage extends EPackage
    */
   int PAR_EXPRESSION_FEATURE_COUNT = 2;
 
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.LoopImpl <em>Loop</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.LoopImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
+   * @generated
+   */
+  int LOOP = 11;
+
+  /**
+   * The feature id for the '<em><b>Min</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__MIN = 0;
+
+  /**
+   * The feature id for the '<em><b>Max</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__MAX = 1;
+
+  /**
+   * The feature id for the '<em><b>Messages</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP__MESSAGES = 2;
+
+  /**
+   * The number of structural features of the '<em>Loop</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOOP_FEATURE_COUNT = 3;
+
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Domain <em>Domain</em>}'.
@@ -656,6 +711,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getScenarioContent_Par();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getLoop <em>Loop</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Loop</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ScenarioContent#getLoop()
+   * @see #getScenarioContent()
+   * @generated
+   */
+  EReference getScenarioContent_Loop();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Message <em>Message</em>}'.
@@ -958,6 +1024,49 @@ public interface MyDslPackage extends EPackage
   EReference getParExpression_Messages();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Loop <em>Loop</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Loop</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Loop
+   * @generated
+   */
+  EClass getLoop();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Loop#getMin <em>Min</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Min</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Loop#getMin()
+   * @see #getLoop()
+   * @generated
+   */
+  EAttribute getLoop_Min();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Loop#getMax <em>Max</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Max</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Loop#getMax()
+   * @see #getLoop()
+   * @generated
+   */
+  EAttribute getLoop_Max();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Loop#getMessages <em>Messages</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Messages</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Loop#getMessages()
+   * @see #getLoop()
+   * @generated
+   */
+  EReference getLoop_Messages();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1081,6 +1190,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference SCENARIO_CONTENT__PAR = eINSTANCE.getScenarioContent_Par();
+
+    /**
+     * The meta object literal for the '<em><b>Loop</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SCENARIO_CONTENT__LOOP = eINSTANCE.getScenarioContent_Loop();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -1321,6 +1438,40 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference PAR_EXPRESSION__MESSAGES = eINSTANCE.getParExpression_Messages();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.LoopImpl <em>Loop</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.LoopImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
+     * @generated
+     */
+    EClass LOOP = eINSTANCE.getLoop();
+
+    /**
+     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOP__MIN = eINSTANCE.getLoop_Min();
+
+    /**
+     * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LOOP__MAX = eINSTANCE.getLoop_Max();
+
+    /**
+     * The meta object literal for the '<em><b>Messages</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOOP__MESSAGES = eINSTANCE.getLoop_Messages();
 
   }
 

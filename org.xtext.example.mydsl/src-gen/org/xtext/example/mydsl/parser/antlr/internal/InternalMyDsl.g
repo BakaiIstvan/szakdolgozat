@@ -309,6 +309,26 @@ ruleScenarioContent returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getScenarioContentAccess().getLoopLoopParserRuleCall_3_0());
+				}
+				lv_loop_3_0=ruleLoop
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getScenarioContentRule());
+					}
+					add(
+						$current,
+						"loop",
+						lv_loop_3_0,
+						"org.xtext.example.mydsl.MyDsl.Loop");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -976,6 +996,104 @@ ruleParExpression returns [EObject current=null]
 		otherlv_4='}'
 		{
 			newLeafNode(otherlv_4, grammarAccess.getParExpressionAccess().getRightCurlyBracketKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleLoop
+entryRuleLoop returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLoopRule()); }
+	iv_ruleLoop=ruleLoop
+	{ $current=$iv_ruleLoop.current; }
+	EOF;
+
+// Rule Loop
+ruleLoop returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='loop'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getLoopAccess().getLoopKeyword_0());
+		}
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLoopAccess().getLeftParenthesisKeyword_1());
+		}
+		(
+			(
+				lv_min_2_0=RULE_NUMBER
+				{
+					newLeafNode(lv_min_2_0, grammarAccess.getLoopAccess().getMinNumberTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLoopRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"min",
+						lv_min_2_0,
+						"org.xtext.example.mydsl.MyDsl.Number");
+				}
+			)
+		)
+		otherlv_3=','
+		{
+			newLeafNode(otherlv_3, grammarAccess.getLoopAccess().getCommaKeyword_3());
+		}
+		(
+			(
+				lv_max_4_0=RULE_NUMBER
+				{
+					newLeafNode(lv_max_4_0, grammarAccess.getLoopAccess().getMaxNumberTerminalRuleCall_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLoopRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"max",
+						lv_max_4_0,
+						"org.xtext.example.mydsl.MyDsl.Number");
+				}
+			)
+		)
+		otherlv_5=')'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getLoopAccess().getRightParenthesisKeyword_5());
+		}
+		otherlv_6='{'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getLoopAccess().getLeftCurlyBracketKeyword_6());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLoopAccess().getMessagesMessageParserRuleCall_7_0());
+				}
+				lv_messages_7_0=ruleMessage
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLoopRule());
+					}
+					add(
+						$current,
+						"messages",
+						lv_messages_7_0,
+						"org.xtext.example.mydsl.MyDsl.Message");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_8='}'
+		{
+			newLeafNode(otherlv_8, grammarAccess.getLoopAccess().getRightCurlyBracketKeyword_8());
 		}
 	)
 ;

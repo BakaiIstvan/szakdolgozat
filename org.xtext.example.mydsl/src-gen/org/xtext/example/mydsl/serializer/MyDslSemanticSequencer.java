@@ -18,6 +18,7 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
@@ -52,6 +53,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
+				return; 
+			case MyDslPackage.LOOP:
+				sequence_Loop(context, (Loop) semanticObject); 
 				return; 
 			case MyDslPackage.MESSAGE:
 				sequence_Message(context, (Message) semanticObject); 
@@ -123,6 +127,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     messages+=Message+
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Loop returns Loop
+	 *
+	 * Constraint:
+	 *     (min=Number max=Number messages+=Message*)
+	 */
+	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -209,7 +225,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ScenarioContent returns ScenarioContent
 	 *
 	 * Constraint:
-	 *     (alt+=Alt | message+=Message | par+=Par)
+	 *     (alt+=Alt | message+=Message | par+=Par | loop+=Loop)
 	 */
 	protected void sequence_ScenarioContent(ISerializationContext context, ScenarioContent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

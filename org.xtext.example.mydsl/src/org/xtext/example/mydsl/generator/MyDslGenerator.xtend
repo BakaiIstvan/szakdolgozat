@@ -317,10 +317,93 @@ class MyDslGenerator extends AbstractGenerator {
 					Automaton b;
 					ArrayList<Automaton> altauto;
 					ArrayList<Automaton> parauto;
+					Automaton loopauto;
 					Automaton expression;
 					int counter = 0;
 					
 					«FOR sc : scenario.scenariocontents»
+						«FOR l :sc.loop»
+							loopauto = new Automaton("loopauto" + counter);
+							«FOR m : l.messages»
+								«IF m.constraint»
+									str = "" 
+									«FOR msg : m.c.messages»
+										+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+									«ENDFOR»;
+									str= str.substring(0, str.length() - 3);
+								«ENDIF»
+								«IF !m.strict»
+									«IF m.required»
+										«IF m.future»
+											«m.compile_required_future»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF m.past»
+											«m.compile_required_past»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF !m.past && !m.future»
+											«m.compile_required»
+											loopauto.collapse(b);
+										«ENDIF»
+									«ENDIF»
+									«IF m.fail»
+										«IF m.past»
+											«m.compile_fail_past»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF !m.past && !m.future»
+											«m.compile_fail»
+											loopauto.collapse(b);
+										«ENDIF»
+									«ENDIF»
+									«IF !m.fail && !m.required»
+										«IF m.future»
+											«m.compile_future»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF m.past»
+											«m.compile_past»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF !m.past && !m.future»
+											«m.compile_msg»
+											loopauto.collapse(b);
+										«ENDIF»
+									«ENDIF»
+								«ENDIF»
+								
+								«IF m.strict»
+									«IF m.required»
+										«IF m.future»
+											«m.compile_strict_required_future»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF !m.past && !m.future»
+											«m.compile_strict_required»
+											loopauto.collapse(b);
+										«ENDIF»
+									«ENDIF»
+									«IF m.fail»
+										«IF !m.past && !m.future»
+											«m.compile_strict_fail»
+											loopauto.collapse(b);
+										«ENDIF»
+									«ENDIF»
+									«IF !m.fail && !m.required»
+										«IF m.future»
+											«m.compile_strict_future»
+											loopauto.collapse(b);
+										«ENDIF»
+										«IF !m.past && !m.future»
+											«m.compile_strict»
+											loopauto.collapse(b);
+										«ENDIF» 
+									«ENDIF»
+								«ENDIF»
+							«ENDFOR»
+							a.merge(loopSetup(loopauto, «l.min», «l.max»));
+						«ENDFOR»
 						«FOR p : sc.par»
 							parauto = new ArrayList<Automaton>();
 							«FOR pe : p.parexpression»
@@ -614,13 +697,26 @@ class MyDslGenerator extends AbstractGenerator {
 		    private ArrayList<Automaton> listConverter(ArrayList<ArrayList<Automaton>> list) {
 		        ArrayList<Automaton> result = new ArrayList<>();
 		        for (ArrayList<Automaton> alist : list) {
-		            Automaton newauto = new Automaton("id");
+		            Automaton newauto = new Automaton("listConverter");
 		            for (Automaton auto : alist) {
 		                newauto.collapse(auto);
 		            }
 		            result.add(newauto);
 		        }
 		        return result;
+		    }
+		    
+		    public ArrayList<Automaton> loopSetup(Automaton loopauto, int min, int max) {
+	            ArrayList<Automaton> result = new ArrayList<>();
+	    
+	            for (int i = min; i <= max; i++) {
+	                Automaton newauto = new Automaton("loopauto");
+	                for (int j = 0; j < i; j++) {
+	                    newauto.collapse(loopauto);
+	                }
+	                result.add(newauto);
+	            }
+	            return result;
 		    }
 			
 			public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
