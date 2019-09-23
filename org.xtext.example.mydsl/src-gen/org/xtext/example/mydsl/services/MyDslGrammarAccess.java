@@ -604,12 +604,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Loop:
-		//	'loop' '(' min+=Number ',' max+=Number ')' '{'
+		//	'loop' '(' min=Number ',' max=Number ')' '{'
 		//	messages+=Message*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'loop' '(' min+=Number ',' max+=Number ')' '{' messages+=Message* '}'
+		//'loop' '(' min=Number ',' max=Number ')' '{' messages+=Message* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'loop'
@@ -618,7 +618,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//min+=Number
+		//min=Number
 		public Assignment getMinAssignment_2() { return cMinAssignment_2; }
 		
 		//Number
@@ -627,7 +627,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//max+=Number
+		//max=Number
 		public Assignment getMaxAssignment_4() { return cMaxAssignment_4; }
 		
 		//Number
@@ -855,7 +855,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Loop:
-	//	'loop' '(' min+=Number ',' max+=Number ')' '{'
+	//	'loop' '(' min=Number ',' max=Number ')' '{'
 	//	messages+=Message*
 	//	'}';
 	public LoopElements getLoopAccess() {

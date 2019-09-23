@@ -136,7 +136,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
-	 *     (min+=Number max+=Number messages+=Message*)
+	 *     (min=Number max=Number messages+=Message*)
 	 */
 	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

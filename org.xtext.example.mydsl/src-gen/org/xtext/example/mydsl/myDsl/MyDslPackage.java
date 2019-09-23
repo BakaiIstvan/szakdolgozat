@@ -547,7 +547,7 @@ public interface MyDslPackage extends EPackage
   int LOOP = 11;
 
   /**
-   * The feature id for the '<em><b>Min</b></em>' attribute list.
+   * The feature id for the '<em><b>Min</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -556,7 +556,7 @@ public interface MyDslPackage extends EPackage
   int LOOP__MIN = 0;
 
   /**
-   * The feature id for the '<em><b>Max</b></em>' attribute list.
+   * The feature id for the '<em><b>Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1034,10 +1034,10 @@ public interface MyDslPackage extends EPackage
   EClass getLoop();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Loop#getMin <em>Min</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Loop#getMin <em>Min</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Min</em>'.
+   * @return the meta object for the attribute '<em>Min</em>'.
    * @see org.xtext.example.mydsl.myDsl.Loop#getMin()
    * @see #getLoop()
    * @generated
@@ -1045,10 +1045,10 @@ public interface MyDslPackage extends EPackage
   EAttribute getLoop_Min();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Loop#getMax <em>Max</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Loop#getMax <em>Max</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Max</em>'.
+   * @return the meta object for the attribute '<em>Max</em>'.
    * @see org.xtext.example.mydsl.myDsl.Loop#getMax()
    * @see #getLoop()
    * @generated
@@ -1450,7 +1450,7 @@ public interface MyDslPackage extends EPackage
     EClass LOOP = eINSTANCE.getLoop();
 
     /**
-     * The meta object literal for the '<em><b>Min</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Min</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1458,7 +1458,7 @@ public interface MyDslPackage extends EPackage
     EAttribute LOOP__MIN = eINSTANCE.getLoop_Min();
 
     /**
-     * The meta object literal for the '<em><b>Max</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Max</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

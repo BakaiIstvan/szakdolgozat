@@ -2620,7 +2620,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             					if (current==null) {
             						current = createModelElement(grammarAccess.getLoopRule());
             					}
-            					addWithLastConsumed(
+            					setWithLastConsumed(
             						current,
             						"min",
             						lv_min_2_0,
@@ -2650,7 +2650,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             					if (current==null) {
             						current = createModelElement(grammarAccess.getLoopRule());
             					}
-            					addWithLastConsumed(
+            					setWithLastConsumed(
             						current,
             						"max",
             						lv_max_4_0,

@@ -1034,7 +1034,7 @@ ruleLoop returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getLoopRule());
 					}
-					addWithLastConsumed(
+					setWithLastConsumed(
 						$current,
 						"min",
 						lv_min_2_0,
@@ -1056,7 +1056,7 @@ ruleLoop returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getLoopRule());
 					}
-					addWithLastConsumed(
+					setWithLastConsumed(
 						$current,
 						"max",
 						lv_max_4_0,

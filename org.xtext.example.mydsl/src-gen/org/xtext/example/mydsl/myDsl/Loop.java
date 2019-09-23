@@ -28,36 +28,56 @@ import org.eclipse.emf.ecore.EObject;
 public interface Loop extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Min</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Min</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Min</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Min</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Min</em>' attribute list.
+   * @return the value of the '<em>Min</em>' attribute.
+   * @see #setMin(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getLoop_Min()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<String> getMin();
+  String getMin();
 
   /**
-   * Returns the value of the '<em><b>Max</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Loop#getMin <em>Min</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Min</em>' attribute.
+   * @see #getMin()
+   * @generated
+   */
+  void setMin(String value);
+
+  /**
+   * Returns the value of the '<em><b>Max</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Max</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Max</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Max</em>' attribute list.
+   * @return the value of the '<em>Max</em>' attribute.
+   * @see #setMax(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getLoop_Max()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<String> getMax();
+  String getMax();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Loop#getMax <em>Max</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Max</em>' attribute.
+   * @see #getMax()
+   * @generated
+   */
+  void setMax(String value);
 
   /**
    * Returns the value of the '<em><b>Messages</b></em>' containment reference list.
