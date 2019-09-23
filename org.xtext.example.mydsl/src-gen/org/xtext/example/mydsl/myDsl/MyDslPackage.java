@@ -509,13 +509,21 @@ public interface MyDslPackage extends EPackage
   int SCENARIO_CONTENT__PAR = 2;
 
   /**
+<<<<<<< HEAD
    * The feature id for the '<em><b>Loop</b></em>' containment reference list.
+=======
+   * The feature id for the '<em><b>Contextmessage</b></em>' containment reference list.
+>>>>>>> [xText] Added new message type: contextMessage
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
+<<<<<<< HEAD
   int SCENARIO_CONTENT__LOOP = 3;
+=======
+  int SCENARIO_CONTENT__CONTEXTMESSAGE = 3;
+>>>>>>> [xText] Added new message type: contextMessage
 
   /**
    * The number of structural features of the '<em>Scenario Content</em>' class.
@@ -636,6 +644,400 @@ public interface MyDslPackage extends EPackage
   int MESSAGE_FEATURE_COUNT = 10;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl <em>Context Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
+   * @generated
+   */
+  int CONTEXT_MESSAGE = 11;
+
+  /**
+   * The number of structural features of the '<em>Context Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl <em>Context Message Content</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
+   * @generated
+   */
+  int CONTEXT_MESSAGE_CONTENT = 12;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT__REQUIRED = CONTEXT_MESSAGE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT__FAIL = CONTEXT_MESSAGE_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT__STRICT = CONTEXT_MESSAGE_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT__NAME = CONTEXT_MESSAGE_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Context Message Content</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT_FEATURE_COUNT = CONTEXT_MESSAGE_FEATURE_COUNT + 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl <em>Match Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
+   * @generated
+   */
+  int MATCH_MESSAGE = 13;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__REQUIRED = CONTEXT_MESSAGE_CONTENT__REQUIRED;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__FAIL = CONTEXT_MESSAGE_CONTENT__FAIL;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__STRICT = CONTEXT_MESSAGE_CONTENT__STRICT;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__NAME = CONTEXT_MESSAGE_CONTENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Content</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__CONTENT = CONTEXT_MESSAGE_CONTENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Match Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE_FEATURE_COUNT = CONTEXT_MESSAGE_CONTENT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl <em>Change Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
+   * @generated
+   */
+  int CHANGE_MESSAGE = 14;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__REQUIRED = CONTEXT_MESSAGE_CONTENT__REQUIRED;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__FAIL = CONTEXT_MESSAGE_CONTENT__FAIL;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__STRICT = CONTEXT_MESSAGE_CONTENT__STRICT;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__NAME = CONTEXT_MESSAGE_CONTENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__ENTITY = CONTEXT_MESSAGE_CONTENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Change Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE_FEATURE_COUNT = CONTEXT_MESSAGE_CONTENT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl <em>Appear Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
+   * @generated
+   */
+  int APPEAR_MESSAGE = 15;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__REQUIRED = CHANGE_MESSAGE__REQUIRED;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__FAIL = CHANGE_MESSAGE__FAIL;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__STRICT = CHANGE_MESSAGE__STRICT;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__NAME = CHANGE_MESSAGE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__ENTITY = CHANGE_MESSAGE__ENTITY;
+
+  /**
+   * The number of structural features of the '<em>Appear Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE_FEATURE_COUNT = CHANGE_MESSAGE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl <em>Disappear Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
+   * @generated
+   */
+  int DISAPPEAR_MESSAGE = 16;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__REQUIRED = CHANGE_MESSAGE__REQUIRED;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__FAIL = CHANGE_MESSAGE__FAIL;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__STRICT = CHANGE_MESSAGE__STRICT;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__NAME = CHANGE_MESSAGE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__ENTITY = CHANGE_MESSAGE__ENTITY;
+
+  /**
+   * The number of structural features of the '<em>Disappear Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE_FEATURE_COUNT = CHANGE_MESSAGE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DistanceMessageImpl <em>Distance Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.DistanceMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDistanceMessage()
+   * @generated
+   */
+  int DISTANCE_MESSAGE = 17;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISTANCE_MESSAGE__REQUIRED = CHANGE_MESSAGE__REQUIRED;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISTANCE_MESSAGE__FAIL = CHANGE_MESSAGE__FAIL;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISTANCE_MESSAGE__STRICT = CHANGE_MESSAGE__STRICT;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISTANCE_MESSAGE__NAME = CHANGE_MESSAGE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISTANCE_MESSAGE__ENTITY = CHANGE_MESSAGE__ENTITY;
+
+  /**
+   * The number of structural features of the '<em>Distance Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISTANCE_MESSAGE_FEATURE_COUNT = CHANGE_MESSAGE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -643,7 +1045,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 11;
+  int OBJECT_TYPE = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -671,7 +1073,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 12;
+  int OBJECT = 19;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -708,7 +1110,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 13;
+  int CONSTRAINT = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -745,7 +1147,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 14;
+  int ALT = 21;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -773,7 +1175,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 15;
+  int EXPRESSION = 22;
 
   /**
    * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -801,7 +1203,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 16;
+  int PAR = 23;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -829,7 +1231,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 17;
+  int PAR_EXPRESSION = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1341,6 +1743,7 @@ public interface MyDslPackage extends EPackage
   EReference getScenarioContent_Par();
 
   /**
+<<<<<<< HEAD
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getLoop <em>Loop</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1350,6 +1753,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getScenarioContent_Loop();
+=======
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage <em>Contextmessage</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contextmessage</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage()
+   * @see #getScenarioContent()
+   * @generated
+   */
+  EReference getScenarioContent_Contextmessage();
+>>>>>>> [xText] Added new message type: contextMessage
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Message <em>Message</em>}'.
@@ -1470,6 +1884,142 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getMessage_C();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextMessage <em>Context Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage
+   * @generated
+   */
+  EClass getContextMessage();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent <em>Context Message Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Message Content</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent
+   * @generated
+   */
+  EClass getContextMessageContent();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isRequired <em>Required</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Required</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent#isRequired()
+   * @see #getContextMessageContent()
+   * @generated
+   */
+  EAttribute getContextMessageContent_Required();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isFail <em>Fail</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Fail</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent#isFail()
+   * @see #getContextMessageContent()
+   * @generated
+   */
+  EAttribute getContextMessageContent_Fail();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isStrict <em>Strict</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Strict</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent#isStrict()
+   * @see #getContextMessageContent()
+   * @generated
+   */
+  EAttribute getContextMessageContent_Strict();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent#getName()
+   * @see #getContextMessageContent()
+   * @generated
+   */
+  EAttribute getContextMessageContent_Name();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.MatchMessage <em>Match Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Match Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage
+   * @generated
+   */
+  EClass getMatchMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.MatchMessage#getContent <em>Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Content</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage#getContent()
+   * @see #getMatchMessage()
+   * @generated
+   */
+  EReference getMatchMessage_Content();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ChangeMessage <em>Change Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Change Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage
+   * @generated
+   */
+  EClass getChangeMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage#getEntity()
+   * @see #getChangeMessage()
+   * @generated
+   */
+  EReference getChangeMessage_Entity();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.AppearMessage <em>Appear Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Appear Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AppearMessage
+   * @generated
+   */
+  EClass getAppearMessage();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DisappearMessage <em>Disappear Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Disappear Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DisappearMessage
+   * @generated
+   */
+  EClass getDisappearMessage();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DistanceMessage <em>Distance Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Distance Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DistanceMessage
+   * @generated
+   */
+  EClass getDistanceMessage();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ObjectType <em>Object Type</em>}'.
@@ -2058,12 +2608,20 @@ public interface MyDslPackage extends EPackage
     EReference SCENARIO_CONTENT__PAR = eINSTANCE.getScenarioContent_Par();
 
     /**
+<<<<<<< HEAD
      * The meta object literal for the '<em><b>Loop</b></em>' containment reference list feature.
+=======
+     * The meta object literal for the '<em><b>Contextmessage</b></em>' containment reference list feature.
+>>>>>>> [xText] Added new message type: contextMessage
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
+<<<<<<< HEAD
     EReference SCENARIO_CONTENT__LOOP = eINSTANCE.getScenarioContent_Loop();
+=======
+    EReference SCENARIO_CONTENT__CONTEXTMESSAGE = eINSTANCE.getScenarioContent_Contextmessage();
+>>>>>>> [xText] Added new message type: contextMessage
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -2154,6 +2712,124 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference MESSAGE__C = eINSTANCE.getMessage_C();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl <em>Context Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
+     * @generated
+     */
+    EClass CONTEXT_MESSAGE = eINSTANCE.getContextMessage();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl <em>Context Message Content</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
+     * @generated
+     */
+    EClass CONTEXT_MESSAGE_CONTENT = eINSTANCE.getContextMessageContent();
+
+    /**
+     * The meta object literal for the '<em><b>Required</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE_CONTENT__REQUIRED = eINSTANCE.getContextMessageContent_Required();
+
+    /**
+     * The meta object literal for the '<em><b>Fail</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE_CONTENT__FAIL = eINSTANCE.getContextMessageContent_Fail();
+
+    /**
+     * The meta object literal for the '<em><b>Strict</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE_CONTENT__STRICT = eINSTANCE.getContextMessageContent_Strict();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE_CONTENT__NAME = eINSTANCE.getContextMessageContent_Name();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl <em>Match Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
+     * @generated
+     */
+    EClass MATCH_MESSAGE = eINSTANCE.getMatchMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Content</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATCH_MESSAGE__CONTENT = eINSTANCE.getMatchMessage_Content();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl <em>Change Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
+     * @generated
+     */
+    EClass CHANGE_MESSAGE = eINSTANCE.getChangeMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_MESSAGE__ENTITY = eINSTANCE.getChangeMessage_Entity();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl <em>Appear Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
+     * @generated
+     */
+    EClass APPEAR_MESSAGE = eINSTANCE.getAppearMessage();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl <em>Disappear Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
+     * @generated
+     */
+    EClass DISAPPEAR_MESSAGE = eINSTANCE.getDisappearMessage();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DistanceMessageImpl <em>Distance Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DistanceMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDistanceMessage()
+     * @generated
+     */
+    EClass DISTANCE_MESSAGE = eINSTANCE.getDistanceMessage();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.

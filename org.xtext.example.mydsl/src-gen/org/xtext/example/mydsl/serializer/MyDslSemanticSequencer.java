@@ -15,16 +15,23 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeType;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
+import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+<<<<<<< HEAD
 import org.xtext.example.mydsl.myDsl.Loop;
+=======
+import org.xtext.example.mydsl.myDsl.MatchMessage;
+>>>>>>> [xText] Added new message type: contextMessage
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
@@ -52,6 +59,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ALT:
 				sequence_Alt(context, (Alt) semanticObject); 
 				return; 
+			case MyDslPackage.APPEAR_MESSAGE:
+				if (rule == grammarAccess.getContextMessageContentRule()
+						|| rule == grammarAccess.getChangeMessageRule()
+						|| rule == grammarAccess.getAppearMessageRule()) {
+					sequence_AppearMessage(context, (AppearMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getContextMessageRule()) {
+					sequence_AppearMessage_ContextMessage(context, (AppearMessage) semanticObject); 
+					return; 
+				}
+				else break;
 			case MyDslPackage.ATTRIBUTE:
 				sequence_Attribute(context, (Attribute) semanticObject); 
 				return; 
@@ -70,6 +89,30 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.CONTEXT_MODEL:
 				sequence_ContextModel(context, (ContextModel) semanticObject); 
 				return; 
+			case MyDslPackage.DISAPPEAR_MESSAGE:
+				if (rule == grammarAccess.getContextMessageRule()) {
+					sequence_ContextMessage_DisappearMessage(context, (DisappearMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getContextMessageContentRule()
+						|| rule == grammarAccess.getChangeMessageRule()
+						|| rule == grammarAccess.getDisappearMessageRule()) {
+					sequence_DisappearMessage(context, (DisappearMessage) semanticObject); 
+					return; 
+				}
+				else break;
+			case MyDslPackage.DISTANCE_MESSAGE:
+				if (rule == grammarAccess.getContextMessageRule()) {
+					sequence_ContextMessage_DistanceMessage(context, (DistanceMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getContextMessageContentRule()
+						|| rule == grammarAccess.getChangeMessageRule()
+						|| rule == grammarAccess.getDistanceMessageRule()) {
+					sequence_DistanceMessage(context, (DistanceMessage) semanticObject); 
+					return; 
+				}
+				else break;
 			case MyDslPackage.DOMAIN:
 				sequence_Domain(context, (Domain) semanticObject); 
 				return; 
@@ -79,9 +122,23 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
 				return; 
+<<<<<<< HEAD
 			case MyDslPackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
 				return; 
+=======
+			case MyDslPackage.MATCH_MESSAGE:
+				if (rule == grammarAccess.getContextMessageRule()) {
+					sequence_ContextMessage_MatchMessage(context, (MatchMessage) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getContextMessageContentRule()
+						|| rule == grammarAccess.getMatchMessageRule()) {
+					sequence_MatchMessage(context, (MatchMessage) semanticObject); 
+					return; 
+				}
+				else break;
+>>>>>>> [xText] Added new message type: contextMessage
 			case MyDslPackage.MESSAGE:
 				sequence_Message(context, (Message) semanticObject); 
 				return; 
@@ -119,6 +176,32 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     expressions+=Expression+
 	 */
 	protected void sequence_Alt(ISerializationContext context, Alt semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextMessageContent returns AppearMessage
+	 *     ChangeMessage returns AppearMessage
+	 *     AppearMessage returns AppearMessage
+	 *
+	 * Constraint:
+	 *     (name=ID entity=[Entity|ID]?)
+	 */
+	protected void sequence_AppearMessage(ISerializationContext context, AppearMessage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextMessage returns AppearMessage
+	 *
+	 * Constraint:
+	 *     (name=ID entity=[Entity|ID]? required?='required'? fail?='fail'? strict?='strict'?)
+	 */
+	protected void sequence_AppearMessage_ContextMessage(ISerializationContext context, AppearMessage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -191,12 +274,76 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     ContextMessage returns DisappearMessage
+	 *
+	 * Constraint:
+	 *     (name=ID entity=[Entity|ID]? required?='required'? fail?='fail'? strict?='strict'?)
+	 */
+	protected void sequence_ContextMessage_DisappearMessage(ISerializationContext context, DisappearMessage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextMessage returns DistanceMessage
+	 *
+	 * Constraint:
+	 *     (name=ID entity=[Entity|ID]? required?='required'? fail?='fail'? strict?='strict'?)
+	 */
+	protected void sequence_ContextMessage_DistanceMessage(ISerializationContext context, DistanceMessage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextMessage returns MatchMessage
+	 *
+	 * Constraint:
+	 *     (name=ID content=[ContextFragment|ID]? required?='required'? fail?='fail'? strict?='strict'?)
+	 */
+	protected void sequence_ContextMessage_MatchMessage(ISerializationContext context, MatchMessage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ContextModel returns ContextModel
 	 *
 	 * Constraint:
 	 *     (name=ID entities+=Entity* relations+=Relation*)
 	 */
 	protected void sequence_ContextModel(ISerializationContext context, ContextModel semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextMessageContent returns DisappearMessage
+	 *     ChangeMessage returns DisappearMessage
+	 *     DisappearMessage returns DisappearMessage
+	 *
+	 * Constraint:
+	 *     (name=ID entity=[Entity|ID]?)
+	 */
+	protected void sequence_DisappearMessage(ISerializationContext context, DisappearMessage semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ContextMessageContent returns DistanceMessage
+	 *     ChangeMessage returns DistanceMessage
+	 *     DistanceMessage returns DistanceMessage
+	 *
+	 * Constraint:
+	 *     (name=ID entity=[Entity|ID]?)
+	 */
+	protected void sequence_DistanceMessage(ISerializationContext context, DistanceMessage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -248,12 +395,22 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+<<<<<<< HEAD
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
 	 *     (min=Number max=Number messages+=Message*)
 	 */
 	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
+=======
+	 *     ContextMessageContent returns MatchMessage
+	 *     MatchMessage returns MatchMessage
+	 *
+	 * Constraint:
+	 *     (name=ID content=[ContextFragment|ID]?)
+	 */
+	protected void sequence_MatchMessage(ISerializationContext context, MatchMessage semanticObject) {
+>>>>>>> [xText] Added new message type: contextMessage
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -352,7 +509,11 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ScenarioContent returns ScenarioContent
 	 *
 	 * Constraint:
+<<<<<<< HEAD
 	 *     (alt+=Alt | message+=Message | par+=Par | loop+=Loop)
+=======
+	 *     (alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage)
+>>>>>>> [xText] Added new message type: contextMessage
 	 */
 	protected void sequence_ScenarioContent(ISerializationContext context, ScenarioContent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

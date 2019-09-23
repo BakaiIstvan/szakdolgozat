@@ -60,15 +60,49 @@ Scenario:
 ;
 
 ScenarioContent:
+<<<<<<< HEAD
 	alt+=Alt | message+=Message | par+=Par | loop+=Loop
+=======
+	alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage
+>>>>>>> [xText] Added new message type: contextMessage
 ;
 
 Message:
-	 'message' name=Name (required?='required')? (fail?='fail')? (strict?='strict')?  
+	 'message' name=Name (required?='required')? (fail?='fail')? (strict?='strict')?
 	 sender=[Object] '->' receiver=[Object]
 	 (past?='past')? (future?='future')? (constraint?='constraint')?
 	 ('{')? (c=[Constraint])? ('}')? ';'
 
+;
+
+ContextMessage:
+	ContextMessageContent
+	(required?='required')? (fail?='fail')? (strict?='strict')?
+	';'
+;
+
+ContextMessageContent:
+	MatchMessage | ChangeMessage
+;
+
+MatchMessage:
+	'match' name=ID '(' (content=[ContextFragment])? ')'
+;
+
+ChangeMessage:
+	DisappearMessage | AppearMessage | DistanceMessage
+;
+
+AppearMessage:
+	'appear'name=ID '(' (entity=[Entity])? ')'
+;
+
+DisappearMessage:
+	'disappear' name=ID '(' (entity=[Entity])? ')'
+;
+
+DistanceMessage:
+	'distance' name=ID '(' (entity=[Entity])? ')'
 ;
 
 Name:

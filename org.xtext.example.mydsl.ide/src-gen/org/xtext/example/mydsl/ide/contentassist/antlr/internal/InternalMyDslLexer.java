@@ -60,6 +60,8 @@ public class InternalMyDslLexer extends Lexer {
     public static final int RULE_NUMBER=5;
     public static final int T__44=44;
     public static final int T__45=45;
+    public static final int T__46=46;
+    public static final int T__47=47;
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__42=42;
@@ -477,6 +479,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:30:7: ( 'loop' )
             // InternalMyDsl.g:30:9: 'loop'
             {
@@ -487,6 +490,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             match("object"); 
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:30:7: ( 'match' )
+            // InternalMyDsl.g:30:9: 'match'
+            {
+            match("match"); 
+>>>>>>> [xText] Added new message type: contextMessage
 
 
             }
@@ -505,6 +514,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:31:7: ( ',' )
             // InternalMyDsl.g:31:9: ','
             {
@@ -512,8 +522,12 @@ public class InternalMyDslLexer extends Lexer {
 =======
             // InternalMyDsl.g:31:7: ( 'constraint' )
             // InternalMyDsl.g:31:9: 'constraint'
+=======
+            // InternalMyDsl.g:31:7: ( 'disappear' )
+            // InternalMyDsl.g:31:9: 'disappear'
+>>>>>>> [xText] Added new message type: contextMessage
             {
-            match("constraint"); 
+            match("disappear"); 
 
 >>>>>>> Added Xtext for context dependent behavior
 
@@ -533,6 +547,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:32:7: ( 'required' )
             // InternalMyDsl.g:32:9: 'required'
             {
@@ -543,6 +558,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             match("alt"); 
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:32:7: ( 'object' )
+            // InternalMyDsl.g:32:9: 'object'
+            {
+            match("object"); 
+>>>>>>> [xText] Added new message type: contextMessage
 
 
             }
@@ -561,6 +582,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:33:7: ( 'fail' )
             // InternalMyDsl.g:33:9: 'fail'
             {
@@ -572,6 +594,13 @@ public class InternalMyDslLexer extends Lexer {
             {
             match('='); 
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:33:7: ( 'constraint' )
+            // InternalMyDsl.g:33:9: 'constraint'
+            {
+            match("constraint"); 
+
+>>>>>>> [xText] Added new message type: contextMessage
 
             }
 
@@ -589,13 +618,19 @@ public class InternalMyDslLexer extends Lexer {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:34:7: ( 'strict' )
             // InternalMyDsl.g:34:9: 'strict'
 =======
             // InternalMyDsl.g:34:7: ( '>' )
             // InternalMyDsl.g:34:9: '>'
+=======
+            // InternalMyDsl.g:34:7: ( 'alt' )
+            // InternalMyDsl.g:34:9: 'alt'
+>>>>>>> [xText] Added new message type: contextMessage
             {
-            match('>'); 
+            match("alt"); 
+
 
             }
 
@@ -612,10 +647,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:35:7: ( '<' )
-            // InternalMyDsl.g:35:9: '<'
+            // InternalMyDsl.g:35:7: ( '=' )
+            // InternalMyDsl.g:35:9: '='
             {
-            match('<'); 
+            match('='); 
 
             }
 
@@ -632,11 +667,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:36:7: ( '>=' )
-            // InternalMyDsl.g:36:9: '>='
+            // InternalMyDsl.g:36:7: ( '>' )
+            // InternalMyDsl.g:36:9: '>'
             {
-            match(">="); 
-
+            match('>'); 
 
             }
 
@@ -653,11 +687,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:37:7: ( '<=' )
-            // InternalMyDsl.g:37:9: '<='
+            // InternalMyDsl.g:37:7: ( '<' )
+            // InternalMyDsl.g:37:9: '<'
             {
-            match("<="); 
-
+            match('<'); 
 
             }
 
@@ -674,10 +707,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:38:7: ( 'par' )
-            // InternalMyDsl.g:38:9: 'par'
+            // InternalMyDsl.g:38:7: ( '>=' )
+            // InternalMyDsl.g:38:9: '>='
             {
-            match("par"); 
+            match(">="); 
 
 
             }
@@ -695,10 +728,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:39:7: ( 'case' )
-            // InternalMyDsl.g:39:9: 'case'
+            // InternalMyDsl.g:39:7: ( '<=' )
+            // InternalMyDsl.g:39:9: '<='
             {
-            match("case"); 
+            match("<="); 
 
 
             }
@@ -716,10 +749,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:40:7: ( 'required' )
-            // InternalMyDsl.g:40:9: 'required'
+            // InternalMyDsl.g:40:7: ( 'par' )
+            // InternalMyDsl.g:40:9: 'par'
             {
-            match("required"); 
+            match("par"); 
 
 
             }
@@ -737,10 +770,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:41:7: ( 'fail' )
-            // InternalMyDsl.g:41:9: 'fail'
+            // InternalMyDsl.g:41:7: ( 'case' )
+            // InternalMyDsl.g:41:9: 'case'
             {
-            match("fail"); 
+            match("case"); 
 
 
             }
@@ -758,10 +791,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:42:7: ( 'strict' )
-            // InternalMyDsl.g:42:9: 'strict'
+            // InternalMyDsl.g:42:7: ( 'required' )
+            // InternalMyDsl.g:42:9: 'required'
             {
-            match("strict"); 
+            match("required"); 
 
 
             }
@@ -779,10 +812,10 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMyDsl.g:43:7: ( 'past' )
-            // InternalMyDsl.g:43:9: 'past'
+            // InternalMyDsl.g:43:7: ( 'fail' )
+            // InternalMyDsl.g:43:9: 'fail'
             {
-            match("past"); 
+            match("fail"); 
 
 
             }
@@ -800,9 +833,14 @@ public class InternalMyDslLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
             // InternalMyDsl.g:44:7: ( 'future' )
             // InternalMyDsl.g:44:9: 'future'
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:44:7: ( 'strict' )
+            // InternalMyDsl.g:44:9: 'strict'
+>>>>>>> [xText] Added new message type: contextMessage
             {
             match("strict"); 
 
@@ -817,6 +855,7 @@ public class InternalMyDslLexer extends Lexer {
     }
     // $ANTLR end "T__45"
 
+<<<<<<< HEAD
     // $ANTLR start "T__36"
     public final void mT__36() throws RecognitionException {
         try {
@@ -824,6 +863,15 @@ public class InternalMyDslLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // InternalMyDsl.g:35:7: ( 'past' )
             // InternalMyDsl.g:35:9: 'past'
+=======
+    // $ANTLR start "T__46"
+    public final void mT__46() throws RecognitionException {
+        try {
+            int _type = T__46;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalMyDsl.g:45:7: ( 'past' )
+            // InternalMyDsl.g:45:9: 'past'
+>>>>>>> [xText] Added new message type: contextMessage
             {
             match("past"); 
 
@@ -836,6 +884,7 @@ public class InternalMyDslLexer extends Lexer {
         finally {
         }
     }
+<<<<<<< HEAD
     // $ANTLR end "T__36"
 
     // $ANTLR start "T__37"
@@ -845,6 +894,17 @@ public class InternalMyDslLexer extends Lexer {
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // InternalMyDsl.g:36:7: ( 'future' )
             // InternalMyDsl.g:36:9: 'future'
+=======
+    // $ANTLR end "T__46"
+
+    // $ANTLR start "T__47"
+    public final void mT__47() throws RecognitionException {
+        try {
+            int _type = T__47;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalMyDsl.g:46:7: ( 'future' )
+            // InternalMyDsl.g:46:9: 'future'
+>>>>>>> [xText] Added new message type: contextMessage
             {
             match("future"); 
 
@@ -857,13 +917,18 @@ public class InternalMyDslLexer extends Lexer {
         finally {
         }
     }
+<<<<<<< HEAD
     // $ANTLR end "T__37"
+=======
+    // $ANTLR end "T__47"
+>>>>>>> [xText] Added new message type: contextMessage
 
     // $ANTLR start "RULE_NUMBER"
     public final void mRULE_NUMBER() throws RecognitionException {
         try {
             int _type = RULE_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+<<<<<<< HEAD
 <<<<<<< HEAD
             // InternalMyDsl.g:2954:13: ( ( '0' .. '9' )* )
             // InternalMyDsl.g:2954:15: ( '0' .. '9' )*
@@ -875,6 +940,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             // InternalMyDsl.g:4528:15: ( '0' .. '9' )*
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5640:13: ( ( '0' .. '9' )* )
+            // InternalMyDsl.g:5640:15: ( '0' .. '9' )*
+            {
+            // InternalMyDsl.g:5640:15: ( '0' .. '9' )*
+>>>>>>> [xText] Added new message type: contextMessage
             loop1:
             do {
                 int alt1=2;
@@ -888,10 +959,14 @@ public class InternalMyDslLexer extends Lexer {
                 switch (alt1) {
             	case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
             	    // InternalMyDsl.g:2954:16: '0' .. '9'
 =======
             	    // InternalMyDsl.g:4528:16: '0' .. '9'
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            	    // InternalMyDsl.g:5640:16: '0' .. '9'
+>>>>>>> [xText] Added new message type: contextMessage
             	    {
             	    matchRange('0','9'); 
 
@@ -920,6 +995,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2956:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
             // InternalMyDsl.g:2956:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
@@ -930,6 +1006,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             // InternalMyDsl.g:4530:11: ( '^' )?
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5642:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalMyDsl.g:5642:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            {
+            // InternalMyDsl.g:5642:11: ( '^' )?
+>>>>>>> [xText] Added new message type: contextMessage
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -939,10 +1021,14 @@ public class InternalMyDslLexer extends Lexer {
             switch (alt2) {
                 case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // InternalMyDsl.g:2956:11: '^'
 =======
                     // InternalMyDsl.g:4530:11: '^'
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    // InternalMyDsl.g:5642:11: '^'
+>>>>>>> [xText] Added new message type: contextMessage
                     {
                     match('^'); 
 
@@ -961,10 +1047,14 @@ public class InternalMyDslLexer extends Lexer {
                 throw mse;}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2956:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
 =======
             // InternalMyDsl.g:4530:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5642:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+>>>>>>> [xText] Added new message type: contextMessage
             loop3:
             do {
                 int alt3=2;
@@ -1014,6 +1104,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2958:10: ( ( '0' .. '9' )+ )
             // InternalMyDsl.g:2958:12: ( '0' .. '9' )+
             {
@@ -1024,6 +1115,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             // InternalMyDsl.g:4532:12: ( '0' .. '9' )+
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5644:10: ( ( '0' .. '9' )+ )
+            // InternalMyDsl.g:5644:12: ( '0' .. '9' )+
+            {
+            // InternalMyDsl.g:5644:12: ( '0' .. '9' )+
+>>>>>>> [xText] Added new message type: contextMessage
             int cnt4=0;
             loop4:
             do {
@@ -1038,10 +1135,14 @@ public class InternalMyDslLexer extends Lexer {
                 switch (alt4) {
             	case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
             	    // InternalMyDsl.g:2958:13: '0' .. '9'
 =======
             	    // InternalMyDsl.g:4532:13: '0' .. '9'
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            	    // InternalMyDsl.g:5644:13: '0' .. '9'
+>>>>>>> [xText] Added new message type: contextMessage
             	    {
             	    matchRange('0','9'); 
 
@@ -1074,6 +1175,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2960:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
             // InternalMyDsl.g:2960:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
@@ -1084,6 +1186,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             // InternalMyDsl.g:4534:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5646:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalMyDsl.g:5646:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            {
+            // InternalMyDsl.g:5646:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+>>>>>>> [xText] Added new message type: contextMessage
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1102,6 +1210,7 @@ public class InternalMyDslLexer extends Lexer {
             switch (alt7) {
                 case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // InternalMyDsl.g:2960:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
@@ -1112,6 +1221,12 @@ public class InternalMyDslLexer extends Lexer {
                     match('\"'); 
                     // InternalMyDsl.g:4534:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    // InternalMyDsl.g:5646:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    {
+                    match('\"'); 
+                    // InternalMyDsl.g:5646:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+>>>>>>> [xText] Added new message type: contextMessage
                     loop5:
                     do {
                         int alt5=3;
@@ -1128,10 +1243,14 @@ public class InternalMyDslLexer extends Lexer {
                         switch (alt5) {
                     	case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     	    // InternalMyDsl.g:2960:21: '\\\\' .
 =======
                     	    // InternalMyDsl.g:4534:21: '\\\\' .
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    	    // InternalMyDsl.g:5646:21: '\\\\' .
+>>>>>>> [xText] Added new message type: contextMessage
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1140,10 +1259,14 @@ public class InternalMyDslLexer extends Lexer {
                     	    break;
                     	case 2 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     	    // InternalMyDsl.g:2960:28: ~ ( ( '\\\\' | '\"' ) )
 =======
                     	    // InternalMyDsl.g:4534:28: ~ ( ( '\\\\' | '\"' ) )
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    	    // InternalMyDsl.g:5646:28: ~ ( ( '\\\\' | '\"' ) )
+>>>>>>> [xText] Added new message type: contextMessage
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1169,6 +1292,7 @@ public class InternalMyDslLexer extends Lexer {
                     break;
                 case 2 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // InternalMyDsl.g:2960:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
@@ -1179,6 +1303,12 @@ public class InternalMyDslLexer extends Lexer {
                     match('\''); 
                     // InternalMyDsl.g:4534:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    // InternalMyDsl.g:5646:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    {
+                    match('\''); 
+                    // InternalMyDsl.g:5646:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+>>>>>>> [xText] Added new message type: contextMessage
                     loop6:
                     do {
                         int alt6=3;
@@ -1195,10 +1325,14 @@ public class InternalMyDslLexer extends Lexer {
                         switch (alt6) {
                     	case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     	    // InternalMyDsl.g:2960:54: '\\\\' .
 =======
                     	    // InternalMyDsl.g:4534:54: '\\\\' .
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    	    // InternalMyDsl.g:5646:54: '\\\\' .
+>>>>>>> [xText] Added new message type: contextMessage
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1207,10 +1341,14 @@ public class InternalMyDslLexer extends Lexer {
                     	    break;
                     	case 2 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     	    // InternalMyDsl.g:2960:61: ~ ( ( '\\\\' | '\\'' ) )
 =======
                     	    // InternalMyDsl.g:4534:61: ~ ( ( '\\\\' | '\\'' ) )
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    	    // InternalMyDsl.g:5646:61: ~ ( ( '\\\\' | '\\'' ) )
+>>>>>>> [xText] Added new message type: contextMessage
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1254,6 +1392,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2962:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
             // InternalMyDsl.g:2962:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
@@ -1268,6 +1407,14 @@ public class InternalMyDslLexer extends Lexer {
 
             // InternalMyDsl.g:4536:24: ( options {greedy=false; } : . )*
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5648:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalMyDsl.g:5648:19: '/*' ( options {greedy=false; } : . )* '*/'
+            {
+            match("/*"); 
+
+            // InternalMyDsl.g:5648:24: ( options {greedy=false; } : . )*
+>>>>>>> [xText] Added new message type: contextMessage
             loop8:
             do {
                 int alt8=2;
@@ -1293,10 +1440,14 @@ public class InternalMyDslLexer extends Lexer {
                 switch (alt8) {
             	case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
             	    // InternalMyDsl.g:2962:52: .
 =======
             	    // InternalMyDsl.g:4536:52: .
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            	    // InternalMyDsl.g:5648:52: .
+>>>>>>> [xText] Added new message type: contextMessage
             	    {
             	    matchAny(); 
 
@@ -1327,6 +1478,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2964:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
             // InternalMyDsl.g:2964:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
@@ -1341,6 +1493,14 @@ public class InternalMyDslLexer extends Lexer {
 
             // InternalMyDsl.g:4538:24: (~ ( ( '\\n' | '\\r' ) ) )*
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5650:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalMyDsl.g:5650:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            {
+            match("//"); 
+
+            // InternalMyDsl.g:5650:24: (~ ( ( '\\n' | '\\r' ) ) )*
+>>>>>>> [xText] Added new message type: contextMessage
             loop9:
             do {
                 int alt9=2;
@@ -1354,10 +1514,14 @@ public class InternalMyDslLexer extends Lexer {
                 switch (alt9) {
             	case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
             	    // InternalMyDsl.g:2964:24: ~ ( ( '\\n' | '\\r' ) )
 =======
             	    // InternalMyDsl.g:4538:24: ~ ( ( '\\n' | '\\r' ) )
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            	    // InternalMyDsl.g:5650:24: ~ ( ( '\\n' | '\\r' ) )
+>>>>>>> [xText] Added new message type: contextMessage
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1378,10 +1542,14 @@ public class InternalMyDslLexer extends Lexer {
             } while (true);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2964:40: ( ( '\\r' )? '\\n' )?
 =======
             // InternalMyDsl.g:4538:40: ( ( '\\r' )? '\\n' )?
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5650:40: ( ( '\\r' )? '\\n' )?
+>>>>>>> [xText] Added new message type: contextMessage
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -1391,6 +1559,7 @@ public class InternalMyDslLexer extends Lexer {
             switch (alt11) {
                 case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                     // InternalMyDsl.g:2964:41: ( '\\r' )? '\\n'
                     {
                     // InternalMyDsl.g:2964:41: ( '\\r' )?
@@ -1399,6 +1568,11 @@ public class InternalMyDslLexer extends Lexer {
                     {
                     // InternalMyDsl.g:4538:41: ( '\\r' )?
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                    // InternalMyDsl.g:5650:41: ( '\\r' )? '\\n'
+                    {
+                    // InternalMyDsl.g:5650:41: ( '\\r' )?
+>>>>>>> [xText] Added new message type: contextMessage
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -1408,10 +1582,14 @@ public class InternalMyDslLexer extends Lexer {
                     switch (alt10) {
                         case 1 :
 <<<<<<< HEAD
+<<<<<<< HEAD
                             // InternalMyDsl.g:2964:41: '\\r'
 =======
                             // InternalMyDsl.g:4538:41: '\\r'
 >>>>>>> Added Xtext for context dependent behavior
+=======
+                            // InternalMyDsl.g:5650:41: '\\r'
+>>>>>>> [xText] Added new message type: contextMessage
                             {
                             match('\r'); 
 
@@ -1444,6 +1622,7 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2966:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
             // InternalMyDsl.g:2966:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
@@ -1454,6 +1633,12 @@ public class InternalMyDslLexer extends Lexer {
             {
             // InternalMyDsl.g:4540:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5652:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalMyDsl.g:5652:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            {
+            // InternalMyDsl.g:5652:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+>>>>>>> [xText] Added new message type: contextMessage
             int cnt12=0;
             loop12:
             do {
@@ -1508,12 +1693,17 @@ public class InternalMyDslLexer extends Lexer {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
 <<<<<<< HEAD
+<<<<<<< HEAD
             // InternalMyDsl.g:2968:16: ( . )
             // InternalMyDsl.g:2968:18: .
 =======
             // InternalMyDsl.g:4542:16: ( . )
             // InternalMyDsl.g:4542:18: .
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            // InternalMyDsl.g:5654:16: ( . )
+            // InternalMyDsl.g:5654:18: .
+>>>>>>> [xText] Added new message type: contextMessage
             {
             matchAny(); 
 
@@ -1529,12 +1719,17 @@ public class InternalMyDslLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // InternalMyDsl.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt13=34;
 =======
         // InternalMyDsl.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt13=42;
 >>>>>>> Added Xtext for context dependent behavior
+=======
+        // InternalMyDsl.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt13=44;
+>>>>>>> [xText] Added new message type: contextMessage
         alt13 = dfa13.predict(input);
         switch (alt13) {
             case 1 :
@@ -1821,57 +2016,75 @@ public class InternalMyDslLexer extends Lexer {
                 }
                 break;
             case 35 :
-                // InternalMyDsl.g:1:214: RULE_NUMBER
+                // InternalMyDsl.g:1:214: T__46
+                {
+                mT__46(); 
+
+                }
+                break;
+            case 36 :
+                // InternalMyDsl.g:1:220: T__47
+                {
+                mT__47(); 
+
+                }
+                break;
+            case 37 :
+                // InternalMyDsl.g:1:226: RULE_NUMBER
                 {
                 mRULE_NUMBER(); 
 
                 }
                 break;
-            case 36 :
-                // InternalMyDsl.g:1:226: RULE_ID
+            case 38 :
+                // InternalMyDsl.g:1:238: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 37 :
-                // InternalMyDsl.g:1:234: RULE_INT
+            case 39 :
+                // InternalMyDsl.g:1:246: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 38 :
-                // InternalMyDsl.g:1:243: RULE_STRING
+            case 40 :
+                // InternalMyDsl.g:1:255: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 39 :
-                // InternalMyDsl.g:1:255: RULE_ML_COMMENT
+            case 41 :
+                // InternalMyDsl.g:1:267: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 40 :
-                // InternalMyDsl.g:1:271: RULE_SL_COMMENT
+            case 42 :
+<<<<<<< HEAD
+                // InternalMyDsl.g:1:295: RULE_ANY_OTHER
+>>>>>>> Added Xtext for context dependent behavior
+=======
+                // InternalMyDsl.g:1:283: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 41 :
-                // InternalMyDsl.g:1:287: RULE_WS
+            case 43 :
+                // InternalMyDsl.g:1:299: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 42 :
-                // InternalMyDsl.g:1:295: RULE_ANY_OTHER
->>>>>>> Added Xtext for context dependent behavior
+            case 44 :
+                // InternalMyDsl.g:1:307: RULE_ANY_OTHER
+>>>>>>> [xText] Added new message type: contextMessage
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1885,6 +2098,7 @@ public class InternalMyDslLexer extends Lexer {
 
     protected DFA13 dfa13 = new DFA13(this);
     static final String DFA13_eotS =
+<<<<<<< HEAD
 <<<<<<< HEAD
         "\1\25\1\40\2\uffff\1\40\1\34\3\uffff\3\40\1\uffff\1\56\1\60\2\40\1\uffff\2\40\1\25\1\uffff\1\34\1\uffff\3\34\2\uffff\3\40\3\uffff\1\40\4\uffff\4\40\5\uffff\2\40\1\uffff\3\40\1\25\4\uffff\7\40\1\121\1\122\13\40\1\136\2\uffff\1\137\1\140\1\40\1\142\7\40\3\uffff\1\40\1\uffff\3\40\1\156\1\40\1\160\2\40\1\163\2\40\1\uffff\1\166\1\uffff\2\40\1\uffff\1\40\1\172\1\uffff\1\40\1\174\1\40\1\uffff\1\40\1\uffff\1\40\1\u0080\1\40\1\uffff\1\40\1\u0083\1\uffff";
     static final String DFA13_eofS =
@@ -1903,16 +2117,19 @@ public class InternalMyDslLexer extends Lexer {
             "",
 =======
         "\1\26\1\41\2\uffff\2\41\2\uffff\1\41\1\uffff\2\41\1\uffff\1\41\1\35\1\41\1\uffff\1\66\1\70\2\41\1\26\1\uffff\1\35\1\uffff\3\35\2\uffff\3\41\3\uffff\6\41\2\uffff\1\41\1\uffff\2\41\1\uffff\1\41\1\uffff\1\41\5\uffff\3\41\1\26\4\uffff\10\41\1\136\6\41\1\145\12\41\1\160\2\41\1\uffff\6\41\1\uffff\1\171\1\172\10\41\1\uffff\10\41\2\uffff\3\41\1\u008e\4\41\1\u0093\2\41\1\u0096\3\41\1\u009a\1\u009b\2\41\1\uffff\4\41\1\uffff\2\41\1\uffff\2\41\1\u00a7\2\uffff\1\41\1\u00a9\4\41\1\u00ae\1\41\1\u00b0\1\u00b1\1\u00b2\1\uffff\1\41\1\uffff\4\41\1\uffff\1\u00b8\3\uffff\4\41\1\u00bd\1\uffff\4\41\1\uffff\1\41\1\u00c3\1\41\1\u00c5\1\u00c6\1\uffff\1\41\2\uffff\1\41\1\u00c9\1\uffff";
+=======
+        "\1\26\1\41\2\uffff\2\41\2\uffff\1\41\1\uffff\2\41\1\uffff\1\41\1\35\1\41\1\uffff\1\67\1\71\2\41\1\26\1\uffff\1\35\1\uffff\3\35\2\uffff\3\41\3\uffff\6\41\2\uffff\1\41\1\uffff\2\41\1\uffff\2\41\1\uffff\1\41\5\uffff\3\41\1\26\4\uffff\10\41\1\140\7\41\1\151\12\41\1\164\2\41\1\uffff\10\41\1\uffff\1\177\1\u0080\10\41\1\uffff\10\41\1\u0091\1\41\2\uffff\3\41\1\u0096\4\41\1\u009b\3\41\1\u009f\3\41\1\uffff\1\u00a3\1\u00a4\2\41\1\uffff\4\41\1\uffff\3\41\1\uffff\2\41\1\u00b1\2\uffff\1\41\1\u00b3\4\41\1\u00b8\1\41\1\u00ba\1\41\1\u00bc\1\u00bd\1\uffff\1\41\1\uffff\4\41\1\uffff\1\u00c3\1\uffff\1\u00c4\2\uffff\4\41\1\u00c9\2\uffff\4\41\1\uffff\1\41\1\u00cf\1\41\1\u00d1\1\u00d2\1\uffff\1\41\2\uffff\1\41\1\u00d5\1\uffff";
+>>>>>>> [xText] Added new message type: contextMessage
     static final String DFA13_eofS =
-        "\u00ca\uffff";
+        "\u00d6\uffff";
     static final String DFA13_minS =
-        "\1\0\1\143\2\uffff\1\141\1\154\2\uffff\1\151\1\uffff\1\156\1\145\1\uffff\1\145\1\76\1\142\1\uffff\2\75\2\141\1\60\1\uffff\1\101\1\uffff\2\0\1\52\2\uffff\2\145\1\162\3\uffff\1\156\1\141\1\163\1\160\2\164\2\uffff\1\163\1\uffff\1\164\1\154\1\uffff\1\163\1\uffff\1\152\5\uffff\1\162\1\151\1\164\1\60\4\uffff\1\143\1\156\1\151\1\144\1\156\2\145\1\162\1\60\1\164\1\151\1\141\1\165\1\163\1\145\1\60\1\164\1\154\1\165\1\151\1\141\1\143\1\145\1\151\1\164\1\147\1\60\1\141\1\151\1\uffff\1\141\2\164\1\151\1\141\1\143\1\uffff\2\60\1\162\1\146\1\162\1\164\1\170\1\164\1\162\1\145\1\uffff\1\162\1\142\1\156\1\171\1\151\1\162\1\147\1\164\2\uffff\1\145\2\151\1\60\1\164\1\151\1\141\1\124\1\60\1\165\1\143\1\60\1\157\2\145\2\60\1\143\1\157\1\uffff\1\146\1\157\1\151\1\157\1\uffff\1\164\1\145\1\uffff\1\156\1\144\1\60\2\uffff\1\141\1\60\1\157\1\162\2\156\1\60\1\145\3\60\1\uffff\1\164\1\uffff\1\144\1\141\1\163\1\164\1\uffff\1\60\3\uffff\1\151\1\145\1\147\1\101\1\60\1\uffff\1\157\1\154\1\155\1\164\1\uffff\1\156\1\60\1\145\2\60\1\uffff\1\156\2\uffff\1\164\1\60\1\uffff";
+        "\1\0\1\143\2\uffff\1\141\1\154\2\uffff\1\151\1\uffff\1\156\1\145\1\uffff\1\141\1\76\1\142\1\uffff\2\75\2\141\1\60\1\uffff\1\101\1\uffff\2\0\1\52\2\uffff\2\145\1\162\3\uffff\1\156\1\141\1\163\1\160\2\164\2\uffff\1\163\1\uffff\1\164\1\154\1\uffff\1\163\1\164\1\uffff\1\152\5\uffff\1\162\1\151\1\164\1\60\4\uffff\1\143\1\156\1\151\1\144\1\156\2\145\1\162\1\60\1\141\1\151\1\141\1\165\1\163\1\143\1\145\1\60\1\164\1\154\1\165\1\151\1\141\1\143\1\145\1\151\1\164\1\147\1\60\1\141\1\151\1\uffff\1\141\1\160\2\164\1\151\1\141\1\150\1\143\1\uffff\2\60\1\162\1\146\1\162\1\164\1\170\1\164\1\162\1\145\1\uffff\1\162\1\142\1\156\1\160\1\171\1\151\1\162\1\147\1\60\1\164\2\uffff\1\145\2\151\1\60\1\164\1\151\1\141\1\124\1\60\1\165\1\143\1\145\1\60\1\157\2\145\1\uffff\2\60\1\143\1\157\1\uffff\1\146\1\157\1\151\1\157\1\uffff\1\164\1\145\1\141\1\uffff\1\156\1\144\1\60\2\uffff\1\141\1\60\1\157\1\162\2\156\1\60\1\145\1\60\1\162\2\60\1\uffff\1\164\1\uffff\1\144\1\141\1\163\1\164\1\uffff\1\60\1\uffff\1\60\2\uffff\1\151\1\145\1\147\1\101\1\60\2\uffff\1\157\1\154\1\155\1\164\1\uffff\1\156\1\60\1\145\2\60\1\uffff\1\156\2\uffff\1\164\1\60\1\uffff";
     static final String DFA13_maxS =
-        "\1\uffff\1\164\2\uffff\1\157\1\164\2\uffff\1\151\1\uffff\1\156\1\145\1\uffff\1\145\1\76\1\142\1\uffff\2\75\1\141\1\165\1\71\1\uffff\1\172\1\uffff\2\uffff\1\57\2\uffff\2\145\1\162\3\uffff\1\156\1\141\1\163\1\160\2\164\2\uffff\1\163\1\uffff\1\164\1\161\1\uffff\1\163\1\uffff\1\152\5\uffff\1\163\1\151\1\164\1\71\4\uffff\1\143\1\156\1\151\1\164\1\156\2\145\1\162\1\172\1\164\1\151\1\141\1\165\1\163\1\145\1\172\1\164\1\154\1\165\1\151\1\141\1\143\1\145\1\151\1\164\1\147\1\172\1\141\1\151\1\uffff\1\141\2\164\1\151\1\141\1\143\1\uffff\2\172\1\162\1\146\1\162\1\164\1\170\1\164\1\162\1\145\1\uffff\1\162\1\142\1\156\1\171\1\151\1\162\1\147\1\164\2\uffff\1\145\2\151\1\172\1\164\1\151\1\141\1\124\1\172\1\165\1\143\1\172\1\157\2\145\2\172\1\143\1\157\1\uffff\1\155\1\157\1\151\1\157\1\uffff\1\164\1\145\1\uffff\1\156\1\144\1\172\2\uffff\1\141\1\172\1\157\1\162\2\156\1\172\1\145\3\172\1\uffff\1\164\1\uffff\1\144\1\141\1\163\1\164\1\uffff\1\172\3\uffff\1\151\1\145\1\147\1\101\1\172\1\uffff\1\157\1\154\1\155\1\164\1\uffff\1\156\1\172\1\145\2\172\1\uffff\1\156\2\uffff\1\164\1\172\1\uffff";
+        "\1\uffff\1\164\2\uffff\1\157\1\164\2\uffff\1\151\1\uffff\1\156\1\145\1\uffff\1\145\1\76\1\142\1\uffff\2\75\1\141\1\165\1\71\1\uffff\1\172\1\uffff\2\uffff\1\57\2\uffff\2\145\1\162\3\uffff\1\156\1\141\1\163\1\160\2\164\2\uffff\1\163\1\uffff\1\164\1\161\1\uffff\1\163\1\164\1\uffff\1\152\5\uffff\1\163\1\151\1\164\1\71\4\uffff\1\143\1\156\1\151\1\164\1\156\2\145\1\162\1\172\1\164\1\151\1\141\1\165\1\163\1\143\1\145\1\172\1\164\1\154\1\165\1\151\1\141\1\143\1\145\1\151\1\164\1\147\1\172\1\141\1\151\1\uffff\1\141\1\160\2\164\1\151\1\141\1\150\1\143\1\uffff\2\172\1\162\1\146\1\162\1\164\1\170\1\164\1\162\1\145\1\uffff\1\162\1\142\1\156\1\160\1\171\1\151\1\162\1\147\1\172\1\164\2\uffff\1\145\2\151\1\172\1\164\1\151\1\141\1\124\1\172\1\165\1\143\1\145\1\172\1\157\2\145\1\uffff\2\172\1\143\1\157\1\uffff\1\155\1\157\1\151\1\157\1\uffff\1\164\1\145\1\141\1\uffff\1\156\1\144\1\172\2\uffff\1\141\1\172\1\157\1\162\2\156\1\172\1\145\1\172\1\162\2\172\1\uffff\1\164\1\uffff\1\144\1\141\1\163\1\164\1\uffff\1\172\1\uffff\1\172\2\uffff\1\151\1\145\1\147\1\101\1\172\2\uffff\1\157\1\154\1\155\1\164\1\uffff\1\156\1\172\1\145\2\172\1\uffff\1\156\2\uffff\1\164\1\172\1\uffff";
     static final String DFA13_acceptS =
-        "\2\uffff\1\2\1\3\2\uffff\1\7\1\10\1\uffff\1\14\2\uffff\1\20\3\uffff\1\27\5\uffff\1\43\1\uffff\1\44\3\uffff\1\51\1\52\3\uffff\1\44\1\2\1\3\6\uffff\1\7\1\10\1\uffff\1\14\2\uffff\1\20\1\uffff\1\23\1\uffff\1\27\1\32\1\30\1\33\1\31\4\uffff\1\46\1\47\1\50\1\51\35\uffff\1\26\6\uffff\1\34\12\uffff\1\35\10\uffff\1\41\1\37\23\uffff\1\40\4\uffff\1\6\2\uffff\1\16\3\uffff\1\24\1\42\13\uffff\1\22\1\uffff\1\21\4\uffff\1\12\1\uffff\1\11\1\17\1\36\5\uffff\1\15\4\uffff\1\25\5\uffff\1\4\1\uffff\1\13\1\1\2\uffff\1\5";
+        "\2\uffff\1\2\1\3\2\uffff\1\7\1\10\1\uffff\1\14\2\uffff\1\20\3\uffff\1\31\5\uffff\1\45\1\uffff\1\46\3\uffff\1\53\1\54\3\uffff\1\46\1\2\1\3\6\uffff\1\7\1\10\1\uffff\1\14\2\uffff\1\20\2\uffff\1\23\1\uffff\1\31\1\34\1\32\1\35\1\33\4\uffff\1\50\1\51\1\52\1\53\36\uffff\1\30\10\uffff\1\36\12\uffff\1\37\12\uffff\1\43\1\41\20\uffff\1\24\4\uffff\1\42\4\uffff\1\6\3\uffff\1\16\3\uffff\1\26\1\44\14\uffff\1\22\1\uffff\1\21\4\uffff\1\12\1\uffff\1\11\1\uffff\1\17\1\40\5\uffff\1\15\1\25\4\uffff\1\27\5\uffff\1\4\1\uffff\1\13\1\1\2\uffff\1\5";
     static final String DFA13_specialS =
-        "\1\1\30\uffff\1\0\1\2\u00af\uffff}>";
+        "\1\0\30\uffff\1\1\1\2\u00bb\uffff}>";
     static final String[] DFA13_transitionS = {
             "\11\35\2\34\2\35\1\34\22\35\1\34\1\35\1\31\4\35\1\32\1\6\1\7\2\35\1\14\1\16\1\35\1\33\12\25\1\35\1\11\1\22\1\20\1\21\2\35\32\30\3\35\1\27\1\30\1\35\1\5\1\30\1\4\1\10\1\12\1\24\6\30\1\15\1\30\1\17\1\23\1\30\1\13\1\1\7\30\1\2\1\35\1\3\uff82\35",
             "\1\37\14\uffff\1\36\3\uffff\1\40",
@@ -1956,27 +2173,36 @@ public class InternalMyDslLexer extends Lexer {
             "\1\56",
             "\1\57",
             "",
-            "\1\61",
-            "\1\62",
+            "\1\62\3\uffff\1\61",
             "\1\63",
+            "\1\64",
             "",
+<<<<<<< HEAD
             "\1\65",
             "\1\67",
             "\1\71",
             "\1\72\23\uffff\1\73",
             "\12\74",
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            "\1\66",
+            "\1\70",
+            "\1\72",
+            "\1\73\23\uffff\1\74",
+            "\12\75",
+>>>>>>> [xText] Added new message type: contextMessage
             "",
             "\32\41\4\uffff\1\41\1\uffff\32\41",
             "",
-            "\0\75",
-            "\0\75",
-            "\1\76\4\uffff\1\77",
+            "\0\76",
+            "\0\76",
+            "\1\77\4\uffff\1\100",
             "",
             "\1\77",
             "",
             "",
             "",
+<<<<<<< HEAD
 <<<<<<< HEAD
             "",
             "\1\100",
@@ -1991,12 +2217,14 @@ public class InternalMyDslLexer extends Lexer {
             "\1\104\1\105",
 =======
             "\1\101",
+=======
+>>>>>>> [xText] Added new message type: contextMessage
             "\1\102",
             "\1\103",
-            "",
-            "",
-            "",
             "\1\104",
+            "",
+            "",
+            "",
             "\1\105",
 >>>>>>> Added Xtext for context dependent behavior
             "\1\106",
@@ -2005,6 +2233,7 @@ public class InternalMyDslLexer extends Lexer {
             "\1\110",
             "\1\111",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "\12\67",
             "",
             "",
@@ -2012,9 +2241,13 @@ public class InternalMyDslLexer extends Lexer {
 >>>>>>> Added Xtext for context dependent behavior
             "",
             "",
+=======
+>>>>>>> [xText] Added new message type: contextMessage
             "\1\112",
             "",
+            "",
             "\1\113",
+<<<<<<< HEAD
 <<<<<<< HEAD
             "\1\114",
             "\1\115",
@@ -2030,23 +2263,39 @@ public class InternalMyDslLexer extends Lexer {
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
 =======
+=======
+            "",
+            "\1\114",
+            "\1\115\4\uffff\1\116",
+            "",
+            "\1\117",
+            "\1\120",
+>>>>>>> [xText] Added new message type: contextMessage
+            "",
+            "\1\121",
             "",
             "",
             "",
             "",
-            "",
+<<<<<<< HEAD
             "\1\120\1\121",
             "\1\122",
 >>>>>>> Added Xtext for context dependent behavior
             "\1\123",
             "\12\74",
+=======
             "",
-            "",
-            "",
-            "",
+            "\1\122\1\123",
             "\1\124",
             "\1\125",
+            "\12\75",
+>>>>>>> [xText] Added new message type: contextMessage
+            "",
+            "",
+            "",
+            "",
             "\1\126",
+<<<<<<< HEAD
 <<<<<<< HEAD
             "\1\127",
             "\1\130",
@@ -2073,12 +2322,24 @@ public class InternalMyDslLexer extends Lexer {
             "\1\141",
             "\1\142",
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            "\1\127",
+            "\1\130",
+            "\1\132\16\uffff\1\133\1\131",
+            "\1\134",
+            "\1\135",
+            "\1\136",
+            "\1\137",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\142\22\uffff\1\141",
+>>>>>>> [xText] Added new message type: contextMessage
             "\1\143",
             "\1\144",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\145",
             "\1\146",
             "\1\147",
             "\1\150",
+<<<<<<< HEAD
             "\1\151",
 <<<<<<< HEAD
             "",
@@ -2086,6 +2347,9 @@ public class InternalMyDslLexer extends Lexer {
             "",
 =======
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+>>>>>>> [xText] Added new message type: contextMessage
             "\1\152",
             "",
             "\1\153",
@@ -2111,20 +2375,25 @@ public class InternalMyDslLexer extends Lexer {
 =======
             "\1\156",
             "\1\157",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\160",
             "\1\161",
             "\1\162",
-            "",
             "\1\163",
-            "\1\164",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\165",
             "\1\166",
+            "",
             "\1\167",
             "\1\170",
+<<<<<<< HEAD
 >>>>>>> Added Xtext for context dependent behavior
             "",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+=======
+            "\1\171",
+            "\1\172",
+>>>>>>> [xText] Added new message type: contextMessage
             "\1\173",
 <<<<<<< HEAD
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
@@ -2142,98 +2411,113 @@ public class InternalMyDslLexer extends Lexer {
             "\1\174",
             "\1\175",
             "\1\176",
-            "\1\177",
-            "\1\u0080",
+            "",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u0081",
             "\1\u0082",
-            "",
             "\1\u0083",
             "\1\u0084",
             "\1\u0085",
             "\1\u0086",
             "\1\u0087",
             "\1\u0088",
+            "",
             "\1\u0089",
             "\1\u008a",
-            "",
-            "",
             "\1\u008b",
             "\1\u008c",
             "\1\u008d",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u008e",
             "\1\u008f",
             "\1\u0090",
-            "\1\u0091",
-            "\1\u0092",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u0092",
+            "",
+            "",
+            "\1\u0093",
             "\1\u0094",
             "\1\u0095",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u0097",
             "\1\u0098",
             "\1\u0099",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u009a",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u009c",
             "\1\u009d",
-            "",
-            "\1\u009f\6\uffff\1\u009e",
+            "\1\u009e",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u00a0",
             "\1\u00a1",
             "\1\u00a2",
             "",
-            "\1\u00a3",
-            "\1\u00a4",
-            "",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u00a5",
             "\1\u00a6",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "",
-            "",
-            "\1\u00a8",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u00a8\6\uffff\1\u00a7",
+            "\1\u00a9",
             "\1\u00aa",
             "\1\u00ab",
+            "",
             "\1\u00ac",
             "\1\u00ad",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u00ae",
+            "",
             "\1\u00af",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u00b0",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "",
-            "\1\u00b3",
             "",
+            "\1\u00b2",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u00b4",
             "\1\u00b5",
             "\1\u00b6",
             "\1\u00b7",
-            "",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "",
-            "",
-            "",
             "\1\u00b9",
-            "\1\u00ba",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\1\u00bb",
-            "\1\u00bc",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "",
             "\1\u00be",
+            "",
             "\1\u00bf",
             "\1\u00c0",
             "\1\u00c1",
-            "",
             "\1\u00c2",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
-            "\1\u00c4",
-            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
             "",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "",
+            "",
+            "\1\u00c5",
+            "\1\u00c6",
             "\1\u00c7",
-            "",
-            "",
             "\1\u00c8",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "",
+            "",
+            "\1\u00ca",
+            "\1\u00cb",
+            "\1\u00cc",
+            "\1\u00cd",
+            "",
+            "\1\u00ce",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\1\u00d0",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
+            "",
+            "\1\u00d3",
+            "",
+            "",
+            "\1\u00d4",
             "\12\41\7\uffff\32\41\4\uffff\1\41\1\uffff\32\41",
 >>>>>>> Added Xtext for context dependent behavior
             ""
@@ -2270,16 +2554,21 @@ public class InternalMyDslLexer extends Lexer {
         }
         public String getDescription() {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
 =======
             return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
 >>>>>>> Added Xtext for context dependent behavior
+=======
+            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | RULE_NUMBER | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+>>>>>>> [xText] Added new message type: contextMessage
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+<<<<<<< HEAD
                         int LA13_25 = input.LA(1);
 
                         s = -1;
@@ -2296,6 +2585,8 @@ public class InternalMyDslLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+=======
+>>>>>>> [xText] Added new message type: contextMessage
                         int LA13_0 = input.LA(1);
 
                         s = -1;
@@ -2387,6 +2678,16 @@ public class InternalMyDslLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
+                    case 1 : 
+                        int LA13_25 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA13_25>='\u0000' && LA13_25<='\uFFFF')) ) {s = 62;}
+
+                        else s = 29;
+
+                        if ( s>=0 ) return s;
+                        break;
                     case 2 : 
 <<<<<<< HEAD
                         int LA13_24 = input.LA(1);
@@ -2399,7 +2700,7 @@ public class InternalMyDslLexer extends Lexer {
                         int LA13_26 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA13_26>='\u0000' && LA13_26<='\uFFFF')) ) {s = 61;}
+                        if ( ((LA13_26>='\u0000' && LA13_26<='\uFFFF')) ) {s = 62;}
 
                         else s = 29;
 >>>>>>> Added Xtext for context dependent behavior

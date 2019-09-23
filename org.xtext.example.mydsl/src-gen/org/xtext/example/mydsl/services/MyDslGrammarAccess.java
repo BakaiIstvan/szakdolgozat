@@ -549,6 +549,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMessageMessageParserRuleCall_1_0 = (RuleCall)cMessageAssignment_1.eContents().get(0);
 		private final Assignment cParAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cParParParserRuleCall_2_0 = (RuleCall)cParAssignment_2.eContents().get(0);
+<<<<<<< HEAD
 		private final Assignment cLoopAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cLoopLoopParserRuleCall_3_0 = (RuleCall)cLoopAssignment_3.eContents().get(0);
 		
@@ -557,6 +558,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 		
 		//alt+=Alt | message+=Message | par+=Par | loop+=Loop
+=======
+		private final Assignment cContextmessageAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cContextmessageContextMessageParserRuleCall_3_0 = (RuleCall)cContextmessageAssignment_3.eContents().get(0);
+		
+		//ScenarioContent:
+		//	alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage
+>>>>>>> [xText] Added new message type: contextMessage
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//alt+=Alt
@@ -577,11 +588,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Par
 		public RuleCall getParParParserRuleCall_2_0() { return cParParParserRuleCall_2_0; }
 		
+<<<<<<< HEAD
 		//loop+=Loop
 		public Assignment getLoopAssignment_3() { return cLoopAssignment_3; }
 		
 		//Loop
 		public RuleCall getLoopLoopParserRuleCall_3_0() { return cLoopLoopParserRuleCall_3_0; }
+=======
+		//contextmessage+=ContextMessage
+		public Assignment getContextmessageAssignment_3() { return cContextmessageAssignment_3; }
+		
+		//ContextMessage
+		public RuleCall getContextmessageContextMessageParserRuleCall_3_0() { return cContextmessageContextMessageParserRuleCall_3_0; }
+>>>>>>> [xText] Added new message type: contextMessage
 	}
 	public class MessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Message");
@@ -708,6 +727,265 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//';'
 		public Keyword getSemicolonKeyword_14() { return cSemicolonKeyword_14; }
+	}
+	public class ContextMessageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ContextMessage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cContextMessageContentParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cRequiredAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cRequiredRequiredKeyword_1_0 = (Keyword)cRequiredAssignment_1.eContents().get(0);
+		private final Assignment cFailAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cFailFailKeyword_2_0 = (Keyword)cFailAssignment_2.eContents().get(0);
+		private final Assignment cStrictAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cStrictStrictKeyword_3_0 = (Keyword)cStrictAssignment_3.eContents().get(0);
+		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ContextMessage:
+		//	ContextMessageContent
+		//	required?='required'? fail?='fail'? strict?='strict'?
+		//	';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ContextMessageContent required?='required'? fail?='fail'? strict?='strict'? ';'
+		public Group getGroup() { return cGroup; }
+		
+		//ContextMessageContent
+		public RuleCall getContextMessageContentParserRuleCall_0() { return cContextMessageContentParserRuleCall_0; }
+		
+		//required?='required'?
+		public Assignment getRequiredAssignment_1() { return cRequiredAssignment_1; }
+		
+		//'required'
+		public Keyword getRequiredRequiredKeyword_1_0() { return cRequiredRequiredKeyword_1_0; }
+		
+		//fail?='fail'?
+		public Assignment getFailAssignment_2() { return cFailAssignment_2; }
+		
+		//'fail'
+		public Keyword getFailFailKeyword_2_0() { return cFailFailKeyword_2_0; }
+		
+		//strict?='strict'?
+		public Assignment getStrictAssignment_3() { return cStrictAssignment_3; }
+		
+		//'strict'
+		public Keyword getStrictStrictKeyword_3_0() { return cStrictStrictKeyword_3_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+	}
+	public class ContextMessageContentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ContextMessageContent");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cMatchMessageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cChangeMessageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ContextMessageContent:
+		//	MatchMessage | ChangeMessage;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//MatchMessage | ChangeMessage
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//MatchMessage
+		public RuleCall getMatchMessageParserRuleCall_0() { return cMatchMessageParserRuleCall_0; }
+		
+		//ChangeMessage
+		public RuleCall getChangeMessageParserRuleCall_1() { return cChangeMessageParserRuleCall_1; }
+	}
+	public class MatchMessageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.MatchMessage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cMatchKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cContentAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cContentContextFragmentCrossReference_3_0 = (CrossReference)cContentAssignment_3.eContents().get(0);
+		private final RuleCall cContentContextFragmentIDTerminalRuleCall_3_0_1 = (RuleCall)cContentContextFragmentCrossReference_3_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//MatchMessage:
+		//	'match' name=ID '(' content=[ContextFragment]? ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'match' name=ID '(' content=[ContextFragment]? ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'match'
+		public Keyword getMatchKeyword_0() { return cMatchKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//content=[ContextFragment]?
+		public Assignment getContentAssignment_3() { return cContentAssignment_3; }
+		
+		//[ContextFragment]
+		public CrossReference getContentContextFragmentCrossReference_3_0() { return cContentContextFragmentCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getContentContextFragmentIDTerminalRuleCall_3_0_1() { return cContentContextFragmentIDTerminalRuleCall_3_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+	}
+	public class ChangeMessageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ChangeMessage");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cDisappearMessageParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAppearMessageParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cDistanceMessageParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//ChangeMessage:
+		//	DisappearMessage | AppearMessage | DistanceMessage;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//DisappearMessage | AppearMessage | DistanceMessage
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//DisappearMessage
+		public RuleCall getDisappearMessageParserRuleCall_0() { return cDisappearMessageParserRuleCall_0; }
+		
+		//AppearMessage
+		public RuleCall getAppearMessageParserRuleCall_1() { return cAppearMessageParserRuleCall_1; }
+		
+		//DistanceMessage
+		public RuleCall getDistanceMessageParserRuleCall_2() { return cDistanceMessageParserRuleCall_2; }
+	}
+	public class AppearMessageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.AppearMessage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cAppearKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//AppearMessage:
+		//	'appear' name=ID '(' entity=[Entity]? ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'appear' name=ID '(' entity=[Entity]? ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'appear'
+		public Keyword getAppearKeyword_0() { return cAppearKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//entity=[Entity]?
+		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
+		
+		//[Entity]
+		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getEntityEntityIDTerminalRuleCall_3_0_1() { return cEntityEntityIDTerminalRuleCall_3_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+	}
+	public class DisappearMessageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.DisappearMessage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDisappearKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//DisappearMessage:
+		//	'disappear' name=ID '(' entity=[Entity]? ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'disappear' name=ID '(' entity=[Entity]? ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'disappear'
+		public Keyword getDisappearKeyword_0() { return cDisappearKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//entity=[Entity]?
+		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
+		
+		//[Entity]
+		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getEntityEntityIDTerminalRuleCall_3_0_1() { return cEntityEntityIDTerminalRuleCall_3_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+	}
+	public class DistanceMessageElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.DistanceMessage");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cDistanceKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cEntityAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cEntityEntityCrossReference_3_0 = (CrossReference)cEntityAssignment_3.eContents().get(0);
+		private final RuleCall cEntityEntityIDTerminalRuleCall_3_0_1 = (RuleCall)cEntityEntityCrossReference_3_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//DistanceMessage:
+		//	'distance' name=ID '(' entity=[Entity]? ')';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'distance' name=ID '(' entity=[Entity]? ')'
+		public Group getGroup() { return cGroup; }
+		
+		//'distance'
+		public Keyword getDistanceKeyword_0() { return cDistanceKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+		
+		//entity=[Entity]?
+		public Assignment getEntityAssignment_3() { return cEntityAssignment_3; }
+		
+		//[Entity]
+		public CrossReference getEntityEntityCrossReference_3_0() { return cEntityEntityCrossReference_3_0; }
+		
+		//ID
+		public RuleCall getEntityEntityIDTerminalRuleCall_3_0_1() { return cEntityEntityIDTerminalRuleCall_3_0_1; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Name");
@@ -1079,6 +1357,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final ScenarioElements pScenario;
 	private final ScenarioContentElements pScenarioContent;
 	private final MessageElements pMessage;
+	private final ContextMessageElements pContextMessage;
+	private final ContextMessageContentElements pContextMessageContent;
+	private final MatchMessageElements pMatchMessage;
+	private final ChangeMessageElements pChangeMessage;
+	private final AppearMessageElements pAppearMessage;
+	private final DisappearMessageElements pDisappearMessage;
+	private final DistanceMessageElements pDistanceMessage;
 	private final NameElements pName;
 	private final TerminalRule tNumber;
 	private final ObjectTypeElements pObjectType;
@@ -1110,6 +1395,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pScenario = new ScenarioElements();
 		this.pScenarioContent = new ScenarioContentElements();
 		this.pMessage = new MessageElements();
+		this.pContextMessage = new ContextMessageElements();
+		this.pContextMessageContent = new ContextMessageContentElements();
+		this.pMatchMessage = new MatchMessageElements();
+		this.pChangeMessage = new ChangeMessageElements();
+		this.pAppearMessage = new AppearMessageElements();
+		this.pDisappearMessage = new DisappearMessageElements();
+		this.pDistanceMessage = new DistanceMessageElements();
 		this.pName = new NameElements();
 		this.tNumber = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Number");
 		this.pObjectType = new ObjectTypeElements();
@@ -1260,7 +1552,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ScenarioContent:
+<<<<<<< HEAD
 	//	alt+=Alt | message+=Message | par+=Par | loop+=Loop;
+=======
+	//	alt+=Alt | message+=Message | par+=Par | contextmessage+=ContextMessage;
+>>>>>>> [xText] Added new message type: contextMessage
 	public ScenarioContentElements getScenarioContentAccess() {
 		return pScenarioContent;
 	}
@@ -1279,6 +1575,78 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getMessageRule() {
 		return getMessageAccess().getRule();
+	}
+	
+	//ContextMessage:
+	//	ContextMessageContent
+	//	required?='required'? fail?='fail'? strict?='strict'?
+	//	';';
+	public ContextMessageElements getContextMessageAccess() {
+		return pContextMessage;
+	}
+	
+	public ParserRule getContextMessageRule() {
+		return getContextMessageAccess().getRule();
+	}
+	
+	//ContextMessageContent:
+	//	MatchMessage | ChangeMessage;
+	public ContextMessageContentElements getContextMessageContentAccess() {
+		return pContextMessageContent;
+	}
+	
+	public ParserRule getContextMessageContentRule() {
+		return getContextMessageContentAccess().getRule();
+	}
+	
+	//MatchMessage:
+	//	'match' name=ID '(' content=[ContextFragment]? ')';
+	public MatchMessageElements getMatchMessageAccess() {
+		return pMatchMessage;
+	}
+	
+	public ParserRule getMatchMessageRule() {
+		return getMatchMessageAccess().getRule();
+	}
+	
+	//ChangeMessage:
+	//	DisappearMessage | AppearMessage | DistanceMessage;
+	public ChangeMessageElements getChangeMessageAccess() {
+		return pChangeMessage;
+	}
+	
+	public ParserRule getChangeMessageRule() {
+		return getChangeMessageAccess().getRule();
+	}
+	
+	//AppearMessage:
+	//	'appear' name=ID '(' entity=[Entity]? ')';
+	public AppearMessageElements getAppearMessageAccess() {
+		return pAppearMessage;
+	}
+	
+	public ParserRule getAppearMessageRule() {
+		return getAppearMessageAccess().getRule();
+	}
+	
+	//DisappearMessage:
+	//	'disappear' name=ID '(' entity=[Entity]? ')';
+	public DisappearMessageElements getDisappearMessageAccess() {
+		return pDisappearMessage;
+	}
+	
+	public ParserRule getDisappearMessageRule() {
+		return getDisappearMessageAccess().getRule();
+	}
+	
+	//DistanceMessage:
+	//	'distance' name=ID '(' entity=[Entity]? ')';
+	public DistanceMessageElements getDistanceMessageAccess() {
+		return pDistanceMessage;
+	}
+	
+	public ParserRule getDistanceMessageRule() {
+		return getDistanceMessageAccess().getRule();
 	}
 	
 	//Name:

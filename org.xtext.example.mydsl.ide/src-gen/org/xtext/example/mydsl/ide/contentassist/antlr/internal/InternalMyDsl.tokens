@@ -29,34 +29,40 @@
 ','=27
 '->'=30
 ';'=23
-'<'=36
-'<='=38
-'='=34
-'>'=35
-'>='=37
-'alt'=33
+'<'=38
+'<='=40
+'='=36
+'>'=37
+'>='=39
+'alt'=35
 'appear'=17
 'attribute'=24
-'case'=40
+'case'=42
 'changeTo'=21
 'conditionsAt'=22
-'constraint'=32
+'constraint'=34
 'contextfragment'=16
 'contextmodel'=15
+'disappear'=32
 'distance'=20
 'entity'=25
-'fail'=42
-'future'=45
+'fail'=44
+'future'=47
+'match'=31
 'message'=29
-'object'=31
-'par'=39
-'past'=44
+'object'=33
+'par'=41
+'past'=46
 'relation'=26
-'required'=41
+'required'=43
 'scenario'=28
 'specification'=12
+<<<<<<< HEAD
 'strict'=43
 >>>>>>> Added Xtext for context dependent behavior
+=======
+'strict'=45
+>>>>>>> [xText] Added new message type: contextMessage
 '{'=13
 '}'=14
 RULE_ANY_OTHER=11
@@ -103,4 +109,9 @@ T__42=42
 T__43=43
 T__44=44
 T__45=45
+<<<<<<< HEAD
 >>>>>>> Added Xtext for context dependent behavior
+=======
+T__46=46
+T__47=47
+>>>>>>> [xText] Added new message type: contextMessage

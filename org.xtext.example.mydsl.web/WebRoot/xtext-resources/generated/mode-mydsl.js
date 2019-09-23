@@ -1,10 +1,14 @@
 define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules"], function(oop, mText, mTextHighlightRules) {
 	var HighlightRules = function() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var keywords = "alt|case|constraint|fail|future|loop|message|object|par|past|required|scenario|specification|strict";
 =======
 		var keywords = "alt|appear|attribute|case|changeTo|conditionsAt|constraint|contextfragment|contextmodel|distance|entity|fail|future|message|object|par|past|relation|required|scenario|specification|strict";
 >>>>>>> Added Xtext for context dependent behavior
+=======
+		var keywords = "alt|appear|attribute|case|changeTo|conditionsAt|constraint|contextfragment|contextmodel|disappear|distance|entity|fail|future|match|message|object|par|past|relation|required|scenario|specification|strict";
+>>>>>>> [xText] Added new message type: contextMessage
 		this.$rules = {
 			"start": [
 				{token: "comment", regex: "\\/\\/.*$"},

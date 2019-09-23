@@ -11,16 +11,26 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeType;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
+import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+<<<<<<< HEAD
 import org.xtext.example.mydsl.myDsl.Loop;
+=======
+import org.xtext.example.mydsl.myDsl.MatchMessage;
+>>>>>>> [xText] Added new message type: contextMessage
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -115,6 +125,55 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass messageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextMessageContentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass matchMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass changeMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass appearMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass disappearMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass distanceMessageEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -640,7 +699,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+<<<<<<< HEAD
   public EReference getScenarioContent_Loop()
+=======
+  public EReference getScenarioContent_Contextmessage()
+>>>>>>> [xText] Added new message type: contextMessage
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(3);
   }
@@ -753,6 +816,136 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getMessage_C()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getContextMessage()
+  {
+    return contextMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getContextMessageContent()
+  {
+    return contextMessageContentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessageContent_Required()
+  {
+    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessageContent_Fail()
+  {
+    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessageContent_Strict()
+  {
+    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessageContent_Name()
+  {
+    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMatchMessage()
+  {
+    return matchMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchMessage_Content()
+  {
+    return (EReference)matchMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getChangeMessage()
+  {
+    return changeMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeMessage_Entity()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAppearMessage()
+  {
+    return appearMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDisappearMessage()
+  {
+    return disappearMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDistanceMessage()
+  {
+    return distanceMessageEClass;
   }
 
   /**
@@ -1044,7 +1237,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__ALT);
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__MESSAGE);
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__PAR);
+<<<<<<< HEAD
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__LOOP);
+=======
+    createEReference(scenarioContentEClass, SCENARIO_CONTENT__CONTEXTMESSAGE);
+>>>>>>> [xText] Added new message type: contextMessage
 
     messageEClass = createEClass(MESSAGE);
     createEAttribute(messageEClass, MESSAGE__NAME);
@@ -1057,6 +1254,26 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(messageEClass, MESSAGE__FUTURE);
     createEAttribute(messageEClass, MESSAGE__CONSTRAINT);
     createEReference(messageEClass, MESSAGE__C);
+
+    contextMessageEClass = createEClass(CONTEXT_MESSAGE);
+
+    contextMessageContentEClass = createEClass(CONTEXT_MESSAGE_CONTENT);
+    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__REQUIRED);
+    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__FAIL);
+    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__STRICT);
+    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__NAME);
+
+    matchMessageEClass = createEClass(MATCH_MESSAGE);
+    createEReference(matchMessageEClass, MATCH_MESSAGE__CONTENT);
+
+    changeMessageEClass = createEClass(CHANGE_MESSAGE);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__ENTITY);
+
+    appearMessageEClass = createEClass(APPEAR_MESSAGE);
+
+    disappearMessageEClass = createEClass(DISAPPEAR_MESSAGE);
+
+    distanceMessageEClass = createEClass(DISTANCE_MESSAGE);
 
     objectTypeEClass = createEClass(OBJECT_TYPE);
     createEAttribute(objectTypeEClass, OBJECT_TYPE__NAME);
@@ -1117,6 +1334,12 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    contextMessageContentEClass.getESuperTypes().add(this.getContextMessage());
+    matchMessageEClass.getESuperTypes().add(this.getContextMessageContent());
+    changeMessageEClass.getESuperTypes().add(this.getContextMessageContent());
+    appearMessageEClass.getESuperTypes().add(this.getChangeMessage());
+    disappearMessageEClass.getESuperTypes().add(this.getChangeMessage());
+    distanceMessageEClass.getESuperTypes().add(this.getChangeMessage());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1168,7 +1391,11 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getScenarioContent_Alt(), this.getAlt(), null, "alt", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenarioContent_Message(), this.getMessage(), null, "message", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenarioContent_Par(), this.getPar(), null, "par", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+<<<<<<< HEAD
     initEReference(getScenarioContent_Loop(), this.getLoop(), null, "loop", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+=======
+    initEReference(getScenarioContent_Contextmessage(), this.getContextMessage(), null, "contextmessage", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+>>>>>>> [xText] Added new message type: contextMessage
 
     initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMessage_Name(), ecorePackage.getEString(), "name", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1181,6 +1408,26 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getMessage_Future(), ecorePackage.getEBoolean(), "future", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Constraint(), ecorePackage.getEBoolean(), "constraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMessage_C(), this.getConstraint(), null, "c", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(contextMessageEClass, ContextMessage.class, "ContextMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(contextMessageContentEClass, ContextMessageContent.class, "ContextMessageContent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getContextMessageContent_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessageContent_Fail(), ecorePackage.getEBoolean(), "fail", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessageContent_Strict(), ecorePackage.getEBoolean(), "strict", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessageContent_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(matchMessageEClass, MatchMessage.class, "MatchMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMatchMessage_Content(), this.getContextFragment(), null, "content", null, 0, 1, MatchMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(changeMessageEClass, ChangeMessage.class, "ChangeMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChangeMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(appearMessageEClass, AppearMessage.class, "AppearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(disappearMessageEClass, DisappearMessage.class, "DisappearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(distanceMessageEClass, DistanceMessage.class, "DistanceMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(objectTypeEClass, ObjectType.class, "ObjectType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getObjectType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ObjectType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

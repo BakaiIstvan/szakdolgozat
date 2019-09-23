@@ -11,16 +11,26 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeType;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
+import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+<<<<<<< HEAD
 import org.xtext.example.mydsl.myDsl.Loop;
+=======
+import org.xtext.example.mydsl.myDsl.MatchMessage;
+>>>>>>> [xText] Added new message type: contextMessage
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
@@ -147,6 +157,41 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseMessage(Message object)
       {
         return createMessageAdapter();
+      }
+      @Override
+      public Adapter caseContextMessage(ContextMessage object)
+      {
+        return createContextMessageAdapter();
+      }
+      @Override
+      public Adapter caseContextMessageContent(ContextMessageContent object)
+      {
+        return createContextMessageContentAdapter();
+      }
+      @Override
+      public Adapter caseMatchMessage(MatchMessage object)
+      {
+        return createMatchMessageAdapter();
+      }
+      @Override
+      public Adapter caseChangeMessage(ChangeMessage object)
+      {
+        return createChangeMessageAdapter();
+      }
+      @Override
+      public Adapter caseAppearMessage(AppearMessage object)
+      {
+        return createAppearMessageAdapter();
+      }
+      @Override
+      public Adapter caseDisappearMessage(DisappearMessage object)
+      {
+        return createDisappearMessageAdapter();
+      }
+      @Override
+      public Adapter caseDistanceMessage(DistanceMessage object)
+      {
+        return createDistanceMessageAdapter();
       }
       @Override
       public Adapter caseObjectType(ObjectType object)
@@ -371,6 +416,111 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ContextMessage <em>Context Message</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage
+   * @generated
+   */
+  public Adapter createContextMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent <em>Context Message Content</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent
+   * @generated
+   */
+  public Adapter createContextMessageContentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.MatchMessage <em>Match Message</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage
+   * @generated
+   */
+  public Adapter createMatchMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ChangeMessage <em>Change Message</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage
+   * @generated
+   */
+  public Adapter createChangeMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.AppearMessage <em>Appear Message</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.AppearMessage
+   * @generated
+   */
+  public Adapter createAppearMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DisappearMessage <em>Disappear Message</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.DisappearMessage
+   * @generated
+   */
+  public Adapter createDisappearMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DistanceMessage <em>Distance Message</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.DistanceMessage
+   * @generated
+   */
+  public Adapter createDistanceMessageAdapter()
   {
     return null;
   }

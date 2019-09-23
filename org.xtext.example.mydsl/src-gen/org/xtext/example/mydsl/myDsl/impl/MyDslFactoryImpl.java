@@ -12,16 +12,26 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeType;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
+import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+<<<<<<< HEAD
 import org.xtext.example.mydsl.myDsl.Loop;
+=======
+import org.xtext.example.mydsl.myDsl.MatchMessage;
+>>>>>>> [xText] Added new message type: contextMessage
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -95,6 +105,13 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.SCENARIO: return createScenario();
       case MyDslPackage.SCENARIO_CONTENT: return createScenarioContent();
       case MyDslPackage.MESSAGE: return createMessage();
+      case MyDslPackage.CONTEXT_MESSAGE: return createContextMessage();
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT: return createContextMessageContent();
+      case MyDslPackage.MATCH_MESSAGE: return createMatchMessage();
+      case MyDslPackage.CHANGE_MESSAGE: return createChangeMessage();
+      case MyDslPackage.APPEAR_MESSAGE: return createAppearMessage();
+      case MyDslPackage.DISAPPEAR_MESSAGE: return createDisappearMessage();
+      case MyDslPackage.DISTANCE_MESSAGE: return createDistanceMessage();
       case MyDslPackage.OBJECT_TYPE: return createObjectType();
       case MyDslPackage.OBJECT: return createObject();
       case MyDslPackage.CONSTRAINT: return createConstraint();
@@ -227,6 +244,83 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     MessageImpl message = new MessageImpl();
     return message;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextMessage createContextMessage()
+  {
+    ContextMessageImpl contextMessage = new ContextMessageImpl();
+    return contextMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextMessageContent createContextMessageContent()
+  {
+    ContextMessageContentImpl contextMessageContent = new ContextMessageContentImpl();
+    return contextMessageContent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MatchMessage createMatchMessage()
+  {
+    MatchMessageImpl matchMessage = new MatchMessageImpl();
+    return matchMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ChangeMessage createChangeMessage()
+  {
+    ChangeMessageImpl changeMessage = new ChangeMessageImpl();
+    return changeMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AppearMessage createAppearMessage()
+  {
+    AppearMessageImpl appearMessage = new AppearMessageImpl();
+    return appearMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DisappearMessage createDisappearMessage()
+  {
+    DisappearMessageImpl disappearMessage = new DisappearMessageImpl();
+    return disappearMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DistanceMessage createDistanceMessage()
+  {
+    DistanceMessageImpl distanceMessage = new DistanceMessageImpl();
+    return distanceMessage;
   }
 
   /**

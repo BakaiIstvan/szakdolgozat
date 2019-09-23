@@ -68,8 +68,13 @@
         eType="#//Message" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="par" upperBound="-1" eType="#//Par"
         containment="true"/>
+<<<<<<< HEAD
     <eStructuralFeatures xsi:type="ecore:EReference" name="loop" upperBound="-1" eType="#//Loop"
         containment="true"/>
+=======
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextmessage" upperBound="-1"
+        eType="#//ContextMessage" containment="true"/>
+>>>>>>> [xText] Added new message type: contextMessage
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Message">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -83,6 +88,22 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="#//Constraint"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextMessage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextMessageContent" eSuperTypes="#//ContextMessage">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fail" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strict" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MatchMessage" eSuperTypes="#//ContextMessageContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//ContextFragment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChangeMessage" eSuperTypes="#//ContextMessageContent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AppearMessage" eSuperTypes="#//ChangeMessage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DisappearMessage" eSuperTypes="#//ChangeMessage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DistanceMessage" eSuperTypes="#//ChangeMessage"/>
   <eClassifiers xsi:type="ecore:EClass" name="ObjectType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

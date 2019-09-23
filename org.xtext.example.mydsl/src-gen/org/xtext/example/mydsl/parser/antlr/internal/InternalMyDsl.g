@@ -951,18 +951,30 @@ ruleScenarioContent returns [EObject current=null]
 		(
 			(
 				{
+<<<<<<< HEAD
 					newCompositeNode(grammarAccess.getScenarioContentAccess().getLoopLoopParserRuleCall_3_0());
 				}
 				lv_loop_3_0=ruleLoop
+=======
+					newCompositeNode(grammarAccess.getScenarioContentAccess().getContextmessageContextMessageParserRuleCall_3_0());
+				}
+				lv_contextmessage_3_0=ruleContextMessage
+>>>>>>> [xText] Added new message type: contextMessage
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getScenarioContentRule());
 					}
 					add(
 						$current,
+<<<<<<< HEAD
 						"loop",
 						lv_loop_3_0,
 						"org.xtext.example.mydsl.MyDsl.Loop");
+=======
+						"contextmessage",
+						lv_contextmessage_3_0,
+						"org.xtext.example.mydsl.MyDsl.ContextMessage");
+>>>>>>> [xText] Added new message type: contextMessage
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1151,6 +1163,408 @@ ruleMessage returns [EObject current=null]
 		otherlv_14=';'
 		{
 			newLeafNode(otherlv_14, grammarAccess.getMessageAccess().getSemicolonKeyword_14());
+		}
+	)
+;
+
+// Entry rule entryRuleContextMessage
+entryRuleContextMessage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getContextMessageRule()); }
+	iv_ruleContextMessage=ruleContextMessage
+	{ $current=$iv_ruleContextMessage.current; }
+	EOF;
+
+// Rule ContextMessage
+ruleContextMessage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getContextMessageAccess().getContextMessageContentParserRuleCall_0());
+		}
+		this_ContextMessageContent_0=ruleContextMessageContent
+		{
+			$current = $this_ContextMessageContent_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				lv_required_1_0='required'
+				{
+					newLeafNode(lv_required_1_0, grammarAccess.getContextMessageAccess().getRequiredRequiredKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getContextMessageRule());
+					}
+					setWithLastConsumed($current, "required", true, "required");
+				}
+			)
+		)?
+		(
+			(
+				lv_fail_2_0='fail'
+				{
+					newLeafNode(lv_fail_2_0, grammarAccess.getContextMessageAccess().getFailFailKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getContextMessageRule());
+					}
+					setWithLastConsumed($current, "fail", true, "fail");
+				}
+			)
+		)?
+		(
+			(
+				lv_strict_3_0='strict'
+				{
+					newLeafNode(lv_strict_3_0, grammarAccess.getContextMessageAccess().getStrictStrictKeyword_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getContextMessageRule());
+					}
+					setWithLastConsumed($current, "strict", true, "strict");
+				}
+			)
+		)?
+		otherlv_4=';'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getContextMessageAccess().getSemicolonKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleContextMessageContent
+entryRuleContextMessageContent returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getContextMessageContentRule()); }
+	iv_ruleContextMessageContent=ruleContextMessageContent
+	{ $current=$iv_ruleContextMessageContent.current; }
+	EOF;
+
+// Rule ContextMessageContent
+ruleContextMessageContent returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getContextMessageContentAccess().getMatchMessageParserRuleCall_0());
+		}
+		this_MatchMessage_0=ruleMatchMessage
+		{
+			$current = $this_MatchMessage_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getContextMessageContentAccess().getChangeMessageParserRuleCall_1());
+		}
+		this_ChangeMessage_1=ruleChangeMessage
+		{
+			$current = $this_ChangeMessage_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleMatchMessage
+entryRuleMatchMessage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMatchMessageRule()); }
+	iv_ruleMatchMessage=ruleMatchMessage
+	{ $current=$iv_ruleMatchMessage.current; }
+	EOF;
+
+// Rule MatchMessage
+ruleMatchMessage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='match'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getMatchMessageAccess().getMatchKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getMatchMessageAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMatchMessageRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getMatchMessageAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMatchMessageRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getMatchMessageAccess().getContentContextFragmentCrossReference_3_0());
+				}
+			)
+		)?
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getMatchMessageAccess().getRightParenthesisKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleChangeMessage
+entryRuleChangeMessage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getChangeMessageRule()); }
+	iv_ruleChangeMessage=ruleChangeMessage
+	{ $current=$iv_ruleChangeMessage.current; }
+	EOF;
+
+// Rule ChangeMessage
+ruleChangeMessage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getChangeMessageAccess().getDisappearMessageParserRuleCall_0());
+		}
+		this_DisappearMessage_0=ruleDisappearMessage
+		{
+			$current = $this_DisappearMessage_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getChangeMessageAccess().getAppearMessageParserRuleCall_1());
+		}
+		this_AppearMessage_1=ruleAppearMessage
+		{
+			$current = $this_AppearMessage_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getChangeMessageAccess().getDistanceMessageParserRuleCall_2());
+		}
+		this_DistanceMessage_2=ruleDistanceMessage
+		{
+			$current = $this_DistanceMessage_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleAppearMessage
+entryRuleAppearMessage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAppearMessageRule()); }
+	iv_ruleAppearMessage=ruleAppearMessage
+	{ $current=$iv_ruleAppearMessage.current; }
+	EOF;
+
+// Rule AppearMessage
+ruleAppearMessage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='appear'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAppearMessageAccess().getAppearKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getAppearMessageAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAppearMessageRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAppearMessageAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAppearMessageRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getAppearMessageAccess().getEntityEntityCrossReference_3_0());
+				}
+			)
+		)?
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getAppearMessageAccess().getRightParenthesisKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleDisappearMessage
+entryRuleDisappearMessage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDisappearMessageRule()); }
+	iv_ruleDisappearMessage=ruleDisappearMessage
+	{ $current=$iv_ruleDisappearMessage.current; }
+	EOF;
+
+// Rule DisappearMessage
+ruleDisappearMessage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='disappear'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getDisappearMessageAccess().getDisappearKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getDisappearMessageAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDisappearMessageRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getDisappearMessageAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDisappearMessageRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getDisappearMessageAccess().getEntityEntityCrossReference_3_0());
+				}
+			)
+		)?
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getDisappearMessageAccess().getRightParenthesisKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleDistanceMessage
+entryRuleDistanceMessage returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDistanceMessageRule()); }
+	iv_ruleDistanceMessage=ruleDistanceMessage
+	{ $current=$iv_ruleDistanceMessage.current; }
+	EOF;
+
+// Rule DistanceMessage
+ruleDistanceMessage returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='distance'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getDistanceMessageAccess().getDistanceKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getDistanceMessageAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDistanceMessageRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getDistanceMessageAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDistanceMessageRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getDistanceMessageAccess().getEntityEntityCrossReference_3_0());
+				}
+			)
+		)?
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getDistanceMessageAccess().getRightParenthesisKeyword_4());
 		}
 	)
 ;

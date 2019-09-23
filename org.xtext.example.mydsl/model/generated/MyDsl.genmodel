@@ -55,7 +55,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/alt"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/message"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/par"/>
+<<<<<<< HEAD
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/loop"/>
+=======
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ScenarioContent/contextmessage"/>
+>>>>>>> [xText] Added new message type: contextMessage
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Message">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Message/name"/>
@@ -69,6 +73,22 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Message/constraint"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Message/c"/>
     </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//ContextMessage"/>
+    <genClasses ecoreClass="MyDsl.ecore#//ContextMessageContent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextMessageContent/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextMessageContent/fail"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextMessageContent/strict"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextMessageContent/name"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//MatchMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//MatchMessage/content"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//ChangeMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeMessage/entity"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//AppearMessage"/>
+    <genClasses ecoreClass="MyDsl.ecore#//DisappearMessage"/>
+    <genClasses ecoreClass="MyDsl.ecore#//DistanceMessage"/>
     <genClasses ecoreClass="MyDsl.ecore#//ObjectType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ObjectType/name"/>
     </genClasses>

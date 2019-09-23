@@ -19,7 +19,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getAlt <em>Alt</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getMessage <em>Message</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getPar <em>Par</em>}</li>
+<<<<<<< HEAD
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getLoop <em>Loop</em>}</li>
+=======
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage <em>Contextmessage</em>}</li>
+>>>>>>> [xText] Added new message type: contextMessage
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getScenarioContent()
@@ -77,6 +81,7 @@ public interface ScenarioContent extends EObject
   EList<Par> getPar();
 
   /**
+<<<<<<< HEAD
    * Returns the value of the '<em><b>Loop</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Loop}.
    * <!-- begin-user-doc -->
@@ -91,5 +96,21 @@ public interface ScenarioContent extends EObject
    * @generated
    */
   EList<Loop> getLoop();
+=======
+   * Returns the value of the '<em><b>Contextmessage</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ContextMessage}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Contextmessage</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Contextmessage</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getScenarioContent_Contextmessage()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ContextMessage> getContextmessage();
+>>>>>>> [xText] Added new message type: contextMessage
 
 } // ScenarioContent

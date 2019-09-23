@@ -123,6 +123,69 @@ public interface MyDslFactory extends EFactory
   Message createMessage();
 
   /**
+   * Returns a new object of class '<em>Context Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Message</em>'.
+   * @generated
+   */
+  ContextMessage createContextMessage();
+
+  /**
+   * Returns a new object of class '<em>Context Message Content</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Message Content</em>'.
+   * @generated
+   */
+  ContextMessageContent createContextMessageContent();
+
+  /**
+   * Returns a new object of class '<em>Match Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Match Message</em>'.
+   * @generated
+   */
+  MatchMessage createMatchMessage();
+
+  /**
+   * Returns a new object of class '<em>Change Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Change Message</em>'.
+   * @generated
+   */
+  ChangeMessage createChangeMessage();
+
+  /**
+   * Returns a new object of class '<em>Appear Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Appear Message</em>'.
+   * @generated
+   */
+  AppearMessage createAppearMessage();
+
+  /**
+   * Returns a new object of class '<em>Disappear Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Disappear Message</em>'.
+   * @generated
+   */
+  DisappearMessage createDisappearMessage();
+
+  /**
+   * Returns a new object of class '<em>Distance Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Distance Message</em>'.
+   * @generated
+   */
+  DistanceMessage createDistanceMessage();
+
+  /**
    * Returns a new object of class '<em>Object Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

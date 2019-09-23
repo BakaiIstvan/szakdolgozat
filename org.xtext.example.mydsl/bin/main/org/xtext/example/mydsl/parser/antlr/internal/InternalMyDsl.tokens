@@ -27,27 +27,29 @@
 ','=27
 '->'=33
 ';'=23
-'<'=41
-'<='=43
-'='=39
-'>'=40
-'>='=42
-'alt'=38
+'<'=43
+'<='=45
+'='=41
+'>'=42
+'>='=44
+'alt'=40
 'appear'=17
 'attribute'=24
-'case'=45
+'case'=47
 'changeTo'=21
 'conditionsAt'=22
 'constraint'=36
 'contextfragment'=16
 'contextmodel'=15
+'disappear'=38
 'distance'=20
 'entity'=25
 'fail'=31
 'future'=35
+'match'=37
 'message'=29
-'object'=37
-'par'=44
+'object'=39
+'par'=46
 'past'=34
 'relation'=26
 'required'=30
@@ -101,4 +103,9 @@ T__42=42
 T__43=43
 T__44=44
 T__45=45
+<<<<<<< HEAD
 >>>>>>> Added Xtext for context dependent behavior
+=======
+T__46=46
+T__47=47
+>>>>>>> [xText] Added new message type: contextMessage

@@ -33,6 +33,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getChangeTypeAccess().getAlternatives(), "rule__ChangeType__Alternatives");
 			builder.put(grammarAccess.getScenarioContentAccess().getAlternatives(), "rule__ScenarioContent__Alternatives");
+			builder.put(grammarAccess.getContextMessageContentAccess().getAlternatives(), "rule__ContextMessageContent__Alternatives");
+			builder.put(grammarAccess.getChangeMessageAccess().getAlternatives(), "rule__ChangeMessage__Alternatives");
 			builder.put(grammarAccess.getNameAccess().getAlternatives_2(), "rule__Name__Alternatives_2");
 			builder.put(grammarAccess.getExpressionAccess().getAlternatives_7(), "rule__Expression__Alternatives_7");
 			builder.put(grammarAccess.getDomainAccess().getGroup(), "rule__Domain__Group__0");
@@ -48,6 +50,11 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
 			builder.put(grammarAccess.getScenarioAccess().getGroup(), "rule__Scenario__Group__0");
 			builder.put(grammarAccess.getMessageAccess().getGroup(), "rule__Message__Group__0");
+			builder.put(grammarAccess.getContextMessageAccess().getGroup(), "rule__ContextMessage__Group__0");
+			builder.put(grammarAccess.getMatchMessageAccess().getGroup(), "rule__MatchMessage__Group__0");
+			builder.put(grammarAccess.getAppearMessageAccess().getGroup(), "rule__AppearMessage__Group__0");
+			builder.put(grammarAccess.getDisappearMessageAccess().getGroup(), "rule__DisappearMessage__Group__0");
+			builder.put(grammarAccess.getDistanceMessageAccess().getGroup(), "rule__DistanceMessage__Group__0");
 			builder.put(grammarAccess.getNameAccess().getGroup(), "rule__Name__Group__0");
 			builder.put(grammarAccess.getObjectTypeAccess().getGroup(), "rule__ObjectType__Group__0");
 			builder.put(grammarAccess.getObjectAccess().getGroup(), "rule__Object__Group__0");
@@ -88,7 +95,11 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getScenarioContentAccess().getAltAssignment_0(), "rule__ScenarioContent__AltAssignment_0");
 			builder.put(grammarAccess.getScenarioContentAccess().getMessageAssignment_1(), "rule__ScenarioContent__MessageAssignment_1");
 			builder.put(grammarAccess.getScenarioContentAccess().getParAssignment_2(), "rule__ScenarioContent__ParAssignment_2");
+<<<<<<< HEAD
 			builder.put(grammarAccess.getScenarioContentAccess().getLoopAssignment_3(), "rule__ScenarioContent__LoopAssignment_3");
+=======
+			builder.put(grammarAccess.getScenarioContentAccess().getContextmessageAssignment_3(), "rule__ScenarioContent__ContextmessageAssignment_3");
+>>>>>>> [xText] Added new message type: contextMessage
 			builder.put(grammarAccess.getMessageAccess().getNameAssignment_1(), "rule__Message__NameAssignment_1");
 			builder.put(grammarAccess.getMessageAccess().getRequiredAssignment_2(), "rule__Message__RequiredAssignment_2");
 			builder.put(grammarAccess.getMessageAccess().getFailAssignment_3(), "rule__Message__FailAssignment_3");
@@ -99,6 +110,17 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMessageAccess().getFutureAssignment_9(), "rule__Message__FutureAssignment_9");
 			builder.put(grammarAccess.getMessageAccess().getConstraintAssignment_10(), "rule__Message__ConstraintAssignment_10");
 			builder.put(grammarAccess.getMessageAccess().getCAssignment_12(), "rule__Message__CAssignment_12");
+			builder.put(grammarAccess.getContextMessageAccess().getRequiredAssignment_1(), "rule__ContextMessage__RequiredAssignment_1");
+			builder.put(grammarAccess.getContextMessageAccess().getFailAssignment_2(), "rule__ContextMessage__FailAssignment_2");
+			builder.put(grammarAccess.getContextMessageAccess().getStrictAssignment_3(), "rule__ContextMessage__StrictAssignment_3");
+			builder.put(grammarAccess.getMatchMessageAccess().getNameAssignment_1(), "rule__MatchMessage__NameAssignment_1");
+			builder.put(grammarAccess.getMatchMessageAccess().getContentAssignment_3(), "rule__MatchMessage__ContentAssignment_3");
+			builder.put(grammarAccess.getAppearMessageAccess().getNameAssignment_1(), "rule__AppearMessage__NameAssignment_1");
+			builder.put(grammarAccess.getAppearMessageAccess().getEntityAssignment_3(), "rule__AppearMessage__EntityAssignment_3");
+			builder.put(grammarAccess.getDisappearMessageAccess().getNameAssignment_1(), "rule__DisappearMessage__NameAssignment_1");
+			builder.put(grammarAccess.getDisappearMessageAccess().getEntityAssignment_3(), "rule__DisappearMessage__EntityAssignment_3");
+			builder.put(grammarAccess.getDistanceMessageAccess().getNameAssignment_1(), "rule__DistanceMessage__NameAssignment_1");
+			builder.put(grammarAccess.getDistanceMessageAccess().getEntityAssignment_3(), "rule__DistanceMessage__EntityAssignment_3");
 			builder.put(grammarAccess.getObjectTypeAccess().getNameAssignment_1(), "rule__ObjectType__NameAssignment_1");
 			builder.put(grammarAccess.getObjectAccess().getObjectAssignment_0(), "rule__Object__ObjectAssignment_0");
 			builder.put(grammarAccess.getObjectAccess().getNameAssignment_1(), "rule__Object__NameAssignment_1");
