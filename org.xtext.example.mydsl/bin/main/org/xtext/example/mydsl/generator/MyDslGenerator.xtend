@@ -589,46 +589,38 @@ class MyDslGenerator extends AbstractGenerator {
 				}
 			}
 			
-		public ArrayList<Automaton> par(ArrayList<Automaton> automatas) {
-		        ArrayList<Transition> transitions = new ArrayList<Transition>();
-		        for(Automaton a : automatas){
-		            for(Transition t : a.getTransitions()){
-		                transitions.add(t);
-		            }
-		        }
-		        return permute(transitions, automatas);
-		    }
+			public ArrayList<Automaton> par(ArrayList<Automaton> automatas) {
+			        ArrayList<ArrayList<Automaton>> automataList = new ArrayList<>();
+			        permute(automataList, new ArrayList<>(), automatas);
+			        return listConverter((automataList));
+			}
 		
-		    public ArrayList<Automaton> permute(ArrayList<Transition> transitions, ArrayList<Automaton> automatas) {
-		        ArrayList<Automaton> result = new ArrayList<>();
-		        permuteHelper(result, new ArrayList<>(), transitions, automatas);
-		        return result;
-		    }
-		
-		    public void permuteHelper(ArrayList<Automaton> list, ArrayList<Transition> resultList, ArrayList<Transition> transitions, ArrayList<Automaton> automatas) {
-		        if(resultList.size() == transitions.size()) {
-		            Automaton newAutomata = new Automaton("id");
-		            for(Transition t : resultList) {
-		                newAutomata.addTransition(t);
-		            }
-		
-		            for(State s : automatas.get(0).getStates()){
-		                newAutomata.addState(s);
-		            }
-		            newAutomata.setInitial(automatas.get(0).getInitial());
-		            newAutomata.setFinale(automatas.get(0).getFinale());
-		            list.add(newAutomata);
+		    private void permute(ArrayList<ArrayList<Automaton>> list, ArrayList<Automaton> resultList, ArrayList<Automaton> automatas) {
+		        if (resultList.size() == automatas.size()) {
+		            list.add(new ArrayList<>(resultList));
 		        } else {
-		            for(int i = 0; i < transitions.size(); i++) {
-		                if(resultList.contains(transitions.get(i))) {
+		            for (int i = 0; i < automatas.size(); i++) {
+		                if (resultList.contains((automatas.get(i)))) {
 		                    continue;
 		                }
 		
-		                resultList.add(transitions.get(i));
-		                permuteHelper(list, resultList, transitions, automatas);
+		                resultList.add(automatas.get(i));
+		                permute(list, resultList, automatas);
 		                resultList.remove(resultList.size() - 1);
 		            }
 		        }
+		    }
+		
+		    private ArrayList<Automaton> listConverter(ArrayList<ArrayList<Automaton>> list) {
+		        ArrayList<Automaton> result = new ArrayList<>();
+		        for (ArrayList<Automaton> alist : list) {
+		            Automaton newauto = new Automaton("id");
+		            for (Automaton auto : alist) {
+		                newauto.collapse(auto);
+		            }
+		            result.add(newauto);
+		        }
+		        return result;
 		    }
 			
 			public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
