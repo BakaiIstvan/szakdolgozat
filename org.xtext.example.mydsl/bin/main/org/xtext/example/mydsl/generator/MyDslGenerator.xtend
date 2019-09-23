@@ -589,37 +589,39 @@ class MyDslGenerator extends AbstractGenerator {
 				}
 			}
 			
-			public ArrayList<Automaton> par(ArrayList<Automaton> automatas){
-			        ArrayList<Automaton> result = new ArrayList<Automaton>();
-			        Automaton temp = new Automaton("temp");
-			        permute(automatas, 0, automatas.size() - 1, result, temp);
-			        return result;
-			    }
-			
-			    public void permute(ArrayList<Automaton> automatas, int l, int r, ArrayList<Automaton> result, Automaton temp){
-			        if(l == r)
-			        {
-			            for(Automaton a : automatas){
-			                temp = new Automaton("temp");
-			                temp.collapse(a);
-			            }
-			            result.add(temp);
-			        }else{
-			            for(int i = l; i <= r; i++){
-			                automatas = swap(automatas, l, i);
-			                permute(automatas, l + 1, r, result, temp);
-			                automatas = swap(automatas, l , i);
-			            }
-			        }
-			    }
-			
-			    public ArrayList<Automaton> swap(ArrayList<Automaton> automatas, int i, int j){
-			        Automaton temp;
-			        temp = automatas.get(i);
-			        automatas.set(i, automatas.get(j));
-			        automatas.set(j, temp);
-			        return automatas;
-			    }
+			public ArrayList<Automaton> par(ArrayList<Automaton> automatas) {
+			        ArrayList<ArrayList<Automaton>> automataList = new ArrayList<>();
+			        permute(automataList, new ArrayList<>(), automatas);
+			        return listConverter((automataList));
+			}
+		
+		    private void permute(ArrayList<ArrayList<Automaton>> list, ArrayList<Automaton> resultList, ArrayList<Automaton> automatas) {
+		        if (resultList.size() == automatas.size()) {
+		            list.add(new ArrayList<>(resultList));
+		        } else {
+		            for (int i = 0; i < automatas.size(); i++) {
+		                if (resultList.contains((automatas.get(i)))) {
+		                    continue;
+		                }
+		
+		                resultList.add(automatas.get(i));
+		                permute(list, resultList, automatas);
+		                resultList.remove(resultList.size() - 1);
+		            }
+		        }
+		    }
+		
+		    private ArrayList<Automaton> listConverter(ArrayList<ArrayList<Automaton>> list) {
+		        ArrayList<Automaton> result = new ArrayList<>();
+		        for (ArrayList<Automaton> alist : list) {
+		            Automaton newauto = new Automaton("id");
+		            for (Automaton auto : alist) {
+		                newauto.collapse(auto);
+		            }
+		            result.add(newauto);
+		        }
+		        return result;
+		    }
 			
 			public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
 				Specification specification = new Specification();
