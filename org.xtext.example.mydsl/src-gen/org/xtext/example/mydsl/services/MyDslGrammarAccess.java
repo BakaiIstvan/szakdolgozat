@@ -229,7 +229,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEntityEntityIDTerminalRuleCall_0_2_0_1 = (RuleCall)cEntityEntityCrossReference_0_2_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_0_3 = (Keyword)cGroup_0.eContents().get(3);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cDistanceKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cDisappearKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cEntityAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final CrossReference cEntityEntityCrossReference_1_2_0 = (CrossReference)cEntityAssignment_1_2.eContents().get(0);
@@ -246,11 +246,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
 		//ChangeType:
-		//	'appear' '(' entity=[Entity] ')' | 'distance' '(' entity=[Entity] ')' | 'changeTo' attribute=[Attribute] |
+		//	'appear' '(' entity=[Entity] ')' | 'disappear' '(' entity=[Entity] ')' | 'changeTo' attribute=[Attribute] |
 		//	'conditionsAt' '(' ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'appear' '(' entity=[Entity] ')' | 'distance' '(' entity=[Entity] ')' | 'changeTo' attribute=[Attribute] |
+		//'appear' '(' entity=[Entity] ')' | 'disappear' '(' entity=[Entity] ')' | 'changeTo' attribute=[Attribute] |
 		//'conditionsAt' '(' ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -275,11 +275,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_0_3() { return cRightParenthesisKeyword_0_3; }
 		
-		//'distance' '(' entity=[Entity] ')'
+		//'disappear' '(' entity=[Entity] ')'
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'distance'
-		public Keyword getDistanceKeyword_1_0() { return cDistanceKeyword_1_0; }
+		//'disappear'
+		public Keyword getDisappearKeyword_1_0() { return cDisappearKeyword_1_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
@@ -1474,7 +1474,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ChangeType:
-	//	'appear' '(' entity=[Entity] ')' | 'distance' '(' entity=[Entity] ')' | 'changeTo' attribute=[Attribute] |
+	//	'appear' '(' entity=[Entity] ')' | 'disappear' '(' entity=[Entity] ')' | 'changeTo' attribute=[Attribute] |
 	//	'conditionsAt' '(' ')';
 	public ChangeTypeElements getChangeTypeAccess() {
 		return pChangeType;

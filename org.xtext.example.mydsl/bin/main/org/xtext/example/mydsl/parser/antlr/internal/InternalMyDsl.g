@@ -461,9 +461,9 @@ ruleChangeType returns [EObject current=null]
 		)
 		    |
 		(
-			otherlv_4='distance'
+			otherlv_4='disappear'
 			{
-				newLeafNode(otherlv_4, grammarAccess.getChangeTypeAccess().getDistanceKeyword_1_0());
+				newLeafNode(otherlv_4, grammarAccess.getChangeTypeAccess().getDisappearKeyword_1_0());
 			}
 			otherlv_5='('
 			{

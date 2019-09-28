@@ -1633,9 +1633,9 @@ rule__ChangeType__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getChangeTypeAccess().getDistanceKeyword_1_0()); }
-	'distance'
-	{ after(grammarAccess.getChangeTypeAccess().getDistanceKeyword_1_0()); }
+	{ before(grammarAccess.getChangeTypeAccess().getDisappearKeyword_1_0()); }
+	'disappear'
+	{ after(grammarAccess.getChangeTypeAccess().getDisappearKeyword_1_0()); }
 )
 ;
 finally {

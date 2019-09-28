@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_NUMBER", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'specification'", "'{'", "'}'", "'contextmodel'", "'contextfragment'", "'appear'", "'('", "')'", "'distance'", "'changeTo'", "'conditionsAt'", "';'", "'attribute'", "'entity'", "'relation'", "','", "'scenario'", "'message'", "'->'", "'match'", "'disappear'", "'object'", "'constraint'", "'alt'", "'='", "'>'", "'<'", "'>='", "'<='", "'par'", "'case'", "'loop'", "'required'", "'fail'", "'strict'", "'past'", "'future'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_NUMBER", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'specification'", "'{'", "'}'", "'contextmodel'", "'contextfragment'", "'appear'", "'('", "')'", "'disappear'", "'changeTo'", "'conditionsAt'", "';'", "'attribute'", "'entity'", "'relation'", "','", "'scenario'", "'message'", "'->'", "'match'", "'distance'", "'object'", "'constraint'", "'alt'", "'='", "'>'", "'<'", "'>='", "'<='", "'par'", "'case'", "'loop'", "'required'", "'fail'", "'strict'", "'past'", "'future'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -2617,7 +2617,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:824:1: ( ( ruleDisappearMessage ) | ( ruleAppearMessage ) | ( ruleDistanceMessage ) )
             int alt4=3;
             switch ( input.LA(1) ) {
-            case 32:
+            case 20:
                 {
                 alt4=1;
                 }
@@ -2627,7 +2627,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 alt4=2;
                 }
                 break;
-            case 20:
+            case 32:
                 {
                 alt4=3;
                 }
@@ -5248,21 +5248,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ChangeType__Group_1__0__Impl"
-    // InternalMyDsl.g:1630:1: rule__ChangeType__Group_1__0__Impl : ( 'distance' ) ;
+    // InternalMyDsl.g:1630:1: rule__ChangeType__Group_1__0__Impl : ( 'disappear' ) ;
     public final void rule__ChangeType__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:1634:1: ( ( 'distance' ) )
-            // InternalMyDsl.g:1635:1: ( 'distance' )
+            // InternalMyDsl.g:1634:1: ( ( 'disappear' ) )
+            // InternalMyDsl.g:1635:1: ( 'disappear' )
             {
-            // InternalMyDsl.g:1635:1: ( 'distance' )
-            // InternalMyDsl.g:1636:2: 'distance'
+            // InternalMyDsl.g:1635:1: ( 'disappear' )
+            // InternalMyDsl.g:1636:2: 'disappear'
             {
-             before(grammarAccess.getChangeTypeAccess().getDistanceKeyword_1_0()); 
+             before(grammarAccess.getChangeTypeAccess().getDisappearKeyword_1_0()); 
             match(input,20,FOLLOW_2); 
-             after(grammarAccess.getChangeTypeAccess().getDistanceKeyword_1_0()); 
+             after(grammarAccess.getChangeTypeAccess().getDisappearKeyword_1_0()); 
 
             }
 
@@ -10600,7 +10600,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:3391:2: 'disappear'
             {
              before(grammarAccess.getDisappearMessageAccess().getDisappearKeyword_0()); 
-            match(input,32,FOLLOW_2); 
+            match(input,20,FOLLOW_2); 
              after(grammarAccess.getDisappearMessageAccess().getDisappearKeyword_0()); 
 
             }
@@ -11001,7 +11001,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:3526:2: 'distance'
             {
              before(grammarAccess.getDistanceMessageAccess().getDistanceKeyword_0()); 
-            match(input,20,FOLLOW_2); 
+            match(input,32,FOLLOW_2); 
              after(grammarAccess.getDistanceMessageAccess().getDistanceKeyword_0()); 
 
             }

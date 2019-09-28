@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_NUMBER", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'specification'", "'{'", "'}'", "'contextmodel'", "'contextfragment'", "'appear'", "'('", "')'", "'distance'", "'changeTo'", "'conditionsAt'", "';'", "'attribute'", "'entity'", "'relation'", "','", "'scenario'", "'message'", "'required'", "'fail'", "'strict'", "'->'", "'past'", "'future'", "'constraint'", "'match'", "'disappear'", "'object'", "'alt'", "'='", "'>'", "'<'", "'>='", "'<='", "'par'", "'case'", "'loop'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_NUMBER", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'specification'", "'{'", "'}'", "'contextmodel'", "'contextfragment'", "'appear'", "'('", "')'", "'disappear'", "'changeTo'", "'conditionsAt'", "';'", "'attribute'", "'entity'", "'relation'", "','", "'scenario'", "'message'", "'required'", "'fail'", "'strict'", "'->'", "'past'", "'future'", "'constraint'", "'match'", "'distance'", "'object'", "'alt'", "'='", "'>'", "'<'", "'>='", "'<='", "'par'", "'case'", "'loop'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -1055,7 +1055,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleChangeType"
-    // InternalMyDsl.g:427:1: ruleChangeType returns [EObject current=null] : ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) ) ;
+    // InternalMyDsl.g:427:1: ruleChangeType returns [EObject current=null] : ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) ) ;
     public final EObject ruleChangeType() throws RecognitionException {
         EObject current = null;
 
@@ -1077,10 +1077,10 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyDsl.g:433:2: ( ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) ) )
-            // InternalMyDsl.g:434:2: ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) )
+            // InternalMyDsl.g:433:2: ( ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) ) )
+            // InternalMyDsl.g:434:2: ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) )
             {
-            // InternalMyDsl.g:434:2: ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) )
+            // InternalMyDsl.g:434:2: ( (otherlv_0= 'appear' otherlv_1= '(' ( (otherlv_2= RULE_ID ) ) otherlv_3= ')' ) | (otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' ) | (otherlv_8= 'changeTo' ( (otherlv_9= RULE_ID ) ) ) | (otherlv_10= 'conditionsAt' otherlv_11= '(' otherlv_12= ')' ) )
             int alt12=4;
             switch ( input.LA(1) ) {
             case 17:
@@ -1157,14 +1157,14 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalMyDsl.g:463:3: (otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' )
+                    // InternalMyDsl.g:463:3: (otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' )
                     {
-                    // InternalMyDsl.g:463:3: (otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' )
-                    // InternalMyDsl.g:464:4: otherlv_4= 'distance' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')'
+                    // InternalMyDsl.g:463:3: (otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')' )
+                    // InternalMyDsl.g:464:4: otherlv_4= 'disappear' otherlv_5= '(' ( (otherlv_6= RULE_ID ) ) otherlv_7= ')'
                     {
                     otherlv_4=(Token)match(input,20,FOLLOW_14); 
 
-                    				newLeafNode(otherlv_4, grammarAccess.getChangeTypeAccess().getDistanceKeyword_1_0());
+                    				newLeafNode(otherlv_4, grammarAccess.getChangeTypeAccess().getDisappearKeyword_1_0());
                     			
                     otherlv_5=(Token)match(input,18,FOLLOW_3); 
 
@@ -3376,7 +3376,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             // InternalMyDsl.g:1364:2: (this_DisappearMessage_0= ruleDisappearMessage | this_AppearMessage_1= ruleAppearMessage | this_DistanceMessage_2= ruleDistanceMessage )
             int alt31=3;
             switch ( input.LA(1) ) {
-            case 38:
+            case 20:
                 {
                 alt31=1;
                 }
@@ -3386,7 +3386,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
                 alt31=2;
                 }
                 break;
-            case 20:
+            case 38:
                 {
                 alt31=3;
                 }
@@ -3681,7 +3681,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             // InternalMyDsl.g:1471:2: (otherlv_0= 'disappear' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) )? otherlv_4= ')' )
             // InternalMyDsl.g:1472:3: otherlv_0= 'disappear' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) )? otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,38,FOLLOW_3); 
+            otherlv_0=(Token)match(input,20,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDisappearMessageAccess().getDisappearKeyword_0());
             		
@@ -3830,7 +3830,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             // InternalMyDsl.g:1533:2: (otherlv_0= 'distance' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) )? otherlv_4= ')' )
             // InternalMyDsl.g:1534:3: otherlv_0= 'distance' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) )? otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,20,FOLLOW_3); 
+            otherlv_0=(Token)match(input,38,FOLLOW_3); 
 
             			newLeafNode(otherlv_0, grammarAccess.getDistanceMessageAccess().getDistanceKeyword_0());
             		

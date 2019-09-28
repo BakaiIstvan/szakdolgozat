@@ -30,7 +30,7 @@ ContextFragment:
 ;
 
 ChangeType:
-	'appear' '(' entity=[Entity] ')'| 'distance' '(' entity=[Entity] ')' | 'changeTo'(attribute=[Attribute]) | 'conditionsAt' '(' ')'
+	'appear' '(' entity=[Entity] ')'| 'disappear' '(' entity=[Entity] ')' | 'changeTo'(attribute=[Attribute]) | 'conditionsAt' '(' ')'
 ;
 
 ContextChange:
