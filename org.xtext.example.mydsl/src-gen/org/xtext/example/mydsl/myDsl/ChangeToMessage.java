@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage()
@@ -24,29 +24,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface ChangeToMessage extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Entity</b></em>' reference.
+   * Returns the value of the '<em><b>Attribute</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Entity</em>' reference isn't clear,
+   * If the meaning of the '<em>Attribute</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Entity)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Entity()
+   * @return the value of the '<em>Attribute</em>' reference.
+   * @see #setAttribute(Attribute)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Attribute()
    * @model
    * @generated
    */
-  Entity getEntity();
+  Attribute getAttribute();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Entity</em>' reference.
-   * @see #getEntity()
+   * @param value the new value of the '<em>Attribute</em>' reference.
+   * @see #getAttribute()
    * @generated
    */
-  void setEntity(Entity value);
+  void setAttribute(Attribute value);
 
 } // ChangeToMessage

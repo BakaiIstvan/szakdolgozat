@@ -77,13 +77,22 @@ public interface MyDslPackage extends EPackage
   int DOMAIN__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__ATTRIBUTES = 1;
+
+  /**
    * The feature id for the '<em><b>Entities</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN__ENTITIES = 1;
+  int DOMAIN__ENTITIES = 2;
 
   /**
    * The feature id for the '<em><b>Relations</b></em>' containment reference list.
@@ -92,7 +101,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__RELATIONS = 2;
+  int DOMAIN__RELATIONS = 3;
 
   /**
    * The feature id for the '<em><b>Contextmodels</b></em>' containment reference list.
@@ -101,7 +110,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONTEXTMODELS = 3;
+  int DOMAIN__CONTEXTMODELS = 4;
 
   /**
    * The feature id for the '<em><b>Contextfragments</b></em>' containment reference list.
@@ -110,7 +119,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONTEXTFRAGMENTS = 4;
+  int DOMAIN__CONTEXTFRAGMENTS = 5;
 
   /**
    * The feature id for the '<em><b>Objects</b></em>' containment reference list.
@@ -119,7 +128,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__OBJECTS = 5;
+  int DOMAIN__OBJECTS = 6;
 
   /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -128,7 +137,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONSTRAINTS = 6;
+  int DOMAIN__CONSTRAINTS = 7;
 
   /**
    * The feature id for the '<em><b>Scenarios</b></em>' containment reference list.
@@ -137,7 +146,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__SCENARIOS = 7;
+  int DOMAIN__SCENARIOS = 8;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -146,7 +155,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_FEATURE_COUNT = 8;
+  int DOMAIN_FEATURE_COUNT = 9;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.
@@ -260,13 +269,22 @@ public interface MyDslPackage extends EPackage
   int ATTRIBUTE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__VALUE = 1;
+
+  /**
    * The number of structural features of the '<em>Attribute</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = 1;
+  int ATTRIBUTE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -803,13 +821,13 @@ public interface MyDslPackage extends EPackage
   int CHANGE_TO_MESSAGE = 15;
 
   /**
-   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANGE_TO_MESSAGE__ENTITY = 0;
+  int CHANGE_TO_MESSAGE__ATTRIBUTE = 0;
 
   /**
    * The number of structural features of the '<em>Change To Message</em>' class.
@@ -1112,6 +1130,17 @@ public interface MyDslPackage extends EPackage
   EAttribute getDomain_Name();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getAttributes()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Attributes();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getEntities <em>Entities</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1294,6 +1323,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getAttribute_Name();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Attribute#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#getValue()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Value();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Entity <em>Entity</em>}'.
@@ -1801,15 +1841,15 @@ public interface MyDslPackage extends EPackage
   EClass getChangeToMessage();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}'.
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Entity</em>'.
-   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity()
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute()
    * @see #getChangeToMessage()
    * @generated
    */
-  EReference getChangeToMessage_Entity();
+  EReference getChangeToMessage_Attribute();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ObjectType <em>Object Type</em>}'.
@@ -2076,6 +2116,14 @@ public interface MyDslPackage extends EPackage
     EAttribute DOMAIN__NAME = eINSTANCE.getDomain_Name();
 
     /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__ATTRIBUTES = eINSTANCE.getDomain_Attributes();
+
+    /**
      * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2216,6 +2264,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__VALUE = eINSTANCE.getAttribute_Value();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -2618,12 +2674,12 @@ public interface MyDslPackage extends EPackage
     EClass CHANGE_TO_MESSAGE = eINSTANCE.getChangeToMessage();
 
     /**
-     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CHANGE_TO_MESSAGE__ENTITY = eINSTANCE.getChangeToMessage_Entity();
+    EReference CHANGE_TO_MESSAGE__ATTRIBUTE = eINSTANCE.getChangeToMessage_Attribute();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.

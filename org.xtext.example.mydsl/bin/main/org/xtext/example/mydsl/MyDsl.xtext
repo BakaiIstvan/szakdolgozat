@@ -6,6 +6,7 @@ generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
 Domain:
 	'specification' name=ID '{'
+	attributes+=Attribute*
 	entities+=Entity*
 	relations+=Relation*
 	contextmodels+=ContextModel*
@@ -30,7 +31,7 @@ ContextFragment:
 ;
 
 Attribute:
-	'attribute' name=ID ';'
+	'attribute' name=ID '(' value+=Number ')' ';' | 'attribute' name=ID '(' value+=ID ')' ';'
 ;
 
 Entity:
@@ -91,7 +92,7 @@ DisappearMessage:
 ;
 
 ChangeToMessage:
-	'changeTo' '(' (entity=[Entity])? ')'
+	'changeTo' '(' (attribute=[Attribute])? ')'
 ;
 
 Name:

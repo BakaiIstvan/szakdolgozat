@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
-import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
@@ -23,7 +23,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getEntity <em>Entity</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,14 +31,14 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements ChangeToMessage
 {
   /**
-   * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
+   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEntity()
+   * @see #getAttribute()
    * @generated
    * @ordered
    */
-  protected Entity entity;
+  protected Attribute attribute;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,19 +66,19 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity getEntity()
+  public Attribute getAttribute()
   {
-    if (entity != null && entity.eIsProxy())
+    if (attribute != null && attribute.eIsProxy())
     {
-      InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Entity)eResolveProxy(oldEntity);
-      if (entity != oldEntity)
+      InternalEObject oldAttribute = (InternalEObject)attribute;
+      attribute = (Attribute)eResolveProxy(oldAttribute);
+      if (attribute != oldAttribute)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE, oldAttribute, attribute));
       }
     }
-    return entity;
+    return attribute;
   }
 
   /**
@@ -86,9 +86,9 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetEntity()
+  public Attribute basicGetAttribute()
   {
-    return entity;
+    return attribute;
   }
 
   /**
@@ -96,12 +96,12 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEntity(Entity newEntity)
+  public void setAttribute(Attribute newAttribute)
   {
-    Entity oldEntity = entity;
-    entity = newEntity;
+    Attribute oldAttribute = attribute;
+    attribute = newAttribute;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE, oldAttribute, attribute));
   }
 
   /**
@@ -114,9 +114,9 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        if (resolve) return getEntity();
-        return basicGetEntity();
+      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+        if (resolve) return getAttribute();
+        return basicGetAttribute();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -131,8 +131,8 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        setEntity((Entity)newValue);
+      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+        setAttribute((Attribute)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,8 +148,8 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        setEntity((Entity)null);
+      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+        setAttribute((Attribute)null);
         return;
     }
     super.eUnset(featureID);
@@ -165,8 +165,8 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        return entity != null;
+      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+        return attribute != null;
     }
     return super.eIsSet(featureID);
   }

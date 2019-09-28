@@ -13,6 +13,7 @@ import org.xtext.example.mydsl.myDsl.Message
 import org.xtext.example.mydsl.myDsl.MatchMessage
 import org.xtext.example.mydsl.myDsl.AppearMessage
 import org.xtext.example.mydsl.myDsl.DisappearMessage
+import org.xtext.example.mydsl.myDsl.ChangeToMessage
 
 /**
  * Generates code from your model files on save.
@@ -396,7 +397,8 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
-																																																
+												«t.compile_changeto_strict_required»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -417,7 +419,8 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
-																																																
+												«t.compile_changeto_strict_fail»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -438,7 +441,8 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
-																																																
+												«t.compile_changeto_strict»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -462,7 +466,8 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);
 											«ENDFOR»
 											«FOR t : ca.changeto»
-												
+												«t.compile_changeto_required»
+												a.collapse(b);
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -483,7 +488,8 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
-																																																
+												«t.compile_changeto_fail»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -504,7 +510,8 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																							
 											«ENDFOR»
 											«FOR t : ca.changeto»
-																																																
+												«t.compile_changeto_msg»
+												a.collapse(b);																																	
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -1171,6 +1178,22 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setFinale(newState);
 	'''
 	
+	def compile_changeto_required(ChangeToMessage cm)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		
+		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
 	def compile_fail_past(Message m)'''
 		b = new Automaton("auto4");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1252,6 +1275,22 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("match (" + "«ma.content.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_changeto_fail(ChangeToMessage cm)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))" , actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition("1", newState, newState));
 	'''
@@ -1343,6 +1382,21 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("disappear(" + "«dm.entity.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changeto_msg(ChangeToMessage cm)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))" , actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -1448,6 +1502,25 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setFinale(finalState);
 	'''
 	
+	def compile_changeto_strict_required(ChangeToMessage cm)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))" , actualState, finalState));
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
 	def compile_strict_fail(Message m)'''
 		b = new Automaton("auto10");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1524,6 +1597,25 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setFinale(finalState);
 	'''
 	
+	def compile_changeto_strict_fail(ChangeToMessage cm)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))", actualState, finalState));
+		b.addTransition(new Transition("changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
 	def compile_strict_future(Message m)'''
 		b = new Automaton("auto11");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1591,6 +1683,20 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("disappear" + "(" + "«dm.entity.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changeto_strict(ChangeToMessage cm)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+												
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.attribute.name»" + "(" + "«cm.attribute.value»" + "))", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''

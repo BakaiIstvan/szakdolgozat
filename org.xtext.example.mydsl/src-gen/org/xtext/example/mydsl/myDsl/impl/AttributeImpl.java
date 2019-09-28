@@ -3,12 +3,18 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -22,6 +28,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AttributeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,6 +54,16 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> value;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,6 +114,20 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getValue()
+  {
+    if (value == null)
+    {
+      value = new EDataTypeEList<String>(String.class, this, MyDslPackage.ATTRIBUTE__VALUE);
+    }
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -104,6 +135,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case MyDslPackage.ATTRIBUTE__NAME:
         return getName();
+      case MyDslPackage.ATTRIBUTE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -113,6 +146,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -120,6 +154,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case MyDslPackage.ATTRIBUTE__NAME:
         setName((String)newValue);
+        return;
+      case MyDslPackage.ATTRIBUTE__VALUE:
+        getValue().clear();
+        getValue().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -138,6 +176,9 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
       case MyDslPackage.ATTRIBUTE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case MyDslPackage.ATTRIBUTE__VALUE:
+        getValue().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -154,6 +195,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     {
       case MyDslPackage.ATTRIBUTE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.ATTRIBUTE__VALUE:
+        return value != null && !value.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -171,6 +214,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }

@@ -1,8 +1,8 @@
-'('=25
-')'=27
-','=26
+'('=22
+')'=23
+','=27
 '->'=30
-';'=22
+';'=24
 '<'=40
 '<='=42
 '='=38
@@ -20,7 +20,7 @@
 'contextmodel'=15
 'disappear'=33
 'entities: '=16
-'entity'=23
+'entity'=25
 'fail'=47
 'future'=50
 'loop'=45
@@ -29,7 +29,7 @@
 'object'=35
 'par'=43
 'past'=49
-'relation'=24
+'relation'=26
 'relations: '=19
 'required'=46
 'scenario'=28

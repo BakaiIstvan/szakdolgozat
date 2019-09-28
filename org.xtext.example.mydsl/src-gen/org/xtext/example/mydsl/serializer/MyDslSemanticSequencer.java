@@ -166,16 +166,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     ((name=ID value+=Number) | (name=ID value+=ID))
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.ATTRIBUTE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.ATTRIBUTE__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -196,15 +190,15 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ChangeToMessage returns ChangeToMessage
 	 *
 	 * Constraint:
-	 *     entity=[Entity|ID]
+	 *     attribute=[Attribute|ID]
 	 */
 	protected void sequence_ChangeToMessage(ISerializationContext context, ChangeToMessage semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ENTITY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ENTITY));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ATTRIBUTE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ATTRIBUTE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getChangeToMessageAccess().getEntityEntityIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.CHANGE_TO_MESSAGE__ENTITY, false));
+		feeder.accept(grammarAccess.getChangeToMessageAccess().getAttributeAttributeIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.CHANGE_TO_MESSAGE__ATTRIBUTE, false));
 		feeder.finish();
 	}
 	
@@ -294,6 +288,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         name=ID 
+	 *         attributes+=Attribute* 
 	 *         entities+=Entity* 
 	 *         relations+=Relation* 
 	 *         contextmodels+=ContextModel* 

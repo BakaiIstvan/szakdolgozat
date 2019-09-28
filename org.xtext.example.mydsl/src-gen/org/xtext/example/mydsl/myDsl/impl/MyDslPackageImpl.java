@@ -300,7 +300,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Entities()
+  public EReference getDomain_Attributes()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(1);
   }
@@ -310,7 +310,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Relations()
+  public EReference getDomain_Entities()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(2);
   }
@@ -320,7 +320,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Contextmodels()
+  public EReference getDomain_Relations()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(3);
   }
@@ -330,7 +330,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Contextfragments()
+  public EReference getDomain_Contextmodels()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(4);
   }
@@ -340,7 +340,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Objects()
+  public EReference getDomain_Contextfragments()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(5);
   }
@@ -350,7 +350,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Constraints()
+  public EReference getDomain_Objects()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(6);
   }
@@ -360,9 +360,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Scenarios()
+  public EReference getDomain_Constraints()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDomain_Scenarios()
+  {
+    return (EReference)domainEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -463,6 +473,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EAttribute getAttribute_Name()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAttribute_Value()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -940,7 +960,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getChangeToMessage_Entity()
+  public EReference getChangeToMessage_Attribute()
   {
     return (EReference)changeToMessageEClass.getEStructuralFeatures().get(0);
   }
@@ -1187,6 +1207,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Create classes and their features
     domainEClass = createEClass(DOMAIN);
     createEAttribute(domainEClass, DOMAIN__NAME);
+    createEReference(domainEClass, DOMAIN__ATTRIBUTES);
     createEReference(domainEClass, DOMAIN__ENTITIES);
     createEReference(domainEClass, DOMAIN__RELATIONS);
     createEReference(domainEClass, DOMAIN__CONTEXTMODELS);
@@ -1207,6 +1228,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
+    createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
 
     entityEClass = createEClass(ENTITY);
     createEAttribute(entityEClass, ENTITY__NAME);
@@ -1266,7 +1288,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(disappearMessageEClass, DISAPPEAR_MESSAGE__ENTITY);
 
     changeToMessageEClass = createEClass(CHANGE_TO_MESSAGE);
-    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ENTITY);
+    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ATTRIBUTE);
 
     objectTypeEClass = createEClass(OBJECT_TYPE);
     createEAttribute(objectTypeEClass, OBJECT_TYPE__NAME);
@@ -1331,6 +1353,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Initialize classes and features; add operations and parameters
     initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDomain_Name(), ecorePackage.getEString(), "name", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Entities(), this.getEntity(), null, "entities", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Relations(), this.getRelation(), null, "relations", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Contextmodels(), this.getContextModel(), null, "contextmodels", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1351,6 +1374,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 0, -1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1410,7 +1434,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getDisappearMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, DisappearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(changeToMessageEClass, ChangeToMessage.class, "ChangeToMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getChangeToMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToMessage_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectTypeEClass, ObjectType.class, "ObjectType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getObjectType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ObjectType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
