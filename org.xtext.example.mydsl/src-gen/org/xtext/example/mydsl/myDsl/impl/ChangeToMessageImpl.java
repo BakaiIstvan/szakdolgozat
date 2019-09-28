@@ -11,26 +11,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.mydsl.myDsl.Attribute;
-import org.xtext.example.mydsl.myDsl.ChangeType;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Change Type</b></em>'.
+ * An implementation of the model object '<em><b>Change To Message</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeTypeImpl#getEntity <em>Entity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeTypeImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getEntity <em>Entity</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements ChangeType
+public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements ChangeToMessage
 {
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
@@ -43,21 +41,11 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
   protected Entity entity;
 
   /**
-   * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAttribute()
-   * @generated
-   * @ordered
-   */
-  protected Attribute attribute;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChangeTypeImpl()
+  protected ChangeToMessageImpl()
   {
     super();
   }
@@ -70,7 +58,7 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.CHANGE_TYPE;
+    return MyDslPackage.Literals.CHANGE_TO_MESSAGE;
   }
 
   /**
@@ -87,7 +75,7 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
       if (entity != oldEntity)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TYPE__ENTITY, oldEntity, entity));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
       }
     }
     return entity;
@@ -113,50 +101,7 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
     Entity oldEntity = entity;
     entity = newEntity;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TYPE__ENTITY, oldEntity, entity));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Attribute getAttribute()
-  {
-    if (attribute != null && attribute.eIsProxy())
-    {
-      InternalEObject oldAttribute = (InternalEObject)attribute;
-      attribute = (Attribute)eResolveProxy(oldAttribute);
-      if (attribute != oldAttribute)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TYPE__ATTRIBUTE, oldAttribute, attribute));
-      }
-    }
-    return attribute;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Attribute basicGetAttribute()
-  {
-    return attribute;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAttribute(Attribute newAttribute)
-  {
-    Attribute oldAttribute = attribute;
-    attribute = newAttribute;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TYPE__ATTRIBUTE, oldAttribute, attribute));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
   }
 
   /**
@@ -169,12 +114,9 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TYPE__ENTITY:
+      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
         if (resolve) return getEntity();
         return basicGetEntity();
-      case MyDslPackage.CHANGE_TYPE__ATTRIBUTE:
-        if (resolve) return getAttribute();
-        return basicGetAttribute();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -189,11 +131,8 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TYPE__ENTITY:
+      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
         setEntity((Entity)newValue);
-        return;
-      case MyDslPackage.CHANGE_TYPE__ATTRIBUTE:
-        setAttribute((Attribute)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -209,11 +148,8 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TYPE__ENTITY:
+      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
         setEntity((Entity)null);
-        return;
-      case MyDslPackage.CHANGE_TYPE__ATTRIBUTE:
-        setAttribute((Attribute)null);
         return;
     }
     super.eUnset(featureID);
@@ -229,12 +165,10 @@ public class ChangeTypeImpl extends MinimalEObjectImpl.Container implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TYPE__ENTITY:
+      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
         return entity != null;
-      case MyDslPackage.CHANGE_TYPE__ATTRIBUTE:
-        return attribute != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ChangeTypeImpl
+} //ChangeToMessageImpl

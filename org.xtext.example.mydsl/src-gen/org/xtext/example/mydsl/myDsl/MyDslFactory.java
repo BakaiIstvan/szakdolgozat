@@ -51,24 +51,6 @@ public interface MyDslFactory extends EFactory
   ContextFragment createContextFragment();
 
   /**
-   * Returns a new object of class '<em>Change Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Change Type</em>'.
-   * @generated
-   */
-  ChangeType createChangeType();
-
-  /**
-   * Returns a new object of class '<em>Context Change</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context Change</em>'.
-   * @generated
-   */
-  ContextChange createContextChange();
-
-  /**
    * Returns a new object of class '<em>Attribute</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -177,13 +159,13 @@ public interface MyDslFactory extends EFactory
   DisappearMessage createDisappearMessage();
 
   /**
-   * Returns a new object of class '<em>Distance Message</em>'.
+   * Returns a new object of class '<em>Change To Message</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Distance Message</em>'.
+   * @return a new object of class '<em>Change To Message</em>'.
    * @generated
    */
-  DistanceMessage createDistanceMessage();
+  ChangeToMessage createChangeToMessage();
 
   /**
    * Returns a new object of class '<em>Object Type</em>'.

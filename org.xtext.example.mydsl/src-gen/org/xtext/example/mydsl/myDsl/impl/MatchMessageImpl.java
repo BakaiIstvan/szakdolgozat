@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
@@ -27,7 +28,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  *
  * @generated
  */
-public class MatchMessageImpl extends ContextMessageContentImpl implements MatchMessage
+public class MatchMessageImpl extends MinimalEObjectImpl.Container implements MatchMessage
 {
   /**
    * The cached value of the '{@link #getContent() <em>Content</em>}' reference.

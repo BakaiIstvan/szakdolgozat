@@ -15,15 +15,13 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
-import org.xtext.example.mydsl.myDsl.ChangeType;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.Constraint;
-import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
-import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
@@ -94,8 +92,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.DOMAIN: return createDomain();
       case MyDslPackage.CONTEXT_MODEL: return createContextModel();
       case MyDslPackage.CONTEXT_FRAGMENT: return createContextFragment();
-      case MyDslPackage.CHANGE_TYPE: return createChangeType();
-      case MyDslPackage.CONTEXT_CHANGE: return createContextChange();
       case MyDslPackage.ATTRIBUTE: return createAttribute();
       case MyDslPackage.ENTITY: return createEntity();
       case MyDslPackage.RELATION: return createRelation();
@@ -108,7 +104,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.CHANGE_MESSAGE: return createChangeMessage();
       case MyDslPackage.APPEAR_MESSAGE: return createAppearMessage();
       case MyDslPackage.DISAPPEAR_MESSAGE: return createDisappearMessage();
-      case MyDslPackage.DISTANCE_MESSAGE: return createDistanceMessage();
+      case MyDslPackage.CHANGE_TO_MESSAGE: return createChangeToMessage();
       case MyDslPackage.OBJECT_TYPE: return createObjectType();
       case MyDslPackage.OBJECT: return createObject();
       case MyDslPackage.CONSTRAINT: return createConstraint();
@@ -153,28 +149,6 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ContextFragmentImpl contextFragment = new ContextFragmentImpl();
     return contextFragment;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ChangeType createChangeType()
-  {
-    ChangeTypeImpl changeType = new ChangeTypeImpl();
-    return changeType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContextChange createContextChange()
-  {
-    ContextChangeImpl contextChange = new ContextChangeImpl();
-    return contextChange;
   }
 
   /**
@@ -314,10 +288,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DistanceMessage createDistanceMessage()
+  public ChangeToMessage createChangeToMessage()
   {
-    DistanceMessageImpl distanceMessage = new DistanceMessageImpl();
-    return distanceMessage;
+    ChangeToMessageImpl changeToMessage = new ChangeToMessageImpl();
+    return changeToMessage;
   }
 
   /**

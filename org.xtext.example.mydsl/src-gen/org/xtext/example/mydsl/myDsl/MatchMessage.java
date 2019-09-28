@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package org.xtext.example.mydsl.myDsl;
  * @model
  * @generated
  */
-public interface MatchMessage extends ContextMessageContent
+public interface MatchMessage extends EObject
 {
   /**
    * Returns the value of the '<em><b>Content</b></em>' reference.

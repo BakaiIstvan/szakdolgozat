@@ -14,15 +14,13 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
-import org.xtext.example.mydsl.myDsl.ChangeType;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.Constraint;
-import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
-import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
@@ -66,20 +64,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass contextFragmentEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass changeTypeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contextChangeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -170,7 +154,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass distanceMessageEClass = null;
+  private EClass changeToMessageEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -316,7 +300,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Contextmodels()
+  public EReference getDomain_Entities()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(1);
   }
@@ -326,7 +310,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Contextfragments()
+  public EReference getDomain_Relations()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(2);
   }
@@ -336,7 +320,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Entities()
+  public EReference getDomain_Contextmodels()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(3);
   }
@@ -346,7 +330,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Contextchanges()
+  public EReference getDomain_Contextfragments()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(4);
   }
@@ -459,66 +443,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getContextFragment_Relations()
   {
     return (EReference)contextFragmentEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getChangeType()
-  {
-    return changeTypeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getChangeType_Entity()
-  {
-    return (EReference)changeTypeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getChangeType_Attribute()
-  {
-    return (EReference)changeTypeEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContextChange()
-  {
-    return contextChangeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContextChange_Change()
-  {
-    return (EReference)contextChangeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getContextChange_Name()
-  {
-    return (EAttribute)contextChangeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -836,6 +760,46 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getContextMessage_Content()
+  {
+    return (EReference)contextMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessage_Required()
+  {
+    return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessage_Fail()
+  {
+    return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getContextMessage_Strict()
+  {
+    return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getContextMessageContent()
   {
     return contextMessageContentEClass;
@@ -846,9 +810,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getContextMessageContent_Required()
+  public EReference getContextMessageContent_Match()
   {
-    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(0);
+    return (EReference)contextMessageContentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -856,29 +820,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getContextMessageContent_Fail()
+  public EReference getContextMessageContent_Change()
   {
-    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getContextMessageContent_Strict()
-  {
-    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getContextMessageContent_Name()
-  {
-    return (EAttribute)contextMessageContentEClass.getEStructuralFeatures().get(3);
+    return (EReference)contextMessageContentEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -916,9 +860,29 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getChangeMessage_Entity()
+  public EReference getChangeMessage_Disappear()
   {
     return (EReference)changeMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeMessage_Appear()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeMessage_Changeto()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -936,6 +900,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getAppearMessage_Entity()
+  {
+    return (EReference)appearMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getDisappearMessage()
   {
     return disappearMessageEClass;
@@ -946,9 +920,29 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDistanceMessage()
+  public EReference getDisappearMessage_Entity()
   {
-    return distanceMessageEClass;
+    return (EReference)disappearMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getChangeToMessage()
+  {
+    return changeToMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeToMessage_Entity()
+  {
+    return (EReference)changeToMessageEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1193,10 +1187,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Create classes and their features
     domainEClass = createEClass(DOMAIN);
     createEAttribute(domainEClass, DOMAIN__NAME);
+    createEReference(domainEClass, DOMAIN__ENTITIES);
+    createEReference(domainEClass, DOMAIN__RELATIONS);
     createEReference(domainEClass, DOMAIN__CONTEXTMODELS);
     createEReference(domainEClass, DOMAIN__CONTEXTFRAGMENTS);
-    createEReference(domainEClass, DOMAIN__ENTITIES);
-    createEReference(domainEClass, DOMAIN__CONTEXTCHANGES);
     createEReference(domainEClass, DOMAIN__OBJECTS);
     createEReference(domainEClass, DOMAIN__CONSTRAINTS);
     createEReference(domainEClass, DOMAIN__SCENARIOS);
@@ -1210,14 +1204,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(contextFragmentEClass, CONTEXT_FRAGMENT__NAME);
     createEReference(contextFragmentEClass, CONTEXT_FRAGMENT__ENTITIES);
     createEReference(contextFragmentEClass, CONTEXT_FRAGMENT__RELATIONS);
-
-    changeTypeEClass = createEClass(CHANGE_TYPE);
-    createEReference(changeTypeEClass, CHANGE_TYPE__ENTITY);
-    createEReference(changeTypeEClass, CHANGE_TYPE__ATTRIBUTE);
-
-    contextChangeEClass = createEClass(CONTEXT_CHANGE);
-    createEReference(contextChangeEClass, CONTEXT_CHANGE__CHANGE);
-    createEAttribute(contextChangeEClass, CONTEXT_CHANGE__NAME);
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
@@ -1256,24 +1242,31 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(messageEClass, MESSAGE__C);
 
     contextMessageEClass = createEClass(CONTEXT_MESSAGE);
+    createEReference(contextMessageEClass, CONTEXT_MESSAGE__CONTENT);
+    createEAttribute(contextMessageEClass, CONTEXT_MESSAGE__REQUIRED);
+    createEAttribute(contextMessageEClass, CONTEXT_MESSAGE__FAIL);
+    createEAttribute(contextMessageEClass, CONTEXT_MESSAGE__STRICT);
 
     contextMessageContentEClass = createEClass(CONTEXT_MESSAGE_CONTENT);
-    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__REQUIRED);
-    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__FAIL);
-    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__STRICT);
-    createEAttribute(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__NAME);
+    createEReference(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__MATCH);
+    createEReference(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__CHANGE);
 
     matchMessageEClass = createEClass(MATCH_MESSAGE);
     createEReference(matchMessageEClass, MATCH_MESSAGE__CONTENT);
 
     changeMessageEClass = createEClass(CHANGE_MESSAGE);
-    createEReference(changeMessageEClass, CHANGE_MESSAGE__ENTITY);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__DISAPPEAR);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__APPEAR);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__CHANGETO);
 
     appearMessageEClass = createEClass(APPEAR_MESSAGE);
+    createEReference(appearMessageEClass, APPEAR_MESSAGE__ENTITY);
 
     disappearMessageEClass = createEClass(DISAPPEAR_MESSAGE);
+    createEReference(disappearMessageEClass, DISAPPEAR_MESSAGE__ENTITY);
 
-    distanceMessageEClass = createEClass(DISTANCE_MESSAGE);
+    changeToMessageEClass = createEClass(CHANGE_TO_MESSAGE);
+    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ENTITY);
 
     objectTypeEClass = createEClass(OBJECT_TYPE);
     createEAttribute(objectTypeEClass, OBJECT_TYPE__NAME);
@@ -1334,41 +1327,27 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    contextMessageContentEClass.getESuperTypes().add(this.getContextMessage());
-    matchMessageEClass.getESuperTypes().add(this.getContextMessageContent());
-    changeMessageEClass.getESuperTypes().add(this.getContextMessageContent());
-    appearMessageEClass.getESuperTypes().add(this.getChangeMessage());
-    disappearMessageEClass.getESuperTypes().add(this.getChangeMessage());
-    distanceMessageEClass.getESuperTypes().add(this.getChangeMessage());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDomain_Name(), ecorePackage.getEString(), "name", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Entities(), this.getEntity(), null, "entities", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Relations(), this.getRelation(), null, "relations", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Contextmodels(), this.getContextModel(), null, "contextmodels", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Contextfragments(), this.getContextFragment(), null, "contextfragments", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDomain_Entities(), this.getEntity(), null, "entities", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDomain_Contextchanges(), this.getContextChange(), null, "contextchanges", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Objects(), this.getObject(), null, "objects", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Scenarios(), this.getScenario(), null, "scenarios", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextModelEClass, ContextModel.class, "ContextModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getContextModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getContextModel_Entities(), this.getEntity(), null, "entities", null, 0, -1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getContextModel_Relations(), this.getRelation(), null, "relations", null, 0, -1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextModel_Entities(), this.getEntity(), null, "entities", null, 0, -1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextModel_Relations(), this.getRelation(), null, "relations", null, 0, -1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextFragmentEClass, ContextFragment.class, "ContextFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getContextFragment_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getContextFragment_Entities(), this.getEntity(), null, "entities", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getContextFragment_Relations(), this.getRelation(), null, "relations", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(changeTypeEClass, ChangeType.class, "ChangeType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getChangeType_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getChangeType_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(contextChangeEClass, ContextChange.class, "ContextChange", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getContextChange_Change(), this.getChangeType(), null, "change", null, 0, -1, ContextChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getContextChange_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextChange.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextFragment_Entities(), this.getEntity(), null, "entities", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextFragment_Relations(), this.getRelation(), null, "relations", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1407,24 +1386,31 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getMessage_C(), this.getConstraint(), null, "c", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextMessageEClass, ContextMessage.class, "ContextMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextMessage_Content(), this.getContextMessageContent(), null, "content", null, 0, -1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessage_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessage_Fail(), ecorePackage.getEBoolean(), "fail", null, 0, 1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessage_Strict(), ecorePackage.getEBoolean(), "strict", null, 0, 1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextMessageContentEClass, ContextMessageContent.class, "ContextMessageContent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getContextMessageContent_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getContextMessageContent_Fail(), ecorePackage.getEBoolean(), "fail", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getContextMessageContent_Strict(), ecorePackage.getEBoolean(), "strict", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getContextMessageContent_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextMessageContent_Match(), this.getMatchMessage(), null, "match", null, 0, -1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextMessageContent_Change(), this.getChangeMessage(), null, "change", null, 0, -1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(matchMessageEClass, MatchMessage.class, "MatchMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getMatchMessage_Content(), this.getContextFragment(), null, "content", null, 0, 1, MatchMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(changeMessageEClass, ChangeMessage.class, "ChangeMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getChangeMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Disappear(), this.getDisappearMessage(), null, "disappear", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Appear(), this.getAppearMessage(), null, "appear", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Changeto(), this.getChangeToMessage(), null, "changeto", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(appearMessageEClass, AppearMessage.class, "AppearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAppearMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, AppearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(disappearMessageEClass, DisappearMessage.class, "DisappearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDisappearMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, DisappearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(distanceMessageEClass, DistanceMessage.class, "DistanceMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(changeToMessageEClass, ChangeToMessage.class, "ChangeToMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChangeToMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectTypeEClass, ObjectType.class, "ObjectType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getObjectType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ObjectType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

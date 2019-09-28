@@ -3,6 +3,9 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,120 +16,46 @@ package org.xtext.example.mydsl.myDsl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isRequired <em>Required</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isFail <em>Fail</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isStrict <em>Strict</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getMatch <em>Match</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getChange <em>Change</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent()
  * @model
  * @generated
  */
-public interface ContextMessageContent extends ContextMessage
+public interface ContextMessageContent extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Required</b></em>' attribute.
+   * Returns the value of the '<em><b>Match</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.MatchMessage}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Required</em>' attribute isn't clear,
+   * If the meaning of the '<em>Match</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Required</em>' attribute.
-   * @see #setRequired(boolean)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent_Required()
-   * @model
+   * @return the value of the '<em>Match</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent_Match()
+   * @model containment="true"
    * @generated
    */
-  boolean isRequired();
+  EList<MatchMessage> getMatch();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isRequired <em>Required</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Required</em>' attribute.
-   * @see #isRequired()
-   * @generated
-   */
-  void setRequired(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Fail</b></em>' attribute.
+   * Returns the value of the '<em><b>Change</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ChangeMessage}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Fail</em>' attribute isn't clear,
+   * If the meaning of the '<em>Change</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Fail</em>' attribute.
-   * @see #setFail(boolean)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent_Fail()
-   * @model
+   * @return the value of the '<em>Change</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent_Change()
+   * @model containment="true"
    * @generated
    */
-  boolean isFail();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isFail <em>Fail</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Fail</em>' attribute.
-   * @see #isFail()
-   * @generated
-   */
-  void setFail(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Strict</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Strict</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Strict</em>' attribute.
-   * @see #setStrict(boolean)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent_Strict()
-   * @model
-   * @generated
-   */
-  boolean isStrict();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#isStrict <em>Strict</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Strict</em>' attribute.
-   * @see #isStrict()
-   * @generated
-   */
-  void setStrict(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextMessageContent_Name()
-   * @model
-   * @generated
-   */
-  String getName();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
+  EList<ChangeMessage> getChange();
 
 } // ContextMessageContent

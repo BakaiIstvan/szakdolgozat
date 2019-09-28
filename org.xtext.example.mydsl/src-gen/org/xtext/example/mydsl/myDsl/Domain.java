@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getRelations <em>Relations</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextmodels <em>Contextmodels</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextfragments <em>Contextfragments</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getEntities <em>Entities</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextchanges <em>Contextchanges</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getObjects <em>Objects</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getScenarios <em>Scenarios</em>}</li>
@@ -59,6 +59,38 @@ public interface Domain extends EObject
   void setName(String value);
 
   /**
+   * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Entity}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Entities</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Entities()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Entity> getEntities();
+
+  /**
+   * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Relation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Relations</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Relations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Relation> getRelations();
+
+  /**
    * Returns the value of the '<em><b>Contextmodels</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ContextModel}.
    * <!-- begin-user-doc -->
@@ -89,38 +121,6 @@ public interface Domain extends EObject
    * @generated
    */
   EList<ContextFragment> getContextfragments();
-
-  /**
-   * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Entity}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Entities</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Entities()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Entity> getEntities();
-
-  /**
-   * Returns the value of the '<em><b>Contextchanges</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ContextChange}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Contextchanges</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Contextchanges</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Contextchanges()
-   * @model containment="true"
-   * @generated
-   */
-  EList<ContextChange> getContextchanges();
 
   /**
    * Returns the value of the '<em><b>Objects</b></em>' containment reference list.

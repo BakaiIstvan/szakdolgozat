@@ -6,10 +6,10 @@ generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
 Domain:
 	'specification' name=ID '{'
+	entities+=Entity*
+	relations+=Relation*
 	contextmodels+=ContextModel*
 	contextfragments+=ContextFragment*
-	entities+=Entity*
-	contextchanges+=ContextChange*
 	objects+=Object*
 	constraints+=Constraint*
 	scenarios+=Scenario* '}'
@@ -17,24 +17,16 @@ Domain:
 
 ContextModel:
 	'contextmodel' name=ID '{'
-		entities+=Entity*
-		relations+=Relation*
+		'entities: ' '[' entities+=[Entity]* ']'
+		'relations: ' '[' relations+=[Relation]* ']'
 	'}'
 ;
 
 ContextFragment:
 	'contextfragment' name=ID '{'
-		entities+=Entity*
-		relations+=Relation*
+		'entities: ' '[' entities+=[Entity]* ']'
+		'relations: ' '[' relations+=[Relation]* ']'
 	'}'
-;
-
-ChangeType:
-	'appear' '(' entity=[Entity] ')'| 'disappear' '(' entity=[Entity] ')' | 'changeTo'(attribute=[Attribute]) | 'conditionsAt' '(' ')'
-;
-
-ContextChange:
-	change+=ChangeType name=ID ';'
 ;
 
 Attribute:
@@ -73,33 +65,33 @@ Message:
 ;
 
 ContextMessage:
-	ContextMessageContent
+	content+=ContextMessageContent
 	(required?='required')? (fail?='fail')? (strict?='strict')?
 	';'
 ;
 
 ContextMessageContent:
-	MatchMessage | ChangeMessage
+	match+=MatchMessage | change+=ChangeMessage
 ;
 
 MatchMessage:
-	'match' name=ID '(' (content=[ContextFragment])? ')'
+	'match' '(' (content=[ContextFragment])? ')'
 ;
 
 ChangeMessage:
-	DisappearMessage | AppearMessage | DistanceMessage
+	disappear+=DisappearMessage | appear+=AppearMessage | changeto+=ChangeToMessage
 ;
 
 AppearMessage:
-	'appear'name=ID '(' (entity=[Entity])? ')'
+	'appear' '(' (entity=[Entity])? ')'
 ;
 
 DisappearMessage:
-	'disappear' name=ID '(' (entity=[Entity])? ')'
+	'disappear' '(' (entity=[Entity])? ')'
 ;
 
-DistanceMessage:
-	'distance' name=ID '(' (entity=[Entity])? ')'
+ChangeToMessage:
+	'changeTo' '(' (entity=[Entity])? ')'
 ;
 
 Name:

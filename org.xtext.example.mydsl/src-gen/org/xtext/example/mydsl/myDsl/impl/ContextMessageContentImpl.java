@@ -3,13 +3,23 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
+import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
@@ -20,95 +30,33 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl#isRequired <em>Required</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl#isFail <em>Fail</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl#isStrict <em>Strict</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl#getMatch <em>Match</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl#getChange <em>Change</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ContextMessageContentImpl extends ContextMessageImpl implements ContextMessageContent
+public class ContextMessageContentImpl extends MinimalEObjectImpl.Container implements ContextMessageContent
 {
   /**
-   * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
+   * The cached value of the '{@link #getMatch() <em>Match</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isRequired()
+   * @see #getMatch()
    * @generated
    * @ordered
    */
-  protected static final boolean REQUIRED_EDEFAULT = false;
+  protected EList<MatchMessage> match;
 
   /**
-   * The cached value of the '{@link #isRequired() <em>Required</em>}' attribute.
+   * The cached value of the '{@link #getChange() <em>Change</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isRequired()
+   * @see #getChange()
    * @generated
    * @ordered
    */
-  protected boolean required = REQUIRED_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isFail() <em>Fail</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isFail()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean FAIL_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isFail() <em>Fail</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isFail()
-   * @generated
-   * @ordered
-   */
-  protected boolean fail = FAIL_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isStrict() <em>Strict</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isStrict()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean STRICT_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isStrict() <em>Strict</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isStrict()
-   * @generated
-   * @ordered
-   */
-  protected boolean strict = STRICT_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected EList<ChangeMessage> change;
 
   /**
    * <!-- begin-user-doc -->
@@ -136,9 +84,13 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isRequired()
+  public EList<MatchMessage> getMatch()
   {
-    return required;
+    if (match == null)
+    {
+      match = new EObjectContainmentEList<MatchMessage>(MatchMessage.class, this, MyDslPackage.CONTEXT_MESSAGE_CONTENT__MATCH);
+    }
+    return match;
   }
 
   /**
@@ -146,12 +98,13 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRequired(boolean newRequired)
+  public EList<ChangeMessage> getChange()
   {
-    boolean oldRequired = required;
-    required = newRequired;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CONTEXT_MESSAGE_CONTENT__REQUIRED, oldRequired, required));
+    if (change == null)
+    {
+      change = new EObjectContainmentEList<ChangeMessage>(ChangeMessage.class, this, MyDslPackage.CONTEXT_MESSAGE_CONTENT__CHANGE);
+    }
+    return change;
   }
 
   /**
@@ -159,68 +112,17 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isFail()
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    return fail;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setFail(boolean newFail)
-  {
-    boolean oldFail = fail;
-    fail = newFail;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CONTEXT_MESSAGE_CONTENT__FAIL, oldFail, fail));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean isStrict()
-  {
-    return strict;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setStrict(boolean newStrict)
-  {
-    boolean oldStrict = strict;
-    strict = newStrict;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CONTEXT_MESSAGE_CONTENT__STRICT, oldStrict, strict));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName)
-  {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CONTEXT_MESSAGE_CONTENT__NAME, oldName, name));
+    switch (featureID)
+    {
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__MATCH:
+        return ((InternalEList<?>)getMatch()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__CHANGE:
+        return ((InternalEList<?>)getChange()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -233,14 +135,10 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__REQUIRED:
-        return isRequired();
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__FAIL:
-        return isFail();
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__STRICT:
-        return isStrict();
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__NAME:
-        return getName();
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__MATCH:
+        return getMatch();
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__CHANGE:
+        return getChange();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -250,22 +148,19 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__REQUIRED:
-        setRequired((Boolean)newValue);
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__MATCH:
+        getMatch().clear();
+        getMatch().addAll((Collection<? extends MatchMessage>)newValue);
         return;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__FAIL:
-        setFail((Boolean)newValue);
-        return;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__STRICT:
-        setStrict((Boolean)newValue);
-        return;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__NAME:
-        setName((String)newValue);
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__CHANGE:
+        getChange().clear();
+        getChange().addAll((Collection<? extends ChangeMessage>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -281,17 +176,11 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__REQUIRED:
-        setRequired(REQUIRED_EDEFAULT);
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__MATCH:
+        getMatch().clear();
         return;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__FAIL:
-        setFail(FAIL_EDEFAULT);
-        return;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__STRICT:
-        setStrict(STRICT_EDEFAULT);
-        return;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__NAME:
-        setName(NAME_EDEFAULT);
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__CHANGE:
+        getChange().clear();
         return;
     }
     super.eUnset(featureID);
@@ -307,39 +196,12 @@ public class ContextMessageContentImpl extends ContextMessageImpl implements Con
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__REQUIRED:
-        return required != REQUIRED_EDEFAULT;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__FAIL:
-        return fail != FAIL_EDEFAULT;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__STRICT:
-        return strict != STRICT_EDEFAULT;
-      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__MATCH:
+        return match != null && !match.isEmpty();
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT__CHANGE:
+        return change != null && !change.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (required: ");
-    result.append(required);
-    result.append(", fail: ");
-    result.append(fail);
-    result.append(", strict: ");
-    result.append(strict);
-    result.append(", name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //ContextMessageContentImpl

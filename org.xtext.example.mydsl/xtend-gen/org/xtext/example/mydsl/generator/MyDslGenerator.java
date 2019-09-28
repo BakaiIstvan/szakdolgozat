@@ -13,9 +13,16 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Loop;
+import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
@@ -902,6 +909,376 @@ public class MyDslGenerator extends AbstractGenerator {
           EList<ScenarioContent> _scenariocontents = scenario.getScenariocontents();
           for(final ScenarioContent sc : _scenariocontents) {
             {
+              EList<ContextMessage> _contextmessage = sc.getContextmessage();
+              for(final ContextMessage cm : _contextmessage) {
+                {
+                  boolean _isStrict = cm.isStrict();
+                  if (_isStrict) {
+                    {
+                      boolean _isRequired = cm.isRequired();
+                      if (_isRequired) {
+                        {
+                          EList<ContextMessageContent> _content = cm.getContent();
+                          for(final ContextMessageContent co : _content) {
+                            {
+                              EList<MatchMessage> _match = co.getMatch();
+                              for(final MatchMessage ma : _match) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_strict_required = this.compile_match_strict_required(ma);
+                                _builder.append(_compile_match_strict_required, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change = co.getChange();
+                              for(final ChangeMessage ca : _change) {
+                                {
+                                  EList<AppearMessage> _appear = ca.getAppear();
+                                  for(final AppearMessage a : _appear) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_strict_required = this.compile_appear_strict_required(a);
+                                    _builder.append(_compile_appear_strict_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear = ca.getDisappear();
+                                  for(final DisappearMessage d : _disappear) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_strict_required = this.compile_disappear_strict_required(d);
+                                    _builder.append(_compile_disappear_strict_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto = ca.getChangeto();
+                                  for(final ChangeToMessage t : _changeto) {
+                                    _builder.append("\t\t");
+                                    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      boolean _isFail = cm.isFail();
+                      if (_isFail) {
+                        {
+                          EList<ContextMessageContent> _content_1 = cm.getContent();
+                          for(final ContextMessageContent co_1 : _content_1) {
+                            {
+                              EList<MatchMessage> _match_1 = co_1.getMatch();
+                              for(final MatchMessage ma_1 : _match_1) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_strict_fail = this.compile_match_strict_fail(ma_1);
+                                _builder.append(_compile_match_strict_fail, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_1 = co_1.getChange();
+                              for(final ChangeMessage ca_1 : _change_1) {
+                                {
+                                  EList<AppearMessage> _appear_1 = ca_1.getAppear();
+                                  for(final AppearMessage a_1 : _appear_1) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_strict_fail = this.compile_appear_strict_fail(a_1);
+                                    _builder.append(_compile_appear_strict_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_1 = ca_1.getDisappear();
+                                  for(final DisappearMessage d_1 : _disappear_1) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_strict_fail = this.compile_disappear_strict_fail(d_1);
+                                    _builder.append(_compile_disappear_strict_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_1 = ca_1.getChangeto();
+                                  for(final ChangeToMessage t_1 : _changeto_1) {
+                                    _builder.append("\t\t");
+                                    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      if (((!cm.isRequired()) && (!cm.isFail()))) {
+                        {
+                          EList<ContextMessageContent> _content_2 = cm.getContent();
+                          for(final ContextMessageContent co_2 : _content_2) {
+                            {
+                              EList<MatchMessage> _match_2 = co_2.getMatch();
+                              for(final MatchMessage ma_2 : _match_2) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_strict = this.compile_match_strict(ma_2);
+                                _builder.append(_compile_match_strict, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_2 = co_2.getChange();
+                              for(final ChangeMessage ca_2 : _change_2) {
+                                {
+                                  EList<AppearMessage> _appear_2 = ca_2.getAppear();
+                                  for(final AppearMessage a_2 : _appear_2) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_strict = this.compile_appear_strict(a_2);
+                                    _builder.append(_compile_appear_strict, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_2 = ca_2.getDisappear();
+                                  for(final DisappearMessage d_2 : _disappear_2) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_strict = this.compile_disappear_strict(d_2);
+                                    _builder.append(_compile_disappear_strict, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_2 = ca_2.getChangeto();
+                                  for(final ChangeToMessage t_2 : _changeto_2) {
+                                    _builder.append("\t\t");
+                                    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                _builder.append("\t\t");
+                _builder.newLine();
+                {
+                  boolean _isStrict_1 = cm.isStrict();
+                  boolean _not = (!_isStrict_1);
+                  if (_not) {
+                    {
+                      boolean _isRequired_1 = cm.isRequired();
+                      if (_isRequired_1) {
+                        {
+                          EList<ContextMessageContent> _content_3 = cm.getContent();
+                          for(final ContextMessageContent co_3 : _content_3) {
+                            {
+                              EList<MatchMessage> _match_3 = co_3.getMatch();
+                              for(final MatchMessage ma_3 : _match_3) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_required = this.compile_match_required(ma_3);
+                                _builder.append(_compile_match_required, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_3 = co_3.getChange();
+                              for(final ChangeMessage ca_3 : _change_3) {
+                                {
+                                  EList<AppearMessage> _appear_3 = ca_3.getAppear();
+                                  for(final AppearMessage a_3 : _appear_3) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_required = this.compile_appear_required(a_3);
+                                    _builder.append(_compile_appear_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_3 = ca_3.getDisappear();
+                                  for(final DisappearMessage d_3 : _disappear_3) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_required = this.compile_disappear_required(d_3);
+                                    _builder.append(_compile_disappear_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_3 = ca_3.getChangeto();
+                                  for(final ChangeToMessage t_3 : _changeto_3) {
+                                    _builder.append("\t\t");
+                                    _builder.append("\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      boolean _isFail_1 = cm.isFail();
+                      if (_isFail_1) {
+                        {
+                          EList<ContextMessageContent> _content_4 = cm.getContent();
+                          for(final ContextMessageContent co_4 : _content_4) {
+                            {
+                              EList<MatchMessage> _match_4 = co_4.getMatch();
+                              for(final MatchMessage ma_4 : _match_4) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_fail = this.compile_match_fail(ma_4);
+                                _builder.append(_compile_match_fail, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_4 = co_4.getChange();
+                              for(final ChangeMessage ca_4 : _change_4) {
+                                {
+                                  EList<AppearMessage> _appear_4 = ca_4.getAppear();
+                                  for(final AppearMessage a_4 : _appear_4) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_fail = this.compile_appear_fail(a_4);
+                                    _builder.append(_compile_appear_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_4 = ca_4.getDisappear();
+                                  for(final DisappearMessage d_4 : _disappear_4) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_fail = this.compile_disappear_fail(d_4);
+                                    _builder.append(_compile_disappear_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_4 = ca_4.getChangeto();
+                                  for(final ChangeToMessage t_4 : _changeto_4) {
+                                    _builder.append("\t\t");
+                                    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      if (((!cm.isRequired()) && (!cm.isFail()))) {
+                        {
+                          EList<ContextMessageContent> _content_5 = cm.getContent();
+                          for(final ContextMessageContent co_5 : _content_5) {
+                            {
+                              EList<MatchMessage> _match_5 = co_5.getMatch();
+                              for(final MatchMessage ma_5 : _match_5) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_msg = this.compile_match_msg(ma_5);
+                                _builder.append(_compile_match_msg, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);\t\t\t\t\t\t\t");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_5 = co_5.getChange();
+                              for(final ChangeMessage ca_5 : _change_5) {
+                                {
+                                  EList<AppearMessage> _appear_5 = ca_5.getAppear();
+                                  for(final AppearMessage a_5 : _appear_5) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_msg = this.compile_appear_msg(a_5);
+                                    _builder.append(_compile_appear_msg, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_5 = ca_5.getDisappear();
+                                  for(final DisappearMessage d_5 : _disappear_5) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_msg = this.compile_disappear_msg(d_5);
+                                    _builder.append(_compile_disappear_msg, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_5 = ca_5.getChangeto();
+                                  for(final ChangeToMessage t_5 : _changeto_5) {
+                                    _builder.append("\t\t");
+                                    _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            {
               EList<Loop> _loop = sc.getLoop();
               for(final Loop l : _loop) {
                 _builder.append("\t\t");
@@ -942,12 +1319,12 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isStrict = m.isStrict();
-                      boolean _not = (!_isStrict);
-                      if (_not) {
+                      boolean _isStrict_2 = m.isStrict();
+                      boolean _not_1 = (!_isStrict_2);
+                      if (_not_1) {
                         {
-                          boolean _isRequired = m.isRequired();
-                          if (_isRequired) {
+                          boolean _isRequired_2 = m.isRequired();
+                          if (_isRequired_2) {
                             {
                               boolean _isFuture = m.isFuture();
                               if (_isFuture) {
@@ -986,8 +1363,8 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isFail = m.isFail();
-                          if (_isFail) {
+                          boolean _isFail_2 = m.isFail();
+                          if (_isFail_2) {
                             {
                               boolean _isPast_1 = m.isPast();
                               if (_isPast_1) {
@@ -1057,11 +1434,11 @@ public class MyDslGenerator extends AbstractGenerator {
                     _builder.append("\t\t");
                     _builder.newLine();
                     {
-                      boolean _isStrict_1 = m.isStrict();
-                      if (_isStrict_1) {
+                      boolean _isStrict_3 = m.isStrict();
+                      if (_isStrict_3) {
                         {
-                          boolean _isRequired_1 = m.isRequired();
-                          if (_isRequired_1) {
+                          boolean _isRequired_3 = m.isRequired();
+                          if (_isRequired_3) {
                             {
                               boolean _isFuture_2 = m.isFuture();
                               if (_isFuture_2) {
@@ -1088,8 +1465,8 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isFail_1 = m.isFail();
-                          if (_isFail_1) {
+                          boolean _isFail_3 = m.isFail();
+                          if (_isFail_3) {
                             {
                               if (((!m.isPast()) && (!m.isFuture()))) {
                                 _builder.append("\t\t");
@@ -1192,12 +1569,12 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isStrict_2 = m_1.isStrict();
-                          boolean _not_1 = (!_isStrict_2);
-                          if (_not_1) {
+                          boolean _isStrict_4 = m_1.isStrict();
+                          boolean _not_2 = (!_isStrict_4);
+                          if (_not_2) {
                             {
-                              boolean _isRequired_2 = m_1.isRequired();
-                              if (_isRequired_2) {
+                              boolean _isRequired_4 = m_1.isRequired();
+                              if (_isRequired_4) {
                                 {
                                   boolean _isFuture_4 = m_1.isFuture();
                                   if (_isFuture_4) {
@@ -1236,8 +1613,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_2 = m_1.isFail();
-                              if (_isFail_2) {
+                              boolean _isFail_4 = m_1.isFail();
+                              if (_isFail_4) {
                                 {
                                   boolean _isPast_4 = m_1.isPast();
                                   if (_isPast_4) {
@@ -1307,11 +1684,11 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\t\t");
                         _builder.newLine();
                         {
-                          boolean _isStrict_3 = m_1.isStrict();
-                          if (_isStrict_3) {
+                          boolean _isStrict_5 = m_1.isStrict();
+                          if (_isStrict_5) {
                             {
-                              boolean _isRequired_3 = m_1.isRequired();
-                              if (_isRequired_3) {
+                              boolean _isRequired_5 = m_1.isRequired();
+                              if (_isRequired_5) {
                                 {
                                   boolean _isFuture_6 = m_1.isFuture();
                                   if (_isFuture_6) {
@@ -1338,8 +1715,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_3 = m_1.isFail();
-                              if (_isFail_3) {
+                              boolean _isFail_5 = m_1.isFail();
+                              if (_isFail_5) {
                                 {
                                   if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
@@ -1396,12 +1773,12 @@ public class MyDslGenerator extends AbstractGenerator {
             }
             {
               EList<Alt> _alt = sc.getAlt();
-              for(final Alt a : _alt) {
+              for(final Alt a_6 : _alt) {
                 _builder.append("\t\t");
                 _builder.append("altauto = new ArrayList<Automaton>();");
                 _builder.newLine();
                 {
-                  EList<Expression> _expressions = a.getExpressions();
+                  EList<Expression> _expressions = a_6.getExpressions();
                   for(final Expression e : _expressions) {
                     _builder.append("\t\t");
                     _builder.append("\t");
@@ -1445,12 +1822,12 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isStrict_4 = m_2.isStrict();
-                          boolean _not_2 = (!_isStrict_4);
-                          if (_not_2) {
+                          boolean _isStrict_6 = m_2.isStrict();
+                          boolean _not_3 = (!_isStrict_6);
+                          if (_not_3) {
                             {
-                              boolean _isRequired_4 = m_2.isRequired();
-                              if (_isRequired_4) {
+                              boolean _isRequired_6 = m_2.isRequired();
+                              if (_isRequired_6) {
                                 {
                                   boolean _isFuture_8 = m_2.isFuture();
                                   if (_isFuture_8) {
@@ -1495,8 +1872,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_4 = m_2.isFail();
-                              if (_isFail_4) {
+                              boolean _isFail_6 = m_2.isFail();
+                              if (_isFail_6) {
                                 {
                                   boolean _isPast_7 = m_2.isPast();
                                   if (_isPast_7) {
@@ -1577,11 +1954,11 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\t");
                         _builder.newLine();
                         {
-                          boolean _isStrict_5 = m_2.isStrict();
-                          if (_isStrict_5) {
+                          boolean _isStrict_7 = m_2.isStrict();
+                          if (_isStrict_7) {
                             {
-                              boolean _isRequired_5 = m_2.isRequired();
-                              if (_isRequired_5) {
+                              boolean _isRequired_7 = m_2.isRequired();
+                              if (_isRequired_7) {
                                 {
                                   boolean _isFuture_10 = m_2.isFuture();
                                   if (_isFuture_10) {
@@ -1612,8 +1989,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_5 = m_2.isFail();
-                              if (_isFail_5) {
+                              boolean _isFail_7 = m_2.isFail();
+                              if (_isFail_7) {
                                 {
                                   if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
@@ -1711,12 +2088,12 @@ public class MyDslGenerator extends AbstractGenerator {
                   }
                 }
                 {
-                  boolean _isStrict_6 = m_3.isStrict();
-                  boolean _not_3 = (!_isStrict_6);
-                  if (_not_3) {
+                  boolean _isStrict_8 = m_3.isStrict();
+                  boolean _not_4 = (!_isStrict_8);
+                  if (_not_4) {
                     {
-                      boolean _isRequired_6 = m_3.isRequired();
-                      if (_isRequired_6) {
+                      boolean _isRequired_8 = m_3.isRequired();
+                      if (_isRequired_8) {
                         {
                           boolean _isFuture_12 = m_3.isFuture();
                           if (_isFuture_12) {
@@ -1755,8 +2132,8 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isFail_6 = m_3.isFail();
-                      if (_isFail_6) {
+                      boolean _isFail_8 = m_3.isFail();
+                      if (_isFail_8) {
                         {
                           boolean _isPast_10 = m_3.isPast();
                           if (_isPast_10) {
@@ -1826,11 +2203,11 @@ public class MyDslGenerator extends AbstractGenerator {
                 _builder.append("\t\t");
                 _builder.newLine();
                 {
-                  boolean _isStrict_7 = m_3.isStrict();
-                  if (_isStrict_7) {
+                  boolean _isStrict_9 = m_3.isStrict();
+                  if (_isStrict_9) {
                     {
-                      boolean _isRequired_7 = m_3.isRequired();
-                      if (_isRequired_7) {
+                      boolean _isRequired_9 = m_3.isRequired();
+                      if (_isRequired_9) {
                         {
                           boolean _isFuture_14 = m_3.isFuture();
                           if (_isFuture_14) {
@@ -1857,8 +2234,8 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isFail_7 = m_3.isFail();
-                      if (_isFail_7) {
+                      boolean _isFail_9 = m_3.isFail();
+                      if (_isFail_9) {
                         {
                           if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
@@ -2702,6 +3079,111 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  public CharSequence compile_match_required(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"match(\" + \"");
+    String _name = ma.getContent().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_required(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!\"+ \"appear(\" + \"");
+    String _name = am.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_required(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!\"+ \"disappear(\" + \"");
+    String _name = dm.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
   public CharSequence compile_fail_past(final Message m) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"auto4\");");
@@ -2783,6 +3265,108 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
     _builder.append("\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_fail(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name = am.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_fail(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name = dm.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_fail(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match (\" + \"");
+    String _name = ma.getContent().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
     _builder.newLine();
@@ -2899,6 +3483,102 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
     _builder.append("\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_msg(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match\" + \"(\" + \"");
+    String _name = ma.getContent().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_msg(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name = am.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_msg(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name = dm.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
     _builder.newLine();
@@ -3029,6 +3709,135 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  public CharSequence compile_match_strict_required(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match\" + \"(\" + \"");
+    String _name = ma.getContent().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"match\" + \"(\" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_strict_required(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name = am.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"appear(\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_strict_required(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name = dm.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"disappear(\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
   public CharSequence compile_strict_fail(final Message m) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"auto10\");");
@@ -3072,6 +3881,135 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_5 = m.getReceiver().getName();
     _builder.append(_name_5);
     _builder.append("\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_strict_fail(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"match\" + \"(\" + \"");
+    String _name = ma.getContent().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"match\" + \"(\" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_strict_fail(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"appear(\" + \"");
+    String _name = am.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_strict_fail(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!\" + \"disappear(\" + \"");
+    String _name = dm.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -3150,6 +4088,96 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
     _builder.append("\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_strict(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match\" + \"(\" + \"");
+    String _name = ma.getContent().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_strict(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear\" + \"(\" + \"");
+    String _name = am.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_strict(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear\" + \"(\" + \"");
+    String _name = dm.getEntity().getName();
+    _builder.append(_name);
+    _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
     _builder.newLine();

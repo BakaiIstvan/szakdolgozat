@@ -3,15 +3,24 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
-import org.xtext.example.mydsl.myDsl.Entity;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
@@ -22,22 +31,44 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getEntity <em>Entity</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getDisappear <em>Disappear</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getAppear <em>Appear</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getChangeto <em>Changeto</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ChangeMessageImpl extends ContextMessageContentImpl implements ChangeMessage
+public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements ChangeMessage
 {
   /**
-   * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
+   * The cached value of the '{@link #getDisappear() <em>Disappear</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEntity()
+   * @see #getDisappear()
    * @generated
    * @ordered
    */
-  protected Entity entity;
+  protected EList<DisappearMessage> disappear;
+
+  /**
+   * The cached value of the '{@link #getAppear() <em>Appear</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAppear()
+   * @generated
+   * @ordered
+   */
+  protected EList<AppearMessage> appear;
+
+  /**
+   * The cached value of the '{@link #getChangeto() <em>Changeto</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getChangeto()
+   * @generated
+   * @ordered
+   */
+  protected EList<ChangeToMessage> changeto;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,19 +96,13 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity getEntity()
+  public EList<DisappearMessage> getDisappear()
   {
-    if (entity != null && entity.eIsProxy())
+    if (disappear == null)
     {
-      InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Entity)eResolveProxy(oldEntity);
-      if (entity != oldEntity)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_MESSAGE__ENTITY, oldEntity, entity));
-      }
+      disappear = new EObjectContainmentEList<DisappearMessage>(DisappearMessage.class, this, MyDslPackage.CHANGE_MESSAGE__DISAPPEAR);
     }
-    return entity;
+    return disappear;
   }
 
   /**
@@ -85,9 +110,13 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetEntity()
+  public EList<AppearMessage> getAppear()
   {
-    return entity;
+    if (appear == null)
+    {
+      appear = new EObjectContainmentEList<AppearMessage>(AppearMessage.class, this, MyDslPackage.CHANGE_MESSAGE__APPEAR);
+    }
+    return appear;
   }
 
   /**
@@ -95,12 +124,33 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEntity(Entity newEntity)
+  public EList<ChangeToMessage> getChangeto()
   {
-    Entity oldEntity = entity;
-    entity = newEntity;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_MESSAGE__ENTITY, oldEntity, entity));
+    if (changeto == null)
+    {
+      changeto = new EObjectContainmentEList<ChangeToMessage>(ChangeToMessage.class, this, MyDslPackage.CHANGE_MESSAGE__CHANGETO);
+    }
+    return changeto;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.CHANGE_MESSAGE__DISAPPEAR:
+        return ((InternalEList<?>)getDisappear()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CHANGE_MESSAGE__APPEAR:
+        return ((InternalEList<?>)getAppear()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
+        return ((InternalEList<?>)getChangeto()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -113,9 +163,12 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_MESSAGE__ENTITY:
-        if (resolve) return getEntity();
-        return basicGetEntity();
+      case MyDslPackage.CHANGE_MESSAGE__DISAPPEAR:
+        return getDisappear();
+      case MyDslPackage.CHANGE_MESSAGE__APPEAR:
+        return getAppear();
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
+        return getChangeto();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,13 +178,23 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_MESSAGE__ENTITY:
-        setEntity((Entity)newValue);
+      case MyDslPackage.CHANGE_MESSAGE__DISAPPEAR:
+        getDisappear().clear();
+        getDisappear().addAll((Collection<? extends DisappearMessage>)newValue);
+        return;
+      case MyDslPackage.CHANGE_MESSAGE__APPEAR:
+        getAppear().clear();
+        getAppear().addAll((Collection<? extends AppearMessage>)newValue);
+        return;
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
+        getChangeto().clear();
+        getChangeto().addAll((Collection<? extends ChangeToMessage>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -147,8 +210,14 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_MESSAGE__ENTITY:
-        setEntity((Entity)null);
+      case MyDslPackage.CHANGE_MESSAGE__DISAPPEAR:
+        getDisappear().clear();
+        return;
+      case MyDslPackage.CHANGE_MESSAGE__APPEAR:
+        getAppear().clear();
+        return;
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
+        getChangeto().clear();
         return;
     }
     super.eUnset(featureID);
@@ -164,8 +233,12 @@ public class ChangeMessageImpl extends ContextMessageContentImpl implements Chan
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_MESSAGE__ENTITY:
-        return entity != null;
+      case MyDslPackage.CHANGE_MESSAGE__DISAPPEAR:
+        return disappear != null && !disappear.isEmpty();
+      case MyDslPackage.CHANGE_MESSAGE__APPEAR:
+        return appear != null && !appear.isEmpty();
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
+        return changeto != null && !changeto.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -20,12 +20,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Constraint;
-import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 
 /**
@@ -37,10 +37,10 @@ import org.xtext.example.mydsl.myDsl.Scenario;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getRelations <em>Relations</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextmodels <em>Contextmodels</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextfragments <em>Contextfragments</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getEntities <em>Entities</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextchanges <em>Contextchanges</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getScenarios <em>Scenarios</em>}</li>
@@ -71,6 +71,26 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   protected String name = NAME_EDEFAULT;
 
   /**
+   * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEntities()
+   * @generated
+   * @ordered
+   */
+  protected EList<Entity> entities;
+
+  /**
+   * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRelations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Relation> relations;
+
+  /**
    * The cached value of the '{@link #getContextmodels() <em>Contextmodels</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -89,26 +109,6 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * @ordered
    */
   protected EList<ContextFragment> contextfragments;
-
-  /**
-   * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEntities()
-   * @generated
-   * @ordered
-   */
-  protected EList<Entity> entities;
-
-  /**
-   * The cached value of the '{@link #getContextchanges() <em>Contextchanges</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getContextchanges()
-   * @generated
-   * @ordered
-   */
-  protected EList<ContextChange> contextchanges;
 
   /**
    * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
@@ -189,6 +189,34 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Entity> getEntities()
+  {
+    if (entities == null)
+    {
+      entities = new EObjectContainmentEList<Entity>(Entity.class, this, MyDslPackage.DOMAIN__ENTITIES);
+    }
+    return entities;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Relation> getRelations()
+  {
+    if (relations == null)
+    {
+      relations = new EObjectContainmentEList<Relation>(Relation.class, this, MyDslPackage.DOMAIN__RELATIONS);
+    }
+    return relations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<ContextModel> getContextmodels()
   {
     if (contextmodels == null)
@@ -210,34 +238,6 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
       contextfragments = new EObjectContainmentEList<ContextFragment>(ContextFragment.class, this, MyDslPackage.DOMAIN__CONTEXTFRAGMENTS);
     }
     return contextfragments;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Entity> getEntities()
-  {
-    if (entities == null)
-    {
-      entities = new EObjectContainmentEList<Entity>(Entity.class, this, MyDslPackage.DOMAIN__ENTITIES);
-    }
-    return entities;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ContextChange> getContextchanges()
-  {
-    if (contextchanges == null)
-    {
-      contextchanges = new EObjectContainmentEList<ContextChange>(ContextChange.class, this, MyDslPackage.DOMAIN__CONTEXTCHANGES);
-    }
-    return contextchanges;
   }
 
   /**
@@ -292,14 +292,14 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     switch (featureID)
     {
+      case MyDslPackage.DOMAIN__ENTITIES:
+        return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.DOMAIN__RELATIONS:
+        return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__CONTEXTMODELS:
         return ((InternalEList<?>)getContextmodels()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
         return ((InternalEList<?>)getContextfragments()).basicRemove(otherEnd, msgs);
-      case MyDslPackage.DOMAIN__ENTITIES:
-        return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
-      case MyDslPackage.DOMAIN__CONTEXTCHANGES:
-        return ((InternalEList<?>)getContextchanges()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__OBJECTS:
         return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__CONSTRAINTS:
@@ -322,14 +322,14 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
     {
       case MyDslPackage.DOMAIN__NAME:
         return getName();
+      case MyDslPackage.DOMAIN__ENTITIES:
+        return getEntities();
+      case MyDslPackage.DOMAIN__RELATIONS:
+        return getRelations();
       case MyDslPackage.DOMAIN__CONTEXTMODELS:
         return getContextmodels();
       case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
         return getContextfragments();
-      case MyDslPackage.DOMAIN__ENTITIES:
-        return getEntities();
-      case MyDslPackage.DOMAIN__CONTEXTCHANGES:
-        return getContextchanges();
       case MyDslPackage.DOMAIN__OBJECTS:
         return getObjects();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
@@ -354,6 +354,14 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
       case MyDslPackage.DOMAIN__NAME:
         setName((String)newValue);
         return;
+      case MyDslPackage.DOMAIN__ENTITIES:
+        getEntities().clear();
+        getEntities().addAll((Collection<? extends Entity>)newValue);
+        return;
+      case MyDslPackage.DOMAIN__RELATIONS:
+        getRelations().clear();
+        getRelations().addAll((Collection<? extends Relation>)newValue);
+        return;
       case MyDslPackage.DOMAIN__CONTEXTMODELS:
         getContextmodels().clear();
         getContextmodels().addAll((Collection<? extends ContextModel>)newValue);
@@ -361,14 +369,6 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
       case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
         getContextfragments().clear();
         getContextfragments().addAll((Collection<? extends ContextFragment>)newValue);
-        return;
-      case MyDslPackage.DOMAIN__ENTITIES:
-        getEntities().clear();
-        getEntities().addAll((Collection<? extends Entity>)newValue);
-        return;
-      case MyDslPackage.DOMAIN__CONTEXTCHANGES:
-        getContextchanges().clear();
-        getContextchanges().addAll((Collection<? extends ContextChange>)newValue);
         return;
       case MyDslPackage.DOMAIN__OBJECTS:
         getObjects().clear();
@@ -399,17 +399,17 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
       case MyDslPackage.DOMAIN__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case MyDslPackage.DOMAIN__ENTITIES:
+        getEntities().clear();
+        return;
+      case MyDslPackage.DOMAIN__RELATIONS:
+        getRelations().clear();
+        return;
       case MyDslPackage.DOMAIN__CONTEXTMODELS:
         getContextmodels().clear();
         return;
       case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
         getContextfragments().clear();
-        return;
-      case MyDslPackage.DOMAIN__ENTITIES:
-        getEntities().clear();
-        return;
-      case MyDslPackage.DOMAIN__CONTEXTCHANGES:
-        getContextchanges().clear();
         return;
       case MyDslPackage.DOMAIN__OBJECTS:
         getObjects().clear();
@@ -436,14 +436,14 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
     {
       case MyDslPackage.DOMAIN__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.DOMAIN__ENTITIES:
+        return entities != null && !entities.isEmpty();
+      case MyDslPackage.DOMAIN__RELATIONS:
+        return relations != null && !relations.isEmpty();
       case MyDslPackage.DOMAIN__CONTEXTMODELS:
         return contextmodels != null && !contextmodels.isEmpty();
       case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
         return contextfragments != null && !contextfragments.isEmpty();
-      case MyDslPackage.DOMAIN__ENTITIES:
-        return entities != null && !entities.isEmpty();
-      case MyDslPackage.DOMAIN__CONTEXTCHANGES:
-        return contextchanges != null && !contextchanges.isEmpty();
       case MyDslPackage.DOMAIN__OBJECTS:
         return objects != null && !objects.isEmpty();
       case MyDslPackage.DOMAIN__CONSTRAINTS:

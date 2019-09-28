@@ -14,15 +14,13 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
-import org.xtext.example.mydsl.myDsl.ChangeType;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.Constraint;
-import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
-import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
@@ -116,16 +114,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createContextFragmentAdapter();
       }
       @Override
-      public Adapter caseChangeType(ChangeType object)
-      {
-        return createChangeTypeAdapter();
-      }
-      @Override
-      public Adapter caseContextChange(ContextChange object)
-      {
-        return createContextChangeAdapter();
-      }
-      @Override
       public Adapter caseAttribute(Attribute object)
       {
         return createAttributeAdapter();
@@ -186,9 +174,9 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createDisappearMessageAdapter();
       }
       @Override
-      public Adapter caseDistanceMessage(DistanceMessage object)
+      public Adapter caseChangeToMessage(ChangeToMessage object)
       {
-        return createDistanceMessageAdapter();
+        return createChangeToMessageAdapter();
       }
       @Override
       public Adapter caseObjectType(ObjectType object)
@@ -293,36 +281,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createContextFragmentAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ChangeType <em>Change Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.ChangeType
-   * @generated
-   */
-  public Adapter createChangeTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ContextChange <em>Context Change</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.ContextChange
-   * @generated
-   */
-  public Adapter createContextChangeAdapter()
   {
     return null;
   }
@@ -508,16 +466,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.DistanceMessage <em>Distance Message</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage <em>Change To Message</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.DistanceMessage
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage
    * @generated
    */
-  public Adapter createDistanceMessageAdapter()
+  public Adapter createChangeToMessageAdapter()
   {
     return null;
   }

@@ -3,6 +3,9 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,39 +16,63 @@ package org.xtext.example.mydsl.myDsl;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getEntity <em>Entity</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getDisappear <em>Disappear</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getAppear <em>Appear</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getChangeto <em>Changeto</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage()
  * @model
  * @generated
  */
-public interface ChangeMessage extends ContextMessageContent
+public interface ChangeMessage extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Entity</b></em>' reference.
+   * Returns the value of the '<em><b>Disappear</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.DisappearMessage}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Entity</em>' reference isn't clear,
+   * If the meaning of the '<em>Disappear</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Entity)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage_Entity()
-   * @model
+   * @return the value of the '<em>Disappear</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage_Disappear()
+   * @model containment="true"
    * @generated
    */
-  Entity getEntity();
+  EList<DisappearMessage> getDisappear();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getEntity <em>Entity</em>}' reference.
+   * Returns the value of the '<em><b>Appear</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.AppearMessage}.
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Appear</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Entity</em>' reference.
-   * @see #getEntity()
+   * @return the value of the '<em>Appear</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage_Appear()
+   * @model containment="true"
    * @generated
    */
-  void setEntity(Entity value);
+  EList<AppearMessage> getAppear();
+
+  /**
+   * Returns the value of the '<em><b>Changeto</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ChangeToMessage}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Changeto</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Changeto</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage_Changeto()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ChangeToMessage> getChangeto();
 
 } // ChangeMessage

@@ -12,15 +12,13 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
-import org.xtext.example.mydsl.myDsl.ChangeType;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.Constraint;
-import org.xtext.example.mydsl.myDsl.ContextChange;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
-import org.xtext.example.mydsl.myDsl.DistanceMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
@@ -119,20 +117,6 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.CHANGE_TYPE:
-      {
-        ChangeType changeType = (ChangeType)theEObject;
-        T result = caseChangeType(changeType);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case MyDslPackage.CONTEXT_CHANGE:
-      {
-        ContextChange contextChange = (ContextChange)theEObject;
-        T result = caseContextChange(contextChange);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.ATTRIBUTE:
       {
         Attribute attribute = (Attribute)theEObject;
@@ -186,7 +170,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         ContextMessageContent contextMessageContent = (ContextMessageContent)theEObject;
         T result = caseContextMessageContent(contextMessageContent);
-        if (result == null) result = caseContextMessage(contextMessageContent);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -194,8 +177,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         MatchMessage matchMessage = (MatchMessage)theEObject;
         T result = caseMatchMessage(matchMessage);
-        if (result == null) result = caseContextMessageContent(matchMessage);
-        if (result == null) result = caseContextMessage(matchMessage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -203,8 +184,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         ChangeMessage changeMessage = (ChangeMessage)theEObject;
         T result = caseChangeMessage(changeMessage);
-        if (result == null) result = caseContextMessageContent(changeMessage);
-        if (result == null) result = caseContextMessage(changeMessage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -212,9 +191,6 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         AppearMessage appearMessage = (AppearMessage)theEObject;
         T result = caseAppearMessage(appearMessage);
-        if (result == null) result = caseChangeMessage(appearMessage);
-        if (result == null) result = caseContextMessageContent(appearMessage);
-        if (result == null) result = caseContextMessage(appearMessage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -222,19 +198,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         DisappearMessage disappearMessage = (DisappearMessage)theEObject;
         T result = caseDisappearMessage(disappearMessage);
-        if (result == null) result = caseChangeMessage(disappearMessage);
-        if (result == null) result = caseContextMessageContent(disappearMessage);
-        if (result == null) result = caseContextMessage(disappearMessage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.DISTANCE_MESSAGE:
+      case MyDslPackage.CHANGE_TO_MESSAGE:
       {
-        DistanceMessage distanceMessage = (DistanceMessage)theEObject;
-        T result = caseDistanceMessage(distanceMessage);
-        if (result == null) result = caseChangeMessage(distanceMessage);
-        if (result == null) result = caseContextMessageContent(distanceMessage);
-        if (result == null) result = caseContextMessage(distanceMessage);
+        ChangeToMessage changeToMessage = (ChangeToMessage)theEObject;
+        T result = caseChangeToMessage(changeToMessage);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -342,38 +312,6 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseContextFragment(ContextFragment object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Change Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Change Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseChangeType(ChangeType object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Context Change</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Context Change</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseContextChange(ContextChange object)
   {
     return null;
   }
@@ -571,17 +509,17 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Distance Message</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Change To Message</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Distance Message</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Change To Message</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDistanceMessage(DistanceMessage object)
+  public T caseChangeToMessage(ChangeToMessage object)
   {
     return null;
   }
