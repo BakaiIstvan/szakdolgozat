@@ -128,26 +128,46 @@ class MyDslGenerator extends AbstractGenerator {
 				    public void addAttribute(Attribute attribute) {
 				        attributes.add(attribute);
 				    }
+				
+				    public Attribute getAttributeByName(String name) {
+				        Attribute result = new Attribute("not found", "0");
+				        for (Attribute a : attributes) {
+				            if (a.getName().equals(name)) {
+				                result = a;
+				            }
+				        }
+				
+				        return result;
+				    }
+				
+				    public void setAttributeValueByName(String name, String value) {
+				        for (Attribute a : attributes) {
+				            if (a.getName().equals(name)) {
+				                a.setValue(value);
+				                return;
+				            }
+				        }
+				    }
 				}
 			''')
 			
 		fsa.generateFile("Attribute.java",
 			'''
 				public class Attribute {
-				    private int value;
+				    private String value;
 				    private String name;
 				
 				    public Attribute() {
 				        name = "name1";
-				        value = 0;
+				        value = "0";
 				    }
 				
-				    public Attribute(String name, int value) {
+				    public Attribute(String name, String value) {
 				        this.name = name;
 				        this.value = value;
 				    }
 				
-				    public int getValue() {
+				    public String getValue() {
 				        return value;
 				    }
 				
@@ -155,7 +175,7 @@ class MyDslGenerator extends AbstractGenerator {
 				        return name;
 				    }
 				
-				    public void setValue(int value) {
+				    public void setValue(String value) {
 				        this.value = value;
 				    }
 				
@@ -219,6 +239,18 @@ class MyDslGenerator extends AbstractGenerator {
 				
 				    public void setSender(Entity sender) {
 				        this.sender = sender;
+				    }
+				
+				    public Attribute getAttributeByName(String name) {
+				        Attribute result = new Attribute("not found", "0");
+				
+				        for (Attribute a : attributes) {
+				            if (a.getName().equals(name)) {
+				                result = a;
+				            }
+				        }
+				
+				        return result;
 				    }
 				}
 			''')
@@ -1850,7 +1882,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		b.addState(actualState);
 		b.setInitial(actualState);
-												
+		
 		String strict_value = "«cm.attribute.value»";
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
