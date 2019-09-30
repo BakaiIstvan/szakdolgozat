@@ -28,8 +28,43 @@ class MyDslGenerator extends AbstractGenerator {
 				import java.util.ArrayList;
 				
 				public class ContextModel {
-				    ArrayList<Entity> entities;
-				    ArrayList<Relation> relations;
+				    private ArrayList<Entity> entities;
+				    private ArrayList<Relation> relations;
+				    private boolean exists;
+				
+				    public ContextModel() {
+				        entities = new ArrayList<>();
+				        relations = new ArrayList<>();
+				        exists = true;
+				    }
+				
+				    public void addEntity(Entity entity) {
+				        entities.add(entity);
+				    }
+				
+				    public void addRelation(Relation relation) {
+				        relations.add(relation);
+				    }
+				
+				    public ArrayList<Entity> getEntities() {
+				        return entities;
+				    }
+				
+				    public ArrayList<Relation> getRelations() {
+				        return relations;
+				    }
+				
+				    public void setAppear() {
+				        exists = true;
+				    }
+				
+				    public void setDisappear() {
+				        exists = false;
+				    }
+				
+				    public boolean getExists() {
+				        return exists;
+				    }
 				}
 			''')
 		
@@ -38,8 +73,29 @@ class MyDslGenerator extends AbstractGenerator {
 				import java.util.ArrayList;
 				
 				public class ContextFragment {
-				    ArrayList<Entity> entities;
-				    ArrayList<Relation> relations;
+				    private ArrayList<Entity> entities;
+				    private ArrayList<Relation> relations;
+				
+				    public ContextFragment() {
+				        entities = new ArrayList<>();
+				        relations = new ArrayList<>();
+				    }
+				
+				    public void addEntity(Entity entity) {
+				        entities.add(entity);
+				    }
+				
+				    public void addRelation(Relation relation) {
+				        relations.add(relation);
+				    }
+				
+				    public ArrayList<Entity> getEntities() {
+				        return entities;
+				    }
+				
+				    public ArrayList<Relation> getRelations() {
+				        return relations;
+				    }
 				}
 			''')
 			
@@ -49,7 +105,29 @@ class MyDslGenerator extends AbstractGenerator {
 				
 				public class Entity {
 				    private String name;
-				    ArrayList<Attribute> attributess;
+				    private ArrayList<Attribute> attributes;
+				
+				    public Entity() {
+				        name = "name1";
+				        attributes = new ArrayList<>();
+				    }
+				
+				    public Entity(String name) {
+				        this.name = name;
+				        attributes = new ArrayList<>();
+				    }
+				
+				    public String getName() {
+				        return name;
+				    }
+				
+				    public ArrayList<Attribute> getAttributes() {
+				        return attributes;
+				    }
+				
+				    public void addAttribute(Attribute attribute) {
+				        attributes.add(attribute);
+				    }
 				}
 			''')
 			
@@ -58,15 +136,90 @@ class MyDslGenerator extends AbstractGenerator {
 				public class Attribute {
 				    private int value;
 				    private String name;
+				
+				    public Attribute() {
+				        name = "name1";
+				        value = 0;
+				    }
+				
+				    public Attribute(String name, int value) {
+				        this.name = name;
+				        this.value = value;
+				    }
+				
+				    public int getValue() {
+				        return value;
+				    }
+				
+				    public String getName() {
+				        return name;
+				    }
+				
+				    public void setValue(int value) {
+				        this.value = value;
+				    }
+				
+				    public void setName(String name) {
+				        this.name = name;
+				    }
 				}
 			''')
 			
 		fsa.generateFile("Relation.java",
 			'''
+				import java.util.ArrayList;
+				
 				public class Relation {
 				    private Entity sender;
 				    private Entity receiver;
 				    private String name;
+				    private ArrayList<Attribute> attributes;
+				
+				    public Relation() {
+				        sender = new Entity();
+				        receiver = new Entity();
+				        name = "name1";
+				        attributes = new ArrayList<>();
+				    }
+				
+				    public Relation(String name, Entity sender, Entity receiver) {
+				        this.name = name;
+				        this.sender = sender;
+				        this.receiver = receiver;
+				        attributes = new ArrayList<>();
+				    }
+				
+				    public void addAttribute(Attribute attribute) {
+				        attributes.add(attribute);
+				    }
+				
+				    public void setName(String name) {
+				        this.name = name;
+				    }
+				
+				    public String getName() {
+				        return name;
+				    }
+				
+				    public ArrayList<Attribute> getAttributes() {
+				        return attributes;
+				    }
+				
+				    public Entity getReceiver() {
+				        return receiver;
+				    }
+				
+				    public void setReceiver(Entity receiver) {
+				        this.receiver = receiver;
+				    }
+				
+				    public Entity getSender() {
+				        return sender;
+				    }
+				
+				    public void setSender(Entity sender) {
+				        this.sender = sender;
+				    }
 				}
 			''')
 		
