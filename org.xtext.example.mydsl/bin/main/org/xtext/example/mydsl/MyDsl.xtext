@@ -31,7 +31,16 @@ ContextFragment:
 ;
 
 Attribute:
-	'attribute' name=ID '(' value+=Number ')' ';' | 'attribute' name=ID '(' value+=ID ')' ';'
+	'attribute' name=ID '(' value+=AttributeValue ')' ';'
+;
+
+AttributeValue:
+	('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Number |
+	('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Real |
+	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? ID |
+	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Number |
+	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Real |
+	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? ('true')? ('false')?
 ;
 
 Entity:
@@ -101,6 +110,10 @@ Name:
 
 terminal Number:
 	('0'..'9')*
+;
+
+terminal Real:
+	('0'..'9')* '.' ('0'..'9')*
 ;
 
 ObjectType:

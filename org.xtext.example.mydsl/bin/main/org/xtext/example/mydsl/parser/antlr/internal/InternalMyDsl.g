@@ -475,114 +475,423 @@ ruleAttribute returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		otherlv_0='attribute'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAttributeAccess().getAttributeKeyword_0());
+		}
 		(
-			otherlv_0='attribute'
-			{
-				newLeafNode(otherlv_0, grammarAccess.getAttributeAccess().getAttributeKeyword_0_0());
-			}
 			(
-				(
-					lv_name_1_0=RULE_ID
-					{
-						newLeafNode(lv_name_1_0, grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_0_1_0());
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAttributeRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAttributeRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"name",
-							lv_name_1_0,
-							"org.eclipse.xtext.common.Terminals.ID");
-					}
-				)
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
 			)
-			otherlv_2='('
-			{
-				newLeafNode(otherlv_2, grammarAccess.getAttributeAccess().getLeftParenthesisKeyword_0_2());
-			}
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAttributeAccess().getLeftParenthesisKeyword_2());
+		}
+		(
 			(
-				(
-					lv_value_3_0=RULE_NUMBER
-					{
-						newLeafNode(lv_value_3_0, grammarAccess.getAttributeAccess().getValueNumberTerminalRuleCall_0_3_0());
+				{
+					newCompositeNode(grammarAccess.getAttributeAccess().getValueAttributeValueParserRuleCall_3_0());
+				}
+				lv_value_3_0=ruleAttributeValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAttributeRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAttributeRule());
-						}
-						addWithLastConsumed(
-							$current,
-							"value",
-							lv_value_3_0,
-							"org.xtext.example.mydsl.MyDsl.Number");
-					}
-				)
+					add(
+						$current,
+						"value",
+						lv_value_3_0,
+						"org.xtext.example.mydsl.MyDsl.AttributeValue");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			otherlv_4=')'
+		)
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getAttributeAccess().getRightParenthesisKeyword_4());
+		}
+		otherlv_5=';'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getAttributeAccess().getSemicolonKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleAttributeValue
+entryRuleAttributeValue returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getAttributeValueRule()); }
+	iv_ruleAttributeValue=ruleAttributeValue
+	{ $current=$iv_ruleAttributeValue.current.getText(); }
+	EOF;
+
+// Rule AttributeValue
+ruleAttributeValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				kw='>'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignKeyword_0_0());
+				}
+			)?
+			(
+				kw='<'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignKeyword_0_1());
+				}
+			)?
+			(
+				kw='>='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignEqualsSignKeyword_0_2());
+				}
+			)?
+			(
+				kw='<='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignEqualsSignKeyword_0_3());
+				}
+			)?
+			(
+				kw='=='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getEqualsSignEqualsSignKeyword_0_4());
+				}
+			)?
+			(
+				kw='!='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getExclamationMarkEqualsSignKeyword_0_5());
+				}
+			)?
+			this_Number_6=RULE_NUMBER
 			{
-				newLeafNode(otherlv_4, grammarAccess.getAttributeAccess().getRightParenthesisKeyword_0_4());
+				$current.merge(this_Number_6);
 			}
-			otherlv_5=';'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getAttributeAccess().getSemicolonKeyword_0_5());
+				newLeafNode(this_Number_6, grammarAccess.getAttributeValueAccess().getNumberTerminalRuleCall_0_6());
 			}
 		)
 		    |
 		(
-			otherlv_6='attribute'
+			(
+				kw='>'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignKeyword_1_0());
+				}
+			)?
+			(
+				kw='<'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignKeyword_1_1());
+				}
+			)?
+			(
+				kw='>='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignEqualsSignKeyword_1_2());
+				}
+			)?
+			(
+				kw='<='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignEqualsSignKeyword_1_3());
+				}
+			)?
+			(
+				kw='=='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getEqualsSignEqualsSignKeyword_1_4());
+				}
+			)?
+			(
+				kw='!='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getExclamationMarkEqualsSignKeyword_1_5());
+				}
+			)?
+			this_Real_13=RULE_REAL
 			{
-				newLeafNode(otherlv_6, grammarAccess.getAttributeAccess().getAttributeKeyword_1_0());
+				$current.merge(this_Real_13);
+			}
+			{
+				newLeafNode(this_Real_13, grammarAccess.getAttributeValueAccess().getRealTerminalRuleCall_1_6());
+			}
+		)
+		    |
+		(
+			this_ID_14=RULE_ID
+			{
+				$current.merge(this_ID_14);
+			}
+			{
+				newLeafNode(this_ID_14, grammarAccess.getAttributeValueAccess().getIDTerminalRuleCall_2_0());
 			}
 			(
-				(
-					lv_name_7_0=RULE_ID
-					{
-						newLeafNode(lv_name_7_0, grammarAccess.getAttributeAccess().getNameIDTerminalRuleCall_1_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAttributeRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"name",
-							lv_name_7_0,
-							"org.eclipse.xtext.common.Terminals.ID");
-					}
-				)
-			)
-			otherlv_8='('
+				kw='>'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignKeyword_2_1());
+				}
+			)?
+			(
+				kw='<'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignKeyword_2_2());
+				}
+			)?
+			(
+				kw='>='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignEqualsSignKeyword_2_3());
+				}
+			)?
+			(
+				kw='<='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignEqualsSignKeyword_2_4());
+				}
+			)?
+			(
+				kw='=='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getEqualsSignEqualsSignKeyword_2_5());
+				}
+			)?
+			(
+				kw='!='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getExclamationMarkEqualsSignKeyword_2_6());
+				}
+			)?
+			this_ID_21=RULE_ID
 			{
-				newLeafNode(otherlv_8, grammarAccess.getAttributeAccess().getLeftParenthesisKeyword_1_2());
+				$current.merge(this_ID_21);
+			}
+			{
+				newLeafNode(this_ID_21, grammarAccess.getAttributeValueAccess().getIDTerminalRuleCall_2_7());
+			}
+		)
+		    |
+		(
+			this_ID_22=RULE_ID
+			{
+				$current.merge(this_ID_22);
+			}
+			{
+				newLeafNode(this_ID_22, grammarAccess.getAttributeValueAccess().getIDTerminalRuleCall_3_0());
 			}
 			(
-				(
-					lv_value_9_0=RULE_ID
-					{
-						newLeafNode(lv_value_9_0, grammarAccess.getAttributeAccess().getValueIDTerminalRuleCall_1_3_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAttributeRule());
-						}
-						addWithLastConsumed(
-							$current,
-							"value",
-							lv_value_9_0,
-							"org.eclipse.xtext.common.Terminals.ID");
-					}
-				)
-			)
-			otherlv_10=')'
+				kw='>'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignKeyword_3_1());
+				}
+			)?
+			(
+				kw='<'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignKeyword_3_2());
+				}
+			)?
+			(
+				kw='>='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignEqualsSignKeyword_3_3());
+				}
+			)?
+			(
+				kw='<='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignEqualsSignKeyword_3_4());
+				}
+			)?
+			(
+				kw='=='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getEqualsSignEqualsSignKeyword_3_5());
+				}
+			)?
+			(
+				kw='!='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getExclamationMarkEqualsSignKeyword_3_6());
+				}
+			)?
+			this_Number_29=RULE_NUMBER
 			{
-				newLeafNode(otherlv_10, grammarAccess.getAttributeAccess().getRightParenthesisKeyword_1_4());
+				$current.merge(this_Number_29);
 			}
-			otherlv_11=';'
 			{
-				newLeafNode(otherlv_11, grammarAccess.getAttributeAccess().getSemicolonKeyword_1_5());
+				newLeafNode(this_Number_29, grammarAccess.getAttributeValueAccess().getNumberTerminalRuleCall_3_7());
 			}
+		)
+		    |
+		(
+			this_ID_30=RULE_ID
+			{
+				$current.merge(this_ID_30);
+			}
+			{
+				newLeafNode(this_ID_30, grammarAccess.getAttributeValueAccess().getIDTerminalRuleCall_4_0());
+			}
+			(
+				kw='>'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignKeyword_4_1());
+				}
+			)?
+			(
+				kw='<'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignKeyword_4_2());
+				}
+			)?
+			(
+				kw='>='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignEqualsSignKeyword_4_3());
+				}
+			)?
+			(
+				kw='<='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignEqualsSignKeyword_4_4());
+				}
+			)?
+			(
+				kw='=='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getEqualsSignEqualsSignKeyword_4_5());
+				}
+			)?
+			(
+				kw='!='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getExclamationMarkEqualsSignKeyword_4_6());
+				}
+			)?
+			this_Real_37=RULE_REAL
+			{
+				$current.merge(this_Real_37);
+			}
+			{
+				newLeafNode(this_Real_37, grammarAccess.getAttributeValueAccess().getRealTerminalRuleCall_4_7());
+			}
+		)
+		    |
+		(
+			this_ID_38=RULE_ID
+			{
+				$current.merge(this_ID_38);
+			}
+			{
+				newLeafNode(this_ID_38, grammarAccess.getAttributeValueAccess().getIDTerminalRuleCall_5_0());
+			}
+			(
+				kw='>'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignKeyword_5_1());
+				}
+			)?
+			(
+				kw='<'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignKeyword_5_2());
+				}
+			)?
+			(
+				kw='>='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getGreaterThanSignEqualsSignKeyword_5_3());
+				}
+			)?
+			(
+				kw='<='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getLessThanSignEqualsSignKeyword_5_4());
+				}
+			)?
+			(
+				kw='=='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getEqualsSignEqualsSignKeyword_5_5());
+				}
+			)?
+			(
+				kw='!='
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getExclamationMarkEqualsSignKeyword_5_6());
+				}
+			)?
+			(
+				kw='true'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getTrueKeyword_5_7());
+				}
+			)?
+			(
+				kw='false'
+				{
+					$current.merge(kw);
+					newLeafNode(kw, grammarAccess.getAttributeValueAccess().getFalseKeyword_5_8());
+				}
+			)?
 		)
 	)
 ;
@@ -2110,6 +2419,8 @@ ruleLoop returns [EObject current=null]
 ;
 
 RULE_NUMBER : ('0'..'9')*;
+
+RULE_REAL : ('0'..'9')* '.' ('0'..'9')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

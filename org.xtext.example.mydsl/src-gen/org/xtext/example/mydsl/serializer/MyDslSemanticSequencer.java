@@ -166,7 +166,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     ((name=ID value+=Number) | (name=ID value+=ID))
+	 *     (name=ID value+=AttributeValue)
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
