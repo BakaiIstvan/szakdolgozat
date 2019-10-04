@@ -17,9 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getEntities <em>Entities</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getRelations <em>Relations</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextmodels <em>Contextmodels</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextfragments <em>Contextfragments</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getObjects <em>Objects</em>}</li>
@@ -58,54 +55,6 @@ public interface Domain extends EObject
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Attribute}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Attributes</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Attributes()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Attribute> getAttributes();
-
-  /**
-   * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Entity}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Entities</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Entities()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Entity> getEntities();
-
-  /**
-   * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Relation}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Relations</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Relations()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Relation> getRelations();
 
   /**
    * Returns the value of the '<em><b>Contextmodels</b></em>' containment reference list.

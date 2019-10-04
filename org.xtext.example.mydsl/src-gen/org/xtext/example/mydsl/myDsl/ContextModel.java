@@ -54,33 +54,33 @@ public interface ContextModel extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Entities</b></em>' reference list.
+   * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Entity}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Entities</em>' reference list isn't clear,
+   * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Entities</em>' reference list.
+   * @return the value of the '<em>Entities</em>' containment reference list.
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextModel_Entities()
-   * @model
+   * @model containment="true"
    * @generated
    */
   EList<Entity> getEntities();
 
   /**
-   * Returns the value of the '<em><b>Relations</b></em>' reference list.
+   * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
    * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Relation}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Relations</em>' reference list isn't clear,
+   * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Relations</em>' reference list.
+   * @return the value of the '<em>Relations</em>' containment reference list.
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextModel_Relations()
-   * @model
+   * @model containment="true"
    * @generated
    */
   EList<Relation> getRelations();

@@ -6,15 +6,18 @@ package org.xtext.example.mydsl.myDsl.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.Entity;
@@ -59,7 +62,7 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEntities() <em>Entities</em>}' reference list.
+   * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getEntities()
@@ -69,7 +72,7 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
   protected EList<Entity> entities;
 
   /**
-   * The cached value of the '{@link #getRelations() <em>Relations</em>}' reference list.
+   * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getRelations()
@@ -131,7 +134,7 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
   {
     if (entities == null)
     {
-      entities = new EObjectResolvingEList<Entity>(Entity.class, this, MyDslPackage.CONTEXT_FRAGMENT__ENTITIES);
+      entities = new EObjectContainmentEList<Entity>(Entity.class, this, MyDslPackage.CONTEXT_FRAGMENT__ENTITIES);
     }
     return entities;
   }
@@ -145,9 +148,27 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
   {
     if (relations == null)
     {
-      relations = new EObjectResolvingEList<Relation>(Relation.class, this, MyDslPackage.CONTEXT_FRAGMENT__RELATIONS);
+      relations = new EObjectContainmentEList<Relation>(Relation.class, this, MyDslPackage.CONTEXT_FRAGMENT__RELATIONS);
     }
     return relations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
+        return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CONTEXT_FRAGMENT__RELATIONS:
+        return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
@@ -23,6 +24,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl#getEntity <em>Entity</em>}</li>
  * </ul>
  *
@@ -30,6 +32,16 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  */
 public class AppearMessageImpl extends MinimalEObjectImpl.Container implements AppearMessage
 {
+  /**
+   * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContext()
+   * @generated
+   * @ordered
+   */
+  protected ContextModel context;
+
   /**
    * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
    * <!-- begin-user-doc -->
@@ -59,6 +71,49 @@ public class AppearMessageImpl extends MinimalEObjectImpl.Container implements A
   protected EClass eStaticClass()
   {
     return MyDslPackage.Literals.APPEAR_MESSAGE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextModel getContext()
+  {
+    if (context != null && context.eIsProxy())
+    {
+      InternalEObject oldContext = (InternalEObject)context;
+      context = (ContextModel)eResolveProxy(oldContext);
+      if (context != oldContext)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.APPEAR_MESSAGE__CONTEXT, oldContext, context));
+      }
+    }
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextModel basicGetContext()
+  {
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(ContextModel newContext)
+  {
+    ContextModel oldContext = context;
+    context = newContext;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.APPEAR_MESSAGE__CONTEXT, oldContext, context));
   }
 
   /**
@@ -114,6 +169,9 @@ public class AppearMessageImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
+      case MyDslPackage.APPEAR_MESSAGE__CONTEXT:
+        if (resolve) return getContext();
+        return basicGetContext();
       case MyDslPackage.APPEAR_MESSAGE__ENTITY:
         if (resolve) return getEntity();
         return basicGetEntity();
@@ -131,6 +189,9 @@ public class AppearMessageImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
+      case MyDslPackage.APPEAR_MESSAGE__CONTEXT:
+        setContext((ContextModel)newValue);
+        return;
       case MyDslPackage.APPEAR_MESSAGE__ENTITY:
         setEntity((Entity)newValue);
         return;
@@ -148,6 +209,9 @@ public class AppearMessageImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
+      case MyDslPackage.APPEAR_MESSAGE__CONTEXT:
+        setContext((ContextModel)null);
+        return;
       case MyDslPackage.APPEAR_MESSAGE__ENTITY:
         setEntity((Entity)null);
         return;
@@ -165,6 +229,8 @@ public class AppearMessageImpl extends MinimalEObjectImpl.Container implements A
   {
     switch (featureID)
     {
+      case MyDslPackage.APPEAR_MESSAGE__CONTEXT:
+        return context != null;
       case MyDslPackage.APPEAR_MESSAGE__ENTITY:
         return entity != null;
     }

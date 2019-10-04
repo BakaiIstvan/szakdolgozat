@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext <em>Context</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}</li>
  * </ul>
  *
@@ -23,6 +25,58 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ChangeToMessage extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Context</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Context</em>' reference.
+   * @see #setContext(ContextModel)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Context()
+   * @model
+   * @generated
+   */
+  ContextModel getContext();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext <em>Context</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Context</em>' reference.
+   * @see #getContext()
+   * @generated
+   */
+  void setContext(ContextModel value);
+
+  /**
+   * Returns the value of the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Entity</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Entity</em>' reference.
+   * @see #setEntity(Entity)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Entity()
+   * @model
+   * @generated
+   */
+  Entity getEntity();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Entity</em>' reference.
+   * @see #getEntity()
+   * @generated
+   */
+  void setEntity(Entity value);
+
   /**
    * Returns the value of the '<em><b>Attribute</b></em>' reference.
    * <!-- begin-user-doc -->

@@ -1,14 +1,10 @@
 grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
-import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 Domain:
 	'specification' name=ID '{'
-	attributes+=Attribute*
-	entities+=Entity*
-	relations+=Relation*
 	contextmodels+=ContextModel*
 	contextfragments+=ContextFragment*
 	objects+=Object*
@@ -18,15 +14,15 @@ Domain:
 
 ContextModel:
 	'contextmodel' name=ID '{'
-		'entities: ' '[' entities+=[Entity]* ']'
-		'relations: ' '[' relations+=[Relation]* ']'
+		entities+=Entity*
+		relations+=Relation*
 	'}'
 ;
 
 ContextFragment:
 	'contextfragment' name=ID '{'
-		'entities: ' '[' entities+=[Entity]* ']'
-		'relations: ' '[' relations+=[Relation]* ']'
+		entities+=Entity*
+		relations+=Relation*
 	'}'
 ;
 
@@ -45,7 +41,7 @@ AttributeValue:
 
 Entity:
 	'entity' name=ID '{'
-		attributes+=Attribute*
+		attributes+= Attribute*
 	'}'
 ;
 
@@ -93,15 +89,15 @@ ChangeMessage:
 ;
 
 AppearMessage:
-	'appear' '(' (entity=[Entity])? ')'
+	'appear' '(' (context=[ContextModel] '.' entity=[Entity])? ')'
 ;
 
 DisappearMessage:
-	'disappear' '(' (entity=[Entity])? ')'
+	'disappear' '(' (context=[ContextModel] '.' entity=[Entity])? ')'
 ;
 
 ChangeToMessage:
-	'changeTo' '(' (attribute=[Attribute])? ')'
+	'changeTo' '(' (context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute])?')'
 ;
 
 Name:

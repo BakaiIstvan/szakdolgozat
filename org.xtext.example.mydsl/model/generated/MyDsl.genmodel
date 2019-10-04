@@ -8,9 +8,6 @@
       fileExtensions="mydsl" ecorePackage="MyDsl.ecore#/">
     <genClasses ecoreClass="MyDsl.ecore#//Domain">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Domain/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/attributes"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/entities"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/relations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/contextmodels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/contextfragments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/objects"/>
@@ -19,13 +16,13 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ContextModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextModel/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextModel/entities"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextModel/relations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextModel/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextModel/relations"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ContextFragment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextFragment/name"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextFragment/entities"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextFragment/relations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextFragment/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextFragment/relations"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Attribute/name"/>
@@ -83,12 +80,16 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeMessage/changeto"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//AppearMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AppearMessage/context"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AppearMessage/entity"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//DisappearMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//DisappearMessage/context"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//DisappearMessage/entity"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ChangeToMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToMessage/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToMessage/entity"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToMessage/attribute"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ObjectType">

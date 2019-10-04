@@ -77,40 +77,13 @@ public interface MyDslPackage extends EPackage
   int DOMAIN__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN__ATTRIBUTES = 1;
-
-  /**
-   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN__ENTITIES = 2;
-
-  /**
-   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN__RELATIONS = 3;
-
-  /**
    * The feature id for the '<em><b>Contextmodels</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN__CONTEXTMODELS = 4;
+  int DOMAIN__CONTEXTMODELS = 1;
 
   /**
    * The feature id for the '<em><b>Contextfragments</b></em>' containment reference list.
@@ -119,7 +92,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONTEXTFRAGMENTS = 5;
+  int DOMAIN__CONTEXTFRAGMENTS = 2;
 
   /**
    * The feature id for the '<em><b>Objects</b></em>' containment reference list.
@@ -128,7 +101,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__OBJECTS = 6;
+  int DOMAIN__OBJECTS = 3;
 
   /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -137,7 +110,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONSTRAINTS = 7;
+  int DOMAIN__CONSTRAINTS = 4;
 
   /**
    * The feature id for the '<em><b>Scenarios</b></em>' containment reference list.
@@ -146,7 +119,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__SCENARIOS = 8;
+  int DOMAIN__SCENARIOS = 5;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -155,7 +128,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_FEATURE_COUNT = 9;
+  int DOMAIN_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.
@@ -177,7 +150,7 @@ public interface MyDslPackage extends EPackage
   int CONTEXT_MODEL__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Entities</b></em>' reference list.
+   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -186,7 +159,7 @@ public interface MyDslPackage extends EPackage
   int CONTEXT_MODEL__ENTITIES = 1;
 
   /**
-   * The feature id for the '<em><b>Relations</b></em>' reference list.
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -223,7 +196,7 @@ public interface MyDslPackage extends EPackage
   int CONTEXT_FRAGMENT__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Entities</b></em>' reference list.
+   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -232,7 +205,7 @@ public interface MyDslPackage extends EPackage
   int CONTEXT_FRAGMENT__ENTITIES = 1;
 
   /**
-   * The feature id for the '<em><b>Relations</b></em>' reference list.
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -765,13 +738,22 @@ public interface MyDslPackage extends EPackage
   int APPEAR_MESSAGE = 13;
 
   /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__CONTEXT = 0;
+
+  /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int APPEAR_MESSAGE__ENTITY = 0;
+  int APPEAR_MESSAGE__ENTITY = 1;
 
   /**
    * The number of structural features of the '<em>Appear Message</em>' class.
@@ -780,7 +762,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int APPEAR_MESSAGE_FEATURE_COUNT = 1;
+  int APPEAR_MESSAGE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl <em>Disappear Message</em>}' class.
@@ -793,13 +775,22 @@ public interface MyDslPackage extends EPackage
   int DISAPPEAR_MESSAGE = 14;
 
   /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__CONTEXT = 0;
+
+  /**
    * The feature id for the '<em><b>Entity</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DISAPPEAR_MESSAGE__ENTITY = 0;
+  int DISAPPEAR_MESSAGE__ENTITY = 1;
 
   /**
    * The number of structural features of the '<em>Disappear Message</em>' class.
@@ -808,7 +799,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DISAPPEAR_MESSAGE_FEATURE_COUNT = 1;
+  int DISAPPEAR_MESSAGE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl <em>Change To Message</em>}' class.
@@ -821,13 +812,31 @@ public interface MyDslPackage extends EPackage
   int CHANGE_TO_MESSAGE = 15;
 
   /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__ENTITY = 1;
+
+  /**
    * The feature id for the '<em><b>Attribute</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANGE_TO_MESSAGE__ATTRIBUTE = 0;
+  int CHANGE_TO_MESSAGE__ATTRIBUTE = 2;
 
   /**
    * The number of structural features of the '<em>Change To Message</em>' class.
@@ -836,7 +845,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHANGE_TO_MESSAGE_FEATURE_COUNT = 1;
+  int CHANGE_TO_MESSAGE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
@@ -1130,39 +1139,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getDomain_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getAttributes <em>Attributes</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Attributes</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Domain#getAttributes()
-   * @see #getDomain()
-   * @generated
-   */
-  EReference getDomain_Attributes();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getEntities <em>Entities</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Entities</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Domain#getEntities()
-   * @see #getDomain()
-   * @generated
-   */
-  EReference getDomain_Entities();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getRelations <em>Relations</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Relations</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Domain#getRelations()
-   * @see #getDomain()
-   * @generated
-   */
-  EReference getDomain_Relations();
-
-  /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getContextmodels <em>Contextmodels</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1239,10 +1215,10 @@ public interface MyDslPackage extends EPackage
   EAttribute getContextModel_Name();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.ContextModel#getEntities <em>Entities</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextModel#getEntities <em>Entities</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Entities</em>'.
+   * @return the meta object for the containment reference list '<em>Entities</em>'.
    * @see org.xtext.example.mydsl.myDsl.ContextModel#getEntities()
    * @see #getContextModel()
    * @generated
@@ -1250,10 +1226,10 @@ public interface MyDslPackage extends EPackage
   EReference getContextModel_Entities();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.ContextModel#getRelations <em>Relations</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextModel#getRelations <em>Relations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Relations</em>'.
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
    * @see org.xtext.example.mydsl.myDsl.ContextModel#getRelations()
    * @see #getContextModel()
    * @generated
@@ -1282,10 +1258,10 @@ public interface MyDslPackage extends EPackage
   EAttribute getContextFragment_Name();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getEntities <em>Entities</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getEntities <em>Entities</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Entities</em>'.
+   * @return the meta object for the containment reference list '<em>Entities</em>'.
    * @see org.xtext.example.mydsl.myDsl.ContextFragment#getEntities()
    * @see #getContextFragment()
    * @generated
@@ -1293,10 +1269,10 @@ public interface MyDslPackage extends EPackage
   EReference getContextFragment_Entities();
 
   /**
-   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getRelations <em>Relations</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getRelations <em>Relations</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Relations</em>'.
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
    * @see org.xtext.example.mydsl.myDsl.ContextFragment#getRelations()
    * @see #getContextFragment()
    * @generated
@@ -1799,6 +1775,17 @@ public interface MyDslPackage extends EPackage
   EClass getAppearMessage();
 
   /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AppearMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AppearMessage#getContext()
+   * @see #getAppearMessage()
+   * @generated
+   */
+  EReference getAppearMessage_Context();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AppearMessage#getEntity <em>Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1820,6 +1807,17 @@ public interface MyDslPackage extends EPackage
   EClass getDisappearMessage();
 
   /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DisappearMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DisappearMessage#getContext()
+   * @see #getDisappearMessage()
+   * @generated
+   */
+  EReference getDisappearMessage_Context();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DisappearMessage#getEntity <em>Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1839,6 +1837,28 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getChangeToMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EReference getChangeToMessage_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EReference getChangeToMessage_Entity();
 
   /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}'.
@@ -2116,30 +2136,6 @@ public interface MyDslPackage extends EPackage
     EAttribute DOMAIN__NAME = eINSTANCE.getDomain_Name();
 
     /**
-     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DOMAIN__ATTRIBUTES = eINSTANCE.getDomain_Attributes();
-
-    /**
-     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DOMAIN__ENTITIES = eINSTANCE.getDomain_Entities();
-
-    /**
-     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DOMAIN__RELATIONS = eINSTANCE.getDomain_Relations();
-
-    /**
      * The meta object literal for the '<em><b>Contextmodels</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2198,7 +2194,7 @@ public interface MyDslPackage extends EPackage
     EAttribute CONTEXT_MODEL__NAME = eINSTANCE.getContextModel_Name();
 
     /**
-     * The meta object literal for the '<em><b>Entities</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2206,7 +2202,7 @@ public interface MyDslPackage extends EPackage
     EReference CONTEXT_MODEL__ENTITIES = eINSTANCE.getContextModel_Entities();
 
     /**
-     * The meta object literal for the '<em><b>Relations</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2232,7 +2228,7 @@ public interface MyDslPackage extends EPackage
     EAttribute CONTEXT_FRAGMENT__NAME = eINSTANCE.getContextFragment_Name();
 
     /**
-     * The meta object literal for the '<em><b>Entities</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2240,7 +2236,7 @@ public interface MyDslPackage extends EPackage
     EReference CONTEXT_FRAGMENT__ENTITIES = eINSTANCE.getContextFragment_Entities();
 
     /**
-     * The meta object literal for the '<em><b>Relations</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2638,6 +2634,14 @@ public interface MyDslPackage extends EPackage
     EClass APPEAR_MESSAGE = eINSTANCE.getAppearMessage();
 
     /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPEAR_MESSAGE__CONTEXT = eINSTANCE.getAppearMessage_Context();
+
+    /**
      * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2656,6 +2660,14 @@ public interface MyDslPackage extends EPackage
     EClass DISAPPEAR_MESSAGE = eINSTANCE.getDisappearMessage();
 
     /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DISAPPEAR_MESSAGE__CONTEXT = eINSTANCE.getDisappearMessage_Context();
+
+    /**
      * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2672,6 +2684,22 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass CHANGE_TO_MESSAGE = eINSTANCE.getChangeToMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_MESSAGE__CONTEXT = eINSTANCE.getChangeToMessage_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_MESSAGE__ENTITY = eINSTANCE.getChangeToMessage_Entity();
 
     /**
      * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
