@@ -28,6 +28,7 @@ import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -95,6 +96,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
+				return; 
+			case MyDslPackage.INCLUDE:
+				sequence_Include(context, (Include) semanticObject); 
 				return; 
 			case MyDslPackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
@@ -299,7 +303,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=ID 
+	 *         specification='specification'? 
+	 *         name=ID? 
+	 *         includes+=Include* 
 	 *         contextmodels+=ContextModel* 
 	 *         contextfragments+=ContextFragment* 
 	 *         objects+=Object* 
@@ -333,6 +339,24 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Include returns Include
+	 *
+	 * Constraint:
+	 *     importURI=STRING
+	 */
+	protected void sequence_Include(ISerializationContext context, Include semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.INCLUDE__IMPORT_URI) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.INCLUDE__IMPORT_URI));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIncludeAccess().getImportURISTRINGTerminalRuleCall_1_0(), semanticObject.getImportURI());
+		feeder.finish();
 	}
 	
 	

@@ -25,6 +25,7 @@ import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -90,6 +91,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     switch (eClass.getClassifierID())
     {
       case MyDslPackage.DOMAIN: return createDomain();
+      case MyDslPackage.INCLUDE: return createInclude();
       case MyDslPackage.CONTEXT_MODEL: return createContextModel();
       case MyDslPackage.CONTEXT_FRAGMENT: return createContextFragment();
       case MyDslPackage.ATTRIBUTE: return createAttribute();
@@ -127,6 +129,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     DomainImpl domain = new DomainImpl();
     return domain;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Include createInclude()
+  {
+    IncludeImpl include = new IncludeImpl();
+    return include;
   }
 
   /**

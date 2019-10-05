@@ -38,6 +38,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getNameAccess().getAlternatives_2(), "rule__Name__Alternatives_2");
 			builder.put(grammarAccess.getExpressionAccess().getAlternatives_7(), "rule__Expression__Alternatives_7");
 			builder.put(grammarAccess.getDomainAccess().getGroup(), "rule__Domain__Group__0");
+			builder.put(grammarAccess.getIncludeAccess().getGroup(), "rule__Include__Group__0");
 			builder.put(grammarAccess.getContextModelAccess().getGroup(), "rule__ContextModel__Group__0");
 			builder.put(grammarAccess.getContextFragmentAccess().getGroup(), "rule__ContextFragment__Group__0");
 			builder.put(grammarAccess.getAttributeAccess().getGroup(), "rule__Attribute__Group__0");
@@ -68,12 +69,15 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getParAccess().getGroup(), "rule__Par__Group__0");
 			builder.put(grammarAccess.getParExpressionAccess().getGroup(), "rule__ParExpression__Group__0");
 			builder.put(grammarAccess.getLoopAccess().getGroup(), "rule__Loop__Group__0");
+			builder.put(grammarAccess.getDomainAccess().getSpecificationAssignment_0(), "rule__Domain__SpecificationAssignment_0");
 			builder.put(grammarAccess.getDomainAccess().getNameAssignment_1(), "rule__Domain__NameAssignment_1");
-			builder.put(grammarAccess.getDomainAccess().getContextmodelsAssignment_3(), "rule__Domain__ContextmodelsAssignment_3");
-			builder.put(grammarAccess.getDomainAccess().getContextfragmentsAssignment_4(), "rule__Domain__ContextfragmentsAssignment_4");
-			builder.put(grammarAccess.getDomainAccess().getObjectsAssignment_5(), "rule__Domain__ObjectsAssignment_5");
-			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_6(), "rule__Domain__ConstraintsAssignment_6");
-			builder.put(grammarAccess.getDomainAccess().getScenariosAssignment_7(), "rule__Domain__ScenariosAssignment_7");
+			builder.put(grammarAccess.getDomainAccess().getIncludesAssignment_3(), "rule__Domain__IncludesAssignment_3");
+			builder.put(grammarAccess.getDomainAccess().getContextmodelsAssignment_4(), "rule__Domain__ContextmodelsAssignment_4");
+			builder.put(grammarAccess.getDomainAccess().getContextfragmentsAssignment_5(), "rule__Domain__ContextfragmentsAssignment_5");
+			builder.put(grammarAccess.getDomainAccess().getObjectsAssignment_6(), "rule__Domain__ObjectsAssignment_6");
+			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_7(), "rule__Domain__ConstraintsAssignment_7");
+			builder.put(grammarAccess.getDomainAccess().getScenariosAssignment_8(), "rule__Domain__ScenariosAssignment_8");
+			builder.put(grammarAccess.getIncludeAccess().getImportURIAssignment_1(), "rule__Include__ImportURIAssignment_1");
 			builder.put(grammarAccess.getContextModelAccess().getNameAssignment_1(), "rule__ContextModel__NameAssignment_1");
 			builder.put(grammarAccess.getContextModelAccess().getEntitiesAssignment_3(), "rule__ContextModel__EntitiesAssignment_3");
 			builder.put(grammarAccess.getContextModelAccess().getRelationsAssignment_4(), "rule__ContextModel__RelationsAssignment_4");

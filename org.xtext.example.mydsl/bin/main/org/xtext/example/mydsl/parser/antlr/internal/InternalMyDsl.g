@@ -76,10 +76,20 @@ ruleDomain returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='specification'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getDomainAccess().getSpecificationKeyword_0());
-		}
+		(
+			(
+				lv_specification_0_0='specification'
+				{
+					newLeafNode(lv_specification_0_0, grammarAccess.getDomainAccess().getSpecificationSpecificationKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDomainRule());
+					}
+					setWithLastConsumed($current, "specification", lv_specification_0_0, "specification");
+				}
+			)
+		)?
 		(
 			(
 				lv_name_1_0=RULE_ID
@@ -97,17 +107,38 @@ ruleDomain returns [EObject current=null]
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
-		)
-		otherlv_2='{'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getDomainAccess().getLeftCurlyBracketKeyword_2());
-		}
+		)?
+		(
+			otherlv_2='{'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getDomainAccess().getLeftCurlyBracketKeyword_2());
+			}
+		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getContextmodelsContextModelParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getIncludesIncludeParserRuleCall_3_0());
 				}
-				lv_contextmodels_3_0=ruleContextModel
+				lv_includes_3_0=ruleInclude
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDomainRule());
+					}
+					add(
+						$current,
+						"includes",
+						lv_includes_3_0,
+						"org.xtext.example.mydsl.MyDsl.Include");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDomainAccess().getContextmodelsContextModelParserRuleCall_4_0());
+				}
+				lv_contextmodels_4_0=ruleContextModel
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -115,7 +146,7 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"contextmodels",
-						lv_contextmodels_3_0,
+						lv_contextmodels_4_0,
 						"org.xtext.example.mydsl.MyDsl.ContextModel");
 					afterParserOrEnumRuleCall();
 				}
@@ -124,9 +155,9 @@ ruleDomain returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getContextfragmentsContextFragmentParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getContextfragmentsContextFragmentParserRuleCall_5_0());
 				}
-				lv_contextfragments_4_0=ruleContextFragment
+				lv_contextfragments_5_0=ruleContextFragment
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -134,7 +165,7 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"contextfragments",
-						lv_contextfragments_4_0,
+						lv_contextfragments_5_0,
 						"org.xtext.example.mydsl.MyDsl.ContextFragment");
 					afterParserOrEnumRuleCall();
 				}
@@ -143,9 +174,9 @@ ruleDomain returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getObjectsObjectParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getObjectsObjectParserRuleCall_6_0());
 				}
-				lv_objects_5_0=ruleObject
+				lv_objects_6_0=ruleObject
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -153,7 +184,7 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"objects",
-						lv_objects_5_0,
+						lv_objects_6_0,
 						"org.xtext.example.mydsl.MyDsl.Object");
 					afterParserOrEnumRuleCall();
 				}
@@ -162,9 +193,9 @@ ruleDomain returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getConstraintsConstraintParserRuleCall_6_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getConstraintsConstraintParserRuleCall_7_0());
 				}
-				lv_constraints_6_0=ruleConstraint
+				lv_constraints_7_0=ruleConstraint
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -172,7 +203,7 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"constraints",
-						lv_constraints_6_0,
+						lv_constraints_7_0,
 						"org.xtext.example.mydsl.MyDsl.Constraint");
 					afterParserOrEnumRuleCall();
 				}
@@ -181,9 +212,9 @@ ruleDomain returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getScenariosScenarioParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getScenariosScenarioParserRuleCall_8_0());
 				}
-				lv_scenarios_7_0=ruleScenario
+				lv_scenarios_8_0=ruleScenario
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -191,16 +222,59 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"scenarios",
-						lv_scenarios_7_0,
+						lv_scenarios_8_0,
 						"org.xtext.example.mydsl.MyDsl.Scenario");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_8='}'
+		(
+			otherlv_9='}'
+			{
+				newLeafNode(otherlv_9, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_9());
+			}
+		)?
+	)
+;
+
+// Entry rule entryRuleInclude
+entryRuleInclude returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIncludeRule()); }
+	iv_ruleInclude=ruleInclude
+	{ $current=$iv_ruleInclude.current; }
+	EOF;
+
+// Rule Include
+ruleInclude returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='import'
 		{
-			newLeafNode(otherlv_8, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_0, grammarAccess.getIncludeAccess().getImportKeyword_0());
 		}
+		(
+			(
+				lv_importURI_1_0=RULE_STRING
+				{
+					newLeafNode(lv_importURI_1_0, grammarAccess.getIncludeAccess().getImportURISTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIncludeRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"importURI",
+						lv_importURI_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
 	)
 ;
 

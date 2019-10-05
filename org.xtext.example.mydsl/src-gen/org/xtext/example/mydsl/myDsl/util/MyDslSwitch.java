@@ -22,6 +22,7 @@ import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -100,6 +101,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Domain domain = (Domain)theEObject;
         T result = caseDomain(domain);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.INCLUDE:
+      {
+        Include include = (Include)theEObject;
+        T result = caseInclude(include);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -280,6 +288,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDomain(Domain object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Include</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Include</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInclude(Include object)
   {
     return null;
   }

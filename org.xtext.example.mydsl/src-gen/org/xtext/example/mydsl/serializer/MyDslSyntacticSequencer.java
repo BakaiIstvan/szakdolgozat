@@ -21,6 +21,8 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MyDslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_Domain_LeftCurlyBracketKeyword_2_q;
+	protected AbstractElementAlias match_Domain_RightCurlyBracketKeyword_9_q;
 	protected AbstractElementAlias match_Expression_EqualsSignKeyword_2_q;
 	protected AbstractElementAlias match_Expression_GreaterThanSignEqualsSignKeyword_5_q;
 	protected AbstractElementAlias match_Expression_GreaterThanSignKeyword_3_q;
@@ -34,6 +36,8 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MyDslGrammarAccess) access;
+		match_Domain_LeftCurlyBracketKeyword_2_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getLeftCurlyBracketKeyword_2());
+		match_Domain_RightCurlyBracketKeyword_9_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_9());
 		match_Expression_EqualsSignKeyword_2_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getEqualsSignKeyword_2());
 		match_Expression_GreaterThanSignEqualsSignKeyword_5_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getGreaterThanSignEqualsSignKeyword_5());
 		match_Expression_GreaterThanSignKeyword_3_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getGreaterThanSignKeyword_3());
@@ -80,7 +84,11 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Expression_EqualsSignKeyword_2_q.equals(syntax))
+			if (match_Domain_LeftCurlyBracketKeyword_2_q.equals(syntax))
+				emit_Domain_LeftCurlyBracketKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Domain_RightCurlyBracketKeyword_9_q.equals(syntax))
+				emit_Domain_RightCurlyBracketKeyword_9_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Expression_EqualsSignKeyword_2_q.equals(syntax))
 				emit_Expression_EqualsSignKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Expression_GreaterThanSignEqualsSignKeyword_5_q.equals(syntax))
 				emit_Expression_GreaterThanSignEqualsSignKeyword_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -102,6 +110,57 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     '{'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '}'? (rule start)
+	 *     (rule start) (ambiguity) constraints+=Constraint
+	 *     (rule start) (ambiguity) contextfragments+=ContextFragment
+	 *     (rule start) (ambiguity) contextmodels+=ContextModel
+	 *     (rule start) (ambiguity) includes+=Include
+	 *     (rule start) (ambiguity) objects+=Object
+	 *     (rule start) (ambiguity) scenarios+=Scenario
+	 *     name=ID (ambiguity) '}'? (rule end)
+	 *     name=ID (ambiguity) constraints+=Constraint
+	 *     name=ID (ambiguity) contextfragments+=ContextFragment
+	 *     name=ID (ambiguity) contextmodels+=ContextModel
+	 *     name=ID (ambiguity) includes+=Include
+	 *     name=ID (ambiguity) objects+=Object
+	 *     name=ID (ambiguity) scenarios+=Scenario
+	 *     specification='specification' (ambiguity) '}'? (rule end)
+	 *     specification='specification' (ambiguity) constraints+=Constraint
+	 *     specification='specification' (ambiguity) contextfragments+=ContextFragment
+	 *     specification='specification' (ambiguity) contextmodels+=ContextModel
+	 *     specification='specification' (ambiguity) includes+=Include
+	 *     specification='specification' (ambiguity) objects+=Object
+	 *     specification='specification' (ambiguity) scenarios+=Scenario
+	 */
+	protected void emit_Domain_LeftCurlyBracketKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '}'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) '{' (ambiguity) (rule start)
+	 *     (rule start) '{'? (ambiguity) (rule start)
+	 *     constraints+=Constraint (ambiguity) (rule end)
+	 *     contextfragments+=ContextFragment (ambiguity) (rule end)
+	 *     contextmodels+=ContextModel (ambiguity) (rule end)
+	 *     includes+=Include (ambiguity) (rule end)
+	 *     name=ID '{'? (ambiguity) (rule end)
+	 *     objects+=Object (ambiguity) (rule end)
+	 *     scenarios+=Scenario (ambiguity) (rule end)
+	 *     specification='specification' '{'? (ambiguity) (rule end)
+	 */
+	protected void emit_Domain_RightCurlyBracketKeyword_9_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     '='?

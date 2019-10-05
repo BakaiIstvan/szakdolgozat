@@ -26,79 +26,115 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class DomainElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Domain");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSpecificationKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSpecificationAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cSpecificationSpecificationKeyword_0_0 = (Keyword)cSpecificationAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cContextmodelsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cContextmodelsContextModelParserRuleCall_3_0 = (RuleCall)cContextmodelsAssignment_3.eContents().get(0);
-		private final Assignment cContextfragmentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cContextfragmentsContextFragmentParserRuleCall_4_0 = (RuleCall)cContextfragmentsAssignment_4.eContents().get(0);
-		private final Assignment cObjectsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cObjectsObjectParserRuleCall_5_0 = (RuleCall)cObjectsAssignment_5.eContents().get(0);
-		private final Assignment cConstraintsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cConstraintsConstraintParserRuleCall_6_0 = (RuleCall)cConstraintsAssignment_6.eContents().get(0);
-		private final Assignment cScenariosAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cScenariosScenarioParserRuleCall_7_0 = (RuleCall)cScenariosAssignment_7.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cIncludesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cIncludesIncludeParserRuleCall_3_0 = (RuleCall)cIncludesAssignment_3.eContents().get(0);
+		private final Assignment cContextmodelsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cContextmodelsContextModelParserRuleCall_4_0 = (RuleCall)cContextmodelsAssignment_4.eContents().get(0);
+		private final Assignment cContextfragmentsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cContextfragmentsContextFragmentParserRuleCall_5_0 = (RuleCall)cContextfragmentsAssignment_5.eContents().get(0);
+		private final Assignment cObjectsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cObjectsObjectParserRuleCall_6_0 = (RuleCall)cObjectsAssignment_6.eContents().get(0);
+		private final Assignment cConstraintsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cConstraintsConstraintParserRuleCall_7_0 = (RuleCall)cConstraintsAssignment_7.eContents().get(0);
+		private final Assignment cScenariosAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cScenariosScenarioParserRuleCall_8_0 = (RuleCall)cScenariosAssignment_8.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Domain:
-		//	'specification' name=ID '{'
+		//	specification='specification'? name=ID? '{'?
+		//	includes+=Include*
 		//	contextmodels+=ContextModel*
 		//	contextfragments+=ContextFragment*
 		//	objects+=Object*
 		//	constraints+=Constraint*
-		//	scenarios+=Scenario* '}';
+		//	scenarios+=Scenario* '}'?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'specification' name=ID '{' contextmodels+=ContextModel* contextfragments+=ContextFragment* objects+=Object*
-		//constraints+=Constraint* scenarios+=Scenario* '}'
+		//specification='specification'? name=ID? '{'? includes+=Include* contextmodels+=ContextModel*
+		//contextfragments+=ContextFragment* objects+=Object* constraints+=Constraint* scenarios+=Scenario* '}'?
 		public Group getGroup() { return cGroup; }
 		
-		//'specification'
-		public Keyword getSpecificationKeyword_0() { return cSpecificationKeyword_0; }
+		//specification='specification'?
+		public Assignment getSpecificationAssignment_0() { return cSpecificationAssignment_0; }
 		
-		//name=ID
+		//'specification'
+		public Keyword getSpecificationSpecificationKeyword_0_0() { return cSpecificationSpecificationKeyword_0_0; }
+		
+		//name=ID?
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//'{'
+		//'{'?
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
+		//includes+=Include*
+		public Assignment getIncludesAssignment_3() { return cIncludesAssignment_3; }
+		
+		//Include
+		public RuleCall getIncludesIncludeParserRuleCall_3_0() { return cIncludesIncludeParserRuleCall_3_0; }
+		
 		//contextmodels+=ContextModel*
-		public Assignment getContextmodelsAssignment_3() { return cContextmodelsAssignment_3; }
+		public Assignment getContextmodelsAssignment_4() { return cContextmodelsAssignment_4; }
 		
 		//ContextModel
-		public RuleCall getContextmodelsContextModelParserRuleCall_3_0() { return cContextmodelsContextModelParserRuleCall_3_0; }
+		public RuleCall getContextmodelsContextModelParserRuleCall_4_0() { return cContextmodelsContextModelParserRuleCall_4_0; }
 		
 		//contextfragments+=ContextFragment*
-		public Assignment getContextfragmentsAssignment_4() { return cContextfragmentsAssignment_4; }
+		public Assignment getContextfragmentsAssignment_5() { return cContextfragmentsAssignment_5; }
 		
 		//ContextFragment
-		public RuleCall getContextfragmentsContextFragmentParserRuleCall_4_0() { return cContextfragmentsContextFragmentParserRuleCall_4_0; }
+		public RuleCall getContextfragmentsContextFragmentParserRuleCall_5_0() { return cContextfragmentsContextFragmentParserRuleCall_5_0; }
 		
 		//objects+=Object*
-		public Assignment getObjectsAssignment_5() { return cObjectsAssignment_5; }
+		public Assignment getObjectsAssignment_6() { return cObjectsAssignment_6; }
 		
 		//Object
-		public RuleCall getObjectsObjectParserRuleCall_5_0() { return cObjectsObjectParserRuleCall_5_0; }
+		public RuleCall getObjectsObjectParserRuleCall_6_0() { return cObjectsObjectParserRuleCall_6_0; }
 		
 		//constraints+=Constraint*
-		public Assignment getConstraintsAssignment_6() { return cConstraintsAssignment_6; }
+		public Assignment getConstraintsAssignment_7() { return cConstraintsAssignment_7; }
 		
 		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_6_0() { return cConstraintsConstraintParserRuleCall_6_0; }
+		public RuleCall getConstraintsConstraintParserRuleCall_7_0() { return cConstraintsConstraintParserRuleCall_7_0; }
 		
 		//scenarios+=Scenario*
-		public Assignment getScenariosAssignment_7() { return cScenariosAssignment_7; }
+		public Assignment getScenariosAssignment_8() { return cScenariosAssignment_8; }
 		
 		//Scenario
-		public RuleCall getScenariosScenarioParserRuleCall_7_0() { return cScenariosScenarioParserRuleCall_7_0; }
+		public RuleCall getScenariosScenarioParserRuleCall_8_0() { return cScenariosScenarioParserRuleCall_8_0; }
 		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		//'}'?
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+	}
+	public class IncludeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Include");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cImportURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cImportURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImportURIAssignment_1.eContents().get(0);
+		
+		//Include:
+		//	'import' importURI=STRING;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'import' importURI=STRING
+		public Group getGroup() { return cGroup; }
+		
+		//'import'
+		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
+		
+		//importURI=STRING
+		public Assignment getImportURIAssignment_1() { return cImportURIAssignment_1; }
+		
+		//STRING
+		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
 	}
 	public class ContextModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ContextModel");
@@ -1493,6 +1529,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final DomainElements pDomain;
+	private final IncludeElements pInclude;
 	private final ContextModelElements pContextModel;
 	private final ContextFragmentElements pContextFragment;
 	private final AttributeElements pAttribute;
@@ -1531,6 +1568,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pDomain = new DomainElements();
+		this.pInclude = new IncludeElements();
 		this.pContextModel = new ContextModelElements();
 		this.pContextFragment = new ContextFragmentElements();
 		this.pAttribute = new AttributeElements();
@@ -1588,18 +1626,29 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Domain:
-	//	'specification' name=ID '{'
+	//	specification='specification'? name=ID? '{'?
+	//	includes+=Include*
 	//	contextmodels+=ContextModel*
 	//	contextfragments+=ContextFragment*
 	//	objects+=Object*
 	//	constraints+=Constraint*
-	//	scenarios+=Scenario* '}';
+	//	scenarios+=Scenario* '}'?;
 	public DomainElements getDomainAccess() {
 		return pDomain;
 	}
 	
 	public ParserRule getDomainRule() {
 		return getDomainAccess().getRule();
+	}
+	
+	//Include:
+	//	'import' importURI=STRING;
+	public IncludeElements getIncludeAccess() {
+		return pInclude;
+	}
+	
+	public ParserRule getIncludeRule() {
+		return getIncludeAccess().getRule();
 	}
 	
 	//ContextModel:

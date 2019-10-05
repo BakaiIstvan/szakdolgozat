@@ -68,13 +68,31 @@ public interface MyDslPackage extends EPackage
   int DOMAIN = 0;
 
   /**
+   * The feature id for the '<em><b>Specification</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__SPECIFICATION = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN__NAME = 0;
+  int DOMAIN__NAME = 1;
+
+  /**
+   * The feature id for the '<em><b>Includes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__INCLUDES = 2;
 
   /**
    * The feature id for the '<em><b>Contextmodels</b></em>' containment reference list.
@@ -83,7 +101,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONTEXTMODELS = 1;
+  int DOMAIN__CONTEXTMODELS = 3;
 
   /**
    * The feature id for the '<em><b>Contextfragments</b></em>' containment reference list.
@@ -92,7 +110,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONTEXTFRAGMENTS = 2;
+  int DOMAIN__CONTEXTFRAGMENTS = 4;
 
   /**
    * The feature id for the '<em><b>Objects</b></em>' containment reference list.
@@ -101,7 +119,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__OBJECTS = 3;
+  int DOMAIN__OBJECTS = 5;
 
   /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -110,7 +128,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONSTRAINTS = 4;
+  int DOMAIN__CONSTRAINTS = 6;
 
   /**
    * The feature id for the '<em><b>Scenarios</b></em>' containment reference list.
@@ -119,7 +137,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__SCENARIOS = 5;
+  int DOMAIN__SCENARIOS = 7;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -128,7 +146,35 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_FEATURE_COUNT = 6;
+  int DOMAIN_FEATURE_COUNT = 8;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl <em>Include</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.IncludeImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getInclude()
+   * @generated
+   */
+  int INCLUDE = 1;
+
+  /**
+   * The feature id for the '<em><b>Import URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDE__IMPORT_URI = 0;
+
+  /**
+   * The number of structural features of the '<em>Include</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.
@@ -138,7 +184,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextModel()
    * @generated
    */
-  int CONTEXT_MODEL = 1;
+  int CONTEXT_MODEL = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -184,7 +230,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextFragment()
    * @generated
    */
-  int CONTEXT_FRAGMENT = 2;
+  int CONTEXT_FRAGMENT = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -230,7 +276,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAttribute()
    * @generated
    */
-  int ATTRIBUTE = 3;
+  int ATTRIBUTE = 4;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -267,7 +313,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 4;
+  int ENTITY = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -304,7 +350,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
    * @generated
    */
-  int RELATION = 5;
+  int RELATION = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -359,7 +405,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getScenario()
    * @generated
    */
-  int SCENARIO = 6;
+  int SCENARIO = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -396,7 +442,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getScenarioContent()
    * @generated
    */
-  int SCENARIO_CONTENT = 7;
+  int SCENARIO_CONTENT = 8;
 
   /**
    * The feature id for the '<em><b>Alt</b></em>' containment reference list.
@@ -460,7 +506,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMessage()
    * @generated
    */
-  int MESSAGE = 8;
+  int MESSAGE = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -569,7 +615,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
    * @generated
    */
-  int CONTEXT_MESSAGE = 9;
+  int CONTEXT_MESSAGE = 10;
 
   /**
    * The feature id for the '<em><b>Content</b></em>' containment reference list.
@@ -624,7 +670,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
    * @generated
    */
-  int CONTEXT_MESSAGE_CONTENT = 10;
+  int CONTEXT_MESSAGE_CONTENT = 11;
 
   /**
    * The feature id for the '<em><b>Match</b></em>' containment reference list.
@@ -661,7 +707,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
    * @generated
    */
-  int MATCH_MESSAGE = 11;
+  int MATCH_MESSAGE = 12;
 
   /**
    * The feature id for the '<em><b>Content</b></em>' reference.
@@ -689,7 +735,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
    * @generated
    */
-  int CHANGE_MESSAGE = 12;
+  int CHANGE_MESSAGE = 13;
 
   /**
    * The feature id for the '<em><b>Disappear</b></em>' containment reference list.
@@ -735,7 +781,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
    * @generated
    */
-  int APPEAR_MESSAGE = 13;
+  int APPEAR_MESSAGE = 14;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -772,7 +818,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
    * @generated
    */
-  int DISAPPEAR_MESSAGE = 14;
+  int DISAPPEAR_MESSAGE = 15;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -809,7 +855,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToMessage()
    * @generated
    */
-  int CHANGE_TO_MESSAGE = 15;
+  int CHANGE_TO_MESSAGE = 16;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -855,7 +901,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 16;
+  int OBJECT_TYPE = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -883,7 +929,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 17;
+  int OBJECT = 18;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -920,7 +966,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 18;
+  int CONSTRAINT = 19;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -957,7 +1003,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 19;
+  int ALT = 20;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -985,7 +1031,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 20;
+  int EXPRESSION = 21;
 
   /**
    * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -1013,7 +1059,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 21;
+  int PAR = 22;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -1041,7 +1087,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 22;
+  int PAR_EXPRESSION = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1078,7 +1124,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 23;
+  int LOOP = 24;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -1128,6 +1174,17 @@ public interface MyDslPackage extends EPackage
   EClass getDomain();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Domain#getSpecification <em>Specification</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Specification</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getSpecification()
+   * @see #getDomain()
+   * @generated
+   */
+  EAttribute getDomain_Specification();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Domain#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1137,6 +1194,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getDomain_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getIncludes <em>Includes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Includes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getIncludes()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Includes();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getContextmodels <em>Contextmodels</em>}'.
@@ -1192,6 +1260,27 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getDomain_Scenarios();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Include <em>Include</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Include</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Include
+   * @generated
+   */
+  EClass getInclude();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Include#getImportURI <em>Import URI</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Import URI</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Include#getImportURI()
+   * @see #getInclude()
+   * @generated
+   */
+  EAttribute getInclude_ImportURI();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextModel <em>Context Model</em>}'.
@@ -2128,12 +2217,28 @@ public interface MyDslPackage extends EPackage
     EClass DOMAIN = eINSTANCE.getDomain();
 
     /**
+     * The meta object literal for the '<em><b>Specification</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DOMAIN__SPECIFICATION = eINSTANCE.getDomain_Specification();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute DOMAIN__NAME = eINSTANCE.getDomain_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Includes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__INCLUDES = eINSTANCE.getDomain_Includes();
 
     /**
      * The meta object literal for the '<em><b>Contextmodels</b></em>' containment reference list feature.
@@ -2174,6 +2279,24 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference DOMAIN__SCENARIOS = eINSTANCE.getDomain_Scenarios();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl <em>Include</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.IncludeImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getInclude()
+     * @generated
+     */
+    EClass INCLUDE = eINSTANCE.getInclude();
+
+    /**
+     * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INCLUDE__IMPORT_URI = eINSTANCE.getInclude_ImportURI();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.

@@ -33,6 +33,15 @@ public interface MyDslFactory extends EFactory
   Domain createDomain();
 
   /**
+   * Returns a new object of class '<em>Include</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Include</em>'.
+   * @generated
+   */
+  Include createInclude();
+
+  /**
    * Returns a new object of class '<em>Context Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

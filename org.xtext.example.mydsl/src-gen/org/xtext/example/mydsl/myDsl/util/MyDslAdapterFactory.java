@@ -24,6 +24,7 @@ import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -102,6 +103,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseDomain(Domain object)
       {
         return createDomainAdapter();
+      }
+      @Override
+      public Adapter caseInclude(Include object)
+      {
+        return createIncludeAdapter();
       }
       @Override
       public Adapter caseContextModel(ContextModel object)
@@ -251,6 +257,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDomainAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Include <em>Include</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.Include
+   * @generated
+   */
+  public Adapter createIncludeAdapter()
   {
     return null;
   }
