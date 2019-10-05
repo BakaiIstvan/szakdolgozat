@@ -728,6 +728,8 @@ class MyDslGenerator extends AbstractGenerator {
 		    public Automaton copyAutomaton(Automaton referenceAuto) {
 		            Automaton result = new Automaton("copy automaton");
 		            int count = 0;
+		            State previousSender = new State();
+		            State referencePreviousSender = new State();
 		    
 		            for (Transition t : referenceAuto.getTransitions()) {
 		                State sender = new State();
@@ -735,24 +737,53 @@ class MyDslGenerator extends AbstractGenerator {
 		                Transition transition = new Transition();
 		                Automaton temp = new Automaton("temp");
 		    
-		                sender.setId("c" + count);
-		                count++;
-		                sender.setType(t.getSender().getType());
-		    
-		                receiver.setId("c" + count);
-		                count++;
-		                receiver.setType(t.getReceiver().getType());
-		    
 		                transition.setId(t.getId());
-		                transition.setSender(sender);
-		                transition.setReceiver(receiver);
 		    
-		                temp.addState(sender);
-		                temp.addState(receiver);
+		                if (t.getSender() == referencePreviousSender) {
+		                    receiver.setId("c" + count);
+		                    count++;
+		                    receiver.setType(t.getReceiver().getType());
+		    
+		                    transition.setSender(previousSender);
+		                    transition.setReceiver(receiver);
+		                    temp.addState(previousSender);
+		                    temp.addState(receiver);
+		                    temp.setInitial(previousSender);
+		                    temp.setFinale(receiver);
+		                } else {
+		                    if (t.getSender() == t.getReceiver()) {
+		                        sender.setId("c" + count);
+		                        count++;
+		                        sender.setType(t.getSender().getType());
+		    
+		                        transition.setSender(sender);
+		                        transition.setReceiver(sender);
+		    
+		                        temp.addState(sender);
+		                        temp.setInitial(sender);
+		                        temp.setFinale(sender);
+		                    } else {
+		                        sender.setId("c" + count);
+		                        count++;
+		                        sender.setType(t.getSender().getType());
+		    
+		                        receiver.setId("c" + count);
+		                        count++;
+		                        receiver.setType(t.getReceiver().getType());
+		    
+		                        transition.setSender(sender);
+		                        transition.setReceiver(receiver);
+		    
+		                        temp.addState(sender);
+		                        temp.addState(receiver);
+		                        temp.setInitial(sender);
+		                        temp.setFinale(receiver);
+		                    }
+		                    previousSender = sender;
+		                    referencePreviousSender = t.getSender();
+		                }
+		    
 		                temp.addTransition(transition);
-		                temp.setInitial(sender);
-		                temp.setFinale(receiver);
-		    
 		                result.collapse(temp);
 		            }
 		    
