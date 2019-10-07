@@ -885,13 +885,22 @@ public interface MyDslPackage extends EPackage
   int CHANGE_TO_MESSAGE__ATTRIBUTE = 2;
 
   /**
+   * The feature id for the '<em><b>Changevalue</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__CHANGEVALUE = 3;
+
+  /**
    * The number of structural features of the '<em>Change To Message</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANGE_TO_MESSAGE_FEATURE_COUNT = 3;
+  int CHANGE_TO_MESSAGE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
@@ -1961,6 +1970,17 @@ public interface MyDslPackage extends EPackage
   EReference getChangeToMessage_Attribute();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Changevalue</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EAttribute getChangeToMessage_Changevalue();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ObjectType <em>Object Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2831,6 +2851,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference CHANGE_TO_MESSAGE__ATTRIBUTE = eINSTANCE.getChangeToMessage_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Changevalue</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHANGE_TO_MESSAGE__CHANGEVALUE = eINSTANCE.getChangeToMessage_Changevalue();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.

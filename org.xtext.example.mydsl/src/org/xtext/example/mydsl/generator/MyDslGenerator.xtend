@@ -1370,7 +1370,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		String required_value = "«cm.attribute.value»";
+		String required_value = "«cm.changevalue»";
 		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + required_value.substring(1, required_value.length() - 1) + "))", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
@@ -1472,7 +1472,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		b.setFinale(actualState);
 											
-		String fail_value = "«cm.attribute.value»";
+		String fail_value = "«cm.changevalue»";
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
@@ -1579,7 +1579,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		String msg_value = "«cm.attribute.value»";
+		String msg_value = "«cm.changevalue»";
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
@@ -1696,7 +1696,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 											
-		String strict_required_value = "«cm.attribute.value»";
+		String strict_required_value = "«cm.changevalue»";
 		finalState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
@@ -1792,7 +1792,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 											
-		String strict_fail_value = "«cm.attribute.value»";
+		String strict_fail_value = "«cm.changevalue»";
 		finalState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
@@ -1883,7 +1883,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		String strict_value = "«cm.attribute.value»";
+		String strict_value = "«cm.changevalue»";
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + strict_value.substring(1, strict_value.length() - 1) + "))", actualState, newState));

@@ -4630,6 +4630,7 @@ rule__ChangeToMessage__Group__3
 	}
 :
 	rule__ChangeToMessage__Group__3__Impl
+	rule__ChangeToMessage__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -4641,9 +4642,62 @@ rule__ChangeToMessage__Group__3__Impl
 	}
 :
 (
-	{ before(grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_3()); }
+	{ before(grammarAccess.getChangeToMessageAccess().getCommaKeyword_3()); }
+	(',')?
+	{ after(grammarAccess.getChangeToMessageAccess().getCommaKeyword_3()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ChangeToMessage__Group__4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ChangeToMessage__Group__4__Impl
+	rule__ChangeToMessage__Group__5
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ChangeToMessage__Group__4__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getChangeToMessageAccess().getChangevalueAssignment_4()); }
+	(rule__ChangeToMessage__ChangevalueAssignment_4)?
+	{ after(grammarAccess.getChangeToMessageAccess().getChangevalueAssignment_4()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ChangeToMessage__Group__5
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__ChangeToMessage__Group__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ChangeToMessage__Group__5__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_5()); }
 	')'
-	{ after(grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_3()); }
+	{ after(grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_5()); }
 )
 ;
 finally {
@@ -6969,6 +7023,21 @@ rule__ChangeToMessage__AttributeAssignment_2_4
 			{ after(grammarAccess.getChangeToMessageAccess().getAttributeAttributeIDTerminalRuleCall_2_4_0_1()); }
 		)
 		{ after(grammarAccess.getChangeToMessageAccess().getAttributeAttributeCrossReference_2_4_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ChangeToMessage__ChangevalueAssignment_4
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getChangeToMessageAccess().getChangevalueAttributeValueParserRuleCall_4_0()); }
+		ruleAttributeValue
+		{ after(grammarAccess.getChangeToMessageAccess().getChangevalueAttributeValueParserRuleCall_4_0()); }
 	)
 ;
 finally {

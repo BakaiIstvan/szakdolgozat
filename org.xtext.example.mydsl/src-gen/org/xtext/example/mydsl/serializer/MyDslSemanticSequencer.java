@@ -197,22 +197,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ChangeToMessage returns ChangeToMessage
 	 *
 	 * Constraint:
-	 *     (context=[ContextModel|ID] entity=[Entity|ID] attribute=[Attribute|ID])
+	 *     ((context=[ContextModel|ID] entity=[Entity|ID] attribute=[Attribute|ID])? changevalue+=AttributeValue?)
 	 */
 	protected void sequence_ChangeToMessage(ISerializationContext context, ChangeToMessage semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__CONTEXT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__CONTEXT));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ENTITY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ENTITY));
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ATTRIBUTE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CHANGE_TO_MESSAGE__ATTRIBUTE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getChangeToMessageAccess().getContextContextModelIDTerminalRuleCall_2_0_0_1(), semanticObject.eGet(MyDslPackage.Literals.CHANGE_TO_MESSAGE__CONTEXT, false));
-		feeder.accept(grammarAccess.getChangeToMessageAccess().getEntityEntityIDTerminalRuleCall_2_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.CHANGE_TO_MESSAGE__ENTITY, false));
-		feeder.accept(grammarAccess.getChangeToMessageAccess().getAttributeAttributeIDTerminalRuleCall_2_4_0_1(), semanticObject.eGet(MyDslPackage.Literals.CHANGE_TO_MESSAGE__ATTRIBUTE, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

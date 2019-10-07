@@ -3,13 +3,19 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
@@ -28,6 +34,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getEntity <em>Entity</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getChangevalue <em>Changevalue</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +70,16 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected Attribute attribute;
+
+  /**
+   * The cached value of the '{@link #getChangevalue() <em>Changevalue</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getChangevalue()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> changevalue;
 
   /**
    * <!-- begin-user-doc -->
@@ -219,6 +236,20 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getChangevalue()
+  {
+    if (changevalue == null)
+    {
+      changevalue = new EDataTypeEList<String>(String.class, this, MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE);
+    }
+    return changevalue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -233,6 +264,8 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         if (resolve) return getAttribute();
         return basicGetAttribute();
+      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+        return getChangevalue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -242,6 +275,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -255,6 +289,10 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         setAttribute((Attribute)newValue);
+        return;
+      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+        getChangevalue().clear();
+        getChangevalue().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -279,6 +317,9 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         setAttribute((Attribute)null);
         return;
+      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+        getChangevalue().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -299,8 +340,27 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
         return entity != null;
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         return attribute != null;
+      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+        return changevalue != null && !changevalue.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (changevalue: ");
+    result.append(changevalue);
+    result.append(')');
+    return result.toString();
   }
 
 } //ChangeToMessageImpl

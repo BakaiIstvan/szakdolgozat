@@ -21,6 +21,7 @@ import org.xtext.example.mydsl.services.MyDslGrammarAccess;
 public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected MyDslGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_ChangeToMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Domain_LeftCurlyBracketKeyword_2_q;
 	protected AbstractElementAlias match_Domain_RightCurlyBracketKeyword_9_q;
 	protected AbstractElementAlias match_Expression_EqualsSignKeyword_2_q;
@@ -36,6 +37,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (MyDslGrammarAccess) access;
+		match_ChangeToMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getChangeToMessageAccess().getCommaKeyword_3());
 		match_Domain_LeftCurlyBracketKeyword_2_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getLeftCurlyBracketKeyword_2());
 		match_Domain_RightCurlyBracketKeyword_9_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_9());
 		match_Expression_EqualsSignKeyword_2_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getEqualsSignKeyword_2());
@@ -84,7 +86,9 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Domain_LeftCurlyBracketKeyword_2_q.equals(syntax))
+			if (match_ChangeToMessage_CommaKeyword_3_q.equals(syntax))
+				emit_ChangeToMessage_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Domain_LeftCurlyBracketKeyword_2_q.equals(syntax))
 				emit_Domain_LeftCurlyBracketKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Domain_RightCurlyBracketKeyword_9_q.equals(syntax))
 				emit_Domain_RightCurlyBracketKeyword_9_q(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -110,6 +114,20 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * Ambiguous syntax:
+	 *     ','?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'changeTo' '(' (ambiguity) ')' (rule start)
+	 *     (rule start) 'changeTo' '(' (ambiguity) changevalue+=AttributeValue
+	 *     attribute=[Attribute|ID] (ambiguity) ')' (rule end)
+	 *     attribute=[Attribute|ID] (ambiguity) changevalue+=AttributeValue
+	 */
+	protected void emit_ChangeToMessage_CommaKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * Ambiguous syntax:
 	 *     '{'?

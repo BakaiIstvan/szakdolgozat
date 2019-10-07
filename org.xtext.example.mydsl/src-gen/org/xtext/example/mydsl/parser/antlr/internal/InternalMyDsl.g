@@ -1897,9 +1897,34 @@ ruleChangeToMessage returns [EObject current=null]
 				)
 			)
 		)?
-		otherlv_7=')'
+		(
+			otherlv_7=','
+			{
+				newLeafNode(otherlv_7, grammarAccess.getChangeToMessageAccess().getCommaKeyword_3());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getChangeToMessageAccess().getChangevalueAttributeValueParserRuleCall_4_0());
+				}
+				lv_changevalue_8_0=ruleAttributeValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getChangeToMessageRule());
+					}
+					add(
+						$current,
+						"changevalue",
+						lv_changevalue_8_0,
+						"org.xtext.example.mydsl.MyDsl.AttributeValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_9=')'
 		{
-			newLeafNode(otherlv_7, grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_3());
+			newLeafNode(otherlv_9, grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_5());
 		}
 	)
 ;

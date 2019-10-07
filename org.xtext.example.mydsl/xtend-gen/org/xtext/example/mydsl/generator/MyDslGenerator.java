@@ -3706,8 +3706,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("String required_value = \"");
-    EList<String> _value = cm.getAttribute().getValue();
-    _builder.append(_value);
+    EList<String> _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"!\"+ \"changeTo(\" + \"");
@@ -3957,8 +3957,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
     _builder.append("String fail_value = \"");
-    EList<String> _value = cm.getAttribute().getValue();
-    _builder.append(_value);
+    EList<String> _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
@@ -4217,8 +4217,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("String msg_value = \"");
-    EList<String> _value = cm.getAttribute().getValue();
-    _builder.append(_value);
+    EList<String> _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
@@ -4523,8 +4523,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
     _builder.append("String strict_required_value = \"");
-    EList<String> _value = cm.getAttribute().getValue();
-    _builder.append(_value);
+    EList<String> _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
@@ -4779,8 +4779,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
     _builder.append("String strict_fail_value = \"");
-    EList<String> _value = cm.getAttribute().getValue();
-    _builder.append(_value);
+    EList<String> _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
@@ -5008,8 +5008,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("String strict_value = \"");
-    EList<String> _value = cm.getAttribute().getValue();
-    _builder.append(_value);
+    EList<String> _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
