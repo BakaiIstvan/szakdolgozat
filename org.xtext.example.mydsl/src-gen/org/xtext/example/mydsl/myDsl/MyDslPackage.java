@@ -710,13 +710,22 @@ public interface MyDslPackage extends EPackage
   int MATCH_MESSAGE = 12;
 
   /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__CONTEXT = 0;
+
+  /**
    * The feature id for the '<em><b>Content</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MATCH_MESSAGE__CONTENT = 0;
+  int MATCH_MESSAGE__CONTENT = 1;
 
   /**
    * The number of structural features of the '<em>Match Message</em>' class.
@@ -725,7 +734,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MATCH_MESSAGE_FEATURE_COUNT = 1;
+  int MATCH_MESSAGE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl <em>Change Message</em>}' class.
@@ -1809,6 +1818,17 @@ public interface MyDslPackage extends EPackage
   EClass getMatchMessage();
 
   /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.MatchMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage#getContext()
+   * @see #getMatchMessage()
+   * @generated
+   */
+  EReference getMatchMessage_Context();
+
+  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.MatchMessage#getContent <em>Content</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2723,6 +2743,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass MATCH_MESSAGE = eINSTANCE.getMatchMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATCH_MESSAGE__CONTEXT = eINSTANCE.getMatchMessage_Context();
 
     /**
      * The meta object literal for the '<em><b>Content</b></em>' reference feature.

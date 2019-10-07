@@ -923,16 +923,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cMatchKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cContentAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cContentContextFragmentCrossReference_2_0 = (CrossReference)cContentAssignment_2.eContents().get(0);
-		private final RuleCall cContentContextFragmentIDTerminalRuleCall_2_0_1 = (RuleCall)cContentContextFragmentCrossReference_2_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cContextAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cContextContextModelCrossReference_2_0 = (CrossReference)cContextAssignment_2.eContents().get(0);
+		private final RuleCall cContextContextModelIDTerminalRuleCall_2_0_1 = (RuleCall)cContextContextModelCrossReference_2_0.eContents().get(1);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cContentAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final CrossReference cContentContextFragmentCrossReference_4_0 = (CrossReference)cContentAssignment_4.eContents().get(0);
+		private final RuleCall cContentContextFragmentIDTerminalRuleCall_4_0_1 = (RuleCall)cContentContextFragmentCrossReference_4_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//MatchMessage:
-		//	'match' '(' content=[ContextFragment]? ')';
+		//	'match' '(' context=[ContextModel]? ','? content=[ContextFragment]? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'match' '(' content=[ContextFragment]? ')'
+		//'match' '(' context=[ContextModel]? ','? content=[ContextFragment]? ')'
 		public Group getGroup() { return cGroup; }
 		
 		//'match'
@@ -941,17 +945,29 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//content=[ContextFragment]?
-		public Assignment getContentAssignment_2() { return cContentAssignment_2; }
+		//context=[ContextModel]?
+		public Assignment getContextAssignment_2() { return cContextAssignment_2; }
 		
-		//[ContextFragment]
-		public CrossReference getContentContextFragmentCrossReference_2_0() { return cContentContextFragmentCrossReference_2_0; }
+		//[ContextModel]
+		public CrossReference getContextContextModelCrossReference_2_0() { return cContextContextModelCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getContentContextFragmentIDTerminalRuleCall_2_0_1() { return cContentContextFragmentIDTerminalRuleCall_2_0_1; }
+		public RuleCall getContextContextModelIDTerminalRuleCall_2_0_1() { return cContextContextModelIDTerminalRuleCall_2_0_1; }
+		
+		//','?
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		
+		//content=[ContextFragment]?
+		public Assignment getContentAssignment_4() { return cContentAssignment_4; }
+		
+		//[ContextFragment]
+		public CrossReference getContentContextFragmentCrossReference_4_0() { return cContentContextFragmentCrossReference_4_0; }
+		
+		//ID
+		public RuleCall getContentContextFragmentIDTerminalRuleCall_4_0_1() { return cContentContextFragmentIDTerminalRuleCall_4_0_1; }
 		
 		//')'
-		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 	public class ChangeMessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ChangeMessage");
@@ -1794,7 +1810,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//MatchMessage:
-	//	'match' '(' content=[ContextFragment]? ')';
+	//	'match' '(' context=[ContextModel]? ','? content=[ContextFragment]? ')';
 	public MatchMessageElements getMatchMessageAccess() {
 		return pMatchMessage;
 	}

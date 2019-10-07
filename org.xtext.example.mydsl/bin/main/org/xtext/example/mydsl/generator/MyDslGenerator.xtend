@@ -1323,10 +1323,10 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 		
-		b.addTransition(new Transition("!" + "match(" + "«ma.content.name»" + ")", actualState, actualState));
+		b.addTransition(new Transition("!" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("match(" + "«ma.content.name»" + ")", actualState, newState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -1459,7 +1459,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("match (" + "«ma.content.name»" + ")" , actualState, newState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition("1", newState, newState));
 	'''
@@ -1537,7 +1537,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("match" + "(" + "«ma.content.name»" + ")" , actualState, newState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -1643,8 +1643,8 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("match" + "(" + "«ma.content.name»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!" + "match" + "(" + "«ma.content.name»" + ")" , actualState, acceptState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -1739,8 +1739,8 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "match" + "(" + "«ma.content.name»" + ")", actualState, finalState));
-		b.addTransition(new Transition("match" + "(" + "«ma.content.name»" + ")", actualState, acceptState));
+		b.addTransition(new Transition("!" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, finalState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
 		b.addState(acceptState);
@@ -1843,7 +1843,7 @@ class MyDslGenerator extends AbstractGenerator {
 												
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("match" + "(" + "«ma.content.name»" + ")", actualState, newState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''

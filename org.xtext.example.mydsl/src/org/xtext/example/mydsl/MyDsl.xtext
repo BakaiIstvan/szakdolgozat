@@ -86,7 +86,7 @@ ContextMessageContent:
 ;
 
 MatchMessage:
-	'match' '(' (content=[ContextFragment])? ')'
+	'match' '(' (context=[ContextModel])? (',')? (content=[ContextFragment])? ')'
 ;
 
 ChangeMessage:

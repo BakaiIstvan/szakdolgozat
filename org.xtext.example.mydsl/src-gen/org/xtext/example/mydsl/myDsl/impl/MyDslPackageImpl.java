@@ -878,9 +878,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMatchMessage_Content()
+  public EReference getMatchMessage_Context()
   {
     return (EReference)matchMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMatchMessage_Content()
+  {
+    return (EReference)matchMessageEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1344,6 +1354,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__CHANGE);
 
     matchMessageEClass = createEClass(MATCH_MESSAGE);
+    createEReference(matchMessageEClass, MATCH_MESSAGE__CONTEXT);
     createEReference(matchMessageEClass, MATCH_MESSAGE__CONTENT);
 
     changeMessageEClass = createEClass(CHANGE_MESSAGE);
@@ -1497,6 +1508,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getContextMessageContent_Change(), this.getChangeMessage(), null, "change", null, 0, -1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(matchMessageEClass, MatchMessage.class, "MatchMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMatchMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, MatchMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMatchMessage_Content(), this.getContextFragment(), null, "content", null, 0, 1, MatchMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(changeMessageEClass, ChangeMessage.class, "ChangeMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

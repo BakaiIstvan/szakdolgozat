@@ -77,6 +77,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextMessageContent/change"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//MatchMessage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//MatchMessage/context"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//MatchMessage/content"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ChangeMessage">

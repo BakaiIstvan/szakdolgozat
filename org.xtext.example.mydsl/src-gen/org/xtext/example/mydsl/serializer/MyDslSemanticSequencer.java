@@ -365,16 +365,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     MatchMessage returns MatchMessage
 	 *
 	 * Constraint:
-	 *     content=[ContextFragment|ID]
+	 *     (context=[ContextModel|ID]? content=[ContextFragment|ID]?)
 	 */
 	protected void sequence_MatchMessage(ISerializationContext context, MatchMessage semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.MATCH_MESSAGE__CONTENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.MATCH_MESSAGE__CONTENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMatchMessageAccess().getContentContextFragmentIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.MATCH_MESSAGE__CONTENT, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
@@ -23,6 +24,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl#getContent <em>Content</em>}</li>
  * </ul>
  *
@@ -30,6 +32,16 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  */
 public class MatchMessageImpl extends MinimalEObjectImpl.Container implements MatchMessage
 {
+  /**
+   * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContext()
+   * @generated
+   * @ordered
+   */
+  protected ContextModel context;
+
   /**
    * The cached value of the '{@link #getContent() <em>Content</em>}' reference.
    * <!-- begin-user-doc -->
@@ -59,6 +71,49 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
   protected EClass eStaticClass()
   {
     return MyDslPackage.Literals.MATCH_MESSAGE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextModel getContext()
+  {
+    if (context != null && context.eIsProxy())
+    {
+      InternalEObject oldContext = (InternalEObject)context;
+      context = (ContextModel)eResolveProxy(oldContext);
+      if (context != oldContext)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.MATCH_MESSAGE__CONTEXT, oldContext, context));
+      }
+    }
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextModel basicGetContext()
+  {
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(ContextModel newContext)
+  {
+    ContextModel oldContext = context;
+    context = newContext;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MATCH_MESSAGE__CONTEXT, oldContext, context));
   }
 
   /**
@@ -114,6 +169,9 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
   {
     switch (featureID)
     {
+      case MyDslPackage.MATCH_MESSAGE__CONTEXT:
+        if (resolve) return getContext();
+        return basicGetContext();
       case MyDslPackage.MATCH_MESSAGE__CONTENT:
         if (resolve) return getContent();
         return basicGetContent();
@@ -131,6 +189,9 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
   {
     switch (featureID)
     {
+      case MyDslPackage.MATCH_MESSAGE__CONTEXT:
+        setContext((ContextModel)newValue);
+        return;
       case MyDslPackage.MATCH_MESSAGE__CONTENT:
         setContent((ContextFragment)newValue);
         return;
@@ -148,6 +209,9 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
   {
     switch (featureID)
     {
+      case MyDslPackage.MATCH_MESSAGE__CONTEXT:
+        setContext((ContextModel)null);
+        return;
       case MyDslPackage.MATCH_MESSAGE__CONTENT:
         setContent((ContextFragment)null);
         return;
@@ -165,6 +229,8 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
   {
     switch (featureID)
     {
+      case MyDslPackage.MATCH_MESSAGE__CONTEXT:
+        return context != null;
       case MyDslPackage.MATCH_MESSAGE__CONTENT:
         return content != null;
     }

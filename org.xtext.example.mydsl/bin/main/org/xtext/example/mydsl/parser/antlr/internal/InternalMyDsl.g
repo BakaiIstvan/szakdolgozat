@@ -1609,13 +1609,32 @@ ruleMatchMessage returns [EObject current=null]
 				}
 				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getMatchMessageAccess().getContentContextFragmentCrossReference_2_0());
+					newLeafNode(otherlv_2, grammarAccess.getMatchMessageAccess().getContextContextModelCrossReference_2_0());
 				}
 			)
 		)?
-		otherlv_3=')'
+		(
+			otherlv_3=','
+			{
+				newLeafNode(otherlv_3, grammarAccess.getMatchMessageAccess().getCommaKeyword_3());
+			}
+		)?
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMatchMessageRule());
+					}
+				}
+				otherlv_4=RULE_ID
+				{
+					newLeafNode(otherlv_4, grammarAccess.getMatchMessageAccess().getContentContextFragmentCrossReference_4_0());
+				}
+			)
+		)?
+		otherlv_5=')'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getMatchMessageAccess().getRightParenthesisKeyword_3());
+			newLeafNode(otherlv_5, grammarAccess.getMatchMessageAccess().getRightParenthesisKeyword_5());
 		}
 	)
 ;

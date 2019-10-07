@@ -94,6 +94,7 @@
         eType="#//ChangeMessage" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MatchMessage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ContextModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//ContextFragment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChangeMessage">

@@ -31,6 +31,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Expression_LessThanSignEqualsSignKeyword_6_q;
 	protected AbstractElementAlias match_Expression_LessThanSignKeyword_4_q;
 	protected AbstractElementAlias match_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q;
+	protected AbstractElementAlias match_MatchMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Message_LeftCurlyBracketKeyword_11_q;
 	protected AbstractElementAlias match_Message_RightCurlyBracketKeyword_13_q;
 	
@@ -47,6 +48,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Expression_LessThanSignEqualsSignKeyword_6_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getLessThanSignEqualsSignKeyword_6());
 		match_Expression_LessThanSignKeyword_4_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getLessThanSignKeyword_4());
 		match_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getExpressionAccess().getIDTerminalRuleCall_7_0()), new TokenAlias(false, false, grammarAccess.getExpressionAccess().getNumberTerminalRuleCall_7_1()));
+		match_MatchMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getMatchMessageAccess().getCommaKeyword_3());
 		match_Message_LeftCurlyBracketKeyword_11_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_11());
 		match_Message_RightCurlyBracketKeyword_13_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_13());
 	}
@@ -106,6 +108,8 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Expression_LessThanSignKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q.equals(syntax))
 				emit_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_MatchMessage_CommaKeyword_3_q.equals(syntax))
+				emit_MatchMessage_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Message_LeftCurlyBracketKeyword_11_q.equals(syntax))
 				emit_Message_LeftCurlyBracketKeyword_11_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Message_RightCurlyBracketKeyword_13_q.equals(syntax))
@@ -260,6 +264,20 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) '(' ID? '='? '>'? '<'? '>='? '<='? (ambiguity) ')' '{' messages+=Message
 	 */
 	protected void emit_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'match' '(' (ambiguity) ')' (rule start)
+	 *     (rule start) 'match' '(' (ambiguity) content=[ContextFragment|ID]
+	 *     context=[ContextModel|ID] (ambiguity) ')' (rule end)
+	 *     context=[ContextModel|ID] (ambiguity) content=[ContextFragment|ID]
+	 */
+	protected void emit_MatchMessage_CommaKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
