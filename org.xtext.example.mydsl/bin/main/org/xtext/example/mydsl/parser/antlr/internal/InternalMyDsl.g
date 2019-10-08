@@ -322,45 +322,44 @@ ruleContextModel returns [EObject current=null]
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesEntityParserRuleCall_3_0());
-				}
-				lv_entities_3_0=ruleEntity
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getContextModelRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesEntityParserRuleCall_3_0_0());
 					}
-					add(
-						$current,
-						"entities",
-						lv_entities_3_0,
-						"org.xtext.example.mydsl.MyDsl.Entity");
-					afterParserOrEnumRuleCall();
-				}
+					lv_entities_3_1=ruleEntity
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getContextModelRule());
+						}
+						add(
+							$current,
+							"entities",
+							lv_entities_3_1,
+							"org.xtext.example.mydsl.MyDsl.Entity");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesRelationParserRuleCall_3_0_1());
+					}
+					lv_entities_3_2=ruleRelation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getContextModelRule());
+						}
+						add(
+							$current,
+							"entities",
+							lv_entities_3_2,
+							"org.xtext.example.mydsl.MyDsl.Relation");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)*
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getContextModelAccess().getRelationsRelationParserRuleCall_4_0());
-				}
-				lv_relations_4_0=ruleRelation
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getContextModelRule());
-					}
-					add(
-						$current,
-						"relations",
-						lv_relations_4_0,
-						"org.xtext.example.mydsl.MyDsl.Relation");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)*
-		otherlv_5='}'
+		otherlv_4='}'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getContextModelAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_4, grammarAccess.getContextModelAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;
@@ -409,45 +408,44 @@ ruleContextFragment returns [EObject current=null]
 		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getContextFragmentAccess().getEntitiesEntityParserRuleCall_3_0());
-				}
-				lv_entities_3_0=ruleEntity
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getContextFragmentAccess().getEntitiesEntityParserRuleCall_3_0_0());
 					}
-					add(
-						$current,
-						"entities",
-						lv_entities_3_0,
-						"org.xtext.example.mydsl.MyDsl.Entity");
-					afterParserOrEnumRuleCall();
-				}
+					lv_entities_3_1=ruleEntity
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
+						}
+						add(
+							$current,
+							"entities",
+							lv_entities_3_1,
+							"org.xtext.example.mydsl.MyDsl.Entity");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getContextFragmentAccess().getEntitiesRelationParserRuleCall_3_0_1());
+					}
+					lv_entities_3_2=ruleRelation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
+						}
+						add(
+							$current,
+							"entities",
+							lv_entities_3_2,
+							"org.xtext.example.mydsl.MyDsl.Relation");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)*
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getContextFragmentAccess().getRelationsRelationParserRuleCall_4_0());
-				}
-				lv_relations_4_0=ruleRelation
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
-					}
-					add(
-						$current,
-						"relations",
-						lv_relations_4_0,
-						"org.xtext.example.mydsl.MyDsl.Relation");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)*
-		otherlv_5='}'
+		otherlv_4='}'
 		{
-			newLeafNode(otherlv_5, grammarAccess.getContextFragmentAccess().getRightCurlyBracketKeyword_5());
+			newLeafNode(otherlv_4, grammarAccess.getContextFragmentAccess().getRightCurlyBracketKeyword_4());
 		}
 	)
 ;
@@ -1894,7 +1892,7 @@ ruleChangeToMessage returns [EObject current=null]
 					}
 					otherlv_4=RULE_ID
 					{
-						newLeafNode(otherlv_4, grammarAccess.getChangeToMessageAccess().getEntityEntityCrossReference_2_2_0());
+						newLeafNode(otherlv_4, grammarAccess.getChangeToMessageAccess().getEntityTypeCrossReference_2_2_0());
 					}
 				)
 			)

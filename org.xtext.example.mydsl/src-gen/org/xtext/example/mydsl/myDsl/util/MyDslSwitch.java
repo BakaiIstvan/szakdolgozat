@@ -33,6 +33,7 @@ import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
+import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -136,6 +137,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Entity entity = (Entity)theEObject;
         T result = caseEntity(entity);
+        if (result == null) result = caseType(entity);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -143,6 +145,7 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Relation relation = (Relation)theEObject;
         T result = caseRelation(relation);
+        if (result == null) result = caseType(relation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -213,6 +216,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         ChangeToMessage changeToMessage = (ChangeToMessage)theEObject;
         T result = caseChangeToMessage(changeToMessage);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.TYPE:
+      {
+        Type type = (Type)theEObject;
+        T result = caseType(type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -544,6 +554,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseChangeToMessage(ChangeToMessage object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseType(Type object)
   {
     return null;
   }

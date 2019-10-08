@@ -9,22 +9,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Context Model</b></em>'.
+ * A representation of the model object '<em><b>Type</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ContextModel#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ContextModel#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Type#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Type#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextModel()
+ * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getType()
  * @model
  * @generated
  */
-public interface ContextModel extends EObject
+public interface Type extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -36,14 +36,14 @@ public interface ContextModel extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextModel_Name()
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getType_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ContextModel#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Type#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -53,19 +53,19 @@ public interface ContextModel extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Type}.
+   * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Attribute}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Entities</em>' containment reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextModel_Entities()
+   * @return the value of the '<em>Attributes</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getType_Attributes()
    * @model containment="true"
    * @generated
    */
-  EList<Type> getEntities();
+  EList<Attribute> getAttributes();
 
-} // ContextModel
+} // Type

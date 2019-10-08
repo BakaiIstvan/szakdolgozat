@@ -197,7 +197,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ChangeToMessage returns ChangeToMessage
 	 *
 	 * Constraint:
-	 *     ((context=[ContextModel|ID] entity=[Entity|ID] attribute=[Attribute|ID])? changevalue+=AttributeValue?)
+	 *     ((context=[ContextModel|ID] entity=[Type|ID] attribute=[Attribute|ID])? changevalue+=AttributeValue?)
 	 */
 	protected void sequence_ChangeToMessage(ISerializationContext context, ChangeToMessage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -221,7 +221,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ContextFragment returns ContextFragment
 	 *
 	 * Constraint:
-	 *     (name=ID entities+=Entity* relations+=Relation*)
+	 *     (name=ID (entities+=Entity | entities+=Relation)*)
 	 */
 	protected void sequence_ContextFragment(ISerializationContext context, ContextFragment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -257,7 +257,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ContextModel returns ContextModel
 	 *
 	 * Constraint:
-	 *     (name=ID entities+=Entity* relations+=Relation*)
+	 *     (name=ID (entities+=Entity | entities+=Relation)*)
 	 */
 	protected void sequence_ContextModel(ISerializationContext context, ContextModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -309,6 +309,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Entity returns Entity
+	 *     Type returns Entity
 	 *
 	 * Constraint:
 	 *     (name=ID attributes+=Attribute*)
@@ -452,6 +453,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Relation returns Relation
+	 *     Type returns Relation
 	 *
 	 * Constraint:
 	 *     (name=ID sender=[Entity|ID] receiver=[Entity|ID] attributes+=Attribute*)

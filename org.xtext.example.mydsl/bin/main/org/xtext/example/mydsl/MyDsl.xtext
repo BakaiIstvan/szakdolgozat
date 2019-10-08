@@ -19,15 +19,13 @@ Include:
 
 ContextModel:
 	'contextmodel' name=ID '{'
-		entities+=Entity*
-		relations+=Relation*
+		entities+=(Entity|Relation)*
 	'}'
 ;
 
 ContextFragment:
 	'contextfragment' name=ID '{'
-		entities+=Entity*
-		relations+=Relation*
+		entities+=(Entity|Relation)*
 	'}'
 ;
 
@@ -102,7 +100,11 @@ DisappearMessage:
 ;
 
 ChangeToMessage:
-	'changeTo' '(' (context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute])? (',')? (changevalue+=AttributeValue)? ')'
+	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? (',')? (changevalue+=AttributeValue)? ')'
+;
+
+Type:
+	Entity | Relation
 ;
 
 Name:

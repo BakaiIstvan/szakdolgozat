@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ContextModel;
-import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected Entity entity;
+  protected Type entity;
 
   /**
    * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
@@ -150,12 +150,12 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity getEntity()
+  public Type getEntity()
   {
     if (entity != null && entity.eIsProxy())
     {
       InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Entity)eResolveProxy(oldEntity);
+      entity = (Type)eResolveProxy(oldEntity);
       if (entity != oldEntity)
       {
         if (eNotificationRequired())
@@ -170,7 +170,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetEntity()
+  public Type basicGetEntity()
   {
     return entity;
   }
@@ -180,9 +180,9 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEntity(Entity newEntity)
+  public void setEntity(Type newEntity)
   {
-    Entity oldEntity = entity;
+    Type oldEntity = entity;
     entity = newEntity;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
@@ -285,7 +285,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
         setContext((ContextModel)newValue);
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        setEntity((Entity)newValue);
+        setEntity((Type)newValue);
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         setAttribute((Attribute)newValue);
@@ -312,7 +312,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
         setContext((ContextModel)null);
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        setEntity((Entity)null);
+        setEntity((Type)null);
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         setAttribute((Attribute)null);

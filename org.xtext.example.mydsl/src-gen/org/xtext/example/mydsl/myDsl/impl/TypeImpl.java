@@ -19,25 +19,25 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Context Model</b></em>'.
+ * An implementation of the model object '<em><b>Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.TypeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.TypeImpl#getAttributes <em>Attributes</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ContextModelImpl extends MinimalEObjectImpl.Container implements ContextModel
+public class TypeImpl extends MinimalEObjectImpl.Container implements Type
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -60,21 +60,21 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getEntities() <em>Entities</em>}' containment reference list.
+   * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEntities()
+   * @see #getAttributes()
    * @generated
    * @ordered
    */
-  protected EList<Type> entities;
+  protected EList<Attribute> attributes;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextModelImpl()
+  protected TypeImpl()
   {
     super();
   }
@@ -87,7 +87,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.CONTEXT_MODEL;
+    return MyDslPackage.Literals.TYPE;
   }
 
   /**
@@ -110,7 +110,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CONTEXT_MODEL__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.TYPE__NAME, oldName, name));
   }
 
   /**
@@ -118,13 +118,13 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Type> getEntities()
+  public EList<Attribute> getAttributes()
   {
-    if (entities == null)
+    if (attributes == null)
     {
-      entities = new EObjectContainmentEList<Type>(Type.class, this, MyDslPackage.CONTEXT_MODEL__ENTITIES);
+      attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this, MyDslPackage.TYPE__ATTRIBUTES);
     }
-    return entities;
+    return attributes;
   }
 
   /**
@@ -137,8 +137,8 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MODEL__ENTITIES:
-        return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.TYPE__ATTRIBUTES:
+        return ((InternalEList<?>)getAttributes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -153,10 +153,10 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MODEL__NAME:
+      case MyDslPackage.TYPE__NAME:
         return getName();
-      case MyDslPackage.CONTEXT_MODEL__ENTITIES:
-        return getEntities();
+      case MyDslPackage.TYPE__ATTRIBUTES:
+        return getAttributes();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -172,12 +172,12 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MODEL__NAME:
+      case MyDslPackage.TYPE__NAME:
         setName((String)newValue);
         return;
-      case MyDslPackage.CONTEXT_MODEL__ENTITIES:
-        getEntities().clear();
-        getEntities().addAll((Collection<? extends Type>)newValue);
+      case MyDslPackage.TYPE__ATTRIBUTES:
+        getAttributes().clear();
+        getAttributes().addAll((Collection<? extends Attribute>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -193,11 +193,11 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MODEL__NAME:
+      case MyDslPackage.TYPE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case MyDslPackage.CONTEXT_MODEL__ENTITIES:
-        getEntities().clear();
+      case MyDslPackage.TYPE__ATTRIBUTES:
+        getAttributes().clear();
         return;
     }
     super.eUnset(featureID);
@@ -213,10 +213,10 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   {
     switch (featureID)
     {
-      case MyDslPackage.CONTEXT_MODEL__NAME:
+      case MyDslPackage.TYPE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case MyDslPackage.CONTEXT_MODEL__ENTITIES:
-        return entities != null && !entities.isEmpty();
+      case MyDslPackage.TYPE__ATTRIBUTES:
+        return attributes != null && !attributes.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -238,4 +238,4 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
     return result.toString();
   }
 
-} //ContextModelImpl
+} //TypeImpl

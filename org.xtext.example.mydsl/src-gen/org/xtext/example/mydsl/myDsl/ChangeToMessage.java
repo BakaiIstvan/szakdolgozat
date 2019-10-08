@@ -63,12 +63,12 @@ public interface ChangeToMessage extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Entity)
+   * @see #setEntity(Type)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Entity()
    * @model
    * @generated
    */
-  Entity getEntity();
+  Type getEntity();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}' reference.
@@ -78,7 +78,7 @@ public interface ChangeToMessage extends EObject
    * @see #getEntity()
    * @generated
    */
-  void setEntity(Entity value);
+  void setEntity(Type value);
 
   /**
    * Returns the value of the '<em><b>Attribute</b></em>' reference.

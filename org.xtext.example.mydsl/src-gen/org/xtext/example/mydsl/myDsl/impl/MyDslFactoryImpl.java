@@ -37,6 +37,7 @@ import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
+import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,6 +108,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.APPEAR_MESSAGE: return createAppearMessage();
       case MyDslPackage.DISAPPEAR_MESSAGE: return createDisappearMessage();
       case MyDslPackage.CHANGE_TO_MESSAGE: return createChangeToMessage();
+      case MyDslPackage.TYPE: return createType();
       case MyDslPackage.OBJECT_TYPE: return createObjectType();
       case MyDslPackage.OBJECT: return createObject();
       case MyDslPackage.CONSTRAINT: return createConstraint();
@@ -305,6 +307,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ChangeToMessageImpl changeToMessage = new ChangeToMessageImpl();
     return changeToMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Type createType()
+  {
+    TypeImpl type = new TypeImpl();
+    return type;
   }
 
   /**
