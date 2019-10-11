@@ -25,6 +25,9 @@ import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.FEntity;
+import org.xtext.example.mydsl.myDsl.FRelation;
+import org.xtext.example.mydsl.myDsl.FragmentAttribute;
 import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
@@ -96,8 +99,11 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.CONTEXT_MODEL: return createContextModel();
       case MyDslPackage.CONTEXT_FRAGMENT: return createContextFragment();
       case MyDslPackage.ATTRIBUTE: return createAttribute();
+      case MyDslPackage.FRAGMENT_ATTRIBUTE: return createFragmentAttribute();
       case MyDslPackage.ENTITY: return createEntity();
+      case MyDslPackage.FENTITY: return createFEntity();
       case MyDslPackage.RELATION: return createRelation();
+      case MyDslPackage.FRELATION: return createFRelation();
       case MyDslPackage.SCENARIO: return createScenario();
       case MyDslPackage.SCENARIO_CONTENT: return createScenarioContent();
       case MyDslPackage.MESSAGE: return createMessage();
@@ -182,6 +188,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public FragmentAttribute createFragmentAttribute()
+  {
+    FragmentAttributeImpl fragmentAttribute = new FragmentAttributeImpl();
+    return fragmentAttribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Entity createEntity()
   {
     EntityImpl entity = new EntityImpl();
@@ -193,10 +210,32 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public FEntity createFEntity()
+  {
+    FEntityImpl fEntity = new FEntityImpl();
+    return fEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Relation createRelation()
   {
     RelationImpl relation = new RelationImpl();
     return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FRelation createFRelation()
+  {
+    FRelationImpl fRelation = new FRelationImpl();
+    return fRelation;
   }
 
   /**

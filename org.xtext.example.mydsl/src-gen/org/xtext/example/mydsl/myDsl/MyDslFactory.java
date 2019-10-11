@@ -69,6 +69,15 @@ public interface MyDslFactory extends EFactory
   Attribute createAttribute();
 
   /**
+   * Returns a new object of class '<em>Fragment Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fragment Attribute</em>'.
+   * @generated
+   */
+  FragmentAttribute createFragmentAttribute();
+
+  /**
    * Returns a new object of class '<em>Entity</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -78,6 +87,15 @@ public interface MyDslFactory extends EFactory
   Entity createEntity();
 
   /**
+   * Returns a new object of class '<em>FEntity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>FEntity</em>'.
+   * @generated
+   */
+  FEntity createFEntity();
+
+  /**
    * Returns a new object of class '<em>Relation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -85,6 +103,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Relation createRelation();
+
+  /**
+   * Returns a new object of class '<em>FRelation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>FRelation</em>'.
+   * @generated
+   */
+  FRelation createFRelation();
 
   /**
    * Returns a new object of class '<em>Scenario</em>'.

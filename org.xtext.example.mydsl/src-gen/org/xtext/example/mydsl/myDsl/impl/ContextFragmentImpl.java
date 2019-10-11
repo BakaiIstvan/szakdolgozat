@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,7 +67,7 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<Type> entities;
+  protected EList<EObject> entities;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,11 +118,11 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Type> getEntities()
+  public EList<EObject> getEntities()
   {
     if (entities == null)
     {
-      entities = new EObjectContainmentEList<Type>(Type.class, this, MyDslPackage.CONTEXT_FRAGMENT__ENTITIES);
+      entities = new EObjectContainmentEList<EObject>(EObject.class, this, MyDslPackage.CONTEXT_FRAGMENT__ENTITIES);
     }
     return entities;
   }
@@ -177,7 +177,7 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
         return;
       case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
         getEntities().clear();
-        getEntities().addAll((Collection<? extends Type>)newValue);
+        getEntities().addAll((Collection<? extends EObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

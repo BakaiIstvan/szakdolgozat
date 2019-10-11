@@ -25,21 +25,28 @@ ContextModel:
 
 ContextFragment:
 	'contextfragment' name=ID '{'
-		entities+=(Entity|Relation)*
+		entities+=(FEntity|FRelation)*
 	'}'
 ;
 
 Attribute:
-	'attribute' name=ID '(' value+=AttributeValue ')' ';'
+	'attribute' name=ID '=' value+=AttributeValue ';'
 ;
 
 AttributeValue:
+	Number | Real | ID | 'true' | 'false'
+;
+
+FragmentAttribute:
+	'attributevalue' name=ID value+=FAttributeValue ';'
+;
+
+FAttributeValue:
 	('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Number |
 	('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Real |
-	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? ID |
-	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Number |
-	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Real |
-	ID ('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? ('true')? ('false')?
+	('==')? ('!=')? ID |
+	('==')? ('!=')? 'true' |
+	('==')? ('!=')? 'false'
 ;
 
 Entity:
@@ -48,9 +55,21 @@ Entity:
 	'}'
 ;
 
+FEntity:
+	'entityvalue' name=ID '{'
+		attributes+= FragmentAttribute*
+	'}'
+;
+
 Relation:
-	'relation' name=ID '(' sender=[Entity] ',' receiver=[Entity] ')''{'
+	'relation' name=ID '(' sender=[Entity] ',' receiver=[Entity] ')' '{'
 		attributes+=Attribute*
+	'}'
+;
+
+FRelation:
+	'relationvalue' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
+		attributes+=FragmentAttribute*
 	'}'
 ;
 

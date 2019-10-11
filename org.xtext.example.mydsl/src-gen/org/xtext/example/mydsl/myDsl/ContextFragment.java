@@ -54,7 +54,7 @@ public interface ContextFragment extends EObject
 
   /**
    * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Type}.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
@@ -66,6 +66,6 @@ public interface ContextFragment extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Type> getEntities();
+  EList<EObject> getEntities();
 
 } // ContextFragment

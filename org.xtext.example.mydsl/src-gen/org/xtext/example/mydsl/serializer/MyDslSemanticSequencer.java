@@ -28,6 +28,9 @@ import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.FEntity;
+import org.xtext.example.mydsl.myDsl.FRelation;
+import org.xtext.example.mydsl.myDsl.FragmentAttribute;
 import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
@@ -96,6 +99,15 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
+				return; 
+			case MyDslPackage.FENTITY:
+				sequence_FEntity(context, (FEntity) semanticObject); 
+				return; 
+			case MyDslPackage.FRELATION:
+				sequence_FRelation(context, (FRelation) semanticObject); 
+				return; 
+			case MyDslPackage.FRAGMENT_ATTRIBUTE:
+				sequence_FragmentAttribute(context, (FragmentAttribute) semanticObject); 
 				return; 
 			case MyDslPackage.INCLUDE:
 				sequence_Include(context, (Include) semanticObject); 
@@ -221,7 +233,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ContextFragment returns ContextFragment
 	 *
 	 * Constraint:
-	 *     (name=ID (entities+=Entity | entities+=Relation)*)
+	 *     (name=ID (entities+=FEntity | entities+=FRelation)*)
 	 */
 	protected void sequence_ContextFragment(ISerializationContext context, ContextFragment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -327,6 +339,42 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     messages+=Message+
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FEntity returns FEntity
+	 *
+	 * Constraint:
+	 *     (name=ID attributes+=FragmentAttribute*)
+	 */
+	protected void sequence_FEntity(ISerializationContext context, FEntity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FRelation returns FRelation
+	 *
+	 * Constraint:
+	 *     (name=ID sender=[FEntity|ID] receiver=[FEntity|ID] attributes+=FragmentAttribute*)
+	 */
+	protected void sequence_FRelation(ISerializationContext context, FRelation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FragmentAttribute returns FragmentAttribute
+	 *
+	 * Constraint:
+	 *     (name=ID value+=FAttributeValue)
+	 */
+	protected void sequence_FragmentAttribute(ISerializationContext context, FragmentAttribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

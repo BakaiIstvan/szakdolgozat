@@ -288,6 +288,43 @@ public interface MyDslPackage extends EPackage
   int ATTRIBUTE_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl <em>Fragment Attribute</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFragmentAttribute()
+   * @generated
+   */
+  int FRAGMENT_ATTRIBUTE = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__VALUE = 1;
+
+  /**
+   * The number of structural features of the '<em>Fragment Attribute</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.TypeImpl <em>Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -295,7 +332,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getType()
    * @generated
    */
-  int TYPE = 17;
+  int TYPE = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -332,7 +369,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEntity()
    * @generated
    */
-  int ENTITY = 5;
+  int ENTITY = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -362,6 +399,43 @@ public interface MyDslPackage extends EPackage
   int ENTITY_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FEntityImpl <em>FEntity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.FEntityImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFEntity()
+   * @generated
+   */
+  int FENTITY = 7;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FENTITY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FENTITY__ATTRIBUTES = 1;
+
+  /**
+   * The number of structural features of the '<em>FEntity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FENTITY_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -369,7 +443,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
    * @generated
    */
-  int RELATION = 6;
+  int RELATION = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -417,6 +491,61 @@ public interface MyDslPackage extends EPackage
   int RELATION_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FRelationImpl <em>FRelation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.FRelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFRelation()
+   * @generated
+   */
+  int FRELATION = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Sender</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__SENDER = 1;
+
+  /**
+   * The feature id for the '<em><b>Receiver</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__RECEIVER = 2;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__ATTRIBUTES = 3;
+
+  /**
+   * The number of structural features of the '<em>FRelation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ScenarioImpl <em>Scenario</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -424,7 +553,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getScenario()
    * @generated
    */
-  int SCENARIO = 7;
+  int SCENARIO = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -461,7 +590,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getScenarioContent()
    * @generated
    */
-  int SCENARIO_CONTENT = 8;
+  int SCENARIO_CONTENT = 11;
 
   /**
    * The feature id for the '<em><b>Alt</b></em>' containment reference list.
@@ -525,7 +654,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMessage()
    * @generated
    */
-  int MESSAGE = 9;
+  int MESSAGE = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -634,7 +763,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
    * @generated
    */
-  int CONTEXT_MESSAGE = 10;
+  int CONTEXT_MESSAGE = 13;
 
   /**
    * The feature id for the '<em><b>Content</b></em>' containment reference list.
@@ -689,7 +818,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
    * @generated
    */
-  int CONTEXT_MESSAGE_CONTENT = 11;
+  int CONTEXT_MESSAGE_CONTENT = 14;
 
   /**
    * The feature id for the '<em><b>Match</b></em>' containment reference list.
@@ -726,7 +855,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
    * @generated
    */
-  int MATCH_MESSAGE = 12;
+  int MATCH_MESSAGE = 15;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -763,7 +892,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
    * @generated
    */
-  int CHANGE_MESSAGE = 13;
+  int CHANGE_MESSAGE = 16;
 
   /**
    * The feature id for the '<em><b>Disappear</b></em>' containment reference list.
@@ -809,7 +938,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
    * @generated
    */
-  int APPEAR_MESSAGE = 14;
+  int APPEAR_MESSAGE = 17;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -846,7 +975,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
    * @generated
    */
-  int DISAPPEAR_MESSAGE = 15;
+  int DISAPPEAR_MESSAGE = 18;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -883,7 +1012,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToMessage()
    * @generated
    */
-  int CHANGE_TO_MESSAGE = 16;
+  int CHANGE_TO_MESSAGE = 19;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -938,7 +1067,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 18;
+  int OBJECT_TYPE = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -966,7 +1095,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 19;
+  int OBJECT = 22;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -1003,7 +1132,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 20;
+  int CONSTRAINT = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1040,7 +1169,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 21;
+  int ALT = 24;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1068,7 +1197,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 22;
+  int EXPRESSION = 25;
 
   /**
    * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -1096,7 +1225,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 23;
+  int PAR = 26;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -1124,7 +1253,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 24;
+  int PAR_EXPRESSION = 27;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1161,7 +1290,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 25;
+  int LOOP = 28;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -1416,6 +1545,38 @@ public interface MyDslPackage extends EPackage
   EAttribute getAttribute_Value();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute <em>Fragment Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Fragment Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute
+   * @generated
+   */
+  EClass getFragmentAttribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getName()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Name();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Value();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Entity <em>Entity</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1424,6 +1585,38 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getEntity();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.FEntity <em>FEntity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>FEntity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FEntity
+   * @generated
+   */
+  EClass getFEntity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FEntity#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FEntity#getName()
+   * @see #getFEntity()
+   * @generated
+   */
+  EAttribute getFEntity_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.FEntity#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FEntity#getAttributes()
+   * @see #getFEntity()
+   * @generated
+   */
+  EReference getFEntity_Attributes();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Relation <em>Relation</em>}'.
@@ -1456,6 +1649,60 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getRelation_Receiver();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.FRelation <em>FRelation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>FRelation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation
+   * @generated
+   */
+  EClass getFRelation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FRelation#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getName()
+   * @see #getFRelation()
+   * @generated
+   */
+  EAttribute getFRelation_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.FRelation#getSender <em>Sender</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Sender</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getSender()
+   * @see #getFRelation()
+   * @generated
+   */
+  EReference getFRelation_Sender();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.FRelation#getReceiver <em>Receiver</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Receiver</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getReceiver()
+   * @see #getFRelation()
+   * @generated
+   */
+  EReference getFRelation_Receiver();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.FRelation#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getAttributes()
+   * @see #getFRelation()
+   * @generated
+   */
+  EReference getFRelation_Attributes();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Scenario <em>Scenario</em>}'.
@@ -2402,6 +2649,32 @@ public interface MyDslPackage extends EPackage
     EAttribute ATTRIBUTE__VALUE = eINSTANCE.getAttribute_Value();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl <em>Fragment Attribute</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFragmentAttribute()
+     * @generated
+     */
+    EClass FRAGMENT_ATTRIBUTE = eINSTANCE.getFragmentAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__NAME = eINSTANCE.getFragmentAttribute_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__VALUE = eINSTANCE.getFragmentAttribute_Value();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2410,6 +2683,32 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass ENTITY = eINSTANCE.getEntity();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.FEntityImpl <em>FEntity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.FEntityImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFEntity()
+     * @generated
+     */
+    EClass FENTITY = eINSTANCE.getFEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FENTITY__NAME = eINSTANCE.getFEntity_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FENTITY__ATTRIBUTES = eINSTANCE.getFEntity_Attributes();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
@@ -2436,6 +2735,48 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference RELATION__RECEIVER = eINSTANCE.getRelation_Receiver();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.FRelationImpl <em>FRelation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.FRelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFRelation()
+     * @generated
+     */
+    EClass FRELATION = eINSTANCE.getFRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRELATION__NAME = eINSTANCE.getFRelation_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Sender</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FRELATION__SENDER = eINSTANCE.getFRelation_Sender();
+
+    /**
+     * The meta object literal for the '<em><b>Receiver</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FRELATION__RECEIVER = eINSTANCE.getFRelation_Receiver();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FRELATION__ATTRIBUTES = eINSTANCE.getFRelation_Attributes();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ScenarioImpl <em>Scenario</em>}' class.
