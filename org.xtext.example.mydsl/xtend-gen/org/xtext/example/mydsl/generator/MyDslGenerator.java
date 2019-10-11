@@ -217,29 +217,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder_2.append("public class Entity {");
     _builder_2.newLine();
     _builder_2.append("    ");
-<<<<<<< HEAD
-    _builder_2.append("private State receiver;");
-    _builder_2.newLine();
-    _builder_2.append("    ");
-    _builder_2.newLine();
-    _builder_2.append("    ");
-    _builder_2.append("public Transition() {");
-    _builder_2.newLine();
-    _builder_2.append("            ");
-    _builder_2.append("this.id = \"t0\";");
-    _builder_2.newLine();
-    _builder_2.append("            ");
-    _builder_2.append("this.sender = new State();");
-    _builder_2.newLine();
-    _builder_2.append("            ");
-    _builder_2.append("this.receiver = new State();");
-    _builder_2.newLine();
-    _builder_2.append("    ");
-    _builder_2.append("}");
-    _builder_2.newLine();
-=======
     _builder_2.append("private String name;");
->>>>>>> [xTend] Added corresponding classes for new xText elements
     _builder_2.newLine();
     _builder_2.append("    ");
     _builder_2.append("private ArrayList<Attribute> attributes;");
@@ -714,6 +692,23 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder_7.newLine();
     _builder_7.append("    ");
     _builder_7.append("private State receiver;");
+    _builder_7.newLine();
+    _builder_7.append("    ");
+    _builder_7.newLine();
+    _builder_7.append("    ");
+    _builder_7.append("public Transition() {");
+    _builder_7.newLine();
+    _builder_7.append("            ");
+    _builder_7.append("this.id = \"t0\";");
+    _builder_7.newLine();
+    _builder_7.append("            ");
+    _builder_7.append("this.sender = new State();");
+    _builder_7.newLine();
+    _builder_7.append("            ");
+    _builder_7.append("this.receiver = new State();");
+    _builder_7.newLine();
+    _builder_7.append("    ");
+    _builder_7.append("}");
     _builder_7.newLine();
     _builder_7.newLine();
     _builder_7.append("    ");
