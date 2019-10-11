@@ -71,6 +71,12 @@ class MyDslGenerator extends AbstractGenerator {
 				    private String id;
 				    private State sender;
 				    private State receiver;
+				    
+				    public Transition() {
+				            this.id = "t0";
+				            this.sender = new State();
+				            this.receiver = new State();
+				    }
 				
 				    public Transition(String id, State sender, State receiver) {
 				    	if(id.equals("1")){
@@ -699,7 +705,7 @@ class MyDslGenerator extends AbstractGenerator {
 		        for (ArrayList<Automaton> alist : list) {
 		            Automaton newauto = new Automaton("listConverter");
 		            for (Automaton auto : alist) {
-		                newauto.collapse(auto);
+		                newauto.collapse(copyAutomaton(auto));
 		            }
 		            result.add(newauto);
 		        }
@@ -712,12 +718,77 @@ class MyDslGenerator extends AbstractGenerator {
 	            for (int i = min; i <= max; i++) {
 	                Automaton newauto = new Automaton("loopauto");
 	                for (int j = 0; j < i; j++) {
-	                    newauto.collapse(loopauto);
+	                    newauto.collapse(copyAutomaton(loopauto));
 	                }
 	                result.add(newauto);
 	            }
 	            return result;
 		    }
+		    
+		    public Automaton copyAutomaton(Automaton referenceAuto) {
+		            Automaton result = new Automaton("copy automaton");
+		            int count = 0;
+		            State previousSender = new State();
+		            State referencePreviousSender = new State();
+		    
+		            for (Transition t : referenceAuto.getTransitions()) {
+		                State sender = new State();
+		                State receiver = new State();
+		                Transition transition = new Transition();
+		                Automaton temp = new Automaton("temp");
+		    
+		                transition.setId(t.getId());
+		    
+		                if (t.getSender() == referencePreviousSender) {
+		                    receiver.setId("c" + count);
+		                    count++;
+		                    receiver.setType(t.getReceiver().getType());
+		    
+		                    transition.setSender(previousSender);
+		                    transition.setReceiver(receiver);
+		                    temp.addState(previousSender);
+		                    temp.addState(receiver);
+		                    temp.setInitial(previousSender);
+		                    temp.setFinale(receiver);
+		                } else {
+		                    if (t.getSender() == t.getReceiver()) {
+		                        sender.setId("c" + count);
+		                        count++;
+		                        sender.setType(t.getSender().getType());
+		    
+		                        transition.setSender(sender);
+		                        transition.setReceiver(sender);
+		    
+		                        temp.addState(sender);
+		                        temp.setInitial(sender);
+		                        temp.setFinale(sender);
+		                    } else {
+		                        sender.setId("c" + count);
+		                        count++;
+		                        sender.setType(t.getSender().getType());
+		    
+		                        receiver.setId("c" + count);
+		                        count++;
+		                        receiver.setType(t.getReceiver().getType());
+		    
+		                        transition.setSender(sender);
+		                        transition.setReceiver(receiver);
+		    
+		                        temp.addState(sender);
+		                        temp.addState(receiver);
+		                        temp.setInitial(sender);
+		                        temp.setFinale(receiver);
+		                    }
+		                    previousSender = sender;
+		                    referencePreviousSender = t.getSender();
+		                }
+		    
+		                temp.addTransition(transition);
+		                result.collapse(temp);
+		            }
+		    
+		            return result;
+		        }
 			
 			public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException{
 				Specification specification = new Specification();
