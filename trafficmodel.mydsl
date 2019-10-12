@@ -1,0 +1,13 @@
+contextmodel Junction {
+	entity TrafficLamp {
+		attribute status = red;
+	}
+	
+	relation distance (Car, TrafficLamp) {
+		attribute meter = 1;
+	}
+	
+	entity Car {
+		attribute speed = 0;
+	}
+}
