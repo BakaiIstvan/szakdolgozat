@@ -372,7 +372,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FragmentAttribute returns FragmentAttribute
 	 *
 	 * Constraint:
-	 *     (name=ID value+=FAttributeValue)
+	 *     (name=ID operator+=Operator value+=FAttributeValue)
 	 */
 	protected void sequence_FragmentAttribute(ISerializationContext context, FragmentAttribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

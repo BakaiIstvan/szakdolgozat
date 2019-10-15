@@ -307,13 +307,22 @@ public interface MyDslPackage extends EPackage
   int FRAGMENT_ATTRIBUTE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__OPERATOR = 1;
+
+  /**
    * The feature id for the '<em><b>Value</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__VALUE = 1;
+  int FRAGMENT_ATTRIBUTE__VALUE = 2;
 
   /**
    * The number of structural features of the '<em>Fragment Attribute</em>' class.
@@ -322,7 +331,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 2;
+  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.TypeImpl <em>Type</em>}' class.
@@ -1566,6 +1575,17 @@ public interface MyDslPackage extends EPackage
   EAttribute getFragmentAttribute_Name();
 
   /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Operator</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getOperator()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Operator();
+
+  /**
    * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2665,6 +2685,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute FRAGMENT_ATTRIBUTE__NAME = eINSTANCE.getFragmentAttribute_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__OPERATOR = eINSTANCE.getFragmentAttribute_Operator();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.

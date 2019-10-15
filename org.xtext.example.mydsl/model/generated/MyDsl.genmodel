@@ -33,6 +33,7 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FragmentAttribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/operator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/value"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Entity"/>

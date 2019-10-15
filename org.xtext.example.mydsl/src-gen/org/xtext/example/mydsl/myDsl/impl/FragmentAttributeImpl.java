@@ -28,6 +28,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -54,6 +55,16 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperator()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> operator;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
@@ -114,6 +125,20 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<String> getOperator()
+  {
+    if (operator == null)
+    {
+      operator = new EDataTypeEList<String>(String.class, this, MyDslPackage.FRAGMENT_ATTRIBUTE__OPERATOR);
+    }
+    return operator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<String> getValue()
   {
     if (value == null)
@@ -135,6 +160,8 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
     {
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         return getName();
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__OPERATOR:
+        return getOperator();
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
         return getValue();
     }
@@ -154,6 +181,10 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
     {
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         setName((String)newValue);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__OPERATOR:
+        getOperator().clear();
+        getOperator().addAll((Collection<? extends String>)newValue);
         return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
         getValue().clear();
@@ -176,6 +207,9 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__OPERATOR:
+        getOperator().clear();
+        return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
         getValue().clear();
         return;
@@ -195,6 +229,8 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
     {
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__OPERATOR:
+        return operator != null && !operator.isEmpty();
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
         return value != null && !value.isEmpty();
     }
@@ -214,6 +250,8 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
+    result.append(", operator: ");
+    result.append(operator);
     result.append(", value: ");
     result.append(value);
     result.append(')');

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -51,6 +52,22 @@ public interface FragmentAttribute extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Operator</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Operator</em>' attribute list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Operator()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getOperator();
 
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute list.

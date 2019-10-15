@@ -540,9 +540,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Value()
+  public EAttribute getFragmentAttribute_Operator()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFragmentAttribute_Value()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1422,6 +1432,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     fragmentAttributeEClass = createEClass(FRAGMENT_ATTRIBUTE);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__NAME);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__OPERATOR);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__VALUE);
 
     entityEClass = createEClass(ENTITY);
@@ -1590,6 +1601,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(fragmentAttributeEClass, FragmentAttribute.class, "FragmentAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFragmentAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Operator(), ecorePackage.getEString(), "operator", null, 0, -1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFragmentAttribute_Value(), ecorePackage.getEString(), "value", null, 0, -1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

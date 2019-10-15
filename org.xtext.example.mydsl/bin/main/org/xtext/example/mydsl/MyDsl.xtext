@@ -38,15 +38,15 @@ AttributeValue:
 ;
 
 FragmentAttribute:
-	'attributevalue' name=ID value+=FAttributeValue ';'
+	'attributevalue' name=ID operator+=Operator value+=FAttributeValue ';'
+;
+
+Operator:
+	'>' | '<' | '>=' | '<=' | '==' | '!='
 ;
 
 FAttributeValue:
-	('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Number |
-	('>')? ('<')? ('>=')? ('<=')? ('==')? ('!=')? Real |
-	('==')? ('!=')? ID |
-	('==')? ('!=')? 'true' |
-	('==')? ('!=')? 'false'
+	Number | Real | ID | 'true' | 'false'
 ;
 
 Entity:
