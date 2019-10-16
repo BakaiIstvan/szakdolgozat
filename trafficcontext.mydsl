@@ -1,0 +1,33 @@
+specification spec1{
+	import "trafficmodel.mydsl"
+	
+	contextfragment Redlight {
+		entityconstraint TrafficLamp {
+			
+		}
+		
+		entityconstraint Car {
+			attributeconstraint speed > 50 ;
+		}
+		
+		relationconstraint distance(Car, TrafficLamp) {
+			attributeconstraint meter > 12 ;
+		}
+	}
+	
+	object LampController controller;
+	object Lamp lamp;
+	
+	constraint constraints{
+		message turnOff() controller -> lamp;
+	}
+	
+	scenario email{
+		match (Junction, Redlight) required;
+		message turnYellow() controller -> lamp;
+		disappear (Junction.Car);
+		message updateStatus(Yellow) lamp -> controller past constraint {constraints};
+		changeTo(Junction.Car.speed, 50) strict;
+		changeTo(Junction.distance.meter, 100);
+	}
+}
