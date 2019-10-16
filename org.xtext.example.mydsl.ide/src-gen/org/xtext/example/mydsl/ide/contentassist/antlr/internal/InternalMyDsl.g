@@ -1890,9 +1890,9 @@ rule__FragmentAttribute__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFragmentAttributeAccess().getAttributevalueKeyword_0()); }
-	'attributevalue'
-	{ after(grammarAccess.getFragmentAttributeAccess().getAttributevalueKeyword_0()); }
+	{ before(grammarAccess.getFragmentAttributeAccess().getAttributeconstraintKeyword_0()); }
+	'attributeconstraint'
+	{ after(grammarAccess.getFragmentAttributeAccess().getAttributeconstraintKeyword_0()); }
 )
 ;
 finally {
@@ -2160,9 +2160,9 @@ rule__FEntity__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFEntityAccess().getEntityvalueKeyword_0()); }
-	'entityvalue'
-	{ after(grammarAccess.getFEntityAccess().getEntityvalueKeyword_0()); }
+	{ before(grammarAccess.getFEntityAccess().getEntityconstraintKeyword_0()); }
+	'entityconstraint'
+	{ after(grammarAccess.getFEntityAccess().getEntityconstraintKeyword_0()); }
 )
 ;
 finally {
@@ -2565,9 +2565,9 @@ rule__FRelation__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getFRelationAccess().getRelationvalueKeyword_0()); }
-	'relationvalue'
-	{ after(grammarAccess.getFRelationAccess().getRelationvalueKeyword_0()); }
+	{ before(grammarAccess.getFRelationAccess().getRelationconstraintKeyword_0()); }
+	'relationconstraint'
+	{ after(grammarAccess.getFRelationAccess().getRelationconstraintKeyword_0()); }
 )
 ;
 finally {

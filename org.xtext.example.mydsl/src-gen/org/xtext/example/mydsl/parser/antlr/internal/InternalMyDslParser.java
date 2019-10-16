@@ -21,7 +21,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_NUMBER", "RULE_REAL", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'specification'", "'{'", "'}'", "'import'", "'contextmodel'", "'contextfragment'", "'attribute'", "'='", "';'", "'true'", "'false'", "'attributevalue'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'entity'", "'entityvalue'", "'relation'", "'('", "','", "')'", "'relationvalue'", "'scenario'", "'message'", "'required'", "'fail'", "'strict'", "'->'", "'past'", "'future'", "'constraint'", "'match'", "'appear'", "'.'", "'disappear'", "'changeTo'", "'object'", "'alt'", "'par'", "'case'", "'loop'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_NUMBER", "RULE_REAL", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'specification'", "'{'", "'}'", "'import'", "'contextmodel'", "'contextfragment'", "'attribute'", "'='", "';'", "'true'", "'false'", "'attributeconstraint'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'entity'", "'entityconstraint'", "'relation'", "'('", "','", "')'", "'relationconstraint'", "'scenario'", "'message'", "'required'", "'fail'", "'strict'", "'->'", "'past'", "'future'", "'constraint'", "'match'", "'appear'", "'.'", "'disappear'", "'changeTo'", "'object'", "'alt'", "'par'", "'case'", "'loop'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -1517,7 +1517,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFragmentAttribute"
-    // InternalMyDsl.g:583:1: ruleFragmentAttribute returns [EObject current=null] : (otherlv_0= 'attributevalue' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' ) ;
+    // InternalMyDsl.g:583:1: ruleFragmentAttribute returns [EObject current=null] : (otherlv_0= 'attributeconstraint' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' ) ;
     public final EObject ruleFragmentAttribute() throws RecognitionException {
         EObject current = null;
 
@@ -1533,15 +1533,15 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyDsl.g:589:2: ( (otherlv_0= 'attributevalue' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' ) )
-            // InternalMyDsl.g:590:2: (otherlv_0= 'attributevalue' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' )
+            // InternalMyDsl.g:589:2: ( (otherlv_0= 'attributeconstraint' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' ) )
+            // InternalMyDsl.g:590:2: (otherlv_0= 'attributeconstraint' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' )
             {
-            // InternalMyDsl.g:590:2: (otherlv_0= 'attributevalue' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' )
-            // InternalMyDsl.g:591:3: otherlv_0= 'attributevalue' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';'
+            // InternalMyDsl.g:590:2: (otherlv_0= 'attributeconstraint' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';' )
+            // InternalMyDsl.g:591:3: otherlv_0= 'attributeconstraint' ( (lv_name_1_0= RULE_ID ) ) ( (lv_operator_2_0= ruleOperator ) ) ( (lv_value_3_0= ruleFAttributeValue ) ) otherlv_4= ';'
             {
             otherlv_0=(Token)match(input,24,FOLLOW_12); 
 
-            			newLeafNode(otherlv_0, grammarAccess.getFragmentAttributeAccess().getAttributevalueKeyword_0());
+            			newLeafNode(otherlv_0, grammarAccess.getFragmentAttributeAccess().getAttributeconstraintKeyword_0());
             		
             // InternalMyDsl.g:595:3: ( (lv_name_1_0= RULE_ID ) )
             // InternalMyDsl.g:596:4: (lv_name_1_0= RULE_ID )
@@ -2212,7 +2212,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFEntity"
-    // InternalMyDsl.g:842:1: ruleFEntity returns [EObject current=null] : (otherlv_0= 'entityvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' ) ;
+    // InternalMyDsl.g:842:1: ruleFEntity returns [EObject current=null] : (otherlv_0= 'entityconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' ) ;
     public final EObject ruleFEntity() throws RecognitionException {
         EObject current = null;
 
@@ -2227,15 +2227,15 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyDsl.g:848:2: ( (otherlv_0= 'entityvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' ) )
-            // InternalMyDsl.g:849:2: (otherlv_0= 'entityvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' )
+            // InternalMyDsl.g:848:2: ( (otherlv_0= 'entityconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' ) )
+            // InternalMyDsl.g:849:2: (otherlv_0= 'entityconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' )
             {
-            // InternalMyDsl.g:849:2: (otherlv_0= 'entityvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' )
-            // InternalMyDsl.g:850:3: otherlv_0= 'entityvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}'
+            // InternalMyDsl.g:849:2: (otherlv_0= 'entityconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}' )
+            // InternalMyDsl.g:850:3: otherlv_0= 'entityconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '{' ( (lv_attributes_3_0= ruleFragmentAttribute ) )* otherlv_4= '}'
             {
             otherlv_0=(Token)match(input,32,FOLLOW_12); 
 
-            			newLeafNode(otherlv_0, grammarAccess.getFEntityAccess().getEntityvalueKeyword_0());
+            			newLeafNode(otherlv_0, grammarAccess.getFEntityAccess().getEntityconstraintKeyword_0());
             		
             // InternalMyDsl.g:854:3: ( (lv_name_1_0= RULE_ID ) )
             // InternalMyDsl.g:855:4: (lv_name_1_0= RULE_ID )
@@ -2605,7 +2605,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFRelation"
-    // InternalMyDsl.g:1016:1: ruleFRelation returns [EObject current=null] : (otherlv_0= 'relationvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' ) ;
+    // InternalMyDsl.g:1016:1: ruleFRelation returns [EObject current=null] : (otherlv_0= 'relationconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' ) ;
     public final EObject ruleFRelation() throws RecognitionException {
         EObject current = null;
 
@@ -2625,15 +2625,15 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyDsl.g:1022:2: ( (otherlv_0= 'relationvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' ) )
-            // InternalMyDsl.g:1023:2: (otherlv_0= 'relationvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' )
+            // InternalMyDsl.g:1022:2: ( (otherlv_0= 'relationconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' ) )
+            // InternalMyDsl.g:1023:2: (otherlv_0= 'relationconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' )
             {
-            // InternalMyDsl.g:1023:2: (otherlv_0= 'relationvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' )
-            // InternalMyDsl.g:1024:3: otherlv_0= 'relationvalue' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}'
+            // InternalMyDsl.g:1023:2: (otherlv_0= 'relationconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}' )
+            // InternalMyDsl.g:1024:3: otherlv_0= 'relationconstraint' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '(' ( (otherlv_3= RULE_ID ) ) otherlv_4= ',' ( (otherlv_5= RULE_ID ) ) otherlv_6= ')' otherlv_7= '{' ( (lv_attributes_8_0= ruleFragmentAttribute ) )* otherlv_9= '}'
             {
             otherlv_0=(Token)match(input,37,FOLLOW_12); 
 
-            			newLeafNode(otherlv_0, grammarAccess.getFRelationAccess().getRelationvalueKeyword_0());
+            			newLeafNode(otherlv_0, grammarAccess.getFRelationAccess().getRelationconstraintKeyword_0());
             		
             // InternalMyDsl.g:1028:3: ( (lv_name_1_0= RULE_ID ) )
             // InternalMyDsl.g:1029:4: (lv_name_1_0= RULE_ID )

@@ -38,7 +38,7 @@ AttributeValue:
 ;
 
 FragmentAttribute:
-	'attributevalue' name=ID operator+=Operator value+=FAttributeValue ';'
+	'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';'
 ;
 
 Operator:
@@ -56,7 +56,7 @@ Entity:
 ;
 
 FEntity:
-	'entityvalue' name=ID '{'
+	'entityconstraint' name=ID '{'
 		attributes+= FragmentAttribute*
 	'}'
 ;
@@ -68,7 +68,7 @@ Relation:
 ;
 
 FRelation:
-	'relationvalue' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
+	'relationconstraint' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
 		attributes+=FragmentAttribute*
 	'}'
 ;

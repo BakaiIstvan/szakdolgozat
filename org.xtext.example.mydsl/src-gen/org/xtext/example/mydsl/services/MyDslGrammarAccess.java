@@ -307,7 +307,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class FragmentAttributeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FragmentAttribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cAttributevalueKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cAttributeconstraintKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cOperatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -317,14 +317,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//FragmentAttribute:
-		//	'attributevalue' name=ID operator+=Operator value+=FAttributeValue ';';
+		//	'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'attributevalue' name=ID operator+=Operator value+=FAttributeValue ';'
+		//'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';'
 		public Group getGroup() { return cGroup; }
 		
-		//'attributevalue'
-		public Keyword getAttributevalueKeyword_0() { return cAttributevalueKeyword_0; }
+		//'attributeconstraint'
+		public Keyword getAttributeconstraintKeyword_0() { return cAttributeconstraintKeyword_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -457,7 +457,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class FEntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FEntity");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEntityvalueKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEntityconstraintKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -466,16 +466,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//FEntity:
-		//	'entityvalue' name=ID '{'
+		//	'entityconstraint' name=ID '{'
 		//	attributes+=FragmentAttribute*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'entityvalue' name=ID '{' attributes+=FragmentAttribute* '}'
+		//'entityconstraint' name=ID '{' attributes+=FragmentAttribute* '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'entityvalue'
-		public Keyword getEntityvalueKeyword_0() { return cEntityvalueKeyword_0; }
+		//'entityconstraint'
+		public Keyword getEntityconstraintKeyword_0() { return cEntityconstraintKeyword_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -575,7 +575,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class FRelationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FRelation");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cRelationvalueKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cRelationconstraintKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -593,16 +593,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//FRelation:
-		//	'relationvalue' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
+		//	'relationconstraint' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
 		//	attributes+=FragmentAttribute*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'relationvalue' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{' attributes+=FragmentAttribute* '}'
+		//'relationconstraint' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{' attributes+=FragmentAttribute* '}'
 		public Group getGroup() { return cGroup; }
 		
-		//'relationvalue'
-		public Keyword getRelationvalueKeyword_0() { return cRelationvalueKeyword_0; }
+		//'relationconstraint'
+		public Keyword getRelationconstraintKeyword_0() { return cRelationconstraintKeyword_0; }
 		
 		//name=ID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1782,7 +1782,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FragmentAttribute:
-	//	'attributevalue' name=ID operator+=Operator value+=FAttributeValue ';';
+	//	'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';';
 	public FragmentAttributeElements getFragmentAttributeAccess() {
 		return pFragmentAttribute;
 	}
@@ -1824,7 +1824,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FEntity:
-	//	'entityvalue' name=ID '{'
+	//	'entityconstraint' name=ID '{'
 	//	attributes+=FragmentAttribute*
 	//	'}';
 	public FEntityElements getFEntityAccess() {
@@ -1848,7 +1848,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FRelation:
-	//	'relationvalue' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
+	//	'relationconstraint' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
 	//	attributes+=FragmentAttribute*
 	//	'}';
 	public FRelationElements getFRelationAccess() {

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_NUMBER", "RULE_REAL", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'{'", "'}'", "'import'", "'contextmodel'", "'contextfragment'", "'attribute'", "'='", "';'", "'attributevalue'", "'entity'", "'entityvalue'", "'relation'", "'('", "','", "')'", "'relationvalue'", "'scenario'", "'message'", "'->'", "'match'", "'appear'", "'.'", "'disappear'", "'changeTo'", "'object'", "'constraint'", "'alt'", "'par'", "'case'", "'loop'", "'specification'", "'required'", "'fail'", "'strict'", "'past'", "'future'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_NUMBER", "RULE_REAL", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'{'", "'}'", "'import'", "'contextmodel'", "'contextfragment'", "'attribute'", "'='", "';'", "'attributeconstraint'", "'entity'", "'entityconstraint'", "'relation'", "'('", "','", "')'", "'relationconstraint'", "'scenario'", "'message'", "'->'", "'match'", "'appear'", "'.'", "'disappear'", "'changeTo'", "'object'", "'constraint'", "'alt'", "'par'", "'case'", "'loop'", "'specification'", "'required'", "'fail'", "'strict'", "'past'", "'future'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -6096,21 +6096,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FragmentAttribute__Group__0__Impl"
-    // InternalMyDsl.g:1887:1: rule__FragmentAttribute__Group__0__Impl : ( 'attributevalue' ) ;
+    // InternalMyDsl.g:1887:1: rule__FragmentAttribute__Group__0__Impl : ( 'attributeconstraint' ) ;
     public final void rule__FragmentAttribute__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:1891:1: ( ( 'attributevalue' ) )
-            // InternalMyDsl.g:1892:1: ( 'attributevalue' )
+            // InternalMyDsl.g:1891:1: ( ( 'attributeconstraint' ) )
+            // InternalMyDsl.g:1892:1: ( 'attributeconstraint' )
             {
-            // InternalMyDsl.g:1892:1: ( 'attributevalue' )
-            // InternalMyDsl.g:1893:2: 'attributevalue'
+            // InternalMyDsl.g:1892:1: ( 'attributeconstraint' )
+            // InternalMyDsl.g:1893:2: 'attributeconstraint'
             {
-             before(grammarAccess.getFragmentAttributeAccess().getAttributevalueKeyword_0()); 
+             before(grammarAccess.getFragmentAttributeAccess().getAttributeconstraintKeyword_0()); 
             match(input,29,FOLLOW_2); 
-             after(grammarAccess.getFragmentAttributeAccess().getAttributevalueKeyword_0()); 
+             after(grammarAccess.getFragmentAttributeAccess().getAttributeconstraintKeyword_0()); 
 
             }
 
@@ -6904,21 +6904,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FEntity__Group__0__Impl"
-    // InternalMyDsl.g:2157:1: rule__FEntity__Group__0__Impl : ( 'entityvalue' ) ;
+    // InternalMyDsl.g:2157:1: rule__FEntity__Group__0__Impl : ( 'entityconstraint' ) ;
     public final void rule__FEntity__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:2161:1: ( ( 'entityvalue' ) )
-            // InternalMyDsl.g:2162:1: ( 'entityvalue' )
+            // InternalMyDsl.g:2161:1: ( ( 'entityconstraint' ) )
+            // InternalMyDsl.g:2162:1: ( 'entityconstraint' )
             {
-            // InternalMyDsl.g:2162:1: ( 'entityvalue' )
-            // InternalMyDsl.g:2163:2: 'entityvalue'
+            // InternalMyDsl.g:2162:1: ( 'entityconstraint' )
+            // InternalMyDsl.g:2163:2: 'entityconstraint'
             {
-             before(grammarAccess.getFEntityAccess().getEntityvalueKeyword_0()); 
+             before(grammarAccess.getFEntityAccess().getEntityconstraintKeyword_0()); 
             match(input,31,FOLLOW_2); 
-             after(grammarAccess.getFEntityAccess().getEntityvalueKeyword_0()); 
+             after(grammarAccess.getFEntityAccess().getEntityconstraintKeyword_0()); 
 
             }
 
@@ -8115,21 +8115,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__FRelation__Group__0__Impl"
-    // InternalMyDsl.g:2562:1: rule__FRelation__Group__0__Impl : ( 'relationvalue' ) ;
+    // InternalMyDsl.g:2562:1: rule__FRelation__Group__0__Impl : ( 'relationconstraint' ) ;
     public final void rule__FRelation__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:2566:1: ( ( 'relationvalue' ) )
-            // InternalMyDsl.g:2567:1: ( 'relationvalue' )
+            // InternalMyDsl.g:2566:1: ( ( 'relationconstraint' ) )
+            // InternalMyDsl.g:2567:1: ( 'relationconstraint' )
             {
-            // InternalMyDsl.g:2567:1: ( 'relationvalue' )
-            // InternalMyDsl.g:2568:2: 'relationvalue'
+            // InternalMyDsl.g:2567:1: ( 'relationconstraint' )
+            // InternalMyDsl.g:2568:2: 'relationconstraint'
             {
-             before(grammarAccess.getFRelationAccess().getRelationvalueKeyword_0()); 
+             before(grammarAccess.getFRelationAccess().getRelationconstraintKeyword_0()); 
             match(input,36,FOLLOW_2); 
-             after(grammarAccess.getFRelationAccess().getRelationvalueKeyword_0()); 
+             after(grammarAccess.getFRelationAccess().getRelationconstraintKeyword_0()); 
 
             }
 

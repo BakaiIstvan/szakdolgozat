@@ -14,7 +14,7 @@
 'alt'=47
 'appear'=41
 'attribute'=26
-'attributevalue'=29
+'attributeconstraint'=29
 'case'=49
 'changeTo'=44
 'constraint'=46
@@ -22,7 +22,7 @@
 'contextmodel'=24
 'disappear'=43
 'entity'=30
-'entityvalue'=31
+'entityconstraint'=31
 'fail'=53
 'false'=14
 'future'=56
@@ -34,7 +34,7 @@
 'par'=48
 'past'=55
 'relation'=32
-'relationvalue'=36
+'relationconstraint'=36
 'required'=52
 'scenario'=37
 'specification'=51

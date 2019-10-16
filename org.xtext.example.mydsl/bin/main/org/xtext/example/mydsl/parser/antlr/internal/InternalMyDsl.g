@@ -588,9 +588,9 @@ ruleFragmentAttribute returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='attributevalue'
+		otherlv_0='attributeconstraint'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getFragmentAttributeAccess().getAttributevalueKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getFragmentAttributeAccess().getAttributeconstraintKeyword_0());
 		}
 		(
 			(
@@ -847,9 +847,9 @@ ruleFEntity returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='entityvalue'
+		otherlv_0='entityconstraint'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getFEntityAccess().getEntityvalueKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getFEntityAccess().getEntityconstraintKeyword_0());
 		}
 		(
 			(
@@ -1021,9 +1021,9 @@ ruleFRelation returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='relationvalue'
+		otherlv_0='relationconstraint'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getFRelationAccess().getRelationvalueKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getFRelationAccess().getRelationconstraintKeyword_0());
 		}
 		(
 			(
