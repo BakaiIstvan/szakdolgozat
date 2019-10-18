@@ -3,8 +3,6 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -107,19 +105,29 @@ public interface ChangeToMessage extends EObject
   void setAttribute(Attribute value);
 
   /**
-   * Returns the value of the '<em><b>Changevalue</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Changevalue</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Changevalue</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Changevalue</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Changevalue</em>' attribute list.
+   * @return the value of the '<em>Changevalue</em>' attribute.
+   * @see #setChangevalue(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Changevalue()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<String> getChangevalue();
+  String getChangevalue();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Changevalue</em>' attribute.
+   * @see #getChangevalue()
+   * @generated
+   */
+  void setChangevalue(String value);
 
 } // ChangeToMessage

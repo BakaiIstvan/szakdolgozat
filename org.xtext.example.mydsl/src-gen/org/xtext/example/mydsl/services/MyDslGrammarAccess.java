@@ -238,40 +238,72 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Attribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAttributeKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cValueAttributeValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cIntAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIntIntKeyword_1_0 = (Keyword)cIntAssignment_1.eContents().get(0);
+		private final Assignment cFloatAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cFloatFloatKeyword_2_0 = (Keyword)cFloatAssignment_2.eContents().get(0);
+		private final Assignment cStringAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cStringStringKeyword_3_0 = (Keyword)cStringAssignment_3.eContents().get(0);
+		private final Assignment cBooleanAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Keyword cBooleanBooleanKeyword_4_0 = (Keyword)cBooleanAssignment_4.eContents().get(0);
+		private final Assignment cNameAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cNameIDTerminalRuleCall_5_0 = (RuleCall)cNameAssignment_5.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cValueAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cValueAttributeValueParserRuleCall_7_0 = (RuleCall)cValueAssignment_7.eContents().get(0);
+		private final Keyword cSemicolonKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Attribute:
-		//	'attribute' name=ID '=' value+=AttributeValue ';';
+		//	'attribute' int?='int'? float?='float'? string?='string'? boolean?='boolean'? name=ID '='? value=AttributeValue? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'attribute' name=ID '=' value+=AttributeValue ';'
+		//'attribute' int?='int'? float?='float'? string?='string'? boolean?='boolean'? name=ID '='? value=AttributeValue? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'attribute'
 		public Keyword getAttributeKeyword_0() { return cAttributeKeyword_0; }
 		
+		//int?='int'?
+		public Assignment getIntAssignment_1() { return cIntAssignment_1; }
+		
+		//'int'
+		public Keyword getIntIntKeyword_1_0() { return cIntIntKeyword_1_0; }
+		
+		//float?='float'?
+		public Assignment getFloatAssignment_2() { return cFloatAssignment_2; }
+		
+		//'float'
+		public Keyword getFloatFloatKeyword_2_0() { return cFloatFloatKeyword_2_0; }
+		
+		//string?='string'?
+		public Assignment getStringAssignment_3() { return cStringAssignment_3; }
+		
+		//'string'
+		public Keyword getStringStringKeyword_3_0() { return cStringStringKeyword_3_0; }
+		
+		//boolean?='boolean'?
+		public Assignment getBooleanAssignment_4() { return cBooleanAssignment_4; }
+		
+		//'boolean'
+		public Keyword getBooleanBooleanKeyword_4_0() { return cBooleanBooleanKeyword_4_0; }
+		
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_5() { return cNameAssignment_5; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_5_0() { return cNameIDTerminalRuleCall_5_0; }
 		
-		//'='
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
+		//'='?
+		public Keyword getEqualsSignKeyword_6() { return cEqualsSignKeyword_6; }
 		
-		//value+=AttributeValue
-		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+		//value=AttributeValue?
+		public Assignment getValueAssignment_7() { return cValueAssignment_7; }
 		
 		//AttributeValue
-		public RuleCall getValueAttributeValueParserRuleCall_3_0() { return cValueAttributeValueParserRuleCall_3_0; }
+		public RuleCall getValueAttributeValueParserRuleCall_7_0() { return cValueAttributeValueParserRuleCall_7_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_8() { return cSemicolonKeyword_8; }
 	}
 	public class AttributeValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.AttributeValue");
@@ -313,14 +345,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOperatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperatorOperatorParserRuleCall_2_0 = (RuleCall)cOperatorAssignment_2.eContents().get(0);
 		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cValueFAttributeValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		private final RuleCall cValueAttributeValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//FragmentAttribute:
-		//	'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';';
+		//	'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';'
+		//'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'attributeconstraint'
@@ -338,11 +370,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Operator
 		public RuleCall getOperatorOperatorParserRuleCall_2_0() { return cOperatorOperatorParserRuleCall_2_0; }
 		
-		//value+=FAttributeValue
+		//value=AttributeValue
 		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
 		
-		//FAttributeValue
-		public RuleCall getValueFAttributeValueParserRuleCall_3_0() { return cValueFAttributeValueParserRuleCall_3_0; }
+		//AttributeValue
+		public RuleCall getValueAttributeValueParserRuleCall_3_0() { return cValueAttributeValueParserRuleCall_3_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
@@ -381,37 +413,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//'!='
 		public Keyword getExclamationMarkEqualsSignKeyword_5() { return cExclamationMarkEqualsSignKeyword_5; }
-	}
-	public class FAttributeValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FAttributeValue");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cNumberTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cRealTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final Keyword cTrueKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cFalseKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		
-		//FAttributeValue:
-		//	Number | Real | ID | 'true' | 'false';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Number | Real | ID | 'true' | 'false'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//Number
-		public RuleCall getNumberTerminalRuleCall_0() { return cNumberTerminalRuleCall_0; }
-		
-		//Real
-		public RuleCall getRealTerminalRuleCall_1() { return cRealTerminalRuleCall_1; }
-		
-		//ID
-		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
-		
-		//'true'
-		public Keyword getTrueKeyword_3() { return cTrueKeyword_3; }
-		
-		//'false'
-		public Keyword getFalseKeyword_4() { return cFalseKeyword_4; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Entity");
@@ -1162,11 +1163,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//ChangeToMessage:
-		//	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? ','?
-		//	changevalue+=AttributeValue? ')';
+		//	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? ','? changevalue=AttributeValue?
+		//	')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? ','? changevalue+=AttributeValue?
+		//'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? ','? changevalue=AttributeValue?
 		//')'
 		public Group getGroup() { return cGroup; }
 		
@@ -1215,7 +1216,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//','?
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//changevalue+=AttributeValue?
+		//changevalue=AttributeValue?
 		public Assignment getChangevalueAssignment_4() { return cChangevalueAssignment_4; }
 		
 		//AttributeValue
@@ -1610,7 +1611,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final AttributeValueElements pAttributeValue;
 	private final FragmentAttributeElements pFragmentAttribute;
 	private final OperatorElements pOperator;
-	private final FAttributeValueElements pFAttributeValue;
 	private final EntityElements pEntity;
 	private final FEntityElements pFEntity;
 	private final RelationElements pRelation;
@@ -1655,7 +1655,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAttributeValue = new AttributeValueElements();
 		this.pFragmentAttribute = new FragmentAttributeElements();
 		this.pOperator = new OperatorElements();
-		this.pFAttributeValue = new FAttributeValueElements();
 		this.pEntity = new EntityElements();
 		this.pFEntity = new FEntityElements();
 		this.pRelation = new RelationElements();
@@ -1762,7 +1761,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Attribute:
-	//	'attribute' name=ID '=' value+=AttributeValue ';';
+	//	'attribute' int?='int'? float?='float'? string?='string'? boolean?='boolean'? name=ID '='? value=AttributeValue? ';';
 	public AttributeElements getAttributeAccess() {
 		return pAttribute;
 	}
@@ -1782,7 +1781,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FragmentAttribute:
-	//	'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';';
+	//	'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';';
 	public FragmentAttributeElements getFragmentAttributeAccess() {
 		return pFragmentAttribute;
 	}
@@ -1799,16 +1798,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getOperatorRule() {
 		return getOperatorAccess().getRule();
-	}
-	
-	//FAttributeValue:
-	//	Number | Real | ID | 'true' | 'false';
-	public FAttributeValueElements getFAttributeValueAccess() {
-		return pFAttributeValue;
-	}
-	
-	public ParserRule getFAttributeValueRule() {
-		return getFAttributeValueAccess().getRule();
 	}
 	
 	//Entity:
@@ -1956,8 +1945,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ChangeToMessage:
-	//	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? ','?
-	//	changevalue+=AttributeValue? ')';
+	//	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? ','? changevalue=AttributeValue?
+	//	')';
 	public ChangeToMessageElements getChangeToMessageAccess() {
 		return pChangeToMessage;
 	}

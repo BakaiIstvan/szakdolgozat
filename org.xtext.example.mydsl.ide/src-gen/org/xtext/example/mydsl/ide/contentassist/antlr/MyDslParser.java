@@ -35,7 +35,6 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContextFragmentAccess().getEntitiesAlternatives_3_0(), "rule__ContextFragment__EntitiesAlternatives_3_0");
 			builder.put(grammarAccess.getAttributeValueAccess().getAlternatives(), "rule__AttributeValue__Alternatives");
 			builder.put(grammarAccess.getOperatorAccess().getAlternatives(), "rule__Operator__Alternatives");
-			builder.put(grammarAccess.getFAttributeValueAccess().getAlternatives(), "rule__FAttributeValue__Alternatives");
 			builder.put(grammarAccess.getScenarioContentAccess().getAlternatives(), "rule__ScenarioContent__Alternatives");
 			builder.put(grammarAccess.getContextMessageContentAccess().getAlternatives(), "rule__ContextMessageContent__Alternatives");
 			builder.put(grammarAccess.getChangeMessageAccess().getAlternatives(), "rule__ChangeMessage__Alternatives");
@@ -84,8 +83,12 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getContextModelAccess().getEntitiesAssignment_3(), "rule__ContextModel__EntitiesAssignment_3");
 			builder.put(grammarAccess.getContextFragmentAccess().getNameAssignment_1(), "rule__ContextFragment__NameAssignment_1");
 			builder.put(grammarAccess.getContextFragmentAccess().getEntitiesAssignment_3(), "rule__ContextFragment__EntitiesAssignment_3");
-			builder.put(grammarAccess.getAttributeAccess().getNameAssignment_1(), "rule__Attribute__NameAssignment_1");
-			builder.put(grammarAccess.getAttributeAccess().getValueAssignment_3(), "rule__Attribute__ValueAssignment_3");
+			builder.put(grammarAccess.getAttributeAccess().getIntAssignment_1(), "rule__Attribute__IntAssignment_1");
+			builder.put(grammarAccess.getAttributeAccess().getFloatAssignment_2(), "rule__Attribute__FloatAssignment_2");
+			builder.put(grammarAccess.getAttributeAccess().getStringAssignment_3(), "rule__Attribute__StringAssignment_3");
+			builder.put(grammarAccess.getAttributeAccess().getBooleanAssignment_4(), "rule__Attribute__BooleanAssignment_4");
+			builder.put(grammarAccess.getAttributeAccess().getNameAssignment_5(), "rule__Attribute__NameAssignment_5");
+			builder.put(grammarAccess.getAttributeAccess().getValueAssignment_7(), "rule__Attribute__ValueAssignment_7");
 			builder.put(grammarAccess.getFragmentAttributeAccess().getNameAssignment_1(), "rule__FragmentAttribute__NameAssignment_1");
 			builder.put(grammarAccess.getFragmentAttributeAccess().getOperatorAssignment_2(), "rule__FragmentAttribute__OperatorAssignment_2");
 			builder.put(grammarAccess.getFragmentAttributeAccess().getValueAssignment_3(), "rule__FragmentAttribute__ValueAssignment_3");

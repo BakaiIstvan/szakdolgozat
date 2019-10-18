@@ -261,22 +261,58 @@ public interface MyDslPackage extends EPackage
   int ATTRIBUTE = 4;
 
   /**
+   * The feature id for the '<em><b>Int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__INT = 0;
+
+  /**
+   * The feature id for the '<em><b>Float</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__FLOAT = 1;
+
+  /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__STRING = 2;
+
+  /**
+   * The feature id for the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__BOOLEAN = 3;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__NAME = 0;
+  int ATTRIBUTE__NAME = 4;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ATTRIBUTE__VALUE = 1;
+  int ATTRIBUTE__VALUE = 5;
 
   /**
    * The number of structural features of the '<em>Attribute</em>' class.
@@ -285,7 +321,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ATTRIBUTE_FEATURE_COUNT = 2;
+  int ATTRIBUTE_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl <em>Fragment Attribute</em>}' class.
@@ -316,7 +352,7 @@ public interface MyDslPackage extends EPackage
   int FRAGMENT_ATTRIBUTE__OPERATOR = 1;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1051,7 +1087,7 @@ public interface MyDslPackage extends EPackage
   int CHANGE_TO_MESSAGE__ATTRIBUTE = 2;
 
   /**
-   * The feature id for the '<em><b>Changevalue</b></em>' attribute list.
+   * The feature id for the '<em><b>Changevalue</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1532,6 +1568,50 @@ public interface MyDslPackage extends EPackage
   EClass getAttribute();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isInt <em>Int</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Int</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isInt()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Int();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isFloat <em>Float</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Float</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isFloat()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Float();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isString <em>String</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isString()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_String();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isBoolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolean</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isBoolean()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Boolean();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1543,10 +1623,10 @@ public interface MyDslPackage extends EPackage
   EAttribute getAttribute_Name();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Attribute#getValue <em>Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.xtext.example.mydsl.myDsl.Attribute#getValue()
    * @see #getAttribute()
    * @generated
@@ -1586,10 +1666,10 @@ public interface MyDslPackage extends EPackage
   EAttribute getFragmentAttribute_Operator();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue()
    * @see #getFragmentAttribute()
    * @generated
@@ -2210,10 +2290,10 @@ public interface MyDslPackage extends EPackage
   EReference getChangeToMessage_Attribute();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Changevalue</em>'.
+   * @return the meta object for the attribute '<em>Changevalue</em>'.
    * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue()
    * @see #getChangeToMessage()
    * @generated
@@ -2653,6 +2733,38 @@ public interface MyDslPackage extends EPackage
     EClass ATTRIBUTE = eINSTANCE.getAttribute();
 
     /**
+     * The meta object literal for the '<em><b>Int</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__INT = eINSTANCE.getAttribute_Int();
+
+    /**
+     * The meta object literal for the '<em><b>Float</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__FLOAT = eINSTANCE.getAttribute_Float();
+
+    /**
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__STRING = eINSTANCE.getAttribute_String();
+
+    /**
+     * The meta object literal for the '<em><b>Boolean</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__BOOLEAN = eINSTANCE.getAttribute_Boolean();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2661,7 +2773,7 @@ public interface MyDslPackage extends EPackage
     EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2695,7 +2807,7 @@ public interface MyDslPackage extends EPackage
     EAttribute FRAGMENT_ATTRIBUTE__OPERATOR = eINSTANCE.getFragmentAttribute_Operator();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -3187,7 +3299,7 @@ public interface MyDslPackage extends EPackage
     EReference CHANGE_TO_MESSAGE__ATTRIBUTE = eINSTANCE.getChangeToMessage_Attribute();
 
     /**
-     * The meta object literal for the '<em><b>Changevalue</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Changevalue</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

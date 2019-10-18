@@ -30,7 +30,7 @@ ContextFragment:
 ;
 
 Attribute:
-	'attribute' name=ID '=' value+=AttributeValue ';'
+	'attribute' (int?='int')? (float?='float')? (string?='string')? (boolean?='boolean')? name=ID ('=')? (value=AttributeValue)? ';'
 ;
 
 AttributeValue:
@@ -38,15 +38,11 @@ AttributeValue:
 ;
 
 FragmentAttribute:
-	'attributeconstraint' name=ID operator+=Operator value+=FAttributeValue ';'
+	'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';'
 ;
 
 Operator:
 	'>' | '<' | '>=' | '<=' | '==' | '!='
-;
-
-FAttributeValue:
-	Number | Real | ID | 'true' | 'false'
 ;
 
 Entity:
@@ -119,7 +115,7 @@ DisappearMessage:
 ;
 
 ChangeToMessage:
-	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? (',')? (changevalue+=AttributeValue)? ')'
+	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
 ;
 
 Type:

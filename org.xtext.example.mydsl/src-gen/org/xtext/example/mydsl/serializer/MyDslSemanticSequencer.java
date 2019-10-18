@@ -185,7 +185,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (name=ID value+=AttributeValue)
+	 *     (
+	 *         int?='int'? 
+	 *         float?='float'? 
+	 *         string?='string'? 
+	 *         boolean?='boolean'? 
+	 *         name=ID 
+	 *         value=AttributeValue?
+	 *     )
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -209,7 +216,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ChangeToMessage returns ChangeToMessage
 	 *
 	 * Constraint:
-	 *     ((context=[ContextModel|ID] entity=[Type|ID] attribute=[Attribute|ID])? changevalue+=AttributeValue?)
+	 *     ((context=[ContextModel|ID] entity=[Type|ID] attribute=[Attribute|ID])? changevalue=AttributeValue?)
 	 */
 	protected void sequence_ChangeToMessage(ISerializationContext context, ChangeToMessage semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -372,7 +379,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FragmentAttribute returns FragmentAttribute
 	 *
 	 * Constraint:
-	 *     (name=ID operator+=Operator value+=FAttributeValue)
+	 *     (name=ID operator+=Operator value=AttributeValue)
 	 */
 	protected void sequence_FragmentAttribute(ISerializationContext context, FragmentAttribute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -67,14 +67,24 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   protected EList<String> operator;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EList<String> value;
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -139,13 +149,22 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getValue()
+  public String getValue()
   {
-    if (value == null)
-    {
-      value = new EDataTypeEList<String>(String.class, this, MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE);
-    }
     return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(String newValue)
+  {
+    String oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE, oldValue, value));
   }
 
   /**
@@ -187,8 +206,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
         getOperator().addAll((Collection<? extends String>)newValue);
         return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
-        getValue().clear();
-        getValue().addAll((Collection<? extends String>)newValue);
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -211,7 +229,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
         getOperator().clear();
         return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
-        getValue().clear();
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -232,7 +250,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
       case MyDslPackage.FRAGMENT_ATTRIBUTE__OPERATOR:
         return operator != null && !operator.isEmpty();
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
-        return value != null && !value.isEmpty();
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }

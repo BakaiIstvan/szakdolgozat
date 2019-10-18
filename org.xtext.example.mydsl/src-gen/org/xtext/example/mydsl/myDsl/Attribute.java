@@ -3,8 +3,6 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,6 +14,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Attribute#isInt <em>Int</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Attribute#isFloat <em>Float</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Attribute#isString <em>String</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Attribute#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Attribute#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Attribute#getValue <em>Value</em>}</li>
  * </ul>
@@ -26,6 +28,110 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Attribute extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Int</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Int</em>' attribute.
+   * @see #setInt(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAttribute_Int()
+   * @model
+   * @generated
+   */
+  boolean isInt();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Attribute#isInt <em>Int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Int</em>' attribute.
+   * @see #isInt()
+   * @generated
+   */
+  void setInt(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Float</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Float</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Float</em>' attribute.
+   * @see #setFloat(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAttribute_Float()
+   * @model
+   * @generated
+   */
+  boolean isFloat();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Attribute#isFloat <em>Float</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Float</em>' attribute.
+   * @see #isFloat()
+   * @generated
+   */
+  void setFloat(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>String</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>String</em>' attribute.
+   * @see #setString(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAttribute_String()
+   * @model
+   * @generated
+   */
+  boolean isString();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Attribute#isString <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>String</em>' attribute.
+   * @see #isString()
+   * @generated
+   */
+  void setString(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Boolean</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Boolean</em>' attribute.
+   * @see #setBoolean(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAttribute_Boolean()
+   * @model
+   * @generated
+   */
+  boolean isBoolean();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Attribute#isBoolean <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Boolean</em>' attribute.
+   * @see #isBoolean()
+   * @generated
+   */
+  void setBoolean(boolean value);
+
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -53,19 +159,29 @@ public interface Attribute extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute list.
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAttribute_Value()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<String> getValue();
+  String getValue();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Attribute#getValue <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(String value);
 
 } // Attribute

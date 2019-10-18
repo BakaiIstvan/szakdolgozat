@@ -3,19 +3,13 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
@@ -72,14 +66,24 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   protected Attribute attribute;
 
   /**
-   * The cached value of the '{@link #getChangevalue() <em>Changevalue</em>}' attribute list.
+   * The default value of the '{@link #getChangevalue() <em>Changevalue</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getChangevalue()
    * @generated
    * @ordered
    */
-  protected EList<String> changevalue;
+  protected static final String CHANGEVALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getChangevalue() <em>Changevalue</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getChangevalue()
+   * @generated
+   * @ordered
+   */
+  protected String changevalue = CHANGEVALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -236,13 +240,22 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getChangevalue()
+  public String getChangevalue()
   {
-    if (changevalue == null)
-    {
-      changevalue = new EDataTypeEList<String>(String.class, this, MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE);
-    }
     return changevalue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setChangevalue(String newChangevalue)
+  {
+    String oldChangevalue = changevalue;
+    changevalue = newChangevalue;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE, oldChangevalue, changevalue));
   }
 
   /**
@@ -275,7 +288,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -291,8 +303,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
         setAttribute((Attribute)newValue);
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
-        getChangevalue().clear();
-        getChangevalue().addAll((Collection<? extends String>)newValue);
+        setChangevalue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -318,7 +329,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
         setAttribute((Attribute)null);
         return;
       case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
-        getChangevalue().clear();
+        setChangevalue(CHANGEVALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -341,7 +352,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
         return attribute != null;
       case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
-        return changevalue != null && !changevalue.isEmpty();
+        return CHANGEVALUE_EDEFAULT == null ? changevalue != null : !CHANGEVALUE_EDEFAULT.equals(changevalue);
     }
     return super.eIsSet(featureID);
   }
