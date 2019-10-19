@@ -342,17 +342,29 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAttributeconstraintKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOperatorOperatorParserRuleCall_2_0 = (RuleCall)cOperatorAssignment_2.eContents().get(0);
-		private final Assignment cValueAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cValueAttributeValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cGreaterAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cGreaterGreaterThanSignKeyword_2_0 = (Keyword)cGreaterAssignment_2.eContents().get(0);
+		private final Assignment cSmallerAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cSmallerLessThanSignKeyword_3_0 = (Keyword)cSmallerAssignment_3.eContents().get(0);
+		private final Assignment cGreaterequalsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Keyword cGreaterequalsGreaterThanSignEqualsSignKeyword_4_0 = (Keyword)cGreaterequalsAssignment_4.eContents().get(0);
+		private final Assignment cSmallerequalsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final Keyword cSmallerequalsLessThanSignEqualsSignKeyword_5_0 = (Keyword)cSmallerequalsAssignment_5.eContents().get(0);
+		private final Assignment cEqualsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final Keyword cEqualsEqualsSignEqualsSignKeyword_6_0 = (Keyword)cEqualsAssignment_6.eContents().get(0);
+		private final Assignment cNotequalsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final Keyword cNotequalsExclamationMarkEqualsSignKeyword_7_0 = (Keyword)cNotequalsAssignment_7.eContents().get(0);
+		private final Assignment cValueAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cValueAttributeValueParserRuleCall_8_0 = (RuleCall)cValueAssignment_8.eContents().get(0);
+		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//FragmentAttribute:
-		//	'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';';
+		//	'attributeconstraint' name=ID greater?='>'? smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='?
+		//	notequals?='!='? value=AttributeValue ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';'
+		//'attributeconstraint' name=ID greater?='>'? smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='?
+		//notequals?='!='? value=AttributeValue ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'attributeconstraint'
@@ -364,55 +376,50 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//operator+=Operator
-		public Assignment getOperatorAssignment_2() { return cOperatorAssignment_2; }
-		
-		//Operator
-		public RuleCall getOperatorOperatorParserRuleCall_2_0() { return cOperatorOperatorParserRuleCall_2_0; }
-		
-		//value=AttributeValue
-		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
-		
-		//AttributeValue
-		public RuleCall getValueAttributeValueParserRuleCall_3_0() { return cValueAttributeValueParserRuleCall_3_0; }
-		
-		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
-	}
-	public class OperatorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Operator");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cGreaterThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cGreaterThanSignEqualsSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cLessThanSignEqualsSignKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cEqualsSignEqualsSignKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cExclamationMarkEqualsSignKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		
-		//Operator:
-		//	'>' | '<' | '>=' | '<=' | '==' | '!=';
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'>' | '<' | '>=' | '<=' | '==' | '!='
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//greater?='>'?
+		public Assignment getGreaterAssignment_2() { return cGreaterAssignment_2; }
 		
 		//'>'
-		public Keyword getGreaterThanSignKeyword_0() { return cGreaterThanSignKeyword_0; }
+		public Keyword getGreaterGreaterThanSignKeyword_2_0() { return cGreaterGreaterThanSignKeyword_2_0; }
+		
+		//smaller?='<'?
+		public Assignment getSmallerAssignment_3() { return cSmallerAssignment_3; }
 		
 		//'<'
-		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
+		public Keyword getSmallerLessThanSignKeyword_3_0() { return cSmallerLessThanSignKeyword_3_0; }
+		
+		//greaterequals?='>='?
+		public Assignment getGreaterequalsAssignment_4() { return cGreaterequalsAssignment_4; }
 		
 		//'>='
-		public Keyword getGreaterThanSignEqualsSignKeyword_2() { return cGreaterThanSignEqualsSignKeyword_2; }
+		public Keyword getGreaterequalsGreaterThanSignEqualsSignKeyword_4_0() { return cGreaterequalsGreaterThanSignEqualsSignKeyword_4_0; }
+		
+		//smallerequals?='<='?
+		public Assignment getSmallerequalsAssignment_5() { return cSmallerequalsAssignment_5; }
 		
 		//'<='
-		public Keyword getLessThanSignEqualsSignKeyword_3() { return cLessThanSignEqualsSignKeyword_3; }
+		public Keyword getSmallerequalsLessThanSignEqualsSignKeyword_5_0() { return cSmallerequalsLessThanSignEqualsSignKeyword_5_0; }
+		
+		//equals?='=='?
+		public Assignment getEqualsAssignment_6() { return cEqualsAssignment_6; }
 		
 		//'=='
-		public Keyword getEqualsSignEqualsSignKeyword_4() { return cEqualsSignEqualsSignKeyword_4; }
+		public Keyword getEqualsEqualsSignEqualsSignKeyword_6_0() { return cEqualsEqualsSignEqualsSignKeyword_6_0; }
+		
+		//notequals?='!='?
+		public Assignment getNotequalsAssignment_7() { return cNotequalsAssignment_7; }
 		
 		//'!='
-		public Keyword getExclamationMarkEqualsSignKeyword_5() { return cExclamationMarkEqualsSignKeyword_5; }
+		public Keyword getNotequalsExclamationMarkEqualsSignKeyword_7_0() { return cNotequalsExclamationMarkEqualsSignKeyword_7_0; }
+		
+		//value=AttributeValue
+		public Assignment getValueAssignment_8() { return cValueAssignment_8; }
+		
+		//AttributeValue
+		public RuleCall getValueAttributeValueParserRuleCall_8_0() { return cValueAttributeValueParserRuleCall_8_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Entity");
@@ -1610,7 +1617,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final AttributeElements pAttribute;
 	private final AttributeValueElements pAttributeValue;
 	private final FragmentAttributeElements pFragmentAttribute;
-	private final OperatorElements pOperator;
 	private final EntityElements pEntity;
 	private final FEntityElements pFEntity;
 	private final RelationElements pRelation;
@@ -1654,7 +1660,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAttribute = new AttributeElements();
 		this.pAttributeValue = new AttributeValueElements();
 		this.pFragmentAttribute = new FragmentAttributeElements();
-		this.pOperator = new OperatorElements();
 		this.pEntity = new EntityElements();
 		this.pFEntity = new FEntityElements();
 		this.pRelation = new RelationElements();
@@ -1781,23 +1786,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FragmentAttribute:
-	//	'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';';
+	//	'attributeconstraint' name=ID greater?='>'? smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='?
+	//	notequals?='!='? value=AttributeValue ';';
 	public FragmentAttributeElements getFragmentAttributeAccess() {
 		return pFragmentAttribute;
 	}
 	
 	public ParserRule getFragmentAttributeRule() {
 		return getFragmentAttributeAccess().getRule();
-	}
-	
-	//Operator:
-	//	'>' | '<' | '>=' | '<=' | '==' | '!=';
-	public OperatorElements getOperatorAccess() {
-		return pOperator;
-	}
-	
-	public ParserRule getOperatorRule() {
-		return getOperatorAccess().getRule();
 	}
 	
 	//Entity:

@@ -37,7 +37,12 @@
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FragmentAttribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/greater"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/smaller"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/greaterequals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/smallerequals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/equals"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/notequals"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/value"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Entity"/>

@@ -670,29 +670,94 @@ ruleFragmentAttribute returns [EObject current=null]
 		)
 		(
 			(
+				lv_greater_2_0='>'
 				{
-					newCompositeNode(grammarAccess.getFragmentAttributeAccess().getOperatorOperatorParserRuleCall_2_0());
+					newLeafNode(lv_greater_2_0, grammarAccess.getFragmentAttributeAccess().getGreaterGreaterThanSignKeyword_2_0());
 				}
-				lv_operator_2_0=ruleOperator
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFragmentAttributeRule());
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
 					}
-					add(
-						$current,
-						"operator",
-						lv_operator_2_0,
-						"org.xtext.example.mydsl.MyDsl.Operator");
-					afterParserOrEnumRuleCall();
+					setWithLastConsumed($current, "greater", true, ">");
 				}
 			)
-		)
+		)?
+		(
+			(
+				lv_smaller_3_0='<'
+				{
+					newLeafNode(lv_smaller_3_0, grammarAccess.getFragmentAttributeAccess().getSmallerLessThanSignKeyword_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "smaller", true, "<");
+				}
+			)
+		)?
+		(
+			(
+				lv_greaterequals_4_0='>='
+				{
+					newLeafNode(lv_greaterequals_4_0, grammarAccess.getFragmentAttributeAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "greaterequals", true, ">=");
+				}
+			)
+		)?
+		(
+			(
+				lv_smallerequals_5_0='<='
+				{
+					newLeafNode(lv_smallerequals_5_0, grammarAccess.getFragmentAttributeAccess().getSmallerequalsLessThanSignEqualsSignKeyword_5_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "smallerequals", true, "<=");
+				}
+			)
+		)?
+		(
+			(
+				lv_equals_6_0='=='
+				{
+					newLeafNode(lv_equals_6_0, grammarAccess.getFragmentAttributeAccess().getEqualsEqualsSignEqualsSignKeyword_6_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "equals", true, "==");
+				}
+			)
+		)?
+		(
+			(
+				lv_notequals_7_0='!='
+				{
+					newLeafNode(lv_notequals_7_0, grammarAccess.getFragmentAttributeAccess().getNotequalsExclamationMarkEqualsSignKeyword_7_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "notequals", true, "!=");
+				}
+			)
+		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFragmentAttributeAccess().getValueAttributeValueParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getFragmentAttributeAccess().getValueAttributeValueParserRuleCall_8_0());
 				}
-				lv_value_3_0=ruleAttributeValue
+				lv_value_8_0=ruleAttributeValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFragmentAttributeRule());
@@ -700,69 +765,15 @@ ruleFragmentAttribute returns [EObject current=null]
 					set(
 						$current,
 						"value",
-						lv_value_3_0,
+						lv_value_8_0,
 						"org.xtext.example.mydsl.MyDsl.AttributeValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_4=';'
+		otherlv_9=';'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getFragmentAttributeAccess().getSemicolonKeyword_4());
-		}
-	)
-;
-
-// Entry rule entryRuleOperator
-entryRuleOperator returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getOperatorRule()); }
-	iv_ruleOperator=ruleOperator
-	{ $current=$iv_ruleOperator.current.getText(); }
-	EOF;
-
-// Rule Operator
-ruleOperator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		kw='>'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getOperatorAccess().getGreaterThanSignKeyword_0());
-		}
-		    |
-		kw='<'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getOperatorAccess().getLessThanSignKeyword_1());
-		}
-		    |
-		kw='>='
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getOperatorAccess().getGreaterThanSignEqualsSignKeyword_2());
-		}
-		    |
-		kw='<='
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getOperatorAccess().getLessThanSignEqualsSignKeyword_3());
-		}
-		    |
-		kw='=='
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getOperatorAccess().getEqualsSignEqualsSignKeyword_4());
-		}
-		    |
-		kw='!='
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getOperatorAccess().getExclamationMarkEqualsSignKeyword_5());
+			newLeafNode(otherlv_9, grammarAccess.getFragmentAttributeAccess().getSemicolonKeyword_9());
 		}
 	)
 ;

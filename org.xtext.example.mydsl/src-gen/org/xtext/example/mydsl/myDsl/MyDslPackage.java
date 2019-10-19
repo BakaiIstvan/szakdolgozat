@@ -343,13 +343,58 @@ public interface MyDslPackage extends EPackage
   int FRAGMENT_ATTRIBUTE__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Operator</b></em>' attribute list.
+   * The feature id for the '<em><b>Greater</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__OPERATOR = 1;
+  int FRAGMENT_ATTRIBUTE__GREATER = 1;
+
+  /**
+   * The feature id for the '<em><b>Smaller</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__SMALLER = 2;
+
+  /**
+   * The feature id for the '<em><b>Greaterequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__GREATEREQUALS = 3;
+
+  /**
+   * The feature id for the '<em><b>Smallerequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__SMALLEREQUALS = 4;
+
+  /**
+   * The feature id for the '<em><b>Equals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__EQUALS = 5;
+
+  /**
+   * The feature id for the '<em><b>Notequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__NOTEQUALS = 6;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -358,7 +403,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__VALUE = 2;
+  int FRAGMENT_ATTRIBUTE__VALUE = 7;
 
   /**
    * The number of structural features of the '<em>Fragment Attribute</em>' class.
@@ -367,7 +412,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 3;
+  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.TypeImpl <em>Type</em>}' class.
@@ -1655,15 +1700,70 @@ public interface MyDslPackage extends EPackage
   EAttribute getFragmentAttribute_Name();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getOperator <em>Operator</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreater <em>Greater</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Operator</em>'.
-   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getOperator()
+   * @return the meta object for the attribute '<em>Greater</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreater()
    * @see #getFragmentAttribute()
    * @generated
    */
-  EAttribute getFragmentAttribute_Operator();
+  EAttribute getFragmentAttribute_Greater();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmaller <em>Smaller</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Smaller</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmaller()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Smaller();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreaterequals <em>Greaterequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Greaterequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreaterequals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Greaterequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmallerequals <em>Smallerequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Smallerequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmallerequals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Smallerequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isEquals <em>Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Equals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isEquals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Equals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isNotequals <em>Notequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Notequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isNotequals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Notequals();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}'.
@@ -2799,12 +2899,52 @@ public interface MyDslPackage extends EPackage
     EAttribute FRAGMENT_ATTRIBUTE__NAME = eINSTANCE.getFragmentAttribute_Name();
 
     /**
-     * The meta object literal for the '<em><b>Operator</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Greater</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FRAGMENT_ATTRIBUTE__OPERATOR = eINSTANCE.getFragmentAttribute_Operator();
+    EAttribute FRAGMENT_ATTRIBUTE__GREATER = eINSTANCE.getFragmentAttribute_Greater();
+
+    /**
+     * The meta object literal for the '<em><b>Smaller</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__SMALLER = eINSTANCE.getFragmentAttribute_Smaller();
+
+    /**
+     * The meta object literal for the '<em><b>Greaterequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__GREATEREQUALS = eINSTANCE.getFragmentAttribute_Greaterequals();
+
+    /**
+     * The meta object literal for the '<em><b>Smallerequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__SMALLEREQUALS = eINSTANCE.getFragmentAttribute_Smallerequals();
+
+    /**
+     * The meta object literal for the '<em><b>Equals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__EQUALS = eINSTANCE.getFragmentAttribute_Equals();
+
+    /**
+     * The meta object literal for the '<em><b>Notequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__NOTEQUALS = eINSTANCE.getFragmentAttribute_Notequals();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.

@@ -3,8 +3,6 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,7 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getName <em>Name</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreater <em>Greater</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmaller <em>Smaller</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreaterequals <em>Greaterequals</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmallerequals <em>Smallerequals</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isEquals <em>Equals</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isNotequals <em>Notequals</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -54,20 +57,160 @@ public interface FragmentAttribute extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Operator</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Greater</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Operator</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Greater</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' attribute list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Operator()
-   * @model unique="false"
+   * @return the value of the '<em>Greater</em>' attribute.
+   * @see #setGreater(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Greater()
+   * @model
    * @generated
    */
-  EList<String> getOperator();
+  boolean isGreater();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreater <em>Greater</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Greater</em>' attribute.
+   * @see #isGreater()
+   * @generated
+   */
+  void setGreater(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Smaller</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Smaller</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Smaller</em>' attribute.
+   * @see #setSmaller(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Smaller()
+   * @model
+   * @generated
+   */
+  boolean isSmaller();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmaller <em>Smaller</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Smaller</em>' attribute.
+   * @see #isSmaller()
+   * @generated
+   */
+  void setSmaller(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Greaterequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Greaterequals</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Greaterequals</em>' attribute.
+   * @see #setGreaterequals(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Greaterequals()
+   * @model
+   * @generated
+   */
+  boolean isGreaterequals();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreaterequals <em>Greaterequals</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Greaterequals</em>' attribute.
+   * @see #isGreaterequals()
+   * @generated
+   */
+  void setGreaterequals(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Smallerequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Smallerequals</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Smallerequals</em>' attribute.
+   * @see #setSmallerequals(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Smallerequals()
+   * @model
+   * @generated
+   */
+  boolean isSmallerequals();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmallerequals <em>Smallerequals</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Smallerequals</em>' attribute.
+   * @see #isSmallerequals()
+   * @generated
+   */
+  void setSmallerequals(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Equals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Equals</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Equals</em>' attribute.
+   * @see #setEquals(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Equals()
+   * @model
+   * @generated
+   */
+  boolean isEquals();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isEquals <em>Equals</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Equals</em>' attribute.
+   * @see #isEquals()
+   * @generated
+   */
+  void setEquals(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Notequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Notequals</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Notequals</em>' attribute.
+   * @see #setNotequals(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getFragmentAttribute_Notequals()
+   * @model
+   * @generated
+   */
+  boolean isNotequals();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isNotequals <em>Notequals</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Notequals</em>' attribute.
+   * @see #isNotequals()
+   * @generated
+   */
+  void setNotequals(boolean value);
 
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

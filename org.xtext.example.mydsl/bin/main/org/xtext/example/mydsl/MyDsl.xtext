@@ -38,11 +38,7 @@ AttributeValue:
 ;
 
 FragmentAttribute:
-	'attributeconstraint' name=ID operator+=Operator value=AttributeValue ';'
-;
-
-Operator:
-	'>' | '<' | '>=' | '<=' | '==' | '!='
+	'attributeconstraint' name=ID (greater?='>')? (smaller?='<')? (greaterequals?='>=')? (smallerequals?='<=')? (equals?='==')? (notequals?='!=')? value=AttributeValue ';'
 ;
 
 Entity:
