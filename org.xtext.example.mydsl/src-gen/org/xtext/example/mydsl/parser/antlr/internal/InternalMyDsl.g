@@ -323,9 +323,9 @@ ruleContextModel returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesTypeParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesEntityParserRuleCall_3_0());
 				}
-				lv_entities_3_0=ruleType
+				lv_entities_3_0=ruleEntity
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getContextModelRule());
@@ -334,14 +334,33 @@ ruleContextModel returns [EObject current=null]
 						$current,
 						"entities",
 						lv_entities_3_0,
-						"org.xtext.example.mydsl.MyDsl.Type");
+						"org.xtext.example.mydsl.MyDsl.Entity");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
-		otherlv_4='}'
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getContextModelAccess().getRelationsRelationParserRuleCall_4_0());
+				}
+				lv_relations_4_0=ruleRelation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getContextModelRule());
+					}
+					add(
+						$current,
+						"relations",
+						lv_relations_4_0,
+						"org.xtext.example.mydsl.MyDsl.Relation");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_5='}'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getContextModelAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_5, grammarAccess.getContextModelAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;
@@ -2114,42 +2133,6 @@ ruleChangeToRelation returns [EObject current=null]
 		otherlv_9=')'
 		{
 			newLeafNode(otherlv_9, grammarAccess.getChangeToRelationAccess().getRightParenthesisKeyword_5());
-		}
-	)
-;
-
-// Entry rule entryRuleType
-entryRuleType returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getTypeRule()); }
-	iv_ruleType=ruleType
-	{ $current=$iv_ruleType.current; }
-	EOF;
-
-// Rule Type
-ruleType returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		{
-			newCompositeNode(grammarAccess.getTypeAccess().getRelationParserRuleCall_0());
-		}
-		this_Relation_0=ruleRelation
-		{
-			$current = $this_Relation_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			newCompositeNode(grammarAccess.getTypeAccess().getEntityParserRuleCall_1());
-		}
-		this_Entity_1=ruleEntity
-		{
-			$current = $this_Entity_1.current;
-			afterParserOrEnumRuleCall();
 		}
 	)
 ;

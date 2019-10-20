@@ -19,7 +19,8 @@ Include:
 
 ContextModel:
 	'contextmodel' name=ID '{'
-		entities+=Type*
+		entities+=Entity*
+		relations+=Relation*
 	'}'
 ;
 
@@ -116,10 +117,6 @@ ChangeToMessage:
 
 ChangeToRelation:
 	'relationChangeTo' '(' (context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
-;
-
-Type:
-	Relation | Entity
 ;
 
 Name:

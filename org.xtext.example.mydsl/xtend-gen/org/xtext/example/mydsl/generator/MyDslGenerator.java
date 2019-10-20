@@ -18,6 +18,7 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -26,15 +27,16 @@ import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
-import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * Generates code from your model files on save.
@@ -54,6 +56,18 @@ public class MyDslGenerator extends AbstractGenerator {
       String _string = this._iQualifiedNameProvider.getFullyQualifiedName(m).toString("/");
       String _plus = (_string + ".java");
       fsa.generateFile(_plus, this.compile(m));
+    }
+    Iterable<Entity> _filter_1 = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
+    for (final Entity m_1 : _filter_1) {
+      String _string_1 = this._iQualifiedNameProvider.getFullyQualifiedName(m_1).toString("/");
+      String _plus_1 = (_string_1 + ".java");
+      fsa.generateFile(_plus_1, this.compile(m_1));
+    }
+    Iterable<Relation> _filter_2 = Iterables.<Relation>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Relation.class);
+    for (final Relation m_2 : _filter_2) {
+      String _string_2 = this._iQualifiedNameProvider.getFullyQualifiedName(m_2).toString("/");
+      String _plus_2 = (_string_2 + ".java");
+      fsa.generateFile(_plus_2, this.compile(m_2));
     }
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class State {");
@@ -762,8 +776,8 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder_3.append("}");
     _builder_3.newLine();
     fsa.generateFile("Automaton.java", _builder_3);
-    Iterable<Domain> _filter_1 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
-    for (final Domain s : _filter_1) {
+    Iterable<Domain> _filter_3 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
+    for (final Domain s : _filter_3) {
       fsa.generateFile("Specification.java", this.compile(s));
     }
   }
@@ -776,15 +790,29 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     {
-      EList<Type> _entities = m.getEntities();
-      for(final Type t : _entities) {
+      EList<Entity> _entities = m.getEntities();
+      for(final Entity e : _entities) {
         _builder.append("\t");
         _builder.append("private ");
-        String _firstUpper_1 = StringExtensions.toFirstUpper(t.getName());
+        String _firstUpper_1 = StringExtensions.toFirstUpper(e.getName());
         _builder.append(_firstUpper_1, "\t");
         _builder.append(" ");
-        String _firstLower = StringExtensions.toFirstLower(t.getName());
+        String _firstLower = StringExtensions.toFirstLower(e.getName());
         _builder.append(_firstLower, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Relation> _relations = m.getRelations();
+      for(final Relation r : _relations) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(r.getName());
+        _builder.append(_firstUpper_2, "\t");
+        _builder.append(" ");
+        String _firstLower_1 = StringExtensions.toFirstLower(r.getName());
+        _builder.append(_firstLower_1, "\t");
         _builder.append(";");
         _builder.newLineIfNotEmpty();
       }
@@ -793,21 +821,778 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public ");
-    String _firstUpper_2 = StringExtensions.toFirstUpper(m.getName());
-    _builder.append(_firstUpper_2, "\t");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(m.getName());
+    _builder.append(_firstUpper_3, "\t");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     {
-      EList<Type> _entities_1 = m.getEntities();
-      for(final Type t_1 : _entities_1) {
+      EList<Entity> _entities_1 = m.getEntities();
+      for(final Entity e_1 : _entities_1) {
         _builder.append("\t\t");
-        _builder.append(t_1, "\t\t");
+        String _firstLower_2 = StringExtensions.toFirstLower(e_1.getName());
+        _builder.append(_firstLower_2, "\t\t");
+        _builder.append(" = new ");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(e_1.getName());
+        _builder.append(_firstUpper_4, "\t\t");
+        _builder.append("();");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Relation> _relations_1 = m.getRelations();
+      for(final Relation r_1 : _relations_1) {
+        _builder.append("\t\t");
+        String _firstLower_3 = StringExtensions.toFirstLower(r_1.getName());
+        _builder.append(_firstLower_3, "\t\t");
+        _builder.append(" = new ");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(r_1.getName());
+        _builder.append(_firstUpper_5, "\t\t");
+        _builder.append("(");
+        String _firstLower_4 = StringExtensions.toFirstLower(r_1.getSender().getName());
+        _builder.append(_firstLower_4, "\t\t");
+        _builder.append(", ");
+        String _firstLower_5 = StringExtensions.toFirstLower(r_1.getReceiver().getName());
+        _builder.append(_firstLower_5, "\t\t");
+        _builder.append(");");
         _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<Entity> _entities_2 = m.getEntities();
+      for(final Entity e_2 : _entities_2) {
+        _builder.append("\t");
+        _builder.append("public ");
+        String _firstUpper_6 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_6, "\t");
+        _builder.append(" get");
+        String _firstUpper_7 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_7, "\t");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return ");
+        String _firstLower_6 = StringExtensions.toFirstLower(e_2.getName());
+        _builder.append(_firstLower_6, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    {
+      EList<Relation> _relations_2 = m.getRelations();
+      for(final Relation r_2 : _relations_2) {
+        _builder.append("\t");
+        _builder.append("public ");
+        String _firstUpper_8 = StringExtensions.toFirstUpper(r_2.getName());
+        _builder.append(_firstUpper_8, "\t");
+        _builder.append(" get");
+        String _firstUpper_9 = StringExtensions.toFirstUpper(r_2.getName());
+        _builder.append(_firstUpper_9, "\t");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return ");
+        String _firstLower_7 = StringExtensions.toFirstLower(r_2.getName());
+        _builder.append(_firstLower_7, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final Entity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes = e.getAttributes();
+      for(final Attribute a : _attributes) {
+        {
+          boolean _isInt = a.isInt();
+          if (_isInt) {
+            _builder.append("\t");
+            _builder.append("private int ");
+            String _firstLower = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isFloat = a.isFloat();
+          if (_isFloat) {
+            _builder.append("\t");
+            _builder.append("private float ");
+            String _firstLower_1 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isString = a.isString();
+          if (_isString) {
+            _builder.append("\t");
+            _builder.append("private String ");
+            String _firstLower_2 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_2, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isBoolean = a.isBoolean();
+          if (_isBoolean) {
+            _builder.append("\t");
+            _builder.append("private boolean ");
+            String _firstLower_3 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_3, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("private boolean exists;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper_1, "\t");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes_1 = e.getAttributes();
+      for(final Attribute a_1 : _attributes_1) {
+        {
+          boolean _isInt_1 = a_1.isInt();
+          if (_isInt_1) {
+            {
+              String _value = a_1.getValue();
+              boolean _tripleEquals = (_value == null);
+              if (_tripleEquals) {
+                _builder.append("\t\t");
+                String _firstLower_4 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_4, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_5 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_5, "\t\t");
+                _builder.append(" = ");
+                String _value_1 = a_1.getValue();
+                _builder.append(_value_1, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isFloat_1 = a_1.isFloat();
+          if (_isFloat_1) {
+            {
+              String _value_2 = a_1.getValue();
+              boolean _tripleEquals_1 = (_value_2 == null);
+              if (_tripleEquals_1) {
+                _builder.append("\t\t");
+                String _firstLower_6 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_6, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_7 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_7, "\t\t");
+                _builder.append(" = ");
+                String _value_3 = a_1.getValue();
+                _builder.append(_value_3, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isString_1 = a_1.isString();
+          if (_isString_1) {
+            {
+              String _value_4 = a_1.getValue();
+              boolean _tripleEquals_2 = (_value_4 == null);
+              if (_tripleEquals_2) {
+                _builder.append("\t\t");
+                String _firstLower_8 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_8, "\t\t");
+                _builder.append(" = \"default\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_9 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_9, "\t\t");
+                _builder.append(" = \"");
+                String _value_5 = a_1.getValue();
+                _builder.append(_value_5, "\t\t");
+                _builder.append("\";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isBoolean_1 = a_1.isBoolean();
+          if (_isBoolean_1) {
+            {
+              String _value_6 = a_1.getValue();
+              boolean _tripleEquals_3 = (_value_6 == null);
+              if (_tripleEquals_3) {
+                _builder.append("\t\t");
+                String _firstLower_10 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_10, "\t\t");
+                _builder.append(" = false;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_11 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_11, "\t\t");
+                _builder.append(" = ");
+                String _value_7 = a_1.getValue();
+                _builder.append(_value_7, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("exists = false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public boolean getExists() { return exists; }");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setAppear() { exists = true; }");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setDisappear() { exists = false; }");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_2 = e.getAttributes();
+      for(final Attribute a_2 : _attributes_2) {
+        {
+          boolean _isInt_2 = a_2.isInt();
+          if (_isInt_2) {
+            _builder.append("\t");
+            _builder.append("public int get");
+            String _firstUpper_2 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_2, "\t");
+            _builder.append("() { return ");
+            String _firstLower_12 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_12, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_3 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_3, "\t");
+            _builder.append("(int ");
+            String _firstLower_13 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_13, "\t");
+            _builder.append(") { this.");
+            String _firstLower_14 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_14, "\t");
+            _builder.append(" = ");
+            String _firstLower_15 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_15, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isFloat_2 = a_2.isFloat();
+          if (_isFloat_2) {
+            _builder.append("\t");
+            _builder.append("public float get");
+            String _firstUpper_4 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_4, "\t");
+            _builder.append("() { return ");
+            String _firstLower_16 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_16, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_5 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_5, "\t");
+            _builder.append("(float ");
+            String _firstLower_17 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_17, "\t");
+            _builder.append(") { this.");
+            String _firstLower_18 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_18, "\t");
+            _builder.append(" = ");
+            String _firstLower_19 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_19, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isString_2 = a_2.isString();
+          if (_isString_2) {
+            _builder.append("\t");
+            _builder.append("public String get");
+            String _firstUpper_6 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_6, "\t");
+            _builder.append("() { return ");
+            String _firstLower_20 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_20, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_7 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_7, "\t");
+            _builder.append("(String ");
+            String _firstLower_21 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_21, "\t");
+            _builder.append(") { this.");
+            String _firstLower_22 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_22, "\t");
+            _builder.append(" = ");
+            String _firstLower_23 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_23, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isBoolean_2 = a_2.isBoolean();
+          if (_isBoolean_2) {
+            _builder.append("\t");
+            _builder.append("public boolean get");
+            String _firstUpper_8 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_8, "\t");
+            _builder.append("() { return ");
+            String _firstLower_24 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_24, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_9 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_9, "\t");
+            _builder.append("(boolean ");
+            String _firstLower_25 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_25, "\t");
+            _builder.append(") { this.");
+            String _firstLower_26 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_26, "\t");
+            _builder.append(" = ");
+            String _firstLower_27 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_27, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final Relation r) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(r.getName());
+    _builder.append(_firstUpper);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private ");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_1, "\t");
+    _builder.append(" sender;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private ");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_2, "\t");
+    _builder.append(" receiver;");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes = r.getAttributes();
+      for(final Attribute a : _attributes) {
+        {
+          boolean _isInt = a.isInt();
+          if (_isInt) {
+            _builder.append("\t");
+            _builder.append("private int ");
+            String _firstLower = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isFloat = a.isFloat();
+          if (_isFloat) {
+            _builder.append("\t");
+            _builder.append("private float ");
+            String _firstLower_1 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isString = a.isString();
+          if (_isString) {
+            _builder.append("\t");
+            _builder.append("private String ");
+            String _firstLower_2 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_2, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isBoolean = a.isBoolean();
+          if (_isBoolean) {
+            _builder.append("\t");
+            _builder.append("private boolean ");
+            String _firstLower_3 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_3, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(r.getName());
+    _builder.append(_firstUpper_3, "\t");
+    _builder.append("(");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_4, "\t");
+    _builder.append(" sender, ");
+    String _firstUpper_5 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_5, "\t");
+    _builder.append(" receiver) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("this.sender = sender;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.receiver = receiver;");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_1 = r.getAttributes();
+      for(final Attribute a_1 : _attributes_1) {
+        {
+          boolean _isInt_1 = a_1.isInt();
+          if (_isInt_1) {
+            {
+              String _value = a_1.getValue();
+              boolean _tripleEquals = (_value == null);
+              if (_tripleEquals) {
+                _builder.append("\t\t");
+                String _firstLower_4 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_4, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_5 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_5, "\t\t");
+                _builder.append(" = ");
+                String _value_1 = a_1.getValue();
+                _builder.append(_value_1, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isFloat_1 = a_1.isFloat();
+          if (_isFloat_1) {
+            {
+              String _value_2 = a_1.getValue();
+              boolean _tripleEquals_1 = (_value_2 == null);
+              if (_tripleEquals_1) {
+                _builder.append("\t\t");
+                String _firstLower_6 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_6, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_7 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_7, "\t\t");
+                _builder.append(" = ");
+                String _value_3 = a_1.getValue();
+                _builder.append(_value_3, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isString_1 = a_1.isString();
+          if (_isString_1) {
+            {
+              String _value_4 = a_1.getValue();
+              boolean _tripleEquals_2 = (_value_4 == null);
+              if (_tripleEquals_2) {
+                _builder.append("\t\t");
+                String _firstLower_8 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_8, "\t\t");
+                _builder.append(" = \"default\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_9 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_9, "\t\t");
+                _builder.append(" = \"");
+                String _value_5 = a_1.getValue();
+                _builder.append(_value_5, "\t\t");
+                _builder.append("\";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isBoolean_1 = a_1.isBoolean();
+          if (_isBoolean_1) {
+            {
+              String _value_6 = a_1.getValue();
+              boolean _tripleEquals_3 = (_value_6 == null);
+              if (_tripleEquals_3) {
+                _builder.append("\t\t");
+                String _firstLower_10 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_10, "\t\t");
+                _builder.append(" = false;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_11 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_11, "\t\t");
+                _builder.append(" = ");
+                String _value_7 = a_1.getValue();
+                _builder.append(_value_7, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_2 = r.getAttributes();
+      for(final Attribute a_2 : _attributes_2) {
+        {
+          boolean _isInt_2 = a_2.isInt();
+          if (_isInt_2) {
+            _builder.append("\t");
+            _builder.append("public int get");
+            String _firstUpper_6 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_6, "\t");
+            _builder.append("() { return ");
+            String _firstLower_12 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_12, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_7 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_7, "\t");
+            _builder.append("(int ");
+            String _firstLower_13 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_13, "\t");
+            _builder.append(") { this.");
+            String _firstLower_14 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_14, "\t");
+            _builder.append(" = ");
+            String _firstLower_15 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_15, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isFloat_2 = a_2.isFloat();
+          if (_isFloat_2) {
+            _builder.append("\t");
+            _builder.append("public float get");
+            String _firstUpper_8 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_8, "\t");
+            _builder.append("() { return ");
+            String _firstLower_16 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_16, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_9 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_9, "\t");
+            _builder.append("(float ");
+            String _firstLower_17 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_17, "\t");
+            _builder.append(") { this.");
+            String _firstLower_18 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_18, "\t");
+            _builder.append(" = ");
+            String _firstLower_19 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_19, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isString_2 = a_2.isString();
+          if (_isString_2) {
+            _builder.append("\t");
+            _builder.append("public String get");
+            String _firstUpper_10 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_10, "\t");
+            _builder.append("() { return ");
+            String _firstLower_20 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_20, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_11 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_11, "\t");
+            _builder.append("(String ");
+            String _firstLower_21 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_21, "\t");
+            _builder.append(") { this.");
+            String _firstLower_22 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_22, "\t");
+            _builder.append(" = ");
+            String _firstLower_23 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_23, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isBoolean_2 = a_2.isBoolean();
+          if (_isBoolean_2) {
+            _builder.append("\t");
+            _builder.append("public boolean get");
+            String _firstUpper_12 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_12, "\t");
+            _builder.append("() { return ");
+            String _firstLower_24 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_24, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_13 = StringExtensions.toFirstUpper(a_2.getName());
+            _builder.append(_firstUpper_13, "\t");
+            _builder.append("(boolean ");
+            String _firstLower_25 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_25, "\t");
+            _builder.append(") { this.");
+            String _firstLower_26 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_26, "\t");
+            _builder.append(" = ");
+            String _firstLower_27 = StringExtensions.toFirstLower(a_2.getName());
+            _builder.append(_firstLower_27, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_14 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_14, "\t");
+    _builder.append(" getSender() { return sender; }");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_15 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_15, "\t");
+    _builder.append(" getReceiver() { return receiver; }");
+    _builder.newLineIfNotEmpty();
     _builder.append("}");
     _builder.newLine();
     return _builder;

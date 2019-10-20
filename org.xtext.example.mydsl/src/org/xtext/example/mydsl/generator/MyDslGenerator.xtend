@@ -19,7 +19,6 @@ import com.google.inject.Inject
 import org.xtext.example.mydsl.myDsl.ContextModel
 import org.xtext.example.mydsl.myDsl.Entity
 import org.xtext.example.mydsl.myDsl.Relation
-import org.xtext.example.mydsl.myDsl.Type
 import org.xtext.example.mydsl.myDsl.ChangeToRelation
 
 /**
@@ -33,6 +32,18 @@ class MyDslGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		for (m : resource.allContents.toIterable.filter(ContextModel)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(Entity)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(Relation)) {
 			fsa.generateFile(
 				m.fullyQualifiedName.toString("/") + ".java", m.compile
 			)
@@ -321,17 +332,200 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	def compile(ContextModel m)'''
 		public class «m.name.toFirstUpper» {
-			«FOR t: m.entities»
-				private «t.name.toFirstUpper» «t.name.toFirstLower»;
+			«FOR e: m.entities»
+				private «e.name.toFirstUpper» «e.name.toFirstLower»;
+			«ENDFOR»
+			«FOR r: m.relations»
+				private «r.name.toFirstUpper» «r.name.toFirstLower»;
 			«ENDFOR»
 			
 			public «m.name.toFirstUpper»() {
-				«FOR t: m.entities»
-					«t»
+				«FOR e: m.entities»
+					«e.name.toFirstLower» = new «e.name.toFirstUpper»();
+				«ENDFOR»
+				«FOR r: m.relations»
+					«r.name.toFirstLower» = new «r.name.toFirstUpper»(«r.sender.name.toFirstLower», «r.receiver.name.toFirstLower»);
 				«ENDFOR»
 			}
+			
+			«FOR e: m.entities»
+				public «e.name.toFirstUpper» get«e.name.toFirstUpper»() {
+					return «e.name.toFirstLower»;
+				}
+			«ENDFOR»
+			«FOR r: m.relations»
+				public «r.name.toFirstUpper» get«r.name.toFirstUpper»() {
+					return «r.name.toFirstLower»;
+				}
+			«ENDFOR»
 		}
 		'''
+	
+	def compile(Entity e)'''
+		public class «e.name.toFirstUpper» {
+			«FOR a: e.attributes»
+				«IF a.int»
+					private int «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.float»
+					private float «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.string»
+					private String «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.boolean»
+					private boolean «a.name.toFirstLower»;
+				«ENDIF»
+			«ENDFOR»
+			private boolean exists;
+			
+			public «e.name.toFirstUpper»() {
+				«FOR a: e.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				exists = false;
+			}
+				
+			public boolean getExists() { return exists; }
+			
+			public void setAppear() { exists = true; }
+			
+			public void setDisappear() { exists = false; }
+			
+			«FOR a: e.attributes»
+				«IF a.int»
+					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+					
+					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+				«IF a.float»
+					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+				«IF a.string»
+					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+				«IF a.boolean»
+					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+			«ENDFOR»
+		}
+	'''
+	
+	def compile(Relation r)'''
+		public class «r.name.toFirstUpper» {
+			private «r.sender.name.toFirstUpper» sender;
+			private «r.receiver.name.toFirstUpper» receiver;
+			«FOR a: r.attributes»
+				«IF a.int»
+					private int «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.float»
+					private float «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.string»
+					private String «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.boolean»
+					private boolean «a.name.toFirstLower»;
+				«ENDIF»
+			«ENDFOR»
+			
+			public «r.name.toFirstUpper»(«r.sender.name.toFirstUpper» sender, «r.receiver.name.toFirstUpper» receiver) {
+				this.sender = sender;
+				this.receiver = receiver;
+				«FOR a: r.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+			}
+				
+			«FOR a: r.attributes»
+				«IF a.int»
+					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+					
+					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+				«IF a.float»
+					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+				«IF a.string»
+					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+				«IF a.boolean»
+					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+				«ENDIF»
+			«ENDFOR»
+			
+			public «r.sender.name.toFirstUpper» getSender() { return sender; }
+			
+			public «r.receiver.name.toFirstUpper» getReceiver() { return receiver; }
+		}
+	'''
 	
 	def compile(Domain s) '''
 		import java.io.FileNotFoundException;

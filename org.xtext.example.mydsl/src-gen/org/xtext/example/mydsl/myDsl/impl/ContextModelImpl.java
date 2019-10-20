@@ -20,8 +20,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Type;
+import org.xtext.example.mydsl.myDsl.Relation;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +34,7 @@ import org.xtext.example.mydsl.myDsl.Type;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,7 +69,17 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * @generated
    * @ordered
    */
-  protected EList<Type> entities;
+  protected EList<Entity> entities;
+
+  /**
+   * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRelations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Relation> relations;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,13 +130,27 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Type> getEntities()
+  public EList<Entity> getEntities()
   {
     if (entities == null)
     {
-      entities = new EObjectContainmentEList<Type>(Type.class, this, MyDslPackage.CONTEXT_MODEL__ENTITIES);
+      entities = new EObjectContainmentEList<Entity>(Entity.class, this, MyDslPackage.CONTEXT_MODEL__ENTITIES);
     }
     return entities;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Relation> getRelations()
+  {
+    if (relations == null)
+    {
+      relations = new EObjectContainmentEList<Relation>(Relation.class, this, MyDslPackage.CONTEXT_MODEL__RELATIONS);
+    }
+    return relations;
   }
 
   /**
@@ -139,6 +165,8 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
     {
       case MyDslPackage.CONTEXT_MODEL__ENTITIES:
         return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CONTEXT_MODEL__RELATIONS:
+        return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -157,6 +185,8 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
         return getName();
       case MyDslPackage.CONTEXT_MODEL__ENTITIES:
         return getEntities();
+      case MyDslPackage.CONTEXT_MODEL__RELATIONS:
+        return getRelations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -177,7 +207,11 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
         return;
       case MyDslPackage.CONTEXT_MODEL__ENTITIES:
         getEntities().clear();
-        getEntities().addAll((Collection<? extends Type>)newValue);
+        getEntities().addAll((Collection<? extends Entity>)newValue);
+        return;
+      case MyDslPackage.CONTEXT_MODEL__RELATIONS:
+        getRelations().clear();
+        getRelations().addAll((Collection<? extends Relation>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -199,6 +233,9 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
       case MyDslPackage.CONTEXT_MODEL__ENTITIES:
         getEntities().clear();
         return;
+      case MyDslPackage.CONTEXT_MODEL__RELATIONS:
+        getRelations().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -217,6 +254,8 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.CONTEXT_MODEL__ENTITIES:
         return entities != null && !entities.isEmpty();
+      case MyDslPackage.CONTEXT_MODEL__RELATIONS:
+        return relations != null && !relations.isEmpty();
     }
     return super.eIsSet(featureID);
   }

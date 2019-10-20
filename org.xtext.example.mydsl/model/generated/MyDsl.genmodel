@@ -22,6 +22,7 @@
     <genClasses ecoreClass="MyDsl.ecore#//ContextModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextModel/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextModel/entities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ContextModel/relations"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ContextFragment">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ContextFragment/name"/>
@@ -45,14 +46,19 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/notequals"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FragmentAttribute/value"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Entity"/>
+    <genClasses ecoreClass="MyDsl.ecore#//Entity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Entity/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Entity/attributes"/>
+    </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FEntity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FEntity/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//FEntity/attributes"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Relation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Relation/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Relation/sender"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Relation/receiver"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Relation/attributes"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//FRelation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//FRelation/name"/>
@@ -122,10 +128,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToRelation/relation"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToRelation/attribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ChangeToRelation/changevalue"/>
-    </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//Type">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Type/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Type/attributes"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ObjectType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ObjectType/name"/>

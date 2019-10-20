@@ -292,7 +292,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ContextModel returns ContextModel
 	 *
 	 * Constraint:
-	 *     (name=ID entities+=Type*)
+	 *     (name=ID entities+=Entity* relations+=Relation*)
 	 */
 	protected void sequence_ContextModel(ISerializationContext context, ContextModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -344,7 +344,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Entity returns Entity
-	 *     Type returns Entity
 	 *
 	 * Constraint:
 	 *     (name=ID attributes+=Attribute*)
@@ -533,7 +532,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Relation returns Relation
-	 *     Type returns Relation
 	 *
 	 * Constraint:
 	 *     (name=ID sender=[Entity|ID] receiver=[Entity|ID] attributes+=Attribute*)

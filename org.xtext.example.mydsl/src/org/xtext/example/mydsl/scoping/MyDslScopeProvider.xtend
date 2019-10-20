@@ -29,7 +29,7 @@ class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
     }
     
     def IScope scope_ChangeToRelation_relation(ChangeToRelation ctx, EReference ref) {
-    	return Scopes.scopeFor(ctx.context.entities)
+    	return Scopes.scopeFor(ctx.context.relations)
     }
     
     def IScope scope_ChangeToRelation_attribute(ChangeToRelation ctx, EReference ref) {

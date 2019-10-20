@@ -29,7 +29,7 @@ public class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
   }
   
   public IScope scope_ChangeToRelation_relation(final ChangeToRelation ctx, final EReference ref) {
-    return Scopes.scopeFor(ctx.getContext().getEntities());
+    return Scopes.scopeFor(ctx.getContext().getRelations());
   }
   
   public IScope scope_ChangeToRelation_attribute(final ChangeToRelation ctx, final EReference ref) {

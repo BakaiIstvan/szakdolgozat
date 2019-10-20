@@ -144,16 +144,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cEntitiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cEntitiesTypeParserRuleCall_3_0 = (RuleCall)cEntitiesAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cEntitiesEntityParserRuleCall_3_0 = (RuleCall)cEntitiesAssignment_3.eContents().get(0);
+		private final Assignment cRelationsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRelationsRelationParserRuleCall_4_0 = (RuleCall)cRelationsAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//ContextModel:
 		//	'contextmodel' name=ID '{'
-		//	entities+=Type*
+		//	entities+=Entity*
+		//	relations+=Relation*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'contextmodel' name=ID '{' entities+=Type* '}'
+		//'contextmodel' name=ID '{' entities+=Entity* relations+=Relation* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'contextmodel'
@@ -168,14 +171,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//entities+=Type*
+		//entities+=Entity*
 		public Assignment getEntitiesAssignment_3() { return cEntitiesAssignment_3; }
 		
-		//Type
-		public RuleCall getEntitiesTypeParserRuleCall_3_0() { return cEntitiesTypeParserRuleCall_3_0; }
+		//Entity
+		public RuleCall getEntitiesEntityParserRuleCall_3_0() { return cEntitiesEntityParserRuleCall_3_0; }
+		
+		//relations+=Relation*
+		public Assignment getRelationsAssignment_4() { return cRelationsAssignment_4; }
+		
+		//Relation
+		public RuleCall getRelationsRelationParserRuleCall_4_0() { return cRelationsRelationParserRuleCall_4_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class ContextFragmentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ContextFragment");
@@ -1317,25 +1326,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
-	public class TypeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Type");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cRelationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cEntityParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//Type:
-		//	Relation | Entity;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//Relation | Entity
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//Relation
-		public RuleCall getRelationParserRuleCall_0() { return cRelationParserRuleCall_0; }
-		
-		//Entity
-		public RuleCall getEntityParserRuleCall_1() { return cEntityParserRuleCall_1; }
-	}
 	public class NameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Name");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1717,7 +1707,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final DisappearMessageElements pDisappearMessage;
 	private final ChangeToMessageElements pChangeToMessage;
 	private final ChangeToRelationElements pChangeToRelation;
-	private final TypeElements pType;
 	private final NameElements pName;
 	private final TerminalRule tNumber;
 	private final TerminalRule tReal;
@@ -1761,7 +1750,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pDisappearMessage = new DisappearMessageElements();
 		this.pChangeToMessage = new ChangeToMessageElements();
 		this.pChangeToRelation = new ChangeToRelationElements();
-		this.pType = new TypeElements();
 		this.pName = new NameElements();
 		this.tNumber = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Number");
 		this.tReal = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Real");
@@ -1830,7 +1818,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ContextModel:
 	//	'contextmodel' name=ID '{'
-	//	entities+=Type*
+	//	entities+=Entity*
+	//	relations+=Relation*
 	//	'}';
 	public ContextModelElements getContextModelAccess() {
 		return pContextModel;
@@ -2047,16 +2036,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getChangeToRelationRule() {
 		return getChangeToRelationAccess().getRule();
-	}
-	
-	//Type:
-	//	Relation | Entity;
-	public TypeElements getTypeAccess() {
-		return pType;
-	}
-	
-	public ParserRule getTypeRule() {
-		return getTypeAccess().getRule();
 	}
 	
 	//Name:
