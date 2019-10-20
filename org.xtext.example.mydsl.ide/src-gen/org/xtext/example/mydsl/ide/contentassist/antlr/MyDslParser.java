@@ -31,7 +31,6 @@ public class MyDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, MyDslGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getContextModelAccess().getEntitiesAlternatives_3_0(), "rule__ContextModel__EntitiesAlternatives_3_0");
 			builder.put(grammarAccess.getContextFragmentAccess().getEntitiesAlternatives_3_0(), "rule__ContextFragment__EntitiesAlternatives_3_0");
 			builder.put(grammarAccess.getAttributeValueAccess().getAlternatives(), "rule__AttributeValue__Alternatives");
 			builder.put(grammarAccess.getScenarioContentAccess().getAlternatives(), "rule__ScenarioContent__Alternatives");
@@ -60,6 +59,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDisappearMessageAccess().getGroup_2(), "rule__DisappearMessage__Group_2__0");
 			builder.put(grammarAccess.getChangeToMessageAccess().getGroup(), "rule__ChangeToMessage__Group__0");
 			builder.put(grammarAccess.getChangeToMessageAccess().getGroup_2(), "rule__ChangeToMessage__Group_2__0");
+			builder.put(grammarAccess.getChangeToRelationAccess().getGroup(), "rule__ChangeToRelation__Group__0");
+			builder.put(grammarAccess.getChangeToRelationAccess().getGroup_2(), "rule__ChangeToRelation__Group_2__0");
 			builder.put(grammarAccess.getNameAccess().getGroup(), "rule__Name__Group__0");
 			builder.put(grammarAccess.getObjectTypeAccess().getGroup(), "rule__ObjectType__Group__0");
 			builder.put(grammarAccess.getObjectAccess().getGroup(), "rule__Object__Group__0");
@@ -136,6 +137,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getChangeMessageAccess().getDisappearAssignment_0(), "rule__ChangeMessage__DisappearAssignment_0");
 			builder.put(grammarAccess.getChangeMessageAccess().getAppearAssignment_1(), "rule__ChangeMessage__AppearAssignment_1");
 			builder.put(grammarAccess.getChangeMessageAccess().getChangetoAssignment_2(), "rule__ChangeMessage__ChangetoAssignment_2");
+			builder.put(grammarAccess.getChangeMessageAccess().getChangetorAssignment_3(), "rule__ChangeMessage__ChangetorAssignment_3");
 			builder.put(grammarAccess.getAppearMessageAccess().getContextAssignment_2_0(), "rule__AppearMessage__ContextAssignment_2_0");
 			builder.put(grammarAccess.getAppearMessageAccess().getEntityAssignment_2_2(), "rule__AppearMessage__EntityAssignment_2_2");
 			builder.put(grammarAccess.getDisappearMessageAccess().getContextAssignment_2_0(), "rule__DisappearMessage__ContextAssignment_2_0");
@@ -144,6 +146,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getChangeToMessageAccess().getEntityAssignment_2_2(), "rule__ChangeToMessage__EntityAssignment_2_2");
 			builder.put(grammarAccess.getChangeToMessageAccess().getAttributeAssignment_2_4(), "rule__ChangeToMessage__AttributeAssignment_2_4");
 			builder.put(grammarAccess.getChangeToMessageAccess().getChangevalueAssignment_4(), "rule__ChangeToMessage__ChangevalueAssignment_4");
+			builder.put(grammarAccess.getChangeToRelationAccess().getContextAssignment_2_0(), "rule__ChangeToRelation__ContextAssignment_2_0");
+			builder.put(grammarAccess.getChangeToRelationAccess().getRelationAssignment_2_2(), "rule__ChangeToRelation__RelationAssignment_2_2");
+			builder.put(grammarAccess.getChangeToRelationAccess().getAttributeAssignment_2_4(), "rule__ChangeToRelation__AttributeAssignment_2_4");
+			builder.put(grammarAccess.getChangeToRelationAccess().getChangevalueAssignment_4(), "rule__ChangeToRelation__ChangevalueAssignment_4");
 			builder.put(grammarAccess.getObjectTypeAccess().getNameAssignment_1(), "rule__ObjectType__NameAssignment_1");
 			builder.put(grammarAccess.getObjectAccess().getObjectAssignment_0(), "rule__Object__ObjectAssignment_0");
 			builder.put(grammarAccess.getObjectAccess().getNameAssignment_1(), "rule__Object__NameAssignment_1");

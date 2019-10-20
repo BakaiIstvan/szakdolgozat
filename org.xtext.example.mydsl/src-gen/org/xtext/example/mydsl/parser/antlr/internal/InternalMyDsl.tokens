@@ -11,12 +11,12 @@
 '=='=33
 '>'=29
 '>='=31
-'alt'=57
+'alt'=58
 'appear'=52
 'attribute'=19
 'attributeconstraint'=28
 'boolean'=23
-'case'=59
+'case'=60
 'changeTo'=55
 'constraint'=50
 'contextfragment'=18
@@ -30,13 +30,14 @@
 'future'=49
 'import'=16
 'int'=20
-'loop'=60
+'loop'=61
 'match'=51
 'message'=43
-'object'=56
-'par'=58
+'object'=57
+'par'=59
 'past'=48
 'relation'=37
+'relationChangeTo'=56
 'relationconstraint'=41
 'required'=44
 'scenario'=42
@@ -103,3 +104,4 @@ T__57=57
 T__58=58
 T__59=59
 T__60=60
+T__61=61

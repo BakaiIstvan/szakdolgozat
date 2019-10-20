@@ -7,24 +7,24 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Change To Message</b></em>'.
+ * A representation of the model object '<em><b>Change To Relation</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext <em>Context</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getContext <em>Context</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getChangevalue <em>Changevalue</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage()
+ * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToRelation()
  * @model
  * @generated
  */
-public interface ChangeToMessage extends EObject
+public interface ChangeToRelation extends EObject
 {
   /**
    * Returns the value of the '<em><b>Context</b></em>' reference.
@@ -36,14 +36,14 @@ public interface ChangeToMessage extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Context</em>' reference.
    * @see #setContext(ContextModel)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Context()
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToRelation_Context()
    * @model
    * @generated
    */
   ContextModel getContext();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext <em>Context</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getContext <em>Context</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Context</em>' reference.
@@ -53,30 +53,30 @@ public interface ChangeToMessage extends EObject
   void setContext(ContextModel value);
 
   /**
-   * Returns the value of the '<em><b>Entity</b></em>' reference.
+   * Returns the value of the '<em><b>Relation</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Entity</em>' reference isn't clear,
+   * If the meaning of the '<em>Relation</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Entity</em>' reference.
-   * @see #setEntity(Entity)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Entity()
+   * @return the value of the '<em>Relation</em>' reference.
+   * @see #setRelation(Relation)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToRelation_Relation()
    * @model
    * @generated
    */
-  Entity getEntity();
+  Relation getRelation();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getRelation <em>Relation</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Entity</em>' reference.
-   * @see #getEntity()
+   * @param value the new value of the '<em>Relation</em>' reference.
+   * @see #getRelation()
    * @generated
    */
-  void setEntity(Entity value);
+  void setRelation(Relation value);
 
   /**
    * Returns the value of the '<em><b>Attribute</b></em>' reference.
@@ -88,14 +88,14 @@ public interface ChangeToMessage extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Attribute</em>' reference.
    * @see #setAttribute(Attribute)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Attribute()
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToRelation_Attribute()
    * @model
    * @generated
    */
   Attribute getAttribute();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}' reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getAttribute <em>Attribute</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Attribute</em>' reference.
@@ -114,14 +114,14 @@ public interface ChangeToMessage extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Changevalue</em>' attribute.
    * @see #setChangevalue(String)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Changevalue()
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToRelation_Changevalue()
    * @model
    * @generated
    */
   String getChangevalue();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getChangevalue <em>Changevalue</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Changevalue</em>' attribute.
@@ -130,4 +130,4 @@ public interface ChangeToMessage extends EObject
    */
   void setChangevalue(String value);
 
-} // ChangeToMessage
+} // ChangeToRelation

@@ -204,6 +204,15 @@ public interface MyDslFactory extends EFactory
   ChangeToMessage createChangeToMessage();
 
   /**
+   * Returns a new object of class '<em>Change To Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Change To Relation</em>'.
+   * @generated
+   */
+  ChangeToRelation createChangeToRelation();
+
+  /**
    * Returns a new object of class '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

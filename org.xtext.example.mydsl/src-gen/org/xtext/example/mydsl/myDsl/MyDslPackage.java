@@ -422,7 +422,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getType()
    * @generated
    */
-  int TYPE = 20;
+  int TYPE = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1012,13 +1012,22 @@ public interface MyDslPackage extends EPackage
   int CHANGE_MESSAGE__CHANGETO = 2;
 
   /**
+   * The feature id for the '<em><b>Changetor</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__CHANGETOR = 3;
+
+  /**
    * The number of structural features of the '<em>Change Message</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CHANGE_MESSAGE_FEATURE_COUNT = 3;
+  int CHANGE_MESSAGE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl <em>Appear Message</em>}' class.
@@ -1150,6 +1159,61 @@ public interface MyDslPackage extends EPackage
   int CHANGE_TO_MESSAGE_FEATURE_COUNT = 4;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl <em>Change To Relation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToRelation()
+   * @generated
+   */
+  int CHANGE_TO_RELATION = 20;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Relation</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__RELATION = 1;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Changevalue</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__CHANGEVALUE = 3;
+
+  /**
+   * The number of structural features of the '<em>Change To Relation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1157,7 +1221,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 21;
+  int OBJECT_TYPE = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1185,7 +1249,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 22;
+  int OBJECT = 23;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -1222,7 +1286,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 23;
+  int CONSTRAINT = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1259,7 +1323,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 24;
+  int ALT = 25;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1287,7 +1351,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 25;
+  int EXPRESSION = 26;
 
   /**
    * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -1315,7 +1379,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 26;
+  int PAR = 27;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -1343,7 +1407,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 27;
+  int PAR_EXPRESSION = 28;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1380,7 +1444,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 28;
+  int LOOP = 29;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -2283,6 +2347,17 @@ public interface MyDslPackage extends EPackage
   EReference getChangeMessage_Changeto();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getChangetor <em>Changetor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Changetor</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage#getChangetor()
+   * @see #getChangeMessage()
+   * @generated
+   */
+  EReference getChangeMessage_Changetor();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.AppearMessage <em>Appear Message</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2399,6 +2474,60 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getChangeToMessage_Changevalue();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation <em>Change To Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Change To Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation
+   * @generated
+   */
+  EClass getChangeToRelation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getContext()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EReference getChangeToRelation_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getRelation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getRelation()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EReference getChangeToRelation_Relation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getAttribute()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EReference getChangeToRelation_Attribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getChangevalue <em>Changevalue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Changevalue</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getChangevalue()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EAttribute getChangeToRelation_Changevalue();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Type <em>Type</em>}'.
@@ -3353,6 +3482,14 @@ public interface MyDslPackage extends EPackage
     EReference CHANGE_MESSAGE__CHANGETO = eINSTANCE.getChangeMessage_Changeto();
 
     /**
+     * The meta object literal for the '<em><b>Changetor</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_MESSAGE__CHANGETOR = eINSTANCE.getChangeMessage_Changetor();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl <em>Appear Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3445,6 +3582,48 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute CHANGE_TO_MESSAGE__CHANGEVALUE = eINSTANCE.getChangeToMessage_Changevalue();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl <em>Change To Relation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToRelation()
+     * @generated
+     */
+    EClass CHANGE_TO_RELATION = eINSTANCE.getChangeToRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_RELATION__CONTEXT = eINSTANCE.getChangeToRelation_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Relation</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_RELATION__RELATION = eINSTANCE.getChangeToRelation_Relation();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_RELATION__ATTRIBUTE = eINSTANCE.getChangeToRelation_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Changevalue</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHANGE_TO_RELATION__CHANGEVALUE = eINSTANCE.getChangeToRelation_Changevalue();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.TypeImpl <em>Type</em>}' class.

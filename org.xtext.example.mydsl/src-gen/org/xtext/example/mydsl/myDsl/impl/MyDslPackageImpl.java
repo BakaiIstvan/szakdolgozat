@@ -15,6 +15,7 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -188,6 +189,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass changeToMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass changeToRelationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1120,6 +1128,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getChangeMessage_Changetor()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAppearMessage()
   {
     return appearMessageEClass;
@@ -1223,6 +1241,56 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EAttribute getChangeToMessage_Changevalue()
   {
     return (EAttribute)changeToMessageEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getChangeToRelation()
+  {
+    return changeToRelationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeToRelation_Context()
+  {
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeToRelation_Relation()
+  {
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getChangeToRelation_Attribute()
+  {
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getChangeToRelation_Changevalue()
+  {
+    return (EAttribute)changeToRelationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1591,6 +1659,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(changeMessageEClass, CHANGE_MESSAGE__DISAPPEAR);
     createEReference(changeMessageEClass, CHANGE_MESSAGE__APPEAR);
     createEReference(changeMessageEClass, CHANGE_MESSAGE__CHANGETO);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__CHANGETOR);
 
     appearMessageEClass = createEClass(APPEAR_MESSAGE);
     createEReference(appearMessageEClass, APPEAR_MESSAGE__CONTEXT);
@@ -1605,6 +1674,12 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ENTITY);
     createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ATTRIBUTE);
     createEAttribute(changeToMessageEClass, CHANGE_TO_MESSAGE__CHANGEVALUE);
+
+    changeToRelationEClass = createEClass(CHANGE_TO_RELATION);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__CONTEXT);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__RELATION);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__ATTRIBUTE);
+    createEAttribute(changeToRelationEClass, CHANGE_TO_RELATION__CHANGEVALUE);
 
     typeEClass = createEClass(TYPE);
     createEAttribute(typeEClass, TYPE__NAME);
@@ -1769,6 +1844,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getChangeMessage_Disappear(), this.getDisappearMessage(), null, "disappear", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeMessage_Appear(), this.getAppearMessage(), null, "appear", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeMessage_Changeto(), this.getChangeToMessage(), null, "changeto", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Changetor(), this.getChangeToRelation(), null, "changetor", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(appearMessageEClass, AppearMessage.class, "AppearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAppearMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, AppearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1780,9 +1856,15 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(changeToMessageEClass, ChangeToMessage.class, "ChangeToMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getChangeToMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getChangeToMessage_Entity(), this.getType(), null, "entity", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeToMessage_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getChangeToMessage_Changevalue(), ecorePackage.getEString(), "changevalue", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(changeToRelationEClass, ChangeToRelation.class, "ChangeToRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChangeToRelation_Context(), this.getContextModel(), null, "context", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToRelation_Relation(), this.getRelation(), null, "relation", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToRelation_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChangeToRelation_Changevalue(), ecorePackage.getEString(), "changevalue", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getType_Name(), ecorePackage.getEString(), "name", null, 0, 1, Type.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

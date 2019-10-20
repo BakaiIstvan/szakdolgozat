@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
@@ -34,6 +35,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getDisappear <em>Disappear</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getAppear <em>Appear</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getChangeto <em>Changeto</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl#getChangetor <em>Changetor</em>}</li>
  * </ul>
  *
  * @generated
@@ -69,6 +71,16 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
    * @ordered
    */
   protected EList<ChangeToMessage> changeto;
+
+  /**
+   * The cached value of the '{@link #getChangetor() <em>Changetor</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getChangetor()
+   * @generated
+   * @ordered
+   */
+  protected EList<ChangeToRelation> changetor;
 
   /**
    * <!-- begin-user-doc -->
@@ -138,6 +150,20 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ChangeToRelation> getChangetor()
+  {
+    if (changetor == null)
+    {
+      changetor = new EObjectContainmentEList<ChangeToRelation>(ChangeToRelation.class, this, MyDslPackage.CHANGE_MESSAGE__CHANGETOR);
+    }
+    return changetor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -149,6 +175,8 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
         return ((InternalEList<?>)getAppear()).basicRemove(otherEnd, msgs);
       case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
         return ((InternalEList<?>)getChangeto()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETOR:
+        return ((InternalEList<?>)getChangetor()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -169,6 +197,8 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
         return getAppear();
       case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
         return getChangeto();
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETOR:
+        return getChangetor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -196,6 +226,10 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
         getChangeto().clear();
         getChangeto().addAll((Collection<? extends ChangeToMessage>)newValue);
         return;
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETOR:
+        getChangetor().clear();
+        getChangetor().addAll((Collection<? extends ChangeToRelation>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -219,6 +253,9 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
       case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
         getChangeto().clear();
         return;
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETOR:
+        getChangetor().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -239,6 +276,8 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
         return appear != null && !appear.isEmpty();
       case MyDslPackage.CHANGE_MESSAGE__CHANGETO:
         return changeto != null && !changeto.isEmpty();
+      case MyDslPackage.CHANGE_MESSAGE__CHANGETOR:
+        return changetor != null && !changetor.isEmpty();
     }
     return super.eIsSet(featureID);
   }

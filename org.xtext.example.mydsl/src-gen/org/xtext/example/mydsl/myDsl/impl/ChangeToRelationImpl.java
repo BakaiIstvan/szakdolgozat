@@ -12,28 +12,28 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.mydsl.myDsl.Attribute;
-import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.ContextModel;
-import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Relation;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Change To Message</b></em>'.
+ * An implementation of the model object '<em><b>Change To Relation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getContext <em>Context</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getEntity <em>Entity</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getAttribute <em>Attribute</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl#getChangevalue <em>Changevalue</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl#getChangevalue <em>Changevalue</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements ChangeToMessage
+public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implements ChangeToRelation
 {
   /**
    * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
@@ -46,14 +46,14 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   protected ContextModel context;
 
   /**
-   * The cached value of the '{@link #getEntity() <em>Entity</em>}' reference.
+   * The cached value of the '{@link #getRelation() <em>Relation</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEntity()
+   * @see #getRelation()
    * @generated
    * @ordered
    */
-  protected Entity entity;
+  protected Relation relation;
 
   /**
    * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
@@ -90,7 +90,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChangeToMessageImpl()
+  protected ChangeToRelationImpl()
   {
     super();
   }
@@ -103,7 +103,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.CHANGE_TO_MESSAGE;
+    return MyDslPackage.Literals.CHANGE_TO_RELATION;
   }
 
   /**
@@ -120,7 +120,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
       if (context != oldContext)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_MESSAGE__CONTEXT, oldContext, context));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_RELATION__CONTEXT, oldContext, context));
       }
     }
     return context;
@@ -146,7 +146,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
     ContextModel oldContext = context;
     context = newContext;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__CONTEXT, oldContext, context));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_RELATION__CONTEXT, oldContext, context));
   }
 
   /**
@@ -154,19 +154,19 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity getEntity()
+  public Relation getRelation()
   {
-    if (entity != null && entity.eIsProxy())
+    if (relation != null && relation.eIsProxy())
     {
-      InternalEObject oldEntity = (InternalEObject)entity;
-      entity = (Entity)eResolveProxy(oldEntity);
-      if (entity != oldEntity)
+      InternalEObject oldRelation = (InternalEObject)relation;
+      relation = (Relation)eResolveProxy(oldRelation);
+      if (relation != oldRelation)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_RELATION__RELATION, oldRelation, relation));
       }
     }
-    return entity;
+    return relation;
   }
 
   /**
@@ -174,9 +174,9 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public Entity basicGetEntity()
+  public Relation basicGetRelation()
   {
-    return entity;
+    return relation;
   }
 
   /**
@@ -184,12 +184,12 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEntity(Entity newEntity)
+  public void setRelation(Relation newRelation)
   {
-    Entity oldEntity = entity;
-    entity = newEntity;
+    Relation oldRelation = relation;
+    relation = newRelation;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__ENTITY, oldEntity, entity));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_RELATION__RELATION, oldRelation, relation));
   }
 
   /**
@@ -206,7 +206,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
       if (attribute != oldAttribute)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE, oldAttribute, attribute));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.CHANGE_TO_RELATION__ATTRIBUTE, oldAttribute, attribute));
       }
     }
     return attribute;
@@ -232,7 +232,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
     Attribute oldAttribute = attribute;
     attribute = newAttribute;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE, oldAttribute, attribute));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_RELATION__ATTRIBUTE, oldAttribute, attribute));
   }
 
   /**
@@ -255,7 +255,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
     String oldChangevalue = changevalue;
     changevalue = newChangevalue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE, oldChangevalue, changevalue));
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CHANGE_TO_RELATION__CHANGEVALUE, oldChangevalue, changevalue));
   }
 
   /**
@@ -268,16 +268,16 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__CONTEXT:
+      case MyDslPackage.CHANGE_TO_RELATION__CONTEXT:
         if (resolve) return getContext();
         return basicGetContext();
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        if (resolve) return getEntity();
-        return basicGetEntity();
-      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+      case MyDslPackage.CHANGE_TO_RELATION__RELATION:
+        if (resolve) return getRelation();
+        return basicGetRelation();
+      case MyDslPackage.CHANGE_TO_RELATION__ATTRIBUTE:
         if (resolve) return getAttribute();
         return basicGetAttribute();
-      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+      case MyDslPackage.CHANGE_TO_RELATION__CHANGEVALUE:
         return getChangevalue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -293,16 +293,16 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__CONTEXT:
+      case MyDslPackage.CHANGE_TO_RELATION__CONTEXT:
         setContext((ContextModel)newValue);
         return;
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        setEntity((Entity)newValue);
+      case MyDslPackage.CHANGE_TO_RELATION__RELATION:
+        setRelation((Relation)newValue);
         return;
-      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+      case MyDslPackage.CHANGE_TO_RELATION__ATTRIBUTE:
         setAttribute((Attribute)newValue);
         return;
-      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+      case MyDslPackage.CHANGE_TO_RELATION__CHANGEVALUE:
         setChangevalue((String)newValue);
         return;
     }
@@ -319,16 +319,16 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__CONTEXT:
+      case MyDslPackage.CHANGE_TO_RELATION__CONTEXT:
         setContext((ContextModel)null);
         return;
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        setEntity((Entity)null);
+      case MyDslPackage.CHANGE_TO_RELATION__RELATION:
+        setRelation((Relation)null);
         return;
-      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+      case MyDslPackage.CHANGE_TO_RELATION__ATTRIBUTE:
         setAttribute((Attribute)null);
         return;
-      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+      case MyDslPackage.CHANGE_TO_RELATION__CHANGEVALUE:
         setChangevalue(CHANGEVALUE_EDEFAULT);
         return;
     }
@@ -345,13 +345,13 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case MyDslPackage.CHANGE_TO_MESSAGE__CONTEXT:
+      case MyDslPackage.CHANGE_TO_RELATION__CONTEXT:
         return context != null;
-      case MyDslPackage.CHANGE_TO_MESSAGE__ENTITY:
-        return entity != null;
-      case MyDslPackage.CHANGE_TO_MESSAGE__ATTRIBUTE:
+      case MyDslPackage.CHANGE_TO_RELATION__RELATION:
+        return relation != null;
+      case MyDslPackage.CHANGE_TO_RELATION__ATTRIBUTE:
         return attribute != null;
-      case MyDslPackage.CHANGE_TO_MESSAGE__CHANGEVALUE:
+      case MyDslPackage.CHANGE_TO_RELATION__CHANGEVALUE:
         return CHANGEVALUE_EDEFAULT == null ? changevalue != null : !CHANGEVALUE_EDEFAULT.equals(changevalue);
     }
     return super.eIsSet(featureID);
@@ -374,4 +374,4 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
     return result.toString();
   }
 
-} //ChangeToMessageImpl
+} //ChangeToRelationImpl

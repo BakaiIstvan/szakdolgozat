@@ -322,39 +322,21 @@ ruleContextModel returns [EObject current=null]
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesEntityParserRuleCall_3_0_0());
+				{
+					newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesTypeParserRuleCall_3_0());
+				}
+				lv_entities_3_0=ruleType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getContextModelRule());
 					}
-					lv_entities_3_1=ruleEntity
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getContextModelRule());
-						}
-						add(
-							$current,
-							"entities",
-							lv_entities_3_1,
-							"org.xtext.example.mydsl.MyDsl.Entity");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getContextModelAccess().getEntitiesRelationParserRuleCall_3_0_1());
-					}
-					lv_entities_3_2=ruleRelation
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getContextModelRule());
-						}
-						add(
-							$current,
-							"entities",
-							lv_entities_3_2,
-							"org.xtext.example.mydsl.MyDsl.Relation");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"entities",
+						lv_entities_3_0,
+						"org.xtext.example.mydsl.MyDsl.Type");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)*
 		otherlv_4='}'
@@ -1777,6 +1759,26 @@ ruleChangeMessage returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getChangeMessageAccess().getChangetorChangeToRelationParserRuleCall_3_0());
+				}
+				lv_changetor_3_0=ruleChangeToRelation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getChangeMessageRule());
+					}
+					add(
+						$current,
+						"changetor",
+						lv_changetor_3_0,
+						"org.xtext.example.mydsl.MyDsl.ChangeToRelation");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -1957,7 +1959,7 @@ ruleChangeToMessage returns [EObject current=null]
 					}
 					otherlv_4=RULE_ID
 					{
-						newLeafNode(otherlv_4, grammarAccess.getChangeToMessageAccess().getEntityTypeCrossReference_2_2_0());
+						newLeafNode(otherlv_4, grammarAccess.getChangeToMessageAccess().getEntityEntityCrossReference_2_2_0());
 					}
 				)
 			)
@@ -2007,6 +2009,147 @@ ruleChangeToMessage returns [EObject current=null]
 		otherlv_9=')'
 		{
 			newLeafNode(otherlv_9, grammarAccess.getChangeToMessageAccess().getRightParenthesisKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleChangeToRelation
+entryRuleChangeToRelation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getChangeToRelationRule()); }
+	iv_ruleChangeToRelation=ruleChangeToRelation
+	{ $current=$iv_ruleChangeToRelation.current; }
+	EOF;
+
+// Rule ChangeToRelation
+ruleChangeToRelation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='relationChangeTo'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getChangeToRelationAccess().getRelationChangeToKeyword_0());
+		}
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getChangeToRelationAccess().getLeftParenthesisKeyword_1());
+		}
+		(
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getChangeToRelationRule());
+						}
+					}
+					otherlv_2=RULE_ID
+					{
+						newLeafNode(otherlv_2, grammarAccess.getChangeToRelationAccess().getContextContextModelCrossReference_2_0_0());
+					}
+				)
+			)
+			otherlv_3='.'
+			{
+				newLeafNode(otherlv_3, grammarAccess.getChangeToRelationAccess().getFullStopKeyword_2_1());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getChangeToRelationRule());
+						}
+					}
+					otherlv_4=RULE_ID
+					{
+						newLeafNode(otherlv_4, grammarAccess.getChangeToRelationAccess().getRelationRelationCrossReference_2_2_0());
+					}
+				)
+			)
+			otherlv_5='.'
+			{
+				newLeafNode(otherlv_5, grammarAccess.getChangeToRelationAccess().getFullStopKeyword_2_3());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getChangeToRelationRule());
+						}
+					}
+					otherlv_6=RULE_ID
+					{
+						newLeafNode(otherlv_6, grammarAccess.getChangeToRelationAccess().getAttributeAttributeCrossReference_2_4_0());
+					}
+				)
+			)
+		)?
+		(
+			otherlv_7=','
+			{
+				newLeafNode(otherlv_7, grammarAccess.getChangeToRelationAccess().getCommaKeyword_3());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getChangeToRelationAccess().getChangevalueAttributeValueParserRuleCall_4_0());
+				}
+				lv_changevalue_8_0=ruleAttributeValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getChangeToRelationRule());
+					}
+					set(
+						$current,
+						"changevalue",
+						lv_changevalue_8_0,
+						"org.xtext.example.mydsl.MyDsl.AttributeValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_9=')'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getChangeToRelationAccess().getRightParenthesisKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleType
+entryRuleType returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTypeRule()); }
+	iv_ruleType=ruleType
+	{ $current=$iv_ruleType.current; }
+	EOF;
+
+// Rule Type
+ruleType returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getTypeAccess().getRelationParserRuleCall_0());
+		}
+		this_Relation_0=ruleRelation
+		{
+			$current = $this_Relation_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getTypeAccess().getEntityParserRuleCall_1());
+		}
+		this_Entity_1=ruleEntity
+		{
+			$current = $this_Entity_1.current;
+			afterParserOrEnumRuleCall();
 		}
 	)
 ;

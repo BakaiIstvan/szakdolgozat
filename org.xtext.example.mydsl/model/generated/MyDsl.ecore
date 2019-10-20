@@ -118,6 +118,8 @@
         eType="#//AppearMessage" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="changeto" upperBound="-1"
         eType="#//ChangeToMessage" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="changetor" upperBound="-1"
+        eType="#//ChangeToRelation" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AppearMessage">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ContextModel"/>
@@ -129,7 +131,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChangeToMessage">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ContextModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="changevalue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChangeToRelation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ContextModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relation" eType="#//Relation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="changevalue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

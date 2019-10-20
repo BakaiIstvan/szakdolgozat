@@ -10,6 +10,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
 import org.xtext.example.mydsl.myDsl.ChangeToMessage
 import org.xtext.example.mydsl.myDsl.AppearMessage
 import org.xtext.example.mydsl.myDsl.DisappearMessage
+import org.xtext.example.mydsl.myDsl.ChangeToRelation
 
 /**
  * This class contains custom scoping description.
@@ -25,6 +26,14 @@ class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
     
     def IScope scope_ChangeToMessage_entity(ChangeToMessage ctx, EReference ref) {
     	return Scopes.scopeFor(ctx.context.entities)
+    }
+    
+    def IScope scope_ChangeToRelation_relation(ChangeToRelation ctx, EReference ref) {
+    	return Scopes.scopeFor(ctx.context.entities)
+    }
+    
+    def IScope scope_ChangeToRelation_attribute(ChangeToRelation ctx, EReference ref) {
+    	return Scopes.scopeFor(ctx.relation.attributes)
     }
     
     def IScope scope_AppearMessage_entity(AppearMessage app, EReference ref) {

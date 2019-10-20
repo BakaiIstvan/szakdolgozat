@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getDisappear <em>Disappear</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getAppear <em>Appear</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getChangeto <em>Changeto</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getChangetor <em>Changetor</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage()
@@ -74,5 +75,21 @@ public interface ChangeMessage extends EObject
    * @generated
    */
   EList<ChangeToMessage> getChangeto();
+
+  /**
+   * Returns the value of the '<em><b>Changetor</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ChangeToRelation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Changetor</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Changetor</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeMessage_Changetor()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ChangeToRelation> getChangetor();
 
 } // ChangeMessage

@@ -101,6 +101,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeMessage/disappear"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeMessage/appear"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeMessage/changeto"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeMessage/changetor"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//AppearMessage">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AppearMessage/context"/>
@@ -115,6 +116,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToMessage/entity"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToMessage/attribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ChangeToMessage/changevalue"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//ChangeToRelation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToRelation/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToRelation/relation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//ChangeToRelation/attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//ChangeToRelation/changevalue"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Type">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Type/name"/>

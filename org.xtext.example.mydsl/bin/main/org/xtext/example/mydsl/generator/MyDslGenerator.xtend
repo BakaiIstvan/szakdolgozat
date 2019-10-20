@@ -14,6 +14,13 @@ import org.xtext.example.mydsl.myDsl.MatchMessage
 import org.xtext.example.mydsl.myDsl.AppearMessage
 import org.xtext.example.mydsl.myDsl.DisappearMessage
 import org.xtext.example.mydsl.myDsl.ChangeToMessage
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import com.google.inject.Inject
+import org.xtext.example.mydsl.myDsl.ContextModel
+import org.xtext.example.mydsl.myDsl.Entity
+import org.xtext.example.mydsl.myDsl.Relation
+import org.xtext.example.mydsl.myDsl.Type
+import org.xtext.example.mydsl.myDsl.ChangeToRelation
 
 /**
  * Generates code from your model files on save.
@@ -21,239 +28,15 @@ import org.xtext.example.mydsl.myDsl.ChangeToMessage
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyDslGenerator extends AbstractGenerator {
+	
+	@Inject extension IQualifiedNameProvider
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		fsa.generateFile("ContextModel.java",
-			'''
-				import java.util.ArrayList;
-				
-				public class ContextModel {
-				    private ArrayList<Entity> entities;
-				    private ArrayList<Relation> relations;
-				    private boolean exists;
-				
-				    public ContextModel() {
-				        entities = new ArrayList<>();
-				        relations = new ArrayList<>();
-				        exists = true;
-				    }
-				
-				    public void addEntity(Entity entity) {
-				        entities.add(entity);
-				    }
-				
-				    public void addRelation(Relation relation) {
-				        relations.add(relation);
-				    }
-				
-				    public ArrayList<Entity> getEntities() {
-				        return entities;
-				    }
-				
-				    public ArrayList<Relation> getRelations() {
-				        return relations;
-				    }
-				
-				    public void setAppear() {
-				        exists = true;
-				    }
-				
-				    public void setDisappear() {
-				        exists = false;
-				    }
-				
-				    public boolean getExists() {
-				        return exists;
-				    }
-				}
-			''')
-		
-		fsa.generateFile("ContextFragment.java",
-			'''
-				import java.util.ArrayList;
-				
-				public class ContextFragment {
-				    private ArrayList<Entity> entities;
-				    private ArrayList<Relation> relations;
-				
-				    public ContextFragment() {
-				        entities = new ArrayList<>();
-				        relations = new ArrayList<>();
-				    }
-				
-				    public void addEntity(Entity entity) {
-				        entities.add(entity);
-				    }
-				
-				    public void addRelation(Relation relation) {
-				        relations.add(relation);
-				    }
-				
-				    public ArrayList<Entity> getEntities() {
-				        return entities;
-				    }
-				
-				    public ArrayList<Relation> getRelations() {
-				        return relations;
-				    }
-				}
-			''')
-			
-		fsa.generateFile("Entity.java",
-			'''
-				import java.util.ArrayList;
-				
-				public class Entity {
-				    private String name;
-				    private ArrayList<Attribute> attributes;
-				
-				    public Entity() {
-				        name = "name1";
-				        attributes = new ArrayList<>();
-				    }
-				
-				    public Entity(String name) {
-				        this.name = name;
-				        attributes = new ArrayList<>();
-				    }
-				
-				    public String getName() {
-				        return name;
-				    }
-				
-				    public ArrayList<Attribute> getAttributes() {
-				        return attributes;
-				    }
-				
-				    public void addAttribute(Attribute attribute) {
-				        attributes.add(attribute);
-				    }
-				
-				    public Attribute getAttributeByName(String name) {
-				        Attribute result = new Attribute("not found", "0");
-				        for (Attribute a : attributes) {
-				            if (a.getName().equals(name)) {
-				                result = a;
-				            }
-				        }
-				
-				        return result;
-				    }
-				
-				    public void setAttributeValueByName(String name, String value) {
-				        for (Attribute a : attributes) {
-				            if (a.getName().equals(name)) {
-				                a.setValue(value);
-				                return;
-				            }
-				        }
-				    }
-				}
-			''')
-			
-		fsa.generateFile("Attribute.java",
-			'''
-				public class Attribute {
-				    private String value;
-				    private String name;
-				
-				    public Attribute() {
-				        name = "name1";
-				        value = "0";
-				    }
-				
-				    public Attribute(String name, String value) {
-				        this.name = name;
-				        this.value = value;
-				    }
-				
-				    public String getValue() {
-				        return value;
-				    }
-				
-				    public String getName() {
-				        return name;
-				    }
-				
-				    public void setValue(String value) {
-				        this.value = value;
-				    }
-				
-				    public void setName(String name) {
-				        this.name = name;
-				    }
-				}
-			''')
-			
-		fsa.generateFile("Relation.java",
-			'''
-				import java.util.ArrayList;
-				
-				public class Relation {
-				    private Entity sender;
-				    private Entity receiver;
-				    private String name;
-				    private ArrayList<Attribute> attributes;
-				
-				    public Relation() {
-				        sender = new Entity();
-				        receiver = new Entity();
-				        name = "name1";
-				        attributes = new ArrayList<>();
-				    }
-				
-				    public Relation(String name, Entity sender, Entity receiver) {
-				        this.name = name;
-				        this.sender = sender;
-				        this.receiver = receiver;
-				        attributes = new ArrayList<>();
-				    }
-				
-				    public void addAttribute(Attribute attribute) {
-				        attributes.add(attribute);
-				    }
-				
-				    public void setName(String name) {
-				        this.name = name;
-				    }
-				
-				    public String getName() {
-				        return name;
-				    }
-				
-				    public ArrayList<Attribute> getAttributes() {
-				        return attributes;
-				    }
-				
-				    public Entity getReceiver() {
-				        return receiver;
-				    }
-				
-				    public void setReceiver(Entity receiver) {
-				        this.receiver = receiver;
-				    }
-				
-				    public Entity getSender() {
-				        return sender;
-				    }
-				
-				    public void setSender(Entity sender) {
-				        this.sender = sender;
-				    }
-				
-				    public Attribute getAttributeByName(String name) {
-				        Attribute result = new Attribute("not found", "0");
-				
-				        for (Attribute a : attributes) {
-				            if (a.getName().equals(name)) {
-				                result = a;
-				            }
-				        }
-				
-				        return result;
-				    }
-				}
-			''')
+		for (m : resource.allContents.toIterable.filter(ContextModel)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
 		
 		fsa.generateFile("State.java", 
 			'''
@@ -536,6 +319,20 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 	}
 	
+	def compile(ContextModel m)'''
+		public class «m.name.toFirstUpper» {
+			«FOR t: m.entities»
+				private «t.name.toFirstUpper» «t.name.toFirstLower»;
+			«ENDFOR»
+			
+			public «m.name.toFirstUpper»() {
+				«FOR t: m.entities»
+					«t»
+				«ENDFOR»
+			}
+		}
+		'''
+	
 	def compile(Domain s) '''
 		import java.io.FileNotFoundException;
 		import java.io.PrintWriter;
@@ -584,6 +381,10 @@ class MyDslGenerator extends AbstractGenerator {
 											«FOR t : ca.changeto»
 												«t.compile_changeto_strict_required»
 												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_strict_required»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -606,6 +407,10 @@ class MyDslGenerator extends AbstractGenerator {
 											«FOR t : ca.changeto»
 												«t.compile_changeto_strict_fail»
 												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_strict_fail»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -627,6 +432,10 @@ class MyDslGenerator extends AbstractGenerator {
 											«ENDFOR»
 											«FOR t : ca.changeto»
 												«t.compile_changeto_strict»
+												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_strict»
 												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
@@ -653,6 +462,10 @@ class MyDslGenerator extends AbstractGenerator {
 											«FOR t : ca.changeto»
 												«t.compile_changeto_required»
 												a.collapse(b);
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_required»
+												a.collapse(b);
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -675,6 +488,10 @@ class MyDslGenerator extends AbstractGenerator {
 											«FOR t : ca.changeto»
 												«t.compile_changeto_fail»
 												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_fail»
+												a.collapse(b);																																				
 											«ENDFOR»																	
 										«ENDFOR»					
 									«ENDFOR»
@@ -696,6 +513,10 @@ class MyDslGenerator extends AbstractGenerator {
 											«ENDFOR»
 											«FOR t : ca.changeto»
 												«t.compile_changeto_msg»
+												a.collapse(b);																																	
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_msg»
 												a.collapse(b);																																	
 											«ENDFOR»																	
 										«ENDFOR»					
@@ -1378,6 +1199,21 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setFinale(newState);
 	'''
 	
+	def compile_changetor_required(ChangeToRelation cm)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
 	def compile_fail_past(Message m)'''
 		b = new Automaton("auto4");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1475,6 +1311,22 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_changetor_fail(ChangeToRelation cm)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+		
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition("1", newState, newState));
 	'''
@@ -1581,6 +1433,21 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changetor_msg(ChangeToRelation cm)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -1705,6 +1572,25 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setFinale(finalState);
 	'''
 	
+	def compile_changetor_strict_required(ChangeToRelation cm)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, finalState));
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
 	def compile_strict_fail(Message m)'''
 		b = new Automaton("auto10");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1800,6 +1686,25 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setFinale(finalState);
 	'''
 	
+	def compile_changetor_strict_fail(ChangeToRelation cm)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, finalState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
 	def compile_strict_future(Message m)'''
 		b = new Automaton("auto11");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1881,6 +1786,20 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changetor_strict(ChangeToRelation cm)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''

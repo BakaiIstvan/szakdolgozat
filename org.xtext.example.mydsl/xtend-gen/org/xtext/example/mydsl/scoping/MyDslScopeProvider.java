@@ -9,6 +9,7 @@ import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 
 /**
@@ -25,6 +26,14 @@ public class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_ChangeToMessage_entity(final ChangeToMessage ctx, final EReference ref) {
     return Scopes.scopeFor(ctx.getContext().getEntities());
+  }
+  
+  public IScope scope_ChangeToRelation_relation(final ChangeToRelation ctx, final EReference ref) {
+    return Scopes.scopeFor(ctx.getContext().getEntities());
+  }
+  
+  public IScope scope_ChangeToRelation_attribute(final ChangeToRelation ctx, final EReference ref) {
+    return Scopes.scopeFor(ctx.getRelation().getAttributes());
   }
   
   public IScope scope_AppearMessage_entity(final AppearMessage app, final EReference ref) {

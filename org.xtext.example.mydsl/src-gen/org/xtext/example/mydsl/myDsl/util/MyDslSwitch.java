@@ -13,6 +13,7 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -240,6 +241,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         ChangeToMessage changeToMessage = (ChangeToMessage)theEObject;
         T result = caseChangeToMessage(changeToMessage);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.CHANGE_TO_RELATION:
+      {
+        ChangeToRelation changeToRelation = (ChangeToRelation)theEObject;
+        T result = caseChangeToRelation(changeToRelation);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -626,6 +634,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseChangeToMessage(ChangeToMessage object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Change To Relation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Change To Relation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseChangeToRelation(ChangeToRelation object)
   {
     return null;
   }

@@ -19,7 +19,7 @@ Include:
 
 ContextModel:
 	'contextmodel' name=ID '{'
-		entities+=(Entity|Relation)*
+		entities+=Type*
 	'}'
 ;
 
@@ -99,7 +99,7 @@ MatchMessage:
 ;
 
 ChangeMessage:
-	disappear+=DisappearMessage | appear+=AppearMessage | changeto+=ChangeToMessage
+	disappear+=DisappearMessage | appear+=AppearMessage | changeto+=ChangeToMessage | changetor+=ChangeToRelation
 ;
 
 AppearMessage:
@@ -111,11 +111,15 @@ DisappearMessage:
 ;
 
 ChangeToMessage:
-	'changeTo' '(' (context=[ContextModel] '.' entity=[Type] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
+	'changeTo' '(' (context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
+;
+
+ChangeToRelation:
+	'relationChangeTo' '(' (context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
 ;
 
 Type:
-	Entity | Relation
+	Relation | Entity
 ;
 
 Name:

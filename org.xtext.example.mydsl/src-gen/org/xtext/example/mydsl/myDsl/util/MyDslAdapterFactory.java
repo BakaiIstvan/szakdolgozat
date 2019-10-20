@@ -15,6 +15,7 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -202,6 +203,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseChangeToMessage(ChangeToMessage object)
       {
         return createChangeToMessageAdapter();
+      }
+      @Override
+      public Adapter caseChangeToRelation(ChangeToRelation object)
+      {
+        return createChangeToRelationAdapter();
       }
       @Override
       public Adapter caseType(Type object)
@@ -566,6 +572,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createChangeToMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation <em>Change To Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation
+   * @generated
+   */
+  public Adapter createChangeToRelationAdapter()
   {
     return null;
   }

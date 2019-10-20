@@ -16,6 +16,7 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -114,6 +115,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.APPEAR_MESSAGE: return createAppearMessage();
       case MyDslPackage.DISAPPEAR_MESSAGE: return createDisappearMessage();
       case MyDslPackage.CHANGE_TO_MESSAGE: return createChangeToMessage();
+      case MyDslPackage.CHANGE_TO_RELATION: return createChangeToRelation();
       case MyDslPackage.TYPE: return createType();
       case MyDslPackage.OBJECT_TYPE: return createObjectType();
       case MyDslPackage.OBJECT: return createObject();
@@ -346,6 +348,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     ChangeToMessageImpl changeToMessage = new ChangeToMessageImpl();
     return changeToMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ChangeToRelation createChangeToRelation()
+  {
+    ChangeToRelationImpl changeToRelation = new ChangeToRelationImpl();
+    return changeToRelation;
   }
 
   /**
