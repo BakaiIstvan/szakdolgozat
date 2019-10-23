@@ -26,7 +26,8 @@ ContextModel:
 
 ContextFragment:
 	'contextfragment' name=ID '{'
-		entities+=(FEntity|FRelation)*
+		entities+=FEntity*
+		relations+=FRelation*
 	'}'
 ;
 
@@ -39,7 +40,7 @@ AttributeValue:
 ;
 
 FragmentAttribute:
-	'attributeconstraint' name=ID (greater?='>')? (smaller?='<')? (greaterequals?='>=')? (smallerequals?='<=')? (equals?='==')? (notequals?='!=')? value=AttributeValue ';'
+	'attributeconstraint' (int?='int')? (float?='float')? (string?='string')? (boolean?='boolean')? name=ID (greater?='>')? (smaller?='<')? (greaterequals?='>=')? (smallerequals?='<=')? (equals?='==')? (notequals?='!=')? value=AttributeValue ';'
 ;
 
 Entity:

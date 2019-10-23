@@ -194,18 +194,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cEntitiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Alternatives cEntitiesAlternatives_3_0 = (Alternatives)cEntitiesAssignment_3.eContents().get(0);
-		private final RuleCall cEntitiesFEntityParserRuleCall_3_0_0 = (RuleCall)cEntitiesAlternatives_3_0.eContents().get(0);
-		private final RuleCall cEntitiesFRelationParserRuleCall_3_0_1 = (RuleCall)cEntitiesAlternatives_3_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cEntitiesFEntityParserRuleCall_3_0 = (RuleCall)cEntitiesAssignment_3.eContents().get(0);
+		private final Assignment cRelationsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cRelationsFRelationParserRuleCall_4_0 = (RuleCall)cRelationsAssignment_4.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//ContextFragment:
 		//	'contextfragment' name=ID '{'
-		//	entities+=(FEntity | FRelation)*
+		//	entities+=FEntity*
+		//	relations+=FRelation*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'contextfragment' name=ID '{' entities+=(FEntity | FRelation)* '}'
+		//'contextfragment' name=ID '{' entities+=FEntity* relations+=FRelation* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'contextfragment'
@@ -220,20 +221,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
-		//entities+=(FEntity | FRelation)*
+		//entities+=FEntity*
 		public Assignment getEntitiesAssignment_3() { return cEntitiesAssignment_3; }
 		
-		//(FEntity | FRelation)
-		public Alternatives getEntitiesAlternatives_3_0() { return cEntitiesAlternatives_3_0; }
-		
 		//FEntity
-		public RuleCall getEntitiesFEntityParserRuleCall_3_0_0() { return cEntitiesFEntityParserRuleCall_3_0_0; }
+		public RuleCall getEntitiesFEntityParserRuleCall_3_0() { return cEntitiesFEntityParserRuleCall_3_0; }
+		
+		//relations+=FRelation*
+		public Assignment getRelationsAssignment_4() { return cRelationsAssignment_4; }
 		
 		//FRelation
-		public RuleCall getEntitiesFRelationParserRuleCall_3_0_1() { return cEntitiesFRelationParserRuleCall_3_0_1; }
+		public RuleCall getRelationsFRelationParserRuleCall_4_0() { return cRelationsFRelationParserRuleCall_4_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
 	}
 	public class AttributeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Attribute");
@@ -341,86 +342,118 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.FragmentAttribute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cAttributeconstraintKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cGreaterAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cGreaterGreaterThanSignKeyword_2_0 = (Keyword)cGreaterAssignment_2.eContents().get(0);
-		private final Assignment cSmallerAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cSmallerLessThanSignKeyword_3_0 = (Keyword)cSmallerAssignment_3.eContents().get(0);
-		private final Assignment cGreaterequalsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Keyword cGreaterequalsGreaterThanSignEqualsSignKeyword_4_0 = (Keyword)cGreaterequalsAssignment_4.eContents().get(0);
-		private final Assignment cSmallerequalsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final Keyword cSmallerequalsLessThanSignEqualsSignKeyword_5_0 = (Keyword)cSmallerequalsAssignment_5.eContents().get(0);
-		private final Assignment cEqualsAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final Keyword cEqualsEqualsSignEqualsSignKeyword_6_0 = (Keyword)cEqualsAssignment_6.eContents().get(0);
-		private final Assignment cNotequalsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final Keyword cNotequalsExclamationMarkEqualsSignKeyword_7_0 = (Keyword)cNotequalsAssignment_7.eContents().get(0);
-		private final Assignment cValueAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cValueAttributeValueParserRuleCall_8_0 = (RuleCall)cValueAssignment_8.eContents().get(0);
-		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cIntAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cIntIntKeyword_1_0 = (Keyword)cIntAssignment_1.eContents().get(0);
+		private final Assignment cFloatAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cFloatFloatKeyword_2_0 = (Keyword)cFloatAssignment_2.eContents().get(0);
+		private final Assignment cStringAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cStringStringKeyword_3_0 = (Keyword)cStringAssignment_3.eContents().get(0);
+		private final Assignment cBooleanAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Keyword cBooleanBooleanKeyword_4_0 = (Keyword)cBooleanAssignment_4.eContents().get(0);
+		private final Assignment cNameAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cNameIDTerminalRuleCall_5_0 = (RuleCall)cNameAssignment_5.eContents().get(0);
+		private final Assignment cGreaterAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final Keyword cGreaterGreaterThanSignKeyword_6_0 = (Keyword)cGreaterAssignment_6.eContents().get(0);
+		private final Assignment cSmallerAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final Keyword cSmallerLessThanSignKeyword_7_0 = (Keyword)cSmallerAssignment_7.eContents().get(0);
+		private final Assignment cGreaterequalsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final Keyword cGreaterequalsGreaterThanSignEqualsSignKeyword_8_0 = (Keyword)cGreaterequalsAssignment_8.eContents().get(0);
+		private final Assignment cSmallerequalsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final Keyword cSmallerequalsLessThanSignEqualsSignKeyword_9_0 = (Keyword)cSmallerequalsAssignment_9.eContents().get(0);
+		private final Assignment cEqualsAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final Keyword cEqualsEqualsSignEqualsSignKeyword_10_0 = (Keyword)cEqualsAssignment_10.eContents().get(0);
+		private final Assignment cNotequalsAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final Keyword cNotequalsExclamationMarkEqualsSignKeyword_11_0 = (Keyword)cNotequalsAssignment_11.eContents().get(0);
+		private final Assignment cValueAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cValueAttributeValueParserRuleCall_12_0 = (RuleCall)cValueAssignment_12.eContents().get(0);
+		private final Keyword cSemicolonKeyword_13 = (Keyword)cGroup.eContents().get(13);
 		
 		//FragmentAttribute:
-		//	'attributeconstraint' name=ID greater?='>'? smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='?
-		//	notequals?='!='? value=AttributeValue ';';
+		//	'attributeconstraint' int?='int'? float?='float'? string?='string'? boolean?='boolean'? name=ID greater?='>'?
+		//	smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='? notequals?='!='? value=AttributeValue ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'attributeconstraint' name=ID greater?='>'? smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='?
-		//notequals?='!='? value=AttributeValue ';'
+		//'attributeconstraint' int?='int'? float?='float'? string?='string'? boolean?='boolean'? name=ID greater?='>'?
+		//smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='? notequals?='!='? value=AttributeValue ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'attributeconstraint'
 		public Keyword getAttributeconstraintKeyword_0() { return cAttributeconstraintKeyword_0; }
 		
+		//int?='int'?
+		public Assignment getIntAssignment_1() { return cIntAssignment_1; }
+		
+		//'int'
+		public Keyword getIntIntKeyword_1_0() { return cIntIntKeyword_1_0; }
+		
+		//float?='float'?
+		public Assignment getFloatAssignment_2() { return cFloatAssignment_2; }
+		
+		//'float'
+		public Keyword getFloatFloatKeyword_2_0() { return cFloatFloatKeyword_2_0; }
+		
+		//string?='string'?
+		public Assignment getStringAssignment_3() { return cStringAssignment_3; }
+		
+		//'string'
+		public Keyword getStringStringKeyword_3_0() { return cStringStringKeyword_3_0; }
+		
+		//boolean?='boolean'?
+		public Assignment getBooleanAssignment_4() { return cBooleanAssignment_4; }
+		
+		//'boolean'
+		public Keyword getBooleanBooleanKeyword_4_0() { return cBooleanBooleanKeyword_4_0; }
+		
 		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_5() { return cNameAssignment_5; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getNameIDTerminalRuleCall_5_0() { return cNameIDTerminalRuleCall_5_0; }
 		
 		//greater?='>'?
-		public Assignment getGreaterAssignment_2() { return cGreaterAssignment_2; }
+		public Assignment getGreaterAssignment_6() { return cGreaterAssignment_6; }
 		
 		//'>'
-		public Keyword getGreaterGreaterThanSignKeyword_2_0() { return cGreaterGreaterThanSignKeyword_2_0; }
+		public Keyword getGreaterGreaterThanSignKeyword_6_0() { return cGreaterGreaterThanSignKeyword_6_0; }
 		
 		//smaller?='<'?
-		public Assignment getSmallerAssignment_3() { return cSmallerAssignment_3; }
+		public Assignment getSmallerAssignment_7() { return cSmallerAssignment_7; }
 		
 		//'<'
-		public Keyword getSmallerLessThanSignKeyword_3_0() { return cSmallerLessThanSignKeyword_3_0; }
+		public Keyword getSmallerLessThanSignKeyword_7_0() { return cSmallerLessThanSignKeyword_7_0; }
 		
 		//greaterequals?='>='?
-		public Assignment getGreaterequalsAssignment_4() { return cGreaterequalsAssignment_4; }
+		public Assignment getGreaterequalsAssignment_8() { return cGreaterequalsAssignment_8; }
 		
 		//'>='
-		public Keyword getGreaterequalsGreaterThanSignEqualsSignKeyword_4_0() { return cGreaterequalsGreaterThanSignEqualsSignKeyword_4_0; }
+		public Keyword getGreaterequalsGreaterThanSignEqualsSignKeyword_8_0() { return cGreaterequalsGreaterThanSignEqualsSignKeyword_8_0; }
 		
 		//smallerequals?='<='?
-		public Assignment getSmallerequalsAssignment_5() { return cSmallerequalsAssignment_5; }
+		public Assignment getSmallerequalsAssignment_9() { return cSmallerequalsAssignment_9; }
 		
 		//'<='
-		public Keyword getSmallerequalsLessThanSignEqualsSignKeyword_5_0() { return cSmallerequalsLessThanSignEqualsSignKeyword_5_0; }
+		public Keyword getSmallerequalsLessThanSignEqualsSignKeyword_9_0() { return cSmallerequalsLessThanSignEqualsSignKeyword_9_0; }
 		
 		//equals?='=='?
-		public Assignment getEqualsAssignment_6() { return cEqualsAssignment_6; }
+		public Assignment getEqualsAssignment_10() { return cEqualsAssignment_10; }
 		
 		//'=='
-		public Keyword getEqualsEqualsSignEqualsSignKeyword_6_0() { return cEqualsEqualsSignEqualsSignKeyword_6_0; }
+		public Keyword getEqualsEqualsSignEqualsSignKeyword_10_0() { return cEqualsEqualsSignEqualsSignKeyword_10_0; }
 		
 		//notequals?='!='?
-		public Assignment getNotequalsAssignment_7() { return cNotequalsAssignment_7; }
+		public Assignment getNotequalsAssignment_11() { return cNotequalsAssignment_11; }
 		
 		//'!='
-		public Keyword getNotequalsExclamationMarkEqualsSignKeyword_7_0() { return cNotequalsExclamationMarkEqualsSignKeyword_7_0; }
+		public Keyword getNotequalsExclamationMarkEqualsSignKeyword_11_0() { return cNotequalsExclamationMarkEqualsSignKeyword_11_0; }
 		
 		//value=AttributeValue
-		public Assignment getValueAssignment_8() { return cValueAssignment_8; }
+		public Assignment getValueAssignment_12() { return cValueAssignment_12; }
 		
 		//AttributeValue
-		public RuleCall getValueAttributeValueParserRuleCall_8_0() { return cValueAttributeValueParserRuleCall_8_0; }
+		public RuleCall getValueAttributeValueParserRuleCall_12_0() { return cValueAttributeValueParserRuleCall_12_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
+		public Keyword getSemicolonKeyword_13() { return cSemicolonKeyword_13; }
 	}
 	public class EntityElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Entity");
@@ -1831,7 +1864,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ContextFragment:
 	//	'contextfragment' name=ID '{'
-	//	entities+=(FEntity | FRelation)*
+	//	entities+=FEntity*
+	//	relations+=FRelation*
 	//	'}';
 	public ContextFragmentElements getContextFragmentAccess() {
 		return pContextFragment;
@@ -1862,8 +1896,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FragmentAttribute:
-	//	'attributeconstraint' name=ID greater?='>'? smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='?
-	//	notequals?='!='? value=AttributeValue ';';
+	//	'attributeconstraint' int?='int'? float?='float'? string?='string'? boolean?='boolean'? name=ID greater?='>'?
+	//	smaller?='<'? greaterequals?='>='? smallerequals?='<='? equals?='=='? notequals?='!='? value=AttributeValue ';';
 	public FragmentAttributeElements getFragmentAttributeAccess() {
 		return pFragmentAttribute;
 	}

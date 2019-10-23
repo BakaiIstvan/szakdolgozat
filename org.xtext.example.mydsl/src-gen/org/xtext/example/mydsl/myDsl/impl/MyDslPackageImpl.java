@@ -500,6 +500,16 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getContextFragment_Relations()
+  {
+    return (EReference)contextFragmentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAttribute()
   {
     return attributeEClass;
@@ -580,7 +590,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Name()
+  public EAttribute getFragmentAttribute_Int()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(0);
   }
@@ -590,7 +600,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Greater()
+  public EAttribute getFragmentAttribute_Float()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(1);
   }
@@ -600,7 +610,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Smaller()
+  public EAttribute getFragmentAttribute_String()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(2);
   }
@@ -610,7 +620,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Greaterequals()
+  public EAttribute getFragmentAttribute_Boolean()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(3);
   }
@@ -620,7 +630,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Smallerequals()
+  public EAttribute getFragmentAttribute_Name()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(4);
   }
@@ -630,7 +640,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Equals()
+  public EAttribute getFragmentAttribute_Greater()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(5);
   }
@@ -640,7 +650,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Notequals()
+  public EAttribute getFragmentAttribute_Smaller()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(6);
   }
@@ -650,9 +660,49 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Value()
+  public EAttribute getFragmentAttribute_Greaterequals()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFragmentAttribute_Smallerequals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFragmentAttribute_Equals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFragmentAttribute_Notequals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(10);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFragmentAttribute_Value()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -1596,6 +1646,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     contextFragmentEClass = createEClass(CONTEXT_FRAGMENT);
     createEAttribute(contextFragmentEClass, CONTEXT_FRAGMENT__NAME);
     createEReference(contextFragmentEClass, CONTEXT_FRAGMENT__ENTITIES);
+    createEReference(contextFragmentEClass, CONTEXT_FRAGMENT__RELATIONS);
 
     attributeEClass = createEClass(ATTRIBUTE);
     createEAttribute(attributeEClass, ATTRIBUTE__INT);
@@ -1606,6 +1657,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
 
     fragmentAttributeEClass = createEClass(FRAGMENT_ATTRIBUTE);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__INT);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__FLOAT);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__STRING);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__BOOLEAN);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__NAME);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__GREATER);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__SMALLER);
@@ -1779,7 +1834,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     initEClass(contextFragmentEClass, ContextFragment.class, "ContextFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getContextFragment_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getContextFragment_Entities(), ecorePackage.getEObject(), null, "entities", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextFragment_Entities(), this.getFEntity(), null, "entities", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextFragment_Relations(), this.getFRelation(), null, "relations", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getAttribute_Int(), ecorePackage.getEBoolean(), "int", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1790,6 +1846,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fragmentAttributeEClass, FragmentAttribute.class, "FragmentAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFragmentAttribute_Int(), ecorePackage.getEBoolean(), "int", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Float(), ecorePackage.getEBoolean(), "float", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_String(), ecorePackage.getEBoolean(), "string", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Boolean(), ecorePackage.getEBoolean(), "boolean", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFragmentAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFragmentAttribute_Greater(), ecorePackage.getEBoolean(), "greater", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFragmentAttribute_Smaller(), ecorePackage.getEBoolean(), "smaller", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

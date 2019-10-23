@@ -20,6 +20,9 @@ import org.xtext.example.mydsl.myDsl.ContextModel
 import org.xtext.example.mydsl.myDsl.Entity
 import org.xtext.example.mydsl.myDsl.Relation
 import org.xtext.example.mydsl.myDsl.ChangeToRelation
+import org.xtext.example.mydsl.myDsl.FEntity
+import org.xtext.example.mydsl.myDsl.FRelation
+import org.xtext.example.mydsl.myDsl.ContextFragment
 
 /**
  * Generates code from your model files on save.
@@ -37,6 +40,12 @@ class MyDslGenerator extends AbstractGenerator {
 			)
 		}
 		
+		for (m : resource.allContents.toIterable.filter(ContextFragment)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
 		for (m : resource.allContents.toIterable.filter(Entity)) {
 			fsa.generateFile(
 				m.fullyQualifiedName.toString("/") + ".java", m.compile
@@ -46,6 +55,18 @@ class MyDslGenerator extends AbstractGenerator {
 		for (m : resource.allContents.toIterable.filter(Relation)) {
 			fsa.generateFile(
 				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(FEntity)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + "Constraint.java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(FRelation)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + "Constraint.java", m.compile
 			)
 		}
 		
@@ -361,6 +382,72 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 		'''
 	
+	def compile(ContextFragment m)'''
+		public class «m.name.toFirstUpper» {
+			«FOR e: m.entities»
+				private «e.name.toFirstUpper»Constraint «e.name.toFirstLower»Constraint;
+			«ENDFOR»
+			«FOR r: m.relations»
+				private «r.name.toFirstUpper»Constraint «r.name.toFirstLower»Constraint;
+			«ENDFOR»
+			
+			public «m.name.toFirstUpper»() {
+				«FOR e: m.entities»
+					«e.name.toFirstLower»Constraint = new «e.name.toFirstUpper»Constraint();
+				«ENDFOR»
+				«FOR r: m.relations»
+					«r.name.toFirstLower»Constraint = new «r.name.toFirstUpper»Constraint(«r.sender.name.toFirstLower»Constraint, «r.receiver.name.toFirstLower»Constraint);
+				«ENDFOR»
+			}
+			
+			public boolean match(
+				«FOR e: 0 ..<m.entities.size»
+					«m.entities.get(e).name.toFirstUpper» «m.entities.get(e).name.toFirstLower»
+					«IF e != m.entities.size - 1 || m.relations.size > 0»
+						,
+					«ENDIF»
+				«ENDFOR»
+				«FOR r: 0 ..<m.relations.size»
+					«m.relations.get(r).name.toFirstUpper» «m.relations.get(r).name.toFirstLower»
+					«IF r != m.relations.size - 1»
+						,
+					«ENDIF»
+				«ENDFOR»
+			) {
+				if(
+					«FOR e: 0 ..<m.entities.size»
+						«m.entities.get(e).name.toFirstLower»Constraint.check(
+							«FOR entity: m.entities»
+								«IF m.entities.get(e).name.toFirstLower == entity.name.toFirstLower»
+									«entity.name.toFirstLower»
+								«ENDIF»
+							«ENDFOR»
+						)
+						«IF e != m.entities.size - 1 || m.relations.size != 0»
+							&&
+						«ENDIF»
+					«ENDFOR»
+					«FOR r: 0 ..<m.relations.size»
+						«m.relations.get(r).name.toFirstLower»Constraint.check(
+						«FOR relation: m.relations»
+							«IF m.relations.get(r).name.toFirstLower == relation.name.toFirstLower»
+								«relation.name.toFirstLower»
+							«ENDIF»
+						«ENDFOR»
+					)
+						«IF r != m.relations.size - 1»
+							&&
+						«ENDIF»
+					«ENDFOR»
+				) {
+					return true;
+				}
+				
+				return false;
+			}
+		}
+	'''
+	
 	def compile(Entity e)'''
 		public class «e.name.toFirstUpper» {
 			«FOR a: e.attributes»
@@ -444,6 +531,90 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 	'''
 	
+	def compile(FEntity e)'''
+		public class «e.name.toFirstUpper»Constraint {
+			«FOR a: e.attributes»
+				«IF a.int»
+					private int «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.float»
+					private float «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.string»
+					private String «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.boolean»
+					private boolean «a.name.toFirstLower»;
+				«ENDIF»
+			«ENDFOR»
+			private boolean exists;
+			
+			public «e.name.toFirstUpper»Constraint() {
+				«FOR a: e.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				exists = true;
+			}
+			
+			public boolean check(«e.name.toFirstUpper» «e.name.toFirstLower») {
+				if («FOR a: e.attributes»
+						«e.name.toFirstLower».get«a.name.toFirstUpper»()
+						«IF a.greater»
+							>
+						«ENDIF»
+						«IF a.smaller»
+						 	<
+						«ENDIF»
+						«IF a.greaterequals»
+							>=
+						«ENDIF»
+						«IF a.smallerequals»
+							<=
+						«ENDIF»
+						«IF a.equals»
+							==
+						«ENDIF»
+						«IF a.notequals»
+							!=
+						«ENDIF»
+						this.«a.name.toFirstLower» &&
+					«ENDFOR»
+				this.exists == «e.name.toFirstLower».getExists()) {
+					return true;
+				}
+				
+				return false;
+			}
+		}
+	'''
+	
 	def compile(Relation r)'''
 		public class «r.name.toFirstUpper» {
 			private «r.sender.name.toFirstUpper» sender;
@@ -524,6 +695,95 @@ class MyDslGenerator extends AbstractGenerator {
 			public «r.sender.name.toFirstUpper» getSender() { return sender; }
 			
 			public «r.receiver.name.toFirstUpper» getReceiver() { return receiver; }
+		}
+	'''
+	
+	def compile(FRelation r)'''
+		public class «r.name.toFirstUpper»Constraint {
+			private «r.sender.name.toFirstUpper»Constraint sender;
+			private «r.receiver.name.toFirstUpper»Constraint receiver;
+			«FOR a: r.attributes»
+				«IF a.int»
+					private int «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.float»
+					private float «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.string»
+					private String «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.boolean»
+					private boolean «a.name.toFirstLower»;
+				«ENDIF»
+			«ENDFOR»
+			
+			public «r.name.toFirstUpper»Constraint(«r.sender.name.toFirstUpper»Constraint sender, «r.receiver.name.toFirstUpper»Constraint receiver) {
+				this.sender = sender;
+				this.receiver = receiver;
+				«FOR a: r.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+			}
+			public boolean check(«r.name.toFirstUpper» «r.name.toFirstLower») {
+				if (
+					«FOR a: 0 ..< r.attributes.size»
+						«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()
+						«IF r.attributes.get(a).greater»
+							>
+						«ENDIF»
+						«IF r.attributes.get(a).smaller»
+						 	<
+						«ENDIF»
+						«IF r.attributes.get(a).greaterequals»
+							>=
+						«ENDIF»
+						«IF r.attributes.get(a).smallerequals»
+							<=
+						«ENDIF»
+						«IF r.attributes.get(a).equals»
+							==
+						«ENDIF»
+						«IF r.attributes.get(a).notequals»
+							!=
+						«ENDIF»
+						this.«r.attributes.get(a).name.toFirstLower» 
+						«IF a != r.attributes.size - 1»
+							&&
+						«ENDIF»
+					«ENDFOR»
+				) {
+					return true;
+				}
+				
+				return false;
+			}
 		}
 	'''
 	

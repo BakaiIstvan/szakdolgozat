@@ -409,44 +409,45 @@ ruleContextFragment returns [EObject current=null]
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getContextFragmentAccess().getEntitiesFEntityParserRuleCall_3_0_0());
+				{
+					newCompositeNode(grammarAccess.getContextFragmentAccess().getEntitiesFEntityParserRuleCall_3_0());
+				}
+				lv_entities_3_0=ruleFEntity
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
 					}
-					lv_entities_3_1=ruleFEntity
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
-						}
-						add(
-							$current,
-							"entities",
-							lv_entities_3_1,
-							"org.xtext.example.mydsl.MyDsl.FEntity");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getContextFragmentAccess().getEntitiesFRelationParserRuleCall_3_0_1());
-					}
-					lv_entities_3_2=ruleFRelation
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
-						}
-						add(
-							$current,
-							"entities",
-							lv_entities_3_2,
-							"org.xtext.example.mydsl.MyDsl.FRelation");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"entities",
+						lv_entities_3_0,
+						"org.xtext.example.mydsl.MyDsl.FEntity");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)*
-		otherlv_4='}'
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getContextFragmentAccess().getRelationsFRelationParserRuleCall_4_0());
+				}
+				lv_relations_4_0=ruleFRelation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getContextFragmentRule());
+					}
+					add(
+						$current,
+						"relations",
+						lv_relations_4_0,
+						"org.xtext.example.mydsl.MyDsl.FRelation");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		otherlv_5='}'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getContextFragmentAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_5, grammarAccess.getContextFragmentAccess().getRightCurlyBracketKeyword_5());
 		}
 	)
 ;
@@ -653,9 +654,65 @@ ruleFragmentAttribute returns [EObject current=null]
 		}
 		(
 			(
-				lv_name_1_0=RULE_ID
+				lv_int_1_0='int'
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getFragmentAttributeAccess().getNameIDTerminalRuleCall_1_0());
+					newLeafNode(lv_int_1_0, grammarAccess.getFragmentAttributeAccess().getIntIntKeyword_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "int", true, "int");
+				}
+			)
+		)?
+		(
+			(
+				lv_float_2_0='float'
+				{
+					newLeafNode(lv_float_2_0, grammarAccess.getFragmentAttributeAccess().getFloatFloatKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "float", true, "float");
+				}
+			)
+		)?
+		(
+			(
+				lv_string_3_0='string'
+				{
+					newLeafNode(lv_string_3_0, grammarAccess.getFragmentAttributeAccess().getStringStringKeyword_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "string", true, "string");
+				}
+			)
+		)?
+		(
+			(
+				lv_boolean_4_0='boolean'
+				{
+					newLeafNode(lv_boolean_4_0, grammarAccess.getFragmentAttributeAccess().getBooleanBooleanKeyword_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFragmentAttributeRule());
+					}
+					setWithLastConsumed($current, "boolean", true, "boolean");
+				}
+			)
+		)?
+		(
+			(
+				lv_name_5_0=RULE_ID
+				{
+					newLeafNode(lv_name_5_0, grammarAccess.getFragmentAttributeAccess().getNameIDTerminalRuleCall_5_0());
 				}
 				{
 					if ($current==null) {
@@ -664,16 +721,16 @@ ruleFragmentAttribute returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_5_0,
 						"org.eclipse.xtext.common.Terminals.ID");
 				}
 			)
 		)
 		(
 			(
-				lv_greater_2_0='>'
+				lv_greater_6_0='>'
 				{
-					newLeafNode(lv_greater_2_0, grammarAccess.getFragmentAttributeAccess().getGreaterGreaterThanSignKeyword_2_0());
+					newLeafNode(lv_greater_6_0, grammarAccess.getFragmentAttributeAccess().getGreaterGreaterThanSignKeyword_6_0());
 				}
 				{
 					if ($current==null) {
@@ -685,9 +742,9 @@ ruleFragmentAttribute returns [EObject current=null]
 		)?
 		(
 			(
-				lv_smaller_3_0='<'
+				lv_smaller_7_0='<'
 				{
-					newLeafNode(lv_smaller_3_0, grammarAccess.getFragmentAttributeAccess().getSmallerLessThanSignKeyword_3_0());
+					newLeafNode(lv_smaller_7_0, grammarAccess.getFragmentAttributeAccess().getSmallerLessThanSignKeyword_7_0());
 				}
 				{
 					if ($current==null) {
@@ -699,9 +756,9 @@ ruleFragmentAttribute returns [EObject current=null]
 		)?
 		(
 			(
-				lv_greaterequals_4_0='>='
+				lv_greaterequals_8_0='>='
 				{
-					newLeafNode(lv_greaterequals_4_0, grammarAccess.getFragmentAttributeAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_4_0());
+					newLeafNode(lv_greaterequals_8_0, grammarAccess.getFragmentAttributeAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_8_0());
 				}
 				{
 					if ($current==null) {
@@ -713,9 +770,9 @@ ruleFragmentAttribute returns [EObject current=null]
 		)?
 		(
 			(
-				lv_smallerequals_5_0='<='
+				lv_smallerequals_9_0='<='
 				{
-					newLeafNode(lv_smallerequals_5_0, grammarAccess.getFragmentAttributeAccess().getSmallerequalsLessThanSignEqualsSignKeyword_5_0());
+					newLeafNode(lv_smallerequals_9_0, grammarAccess.getFragmentAttributeAccess().getSmallerequalsLessThanSignEqualsSignKeyword_9_0());
 				}
 				{
 					if ($current==null) {
@@ -727,9 +784,9 @@ ruleFragmentAttribute returns [EObject current=null]
 		)?
 		(
 			(
-				lv_equals_6_0='=='
+				lv_equals_10_0='=='
 				{
-					newLeafNode(lv_equals_6_0, grammarAccess.getFragmentAttributeAccess().getEqualsEqualsSignEqualsSignKeyword_6_0());
+					newLeafNode(lv_equals_10_0, grammarAccess.getFragmentAttributeAccess().getEqualsEqualsSignEqualsSignKeyword_10_0());
 				}
 				{
 					if ($current==null) {
@@ -741,9 +798,9 @@ ruleFragmentAttribute returns [EObject current=null]
 		)?
 		(
 			(
-				lv_notequals_7_0='!='
+				lv_notequals_11_0='!='
 				{
-					newLeafNode(lv_notequals_7_0, grammarAccess.getFragmentAttributeAccess().getNotequalsExclamationMarkEqualsSignKeyword_7_0());
+					newLeafNode(lv_notequals_11_0, grammarAccess.getFragmentAttributeAccess().getNotequalsExclamationMarkEqualsSignKeyword_11_0());
 				}
 				{
 					if ($current==null) {
@@ -756,9 +813,9 @@ ruleFragmentAttribute returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getFragmentAttributeAccess().getValueAttributeValueParserRuleCall_8_0());
+					newCompositeNode(grammarAccess.getFragmentAttributeAccess().getValueAttributeValueParserRuleCall_12_0());
 				}
-				lv_value_8_0=ruleAttributeValue
+				lv_value_12_0=ruleAttributeValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getFragmentAttributeRule());
@@ -766,15 +823,15 @@ ruleFragmentAttribute returns [EObject current=null]
 					set(
 						$current,
 						"value",
-						lv_value_8_0,
+						lv_value_12_0,
 						"org.xtext.example.mydsl.MyDsl.AttributeValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_9=';'
+		otherlv_13=';'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getFragmentAttributeAccess().getSemicolonKeyword_9());
+			newLeafNode(otherlv_13, grammarAccess.getFragmentAttributeAccess().getSemicolonKeyword_13());
 		}
 	)
 ;

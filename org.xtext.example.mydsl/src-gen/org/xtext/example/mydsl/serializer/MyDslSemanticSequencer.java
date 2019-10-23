@@ -256,7 +256,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ContextFragment returns ContextFragment
 	 *
 	 * Constraint:
-	 *     (name=ID (entities+=FEntity | entities+=FRelation)*)
+	 *     (name=ID entities+=FEntity* relations+=FRelation*)
 	 */
 	protected void sequence_ContextFragment(ISerializationContext context, ContextFragment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -395,6 +395,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
+	 *         int?='int'? 
+	 *         float?='float'? 
+	 *         string?='string'? 
+	 *         boolean?='boolean'? 
 	 *         name=ID 
 	 *         greater?='>'? 
 	 *         smaller?='<'? 

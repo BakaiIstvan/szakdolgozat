@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,6 +20,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.FEntity;
+import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
 /**
@@ -33,6 +34,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,7 +69,17 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<EObject> entities;
+  protected EList<FEntity> entities;
+
+  /**
+   * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getRelations()
+   * @generated
+   * @ordered
+   */
+  protected EList<FRelation> relations;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,13 +130,27 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getEntities()
+  public EList<FEntity> getEntities()
   {
     if (entities == null)
     {
-      entities = new EObjectContainmentEList<EObject>(EObject.class, this, MyDslPackage.CONTEXT_FRAGMENT__ENTITIES);
+      entities = new EObjectContainmentEList<FEntity>(FEntity.class, this, MyDslPackage.CONTEXT_FRAGMENT__ENTITIES);
     }
     return entities;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<FRelation> getRelations()
+  {
+    if (relations == null)
+    {
+      relations = new EObjectContainmentEList<FRelation>(FRelation.class, this, MyDslPackage.CONTEXT_FRAGMENT__RELATIONS);
+    }
+    return relations;
   }
 
   /**
@@ -139,6 +165,8 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
     {
       case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
         return ((InternalEList<?>)getEntities()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.CONTEXT_FRAGMENT__RELATIONS:
+        return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -157,6 +185,8 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
         return getName();
       case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
         return getEntities();
+      case MyDslPackage.CONTEXT_FRAGMENT__RELATIONS:
+        return getRelations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -177,7 +207,11 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
         return;
       case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
         getEntities().clear();
-        getEntities().addAll((Collection<? extends EObject>)newValue);
+        getEntities().addAll((Collection<? extends FEntity>)newValue);
+        return;
+      case MyDslPackage.CONTEXT_FRAGMENT__RELATIONS:
+        getRelations().clear();
+        getRelations().addAll((Collection<? extends FRelation>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -199,6 +233,9 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
         getEntities().clear();
         return;
+      case MyDslPackage.CONTEXT_FRAGMENT__RELATIONS:
+        getRelations().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -217,6 +254,8 @@ public class ContextFragmentImpl extends MinimalEObjectImpl.Container implements
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.CONTEXT_FRAGMENT__ENTITIES:
         return entities != null && !entities.isEmpty();
+      case MyDslPackage.CONTEXT_FRAGMENT__RELATIONS:
+        return relations != null && !relations.isEmpty();
     }
     return super.eIsSet(featureID);
   }

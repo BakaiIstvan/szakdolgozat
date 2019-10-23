@@ -251,13 +251,22 @@ public interface MyDslPackage extends EPackage
   int CONTEXT_FRAGMENT__ENTITIES = 1;
 
   /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_FRAGMENT__RELATIONS = 2;
+
+  /**
    * The number of structural features of the '<em>Context Fragment</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXT_FRAGMENT_FEATURE_COUNT = 2;
+  int CONTEXT_FRAGMENT_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AttributeImpl <em>Attribute</em>}' class.
@@ -343,13 +352,49 @@ public interface MyDslPackage extends EPackage
   int FRAGMENT_ATTRIBUTE = 5;
 
   /**
+   * The feature id for the '<em><b>Int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__INT = 0;
+
+  /**
+   * The feature id for the '<em><b>Float</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__FLOAT = 1;
+
+  /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__STRING = 2;
+
+  /**
+   * The feature id for the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__BOOLEAN = 3;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__NAME = 0;
+  int FRAGMENT_ATTRIBUTE__NAME = 4;
 
   /**
    * The feature id for the '<em><b>Greater</b></em>' attribute.
@@ -358,7 +403,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__GREATER = 1;
+  int FRAGMENT_ATTRIBUTE__GREATER = 5;
 
   /**
    * The feature id for the '<em><b>Smaller</b></em>' attribute.
@@ -367,7 +412,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__SMALLER = 2;
+  int FRAGMENT_ATTRIBUTE__SMALLER = 6;
 
   /**
    * The feature id for the '<em><b>Greaterequals</b></em>' attribute.
@@ -376,7 +421,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__GREATEREQUALS = 3;
+  int FRAGMENT_ATTRIBUTE__GREATEREQUALS = 7;
 
   /**
    * The feature id for the '<em><b>Smallerequals</b></em>' attribute.
@@ -385,7 +430,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__SMALLEREQUALS = 4;
+  int FRAGMENT_ATTRIBUTE__SMALLEREQUALS = 8;
 
   /**
    * The feature id for the '<em><b>Equals</b></em>' attribute.
@@ -394,7 +439,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__EQUALS = 5;
+  int FRAGMENT_ATTRIBUTE__EQUALS = 9;
 
   /**
    * The feature id for the '<em><b>Notequals</b></em>' attribute.
@@ -403,7 +448,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__NOTEQUALS = 6;
+  int FRAGMENT_ATTRIBUTE__NOTEQUALS = 10;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -412,7 +457,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE__VALUE = 7;
+  int FRAGMENT_ATTRIBUTE__VALUE = 11;
 
   /**
    * The number of structural features of the '<em>Fragment Attribute</em>' class.
@@ -421,7 +466,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 8;
+  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 12;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -1650,6 +1695,17 @@ public interface MyDslPackage extends EPackage
   EReference getContextFragment_Entities();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getRelations <em>Relations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextFragment#getRelations()
+   * @see #getContextFragment()
+   * @generated
+   */
+  EReference getContextFragment_Relations();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Attribute <em>Attribute</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1734,6 +1790,50 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getFragmentAttribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isInt <em>Int</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Int</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isInt()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Int();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isFloat <em>Float</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Float</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isFloat()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Float();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isString <em>String</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isString()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_String();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isBoolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolean</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isBoolean()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Boolean();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getName <em>Name</em>}'.
@@ -2955,6 +3055,14 @@ public interface MyDslPackage extends EPackage
     EReference CONTEXT_FRAGMENT__ENTITIES = eINSTANCE.getContextFragment_Entities();
 
     /**
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_FRAGMENT__RELATIONS = eINSTANCE.getContextFragment_Relations();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AttributeImpl <em>Attribute</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3021,6 +3129,38 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass FRAGMENT_ATTRIBUTE = eINSTANCE.getFragmentAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Int</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__INT = eINSTANCE.getFragmentAttribute_Int();
+
+    /**
+     * The meta object literal for the '<em><b>Float</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__FLOAT = eINSTANCE.getFragmentAttribute_Float();
+
+    /**
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__STRING = eINSTANCE.getFragmentAttribute_String();
+
+    /**
+     * The meta object literal for the '<em><b>Boolean</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__BOOLEAN = eINSTANCE.getFragmentAttribute_Boolean();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

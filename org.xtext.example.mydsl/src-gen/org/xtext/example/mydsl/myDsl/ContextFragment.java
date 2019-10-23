@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ContextFragment#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ContextFragment#getEntities <em>Entities</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ContextFragment#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextFragment()
@@ -54,7 +55,7 @@ public interface ContextFragment extends EObject
 
   /**
    * Returns the value of the '<em><b>Entities</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.FEntity}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Entities</em>' containment reference list isn't clear,
@@ -66,6 +67,22 @@ public interface ContextFragment extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getEntities();
+  EList<FEntity> getEntities();
+
+  /**
+   * Returns the value of the '<em><b>Relations</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.FRelation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Relations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Relations</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getContextFragment_Relations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<FRelation> getRelations();
 
 } // ContextFragment

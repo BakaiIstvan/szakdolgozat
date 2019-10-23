@@ -21,6 +21,10 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#isInt <em>Int</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#isFloat <em>Float</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#isString <em>String</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#isBoolean <em>Boolean</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#isGreater <em>Greater</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl#isSmaller <em>Smaller</em>}</li>
@@ -35,6 +39,86 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  */
 public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implements FragmentAttribute
 {
+  /**
+   * The default value of the '{@link #isInt() <em>Int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInt()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean INT_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isInt() <em>Int</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInt()
+   * @generated
+   * @ordered
+   */
+  protected boolean int_ = INT_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isFloat() <em>Float</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFloat()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean FLOAT_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isFloat() <em>Float</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFloat()
+   * @generated
+   * @ordered
+   */
+  protected boolean float_ = FLOAT_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isString() <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isString()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean STRING_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isString() <em>String</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isString()
+   * @generated
+   * @ordered
+   */
+  protected boolean string = STRING_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isBoolean() <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isBoolean()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean BOOLEAN_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isBoolean() <em>Boolean</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isBoolean()
+   * @generated
+   * @ordered
+   */
+  protected boolean boolean_ = BOOLEAN_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -214,6 +298,98 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   protected EClass eStaticClass()
   {
     return MyDslPackage.Literals.FRAGMENT_ATTRIBUTE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isInt()
+  {
+    return int_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInt(boolean newInt)
+  {
+    boolean oldInt = int_;
+    int_ = newInt;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__INT, oldInt, int_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isFloat()
+  {
+    return float_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFloat(boolean newFloat)
+  {
+    boolean oldFloat = float_;
+    float_ = newFloat;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__FLOAT, oldFloat, float_));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isString()
+  {
+    return string;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setString(boolean newString)
+  {
+    boolean oldString = string;
+    string = newString;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__STRING, oldString, string));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isBoolean()
+  {
+    return boolean_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setBoolean(boolean newBoolean)
+  {
+    boolean oldBoolean = boolean_;
+    boolean_ = newBoolean;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__BOOLEAN, oldBoolean, boolean_));
   }
 
   /**
@@ -410,6 +586,14 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__INT:
+        return isInt();
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__FLOAT:
+        return isFloat();
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__STRING:
+        return isString();
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__BOOLEAN:
+        return isBoolean();
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         return getName();
       case MyDslPackage.FRAGMENT_ATTRIBUTE__GREATER:
@@ -440,6 +624,18 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__INT:
+        setInt((Boolean)newValue);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__FLOAT:
+        setFloat((Boolean)newValue);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__STRING:
+        setString((Boolean)newValue);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__BOOLEAN:
+        setBoolean((Boolean)newValue);
+        return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         setName((String)newValue);
         return;
@@ -478,6 +674,18 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__INT:
+        setInt(INT_EDEFAULT);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__FLOAT:
+        setFloat(FLOAT_EDEFAULT);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__STRING:
+        setString(STRING_EDEFAULT);
+        return;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__BOOLEAN:
+        setBoolean(BOOLEAN_EDEFAULT);
+        return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -516,6 +724,14 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__INT:
+        return int_ != INT_EDEFAULT;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__FLOAT:
+        return float_ != FLOAT_EDEFAULT;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__STRING:
+        return string != STRING_EDEFAULT;
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__BOOLEAN:
+        return boolean_ != BOOLEAN_EDEFAULT;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.FRAGMENT_ATTRIBUTE__GREATER:
@@ -547,7 +763,15 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (int: ");
+    result.append(int_);
+    result.append(", float: ");
+    result.append(float_);
+    result.append(", string: ");
+    result.append(string);
+    result.append(", boolean: ");
+    result.append(boolean_);
+    result.append(", name: ");
     result.append(name);
     result.append(", greater: ");
     result.append(greater);
