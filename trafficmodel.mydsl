@@ -1,0 +1,31 @@
+contextmodel Junction {
+	entity TrafficLamp {
+		attribute string status;
+	}
+	
+	entity Car {
+		attribute float speed = 0;
+		attribute string color;
+	}
+	
+	entity Pieton {
+		attribute float speed;
+		attribute int mass;
+		attribute string color = blue;
+		attribute string location;
+	}
+	
+	entity Bycicle {
+		attribute float speed;
+		attribute string color = yellow;
+		attribute string location;
+	}
+	
+	relation Distance (Car, TrafficLamp) {
+		attribute int meter;
+	}
+	
+	relation RightOfWay(Car, Bycicle) {
+		attribute string rightofway = bycicle;
+	}
+}
