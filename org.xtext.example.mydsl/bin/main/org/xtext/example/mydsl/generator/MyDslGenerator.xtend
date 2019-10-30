@@ -58,7 +58,7 @@ class MyDslGenerator extends AbstractGenerator {
 			)
 		}
 		
-		for (m : resource.allContents.toIterable.filter(Domain)) {
+		for (m : resource.allContents.toIterable.filter(MatchMessage)) {
 			fsa.generateFile(
 				"EventCreator.java", m.compile_eventcreator
 			)
@@ -845,104 +845,80 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 	'''
 	
-	def compile_eventcreator(Domain d)'''
+	def compile_eventcreator(MatchMessage d)'''
 		public class EventCreator {
-			«FOR m: d.contextmodels»
-				private «m.name.toFirstUpper» «m.name.toFirstLower»;
-			«ENDFOR»
-			«FOR f: d.contextfragments»
-				private «f.name.toFirstUpper» «f.name.toFirstLower»;
-			«ENDFOR»
+			private «d.context.name.toFirstUpper» «d.context.name.toFirstLower»;
+			private «d.content.name.toFirstUpper» «d.content.name.toFirstLower»;
 			private IMonitor monitorInterface;
 			
 			public EventCreator(
-				«FOR m: d.contextmodels»
-					«m.name.toFirstUpper» «m.name.toFirstLower»,
-				«ENDFOR»
-				«FOR f: d.contextfragments»
-					«f.name.toFirstUpper» «f.name.toFirstLower»,
-				«ENDFOR»
+					«d.context.name.toFirstUpper» «d.context.name.toFirstLower»,
+					«d.content.name.toFirstUpper» «d.content.name.toFirstLower»,
 				IMonitor monitorInterface
 			) {
-				«FOR m: d.contextmodels»
-					this.«m.name.toFirstLower» = «m.name.toFirstLower»;
-				«ENDFOR»
-				«FOR f: d.contextfragments»
-					this.«f.name.toFirstLower» = «f.name.toFirstLower»;
-				«ENDFOR»
+				this.«d.context.name.toFirstLower» = «d.context.name.toFirstLower»;
+				this.«d.content.name.toFirstLower» = «d.content.name.toFirstLower»;
 				this.monitorInterface = monitorInterface;
 			}
 			
 			public void appear(String name) {
-				«FOR m: d.contextmodels»
-					monitorInterface.update("appear(«m.name.toFirstUpper»." + name + ")"); 
-					«FOR f: d.contextfragments»
-						if («f.name.toFirstLower».match(
-							«FOR e: 0..< f.entities.size»
-								«m.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
-								«IF e != f.entities.size - 1 || f.relations.size > 0»
-									,
-								«ENDIF»
-							«ENDFOR»
-							«FOR r: 0..< f.relations.size»
-								«m.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
-								«IF r != f.relations.size - 1»
-									,
-								«ENDIF»
-							«ENDFOR»
-						) {
-							monitorInterface.update("match(«m.name.toFirstUpper», «f.name.toFirstUpper»)");
-						}
+				monitorInterface.update("appear(«d.context.name.toFirstUpper»." + name + ")");
+				if («d.content.name.toFirstLower».match(
+					«FOR e: 0..< d.content.entities.size»
+						«d.context.name.toFirstLower».get«d.content.entities.get(e).name.toFirstUpper»()
+						«IF e != d.content.entities.size - 1 || d.content.relations.size > 0»
+							,
+						«ENDIF»
 					«ENDFOR»
-				«ENDFOR»
+					«FOR r: 0..< d.content.relations.size»
+						«d.context.name.toFirstLower».get«d.content.relations.get(r).name.toFirstUpper»()
+						«IF r != d.content.relations.size - 1»
+							,
+						«ENDIF»
+					«ENDFOR»
+				)) {
+					monitorInterface.update("match(«d.context.name.toFirstUpper», «d.content.name.toFirstUpper»)");
+				}
 			}
 			
 			public void disappear(String name) {
-				«FOR m: d.contextmodels»
-					monitorInterface.update("disappear(«m.name.toFirstUpper»." + name + ")"); 
-					«FOR f: d.contextfragments»
-						if («f.name.toFirstLower».match(
-							«FOR e: 0..< f.entities.size»
-								«m.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
-								«IF e != f.entities.size - 1 || f.relations.size > 0»
-									,
-								«ENDIF»
-							«ENDFOR»
-							«FOR r: 0..< f.relations.size»
-								«m.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
-								«IF r != f.relations.size - 1»
-									,
-								«ENDIF»
-							«ENDFOR»
-						) {
-							monitorInterface.update("match(«m.name.toFirstUpper», «f.name.toFirstUpper»)");
-						}
+				monitorInterface.update("disappear(«d.context.name.toFirstUpper»." + name + ")");
+				if («d.content.name.toFirstLower».match(
+					«FOR e: 0..< d.content.entities.size»
+						«d.context.name.toFirstLower».get«d.content.entities.get(e).name.toFirstUpper»()
+						«IF e != d.content.entities.size - 1 || d.content.relations.size > 0»
+							,
+						«ENDIF»
 					«ENDFOR»
-				«ENDFOR»
+					«FOR r: 0..< d.content.relations.size»
+						«d.context.name.toFirstLower».get«d.content.relations.get(r).name.toFirstUpper»()
+						«IF r != d.content.relations.size - 1»
+							,
+						«ENDIF»
+					«ENDFOR»
+				)) {
+					monitorInterface.update("match(«d.context.name.toFirstUpper», «d.content.name.toFirstUpper»)");
+				}
 			}
 			
 			public void changeTo(String event) {
-				«FOR m: d.contextmodels»
-					monitorInterface.update("changeTo(«m.name.toFirstUpper»." + event + ")"); 
-					«FOR f: d.contextfragments»
-						if («f.name.toFirstLower».match(
-							«FOR e: 0..< f.entities.size»
-								«m.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
-								«IF e != f.entities.size - 1 || f.relations.size > 0»
-									,
-								«ENDIF»
-							«ENDFOR»
-							«FOR r: 0..< f.relations.size»
-								«m.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
-								«IF r != f.relations.size - 1»
-									,
-								«ENDIF»
-							«ENDFOR»
-						) {
-							monitorInterface.update("match(«m.name.toFirstUpper», «f.name.toFirstUpper»)");
-						}
+				monitorInterface.update("changeTo(«d.context.name.toFirstUpper»." + event + ")");
+				if («d.content.name.toFirstLower».match(
+					«FOR e: 0..< d.content.entities.size»
+						«d.context.name.toFirstLower».get«d.content.entities.get(e).name.toFirstUpper»()
+						«IF e != d.content.entities.size - 1 || d.content.relations.size > 0»
+							,
+						«ENDIF»
 					«ENDFOR»
-				«ENDFOR»
+					«FOR r: 0..< d.content.relations.size»
+						«d.context.name.toFirstLower».get«d.content.relations.get(r).name.toFirstUpper»()
+						«IF r != d.content.relations.size - 1»
+							,
+						«ENDIF»
+					«ENDFOR»
+				)) {
+					monitorInterface.update("match(«d.context.name.toFirstUpper», «d.content.name.toFirstUpper»)");
+				}
 			}
 		}
 	'''
