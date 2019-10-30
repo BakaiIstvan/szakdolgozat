@@ -58,6 +58,18 @@ class MyDslGenerator extends AbstractGenerator {
 			)
 		}
 		
+		for (m : resource.allContents.toIterable.filter(Domain)) {
+			fsa.generateFile(
+				"EventCreator.java", m.compile_eventcreator
+			)
+		}
+		
+		fsa.generateFile("IMonitor.java", '''
+			public interface IMonitor {
+			    void update(String string);
+			}
+		''')
+		
 		fsa.generateFile("State.java", 
 			'''
 				public class State {
@@ -357,6 +369,15 @@ class MyDslGenerator extends AbstractGenerator {
 				«ENDFOR»
 			}
 			
+			public «m.name.toFirstUpper»(EventCreator eventCreator) {
+				«FOR e: m.entities»
+					«e.name.toFirstLower» = new «e.name.toFirstUpper»(eventCreator);
+				«ENDFOR»
+				«FOR r: m.relations»
+					«r.name.toFirstLower» = new «r.name.toFirstUpper»(«r.sender.name.toFirstLower», «r.receiver.name.toFirstLower», eventCreator);
+				«ENDFOR»
+			}
+			
 			«FOR e: m.entities»
 				public «e.name.toFirstUpper» get«e.name.toFirstUpper»() {
 					return «e.name.toFirstLower»;
@@ -572,6 +593,7 @@ class MyDslGenerator extends AbstractGenerator {
 				«ENDIF»
 			«ENDFOR»
 			private boolean exists;
+			private EventCreator eventCreator;
 			
 			public «e.name.toFirstUpper»() {
 				«FOR a: e.attributes»
@@ -606,33 +628,86 @@ class MyDslGenerator extends AbstractGenerator {
 				«ENDFOR»
 				exists = false;
 			}
+			
+			public «e.name.toFirstUpper»(EventCreator eventCreator) {
+				«FOR a: e.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				exists = false;
+				this.eventCreator = eventCreator;
+			}
 				
 			public boolean getExists() { return exists; }
 			
-			public void setAppear() { exists = true; }
+			public void setAppear() { 
+				exists = true;
+				eventCreator.appear("«e.name.toFirstUpper»");
+			}
 			
-			public void setDisappear() { exists = false; }
+			public void setDisappear() { 
+				exists = false;
+				eventCreator.disappear("«e.name.toFirstUpper»");
+			}
 			
 			«FOR a: e.attributes»
 				«IF a.int»
 					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 					
-					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 				«IF a.float»
 					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 											
-					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 				«IF a.string»
 					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 											
-					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 				«IF a.boolean»
 					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 											
-					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 			«ENDFOR»
 		}
@@ -642,6 +717,7 @@ class MyDslGenerator extends AbstractGenerator {
 		public class «r.name.toFirstUpper» {
 			private «r.sender.name.toFirstUpper» sender;
 			private «r.receiver.name.toFirstUpper» receiver;
+			private EventCreator eventCreator;
 			«FOR a: r.attributes»
 				«IF a.int»
 					private int «a.name.toFirstLower»;
@@ -691,33 +767,183 @@ class MyDslGenerator extends AbstractGenerator {
 					«ENDIF»
 				«ENDFOR»
 			}
+			
+			public «r.name.toFirstUpper»(«r.sender.name.toFirstUpper» sender, «r.receiver.name.toFirstUpper» receiver, EventCreator eventCreator) {
+				this.sender = sender;
+				this.receiver = receiver;
+				this.eventCreator = eventCreator;
+				«FOR a: r.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+			}
 				
 			«FOR a: r.attributes»
 				«IF a.int»
 					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 					
-					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 				«IF a.float»
 					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 											
-					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 				«IF a.string»
 					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 											
-					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 				«IF a.boolean»
 					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
 											
-					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { this.«a.name.toFirstLower» = «a.name.toFirstLower»; }
+					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+					}
 				«ENDIF»
 			«ENDFOR»
 			
 			public «r.sender.name.toFirstUpper» getSender() { return sender; }
 			
 			public «r.receiver.name.toFirstUpper» getReceiver() { return receiver; }
+		}
+	'''
+	
+	def compile_eventcreator(Domain d)'''
+		public class EventCreator {
+			«FOR m: d.contextmodels»
+				private «m.name.toFirstUpper» «m.name.toFirstLower»;
+			«ENDFOR»
+			«FOR f: d.contextfragments»
+				private «f.name.toFirstUpper» «f.name.toFirstLower»;
+			«ENDFOR»
+			private IMonitor monitorInterface;
+			
+			public EventCreator(
+				«FOR m: d.contextmodels»
+					«m.name.toFirstUpper» «m.name.toFirstLower»,
+				«ENDFOR»
+				«FOR f: d.contextfragments»
+					«f.name.toFirstUpper» «f.name.toFirstLower»,
+				«ENDFOR»
+				IMonitor monitorInterface
+			) {
+				«FOR m: d.contextmodels»
+					this.«m.name.toFirstLower» = «m.name.toFirstLower»;
+				«ENDFOR»
+				«FOR f: d.contextfragments»
+					this.«f.name.toFirstLower» = «f.name.toFirstLower»;
+				«ENDFOR»
+				this.monitorInterface = monitorInterface;
+			}
+			
+			public void appear(String name) {
+				«FOR m: d.contextmodels»
+					monitorInterface.update("appear(«m.name.toFirstUpper»." + name + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						) {
+							monitorInterface.update("match(«m.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
+					«ENDFOR»
+				«ENDFOR»
+			}
+			
+			public void disappear(String name) {
+				«FOR m: d.contextmodels»
+					monitorInterface.update("disappear(«m.name.toFirstUpper»." + name + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						) {
+							monitorInterface.update("match(«m.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
+					«ENDFOR»
+				«ENDFOR»
+			}
+			
+			public void changeTo(String event) {
+				«FOR m: d.contextmodels»
+					monitorInterface.update("changeTo(«m.name.toFirstUpper»." + event + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						) {
+							monitorInterface.update("match(«m.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
+					«ENDFOR»
+				«ENDFOR»
+			}
 		}
 	'''
 	
