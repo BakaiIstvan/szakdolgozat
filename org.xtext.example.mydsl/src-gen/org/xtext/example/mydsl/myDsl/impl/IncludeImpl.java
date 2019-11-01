@@ -6,10 +6,12 @@ package org.xtext.example.mydsl.myDsl.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
@@ -21,6 +23,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl#getContext <em>Context</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl#getImportURI <em>Import URI</em>}</li>
  * </ul>
  *
@@ -28,6 +31,16 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  */
 public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
 {
+  /**
+   * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContext()
+   * @generated
+   * @ordered
+   */
+  protected ContextModel context;
+
   /**
    * The default value of the '{@link #getImportURI() <em>Import URI</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -74,6 +87,49 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
+  public ContextModel getContext()
+  {
+    if (context != null && context.eIsProxy())
+    {
+      InternalEObject oldContext = (InternalEObject)context;
+      context = (ContextModel)eResolveProxy(oldContext);
+      if (context != oldContext)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.INCLUDE__CONTEXT, oldContext, context));
+      }
+    }
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextModel basicGetContext()
+  {
+    return context;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(ContextModel newContext)
+  {
+    ContextModel oldContext = context;
+    context = newContext;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.INCLUDE__CONTEXT, oldContext, context));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getImportURI()
   {
     return importURI;
@@ -102,6 +158,9 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
   {
     switch (featureID)
     {
+      case MyDslPackage.INCLUDE__CONTEXT:
+        if (resolve) return getContext();
+        return basicGetContext();
       case MyDslPackage.INCLUDE__IMPORT_URI:
         return getImportURI();
     }
@@ -118,6 +177,9 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
   {
     switch (featureID)
     {
+      case MyDslPackage.INCLUDE__CONTEXT:
+        setContext((ContextModel)newValue);
+        return;
       case MyDslPackage.INCLUDE__IMPORT_URI:
         setImportURI((String)newValue);
         return;
@@ -135,6 +197,9 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
   {
     switch (featureID)
     {
+      case MyDslPackage.INCLUDE__CONTEXT:
+        setContext((ContextModel)null);
+        return;
       case MyDslPackage.INCLUDE__IMPORT_URI:
         setImportURI(IMPORT_URI_EDEFAULT);
         return;
@@ -152,6 +217,8 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
   {
     switch (featureID)
     {
+      case MyDslPackage.INCLUDE__CONTEXT:
+        return context != null;
       case MyDslPackage.INCLUDE__IMPORT_URI:
         return IMPORT_URI_EDEFAULT == null ? importURI != null : !IMPORT_URI_EDEFAULT.equals(importURI);
     }

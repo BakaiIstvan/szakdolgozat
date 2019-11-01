@@ -14,7 +14,7 @@ Domain:
 ;
 
 Include:
-	'import' importURI=STRING
+	'import' context=[ContextModel] 'from' importURI=STRING
 ;
 
 ContextModel:

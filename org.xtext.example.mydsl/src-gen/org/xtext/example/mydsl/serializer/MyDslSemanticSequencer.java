@@ -419,15 +419,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Include returns Include
 	 *
 	 * Constraint:
-	 *     importURI=STRING
+	 *     (context=[ContextModel|ID] importURI=STRING)
 	 */
 	protected void sequence_Include(ISerializationContext context, Include semanticObject) {
 		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.INCLUDE__CONTEXT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.INCLUDE__CONTEXT));
 			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.INCLUDE__IMPORT_URI) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.INCLUDE__IMPORT_URI));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIncludeAccess().getImportURISTRINGTerminalRuleCall_1_0(), semanticObject.getImportURI());
+		feeder.accept(grammarAccess.getIncludeAccess().getContextContextModelIDTerminalRuleCall_1_0_1(), semanticObject.eGet(MyDslPackage.Literals.INCLUDE__CONTEXT, false));
+		feeder.accept(grammarAccess.getIncludeAccess().getImportURISTRINGTerminalRuleCall_3_0(), semanticObject.getImportURI());
 		feeder.finish();
 	}
 	

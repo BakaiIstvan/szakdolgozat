@@ -17,6 +17,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Domain/scenarios"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Include">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Include/context"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//Include/importURI"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//ContextModel">

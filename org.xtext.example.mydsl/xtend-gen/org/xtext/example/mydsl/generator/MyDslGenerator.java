@@ -35,6 +35,7 @@ import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
@@ -81,8 +82,8 @@ public class MyDslGenerator extends AbstractGenerator {
       String _plus_3 = (_string_3 + ".java");
       fsa.generateFile(_plus_3, this.compile(m_3));
     }
-    Iterable<MatchMessage> _filter_4 = Iterables.<MatchMessage>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), MatchMessage.class);
-    for (final MatchMessage m_4 : _filter_4) {
+    Iterable<Domain> _filter_4 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
+    for (final Domain m_4 : _filter_4) {
       fsa.generateFile(
         "EventCreator.java", this.compile_eventcreator(m_4));
     }
@@ -2964,28 +2965,38 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_eventcreator(final MatchMessage d) {
+  public CharSequence compile_eventcreator(final Domain d) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class EventCreator {");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private ");
-    String _firstUpper = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper, "\t");
-    _builder.append(" ");
-    String _firstLower = StringExtensions.toFirstLower(d.getContext().getName());
-    _builder.append(_firstLower, "\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("private ");
-    String _firstUpper_1 = StringExtensions.toFirstUpper(d.getContent().getName());
-    _builder.append(_firstUpper_1, "\t");
-    _builder.append(" ");
-    String _firstLower_1 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_1, "\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
+    {
+      EList<Include> _includes = d.getIncludes();
+      for(final Include i : _includes) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper = StringExtensions.toFirstUpper(i.getContext().getName());
+        _builder.append(_firstUpper, "\t");
+        _builder.append(" ");
+        String _firstLower = StringExtensions.toFirstLower(i.getContext().getName());
+        _builder.append(_firstLower, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<ContextFragment> _contextfragments = d.getContextfragments();
+      for(final ContextFragment f : _contextfragments) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(f.getName());
+        _builder.append(_firstUpper_1, "\t");
+        _builder.append(" ");
+        String _firstLower_1 = StringExtensions.toFirstLower(f.getName());
+        _builder.append(_firstLower_1, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t");
     _builder.append("private IMonitor monitorInterface;");
     _builder.newLine();
@@ -2994,46 +3005,66 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("public EventCreator(");
     _builder.newLine();
-    _builder.append("\t\t\t");
-    String _firstUpper_2 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_2, "\t\t\t");
-    _builder.append(" ");
-    String _firstLower_2 = StringExtensions.toFirstLower(d.getContext().getName());
-    _builder.append(_firstLower_2, "\t\t\t");
-    _builder.append(",");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t\t");
-    String _firstUpper_3 = StringExtensions.toFirstUpper(d.getContent().getName());
-    _builder.append(_firstUpper_3, "\t\t\t");
-    _builder.append(" ");
-    String _firstLower_3 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_3, "\t\t\t");
-    _builder.append(",");
-    _builder.newLineIfNotEmpty();
+    {
+      EList<Include> _includes_1 = d.getIncludes();
+      for(final Include i_1 : _includes_1) {
+        _builder.append("\t\t");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(i_1.getContext().getName());
+        _builder.append(_firstUpper_2, "\t\t");
+        _builder.append(" ");
+        String _firstLower_2 = StringExtensions.toFirstLower(i_1.getContext().getName());
+        _builder.append(_firstLower_2, "\t\t");
+        _builder.append(",");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<ContextFragment> _contextfragments_1 = d.getContextfragments();
+      for(final ContextFragment f_1 : _contextfragments_1) {
+        _builder.append("\t\t");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(f_1.getName());
+        _builder.append(_firstUpper_3, "\t\t");
+        _builder.append(" ");
+        String _firstLower_3 = StringExtensions.toFirstLower(f_1.getName());
+        _builder.append(_firstLower_3, "\t\t");
+        _builder.append(",");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t\t");
     _builder.append("IMonitor monitorInterface");
     _builder.newLine();
     _builder.append("\t");
     _builder.append(") {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.");
-    String _firstLower_4 = StringExtensions.toFirstLower(d.getContext().getName());
-    _builder.append(_firstLower_4, "\t\t");
-    _builder.append(" = ");
-    String _firstLower_5 = StringExtensions.toFirstLower(d.getContext().getName());
-    _builder.append(_firstLower_5, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("this.");
-    String _firstLower_6 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_6, "\t\t");
-    _builder.append(" = ");
-    String _firstLower_7 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_7, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
+    {
+      EList<Include> _includes_2 = d.getIncludes();
+      for(final Include i_2 : _includes_2) {
+        _builder.append("\t\t");
+        _builder.append("this.");
+        String _firstLower_4 = StringExtensions.toFirstLower(i_2.getContext().getName());
+        _builder.append(_firstLower_4, "\t\t");
+        _builder.append(" = ");
+        String _firstLower_5 = StringExtensions.toFirstLower(i_2.getContext().getName());
+        _builder.append(_firstLower_5, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<ContextFragment> _contextfragments_2 = d.getContextfragments();
+      for(final ContextFragment f_2 : _contextfragments_2) {
+        _builder.append("\t\t");
+        _builder.append("this.");
+        String _firstLower_6 = StringExtensions.toFirstLower(f_2.getName());
+        _builder.append(_firstLower_6, "\t\t");
+        _builder.append(" = ");
+        String _firstLower_7 = StringExtensions.toFirstLower(f_2.getName());
+        _builder.append(_firstLower_7, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t\t");
     _builder.append("this.monitorInterface = monitorInterface;");
     _builder.newLine();
@@ -3045,78 +3076,93 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("public void appear(String name) {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("monitorInterface.update(\"appear(");
-    String _firstUpper_4 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_4, "\t\t");
-    _builder.append(".\" + name + \")\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (");
-    String _firstLower_8 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_8, "\t\t");
-    _builder.append(".match(");
-    _builder.newLineIfNotEmpty();
     {
-      int _size = d.getContent().getEntities().size();
-      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
-      for(final Integer e : _doubleDotLessThan) {
-        _builder.append("\t\t\t");
-        String _firstLower_9 = StringExtensions.toFirstLower(d.getContext().getName());
-        _builder.append(_firstLower_9, "\t\t\t");
-        _builder.append(".get");
-        String _firstUpper_5 = StringExtensions.toFirstUpper(d.getContent().getEntities().get((e).intValue()).getName());
-        _builder.append(_firstUpper_5, "\t\t\t");
-        _builder.append("()");
+      EList<Include> _includes_3 = d.getIncludes();
+      for(final Include m : _includes_3) {
+        _builder.append("\t\t");
+        _builder.append("monitorInterface.update(\"appear(");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(m.getContext().getName());
+        _builder.append(_firstUpper_4, "\t\t");
+        _builder.append(".\" + name + \")\");");
         _builder.newLineIfNotEmpty();
         {
-          if ((((e).intValue() != (d.getContent().getEntities().size() - 1)) || (d.getContent().getRelations().size() > 0))) {
-            _builder.append("\t\t\t");
-            _builder.append(",");
+          EList<ContextFragment> _contextfragments_3 = d.getContextfragments();
+          for(final ContextFragment f_3 : _contextfragments_3) {
+            _builder.append("\t\t");
+            _builder.append("if (");
+            String _firstLower_8 = StringExtensions.toFirstLower(f_3.getName());
+            _builder.append(_firstLower_8, "\t\t");
+            _builder.append(".match(");
+            _builder.newLineIfNotEmpty();
+            {
+              int _size = f_3.getEntities().size();
+              ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+              for(final Integer e : _doubleDotLessThan) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_9 = StringExtensions.toFirstLower(m.getContext().getName());
+                _builder.append(_firstLower_9, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_5 = StringExtensions.toFirstUpper(f_3.getEntities().get((e).intValue()).getName());
+                _builder.append(_firstUpper_5, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((((e).intValue() != (f_3.getEntities().size() - 1)) || (f_3.getRelations().size() > 0))) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            {
+              int _size_1 = f_3.getRelations().size();
+              ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+              for(final Integer r : _doubleDotLessThan_1) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_10 = StringExtensions.toFirstLower(m.getContext().getName());
+                _builder.append(_firstLower_10, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_6 = StringExtensions.toFirstUpper(f_3.getRelations().get((r).intValue()).getName());
+                _builder.append(_firstUpper_6, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  int _size_2 = f_3.getRelations().size();
+                  int _minus = (_size_2 - 1);
+                  boolean _notEquals = ((r).intValue() != _minus);
+                  if (_notEquals) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("\t\t");
+            _builder.append(")) {");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("monitorInterface.update(\"match(");
+            String _firstUpper_7 = StringExtensions.toFirstUpper(m.getContext().getName());
+            _builder.append(_firstUpper_7, "\t\t\t");
+            _builder.append(", ");
+            String _firstUpper_8 = StringExtensions.toFirstUpper(f_3.getName());
+            _builder.append(_firstUpper_8, "\t\t\t");
+            _builder.append(")\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("}");
             _builder.newLine();
           }
         }
       }
     }
-    {
-      int _size_1 = d.getContent().getRelations().size();
-      ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
-      for(final Integer r : _doubleDotLessThan_1) {
-        _builder.append("\t\t\t");
-        String _firstLower_10 = StringExtensions.toFirstLower(d.getContext().getName());
-        _builder.append(_firstLower_10, "\t\t\t");
-        _builder.append(".get");
-        String _firstUpper_6 = StringExtensions.toFirstUpper(d.getContent().getRelations().get((r).intValue()).getName());
-        _builder.append(_firstUpper_6, "\t\t\t");
-        _builder.append("()");
-        _builder.newLineIfNotEmpty();
-        {
-          int _size_2 = d.getContent().getRelations().size();
-          int _minus = (_size_2 - 1);
-          boolean _notEquals = ((r).intValue() != _minus);
-          if (_notEquals) {
-            _builder.append("\t\t\t");
-            _builder.append(",");
-            _builder.newLine();
-          }
-        }
-      }
-    }
-    _builder.append("\t\t");
-    _builder.append(")) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("monitorInterface.update(\"match(");
-    String _firstUpper_7 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_7, "\t\t\t");
-    _builder.append(", ");
-    String _firstUpper_8 = StringExtensions.toFirstUpper(d.getContent().getName());
-    _builder.append(_firstUpper_8, "\t\t\t");
-    _builder.append(")\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
@@ -3125,78 +3171,93 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("public void disappear(String name) {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("monitorInterface.update(\"disappear(");
-    String _firstUpper_9 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_9, "\t\t");
-    _builder.append(".\" + name + \")\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (");
-    String _firstLower_11 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_11, "\t\t");
-    _builder.append(".match(");
-    _builder.newLineIfNotEmpty();
     {
-      int _size_3 = d.getContent().getEntities().size();
-      ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_3, true);
-      for(final Integer e_1 : _doubleDotLessThan_2) {
-        _builder.append("\t\t\t");
-        String _firstLower_12 = StringExtensions.toFirstLower(d.getContext().getName());
-        _builder.append(_firstLower_12, "\t\t\t");
-        _builder.append(".get");
-        String _firstUpper_10 = StringExtensions.toFirstUpper(d.getContent().getEntities().get((e_1).intValue()).getName());
-        _builder.append(_firstUpper_10, "\t\t\t");
-        _builder.append("()");
+      EList<Include> _includes_4 = d.getIncludes();
+      for(final Include m_1 : _includes_4) {
+        _builder.append("\t\t");
+        _builder.append("monitorInterface.update(\"disappear(");
+        String _firstUpper_9 = StringExtensions.toFirstUpper(m_1.getContext().getName());
+        _builder.append(_firstUpper_9, "\t\t");
+        _builder.append(".\" + name + \")\"); ");
         _builder.newLineIfNotEmpty();
         {
-          if ((((e_1).intValue() != (d.getContent().getEntities().size() - 1)) || (d.getContent().getRelations().size() > 0))) {
-            _builder.append("\t\t\t");
-            _builder.append(",");
+          EList<ContextFragment> _contextfragments_4 = d.getContextfragments();
+          for(final ContextFragment f_4 : _contextfragments_4) {
+            _builder.append("\t\t");
+            _builder.append("if (");
+            String _firstLower_11 = StringExtensions.toFirstLower(f_4.getName());
+            _builder.append(_firstLower_11, "\t\t");
+            _builder.append(".match(");
+            _builder.newLineIfNotEmpty();
+            {
+              int _size_3 = f_4.getEntities().size();
+              ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_3, true);
+              for(final Integer e_1 : _doubleDotLessThan_2) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_12 = StringExtensions.toFirstLower(m_1.getContext().getName());
+                _builder.append(_firstLower_12, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_10 = StringExtensions.toFirstUpper(f_4.getEntities().get((e_1).intValue()).getName());
+                _builder.append(_firstUpper_10, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((((e_1).intValue() != (f_4.getEntities().size() - 1)) || (f_4.getRelations().size() > 0))) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            {
+              int _size_4 = f_4.getRelations().size();
+              ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_4, true);
+              for(final Integer r_1 : _doubleDotLessThan_3) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_13 = StringExtensions.toFirstLower(m_1.getContext().getName());
+                _builder.append(_firstLower_13, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_11 = StringExtensions.toFirstUpper(f_4.getRelations().get((r_1).intValue()).getName());
+                _builder.append(_firstUpper_11, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  int _size_5 = f_4.getRelations().size();
+                  int _minus_1 = (_size_5 - 1);
+                  boolean _notEquals_1 = ((r_1).intValue() != _minus_1);
+                  if (_notEquals_1) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("\t\t");
+            _builder.append(")) {");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("monitorInterface.update(\"match(");
+            String _firstUpper_12 = StringExtensions.toFirstUpper(m_1.getContext().getName());
+            _builder.append(_firstUpper_12, "\t\t\t");
+            _builder.append(", ");
+            String _firstUpper_13 = StringExtensions.toFirstUpper(f_4.getName());
+            _builder.append(_firstUpper_13, "\t\t\t");
+            _builder.append(")\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("}");
             _builder.newLine();
           }
         }
       }
     }
-    {
-      int _size_4 = d.getContent().getRelations().size();
-      ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_4, true);
-      for(final Integer r_1 : _doubleDotLessThan_3) {
-        _builder.append("\t\t\t");
-        String _firstLower_13 = StringExtensions.toFirstLower(d.getContext().getName());
-        _builder.append(_firstLower_13, "\t\t\t");
-        _builder.append(".get");
-        String _firstUpper_11 = StringExtensions.toFirstUpper(d.getContent().getRelations().get((r_1).intValue()).getName());
-        _builder.append(_firstUpper_11, "\t\t\t");
-        _builder.append("()");
-        _builder.newLineIfNotEmpty();
-        {
-          int _size_5 = d.getContent().getRelations().size();
-          int _minus_1 = (_size_5 - 1);
-          boolean _notEquals_1 = ((r_1).intValue() != _minus_1);
-          if (_notEquals_1) {
-            _builder.append("\t\t\t");
-            _builder.append(",");
-            _builder.newLine();
-          }
-        }
-      }
-    }
-    _builder.append("\t\t");
-    _builder.append(")) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("monitorInterface.update(\"match(");
-    String _firstUpper_12 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_12, "\t\t\t");
-    _builder.append(", ");
-    String _firstUpper_13 = StringExtensions.toFirstUpper(d.getContent().getName());
-    _builder.append(_firstUpper_13, "\t\t\t");
-    _builder.append(")\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
@@ -3205,78 +3266,93 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.append("public void changeTo(String event) {");
     _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("monitorInterface.update(\"changeTo(");
-    String _firstUpper_14 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_14, "\t\t");
-    _builder.append(".\" + event + \")\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("if (");
-    String _firstLower_14 = StringExtensions.toFirstLower(d.getContent().getName());
-    _builder.append(_firstLower_14, "\t\t");
-    _builder.append(".match(");
-    _builder.newLineIfNotEmpty();
     {
-      int _size_6 = d.getContent().getEntities().size();
-      ExclusiveRange _doubleDotLessThan_4 = new ExclusiveRange(0, _size_6, true);
-      for(final Integer e_2 : _doubleDotLessThan_4) {
-        _builder.append("\t\t\t");
-        String _firstLower_15 = StringExtensions.toFirstLower(d.getContext().getName());
-        _builder.append(_firstLower_15, "\t\t\t");
-        _builder.append(".get");
-        String _firstUpper_15 = StringExtensions.toFirstUpper(d.getContent().getEntities().get((e_2).intValue()).getName());
-        _builder.append(_firstUpper_15, "\t\t\t");
-        _builder.append("()");
+      EList<Include> _includes_5 = d.getIncludes();
+      for(final Include m_2 : _includes_5) {
+        _builder.append("\t\t");
+        _builder.append("monitorInterface.update(\"changeTo(");
+        String _firstUpper_14 = StringExtensions.toFirstUpper(m_2.getContext().getName());
+        _builder.append(_firstUpper_14, "\t\t");
+        _builder.append(".\" + event + \")\"); ");
         _builder.newLineIfNotEmpty();
         {
-          if ((((e_2).intValue() != (d.getContent().getEntities().size() - 1)) || (d.getContent().getRelations().size() > 0))) {
-            _builder.append("\t\t\t");
-            _builder.append(",");
+          EList<ContextFragment> _contextfragments_5 = d.getContextfragments();
+          for(final ContextFragment f_5 : _contextfragments_5) {
+            _builder.append("\t\t");
+            _builder.append("if (");
+            String _firstLower_14 = StringExtensions.toFirstLower(f_5.getName());
+            _builder.append(_firstLower_14, "\t\t");
+            _builder.append(".match(");
+            _builder.newLineIfNotEmpty();
+            {
+              int _size_6 = f_5.getEntities().size();
+              ExclusiveRange _doubleDotLessThan_4 = new ExclusiveRange(0, _size_6, true);
+              for(final Integer e_2 : _doubleDotLessThan_4) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_15 = StringExtensions.toFirstLower(m_2.getContext().getName());
+                _builder.append(_firstLower_15, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_15 = StringExtensions.toFirstUpper(f_5.getEntities().get((e_2).intValue()).getName());
+                _builder.append(_firstUpper_15, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((((e_2).intValue() != (f_5.getEntities().size() - 1)) || (f_5.getRelations().size() > 0))) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            {
+              int _size_7 = f_5.getRelations().size();
+              ExclusiveRange _doubleDotLessThan_5 = new ExclusiveRange(0, _size_7, true);
+              for(final Integer r_2 : _doubleDotLessThan_5) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_16 = StringExtensions.toFirstLower(m_2.getContext().getName());
+                _builder.append(_firstLower_16, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_16 = StringExtensions.toFirstUpper(f_5.getRelations().get((r_2).intValue()).getName());
+                _builder.append(_firstUpper_16, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  int _size_8 = f_5.getRelations().size();
+                  int _minus_2 = (_size_8 - 1);
+                  boolean _notEquals_2 = ((r_2).intValue() != _minus_2);
+                  if (_notEquals_2) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("\t\t");
+            _builder.append(")) {");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("monitorInterface.update(\"match(");
+            String _firstUpper_17 = StringExtensions.toFirstUpper(m_2.getContext().getName());
+            _builder.append(_firstUpper_17, "\t\t\t");
+            _builder.append(", ");
+            String _firstUpper_18 = StringExtensions.toFirstUpper(f_5.getName());
+            _builder.append(_firstUpper_18, "\t\t\t");
+            _builder.append(")\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("}");
             _builder.newLine();
           }
         }
       }
     }
-    {
-      int _size_7 = d.getContent().getRelations().size();
-      ExclusiveRange _doubleDotLessThan_5 = new ExclusiveRange(0, _size_7, true);
-      for(final Integer r_2 : _doubleDotLessThan_5) {
-        _builder.append("\t\t\t");
-        String _firstLower_16 = StringExtensions.toFirstLower(d.getContext().getName());
-        _builder.append(_firstLower_16, "\t\t\t");
-        _builder.append(".get");
-        String _firstUpper_16 = StringExtensions.toFirstUpper(d.getContent().getRelations().get((r_2).intValue()).getName());
-        _builder.append(_firstUpper_16, "\t\t\t");
-        _builder.append("()");
-        _builder.newLineIfNotEmpty();
-        {
-          int _size_8 = d.getContent().getRelations().size();
-          int _minus_2 = (_size_8 - 1);
-          boolean _notEquals_2 = ((r_2).intValue() != _minus_2);
-          if (_notEquals_2) {
-            _builder.append("\t\t\t");
-            _builder.append(",");
-            _builder.newLine();
-          }
-        }
-      }
-    }
-    _builder.append("\t\t");
-    _builder.append(")) {");
-    _builder.newLine();
-    _builder.append("\t\t\t");
-    _builder.append("monitorInterface.update(\"match(");
-    String _firstUpper_17 = StringExtensions.toFirstUpper(d.getContext().getName());
-    _builder.append(_firstUpper_17, "\t\t\t");
-    _builder.append(", ");
-    String _firstUpper_18 = StringExtensions.toFirstUpper(d.getContent().getName());
-    _builder.append(_firstUpper_18, "\t\t\t");
-    _builder.append(")\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.append("}");
-    _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();

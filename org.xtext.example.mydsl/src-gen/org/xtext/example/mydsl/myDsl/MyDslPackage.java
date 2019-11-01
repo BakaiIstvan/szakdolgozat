@@ -159,13 +159,22 @@ public interface MyDslPackage extends EPackage
   int INCLUDE = 1;
 
   /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDE__CONTEXT = 0;
+
+  /**
    * The feature id for the '<em><b>Import URI</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INCLUDE__IMPORT_URI = 0;
+  int INCLUDE__IMPORT_URI = 1;
 
   /**
    * The number of structural features of the '<em>Include</em>' class.
@@ -174,7 +183,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INCLUDE_FEATURE_COUNT = 1;
+  int INCLUDE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.
@@ -1609,6 +1618,17 @@ public interface MyDslPackage extends EPackage
   EClass getInclude();
 
   /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Include#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Include#getContext()
+   * @see #getInclude()
+   * @generated
+   */
+  EReference getInclude_Context();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Include#getImportURI <em>Import URI</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2985,6 +3005,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass INCLUDE = eINSTANCE.getInclude();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INCLUDE__CONTEXT = eINSTANCE.getInclude_Context();
 
     /**
      * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.

@@ -117,24 +117,40 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Include");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImportURIAssignment_1.eContents().get(0);
+		private final Assignment cContextAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cContextContextModelCrossReference_1_0 = (CrossReference)cContextAssignment_1.eContents().get(0);
+		private final RuleCall cContextContextModelIDTerminalRuleCall_1_0_1 = (RuleCall)cContextContextModelCrossReference_1_0.eContents().get(1);
+		private final Keyword cFromKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cImportURIAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cImportURISTRINGTerminalRuleCall_3_0 = (RuleCall)cImportURIAssignment_3.eContents().get(0);
 		
 		//Include:
-		//	'import' importURI=STRING;
+		//	'import' context=[ContextModel] 'from' importURI=STRING;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'import' importURI=STRING
+		//'import' context=[ContextModel] 'from' importURI=STRING
 		public Group getGroup() { return cGroup; }
 		
 		//'import'
 		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
 		
+		//context=[ContextModel]
+		public Assignment getContextAssignment_1() { return cContextAssignment_1; }
+		
+		//[ContextModel]
+		public CrossReference getContextContextModelCrossReference_1_0() { return cContextContextModelCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getContextContextModelIDTerminalRuleCall_1_0_1() { return cContextContextModelIDTerminalRuleCall_1_0_1; }
+		
+		//'from'
+		public Keyword getFromKeyword_2() { return cFromKeyword_2; }
+		
 		//importURI=STRING
-		public Assignment getImportURIAssignment_1() { return cImportURIAssignment_1; }
+		public Assignment getImportURIAssignment_3() { return cImportURIAssignment_3; }
 		
 		//STRING
-		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
+		public RuleCall getImportURISTRINGTerminalRuleCall_3_0() { return cImportURISTRINGTerminalRuleCall_3_0; }
 	}
 	public class ContextModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ContextModel");
@@ -1840,7 +1856,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Include:
-	//	'import' importURI=STRING;
+	//	'import' context=[ContextModel] 'from' importURI=STRING;
 	public IncludeElements getIncludeAccess() {
 		return pInclude;
 	}

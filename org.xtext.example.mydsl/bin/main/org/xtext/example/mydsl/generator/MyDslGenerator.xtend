@@ -58,7 +58,7 @@ class MyDslGenerator extends AbstractGenerator {
 			)
 		}
 		
-		for (m : resource.allContents.toIterable.filter(MatchMessage)) {
+		for (m : resource.allContents.toIterable.filter(Domain)) {
 			fsa.generateFile(
 				"EventCreator.java", m.compile_eventcreator
 			)
@@ -845,80 +845,104 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 	'''
 	
-	def compile_eventcreator(MatchMessage d)'''
+	def compile_eventcreator(Domain d)'''
 		public class EventCreator {
-			private «d.context.name.toFirstUpper» «d.context.name.toFirstLower»;
-			private «d.content.name.toFirstUpper» «d.content.name.toFirstLower»;
+			«FOR i: d.includes»
+				private «i.context.name.toFirstUpper» «i.context.name.toFirstLower»;
+			«ENDFOR»
+			«FOR f: d.contextfragments»
+				private «f.name.toFirstUpper» «f.name.toFirstLower»;
+			«ENDFOR»
 			private IMonitor monitorInterface;
 			
 			public EventCreator(
-					«d.context.name.toFirstUpper» «d.context.name.toFirstLower»,
-					«d.content.name.toFirstUpper» «d.content.name.toFirstLower»,
+				«FOR i: d.includes»
+					«i.context.name.toFirstUpper» «i.context.name.toFirstLower»,
+				«ENDFOR»
+				«FOR f: d.contextfragments»
+					«f.name.toFirstUpper» «f.name.toFirstLower»,
+				«ENDFOR»
 				IMonitor monitorInterface
 			) {
-				this.«d.context.name.toFirstLower» = «d.context.name.toFirstLower»;
-				this.«d.content.name.toFirstLower» = «d.content.name.toFirstLower»;
+				«FOR i: d.includes»
+					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
+				«ENDFOR»
+				«FOR f: d.contextfragments»
+					this.«f.name.toFirstLower» = «f.name.toFirstLower»;
+				«ENDFOR»
 				this.monitorInterface = monitorInterface;
 			}
 			
 			public void appear(String name) {
-				monitorInterface.update("appear(«d.context.name.toFirstUpper»." + name + ")");
-				if («d.content.name.toFirstLower».match(
-					«FOR e: 0..< d.content.entities.size»
-						«d.context.name.toFirstLower».get«d.content.entities.get(e).name.toFirstUpper»()
-						«IF e != d.content.entities.size - 1 || d.content.relations.size > 0»
-							,
-						«ENDIF»
+				«FOR m: d.includes»
+					monitorInterface.update("appear(«m.context.name.toFirstUpper»." + name + ")");
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						)) {
+							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
 					«ENDFOR»
-					«FOR r: 0..< d.content.relations.size»
-						«d.context.name.toFirstLower».get«d.content.relations.get(r).name.toFirstUpper»()
-						«IF r != d.content.relations.size - 1»
-							,
-						«ENDIF»
-					«ENDFOR»
-				)) {
-					monitorInterface.update("match(«d.context.name.toFirstUpper», «d.content.name.toFirstUpper»)");
-				}
+				«ENDFOR»
 			}
 			
 			public void disappear(String name) {
-				monitorInterface.update("disappear(«d.context.name.toFirstUpper»." + name + ")");
-				if («d.content.name.toFirstLower».match(
-					«FOR e: 0..< d.content.entities.size»
-						«d.context.name.toFirstLower».get«d.content.entities.get(e).name.toFirstUpper»()
-						«IF e != d.content.entities.size - 1 || d.content.relations.size > 0»
-							,
-						«ENDIF»
+				«FOR m: d.includes»
+					monitorInterface.update("disappear(«m.context.name.toFirstUpper»." + name + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						)) {
+							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
 					«ENDFOR»
-					«FOR r: 0..< d.content.relations.size»
-						«d.context.name.toFirstLower».get«d.content.relations.get(r).name.toFirstUpper»()
-						«IF r != d.content.relations.size - 1»
-							,
-						«ENDIF»
-					«ENDFOR»
-				)) {
-					monitorInterface.update("match(«d.context.name.toFirstUpper», «d.content.name.toFirstUpper»)");
-				}
+				«ENDFOR»
 			}
 			
 			public void changeTo(String event) {
-				monitorInterface.update("changeTo(«d.context.name.toFirstUpper»." + event + ")");
-				if («d.content.name.toFirstLower».match(
-					«FOR e: 0..< d.content.entities.size»
-						«d.context.name.toFirstLower».get«d.content.entities.get(e).name.toFirstUpper»()
-						«IF e != d.content.entities.size - 1 || d.content.relations.size > 0»
-							,
-						«ENDIF»
+				«FOR m: d.includes»
+					monitorInterface.update("changeTo(«m.context.name.toFirstUpper»." + event + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						)) {
+							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
 					«ENDFOR»
-					«FOR r: 0..< d.content.relations.size»
-						«d.context.name.toFirstLower».get«d.content.relations.get(r).name.toFirstUpper»()
-						«IF r != d.content.relations.size - 1»
-							,
-						«ENDIF»
-					«ENDFOR»
-				)) {
-					monitorInterface.update("match(«d.context.name.toFirstUpper», «d.content.name.toFirstUpper»)");
-				}
+				«ENDFOR»
 			}
 		}
 	'''

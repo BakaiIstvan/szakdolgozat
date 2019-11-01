@@ -259,9 +259,26 @@ ruleInclude returns [EObject current=null]
 		}
 		(
 			(
-				lv_importURI_1_0=RULE_STRING
 				{
-					newLeafNode(lv_importURI_1_0, grammarAccess.getIncludeAccess().getImportURISTRINGTerminalRuleCall_1_0());
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIncludeRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getIncludeAccess().getContextContextModelCrossReference_1_0());
+				}
+			)
+		)
+		otherlv_2='from'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getIncludeAccess().getFromKeyword_2());
+		}
+		(
+			(
+				lv_importURI_3_0=RULE_STRING
+				{
+					newLeafNode(lv_importURI_3_0, grammarAccess.getIncludeAccess().getImportURISTRINGTerminalRuleCall_3_0());
 				}
 				{
 					if ($current==null) {
@@ -270,7 +287,7 @@ ruleInclude returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"importURI",
-						lv_importURI_1_0,
+						lv_importURI_3_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)

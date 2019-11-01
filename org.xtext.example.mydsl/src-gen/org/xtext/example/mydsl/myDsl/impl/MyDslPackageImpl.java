@@ -420,9 +420,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getInclude_Context()
+  {
+    return (EReference)includeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getInclude_ImportURI()
   {
-    return (EAttribute)includeEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)includeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1636,6 +1646,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(domainEClass, DOMAIN__SCENARIOS);
 
     includeEClass = createEClass(INCLUDE);
+    createEReference(includeEClass, INCLUDE__CONTEXT);
     createEAttribute(includeEClass, INCLUDE__IMPORT_URI);
 
     contextModelEClass = createEClass(CONTEXT_MODEL);
@@ -1825,6 +1836,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getDomain_Scenarios(), this.getScenario(), null, "scenarios", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(includeEClass, Include.class, "Include", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInclude_Context(), this.getContextModel(), null, "context", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInclude_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextModelEClass, ContextModel.class, "ContextModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
