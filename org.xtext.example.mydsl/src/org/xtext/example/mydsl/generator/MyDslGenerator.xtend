@@ -1805,10 +1805,10 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, actualState));
+		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -1820,10 +1820,10 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, actualState));
+		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -1924,7 +1924,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition("1", newState, newState));
 	'''
@@ -1940,7 +1940,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition("1", newState, newState));
 	'''
@@ -2046,7 +2046,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -2061,7 +2061,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -2178,8 +2178,8 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, finalState));
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2197,8 +2197,8 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, finalState));
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2292,8 +2292,8 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, finalState));
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, acceptState));
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, finalState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
 		b.addState(acceptState);
@@ -2311,8 +2311,8 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, finalState));
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, acceptState));
+		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, finalState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
 		b.addState(acceptState);
@@ -2399,7 +2399,7 @@ class MyDslGenerator extends AbstractGenerator {
 		
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -2413,7 +2413,7 @@ class MyDslGenerator extends AbstractGenerator {
 		
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name»" + "(" + "«cm.changevalue»" + "))", actualState, newState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
