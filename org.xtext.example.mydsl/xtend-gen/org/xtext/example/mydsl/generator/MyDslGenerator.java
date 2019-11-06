@@ -3926,7 +3926,7 @@ public class MyDslGenerator extends AbstractGenerator {
                           EList<Message> _messages_1 = m.getC().getMessages();
                           for(final Message msg : _messages_1) {
                             _builder.append("\t\t");
-                            _builder.append("+ \"!\" + \"");
+                            _builder.append("+ \"!(\" + \"");
                             String _name_2 = msg.getSender().getName();
                             _builder.append(_name_2, "\t\t");
                             _builder.append("\" + \".\" + \"");
@@ -3935,7 +3935,7 @@ public class MyDslGenerator extends AbstractGenerator {
                             _builder.append("\" + \".\" + \"");
                             String _name_4 = msg.getReceiver().getName();
                             _builder.append(_name_4, "\t\t");
-                            _builder.append("\" + \" & \"");
+                            _builder.append(")\" + \" & \"");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t\t\t\t\t\t\t\t");
                           }
@@ -4176,7 +4176,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               EList<Message> _messages_3 = m_1.getC().getMessages();
                               for(final Message msg_1 : _messages_3) {
                                 _builder.append("\t\t");
-                                _builder.append("+ \"!\" + \"");
+                                _builder.append("+ \"!(\" + \"");
                                 String _name_5 = msg_1.getSender().getName();
                                 _builder.append(_name_5, "\t\t");
                                 _builder.append("\" + \".\" + \"");
@@ -4185,7 +4185,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\" + \".\" + \"");
                                 String _name_7 = msg_1.getReceiver().getName();
                                 _builder.append(_name_7, "\t\t");
-                                _builder.append("\" + \" & \"");
+                                _builder.append(")\" + \" & \"");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t\t\t\t\t\t\t\t\t");
                               }
@@ -4428,7 +4428,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               for(final Message msg_2 : _messages_5) {
                                 _builder.append("\t\t");
                                 _builder.append("\t");
-                                _builder.append("+ \"!\" + \"");
+                                _builder.append("+ \"!(\" + \"");
                                 String _name_8 = msg_2.getSender().getName();
                                 _builder.append(_name_8, "\t\t\t");
                                 _builder.append("\" + \".\" + \"");
@@ -4437,7 +4437,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\" + \".\" + \"");
                                 String _name_10 = msg_2.getReceiver().getName();
                                 _builder.append(_name_10, "\t\t\t");
-                                _builder.append("\" + \" & \"");
+                                _builder.append(")\" + \" & \"");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t\t\t\t\t\t\t\t\t");
                               }
@@ -4695,7 +4695,7 @@ public class MyDslGenerator extends AbstractGenerator {
                       EList<Message> _messages_6 = m_3.getC().getMessages();
                       for(final Message msg_3 : _messages_6) {
                         _builder.append("\t\t");
-                        _builder.append("+ \"!\" + \"");
+                        _builder.append("+ \"!(\" + \"");
                         String _name_11 = msg_3.getSender().getName();
                         _builder.append(_name_11, "\t\t");
                         _builder.append("\" + \".\" + \"");
@@ -4704,7 +4704,7 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\" + \".\" + \"");
                         String _name_13 = msg_3.getReceiver().getName();
                         _builder.append(_name_13, "\t\t");
-                        _builder.append("\" + \" & \"");
+                        _builder.append(")\" + \" & \"");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t\t\t\t\t\t\t\t");
                       }
@@ -5297,7 +5297,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("for(Automaton a : specification.automatas){");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("writer.println(\"never{ /*\" + a.getId() + \"*/\");");
+    _builder.append("writer.println(\"never{ /*\" + a.getId()+ \"Monitor\" + \"*/\");");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("for(State s : a.getStates()){");
@@ -5557,7 +5557,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -5566,7 +5566,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, actualState));");
+    _builder.append("\" + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -5618,7 +5618,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -5627,7 +5627,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\" + \" & \" + str, actualState, actualState));");
+    _builder.append("\" + \" & \" + str + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
     _builder.newLine();
@@ -5675,7 +5675,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -5684,7 +5684,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, actualState));");
+    _builder.append("\" + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -5722,13 +5722,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"match(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"match(\" + \"");
     String _name = ma.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \", \" + \"");
     String _name_1 = ma.getContent().getName();
     _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -5763,13 +5763,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"appear(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"appear(\" + \"");
     String _name = am.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
     String _name_1 = am.getEntity().getName();
     _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -5804,13 +5804,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\"+ \"disappear(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\"+ \"disappear(\" + \"");
     String _name = dm.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
     String _name_1 = dm.getEntity().getName();
     _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -5844,7 +5844,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("b.setInitial(actualState);");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\"+ \"changeTo(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
     String _name = cm.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -5856,7 +5856,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(", ");
     String _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
-    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -5896,7 +5896,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("b.setInitial(actualState);");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\"+ \"changeTo(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
     String _name = cm.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -5908,7 +5908,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(", ");
     String _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
-    _builder.append("\" + \")\", actualState, actualState));");
+    _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -6546,7 +6546,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -6555,7 +6555,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, acceptState_new));");
+    _builder.append("\" + \")\", actualState, acceptState_new));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState_new, acceptState_new));");
     _builder.newLine();
@@ -6620,7 +6620,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_name_2);
     _builder.append("\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
@@ -6629,7 +6629,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();
     _builder.append(_name_5);
-    _builder.append("\" , actualState, acceptState));");
+    _builder.append("\" + \")\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -6672,13 +6672,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_name_1);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"match(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"match(\" + \"");
     String _name_2 = ma.getContext().getName();
     _builder.append(_name_2);
     _builder.append("\" + \", \" + \"");
     String _name_3 = ma.getContent().getName();
     _builder.append(_name_3);
-    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -6721,13 +6721,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_name_1);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"appear(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"appear(\" + \"");
     String _name_2 = am.getContext().getName();
     _builder.append(_name_2);
     _builder.append("\" + \".\" + \"");
     String _name_3 = am.getEntity().getName();
     _builder.append(_name_3);
-    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -6770,13 +6770,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_name_1);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"disappear(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"disappear(\" + \"");
     String _name_2 = dm.getContext().getName();
     _builder.append(_name_2);
     _builder.append("\" + \".\" + \"");
     String _name_3 = dm.getEntity().getName();
     _builder.append(_name_3);
-    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -6824,7 +6824,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"changeTo(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
     String _name_3 = cm.getContext().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
@@ -6836,7 +6836,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(", ");
     String _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
-    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -6884,7 +6884,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"changeTo(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
     String _name_3 = cm.getContext().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
@@ -6896,7 +6896,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(", ");
     String _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
-    _builder.append("\" + \")\" , actualState, acceptState));");
+    _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -6931,7 +6931,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -6940,7 +6940,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, finalState));");
+    _builder.append("\" + \")\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"");
     String _name_3 = m.getSender().getName();
@@ -6986,13 +6986,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"match(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"match(\" + \"");
     String _name = ma.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \", \" + \"");
     String _name_1 = ma.getContent().getName();
     _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"match(\" + \"");
     String _name_2 = ma.getContext().getName();
@@ -7035,13 +7035,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"appear(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"appear(\" + \"");
     String _name = am.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
     String _name_1 = am.getEntity().getName();
     _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
     String _name_2 = am.getContext().getName();
@@ -7084,13 +7084,13 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"disappear(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"disappear(\" + \"");
     String _name = dm.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
     String _name_1 = dm.getEntity().getName();
     _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
     String _name_2 = dm.getContext().getName();
@@ -7132,7 +7132,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"changeTo(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
     String _name = cm.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -7144,7 +7144,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(", ");
     String _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
-    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
     String _name_3 = cm.getContext().getName();
@@ -7192,7 +7192,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"changeTo(\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
     String _name = cm.getContext().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -7204,7 +7204,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(", ");
     String _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
-    _builder.append("\" + \")\", actualState, finalState));");
+    _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
     String _name_3 = cm.getContext().getName();

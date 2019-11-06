@@ -1144,7 +1144,7 @@ class MyDslGenerator extends AbstractGenerator {
 								«IF m.constraint»
 									str = "" 
 									«FOR msg : m.c.messages»
-										+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+										+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 									«ENDFOR»;
 									str= str.substring(0, str.length() - 3);
 								«ENDIF»
@@ -1228,7 +1228,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF m.constraint»
 										str = "" 
 										«FOR msg : m.c.messages»
-											+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+											+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 										«ENDFOR»;
 										str= str.substring(0, str.length() - 3);
 									«ENDIF»
@@ -1314,7 +1314,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF m.constraint»
 										str = "" 
 										«FOR msg : m.c.messages»
-											+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+											+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 										«ENDFOR»;
 										str= str.substring(0, str.length() - 3);
 									«ENDIF»
@@ -1396,7 +1396,7 @@ class MyDslGenerator extends AbstractGenerator {
 							«IF m.constraint»
 								str = "" 
 								«FOR msg : m.c.messages»
-									+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+									+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 								«ENDFOR»;
 								str= str.substring(0, str.length() - 3);
 							«ENDIF»
@@ -1607,7 +1607,7 @@ class MyDslGenerator extends AbstractGenerator {
 				
 				PrintWriter writer = new PrintWriter("«s.name»" + ".txt", "UTF-8");
 				for(Automaton a : specification.automatas){
-					writer.println("never{ /*" + a.getId() + "*/");
+					writer.println("never{ /*" + a.getId()+ "Monitor" + "*/");
 					for(State s : a.getStates()){
 						if(s == a.getInitial()){
 							writer.println("T0_init:");
@@ -1698,7 +1698,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 											
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, actualState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, actualState));
 		finalState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
@@ -1721,7 +1721,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 											
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + " & " + str, actualState, actualState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + " & " + str + ")", actualState, actualState));
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		finalState = new State("q" + counter, StateType.FINAL);
@@ -1742,7 +1742,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 		
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, actualState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
@@ -1758,7 +1758,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 		
-		b.addTransition(new Transition("!" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, actualState));
+		b.addTransition(new Transition("!(" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + "))", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, newState));
@@ -1774,7 +1774,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 		
-		b.addTransition(new Transition("!" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, actualState));
+		b.addTransition(new Transition("!(" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + "))", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, newState));
@@ -1790,7 +1790,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 		
-		b.addTransition(new Transition("!"+ "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, actualState));
+		b.addTransition(new Transition("!("+ "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, newState));
@@ -1805,7 +1805,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, actualState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
@@ -1820,7 +1820,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		b.addTransition(new Transition("!"+ "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, actualState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
@@ -2079,7 +2079,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState_new = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, acceptState_new));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, acceptState_new));
 		b.addTransition(new Transition("1", acceptState_new, acceptState_new));
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, finalState));
 		b.addTransition(new Transition(str, finalState, finalState));
@@ -2103,7 +2103,7 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, finalState));
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2122,7 +2122,7 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + "))" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2141,7 +2141,7 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + "))" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2160,7 +2160,7 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2179,7 +2179,7 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2198,7 +2198,7 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -2216,7 +2216,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, finalState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, finalState));
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
@@ -2235,7 +2235,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, finalState));
+		b.addTransition(new Transition("!(" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + "))", actualState, finalState));
 		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
@@ -2254,7 +2254,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, finalState));
+		b.addTransition(new Transition("!(" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + "))", actualState, finalState));
 		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
@@ -2273,7 +2273,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, finalState));
+		b.addTransition(new Transition("!(" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))", actualState, finalState));
 		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
@@ -2292,7 +2292,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, finalState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, finalState));
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
@@ -2311,7 +2311,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, finalState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, finalState));
 		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
