@@ -64,12 +64,6 @@ class MyDslGenerator extends AbstractGenerator {
 			)
 		}
 		
-		fsa.generateFile("IMonitor.java", '''
-			public interface IMonitor {
-			    void update(String string);
-			}
-		''')
-		
 		fsa.generateFile("State.java", 
 			'''
 				public class State {
@@ -853,7 +847,7 @@ class MyDslGenerator extends AbstractGenerator {
 			«FOR f: d.contextfragments»
 				private «f.name.toFirstUpper» «f.name.toFirstLower»;
 			«ENDFOR»
-			private IMonitor monitorInterface;
+			private Monitor monitorInterface;
 			
 			public EventCreator(
 				«FOR i: d.includes»
@@ -862,7 +856,7 @@ class MyDslGenerator extends AbstractGenerator {
 				«FOR f: d.contextfragments»
 					«f.name.toFirstUpper» «f.name.toFirstLower»,
 				«ENDFOR»
-				IMonitor monitorInterface
+				Monitor monitorInterface
 			) {
 				«FOR i: d.includes»
 					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
