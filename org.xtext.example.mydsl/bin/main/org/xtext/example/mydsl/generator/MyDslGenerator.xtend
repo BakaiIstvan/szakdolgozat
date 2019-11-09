@@ -867,6 +867,12 @@ class MyDslGenerator extends AbstractGenerator {
 				this.monitorInterface = monitorInterface;
 			}
 			
+			«FOR i: d.includes»
+				public void set«i.context.name.toFirstUpper»(«i.context.name.toFirstUpper» «i.context.name.toFirstLower») {
+					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
+				}
+			«ENDFOR»
+			
 			public void appear(String name) {
 				«FOR m: d.includes»
 					monitorInterface.update("appear(«m.context.name.toFirstUpper»." + name + ")");

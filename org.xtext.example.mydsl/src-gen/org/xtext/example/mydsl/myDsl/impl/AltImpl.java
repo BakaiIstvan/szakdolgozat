@@ -72,6 +72,7 @@ public class AltImpl extends MinimalEObjectImpl.Container implements Alt
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Expression> getExpressions()
   {
     if (expressions == null)

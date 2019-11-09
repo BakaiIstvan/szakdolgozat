@@ -118,6 +118,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getName()
   {
     return name;
@@ -128,6 +129,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -141,6 +143,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Entity getSender()
   {
     if (sender != null && sender.eIsProxy())
@@ -171,6 +174,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setSender(Entity newSender)
   {
     Entity oldSender = sender;
@@ -184,6 +188,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Entity getReceiver()
   {
     if (receiver != null && receiver.eIsProxy())
@@ -214,6 +219,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setReceiver(Entity newReceiver)
   {
     Entity oldReceiver = receiver;
@@ -227,6 +233,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Attribute> getAttributes()
   {
     if (attributes == null)
@@ -362,7 +369,7 @@ public class RelationImpl extends MinimalEObjectImpl.Container implements Relati
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(')');

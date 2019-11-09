@@ -107,6 +107,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getName()
   {
     return name;
@@ -117,6 +118,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -130,6 +132,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Entity> getEntities()
   {
     if (entities == null)
@@ -144,6 +147,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Relation> getRelations()
   {
     if (relations == null)
@@ -270,7 +274,7 @@ public class ContextModelImpl extends MinimalEObjectImpl.Container implements Co
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(')');

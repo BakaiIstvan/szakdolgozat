@@ -111,6 +111,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ContextModel getContext()
   {
     if (context != null && context.eIsProxy())
@@ -141,6 +142,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setContext(ContextModel newContext)
   {
     ContextModel oldContext = context;
@@ -154,6 +156,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Relation getRelation()
   {
     if (relation != null && relation.eIsProxy())
@@ -184,6 +187,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setRelation(Relation newRelation)
   {
     Relation oldRelation = relation;
@@ -197,6 +201,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Attribute getAttribute()
   {
     if (attribute != null && attribute.eIsProxy())
@@ -227,6 +232,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setAttribute(Attribute newAttribute)
   {
     Attribute oldAttribute = attribute;
@@ -240,6 +246,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getChangevalue()
   {
     return changevalue;
@@ -250,6 +257,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setChangevalue(String newChangevalue)
   {
     String oldChangevalue = changevalue;
@@ -367,7 +375,7 @@ public class ChangeToRelationImpl extends MinimalEObjectImpl.Container implement
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (changevalue: ");
     result.append(changevalue);
     result.append(')');

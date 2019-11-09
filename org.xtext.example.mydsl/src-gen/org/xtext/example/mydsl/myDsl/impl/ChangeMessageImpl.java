@@ -108,6 +108,7 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<DisappearMessage> getDisappear()
   {
     if (disappear == null)
@@ -122,6 +123,7 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<AppearMessage> getAppear()
   {
     if (appear == null)
@@ -136,6 +138,7 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<ChangeToMessage> getChangeto()
   {
     if (changeto == null)
@@ -150,6 +153,7 @@ public class ChangeMessageImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<ChangeToRelation> getChangetor()
   {
     if (changetor == null)

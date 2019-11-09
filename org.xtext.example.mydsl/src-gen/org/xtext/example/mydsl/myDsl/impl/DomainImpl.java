@@ -175,6 +175,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getSpecification()
   {
     return specification;
@@ -185,6 +186,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setSpecification(String newSpecification)
   {
     String oldSpecification = specification;
@@ -198,6 +200,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getName()
   {
     return name;
@@ -208,6 +211,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -221,6 +225,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Include> getIncludes()
   {
     if (includes == null)
@@ -235,6 +240,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<ContextModel> getContextmodels()
   {
     if (contextmodels == null)
@@ -249,6 +255,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<ContextFragment> getContextfragments()
   {
     if (contextfragments == null)
@@ -263,6 +270,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<org.xtext.example.mydsl.myDsl.Object> getObjects()
   {
     if (objects == null)
@@ -277,6 +285,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Constraint> getConstraints()
   {
     if (constraints == null)
@@ -291,6 +300,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Scenario> getScenarios()
   {
     if (scenarios == null)
@@ -479,7 +489,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (specification: ");
     result.append(specification);
     result.append(", name: ");

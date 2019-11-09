@@ -179,6 +179,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isInt()
   {
     return int_;
@@ -189,6 +190,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setInt(boolean newInt)
   {
     boolean oldInt = int_;
@@ -202,6 +204,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isFloat()
   {
     return float_;
@@ -212,6 +215,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setFloat(boolean newFloat)
   {
     boolean oldFloat = float_;
@@ -225,6 +229,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isString()
   {
     return string;
@@ -235,6 +240,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setString(boolean newString)
   {
     boolean oldString = string;
@@ -248,6 +254,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isBoolean()
   {
     return boolean_;
@@ -258,6 +265,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setBoolean(boolean newBoolean)
   {
     boolean oldBoolean = boolean_;
@@ -271,6 +279,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getName()
   {
     return name;
@@ -281,6 +290,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -294,6 +304,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getValue()
   {
     return value;
@@ -304,6 +315,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setValue(String newValue)
   {
     String oldValue = value;
@@ -438,7 +450,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (int: ");
     result.append(int_);
     result.append(", float: ");

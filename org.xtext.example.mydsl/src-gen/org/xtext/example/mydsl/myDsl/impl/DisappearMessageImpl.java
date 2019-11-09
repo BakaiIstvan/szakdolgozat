@@ -78,6 +78,7 @@ public class DisappearMessageImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ContextModel getContext()
   {
     if (context != null && context.eIsProxy())
@@ -108,6 +109,7 @@ public class DisappearMessageImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setContext(ContextModel newContext)
   {
     ContextModel oldContext = context;
@@ -121,6 +123,7 @@ public class DisappearMessageImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Entity getEntity()
   {
     if (entity != null && entity.eIsProxy())
@@ -151,6 +154,7 @@ public class DisappearMessageImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setEntity(Entity newEntity)
   {
     Entity oldEntity = entity;

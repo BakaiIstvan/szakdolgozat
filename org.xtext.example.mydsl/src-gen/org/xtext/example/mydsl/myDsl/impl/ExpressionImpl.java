@@ -72,6 +72,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Message> getMessages()
   {
     if (messages == null)

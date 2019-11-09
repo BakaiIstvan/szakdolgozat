@@ -84,6 +84,7 @@ public class ContextMessageContentImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<MatchMessage> getMatch()
   {
     if (match == null)
@@ -98,6 +99,7 @@ public class ContextMessageContentImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<ChangeMessage> getChange()
   {
     if (change == null)

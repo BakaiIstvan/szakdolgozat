@@ -235,6 +235,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public String getName()
   {
     return name;
@@ -245,6 +246,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -258,6 +260,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isRequired()
   {
     return required;
@@ -268,6 +271,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setRequired(boolean newRequired)
   {
     boolean oldRequired = required;
@@ -281,6 +285,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isFail()
   {
     return fail;
@@ -291,6 +296,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setFail(boolean newFail)
   {
     boolean oldFail = fail;
@@ -304,6 +310,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isStrict()
   {
     return strict;
@@ -314,6 +321,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setStrict(boolean newStrict)
   {
     boolean oldStrict = strict;
@@ -327,6 +335,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public org.xtext.example.mydsl.myDsl.Object getSender()
   {
     if (sender != null && sender.eIsProxy())
@@ -357,6 +366,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setSender(org.xtext.example.mydsl.myDsl.Object newSender)
   {
     org.xtext.example.mydsl.myDsl.Object oldSender = sender;
@@ -370,6 +380,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public org.xtext.example.mydsl.myDsl.Object getReceiver()
   {
     if (receiver != null && receiver.eIsProxy())
@@ -400,6 +411,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setReceiver(org.xtext.example.mydsl.myDsl.Object newReceiver)
   {
     org.xtext.example.mydsl.myDsl.Object oldReceiver = receiver;
@@ -413,6 +425,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isPast()
   {
     return past;
@@ -423,6 +436,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setPast(boolean newPast)
   {
     boolean oldPast = past;
@@ -436,6 +450,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isFuture()
   {
     return future;
@@ -446,6 +461,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setFuture(boolean newFuture)
   {
     boolean oldFuture = future;
@@ -459,6 +475,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isConstraint()
   {
     return constraint;
@@ -469,6 +486,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setConstraint(boolean newConstraint)
   {
     boolean oldConstraint = constraint;
@@ -482,6 +500,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Constraint getC()
   {
     if (c != null && c.eIsProxy())
@@ -512,6 +531,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setC(Constraint newC)
   {
     Constraint oldC = c;
@@ -689,7 +709,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
     result.append(", required: ");

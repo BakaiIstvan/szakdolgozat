@@ -137,6 +137,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<ContextMessageContent> getContent()
   {
     if (content == null)
@@ -151,6 +152,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isRequired()
   {
     return required;
@@ -161,6 +163,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setRequired(boolean newRequired)
   {
     boolean oldRequired = required;
@@ -174,6 +177,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isFail()
   {
     return fail;
@@ -184,6 +188,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setFail(boolean newFail)
   {
     boolean oldFail = fail;
@@ -197,6 +202,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public boolean isStrict()
   {
     return strict;
@@ -207,6 +213,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setStrict(boolean newStrict)
   {
     boolean oldStrict = strict;
@@ -339,7 +346,7 @@ public class ContextMessageImpl extends MinimalEObjectImpl.Container implements 
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (required: ");
     result.append(required);
     result.append(", fail: ");
