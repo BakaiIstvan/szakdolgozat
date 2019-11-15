@@ -676,7 +676,7 @@ class MyDslGenerator extends AbstractGenerator {
 					
 					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 				«IF a.float»
@@ -684,7 +684,7 @@ class MyDslGenerator extends AbstractGenerator {
 											
 					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 				«IF a.string»
@@ -692,7 +692,7 @@ class MyDslGenerator extends AbstractGenerator {
 											
 					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 				«IF a.boolean»
@@ -700,7 +700,7 @@ class MyDslGenerator extends AbstractGenerator {
 											
 					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 			«ENDFOR»
@@ -804,7 +804,7 @@ class MyDslGenerator extends AbstractGenerator {
 					
 					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 				«IF a.float»
@@ -812,7 +812,7 @@ class MyDslGenerator extends AbstractGenerator {
 											
 					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 				«IF a.string»
@@ -820,7 +820,7 @@ class MyDslGenerator extends AbstractGenerator {
 											
 					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 				«IF a.boolean»
@@ -828,7 +828,7 @@ class MyDslGenerator extends AbstractGenerator {
 											
 					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
 						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower»(" + «a.name.toFirstLower» +")");
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
 					}
 				«ENDIF»
 			«ENDFOR»
