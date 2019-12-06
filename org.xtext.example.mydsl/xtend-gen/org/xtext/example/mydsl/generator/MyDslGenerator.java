@@ -5332,7 +5332,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"T0_init:\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -5374,7 +5374,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}else if(s.getType().equals(StateType.NORMAL)){");
@@ -5383,7 +5383,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"T0_\" + s.getId() + \":\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -5425,7 +5425,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}else if(s.getType().equals(StateType.ACCEPT_ALL) && !acceptState){");
@@ -5446,7 +5446,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"T0_\" + s.getId() + \":\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -5488,7 +5488,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}else if(s.getType().equals(StateType.ACCEPT)){");
@@ -5497,7 +5497,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"accept_\" + s.getId() + \":\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -5539,7 +5539,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}");

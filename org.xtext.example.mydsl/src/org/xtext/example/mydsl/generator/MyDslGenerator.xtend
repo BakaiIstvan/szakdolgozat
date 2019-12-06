@@ -1611,7 +1611,7 @@ class MyDslGenerator extends AbstractGenerator {
 					for(State s : a.getStates()){
 						if(s == a.getInitial()){
 							writer.println("T0_init:");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto T0_init");
@@ -1625,10 +1625,10 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}else if(s.getType().equals(StateType.NORMAL)){
 							writer.println("T0_" + s.getId() + ":");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto T0_init");
@@ -1642,14 +1642,14 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}else if(s.getType().equals(StateType.ACCEPT_ALL) && !acceptState){
 							writer.println("accept_all:");
 							writer.println("skip");
 							acceptState = true;
 						}else if(s.getType().equals(StateType.FINAL)){
 							writer.println("T0_" + s.getId() + ":");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ")" + "->" + " goto T0_init");
@@ -1663,10 +1663,10 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}else if(s.getType().equals(StateType.ACCEPT)){
 							writer.println("accept_" + s.getId() + ":");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ")" + "->" + " goto T0_init");
@@ -1680,7 +1680,7 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}
 						
 					}
