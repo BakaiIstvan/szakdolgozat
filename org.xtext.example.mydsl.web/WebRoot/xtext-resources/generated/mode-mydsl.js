@@ -1,6 +1,6 @@
 define(["ace/lib/oop", "ace/mode/text", "ace/mode/text_highlight_rules"], function(oop, mText, mTextHighlightRules) {
 	var HighlightRules = function() {
-		var keywords = "alt|case|constraint|fail|future|loop|message|object|par|past|required|scenario|specification|strict";
+		var keywords = "alt|appear|attribute|attributeconstraint|boolean|case|changeTo|constraint|contextfragment|contextmodel|disappear|entity|entityconstraint|fail|false|float|from|future|import|int|loop|match|message|object|par|past|relation|relationChangeTo|relationconstraint|required|scenario|specification|strict|string|true";
 		this.$rules = {
 			"start": [
 				{token: "comment", regex: "\\/\\/.*$"},

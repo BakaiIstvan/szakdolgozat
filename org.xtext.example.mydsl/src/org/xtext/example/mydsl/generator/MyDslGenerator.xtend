@@ -10,6 +10,19 @@ import org.eclipse.xtext.generator.IGeneratorContext
 import org.xtext.example.mydsl.myDsl.Scenario
 import org.xtext.example.mydsl.myDsl.Domain
 import org.xtext.example.mydsl.myDsl.Message
+import org.xtext.example.mydsl.myDsl.MatchMessage
+import org.xtext.example.mydsl.myDsl.AppearMessage
+import org.xtext.example.mydsl.myDsl.DisappearMessage
+import org.xtext.example.mydsl.myDsl.ChangeToMessage
+import org.eclipse.xtext.naming.IQualifiedNameProvider
+import com.google.inject.Inject
+import org.xtext.example.mydsl.myDsl.ContextModel
+import org.xtext.example.mydsl.myDsl.Entity
+import org.xtext.example.mydsl.myDsl.Relation
+import org.xtext.example.mydsl.myDsl.ChangeToRelation
+import org.xtext.example.mydsl.myDsl.FEntity
+import org.xtext.example.mydsl.myDsl.FRelation
+import org.xtext.example.mydsl.myDsl.ContextFragment
 
 /**
  * Generates code from your model files on save.
@@ -17,8 +30,40 @@ import org.xtext.example.mydsl.myDsl.Message
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyDslGenerator extends AbstractGenerator {
+	
+	@Inject extension IQualifiedNameProvider
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		for (m : resource.allContents.toIterable.filter(ContextModel)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(ContextFragment)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(Entity)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(Relation)) {
+			fsa.generateFile(
+				m.fullyQualifiedName.toString("/") + ".java", m.compile
+			)
+		}
+		
+		for (m : resource.allContents.toIterable.filter(Domain)) {
+			fsa.generateFile(
+				"EventCreator.java", m.compile_eventcreator
+			)
+		}
+		
 		fsa.generateFile("State.java", 
 			'''
 				public class State {
@@ -300,6 +345,608 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 	}
 	
+	def compile(ContextModel m)'''
+		public class «m.name.toFirstUpper» {
+			«FOR e: m.entities»
+				private «e.name.toFirstUpper» «e.name.toFirstLower»;
+			«ENDFOR»
+			«FOR r: m.relations»
+				private «r.name.toFirstUpper» «r.name.toFirstLower»;
+			«ENDFOR»
+			
+			public «m.name.toFirstUpper»() {
+				«FOR e: m.entities»
+					«e.name.toFirstLower» = new «e.name.toFirstUpper»();
+				«ENDFOR»
+				«FOR r: m.relations»
+					«r.name.toFirstLower» = new «r.name.toFirstUpper»(«r.sender.name.toFirstLower», «r.receiver.name.toFirstLower»);
+				«ENDFOR»
+			}
+			
+			public «m.name.toFirstUpper»(EventCreator eventCreator) {
+				«FOR e: m.entities»
+					«e.name.toFirstLower» = new «e.name.toFirstUpper»(eventCreator);
+				«ENDFOR»
+				«FOR r: m.relations»
+					«r.name.toFirstLower» = new «r.name.toFirstUpper»(«r.sender.name.toFirstLower», «r.receiver.name.toFirstLower», eventCreator);
+				«ENDFOR»
+			}
+			
+			«FOR e: m.entities»
+				public «e.name.toFirstUpper» get«e.name.toFirstUpper»() {
+					return «e.name.toFirstLower»;
+				}
+			«ENDFOR»
+			«FOR r: m.relations»
+				public «r.name.toFirstUpper» get«r.name.toFirstUpper»() {
+					return «r.name.toFirstLower»;
+				}
+			«ENDFOR»
+		}
+		'''
+	
+	def compile(ContextFragment m)'''
+		public class «m.name.toFirstUpper» {
+			public boolean match(
+				«FOR e: 0 ..<m.entities.size»
+					«m.entities.get(e).name.toFirstUpper» «m.entities.get(e).name.toFirstLower»
+					«IF e != m.entities.size - 1 || m.relations.size > 0»
+						,
+					«ENDIF»
+				«ENDFOR»
+				«FOR r: 0 ..<m.relations.size»
+					«m.relations.get(r).name.toFirstUpper» «m.relations.get(r).name.toFirstLower»
+					«IF r != m.relations.size - 1»
+						,
+					«ENDIF»
+				«ENDFOR»
+			) {
+				if(
+					«FOR e: 0 ..<m.entities.size»
+						check«m.entities.get(e).name.toFirstUpper»Constraint(
+							«FOR entity: m.entities»
+								«IF m.entities.get(e).name.toFirstLower == entity.name.toFirstLower»
+									«entity.name.toFirstLower»
+								«ENDIF»
+							«ENDFOR»
+						)
+						«IF e != m.entities.size - 1 || m.relations.size != 0»
+							&&
+						«ENDIF»
+					«ENDFOR»
+					«FOR r: 0 ..<m.relations.size»
+						check«m.relations.get(r).name.toFirstUpper»Constraint(
+						«FOR relation: m.relations»
+							«IF m.relations.get(r).name.toFirstLower == relation.name.toFirstLower»
+								«relation.name.toFirstLower»
+							«ENDIF»
+						«ENDFOR»
+					)
+						«IF r != m.relations.size - 1»
+							&&
+						«ENDIF»
+					«ENDFOR»
+				) {
+					return true;
+				}
+				
+				return false;
+			}
+			
+			«FOR e: m.entities»
+				public boolean check«e.name.toFirstUpper»Constraint(«e.name.toFirstUpper» «e.name.toFirstLower») {
+					if («FOR a: e.attributes»
+							«IF a.int»
+								«IF a.greater»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() > «a.value»
+								«ENDIF»
+								«IF a.smaller»
+								 	 «e.name.toFirstLower».get«a.name.toFirstUpper»() < «a.value»
+								«ENDIF»
+								«IF a.greaterequals»
+									 «e.name.toFirstLower».get«a.name.toFirstUpper»()>= «a.value»
+								«ENDIF»
+								«IF a.smallerequals»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() <= «a.value»
+								«ENDIF»
+								«IF a.equals»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+								«ENDIF»
+								«IF a.notequals»
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+								«ENDIF»
+							«ENDIF»
+							«IF a.float»
+								«IF a.greater»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() > «a.value»
+								«ENDIF»
+								«IF a.smaller»
+								 	 «e.name.toFirstLower».get«a.name.toFirstUpper»() < «a.value»
+								«ENDIF»
+								«IF a.greaterequals»
+									 «e.name.toFirstLower».get«a.name.toFirstUpper»()>= «a.value»
+								«ENDIF»
+								«IF a.smallerequals»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() <= «a.value»
+								«ENDIF»
+								«IF a.equals»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+								«ENDIF»
+								«IF a.notequals»
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+								«ENDIF»
+							«ENDIF»
+							«IF a.string»
+								«IF a.equals»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals("«a.value»")
+								«ENDIF»
+								«IF a.notequals»
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals("«a.value»")
+								«ENDIF»
+							«ENDIF»
+							«IF a.boolean»
+								«IF a.equals»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+								«ENDIF»
+								«IF a.notequals»
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+								«ENDIF»
+							«ENDIF» &&
+						«ENDFOR»
+						«e.name.toFirstLower».getExists()) {
+						return true;
+					}
+					
+					return false;
+				}
+			«ENDFOR»
+			«FOR r: m.relations»
+				public boolean check«r.name.toFirstUpper»Constraint(«r.name.toFirstUpper» «r.name.toFirstLower») {
+					if («FOR a: 0..<r.attributes.size»
+							«IF r.attributes.get(a).int»
+								«IF r.attributes.get(a).greater»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() > «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).smaller»
+								 	 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() < «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).greaterequals»
+									 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()>= «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).smallerequals»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() <= «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).equals»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+								«ENDIF»
+								«IF r.attributes.get(a).notequals»
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+								«ENDIF»
+							«ENDIF»
+							«IF r.attributes.get(a).float»
+								«IF r.attributes.get(a).greater»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() > «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).smaller»
+								 	 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() < «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).greaterequals»
+									 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()>= «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).smallerequals»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() <= «r.attributes.get(a).value»
+								«ENDIF»
+								«IF r.attributes.get(a).equals»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+								«ENDIF»
+								«IF r.attributes.get(a).notequals»
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+								«ENDIF»
+							«ENDIF»
+							«IF r.attributes.get(a).string»
+								«IF r.attributes.get(a).equals»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals("«r.attributes.get(a).value»")
+								«ENDIF»
+								«IF r.attributes.get(a).notequals»
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals("«r.attributes.get(a).value»")
+								«ENDIF»
+							«ENDIF»
+							«IF r.attributes.get(a).boolean»
+								«IF a.equals»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+								«ENDIF»
+								«IF r.attributes.get(a).notequals»
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+								«ENDIF»
+							«ENDIF»
+							«IF a != r.attributes.size - 1» && «ENDIF»
+						«ENDFOR» ){
+						return true;
+					}
+					
+					return false;
+				}
+			«ENDFOR»
+		}
+	'''
+	
+	def compile(Entity e)'''
+		public class «e.name.toFirstUpper» {
+			«FOR a: e.attributes»
+				«IF a.int»
+					private int «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.float»
+					private float «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.string»
+					private String «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.boolean»
+					private boolean «a.name.toFirstLower»;
+				«ENDIF»
+			«ENDFOR»
+			private boolean exists;
+			private EventCreator eventCreator;
+			
+			public «e.name.toFirstUpper»() {
+				«FOR a: e.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				exists = false;
+			}
+			
+			public «e.name.toFirstUpper»(EventCreator eventCreator) {
+				«FOR a: e.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+				exists = false;
+				this.eventCreator = eventCreator;
+			}
+				
+			public boolean getExists() { return exists; }
+			
+			public void setAppear() { 
+				exists = true;
+				eventCreator.appear("«e.name.toFirstUpper»");
+			}
+			
+			public void setDisappear() { 
+				exists = false;
+				eventCreator.disappear("«e.name.toFirstUpper»");
+			}
+			
+			«FOR a: e.attributes»
+				«IF a.int»
+					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+					
+					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+				«IF a.float»
+					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+				«IF a.string»
+					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+				«IF a.boolean»
+					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«e.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+			«ENDFOR»
+		}
+	'''
+	
+	def compile(Relation r)'''
+		public class «r.name.toFirstUpper» {
+			private «r.sender.name.toFirstUpper» sender;
+			private «r.receiver.name.toFirstUpper» receiver;
+			private EventCreator eventCreator;
+			«FOR a: r.attributes»
+				«IF a.int»
+					private int «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.float»
+					private float «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.string»
+					private String «a.name.toFirstLower»;
+				«ENDIF»
+				«IF a.boolean»
+					private boolean «a.name.toFirstLower»;
+				«ENDIF»
+			«ENDFOR»
+			
+			public «r.name.toFirstUpper»(«r.sender.name.toFirstUpper» sender, «r.receiver.name.toFirstUpper» receiver) {
+				this.sender = sender;
+				this.receiver = receiver;
+				«FOR a: r.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+			}
+			
+			public «r.name.toFirstUpper»(«r.sender.name.toFirstUpper» sender, «r.receiver.name.toFirstUpper» receiver, EventCreator eventCreator) {
+				this.sender = sender;
+				this.receiver = receiver;
+				this.eventCreator = eventCreator;
+				«FOR a: r.attributes»
+					«IF a.int»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.float»
+						«IF a.value === null»
+							«a.name.toFirstLower» = 0;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+					«IF a.string»
+						«IF a.value === null»
+							«a.name.toFirstLower» = "default";
+						«ELSE»
+							«a.name.toFirstLower» = "«a.value»";
+						«ENDIF»
+					«ENDIF»
+					«IF a.boolean»
+						«IF a.value === null»
+							«a.name.toFirstLower» = false;
+						«ELSE»
+							«a.name.toFirstLower» = «a.value»;
+						«ENDIF»
+					«ENDIF»
+				«ENDFOR»
+			}
+				
+			«FOR a: r.attributes»
+				«IF a.int»
+					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+					
+					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+				«IF a.float»
+					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+				«IF a.string»
+					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+				«IF a.boolean»
+					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
+											
+					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
+						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
+						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
+					}
+				«ENDIF»
+			«ENDFOR»
+			
+			public «r.sender.name.toFirstUpper» getSender() { return sender; }
+			
+			public «r.receiver.name.toFirstUpper» getReceiver() { return receiver; }
+		}
+	'''
+	
+	def compile_eventcreator(Domain d)'''
+		public class EventCreator {
+			«FOR i: d.includes»
+				private «i.context.name.toFirstUpper» «i.context.name.toFirstLower»;
+			«ENDFOR»
+			«FOR f: d.contextfragments»
+				private «f.name.toFirstUpper» «f.name.toFirstLower»;
+			«ENDFOR»
+			private Monitor monitorInterface;
+			
+			public EventCreator(
+				«FOR i: d.includes»
+					«i.context.name.toFirstUpper» «i.context.name.toFirstLower»,
+				«ENDFOR»
+				«FOR f: d.contextfragments»
+					«f.name.toFirstUpper» «f.name.toFirstLower»,
+				«ENDFOR»
+				Monitor monitorInterface
+			) {
+				«FOR i: d.includes»
+					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
+				«ENDFOR»
+				«FOR f: d.contextfragments»
+					this.«f.name.toFirstLower» = «f.name.toFirstLower»;
+				«ENDFOR»
+				this.monitorInterface = monitorInterface;
+			}
+			
+			«FOR i: d.includes»
+				public void set«i.context.name.toFirstUpper»(«i.context.name.toFirstUpper» «i.context.name.toFirstLower») {
+					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
+				}
+			«ENDFOR»
+			
+			public void appear(String name) {
+				«FOR m: d.includes»
+					monitorInterface.update("appear(«m.context.name.toFirstUpper»." + name + ")");
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						)) {
+							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
+					«ENDFOR»
+				«ENDFOR»
+			}
+			
+			public void disappear(String name) {
+				«FOR m: d.includes»
+					monitorInterface.update("disappear(«m.context.name.toFirstUpper»." + name + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						)) {
+							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
+					«ENDFOR»
+				«ENDFOR»
+			}
+			
+			public void changeTo(String event) {
+				«FOR m: d.includes»
+					monitorInterface.update("changeTo(«m.context.name.toFirstUpper»." + event + ")"); 
+					«FOR f: d.contextfragments»
+						if («f.name.toFirstLower».match(
+							«FOR e: 0..< f.entities.size»
+								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
+								«IF e != f.entities.size - 1 || f.relations.size > 0»
+									,
+								«ENDIF»
+							«ENDFOR»
+							«FOR r: 0..< f.relations.size»
+								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
+								«IF r != f.relations.size - 1»
+									,
+								«ENDIF»
+							«ENDFOR»
+						)) {
+							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
+						}
+					«ENDFOR»
+				«ENDFOR»
+			}
+		}
+	'''
+	
 	def compile(Domain s) '''
 		import java.io.FileNotFoundException;
 		import java.io.PrintWriter;
@@ -328,13 +975,176 @@ class MyDslGenerator extends AbstractGenerator {
 					int counter = 0;
 					
 					«FOR sc : scenario.scenariocontents»
+						«FOR cm :sc.contextmessage»
+							«IF cm.strict»
+								«IF cm.required»
+									«FOR co : cm.content»
+										«FOR ma : co.match»
+											«ma.compile_match_strict_required»
+											a.collapse(b);
+										«ENDFOR»
+										«FOR ca : co.change»
+											«FOR a : ca.appear»
+												«a.compile_appear_strict_required»
+												a.collapse(b);																											
+											«ENDFOR»
+											«FOR d : ca.disappear»
+												«d.compile_disappear_strict_required»
+												a.collapse(b);																																						
+											«ENDFOR»
+											«FOR t : ca.changeto»
+												«t.compile_changeto_strict_required»
+												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_strict_required»
+												a.collapse(b);																																				
+											«ENDFOR»																	
+										«ENDFOR»					
+									«ENDFOR»
+								«ENDIF»
+								«IF cm.fail»
+									«FOR co : cm.content»
+										«FOR ma : co.match»
+											«ma.compile_match_strict_fail»
+											a.collapse(b);										
+										«ENDFOR»
+										«FOR ca : co.change»
+											«FOR a : ca.appear»
+												«a.compile_appear_strict_fail»
+												a.collapse(b);																										
+											«ENDFOR»
+											«FOR d : ca.disappear»
+												«d.compile_disappear_strict_fail»
+												a.collapse(b);																																						
+											«ENDFOR»
+											«FOR t : ca.changeto»
+												«t.compile_changeto_strict_fail»
+												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_strict_fail»
+												a.collapse(b);																																				
+											«ENDFOR»																	
+										«ENDFOR»					
+									«ENDFOR»
+								«ENDIF»
+								«IF !cm.required && !cm.fail»
+									«FOR co : cm.content»
+										«FOR ma : co.match»
+											«ma.compile_match_strict»
+											a.collapse(b);
+										«ENDFOR»
+										«FOR ca : co.change»
+											«FOR a : ca.appear»
+												«a.compile_appear_strict»
+												a.collapse(b);																											
+											«ENDFOR»
+											«FOR d : ca.disappear»
+												«d.compile_disappear_strict»
+												a.collapse(b);																																						
+											«ENDFOR»
+											«FOR t : ca.changeto»
+												«t.compile_changeto_strict»
+												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_strict»
+												a.collapse(b);																																				
+											«ENDFOR»																	
+										«ENDFOR»					
+									«ENDFOR»
+								«ENDIF»
+							«ENDIF»
+							
+							«IF !cm.strict»
+								«IF cm.required»
+									«FOR co : cm.content»
+										«FOR ma : co.match»
+											«ma.compile_match_required»
+											a.collapse(b);
+										«ENDFOR»
+										«FOR ca : co.change»
+											«FOR a : ca.appear»
+												«a.compile_appear_required»
+												a.collapse(b);
+											«ENDFOR»
+											«FOR d : ca.disappear»
+												«d.compile_disappear_required»
+												a.collapse(b);
+											«ENDFOR»
+											«FOR t : ca.changeto»
+												«t.compile_changeto_required»
+												a.collapse(b);
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_required»
+												a.collapse(b);
+											«ENDFOR»																	
+										«ENDFOR»					
+									«ENDFOR»
+								«ENDIF»
+								«IF cm.fail»
+									«FOR co : cm.content»
+										«FOR ma : co.match»
+											«ma.compile_match_fail»
+											a.collapse(b);									
+										«ENDFOR»
+										«FOR ca : co.change»
+											«FOR a : ca.appear»
+												«a.compile_appear_fail»
+												a.collapse(b);																											
+											«ENDFOR»
+											«FOR d : ca.disappear»
+												«d.compile_disappear_fail»
+												a.collapse(b);																																						
+											«ENDFOR»
+											«FOR t : ca.changeto»
+												«t.compile_changeto_fail»
+												a.collapse(b);																																				
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_fail»
+												a.collapse(b);																																				
+											«ENDFOR»																	
+										«ENDFOR»					
+									«ENDFOR»
+								«ENDIF»
+								«IF !cm.required && !cm.fail»
+									«FOR co : cm.content»
+										«FOR ma : co.match»
+											«ma.compile_match_msg»
+											a.collapse(b);							
+										«ENDFOR»
+										«FOR ca : co.change»
+											«FOR a : ca.appear»
+												«a.compile_appear_msg»
+												a.collapse(b);																								
+											«ENDFOR»
+											«FOR d : ca.disappear»
+												«d.compile_disappear_msg»
+												a.collapse(b);																							
+											«ENDFOR»
+											«FOR t : ca.changeto»
+												«t.compile_changeto_msg»
+												a.collapse(b);																																	
+											«ENDFOR»
+											«FOR t : ca.changetor»
+												«t.compile_changetor_msg»
+												a.collapse(b);																																	
+											«ENDFOR»																	
+										«ENDFOR»					
+									«ENDFOR»
+								«ENDIF»
+							«ENDIF»
+						«ENDFOR»
 						«FOR l :sc.loop»
 							loopauto = new Automaton("loopauto" + counter);
 							«FOR m : l.messages»
 								«IF m.constraint»
 									str = "" 
 									«FOR msg : m.c.messages»
-										+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+										+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 									«ENDFOR»;
 									str= str.substring(0, str.length() - 3);
 								«ENDIF»
@@ -418,7 +1228,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF m.constraint»
 										str = "" 
 										«FOR msg : m.c.messages»
-											+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+											+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 										«ENDFOR»;
 										str= str.substring(0, str.length() - 3);
 									«ENDIF»
@@ -504,7 +1314,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF m.constraint»
 										str = "" 
 										«FOR msg : m.c.messages»
-											+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+											+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 										«ENDFOR»;
 										str= str.substring(0, str.length() - 3);
 									«ENDIF»
@@ -586,7 +1396,7 @@ class MyDslGenerator extends AbstractGenerator {
 							«IF m.constraint»
 								str = "" 
 								«FOR msg : m.c.messages»
-									+ "!" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»" + " & "
+									+ "!(" + "«msg.sender.name»" + "." + "«msg.name»" + "." + "«msg.receiver.name»)" + " & "
 								«ENDFOR»;
 								str= str.substring(0, str.length() - 3);
 							«ENDIF»
@@ -797,11 +1607,11 @@ class MyDslGenerator extends AbstractGenerator {
 				
 				PrintWriter writer = new PrintWriter("«s.name»" + ".txt", "UTF-8");
 				for(Automaton a : specification.automatas){
-					writer.println("never{ /*" + a.getId() + "*/");
+					writer.println("never{ /*" + a.getId()+ "Monitor" + "*/");
 					for(State s : a.getStates()){
 						if(s == a.getInitial()){
 							writer.println("T0_init:");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto T0_init");
@@ -815,10 +1625,10 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}else if(s.getType().equals(StateType.NORMAL)){
 							writer.println("T0_" + s.getId() + ":");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto T0_init");
@@ -832,14 +1642,14 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}else if(s.getType().equals(StateType.ACCEPT_ALL) && !acceptState){
 							writer.println("accept_all:");
 							writer.println("skip");
 							acceptState = true;
 						}else if(s.getType().equals(StateType.FINAL)){
 							writer.println("T0_" + s.getId() + ":");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ")" + "->" + " goto T0_init");
@@ -853,10 +1663,10 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}else if(s.getType().equals(StateType.ACCEPT)){
 							writer.println("accept_" + s.getId() + ":");
-							writer.println(" do");
+							writer.println(" if");
 							for(Transition t : a.findSender(s)){
 								if(t.getReceiver() == a.getInitial()){
 									writer.println(" :: (" + t.getId() + ")" + "->" + " goto T0_init");
@@ -870,7 +1680,7 @@ class MyDslGenerator extends AbstractGenerator {
 									writer.println(" :: (" + t.getId() + ") " + "->" + " goto accept_" + t.getReceiver().getId());
 								}
 							}
-							writer.println(" od;");
+							writer.println(" fi;");
 						}
 						
 					}
@@ -888,7 +1698,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(actualState);
 		b.setInitial(actualState);
 											
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, actualState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, actualState));
 		finalState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
@@ -911,7 +1721,7 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 											
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + " & " + str, actualState, actualState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + " & " + str + ")", actualState, actualState));
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		finalState = new State("q" + counter, StateType.FINAL);
@@ -932,10 +1742,88 @@ class MyDslGenerator extends AbstractGenerator {
 		b.setInitial(actualState);
 		
 		
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, actualState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_match_required(MatchMessage ma)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		
+		b.addTransition(new Transition("!(" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_appear_required(AppearMessage am)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		
+		b.addTransition(new Transition("!(" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_disappear_required(DisappearMessage dm)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		
+		b.addTransition(new Transition("!("+ "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changeto_required(ChangeToMessage cm)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changetor_required(ChangeToRelation cm)'''
+		b = new Automaton("auto3");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -973,6 +1861,86 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_appear_fail(AppearMessage am)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_disappear_fail(DisappearMessage dm)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_match_fail(MatchMessage ma)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_changeto_fail(ChangeToMessage cm)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+		
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.addTransition(new Transition("1", newState, newState));
+	'''
+	
+	def compile_changetor_fail(ChangeToRelation cm)'''
+		b = new Automaton("auto5");
+		actualState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		b.setFinale(actualState);
+		
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition("1", newState, newState));
 	'''
@@ -1022,6 +1990,81 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
+	
+	def compile_match_msg(MatchMessage ma)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_appear_msg(AppearMessage am)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_disappear_msg(DisappearMessage dm)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changeto_msg(ChangeToMessage cm)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changetor_msg(ChangeToRelation cm)'''
+		b = new Automaton("match1");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		b.addTransition(new Transition("1", actualState, actualState));
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
 		
 	def compile_strict_required_future(Message m)'''
 		b = new Automaton("auto8");
@@ -1036,7 +2079,7 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState_new = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, acceptState_new));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, acceptState_new));
 		b.addTransition(new Transition("1", acceptState_new, acceptState_new));
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, finalState));
 		b.addTransition(new Transition(str, finalState, finalState));
@@ -1060,7 +2103,102 @@ class MyDslGenerator extends AbstractGenerator {
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, finalState));
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, acceptState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_match_strict_required(MatchMessage ma)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!(" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_appear_strict_required(AppearMessage am)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!(" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_disappear_strict_required(DisappearMessage dm)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!(" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_changeto_strict_required(ChangeToMessage cm)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))" , actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(acceptState);
+		b.addState(finalState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_changetor_strict_required(ChangeToRelation cm)'''
+		b = new Automaton("auto9");
+		actualState = new State("q" + counter, StateType.ACCEPT);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")" , actualState, finalState));
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))" , actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -1078,8 +2216,103 @@ class MyDslGenerator extends AbstractGenerator {
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
 		counter++;
-		b.addTransition(new Transition("!" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, finalState));
+		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" + ")", actualState, finalState));
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_match_strict_fail(MatchMessage ma)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!(" + "match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + "))", actualState, finalState));
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_appear_strict_fail(AppearMessage am)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!(" + "appear(" + "«am.context.name»" + "." + "«am.entity.name»" + "))", actualState, finalState));
+		b.addTransition(new Transition("appear(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_disappear_strict_fail(DisappearMessage dm)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+											
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!(" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))", actualState, finalState));
+		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_changeto_strict_fail(ChangeToMessage cm)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, finalState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, acceptState));
+		b.addTransition(new Transition("1", acceptState, acceptState));
+		b.addState(finalState);
+		b.addState(acceptState);
+		b.setFinale(finalState);
+	'''
+	
+	def compile_changetor_strict_fail(ChangeToRelation cm)'''
+		b = new Automaton("auto10");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		finalState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		counter++;
+		b.addTransition(new Transition("!(" + "changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + "))", actualState, finalState));
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, acceptState));
 		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addState(finalState);
 		b.addState(acceptState);
@@ -1111,6 +2344,76 @@ class MyDslGenerator extends AbstractGenerator {
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_match_strict(MatchMessage ma)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+												
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("match(" + "«ma.context.name»" + ", " + "«ma.content.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_appear_strict(AppearMessage am)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+												
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("appear" + "(" + "«am.context.name»" + "." + "«am.entity.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_disappear_strict(DisappearMessage dm)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+												
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("disappear" + "(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changeto_strict(ChangeToMessage cm)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.entity.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
+		b.addState(newState);
+		b.setFinale(newState);
+	'''
+	
+	def compile_changetor_strict(ChangeToRelation cm)'''
+		b = new Automaton("auto12");
+		actualState = new State("q" + counter, StateType.NORMAL);
+		counter++;
+		b.addState(actualState);
+		b.setInitial(actualState);
+		
+		newState = new State("q" + counter, StateType.FINAL);
+		counter++;
+		b.addTransition(new Transition("changeTo(" + "«cm.context.name»" + "." + "«cm.relation.name»" + "." + "«cm.attribute.name», «cm.changevalue»" + ")", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''

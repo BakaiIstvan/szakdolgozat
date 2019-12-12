@@ -68,13 +68,49 @@ public interface MyDslPackage extends EPackage
   int DOMAIN = 0;
 
   /**
+   * The feature id for the '<em><b>Specification</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__SPECIFICATION = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN__NAME = 0;
+  int DOMAIN__NAME = 1;
+
+  /**
+   * The feature id for the '<em><b>Includes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__INCLUDES = 2;
+
+  /**
+   * The feature id for the '<em><b>Contextmodels</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__CONTEXTMODELS = 3;
+
+  /**
+   * The feature id for the '<em><b>Contextfragments</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__CONTEXTFRAGMENTS = 4;
 
   /**
    * The feature id for the '<em><b>Objects</b></em>' containment reference list.
@@ -83,7 +119,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__OBJECTS = 1;
+  int DOMAIN__OBJECTS = 5;
 
   /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -92,7 +128,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__CONSTRAINTS = 2;
+  int DOMAIN__CONSTRAINTS = 6;
 
   /**
    * The feature id for the '<em><b>Scenarios</b></em>' containment reference list.
@@ -101,7 +137,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__SCENARIOS = 3;
+  int DOMAIN__SCENARIOS = 7;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -110,7 +146,520 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_FEATURE_COUNT = 4;
+  int DOMAIN_FEATURE_COUNT = 8;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl <em>Include</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.IncludeImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getInclude()
+   * @generated
+   */
+  int INCLUDE = 1;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDE__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Import URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDE__IMPORT_URI = 1;
+
+  /**
+   * The number of structural features of the '<em>Include</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INCLUDE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ContextModelImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextModel()
+   * @generated
+   */
+  int CONTEXT_MODEL = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MODEL__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MODEL__ENTITIES = 1;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MODEL__RELATIONS = 2;
+
+  /**
+   * The number of structural features of the '<em>Context Model</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MODEL_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl <em>Context Fragment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextFragment()
+   * @generated
+   */
+  int CONTEXT_FRAGMENT = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_FRAGMENT__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Entities</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_FRAGMENT__ENTITIES = 1;
+
+  /**
+   * The feature id for the '<em><b>Relations</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_FRAGMENT__RELATIONS = 2;
+
+  /**
+   * The number of structural features of the '<em>Context Fragment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_FRAGMENT_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AttributeImpl <em>Attribute</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.AttributeImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAttribute()
+   * @generated
+   */
+  int ATTRIBUTE = 4;
+
+  /**
+   * The feature id for the '<em><b>Int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__INT = 0;
+
+  /**
+   * The feature id for the '<em><b>Float</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__FLOAT = 1;
+
+  /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__STRING = 2;
+
+  /**
+   * The feature id for the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__BOOLEAN = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__NAME = 4;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE__VALUE = 5;
+
+  /**
+   * The number of structural features of the '<em>Attribute</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ATTRIBUTE_FEATURE_COUNT = 6;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl <em>Fragment Attribute</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFragmentAttribute()
+   * @generated
+   */
+  int FRAGMENT_ATTRIBUTE = 5;
+
+  /**
+   * The feature id for the '<em><b>Int</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__INT = 0;
+
+  /**
+   * The feature id for the '<em><b>Float</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__FLOAT = 1;
+
+  /**
+   * The feature id for the '<em><b>String</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__STRING = 2;
+
+  /**
+   * The feature id for the '<em><b>Boolean</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__BOOLEAN = 3;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__NAME = 4;
+
+  /**
+   * The feature id for the '<em><b>Greater</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__GREATER = 5;
+
+  /**
+   * The feature id for the '<em><b>Smaller</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__SMALLER = 6;
+
+  /**
+   * The feature id for the '<em><b>Greaterequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__GREATEREQUALS = 7;
+
+  /**
+   * The feature id for the '<em><b>Smallerequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__SMALLEREQUALS = 8;
+
+  /**
+   * The feature id for the '<em><b>Equals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__EQUALS = 9;
+
+  /**
+   * The feature id for the '<em><b>Notequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__NOTEQUALS = 10;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE__VALUE = 11;
+
+  /**
+   * The number of structural features of the '<em>Fragment Attribute</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRAGMENT_ATTRIBUTE_FEATURE_COUNT = 12;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.EntityImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEntity()
+   * @generated
+   */
+  int ENTITY = 6;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY__ATTRIBUTES = 1;
+
+  /**
+   * The number of structural features of the '<em>Entity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ENTITY_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FEntityImpl <em>FEntity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.FEntityImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFEntity()
+   * @generated
+   */
+  int FENTITY = 7;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FENTITY__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FENTITY__ATTRIBUTES = 1;
+
+  /**
+   * The number of structural features of the '<em>FEntity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FENTITY_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.RelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
+   * @generated
+   */
+  int RELATION = 8;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Sender</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__SENDER = 1;
+
+  /**
+   * The feature id for the '<em><b>Receiver</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__RECEIVER = 2;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION__ATTRIBUTES = 3;
+
+  /**
+   * The number of structural features of the '<em>Relation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATION_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.FRelationImpl <em>FRelation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.FRelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFRelation()
+   * @generated
+   */
+  int FRELATION = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Sender</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__SENDER = 1;
+
+  /**
+   * The feature id for the '<em><b>Receiver</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__RECEIVER = 2;
+
+  /**
+   * The feature id for the '<em><b>Attributes</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION__ATTRIBUTES = 3;
+
+  /**
+   * The number of structural features of the '<em>FRelation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FRELATION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -120,7 +669,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getScenario()
    * @generated
    */
-  int SCENARIO = 1;
+  int SCENARIO = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -157,7 +706,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getScenarioContent()
    * @generated
    */
-  int SCENARIO_CONTENT = 2;
+  int SCENARIO_CONTENT = 11;
 
   /**
    * The feature id for the '<em><b>Alt</b></em>' containment reference list.
@@ -196,13 +745,22 @@ public interface MyDslPackage extends EPackage
   int SCENARIO_CONTENT__LOOP = 3;
 
   /**
+   * The feature id for the '<em><b>Contextmessage</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCENARIO_CONTENT__CONTEXTMESSAGE = 4;
+
+  /**
    * The number of structural features of the '<em>Scenario Content</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCENARIO_CONTENT_FEATURE_COUNT = 4;
+  int SCENARIO_CONTENT_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -212,7 +770,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMessage()
    * @generated
    */
-  int MESSAGE = 3;
+  int MESSAGE = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -314,6 +872,374 @@ public interface MyDslPackage extends EPackage
   int MESSAGE_FEATURE_COUNT = 10;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl <em>Context Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
+   * @generated
+   */
+  int CONTEXT_MESSAGE = 13;
+
+  /**
+   * The feature id for the '<em><b>Content</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE__CONTENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Required</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE__REQUIRED = 1;
+
+  /**
+   * The feature id for the '<em><b>Fail</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE__FAIL = 2;
+
+  /**
+   * The feature id for the '<em><b>Strict</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE__STRICT = 3;
+
+  /**
+   * The number of structural features of the '<em>Context Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl <em>Context Message Content</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
+   * @generated
+   */
+  int CONTEXT_MESSAGE_CONTENT = 14;
+
+  /**
+   * The feature id for the '<em><b>Match</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT__MATCH = 0;
+
+  /**
+   * The feature id for the '<em><b>Change</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT__CHANGE = 1;
+
+  /**
+   * The number of structural features of the '<em>Context Message Content</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_MESSAGE_CONTENT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl <em>Match Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
+   * @generated
+   */
+  int MATCH_MESSAGE = 15;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Content</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE__CONTENT = 1;
+
+  /**
+   * The number of structural features of the '<em>Match Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MATCH_MESSAGE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl <em>Change Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
+   * @generated
+   */
+  int CHANGE_MESSAGE = 16;
+
+  /**
+   * The feature id for the '<em><b>Disappear</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__DISAPPEAR = 0;
+
+  /**
+   * The feature id for the '<em><b>Appear</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__APPEAR = 1;
+
+  /**
+   * The feature id for the '<em><b>Changeto</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__CHANGETO = 2;
+
+  /**
+   * The feature id for the '<em><b>Changetor</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE__CHANGETOR = 3;
+
+  /**
+   * The number of structural features of the '<em>Change Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_MESSAGE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl <em>Appear Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
+   * @generated
+   */
+  int APPEAR_MESSAGE = 17;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE__ENTITY = 1;
+
+  /**
+   * The number of structural features of the '<em>Appear Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int APPEAR_MESSAGE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl <em>Disappear Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
+   * @generated
+   */
+  int DISAPPEAR_MESSAGE = 18;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE__ENTITY = 1;
+
+  /**
+   * The number of structural features of the '<em>Disappear Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DISAPPEAR_MESSAGE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl <em>Change To Message</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToMessage()
+   * @generated
+   */
+  int CHANGE_TO_MESSAGE = 19;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__ENTITY = 1;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Changevalue</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE__CHANGEVALUE = 3;
+
+  /**
+   * The number of structural features of the '<em>Change To Message</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_MESSAGE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl <em>Change To Relation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToRelation()
+   * @generated
+   */
+  int CHANGE_TO_RELATION = 20;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Relation</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__RELATION = 1;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Changevalue</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION__CHANGEVALUE = 3;
+
+  /**
+   * The number of structural features of the '<em>Change To Relation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHANGE_TO_RELATION_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -321,7 +1247,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 4;
+  int OBJECT_TYPE = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -349,7 +1275,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 5;
+  int OBJECT = 22;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -386,7 +1312,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 6;
+  int CONSTRAINT = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -423,7 +1349,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 7;
+  int ALT = 24;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -451,7 +1377,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 25;
 
   /**
    * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -479,7 +1405,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 9;
+  int PAR = 26;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -507,7 +1433,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 10;
+  int PAR_EXPRESSION = 27;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -544,7 +1470,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 11;
+  int LOOP = 28;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -594,6 +1520,17 @@ public interface MyDslPackage extends EPackage
   EClass getDomain();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Domain#getSpecification <em>Specification</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Specification</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getSpecification()
+   * @see #getDomain()
+   * @generated
+   */
+  EAttribute getDomain_Specification();
+
+  /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Domain#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -603,6 +1540,39 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getDomain_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getIncludes <em>Includes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Includes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getIncludes()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Includes();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getContextmodels <em>Contextmodels</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contextmodels</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getContextmodels()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Contextmodels();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getContextfragments <em>Contextfragments</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contextfragments</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getContextfragments()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Contextfragments();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getObjects <em>Objects</em>}'.
@@ -636,6 +1606,514 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getDomain_Scenarios();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Include <em>Include</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Include</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Include
+   * @generated
+   */
+  EClass getInclude();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Include#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Include#getContext()
+   * @see #getInclude()
+   * @generated
+   */
+  EReference getInclude_Context();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Include#getImportURI <em>Import URI</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Import URI</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Include#getImportURI()
+   * @see #getInclude()
+   * @generated
+   */
+  EAttribute getInclude_ImportURI();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextModel <em>Context Model</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Model</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextModel
+   * @generated
+   */
+  EClass getContextModel();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextModel#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextModel#getName()
+   * @see #getContextModel()
+   * @generated
+   */
+  EAttribute getContextModel_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextModel#getEntities <em>Entities</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Entities</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextModel#getEntities()
+   * @see #getContextModel()
+   * @generated
+   */
+  EReference getContextModel_Entities();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextModel#getRelations <em>Relations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextModel#getRelations()
+   * @see #getContextModel()
+   * @generated
+   */
+  EReference getContextModel_Relations();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextFragment <em>Context Fragment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Fragment</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextFragment
+   * @generated
+   */
+  EClass getContextFragment();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextFragment#getName()
+   * @see #getContextFragment()
+   * @generated
+   */
+  EAttribute getContextFragment_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getEntities <em>Entities</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Entities</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextFragment#getEntities()
+   * @see #getContextFragment()
+   * @generated
+   */
+  EReference getContextFragment_Entities();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextFragment#getRelations <em>Relations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Relations</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextFragment#getRelations()
+   * @see #getContextFragment()
+   * @generated
+   */
+  EReference getContextFragment_Relations();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Attribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute
+   * @generated
+   */
+  EClass getAttribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isInt <em>Int</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Int</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isInt()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Int();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isFloat <em>Float</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Float</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isFloat()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Float();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isString <em>String</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isString()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_String();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#isBoolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolean</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#isBoolean()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Boolean();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#getName()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Attribute#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Attribute#getValue()
+   * @see #getAttribute()
+   * @generated
+   */
+  EAttribute getAttribute_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute <em>Fragment Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Fragment Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute
+   * @generated
+   */
+  EClass getFragmentAttribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isInt <em>Int</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Int</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isInt()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Int();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isFloat <em>Float</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Float</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isFloat()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Float();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isString <em>String</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>String</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isString()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_String();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isBoolean <em>Boolean</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Boolean</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isBoolean()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Boolean();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getName()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreater <em>Greater</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Greater</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreater()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Greater();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmaller <em>Smaller</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Smaller</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmaller()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Smaller();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreaterequals <em>Greaterequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Greaterequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isGreaterequals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Greaterequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmallerequals <em>Smallerequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Smallerequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isSmallerequals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Smallerequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isEquals <em>Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Equals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isEquals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Equals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#isNotequals <em>Notequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Notequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#isNotequals()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Notequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FragmentAttribute#getValue()
+   * @see #getFragmentAttribute()
+   * @generated
+   */
+  EAttribute getFragmentAttribute_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Entity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Entity
+   * @generated
+   */
+  EClass getEntity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Entity#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Entity#getName()
+   * @see #getEntity()
+   * @generated
+   */
+  EAttribute getEntity_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Entity#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Entity#getAttributes()
+   * @see #getEntity()
+   * @generated
+   */
+  EReference getEntity_Attributes();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.FEntity <em>FEntity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>FEntity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FEntity
+   * @generated
+   */
+  EClass getFEntity();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FEntity#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FEntity#getName()
+   * @see #getFEntity()
+   * @generated
+   */
+  EAttribute getFEntity_Name();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.FEntity#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FEntity#getAttributes()
+   * @see #getFEntity()
+   * @generated
+   */
+  EReference getFEntity_Attributes();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Relation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation
+   * @generated
+   */
+  EClass getRelation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Relation#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getName()
+   * @see #getRelation()
+   * @generated
+   */
+  EAttribute getRelation_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Relation#getSender <em>Sender</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Sender</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getSender()
+   * @see #getRelation()
+   * @generated
+   */
+  EReference getRelation_Sender();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Relation#getReceiver <em>Receiver</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Receiver</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getReceiver()
+   * @see #getRelation()
+   * @generated
+   */
+  EReference getRelation_Receiver();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Relation#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Relation#getAttributes()
+   * @see #getRelation()
+   * @generated
+   */
+  EReference getRelation_Attributes();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.FRelation <em>FRelation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>FRelation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation
+   * @generated
+   */
+  EClass getFRelation();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.FRelation#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getName()
+   * @see #getFRelation()
+   * @generated
+   */
+  EAttribute getFRelation_Name();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.FRelation#getSender <em>Sender</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Sender</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getSender()
+   * @see #getFRelation()
+   * @generated
+   */
+  EReference getFRelation_Sender();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.FRelation#getReceiver <em>Receiver</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Receiver</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getReceiver()
+   * @see #getFRelation()
+   * @generated
+   */
+  EReference getFRelation_Receiver();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.FRelation#getAttributes <em>Attributes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Attributes</em>'.
+   * @see org.xtext.example.mydsl.myDsl.FRelation#getAttributes()
+   * @see #getFRelation()
+   * @generated
+   */
+  EReference getFRelation_Attributes();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Scenario <em>Scenario</em>}'.
@@ -722,6 +2200,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getScenarioContent_Loop();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage <em>Contextmessage</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contextmessage</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage()
+   * @see #getScenarioContent()
+   * @generated
+   */
+  EReference getScenarioContent_Contextmessage();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Message <em>Message</em>}'.
@@ -842,6 +2331,350 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getMessage_C();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextMessage <em>Context Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage
+   * @generated
+   */
+  EClass getContextMessage();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextMessage#getContent <em>Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Content</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage#getContent()
+   * @see #getContextMessage()
+   * @generated
+   */
+  EReference getContextMessage_Content();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessage#isRequired <em>Required</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Required</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage#isRequired()
+   * @see #getContextMessage()
+   * @generated
+   */
+  EAttribute getContextMessage_Required();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessage#isFail <em>Fail</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Fail</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage#isFail()
+   * @see #getContextMessage()
+   * @generated
+   */
+  EAttribute getContextMessage_Fail();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ContextMessage#isStrict <em>Strict</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Strict</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessage#isStrict()
+   * @see #getContextMessage()
+   * @generated
+   */
+  EAttribute getContextMessage_Strict();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent <em>Context Message Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Message Content</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent
+   * @generated
+   */
+  EClass getContextMessageContent();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getMatch <em>Match</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Match</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent#getMatch()
+   * @see #getContextMessageContent()
+   * @generated
+   */
+  EReference getContextMessageContent_Match();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ContextMessageContent#getChange <em>Change</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Change</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ContextMessageContent#getChange()
+   * @see #getContextMessageContent()
+   * @generated
+   */
+  EReference getContextMessageContent_Change();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.MatchMessage <em>Match Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Match Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage
+   * @generated
+   */
+  EClass getMatchMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.MatchMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage#getContext()
+   * @see #getMatchMessage()
+   * @generated
+   */
+  EReference getMatchMessage_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.MatchMessage#getContent <em>Content</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Content</em>'.
+   * @see org.xtext.example.mydsl.myDsl.MatchMessage#getContent()
+   * @see #getMatchMessage()
+   * @generated
+   */
+  EReference getMatchMessage_Content();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ChangeMessage <em>Change Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Change Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage
+   * @generated
+   */
+  EClass getChangeMessage();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getDisappear <em>Disappear</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Disappear</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage#getDisappear()
+   * @see #getChangeMessage()
+   * @generated
+   */
+  EReference getChangeMessage_Disappear();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getAppear <em>Appear</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Appear</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage#getAppear()
+   * @see #getChangeMessage()
+   * @generated
+   */
+  EReference getChangeMessage_Appear();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getChangeto <em>Changeto</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Changeto</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage#getChangeto()
+   * @see #getChangeMessage()
+   * @generated
+   */
+  EReference getChangeMessage_Changeto();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ChangeMessage#getChangetor <em>Changetor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Changetor</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeMessage#getChangetor()
+   * @see #getChangeMessage()
+   * @generated
+   */
+  EReference getChangeMessage_Changetor();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.AppearMessage <em>Appear Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Appear Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AppearMessage
+   * @generated
+   */
+  EClass getAppearMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AppearMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AppearMessage#getContext()
+   * @see #getAppearMessage()
+   * @generated
+   */
+  EReference getAppearMessage_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AppearMessage#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AppearMessage#getEntity()
+   * @see #getAppearMessage()
+   * @generated
+   */
+  EReference getAppearMessage_Entity();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.DisappearMessage <em>Disappear Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Disappear Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DisappearMessage
+   * @generated
+   */
+  EClass getDisappearMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DisappearMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DisappearMessage#getContext()
+   * @see #getDisappearMessage()
+   * @generated
+   */
+  EReference getDisappearMessage_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.DisappearMessage#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.DisappearMessage#getEntity()
+   * @see #getDisappearMessage()
+   * @generated
+   */
+  EReference getDisappearMessage_Entity();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage <em>Change To Message</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Change To Message</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage
+   * @generated
+   */
+  EClass getChangeToMessage();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getContext()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EReference getChangeToMessage_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getEntity()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EReference getChangeToMessage_Entity();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getAttribute()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EReference getChangeToMessage_Attribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Changevalue</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue()
+   * @see #getChangeToMessage()
+   * @generated
+   */
+  EAttribute getChangeToMessage_Changevalue();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation <em>Change To Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Change To Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation
+   * @generated
+   */
+  EClass getChangeToRelation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getContext()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EReference getChangeToRelation_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getRelation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getRelation()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EReference getChangeToRelation_Relation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getAttribute()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EReference getChangeToRelation_Attribute();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ChangeToRelation#getChangevalue <em>Changevalue</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Changevalue</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ChangeToRelation#getChangevalue()
+   * @see #getChangeToRelation()
+   * @generated
+   */
+  EAttribute getChangeToRelation_Changevalue();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ObjectType <em>Object Type</em>}'.
@@ -1100,12 +2933,44 @@ public interface MyDslPackage extends EPackage
     EClass DOMAIN = eINSTANCE.getDomain();
 
     /**
+     * The meta object literal for the '<em><b>Specification</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DOMAIN__SPECIFICATION = eINSTANCE.getDomain_Specification();
+
+    /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute DOMAIN__NAME = eINSTANCE.getDomain_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Includes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__INCLUDES = eINSTANCE.getDomain_Includes();
+
+    /**
+     * The meta object literal for the '<em><b>Contextmodels</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__CONTEXTMODELS = eINSTANCE.getDomain_Contextmodels();
+
+    /**
+     * The meta object literal for the '<em><b>Contextfragments</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__CONTEXTFRAGMENTS = eINSTANCE.getDomain_Contextfragments();
 
     /**
      * The meta object literal for the '<em><b>Objects</b></em>' containment reference list feature.
@@ -1130,6 +2995,400 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference DOMAIN__SCENARIOS = eINSTANCE.getDomain_Scenarios();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl <em>Include</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.IncludeImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getInclude()
+     * @generated
+     */
+    EClass INCLUDE = eINSTANCE.getInclude();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INCLUDE__CONTEXT = eINSTANCE.getInclude_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INCLUDE__IMPORT_URI = eINSTANCE.getInclude_ImportURI();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextModelImpl <em>Context Model</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ContextModelImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextModel()
+     * @generated
+     */
+    EClass CONTEXT_MODEL = eINSTANCE.getContextModel();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MODEL__NAME = eINSTANCE.getContextModel_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_MODEL__ENTITIES = eINSTANCE.getContextModel_Entities();
+
+    /**
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_MODEL__RELATIONS = eINSTANCE.getContextModel_Relations();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl <em>Context Fragment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ContextFragmentImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextFragment()
+     * @generated
+     */
+    EClass CONTEXT_FRAGMENT = eINSTANCE.getContextFragment();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_FRAGMENT__NAME = eINSTANCE.getContextFragment_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Entities</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_FRAGMENT__ENTITIES = eINSTANCE.getContextFragment_Entities();
+
+    /**
+     * The meta object literal for the '<em><b>Relations</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_FRAGMENT__RELATIONS = eINSTANCE.getContextFragment_Relations();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AttributeImpl <em>Attribute</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.AttributeImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAttribute()
+     * @generated
+     */
+    EClass ATTRIBUTE = eINSTANCE.getAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Int</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__INT = eINSTANCE.getAttribute_Int();
+
+    /**
+     * The meta object literal for the '<em><b>Float</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__FLOAT = eINSTANCE.getAttribute_Float();
+
+    /**
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__STRING = eINSTANCE.getAttribute_String();
+
+    /**
+     * The meta object literal for the '<em><b>Boolean</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__BOOLEAN = eINSTANCE.getAttribute_Boolean();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__NAME = eINSTANCE.getAttribute_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ATTRIBUTE__VALUE = eINSTANCE.getAttribute_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl <em>Fragment Attribute</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.FragmentAttributeImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFragmentAttribute()
+     * @generated
+     */
+    EClass FRAGMENT_ATTRIBUTE = eINSTANCE.getFragmentAttribute();
+
+    /**
+     * The meta object literal for the '<em><b>Int</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__INT = eINSTANCE.getFragmentAttribute_Int();
+
+    /**
+     * The meta object literal for the '<em><b>Float</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__FLOAT = eINSTANCE.getFragmentAttribute_Float();
+
+    /**
+     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__STRING = eINSTANCE.getFragmentAttribute_String();
+
+    /**
+     * The meta object literal for the '<em><b>Boolean</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__BOOLEAN = eINSTANCE.getFragmentAttribute_Boolean();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__NAME = eINSTANCE.getFragmentAttribute_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Greater</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__GREATER = eINSTANCE.getFragmentAttribute_Greater();
+
+    /**
+     * The meta object literal for the '<em><b>Smaller</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__SMALLER = eINSTANCE.getFragmentAttribute_Smaller();
+
+    /**
+     * The meta object literal for the '<em><b>Greaterequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__GREATEREQUALS = eINSTANCE.getFragmentAttribute_Greaterequals();
+
+    /**
+     * The meta object literal for the '<em><b>Smallerequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__SMALLEREQUALS = eINSTANCE.getFragmentAttribute_Smallerequals();
+
+    /**
+     * The meta object literal for the '<em><b>Equals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__EQUALS = eINSTANCE.getFragmentAttribute_Equals();
+
+    /**
+     * The meta object literal for the '<em><b>Notequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__NOTEQUALS = eINSTANCE.getFragmentAttribute_Notequals();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRAGMENT_ATTRIBUTE__VALUE = eINSTANCE.getFragmentAttribute_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.EntityImpl <em>Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.EntityImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getEntity()
+     * @generated
+     */
+    EClass ENTITY = eINSTANCE.getEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ENTITY__NAME = eINSTANCE.getEntity_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ENTITY__ATTRIBUTES = eINSTANCE.getEntity_Attributes();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.FEntityImpl <em>FEntity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.FEntityImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFEntity()
+     * @generated
+     */
+    EClass FENTITY = eINSTANCE.getFEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FENTITY__NAME = eINSTANCE.getFEntity_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FENTITY__ATTRIBUTES = eINSTANCE.getFEntity_Attributes();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.RelationImpl <em>Relation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.RelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getRelation()
+     * @generated
+     */
+    EClass RELATION = eINSTANCE.getRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATION__NAME = eINSTANCE.getRelation_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Sender</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATION__SENDER = eINSTANCE.getRelation_Sender();
+
+    /**
+     * The meta object literal for the '<em><b>Receiver</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATION__RECEIVER = eINSTANCE.getRelation_Receiver();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATION__ATTRIBUTES = eINSTANCE.getRelation_Attributes();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.FRelationImpl <em>FRelation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.FRelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getFRelation()
+     * @generated
+     */
+    EClass FRELATION = eINSTANCE.getFRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FRELATION__NAME = eINSTANCE.getFRelation_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Sender</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FRELATION__SENDER = eINSTANCE.getFRelation_Sender();
+
+    /**
+     * The meta object literal for the '<em><b>Receiver</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FRELATION__RECEIVER = eINSTANCE.getFRelation_Receiver();
+
+    /**
+     * The meta object literal for the '<em><b>Attributes</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FRELATION__ATTRIBUTES = eINSTANCE.getFRelation_Attributes();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -1198,6 +3457,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference SCENARIO_CONTENT__LOOP = eINSTANCE.getScenarioContent_Loop();
+
+    /**
+     * The meta object literal for the '<em><b>Contextmessage</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SCENARIO_CONTENT__CONTEXTMESSAGE = eINSTANCE.getScenarioContent_Contextmessage();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -1288,6 +3555,278 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference MESSAGE__C = eINSTANCE.getMessage_C();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl <em>Context Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
+     * @generated
+     */
+    EClass CONTEXT_MESSAGE = eINSTANCE.getContextMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Content</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_MESSAGE__CONTENT = eINSTANCE.getContextMessage_Content();
+
+    /**
+     * The meta object literal for the '<em><b>Required</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE__REQUIRED = eINSTANCE.getContextMessage_Required();
+
+    /**
+     * The meta object literal for the '<em><b>Fail</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE__FAIL = eINSTANCE.getContextMessage_Fail();
+
+    /**
+     * The meta object literal for the '<em><b>Strict</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTEXT_MESSAGE__STRICT = eINSTANCE.getContextMessage_Strict();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl <em>Context Message Content</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ContextMessageContentImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
+     * @generated
+     */
+    EClass CONTEXT_MESSAGE_CONTENT = eINSTANCE.getContextMessageContent();
+
+    /**
+     * The meta object literal for the '<em><b>Match</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_MESSAGE_CONTENT__MATCH = eINSTANCE.getContextMessageContent_Match();
+
+    /**
+     * The meta object literal for the '<em><b>Change</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_MESSAGE_CONTENT__CHANGE = eINSTANCE.getContextMessageContent_Change();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl <em>Match Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.MatchMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
+     * @generated
+     */
+    EClass MATCH_MESSAGE = eINSTANCE.getMatchMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATCH_MESSAGE__CONTEXT = eINSTANCE.getMatchMessage_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Content</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MATCH_MESSAGE__CONTENT = eINSTANCE.getMatchMessage_Content();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl <em>Change Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ChangeMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
+     * @generated
+     */
+    EClass CHANGE_MESSAGE = eINSTANCE.getChangeMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Disappear</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_MESSAGE__DISAPPEAR = eINSTANCE.getChangeMessage_Disappear();
+
+    /**
+     * The meta object literal for the '<em><b>Appear</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_MESSAGE__APPEAR = eINSTANCE.getChangeMessage_Appear();
+
+    /**
+     * The meta object literal for the '<em><b>Changeto</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_MESSAGE__CHANGETO = eINSTANCE.getChangeMessage_Changeto();
+
+    /**
+     * The meta object literal for the '<em><b>Changetor</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_MESSAGE__CHANGETOR = eINSTANCE.getChangeMessage_Changetor();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl <em>Appear Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.AppearMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
+     * @generated
+     */
+    EClass APPEAR_MESSAGE = eINSTANCE.getAppearMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPEAR_MESSAGE__CONTEXT = eINSTANCE.getAppearMessage_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference APPEAR_MESSAGE__ENTITY = eINSTANCE.getAppearMessage_Entity();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl <em>Disappear Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.DisappearMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
+     * @generated
+     */
+    EClass DISAPPEAR_MESSAGE = eINSTANCE.getDisappearMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DISAPPEAR_MESSAGE__CONTEXT = eINSTANCE.getDisappearMessage_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DISAPPEAR_MESSAGE__ENTITY = eINSTANCE.getDisappearMessage_Entity();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl <em>Change To Message</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ChangeToMessageImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToMessage()
+     * @generated
+     */
+    EClass CHANGE_TO_MESSAGE = eINSTANCE.getChangeToMessage();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_MESSAGE__CONTEXT = eINSTANCE.getChangeToMessage_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_MESSAGE__ENTITY = eINSTANCE.getChangeToMessage_Entity();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_MESSAGE__ATTRIBUTE = eINSTANCE.getChangeToMessage_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Changevalue</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHANGE_TO_MESSAGE__CHANGEVALUE = eINSTANCE.getChangeToMessage_Changevalue();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl <em>Change To Relation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ChangeToRelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToRelation()
+     * @generated
+     */
+    EClass CHANGE_TO_RELATION = eINSTANCE.getChangeToRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_RELATION__CONTEXT = eINSTANCE.getChangeToRelation_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Relation</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_RELATION__RELATION = eINSTANCE.getChangeToRelation_Relation();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CHANGE_TO_RELATION__ATTRIBUTE = eINSTANCE.getChangeToRelation_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Changevalue</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CHANGE_TO_RELATION__CHANGEVALUE = eINSTANCE.getChangeToRelation_Changevalue();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.

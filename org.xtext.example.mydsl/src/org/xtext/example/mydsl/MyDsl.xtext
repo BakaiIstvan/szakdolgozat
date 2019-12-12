@@ -1,14 +1,70 @@
 grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
-generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
-
 Domain:
-	'specification' name=ID '{'
+	(specification='specification')? (name=ID)? ('{')?
+	includes+=Include*
+	contextmodels+=ContextModel*
+	contextfragments+=ContextFragment*
 	objects+=Object*
 	constraints+=Constraint*
-	scenarios+=Scenario* '}'
+	scenarios+=Scenario* ('}')?
+;
+
+Include:
+	'import' context=[ContextModel] 'from' importURI=STRING
+;
+
+ContextModel:
+	'contextmodel' name=ID '{'
+		entities+=Entity*
+		relations+=Relation*
+	'}'
+;
+
+ContextFragment:
+	'contextfragment' name=ID '{'
+		entities+=FEntity*
+		relations+=FRelation*
+	'}'
+;
+
+Attribute:
+	'attribute' (int?='int')? (float?='float')? (string?='string')? (boolean?='boolean')? name=ID ('=')? (value=AttributeValue)? ';'
+;
+
+AttributeValue:
+	Number | Real | ID | 'true' | 'false'
+;
+
+FragmentAttribute:
+	'attributeconstraint' (int?='int')? (float?='float')? (string?='string')? (boolean?='boolean')? name=ID (greater?='>')? (smaller?='<')? (greaterequals?='>=')? (smallerequals?='<=')? (equals?='==')? (notequals?='!=')? value=AttributeValue ';'
+;
+
+Entity:
+	'entity' name=ID '{'
+		attributes+= Attribute*
+	'}'
+;
+
+FEntity:
+	'entityconstraint' name=ID '{'
+		attributes+= FragmentAttribute*
+	'}'
+;
+
+Relation:
+	'relation' name=ID '(' sender=[Entity] ',' receiver=[Entity] ')' '{'
+		attributes+=Attribute*
+	'}'
+;
+
+FRelation:
+	'relationconstraint' name=ID '(' sender=[FEntity] ',' receiver=[FEntity] ')' '{'
+		attributes+=FragmentAttribute*
+	'}'
 ;
 
 Scenario:
@@ -18,15 +74,50 @@ Scenario:
 ;
 
 ScenarioContent:
-	alt+=Alt | message+=Message | par+=Par | loop+=Loop
+	alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage
+
 ;
 
 Message:
-	 'message' name=Name (required?='required')? (fail?='fail')? (strict?='strict')?  
+	 'message' name=Name (required?='required')? (fail?='fail')? (strict?='strict')?
 	 sender=[Object] '->' receiver=[Object]
 	 (past?='past')? (future?='future')? (constraint?='constraint')?
 	 ('{')? (c=[Constraint])? ('}')? ';'
 
+;
+
+ContextMessage:
+	content+=ContextMessageContent
+	(required?='required')? (fail?='fail')? (strict?='strict')?
+	';'
+;
+
+ContextMessageContent:
+	match+=MatchMessage | change+=ChangeMessage
+;
+
+MatchMessage:
+	'match' '(' (context=[ContextModel])? (',')? (content=[ContextFragment])? ')'
+;
+
+ChangeMessage:
+	disappear+=DisappearMessage | appear+=AppearMessage | changeto+=ChangeToMessage | changetor+=ChangeToRelation
+;
+
+AppearMessage:
+	'appear' '(' (context=[ContextModel] '.' entity=[Entity])? ')'
+;
+
+DisappearMessage:
+	'disappear' '(' (context=[ContextModel] '.' entity=[Entity])? ')'
+;
+
+ChangeToMessage:
+	'changeTo' '(' (context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
+;
+
+ChangeToRelation:
+	'relationChangeTo' '(' (context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
 ;
 
 Name:
@@ -35,6 +126,10 @@ Name:
 
 terminal Number:
 	('0'..'9')*
+;
+
+terminal Real:
+	('0'..'9')* '.' ('0'..'9')*
 ;
 
 ObjectType:

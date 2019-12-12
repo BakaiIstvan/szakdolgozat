@@ -3,7 +3,14 @@
  */
 package org.xtext.example.mydsl.scoping;
 
-import org.xtext.example.mydsl.scoping.AbstractMyDslScopeProvider;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
 
 /**
  * This class contains custom scoping description.
@@ -12,5 +19,28 @@ import org.xtext.example.mydsl.scoping.AbstractMyDslScopeProvider;
  * on how and when to use it.
  */
 @SuppressWarnings("all")
-public class MyDslScopeProvider extends AbstractMyDslScopeProvider {
+public class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
+  public IScope scope_ChangeToMessage_attribute(final ChangeToMessage ctx, final EReference ref) {
+    return Scopes.scopeFor(ctx.getEntity().getAttributes());
+  }
+  
+  public IScope scope_ChangeToMessage_entity(final ChangeToMessage ctx, final EReference ref) {
+    return Scopes.scopeFor(ctx.getContext().getEntities());
+  }
+  
+  public IScope scope_ChangeToRelation_relation(final ChangeToRelation ctx, final EReference ref) {
+    return Scopes.scopeFor(ctx.getContext().getRelations());
+  }
+  
+  public IScope scope_ChangeToRelation_attribute(final ChangeToRelation ctx, final EReference ref) {
+    return Scopes.scopeFor(ctx.getRelation().getAttributes());
+  }
+  
+  public IScope scope_AppearMessage_entity(final AppearMessage app, final EReference ref) {
+    return Scopes.scopeFor(app.getContext().getEntities());
+  }
+  
+  public IScope scope_DisappearMessage_entity(final DisappearMessage dis, final EReference ref) {
+    return Scopes.scopeFor(dis.getContext().getEntities());
+  }
 }

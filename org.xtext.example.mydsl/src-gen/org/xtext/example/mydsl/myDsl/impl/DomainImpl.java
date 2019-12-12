@@ -20,7 +20,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Scenario;
 
@@ -32,7 +35,11 @@ import org.xtext.example.mydsl.myDsl.Scenario;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getSpecification <em>Specification</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getIncludes <em>Includes</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextmodels <em>Contextmodels</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextfragments <em>Contextfragments</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getScenarios <em>Scenarios</em>}</li>
@@ -42,6 +49,26 @@ import org.xtext.example.mydsl.myDsl.Scenario;
  */
 public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
 {
+  /**
+   * The default value of the '{@link #getSpecification() <em>Specification</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSpecification()
+   * @generated
+   * @ordered
+   */
+  protected static final String SPECIFICATION_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getSpecification() <em>Specification</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSpecification()
+   * @generated
+   * @ordered
+   */
+  protected String specification = SPECIFICATION_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -61,6 +88,36 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getIncludes() <em>Includes</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIncludes()
+   * @generated
+   * @ordered
+   */
+  protected EList<Include> includes;
+
+  /**
+   * The cached value of the '{@link #getContextmodels() <em>Contextmodels</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContextmodels()
+   * @generated
+   * @ordered
+   */
+  protected EList<ContextModel> contextmodels;
+
+  /**
+   * The cached value of the '{@link #getContextfragments() <em>Contextfragments</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContextfragments()
+   * @generated
+   * @ordered
+   */
+  protected EList<ContextFragment> contextfragments;
 
   /**
    * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
@@ -118,6 +175,32 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public String getSpecification()
+  {
+    return specification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setSpecification(String newSpecification)
+  {
+    String oldSpecification = specification;
+    specification = newSpecification;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.DOMAIN__SPECIFICATION, oldSpecification, specification));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getName()
   {
     return name;
@@ -128,6 +211,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public void setName(String newName)
   {
     String oldName = name;
@@ -141,6 +225,52 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public EList<Include> getIncludes()
+  {
+    if (includes == null)
+    {
+      includes = new EObjectContainmentEList<Include>(Include.class, this, MyDslPackage.DOMAIN__INCLUDES);
+    }
+    return includes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<ContextModel> getContextmodels()
+  {
+    if (contextmodels == null)
+    {
+      contextmodels = new EObjectContainmentEList<ContextModel>(ContextModel.class, this, MyDslPackage.DOMAIN__CONTEXTMODELS);
+    }
+    return contextmodels;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<ContextFragment> getContextfragments()
+  {
+    if (contextfragments == null)
+    {
+      contextfragments = new EObjectContainmentEList<ContextFragment>(ContextFragment.class, this, MyDslPackage.DOMAIN__CONTEXTFRAGMENTS);
+    }
+    return contextfragments;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<org.xtext.example.mydsl.myDsl.Object> getObjects()
   {
     if (objects == null)
@@ -155,6 +285,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Constraint> getConstraints()
   {
     if (constraints == null)
@@ -169,6 +300,7 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Scenario> getScenarios()
   {
     if (scenarios == null)
@@ -188,6 +320,12 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     switch (featureID)
     {
+      case MyDslPackage.DOMAIN__INCLUDES:
+        return ((InternalEList<?>)getIncludes()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.DOMAIN__CONTEXTMODELS:
+        return ((InternalEList<?>)getContextmodels()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
+        return ((InternalEList<?>)getContextfragments()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__OBJECTS:
         return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__CONSTRAINTS:
@@ -208,8 +346,16 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     switch (featureID)
     {
+      case MyDslPackage.DOMAIN__SPECIFICATION:
+        return getSpecification();
       case MyDslPackage.DOMAIN__NAME:
         return getName();
+      case MyDslPackage.DOMAIN__INCLUDES:
+        return getIncludes();
+      case MyDslPackage.DOMAIN__CONTEXTMODELS:
+        return getContextmodels();
+      case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
+        return getContextfragments();
       case MyDslPackage.DOMAIN__OBJECTS:
         return getObjects();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
@@ -231,8 +377,23 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     switch (featureID)
     {
+      case MyDslPackage.DOMAIN__SPECIFICATION:
+        setSpecification((String)newValue);
+        return;
       case MyDslPackage.DOMAIN__NAME:
         setName((String)newValue);
+        return;
+      case MyDslPackage.DOMAIN__INCLUDES:
+        getIncludes().clear();
+        getIncludes().addAll((Collection<? extends Include>)newValue);
+        return;
+      case MyDslPackage.DOMAIN__CONTEXTMODELS:
+        getContextmodels().clear();
+        getContextmodels().addAll((Collection<? extends ContextModel>)newValue);
+        return;
+      case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
+        getContextfragments().clear();
+        getContextfragments().addAll((Collection<? extends ContextFragment>)newValue);
         return;
       case MyDslPackage.DOMAIN__OBJECTS:
         getObjects().clear();
@@ -260,8 +421,20 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     switch (featureID)
     {
+      case MyDslPackage.DOMAIN__SPECIFICATION:
+        setSpecification(SPECIFICATION_EDEFAULT);
+        return;
       case MyDslPackage.DOMAIN__NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case MyDslPackage.DOMAIN__INCLUDES:
+        getIncludes().clear();
+        return;
+      case MyDslPackage.DOMAIN__CONTEXTMODELS:
+        getContextmodels().clear();
+        return;
+      case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
+        getContextfragments().clear();
         return;
       case MyDslPackage.DOMAIN__OBJECTS:
         getObjects().clear();
@@ -286,8 +459,16 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     switch (featureID)
     {
+      case MyDslPackage.DOMAIN__SPECIFICATION:
+        return SPECIFICATION_EDEFAULT == null ? specification != null : !SPECIFICATION_EDEFAULT.equals(specification);
       case MyDslPackage.DOMAIN__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.DOMAIN__INCLUDES:
+        return includes != null && !includes.isEmpty();
+      case MyDslPackage.DOMAIN__CONTEXTMODELS:
+        return contextmodels != null && !contextmodels.isEmpty();
+      case MyDslPackage.DOMAIN__CONTEXTFRAGMENTS:
+        return contextfragments != null && !contextfragments.isEmpty();
       case MyDslPackage.DOMAIN__OBJECTS:
         return objects != null && !objects.isEmpty();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
@@ -308,8 +489,10 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (specification: ");
+    result.append(specification);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

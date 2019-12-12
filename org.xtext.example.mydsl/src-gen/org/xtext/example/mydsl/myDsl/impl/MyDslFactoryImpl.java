@@ -12,16 +12,33 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
+import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.FEntity;
+import org.xtext.example.mydsl.myDsl.FRelation;
+import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
+import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
@@ -78,9 +95,26 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
     switch (eClass.getClassifierID())
     {
       case MyDslPackage.DOMAIN: return createDomain();
+      case MyDslPackage.INCLUDE: return createInclude();
+      case MyDslPackage.CONTEXT_MODEL: return createContextModel();
+      case MyDslPackage.CONTEXT_FRAGMENT: return createContextFragment();
+      case MyDslPackage.ATTRIBUTE: return createAttribute();
+      case MyDslPackage.FRAGMENT_ATTRIBUTE: return createFragmentAttribute();
+      case MyDslPackage.ENTITY: return createEntity();
+      case MyDslPackage.FENTITY: return createFEntity();
+      case MyDslPackage.RELATION: return createRelation();
+      case MyDslPackage.FRELATION: return createFRelation();
       case MyDslPackage.SCENARIO: return createScenario();
       case MyDslPackage.SCENARIO_CONTENT: return createScenarioContent();
       case MyDslPackage.MESSAGE: return createMessage();
+      case MyDslPackage.CONTEXT_MESSAGE: return createContextMessage();
+      case MyDslPackage.CONTEXT_MESSAGE_CONTENT: return createContextMessageContent();
+      case MyDslPackage.MATCH_MESSAGE: return createMatchMessage();
+      case MyDslPackage.CHANGE_MESSAGE: return createChangeMessage();
+      case MyDslPackage.APPEAR_MESSAGE: return createAppearMessage();
+      case MyDslPackage.DISAPPEAR_MESSAGE: return createDisappearMessage();
+      case MyDslPackage.CHANGE_TO_MESSAGE: return createChangeToMessage();
+      case MyDslPackage.CHANGE_TO_RELATION: return createChangeToRelation();
       case MyDslPackage.OBJECT_TYPE: return createObjectType();
       case MyDslPackage.OBJECT: return createObject();
       case MyDslPackage.CONSTRAINT: return createConstraint();
@@ -99,6 +133,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Domain createDomain()
   {
     DomainImpl domain = new DomainImpl();
@@ -110,6 +145,115 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public Include createInclude()
+  {
+    IncludeImpl include = new IncludeImpl();
+    return include;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ContextModel createContextModel()
+  {
+    ContextModelImpl contextModel = new ContextModelImpl();
+    return contextModel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ContextFragment createContextFragment()
+  {
+    ContextFragmentImpl contextFragment = new ContextFragmentImpl();
+    return contextFragment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Attribute createAttribute()
+  {
+    AttributeImpl attribute = new AttributeImpl();
+    return attribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FragmentAttribute createFragmentAttribute()
+  {
+    FragmentAttributeImpl fragmentAttribute = new FragmentAttributeImpl();
+    return fragmentAttribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Entity createEntity()
+  {
+    EntityImpl entity = new EntityImpl();
+    return entity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FEntity createFEntity()
+  {
+    FEntityImpl fEntity = new FEntityImpl();
+    return fEntity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Relation createRelation()
+  {
+    RelationImpl relation = new RelationImpl();
+    return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FRelation createFRelation()
+  {
+    FRelationImpl fRelation = new FRelationImpl();
+    return fRelation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Scenario createScenario()
   {
     ScenarioImpl scenario = new ScenarioImpl();
@@ -121,6 +265,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ScenarioContent createScenarioContent()
   {
     ScenarioContentImpl scenarioContent = new ScenarioContentImpl();
@@ -132,6 +277,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Message createMessage()
   {
     MessageImpl message = new MessageImpl();
@@ -143,6 +289,103 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public ContextMessage createContextMessage()
+  {
+    ContextMessageImpl contextMessage = new ContextMessageImpl();
+    return contextMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ContextMessageContent createContextMessageContent()
+  {
+    ContextMessageContentImpl contextMessageContent = new ContextMessageContentImpl();
+    return contextMessageContent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MatchMessage createMatchMessage()
+  {
+    MatchMessageImpl matchMessage = new MatchMessageImpl();
+    return matchMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ChangeMessage createChangeMessage()
+  {
+    ChangeMessageImpl changeMessage = new ChangeMessageImpl();
+    return changeMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AppearMessage createAppearMessage()
+  {
+    AppearMessageImpl appearMessage = new AppearMessageImpl();
+    return appearMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DisappearMessage createDisappearMessage()
+  {
+    DisappearMessageImpl disappearMessage = new DisappearMessageImpl();
+    return disappearMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ChangeToMessage createChangeToMessage()
+  {
+    ChangeToMessageImpl changeToMessage = new ChangeToMessageImpl();
+    return changeToMessage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ChangeToRelation createChangeToRelation()
+  {
+    ChangeToRelationImpl changeToRelation = new ChangeToRelationImpl();
+    return changeToRelation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public ObjectType createObjectType()
   {
     ObjectTypeImpl objectType = new ObjectTypeImpl();
@@ -154,6 +397,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public org.xtext.example.mydsl.myDsl.Object createObject()
   {
     ObjectImpl object = new ObjectImpl();
@@ -165,6 +409,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Constraint createConstraint()
   {
     ConstraintImpl constraint = new ConstraintImpl();
@@ -176,6 +421,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Alt createAlt()
   {
     AltImpl alt = new AltImpl();
@@ -187,6 +433,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Expression createExpression()
   {
     ExpressionImpl expression = new ExpressionImpl();
@@ -198,6 +445,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Par createPar()
   {
     ParImpl par = new ParImpl();
@@ -209,6 +457,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public ParExpression createParExpression()
   {
     ParExpressionImpl parExpression = new ParExpressionImpl();
@@ -220,6 +469,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Loop createLoop()
   {
     LoopImpl loop = new LoopImpl();
@@ -231,6 +481,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public MyDslPackage getMyDslPackage()
   {
     return (MyDslPackage)getEPackage();

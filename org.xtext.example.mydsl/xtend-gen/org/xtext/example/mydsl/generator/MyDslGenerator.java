@@ -3,7 +3,9 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -11,14 +13,35 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
+import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.FEntity;
+import org.xtext.example.mydsl.myDsl.FRelation;
+import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
+import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
@@ -29,8 +52,41 @@ import org.xtext.example.mydsl.myDsl.ScenarioContent;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator extends AbstractGenerator {
+  @Inject
+  @Extension
+  private IQualifiedNameProvider _iQualifiedNameProvider;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<ContextModel> _filter = Iterables.<ContextModel>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ContextModel.class);
+    for (final ContextModel m : _filter) {
+      String _string = this._iQualifiedNameProvider.getFullyQualifiedName(m).toString("/");
+      String _plus = (_string + ".java");
+      fsa.generateFile(_plus, this.compile(m));
+    }
+    Iterable<ContextFragment> _filter_1 = Iterables.<ContextFragment>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ContextFragment.class);
+    for (final ContextFragment m_1 : _filter_1) {
+      String _string_1 = this._iQualifiedNameProvider.getFullyQualifiedName(m_1).toString("/");
+      String _plus_1 = (_string_1 + ".java");
+      fsa.generateFile(_plus_1, this.compile(m_1));
+    }
+    Iterable<Entity> _filter_2 = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
+    for (final Entity m_2 : _filter_2) {
+      String _string_2 = this._iQualifiedNameProvider.getFullyQualifiedName(m_2).toString("/");
+      String _plus_2 = (_string_2 + ".java");
+      fsa.generateFile(_plus_2, this.compile(m_2));
+    }
+    Iterable<Relation> _filter_3 = Iterables.<Relation>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Relation.class);
+    for (final Relation m_3 : _filter_3) {
+      String _string_3 = this._iQualifiedNameProvider.getFullyQualifiedName(m_3).toString("/");
+      String _plus_3 = (_string_3 + ".java");
+      fsa.generateFile(_plus_3, this.compile(m_3));
+    }
+    Iterable<Domain> _filter_4 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
+    for (final Domain m_4 : _filter_4) {
+      fsa.generateFile(
+        "EventCreator.java", this.compile_eventcreator(m_4));
+    }
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class State {");
     _builder.newLine();
@@ -738,10 +794,2594 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder_3.append("}");
     _builder_3.newLine();
     fsa.generateFile("Automaton.java", _builder_3);
-    Iterable<Domain> _filter = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
-    for (final Domain s : _filter) {
+    Iterable<Domain> _filter_5 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
+    for (final Domain s : _filter_5) {
       fsa.generateFile("Specification.java", this.compile(s));
     }
+  }
+  
+  public CharSequence compile(final ContextModel m) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(m.getName());
+    _builder.append(_firstUpper);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Entity> _entities = m.getEntities();
+      for(final Entity e : _entities) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(e.getName());
+        _builder.append(_firstUpper_1, "\t");
+        _builder.append(" ");
+        String _firstLower = StringExtensions.toFirstLower(e.getName());
+        _builder.append(_firstLower, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Relation> _relations = m.getRelations();
+      for(final Relation r : _relations) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(r.getName());
+        _builder.append(_firstUpper_2, "\t");
+        _builder.append(" ");
+        String _firstLower_1 = StringExtensions.toFirstLower(r.getName());
+        _builder.append(_firstLower_1, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(m.getName());
+    _builder.append(_firstUpper_3, "\t");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Entity> _entities_1 = m.getEntities();
+      for(final Entity e_1 : _entities_1) {
+        _builder.append("\t\t");
+        String _firstLower_2 = StringExtensions.toFirstLower(e_1.getName());
+        _builder.append(_firstLower_2, "\t\t");
+        _builder.append(" = new ");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(e_1.getName());
+        _builder.append(_firstUpper_4, "\t\t");
+        _builder.append("();");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Relation> _relations_1 = m.getRelations();
+      for(final Relation r_1 : _relations_1) {
+        _builder.append("\t\t");
+        String _firstLower_3 = StringExtensions.toFirstLower(r_1.getName());
+        _builder.append(_firstLower_3, "\t\t");
+        _builder.append(" = new ");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(r_1.getName());
+        _builder.append(_firstUpper_5, "\t\t");
+        _builder.append("(");
+        String _firstLower_4 = StringExtensions.toFirstLower(r_1.getSender().getName());
+        _builder.append(_firstLower_4, "\t\t");
+        _builder.append(", ");
+        String _firstLower_5 = StringExtensions.toFirstLower(r_1.getReceiver().getName());
+        _builder.append(_firstLower_5, "\t\t");
+        _builder.append(");");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_6 = StringExtensions.toFirstUpper(m.getName());
+    _builder.append(_firstUpper_6, "\t");
+    _builder.append("(EventCreator eventCreator) {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Entity> _entities_2 = m.getEntities();
+      for(final Entity e_2 : _entities_2) {
+        _builder.append("\t\t");
+        String _firstLower_6 = StringExtensions.toFirstLower(e_2.getName());
+        _builder.append(_firstLower_6, "\t\t");
+        _builder.append(" = new ");
+        String _firstUpper_7 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_7, "\t\t");
+        _builder.append("(eventCreator);");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Relation> _relations_2 = m.getRelations();
+      for(final Relation r_2 : _relations_2) {
+        _builder.append("\t\t");
+        String _firstLower_7 = StringExtensions.toFirstLower(r_2.getName());
+        _builder.append(_firstLower_7, "\t\t");
+        _builder.append(" = new ");
+        String _firstUpper_8 = StringExtensions.toFirstUpper(r_2.getName());
+        _builder.append(_firstUpper_8, "\t\t");
+        _builder.append("(");
+        String _firstLower_8 = StringExtensions.toFirstLower(r_2.getSender().getName());
+        _builder.append(_firstLower_8, "\t\t");
+        _builder.append(", ");
+        String _firstLower_9 = StringExtensions.toFirstLower(r_2.getReceiver().getName());
+        _builder.append(_firstLower_9, "\t\t");
+        _builder.append(", eventCreator);");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<Entity> _entities_3 = m.getEntities();
+      for(final Entity e_3 : _entities_3) {
+        _builder.append("\t");
+        _builder.append("public ");
+        String _firstUpper_9 = StringExtensions.toFirstUpper(e_3.getName());
+        _builder.append(_firstUpper_9, "\t");
+        _builder.append(" get");
+        String _firstUpper_10 = StringExtensions.toFirstUpper(e_3.getName());
+        _builder.append(_firstUpper_10, "\t");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return ");
+        String _firstLower_10 = StringExtensions.toFirstLower(e_3.getName());
+        _builder.append(_firstLower_10, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    {
+      EList<Relation> _relations_3 = m.getRelations();
+      for(final Relation r_3 : _relations_3) {
+        _builder.append("\t");
+        _builder.append("public ");
+        String _firstUpper_11 = StringExtensions.toFirstUpper(r_3.getName());
+        _builder.append(_firstUpper_11, "\t");
+        _builder.append(" get");
+        String _firstUpper_12 = StringExtensions.toFirstUpper(r_3.getName());
+        _builder.append(_firstUpper_12, "\t");
+        _builder.append("() {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return ");
+        String _firstLower_11 = StringExtensions.toFirstLower(r_3.getName());
+        _builder.append(_firstLower_11, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final ContextFragment m) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(m.getName());
+    _builder.append(_firstUpper);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("public boolean match(");
+    _builder.newLine();
+    {
+      int _size = m.getEntities().size();
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+      for(final Integer e : _doubleDotLessThan) {
+        _builder.append("\t\t");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(m.getEntities().get((e).intValue()).getName());
+        _builder.append(_firstUpper_1, "\t\t");
+        _builder.append(" ");
+        String _firstLower = StringExtensions.toFirstLower(m.getEntities().get((e).intValue()).getName());
+        _builder.append(_firstLower, "\t\t");
+        _builder.newLineIfNotEmpty();
+        {
+          if ((((e).intValue() != (m.getEntities().size() - 1)) || (m.getRelations().size() > 0))) {
+            _builder.append("\t\t");
+            _builder.append(",");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    {
+      int _size_1 = m.getRelations().size();
+      ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+      for(final Integer r : _doubleDotLessThan_1) {
+        _builder.append("\t\t");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(m.getRelations().get((r).intValue()).getName());
+        _builder.append(_firstUpper_2, "\t\t");
+        _builder.append(" ");
+        String _firstLower_1 = StringExtensions.toFirstLower(m.getRelations().get((r).intValue()).getName());
+        _builder.append(_firstLower_1, "\t\t");
+        _builder.newLineIfNotEmpty();
+        {
+          int _size_2 = m.getRelations().size();
+          int _minus = (_size_2 - 1);
+          boolean _notEquals = ((r).intValue() != _minus);
+          if (_notEquals) {
+            _builder.append("\t\t");
+            _builder.append(",");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append(") {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if(");
+    _builder.newLine();
+    {
+      int _size_3 = m.getEntities().size();
+      ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_3, true);
+      for(final Integer e_1 : _doubleDotLessThan_2) {
+        _builder.append("\t\t\t");
+        _builder.append("check");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(m.getEntities().get((e_1).intValue()).getName());
+        _builder.append(_firstUpper_3, "\t\t\t");
+        _builder.append("Constraint(");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<FEntity> _entities = m.getEntities();
+          for(final FEntity entity : _entities) {
+            {
+              String _firstLower_2 = StringExtensions.toFirstLower(m.getEntities().get((e_1).intValue()).getName());
+              String _firstLower_3 = StringExtensions.toFirstLower(entity.getName());
+              boolean _equals = Objects.equal(_firstLower_2, _firstLower_3);
+              if (_equals) {
+                _builder.append("\t\t\t");
+                _builder.append("\t");
+                String _firstLower_4 = StringExtensions.toFirstLower(entity.getName());
+                _builder.append(_firstLower_4, "\t\t\t\t");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        _builder.append("\t\t\t");
+        _builder.append(")");
+        _builder.newLine();
+        {
+          if ((((e_1).intValue() != (m.getEntities().size() - 1)) || (m.getRelations().size() != 0))) {
+            _builder.append("\t\t\t");
+            _builder.append("&&");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    {
+      int _size_4 = m.getRelations().size();
+      ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_4, true);
+      for(final Integer r_1 : _doubleDotLessThan_3) {
+        _builder.append("\t\t\t");
+        _builder.append("\t");
+        _builder.append("check");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(m.getRelations().get((r_1).intValue()).getName());
+        _builder.append(_firstUpper_4, "\t\t\t\t");
+        _builder.append("Constraint(");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<FRelation> _relations = m.getRelations();
+          for(final FRelation relation : _relations) {
+            {
+              String _firstLower_5 = StringExtensions.toFirstLower(m.getRelations().get((r_1).intValue()).getName());
+              String _firstLower_6 = StringExtensions.toFirstLower(relation.getName());
+              boolean _equals_1 = Objects.equal(_firstLower_5, _firstLower_6);
+              if (_equals_1) {
+                _builder.append("\t\t\t");
+                _builder.append("\t");
+                String _firstLower_7 = StringExtensions.toFirstLower(relation.getName());
+                _builder.append(_firstLower_7, "\t\t\t\t");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        _builder.append("\t\t\t");
+        _builder.append(")");
+        _builder.newLine();
+        {
+          int _size_5 = m.getRelations().size();
+          int _minus_1 = (_size_5 - 1);
+          boolean _notEquals_1 = ((r_1).intValue() != _minus_1);
+          if (_notEquals_1) {
+            _builder.append("\t\t\t");
+            _builder.append("\t");
+            _builder.append("&&");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append(") {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<FEntity> _entities_1 = m.getEntities();
+      for(final FEntity e_2 : _entities_1) {
+        _builder.append("\t");
+        _builder.append("public boolean check");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_5, "\t");
+        _builder.append("Constraint(");
+        String _firstUpper_6 = StringExtensions.toFirstUpper(e_2.getName());
+        _builder.append(_firstUpper_6, "\t");
+        _builder.append(" ");
+        String _firstLower_8 = StringExtensions.toFirstLower(e_2.getName());
+        _builder.append(_firstLower_8, "\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("if (");
+        {
+          EList<FragmentAttribute> _attributes = e_2.getAttributes();
+          for(final FragmentAttribute a : _attributes) {
+            _builder.newLineIfNotEmpty();
+            {
+              boolean _isInt = a.isInt();
+              if (_isInt) {
+                {
+                  boolean _isGreater = a.isGreater();
+                  if (_isGreater) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_9 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_9, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_7 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_7, "\t\t");
+                    _builder.append("() > ");
+                    String _value = a.getValue();
+                    _builder.append(_value, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmaller = a.isSmaller();
+                  if (_isSmaller) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_10 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_10, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_8 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_8, "\t\t");
+                    _builder.append("() < ");
+                    String _value_1 = a.getValue();
+                    _builder.append(_value_1, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isGreaterequals = a.isGreaterequals();
+                  if (_isGreaterequals) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_11 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_11, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_9 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_9, "\t\t");
+                    _builder.append("()>= ");
+                    String _value_2 = a.getValue();
+                    _builder.append(_value_2, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmallerequals = a.isSmallerequals();
+                  if (_isSmallerequals) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_12 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_12, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_10 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_10, "\t\t");
+                    _builder.append("() <= ");
+                    String _value_3 = a.getValue();
+                    _builder.append(_value_3, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isEquals = a.isEquals();
+                  if (_isEquals) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_13 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_13, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_11 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_11, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_4 = a.getValue();
+                    _builder.append(_value_4, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals = a.isNotequals();
+                  if (_isNotequals) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_14 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_14, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_12 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_12, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_5 = a.getValue();
+                    _builder.append(_value_5, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              boolean _isFloat = a.isFloat();
+              if (_isFloat) {
+                {
+                  boolean _isGreater_1 = a.isGreater();
+                  if (_isGreater_1) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_15 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_15, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_13 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_13, "\t\t");
+                    _builder.append("() > ");
+                    String _value_6 = a.getValue();
+                    _builder.append(_value_6, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmaller_1 = a.isSmaller();
+                  if (_isSmaller_1) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_16 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_16, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_14 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_14, "\t\t");
+                    _builder.append("() < ");
+                    String _value_7 = a.getValue();
+                    _builder.append(_value_7, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isGreaterequals_1 = a.isGreaterequals();
+                  if (_isGreaterequals_1) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_17 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_17, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_15 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_15, "\t\t");
+                    _builder.append("()>= ");
+                    String _value_8 = a.getValue();
+                    _builder.append(_value_8, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmallerequals_1 = a.isSmallerequals();
+                  if (_isSmallerequals_1) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_18 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_18, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_16 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_16, "\t\t");
+                    _builder.append("() <= ");
+                    String _value_9 = a.getValue();
+                    _builder.append(_value_9, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isEquals_1 = a.isEquals();
+                  if (_isEquals_1) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_19 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_19, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_17 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_17, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_10 = a.getValue();
+                    _builder.append(_value_10, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_1 = a.isNotequals();
+                  if (_isNotequals_1) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_20 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_20, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_18 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_18, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_11 = a.getValue();
+                    _builder.append(_value_11, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              boolean _isString = a.isString();
+              if (_isString) {
+                {
+                  boolean _isEquals_2 = a.isEquals();
+                  if (_isEquals_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_21 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_21, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_19 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_19, "\t\t");
+                    _builder.append("().equals(\"");
+                    String _value_12 = a.getValue();
+                    _builder.append(_value_12, "\t\t");
+                    _builder.append("\")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_2 = a.isNotequals();
+                  if (_isNotequals_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_22 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_22, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_20 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_20, "\t\t");
+                    _builder.append("().equals(\"");
+                    String _value_13 = a.getValue();
+                    _builder.append(_value_13, "\t\t");
+                    _builder.append("\")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              boolean _isBoolean = a.isBoolean();
+              if (_isBoolean) {
+                {
+                  boolean _isEquals_3 = a.isEquals();
+                  if (_isEquals_3) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_23 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_23, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_21 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_21, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_14 = a.getValue();
+                    _builder.append(_value_14, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_3 = a.isNotequals();
+                  if (_isNotequals_3) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_24 = StringExtensions.toFirstLower(e_2.getName());
+                    _builder.append(_firstLower_24, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_22 = StringExtensions.toFirstUpper(a.getName());
+                    _builder.append(_firstUpper_22, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_15 = a.getValue();
+                    _builder.append(_value_15, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                _builder.append("\t\t\t\t\t\t\t");
+              }
+            }
+            _builder.append(" &&");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("\t");
+        _builder.append("\t\t");
+        String _firstLower_25 = StringExtensions.toFirstLower(e_2.getName());
+        _builder.append(_firstLower_25, "\t\t\t");
+        _builder.append(".getExists()) {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("return true;");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return false;");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    {
+      EList<FRelation> _relations_1 = m.getRelations();
+      for(final FRelation r_2 : _relations_1) {
+        _builder.append("\t");
+        _builder.append("public boolean check");
+        String _firstUpper_23 = StringExtensions.toFirstUpper(r_2.getName());
+        _builder.append(_firstUpper_23, "\t");
+        _builder.append("Constraint(");
+        String _firstUpper_24 = StringExtensions.toFirstUpper(r_2.getName());
+        _builder.append(_firstUpper_24, "\t");
+        _builder.append(" ");
+        String _firstLower_26 = StringExtensions.toFirstLower(r_2.getName());
+        _builder.append(_firstLower_26, "\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("if (");
+        {
+          int _size_6 = r_2.getAttributes().size();
+          ExclusiveRange _doubleDotLessThan_4 = new ExclusiveRange(0, _size_6, true);
+          for(final Integer a_1 : _doubleDotLessThan_4) {
+            _builder.newLineIfNotEmpty();
+            {
+              boolean _isInt_1 = r_2.getAttributes().get((a_1).intValue()).isInt();
+              if (_isInt_1) {
+                {
+                  boolean _isGreater_2 = r_2.getAttributes().get((a_1).intValue()).isGreater();
+                  if (_isGreater_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_27 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_27, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_25 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_25, "\t\t");
+                    _builder.append("() > ");
+                    String _value_16 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_16, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmaller_2 = r_2.getAttributes().get((a_1).intValue()).isSmaller();
+                  if (_isSmaller_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_28 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_28, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_26 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_26, "\t\t");
+                    _builder.append("() < ");
+                    String _value_17 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_17, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isGreaterequals_2 = r_2.getAttributes().get((a_1).intValue()).isGreaterequals();
+                  if (_isGreaterequals_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_29 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_29, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_27 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_27, "\t\t");
+                    _builder.append("()>= ");
+                    String _value_18 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_18, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmallerequals_2 = r_2.getAttributes().get((a_1).intValue()).isSmallerequals();
+                  if (_isSmallerequals_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_30 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_30, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_28 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_28, "\t\t");
+                    _builder.append("() <= ");
+                    String _value_19 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_19, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isEquals_4 = r_2.getAttributes().get((a_1).intValue()).isEquals();
+                  if (_isEquals_4) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_31 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_31, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_29 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_29, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_20 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_20, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_4 = r_2.getAttributes().get((a_1).intValue()).isNotequals();
+                  if (_isNotequals_4) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_32 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_32, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_30 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_30, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_21 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_21, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              boolean _isFloat_1 = r_2.getAttributes().get((a_1).intValue()).isFloat();
+              if (_isFloat_1) {
+                {
+                  boolean _isGreater_3 = r_2.getAttributes().get((a_1).intValue()).isGreater();
+                  if (_isGreater_3) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_33 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_33, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_31 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_31, "\t\t");
+                    _builder.append("() > ");
+                    String _value_22 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_22, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmaller_3 = r_2.getAttributes().get((a_1).intValue()).isSmaller();
+                  if (_isSmaller_3) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_34 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_34, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_32 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_32, "\t\t");
+                    _builder.append("() < ");
+                    String _value_23 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_23, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isGreaterequals_3 = r_2.getAttributes().get((a_1).intValue()).isGreaterequals();
+                  if (_isGreaterequals_3) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_35 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_35, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_33 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_33, "\t\t");
+                    _builder.append("()>= ");
+                    String _value_24 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_24, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isSmallerequals_3 = r_2.getAttributes().get((a_1).intValue()).isSmallerequals();
+                  if (_isSmallerequals_3) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_36 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_36, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_34 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_34, "\t\t");
+                    _builder.append("() <= ");
+                    String _value_25 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_25, "\t\t");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isEquals_5 = r_2.getAttributes().get((a_1).intValue()).isEquals();
+                  if (_isEquals_5) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_37 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_37, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_35 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_35, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_26 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_26, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_5 = r_2.getAttributes().get((a_1).intValue()).isNotequals();
+                  if (_isNotequals_5) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_38 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_38, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_36 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_36, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_27 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_27, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              boolean _isString_1 = r_2.getAttributes().get((a_1).intValue()).isString();
+              if (_isString_1) {
+                {
+                  boolean _isEquals_6 = r_2.getAttributes().get((a_1).intValue()).isEquals();
+                  if (_isEquals_6) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_39 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_39, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_37 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_37, "\t\t");
+                    _builder.append("().equals(\"");
+                    String _value_28 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_28, "\t\t");
+                    _builder.append("\")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_6 = r_2.getAttributes().get((a_1).intValue()).isNotequals();
+                  if (_isNotequals_6) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_40 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_40, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_38 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_38, "\t\t");
+                    _builder.append("().equals(\"");
+                    String _value_29 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_29, "\t\t");
+                    _builder.append("\")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            {
+              boolean _isBoolean_1 = r_2.getAttributes().get((a_1).intValue()).isBoolean();
+              if (_isBoolean_1) {
+                {
+                  boolean _equals_2 = this.equals(a_1);
+                  if (_equals_2) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    String _firstLower_41 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_41, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_39 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_39, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_30 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_30, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+                {
+                  boolean _isNotequals_7 = r_2.getAttributes().get((a_1).intValue()).isNotequals();
+                  if (_isNotequals_7) {
+                    _builder.append("\t");
+                    _builder.append("\t");
+                    _builder.append("!");
+                    String _firstLower_42 = StringExtensions.toFirstLower(r_2.getName());
+                    _builder.append(_firstLower_42, "\t\t");
+                    _builder.append(".get");
+                    String _firstUpper_40 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
+                    _builder.append(_firstUpper_40, "\t\t");
+                    _builder.append("().equals(");
+                    String _value_31 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    _builder.append(_value_31, "\t\t");
+                    _builder.append(")");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              }
+            }
+            _builder.append("\t");
+            _builder.append("\t");
+            {
+              int _size_7 = r_2.getAttributes().size();
+              int _minus_2 = (_size_7 - 1);
+              boolean _notEquals_2 = ((a_1).intValue() != _minus_2);
+              if (_notEquals_2) {
+                _builder.append(" && ");
+              }
+            }
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t\t\t\t");
+          }
+        }
+        _builder.append(" ){");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t\t");
+        _builder.append("return true;");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("return false;");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final Entity e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes = e.getAttributes();
+      for(final Attribute a : _attributes) {
+        {
+          boolean _isInt = a.isInt();
+          if (_isInt) {
+            _builder.append("\t");
+            _builder.append("private int ");
+            String _firstLower = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isFloat = a.isFloat();
+          if (_isFloat) {
+            _builder.append("\t");
+            _builder.append("private float ");
+            String _firstLower_1 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isString = a.isString();
+          if (_isString) {
+            _builder.append("\t");
+            _builder.append("private String ");
+            String _firstLower_2 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_2, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isBoolean = a.isBoolean();
+          if (_isBoolean) {
+            _builder.append("\t");
+            _builder.append("private boolean ");
+            String _firstLower_3 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_3, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("private boolean exists;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private EventCreator eventCreator;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper_1, "\t");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes_1 = e.getAttributes();
+      for(final Attribute a_1 : _attributes_1) {
+        {
+          boolean _isInt_1 = a_1.isInt();
+          if (_isInt_1) {
+            {
+              String _value = a_1.getValue();
+              boolean _tripleEquals = (_value == null);
+              if (_tripleEquals) {
+                _builder.append("\t\t");
+                String _firstLower_4 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_4, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_5 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_5, "\t\t");
+                _builder.append(" = ");
+                String _value_1 = a_1.getValue();
+                _builder.append(_value_1, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isFloat_1 = a_1.isFloat();
+          if (_isFloat_1) {
+            {
+              String _value_2 = a_1.getValue();
+              boolean _tripleEquals_1 = (_value_2 == null);
+              if (_tripleEquals_1) {
+                _builder.append("\t\t");
+                String _firstLower_6 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_6, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_7 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_7, "\t\t");
+                _builder.append(" = ");
+                String _value_3 = a_1.getValue();
+                _builder.append(_value_3, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isString_1 = a_1.isString();
+          if (_isString_1) {
+            {
+              String _value_4 = a_1.getValue();
+              boolean _tripleEquals_2 = (_value_4 == null);
+              if (_tripleEquals_2) {
+                _builder.append("\t\t");
+                String _firstLower_8 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_8, "\t\t");
+                _builder.append(" = \"default\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_9 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_9, "\t\t");
+                _builder.append(" = \"");
+                String _value_5 = a_1.getValue();
+                _builder.append(_value_5, "\t\t");
+                _builder.append("\";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isBoolean_1 = a_1.isBoolean();
+          if (_isBoolean_1) {
+            {
+              String _value_6 = a_1.getValue();
+              boolean _tripleEquals_3 = (_value_6 == null);
+              if (_tripleEquals_3) {
+                _builder.append("\t\t");
+                String _firstLower_10 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_10, "\t\t");
+                _builder.append(" = false;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_11 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_11, "\t\t");
+                _builder.append(" = ");
+                String _value_7 = a_1.getValue();
+                _builder.append(_value_7, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("exists = false;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper_2, "\t");
+    _builder.append("(EventCreator eventCreator) {");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Attribute> _attributes_2 = e.getAttributes();
+      for(final Attribute a_2 : _attributes_2) {
+        {
+          boolean _isInt_2 = a_2.isInt();
+          if (_isInt_2) {
+            {
+              String _value_8 = a_2.getValue();
+              boolean _tripleEquals_4 = (_value_8 == null);
+              if (_tripleEquals_4) {
+                _builder.append("\t\t");
+                String _firstLower_12 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_12, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_13 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_13, "\t\t");
+                _builder.append(" = ");
+                String _value_9 = a_2.getValue();
+                _builder.append(_value_9, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isFloat_2 = a_2.isFloat();
+          if (_isFloat_2) {
+            {
+              String _value_10 = a_2.getValue();
+              boolean _tripleEquals_5 = (_value_10 == null);
+              if (_tripleEquals_5) {
+                _builder.append("\t\t");
+                String _firstLower_14 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_14, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_15 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_15, "\t\t");
+                _builder.append(" = ");
+                String _value_11 = a_2.getValue();
+                _builder.append(_value_11, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isString_2 = a_2.isString();
+          if (_isString_2) {
+            {
+              String _value_12 = a_2.getValue();
+              boolean _tripleEquals_6 = (_value_12 == null);
+              if (_tripleEquals_6) {
+                _builder.append("\t\t");
+                String _firstLower_16 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_16, "\t\t");
+                _builder.append(" = \"default\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_17 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_17, "\t\t");
+                _builder.append(" = \"");
+                String _value_13 = a_2.getValue();
+                _builder.append(_value_13, "\t\t");
+                _builder.append("\";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isBoolean_2 = a_2.isBoolean();
+          if (_isBoolean_2) {
+            {
+              String _value_14 = a_2.getValue();
+              boolean _tripleEquals_7 = (_value_14 == null);
+              if (_tripleEquals_7) {
+                _builder.append("\t\t");
+                String _firstLower_18 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_18, "\t\t");
+                _builder.append(" = false;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_19 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_19, "\t\t");
+                _builder.append(" = ");
+                String _value_15 = a_2.getValue();
+                _builder.append(_value_15, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("exists = false;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.eventCreator = eventCreator;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public boolean getExists() { return exists; }");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setAppear() { ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("exists = true;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("eventCreator.appear(\"");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper_3, "\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setDisappear() { ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("exists = false;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("eventCreator.disappear(\"");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(e.getName());
+    _builder.append(_firstUpper_4, "\t\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_3 = e.getAttributes();
+      for(final Attribute a_3 : _attributes_3) {
+        {
+          boolean _isInt_3 = a_3.isInt();
+          if (_isInt_3) {
+            _builder.append("\t");
+            _builder.append("public int get");
+            String _firstUpper_5 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_5, "\t");
+            _builder.append("() { return ");
+            String _firstLower_20 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_20, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_6 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_6, "\t");
+            _builder.append("(int ");
+            String _firstLower_21 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_21, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_22 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_22, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_23 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_23, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_7 = StringExtensions.toFirstUpper(e.getName());
+            _builder.append(_firstUpper_7, "\t\t");
+            _builder.append(".");
+            String _firstLower_24 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_24, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_25 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_25, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+        {
+          boolean _isFloat_3 = a_3.isFloat();
+          if (_isFloat_3) {
+            _builder.append("\t");
+            _builder.append("public float get");
+            String _firstUpper_8 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_8, "\t");
+            _builder.append("() { return ");
+            String _firstLower_26 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_26, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_9 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_9, "\t");
+            _builder.append("(float ");
+            String _firstLower_27 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_27, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_28 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_28, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_29 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_29, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_10 = StringExtensions.toFirstUpper(e.getName());
+            _builder.append(_firstUpper_10, "\t\t");
+            _builder.append(".");
+            String _firstLower_30 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_30, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_31 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_31, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+        {
+          boolean _isString_3 = a_3.isString();
+          if (_isString_3) {
+            _builder.append("\t");
+            _builder.append("public String get");
+            String _firstUpper_11 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_11, "\t");
+            _builder.append("() { return ");
+            String _firstLower_32 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_32, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_12 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_12, "\t");
+            _builder.append("(String ");
+            String _firstLower_33 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_33, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_34 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_34, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_35 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_35, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_13 = StringExtensions.toFirstUpper(e.getName());
+            _builder.append(_firstUpper_13, "\t\t");
+            _builder.append(".");
+            String _firstLower_36 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_36, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_37 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_37, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+        {
+          boolean _isBoolean_3 = a_3.isBoolean();
+          if (_isBoolean_3) {
+            _builder.append("\t");
+            _builder.append("public boolean get");
+            String _firstUpper_14 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_14, "\t");
+            _builder.append("() { return ");
+            String _firstLower_38 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_38, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_15 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_15, "\t");
+            _builder.append("(boolean ");
+            String _firstLower_39 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_39, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_40 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_40, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_41 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_41, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_16 = StringExtensions.toFirstUpper(e.getName());
+            _builder.append(_firstUpper_16, "\t\t");
+            _builder.append(".");
+            String _firstLower_42 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_42, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_43 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_43, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final Relation r) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _firstUpper = StringExtensions.toFirstUpper(r.getName());
+    _builder.append(_firstUpper);
+    _builder.append(" {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private ");
+    String _firstUpper_1 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_1, "\t");
+    _builder.append(" sender;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private ");
+    String _firstUpper_2 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_2, "\t");
+    _builder.append(" receiver;");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("private EventCreator eventCreator;");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes = r.getAttributes();
+      for(final Attribute a : _attributes) {
+        {
+          boolean _isInt = a.isInt();
+          if (_isInt) {
+            _builder.append("\t");
+            _builder.append("private int ");
+            String _firstLower = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isFloat = a.isFloat();
+          if (_isFloat) {
+            _builder.append("\t");
+            _builder.append("private float ");
+            String _firstLower_1 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_1, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isString = a.isString();
+          if (_isString) {
+            _builder.append("\t");
+            _builder.append("private String ");
+            String _firstLower_2 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_2, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          boolean _isBoolean = a.isBoolean();
+          if (_isBoolean) {
+            _builder.append("\t");
+            _builder.append("private boolean ");
+            String _firstLower_3 = StringExtensions.toFirstLower(a.getName());
+            _builder.append(_firstLower_3, "\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_3 = StringExtensions.toFirstUpper(r.getName());
+    _builder.append(_firstUpper_3, "\t");
+    _builder.append("(");
+    String _firstUpper_4 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_4, "\t");
+    _builder.append(" sender, ");
+    String _firstUpper_5 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_5, "\t");
+    _builder.append(" receiver) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("this.sender = sender;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.receiver = receiver;");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_1 = r.getAttributes();
+      for(final Attribute a_1 : _attributes_1) {
+        {
+          boolean _isInt_1 = a_1.isInt();
+          if (_isInt_1) {
+            {
+              String _value = a_1.getValue();
+              boolean _tripleEquals = (_value == null);
+              if (_tripleEquals) {
+                _builder.append("\t\t");
+                String _firstLower_4 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_4, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_5 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_5, "\t\t");
+                _builder.append(" = ");
+                String _value_1 = a_1.getValue();
+                _builder.append(_value_1, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isFloat_1 = a_1.isFloat();
+          if (_isFloat_1) {
+            {
+              String _value_2 = a_1.getValue();
+              boolean _tripleEquals_1 = (_value_2 == null);
+              if (_tripleEquals_1) {
+                _builder.append("\t\t");
+                String _firstLower_6 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_6, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_7 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_7, "\t\t");
+                _builder.append(" = ");
+                String _value_3 = a_1.getValue();
+                _builder.append(_value_3, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isString_1 = a_1.isString();
+          if (_isString_1) {
+            {
+              String _value_4 = a_1.getValue();
+              boolean _tripleEquals_2 = (_value_4 == null);
+              if (_tripleEquals_2) {
+                _builder.append("\t\t");
+                String _firstLower_8 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_8, "\t\t");
+                _builder.append(" = \"default\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_9 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_9, "\t\t");
+                _builder.append(" = \"");
+                String _value_5 = a_1.getValue();
+                _builder.append(_value_5, "\t\t");
+                _builder.append("\";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isBoolean_1 = a_1.isBoolean();
+          if (_isBoolean_1) {
+            {
+              String _value_6 = a_1.getValue();
+              boolean _tripleEquals_3 = (_value_6 == null);
+              if (_tripleEquals_3) {
+                _builder.append("\t\t");
+                String _firstLower_10 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_10, "\t\t");
+                _builder.append(" = false;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_11 = StringExtensions.toFirstLower(a_1.getName());
+                _builder.append(_firstLower_11, "\t\t");
+                _builder.append(" = ");
+                String _value_7 = a_1.getValue();
+                _builder.append(_value_7, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_6 = StringExtensions.toFirstUpper(r.getName());
+    _builder.append(_firstUpper_6, "\t");
+    _builder.append("(");
+    String _firstUpper_7 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_7, "\t");
+    _builder.append(" sender, ");
+    String _firstUpper_8 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_8, "\t");
+    _builder.append(" receiver, EventCreator eventCreator) {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("this.sender = sender;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.receiver = receiver;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("this.eventCreator = eventCreator;");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_2 = r.getAttributes();
+      for(final Attribute a_2 : _attributes_2) {
+        {
+          boolean _isInt_2 = a_2.isInt();
+          if (_isInt_2) {
+            {
+              String _value_8 = a_2.getValue();
+              boolean _tripleEquals_4 = (_value_8 == null);
+              if (_tripleEquals_4) {
+                _builder.append("\t\t");
+                String _firstLower_12 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_12, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_13 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_13, "\t\t");
+                _builder.append(" = ");
+                String _value_9 = a_2.getValue();
+                _builder.append(_value_9, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isFloat_2 = a_2.isFloat();
+          if (_isFloat_2) {
+            {
+              String _value_10 = a_2.getValue();
+              boolean _tripleEquals_5 = (_value_10 == null);
+              if (_tripleEquals_5) {
+                _builder.append("\t\t");
+                String _firstLower_14 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_14, "\t\t");
+                _builder.append(" = 0;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_15 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_15, "\t\t");
+                _builder.append(" = ");
+                String _value_11 = a_2.getValue();
+                _builder.append(_value_11, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isString_2 = a_2.isString();
+          if (_isString_2) {
+            {
+              String _value_12 = a_2.getValue();
+              boolean _tripleEquals_6 = (_value_12 == null);
+              if (_tripleEquals_6) {
+                _builder.append("\t\t");
+                String _firstLower_16 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_16, "\t\t");
+                _builder.append(" = \"default\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_17 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_17, "\t\t");
+                _builder.append(" = \"");
+                String _value_13 = a_2.getValue();
+                _builder.append(_value_13, "\t\t");
+                _builder.append("\";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          boolean _isBoolean_2 = a_2.isBoolean();
+          if (_isBoolean_2) {
+            {
+              String _value_14 = a_2.getValue();
+              boolean _tripleEquals_7 = (_value_14 == null);
+              if (_tripleEquals_7) {
+                _builder.append("\t\t");
+                String _firstLower_18 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_18, "\t\t");
+                _builder.append(" = false;");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t");
+                String _firstLower_19 = StringExtensions.toFirstLower(a_2.getName());
+                _builder.append(_firstLower_19, "\t\t");
+                _builder.append(" = ");
+                String _value_15 = a_2.getValue();
+                _builder.append(_value_15, "\t\t");
+                _builder.append(";");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    {
+      EList<Attribute> _attributes_3 = r.getAttributes();
+      for(final Attribute a_3 : _attributes_3) {
+        {
+          boolean _isInt_3 = a_3.isInt();
+          if (_isInt_3) {
+            _builder.append("\t");
+            _builder.append("public int get");
+            String _firstUpper_9 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_9, "\t");
+            _builder.append("() { return ");
+            String _firstLower_20 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_20, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_10 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_10, "\t");
+            _builder.append("(int ");
+            String _firstLower_21 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_21, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_22 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_22, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_23 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_23, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_11 = StringExtensions.toFirstUpper(r.getName());
+            _builder.append(_firstUpper_11, "\t\t");
+            _builder.append(".");
+            String _firstLower_24 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_24, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_25 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_25, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+        {
+          boolean _isFloat_3 = a_3.isFloat();
+          if (_isFloat_3) {
+            _builder.append("\t");
+            _builder.append("public float get");
+            String _firstUpper_12 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_12, "\t");
+            _builder.append("() { return ");
+            String _firstLower_26 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_26, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_13 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_13, "\t");
+            _builder.append("(float ");
+            String _firstLower_27 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_27, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_28 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_28, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_29 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_29, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_14 = StringExtensions.toFirstUpper(r.getName());
+            _builder.append(_firstUpper_14, "\t\t");
+            _builder.append(".");
+            String _firstLower_30 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_30, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_31 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_31, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+        {
+          boolean _isString_3 = a_3.isString();
+          if (_isString_3) {
+            _builder.append("\t");
+            _builder.append("public String get");
+            String _firstUpper_15 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_15, "\t");
+            _builder.append("() { return ");
+            String _firstLower_32 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_32, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_16 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_16, "\t");
+            _builder.append("(String ");
+            String _firstLower_33 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_33, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_34 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_34, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_35 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_35, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_17 = StringExtensions.toFirstUpper(r.getName());
+            _builder.append(_firstUpper_17, "\t\t");
+            _builder.append(".");
+            String _firstLower_36 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_36, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_37 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_37, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+        {
+          boolean _isBoolean_3 = a_3.isBoolean();
+          if (_isBoolean_3) {
+            _builder.append("\t");
+            _builder.append("public boolean get");
+            String _firstUpper_18 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_18, "\t");
+            _builder.append("() { return ");
+            String _firstLower_38 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_38, "\t");
+            _builder.append("; }");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t\t\t\t\t\t");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("public void set");
+            String _firstUpper_19 = StringExtensions.toFirstUpper(a_3.getName());
+            _builder.append(_firstUpper_19, "\t");
+            _builder.append("(boolean ");
+            String _firstLower_39 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_39, "\t");
+            _builder.append(") { ");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("this.");
+            String _firstLower_40 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_40, "\t\t");
+            _builder.append(" = ");
+            String _firstLower_41 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_41, "\t\t");
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("\t");
+            _builder.append("eventCreator.changeTo(\"");
+            String _firstUpper_20 = StringExtensions.toFirstUpper(r.getName());
+            _builder.append(_firstUpper_20, "\t\t");
+            _builder.append(".");
+            String _firstLower_42 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_42, "\t\t");
+            _builder.append(", \" + ");
+            String _firstLower_43 = StringExtensions.toFirstLower(a_3.getName());
+            _builder.append(_firstLower_43, "\t\t");
+            _builder.append(");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_21 = StringExtensions.toFirstUpper(r.getSender().getName());
+    _builder.append(_firstUpper_21, "\t");
+    _builder.append(" getSender() { return sender; }");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public ");
+    String _firstUpper_22 = StringExtensions.toFirstUpper(r.getReceiver().getName());
+    _builder.append(_firstUpper_22, "\t");
+    _builder.append(" getReceiver() { return receiver; }");
+    _builder.newLineIfNotEmpty();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_eventcreator(final Domain d) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class EventCreator {");
+    _builder.newLine();
+    {
+      EList<Include> _includes = d.getIncludes();
+      for(final Include i : _includes) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper = StringExtensions.toFirstUpper(i.getContext().getName());
+        _builder.append(_firstUpper, "\t");
+        _builder.append(" ");
+        String _firstLower = StringExtensions.toFirstLower(i.getContext().getName());
+        _builder.append(_firstLower, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<ContextFragment> _contextfragments = d.getContextfragments();
+      for(final ContextFragment f : _contextfragments) {
+        _builder.append("\t");
+        _builder.append("private ");
+        String _firstUpper_1 = StringExtensions.toFirstUpper(f.getName());
+        _builder.append(_firstUpper_1, "\t");
+        _builder.append(" ");
+        String _firstLower_1 = StringExtensions.toFirstLower(f.getName());
+        _builder.append(_firstLower_1, "\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t");
+    _builder.append("private Monitor monitorInterface;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public EventCreator(");
+    _builder.newLine();
+    {
+      EList<Include> _includes_1 = d.getIncludes();
+      for(final Include i_1 : _includes_1) {
+        _builder.append("\t\t");
+        String _firstUpper_2 = StringExtensions.toFirstUpper(i_1.getContext().getName());
+        _builder.append(_firstUpper_2, "\t\t");
+        _builder.append(" ");
+        String _firstLower_2 = StringExtensions.toFirstLower(i_1.getContext().getName());
+        _builder.append(_firstLower_2, "\t\t");
+        _builder.append(",");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<ContextFragment> _contextfragments_1 = d.getContextfragments();
+      for(final ContextFragment f_1 : _contextfragments_1) {
+        _builder.append("\t\t");
+        String _firstUpper_3 = StringExtensions.toFirstUpper(f_1.getName());
+        _builder.append(_firstUpper_3, "\t\t");
+        _builder.append(" ");
+        String _firstLower_3 = StringExtensions.toFirstLower(f_1.getName());
+        _builder.append(_firstLower_3, "\t\t");
+        _builder.append(",");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("Monitor monitorInterface");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append(") {");
+    _builder.newLine();
+    {
+      EList<Include> _includes_2 = d.getIncludes();
+      for(final Include i_2 : _includes_2) {
+        _builder.append("\t\t");
+        _builder.append("this.");
+        String _firstLower_4 = StringExtensions.toFirstLower(i_2.getContext().getName());
+        _builder.append(_firstLower_4, "\t\t");
+        _builder.append(" = ");
+        String _firstLower_5 = StringExtensions.toFirstLower(i_2.getContext().getName());
+        _builder.append(_firstLower_5, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<ContextFragment> _contextfragments_2 = d.getContextfragments();
+      for(final ContextFragment f_2 : _contextfragments_2) {
+        _builder.append("\t\t");
+        _builder.append("this.");
+        String _firstLower_6 = StringExtensions.toFirstLower(f_2.getName());
+        _builder.append(_firstLower_6, "\t\t");
+        _builder.append(" = ");
+        String _firstLower_7 = StringExtensions.toFirstLower(f_2.getName());
+        _builder.append(_firstLower_7, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("this.monitorInterface = monitorInterface;");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    {
+      EList<Include> _includes_3 = d.getIncludes();
+      for(final Include i_3 : _includes_3) {
+        _builder.append("\t");
+        _builder.append("public void set");
+        String _firstUpper_4 = StringExtensions.toFirstUpper(i_3.getContext().getName());
+        _builder.append(_firstUpper_4, "\t");
+        _builder.append("(");
+        String _firstUpper_5 = StringExtensions.toFirstUpper(i_3.getContext().getName());
+        _builder.append(_firstUpper_5, "\t");
+        _builder.append(" ");
+        String _firstLower_8 = StringExtensions.toFirstLower(i_3.getContext().getName());
+        _builder.append(_firstLower_8, "\t");
+        _builder.append(") {");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("\t");
+        _builder.append("this.");
+        String _firstLower_9 = StringExtensions.toFirstLower(i_3.getContext().getName());
+        _builder.append(_firstLower_9, "\t\t");
+        _builder.append(" = ");
+        String _firstLower_10 = StringExtensions.toFirstLower(i_3.getContext().getName());
+        _builder.append(_firstLower_10, "\t\t");
+        _builder.append(";");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void appear(String name) {");
+    _builder.newLine();
+    {
+      EList<Include> _includes_4 = d.getIncludes();
+      for(final Include m : _includes_4) {
+        _builder.append("\t\t");
+        _builder.append("monitorInterface.update(\"appear(");
+        String _firstUpper_6 = StringExtensions.toFirstUpper(m.getContext().getName());
+        _builder.append(_firstUpper_6, "\t\t");
+        _builder.append(".\" + name + \")\");");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<ContextFragment> _contextfragments_3 = d.getContextfragments();
+          for(final ContextFragment f_3 : _contextfragments_3) {
+            _builder.append("\t\t");
+            _builder.append("if (");
+            String _firstLower_11 = StringExtensions.toFirstLower(f_3.getName());
+            _builder.append(_firstLower_11, "\t\t");
+            _builder.append(".match(");
+            _builder.newLineIfNotEmpty();
+            {
+              int _size = f_3.getEntities().size();
+              ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+              for(final Integer e : _doubleDotLessThan) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_12 = StringExtensions.toFirstLower(m.getContext().getName());
+                _builder.append(_firstLower_12, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_7 = StringExtensions.toFirstUpper(f_3.getEntities().get((e).intValue()).getName());
+                _builder.append(_firstUpper_7, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((((e).intValue() != (f_3.getEntities().size() - 1)) || (f_3.getRelations().size() > 0))) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            {
+              int _size_1 = f_3.getRelations().size();
+              ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_1, true);
+              for(final Integer r : _doubleDotLessThan_1) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_13 = StringExtensions.toFirstLower(m.getContext().getName());
+                _builder.append(_firstLower_13, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_8 = StringExtensions.toFirstUpper(f_3.getRelations().get((r).intValue()).getName());
+                _builder.append(_firstUpper_8, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  int _size_2 = f_3.getRelations().size();
+                  int _minus = (_size_2 - 1);
+                  boolean _notEquals = ((r).intValue() != _minus);
+                  if (_notEquals) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("\t\t");
+            _builder.append(")) {");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("monitorInterface.update(\"match(");
+            String _firstUpper_9 = StringExtensions.toFirstUpper(m.getContext().getName());
+            _builder.append(_firstUpper_9, "\t\t\t");
+            _builder.append(", ");
+            String _firstUpper_10 = StringExtensions.toFirstUpper(f_3.getName());
+            _builder.append(_firstUpper_10, "\t\t\t");
+            _builder.append(")\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void disappear(String name) {");
+    _builder.newLine();
+    {
+      EList<Include> _includes_5 = d.getIncludes();
+      for(final Include m_1 : _includes_5) {
+        _builder.append("\t\t");
+        _builder.append("monitorInterface.update(\"disappear(");
+        String _firstUpper_11 = StringExtensions.toFirstUpper(m_1.getContext().getName());
+        _builder.append(_firstUpper_11, "\t\t");
+        _builder.append(".\" + name + \")\"); ");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<ContextFragment> _contextfragments_4 = d.getContextfragments();
+          for(final ContextFragment f_4 : _contextfragments_4) {
+            _builder.append("\t\t");
+            _builder.append("if (");
+            String _firstLower_14 = StringExtensions.toFirstLower(f_4.getName());
+            _builder.append(_firstLower_14, "\t\t");
+            _builder.append(".match(");
+            _builder.newLineIfNotEmpty();
+            {
+              int _size_3 = f_4.getEntities().size();
+              ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_3, true);
+              for(final Integer e_1 : _doubleDotLessThan_2) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_15 = StringExtensions.toFirstLower(m_1.getContext().getName());
+                _builder.append(_firstLower_15, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_12 = StringExtensions.toFirstUpper(f_4.getEntities().get((e_1).intValue()).getName());
+                _builder.append(_firstUpper_12, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((((e_1).intValue() != (f_4.getEntities().size() - 1)) || (f_4.getRelations().size() > 0))) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            {
+              int _size_4 = f_4.getRelations().size();
+              ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_4, true);
+              for(final Integer r_1 : _doubleDotLessThan_3) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_16 = StringExtensions.toFirstLower(m_1.getContext().getName());
+                _builder.append(_firstLower_16, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_13 = StringExtensions.toFirstUpper(f_4.getRelations().get((r_1).intValue()).getName());
+                _builder.append(_firstUpper_13, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  int _size_5 = f_4.getRelations().size();
+                  int _minus_1 = (_size_5 - 1);
+                  boolean _notEquals_1 = ((r_1).intValue() != _minus_1);
+                  if (_notEquals_1) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("\t\t");
+            _builder.append(")) {");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("monitorInterface.update(\"match(");
+            String _firstUpper_14 = StringExtensions.toFirstUpper(m_1.getContext().getName());
+            _builder.append(_firstUpper_14, "\t\t\t");
+            _builder.append(", ");
+            String _firstUpper_15 = StringExtensions.toFirstUpper(f_4.getName());
+            _builder.append(_firstUpper_15, "\t\t\t");
+            _builder.append(")\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void changeTo(String event) {");
+    _builder.newLine();
+    {
+      EList<Include> _includes_6 = d.getIncludes();
+      for(final Include m_2 : _includes_6) {
+        _builder.append("\t\t");
+        _builder.append("monitorInterface.update(\"changeTo(");
+        String _firstUpper_16 = StringExtensions.toFirstUpper(m_2.getContext().getName());
+        _builder.append(_firstUpper_16, "\t\t");
+        _builder.append(".\" + event + \")\"); ");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<ContextFragment> _contextfragments_5 = d.getContextfragments();
+          for(final ContextFragment f_5 : _contextfragments_5) {
+            _builder.append("\t\t");
+            _builder.append("if (");
+            String _firstLower_17 = StringExtensions.toFirstLower(f_5.getName());
+            _builder.append(_firstLower_17, "\t\t");
+            _builder.append(".match(");
+            _builder.newLineIfNotEmpty();
+            {
+              int _size_6 = f_5.getEntities().size();
+              ExclusiveRange _doubleDotLessThan_4 = new ExclusiveRange(0, _size_6, true);
+              for(final Integer e_2 : _doubleDotLessThan_4) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_18 = StringExtensions.toFirstLower(m_2.getContext().getName());
+                _builder.append(_firstLower_18, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_17 = StringExtensions.toFirstUpper(f_5.getEntities().get((e_2).intValue()).getName());
+                _builder.append(_firstUpper_17, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  if ((((e_2).intValue() != (f_5.getEntities().size() - 1)) || (f_5.getRelations().size() > 0))) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            {
+              int _size_7 = f_5.getRelations().size();
+              ExclusiveRange _doubleDotLessThan_5 = new ExclusiveRange(0, _size_7, true);
+              for(final Integer r_2 : _doubleDotLessThan_5) {
+                _builder.append("\t\t");
+                _builder.append("\t");
+                String _firstLower_19 = StringExtensions.toFirstLower(m_2.getContext().getName());
+                _builder.append(_firstLower_19, "\t\t\t");
+                _builder.append(".get");
+                String _firstUpper_18 = StringExtensions.toFirstUpper(f_5.getRelations().get((r_2).intValue()).getName());
+                _builder.append(_firstUpper_18, "\t\t\t");
+                _builder.append("()");
+                _builder.newLineIfNotEmpty();
+                {
+                  int _size_8 = f_5.getRelations().size();
+                  int _minus_2 = (_size_8 - 1);
+                  boolean _notEquals_2 = ((r_2).intValue() != _minus_2);
+                  if (_notEquals_2) {
+                    _builder.append("\t\t");
+                    _builder.append("\t");
+                    _builder.append(",");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("\t\t");
+            _builder.append(")) {");
+            _builder.newLine();
+            _builder.append("\t\t");
+            _builder.append("\t");
+            _builder.append("monitorInterface.update(\"match(");
+            String _firstUpper_19 = StringExtensions.toFirstUpper(m_2.getContext().getName());
+            _builder.append(_firstUpper_19, "\t\t\t");
+            _builder.append(", ");
+            String _firstUpper_20 = StringExtensions.toFirstUpper(f_5.getName());
+            _builder.append(_firstUpper_20, "\t\t\t");
+            _builder.append(")\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t");
+            _builder.append("}");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder;
   }
   
   public CharSequence compile(final Domain s) {
@@ -825,6 +3465,472 @@ public class MyDslGenerator extends AbstractGenerator {
           EList<ScenarioContent> _scenariocontents = scenario.getScenariocontents();
           for(final ScenarioContent sc : _scenariocontents) {
             {
+              EList<ContextMessage> _contextmessage = sc.getContextmessage();
+              for(final ContextMessage cm : _contextmessage) {
+                {
+                  boolean _isStrict = cm.isStrict();
+                  if (_isStrict) {
+                    {
+                      boolean _isRequired = cm.isRequired();
+                      if (_isRequired) {
+                        {
+                          EList<ContextMessageContent> _content = cm.getContent();
+                          for(final ContextMessageContent co : _content) {
+                            {
+                              EList<MatchMessage> _match = co.getMatch();
+                              for(final MatchMessage ma : _match) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_strict_required = this.compile_match_strict_required(ma);
+                                _builder.append(_compile_match_strict_required, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change = co.getChange();
+                              for(final ChangeMessage ca : _change) {
+                                {
+                                  EList<AppearMessage> _appear = ca.getAppear();
+                                  for(final AppearMessage a : _appear) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_strict_required = this.compile_appear_strict_required(a);
+                                    _builder.append(_compile_appear_strict_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear = ca.getDisappear();
+                                  for(final DisappearMessage d : _disappear) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_strict_required = this.compile_disappear_strict_required(d);
+                                    _builder.append(_compile_disappear_strict_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto = ca.getChangeto();
+                                  for(final ChangeToMessage t : _changeto) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changeto_strict_required = this.compile_changeto_strict_required(t);
+                                    _builder.append(_compile_changeto_strict_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToRelation> _changetor = ca.getChangetor();
+                                  for(final ChangeToRelation t_1 : _changetor) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changetor_strict_required = this.compile_changetor_strict_required(t_1);
+                                    _builder.append(_compile_changetor_strict_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      boolean _isFail = cm.isFail();
+                      if (_isFail) {
+                        {
+                          EList<ContextMessageContent> _content_1 = cm.getContent();
+                          for(final ContextMessageContent co_1 : _content_1) {
+                            {
+                              EList<MatchMessage> _match_1 = co_1.getMatch();
+                              for(final MatchMessage ma_1 : _match_1) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_strict_fail = this.compile_match_strict_fail(ma_1);
+                                _builder.append(_compile_match_strict_fail, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_1 = co_1.getChange();
+                              for(final ChangeMessage ca_1 : _change_1) {
+                                {
+                                  EList<AppearMessage> _appear_1 = ca_1.getAppear();
+                                  for(final AppearMessage a_1 : _appear_1) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_strict_fail = this.compile_appear_strict_fail(a_1);
+                                    _builder.append(_compile_appear_strict_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_1 = ca_1.getDisappear();
+                                  for(final DisappearMessage d_1 : _disappear_1) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_strict_fail = this.compile_disappear_strict_fail(d_1);
+                                    _builder.append(_compile_disappear_strict_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_1 = ca_1.getChangeto();
+                                  for(final ChangeToMessage t_2 : _changeto_1) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changeto_strict_fail = this.compile_changeto_strict_fail(t_2);
+                                    _builder.append(_compile_changeto_strict_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToRelation> _changetor_1 = ca_1.getChangetor();
+                                  for(final ChangeToRelation t_3 : _changetor_1) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changetor_strict_fail = this.compile_changetor_strict_fail(t_3);
+                                    _builder.append(_compile_changetor_strict_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      if (((!cm.isRequired()) && (!cm.isFail()))) {
+                        {
+                          EList<ContextMessageContent> _content_2 = cm.getContent();
+                          for(final ContextMessageContent co_2 : _content_2) {
+                            {
+                              EList<MatchMessage> _match_2 = co_2.getMatch();
+                              for(final MatchMessage ma_2 : _match_2) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_strict = this.compile_match_strict(ma_2);
+                                _builder.append(_compile_match_strict, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_2 = co_2.getChange();
+                              for(final ChangeMessage ca_2 : _change_2) {
+                                {
+                                  EList<AppearMessage> _appear_2 = ca_2.getAppear();
+                                  for(final AppearMessage a_2 : _appear_2) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_strict = this.compile_appear_strict(a_2);
+                                    _builder.append(_compile_appear_strict, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_2 = ca_2.getDisappear();
+                                  for(final DisappearMessage d_2 : _disappear_2) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_strict = this.compile_disappear_strict(d_2);
+                                    _builder.append(_compile_disappear_strict, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_2 = ca_2.getChangeto();
+                                  for(final ChangeToMessage t_4 : _changeto_2) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changeto_strict = this.compile_changeto_strict(t_4);
+                                    _builder.append(_compile_changeto_strict, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToRelation> _changetor_2 = ca_2.getChangetor();
+                                  for(final ChangeToRelation t_5 : _changetor_2) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changetor_strict = this.compile_changetor_strict(t_5);
+                                    _builder.append(_compile_changetor_strict, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                _builder.append("\t\t");
+                _builder.newLine();
+                {
+                  boolean _isStrict_1 = cm.isStrict();
+                  boolean _not = (!_isStrict_1);
+                  if (_not) {
+                    {
+                      boolean _isRequired_1 = cm.isRequired();
+                      if (_isRequired_1) {
+                        {
+                          EList<ContextMessageContent> _content_3 = cm.getContent();
+                          for(final ContextMessageContent co_3 : _content_3) {
+                            {
+                              EList<MatchMessage> _match_3 = co_3.getMatch();
+                              for(final MatchMessage ma_3 : _match_3) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_required = this.compile_match_required(ma_3);
+                                _builder.append(_compile_match_required, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_3 = co_3.getChange();
+                              for(final ChangeMessage ca_3 : _change_3) {
+                                {
+                                  EList<AppearMessage> _appear_3 = ca_3.getAppear();
+                                  for(final AppearMessage a_3 : _appear_3) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_required = this.compile_appear_required(a_3);
+                                    _builder.append(_compile_appear_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_3 = ca_3.getDisappear();
+                                  for(final DisappearMessage d_3 : _disappear_3) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_required = this.compile_disappear_required(d_3);
+                                    _builder.append(_compile_disappear_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_3 = ca_3.getChangeto();
+                                  for(final ChangeToMessage t_6 : _changeto_3) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changeto_required = this.compile_changeto_required(t_6);
+                                    _builder.append(_compile_changeto_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToRelation> _changetor_3 = ca_3.getChangetor();
+                                  for(final ChangeToRelation t_7 : _changetor_3) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changetor_required = this.compile_changetor_required(t_7);
+                                    _builder.append(_compile_changetor_required, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      boolean _isFail_1 = cm.isFail();
+                      if (_isFail_1) {
+                        {
+                          EList<ContextMessageContent> _content_4 = cm.getContent();
+                          for(final ContextMessageContent co_4 : _content_4) {
+                            {
+                              EList<MatchMessage> _match_4 = co_4.getMatch();
+                              for(final MatchMessage ma_4 : _match_4) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_fail = this.compile_match_fail(ma_4);
+                                _builder.append(_compile_match_fail, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_4 = co_4.getChange();
+                              for(final ChangeMessage ca_4 : _change_4) {
+                                {
+                                  EList<AppearMessage> _appear_4 = ca_4.getAppear();
+                                  for(final AppearMessage a_4 : _appear_4) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_fail = this.compile_appear_fail(a_4);
+                                    _builder.append(_compile_appear_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_4 = ca_4.getDisappear();
+                                  for(final DisappearMessage d_4 : _disappear_4) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_fail = this.compile_disappear_fail(d_4);
+                                    _builder.append(_compile_disappear_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_4 = ca_4.getChangeto();
+                                  for(final ChangeToMessage t_8 : _changeto_4) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changeto_fail = this.compile_changeto_fail(t_8);
+                                    _builder.append(_compile_changeto_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToRelation> _changetor_4 = ca_4.getChangetor();
+                                  for(final ChangeToRelation t_9 : _changetor_4) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changetor_fail = this.compile_changetor_fail(t_9);
+                                    _builder.append(_compile_changetor_fail, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                    {
+                      if (((!cm.isRequired()) && (!cm.isFail()))) {
+                        {
+                          EList<ContextMessageContent> _content_5 = cm.getContent();
+                          for(final ContextMessageContent co_5 : _content_5) {
+                            {
+                              EList<MatchMessage> _match_5 = co_5.getMatch();
+                              for(final MatchMessage ma_5 : _match_5) {
+                                _builder.append("\t\t");
+                                CharSequence _compile_match_msg = this.compile_match_msg(ma_5);
+                                _builder.append(_compile_match_msg, "\t\t");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("a.collapse(b);\t\t\t\t\t\t\t");
+                                _builder.newLine();
+                              }
+                            }
+                            {
+                              EList<ChangeMessage> _change_5 = co_5.getChange();
+                              for(final ChangeMessage ca_5 : _change_5) {
+                                {
+                                  EList<AppearMessage> _appear_5 = ca_5.getAppear();
+                                  for(final AppearMessage a_5 : _appear_5) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_appear_msg = this.compile_appear_msg(a_5);
+                                    _builder.append(_compile_appear_msg, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<DisappearMessage> _disappear_5 = ca_5.getDisappear();
+                                  for(final DisappearMessage d_5 : _disappear_5) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_disappear_msg = this.compile_disappear_msg(d_5);
+                                    _builder.append(_compile_disappear_msg, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToMessage> _changeto_5 = ca_5.getChangeto();
+                                  for(final ChangeToMessage t_10 : _changeto_5) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changeto_msg = this.compile_changeto_msg(t_10);
+                                    _builder.append(_compile_changeto_msg, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                                {
+                                  EList<ChangeToRelation> _changetor_5 = ca_5.getChangetor();
+                                  for(final ChangeToRelation t_11 : _changetor_5) {
+                                    _builder.append("\t\t");
+                                    CharSequence _compile_changetor_msg = this.compile_changetor_msg(t_11);
+                                    _builder.append(_compile_changetor_msg, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                    _builder.append("\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            {
               EList<Loop> _loop = sc.getLoop();
               for(final Loop l : _loop) {
                 _builder.append("\t\t");
@@ -843,7 +3949,7 @@ public class MyDslGenerator extends AbstractGenerator {
                           EList<Message> _messages_1 = m.getC().getMessages();
                           for(final Message msg : _messages_1) {
                             _builder.append("\t\t");
-                            _builder.append("+ \"!\" + \"");
+                            _builder.append("+ \"!(\" + \"");
                             String _name_2 = msg.getSender().getName();
                             _builder.append(_name_2, "\t\t");
                             _builder.append("\" + \".\" + \"");
@@ -852,7 +3958,7 @@ public class MyDslGenerator extends AbstractGenerator {
                             _builder.append("\" + \".\" + \"");
                             String _name_4 = msg.getReceiver().getName();
                             _builder.append(_name_4, "\t\t");
-                            _builder.append("\" + \" & \"");
+                            _builder.append(")\" + \" & \"");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t\t\t\t\t\t\t\t");
                           }
@@ -865,12 +3971,12 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isStrict = m.isStrict();
-                      boolean _not = (!_isStrict);
-                      if (_not) {
+                      boolean _isStrict_2 = m.isStrict();
+                      boolean _not_1 = (!_isStrict_2);
+                      if (_not_1) {
                         {
-                          boolean _isRequired = m.isRequired();
-                          if (_isRequired) {
+                          boolean _isRequired_2 = m.isRequired();
+                          if (_isRequired_2) {
                             {
                               boolean _isFuture = m.isFuture();
                               if (_isFuture) {
@@ -909,8 +4015,8 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isFail = m.isFail();
-                          if (_isFail) {
+                          boolean _isFail_2 = m.isFail();
+                          if (_isFail_2) {
                             {
                               boolean _isPast_1 = m.isPast();
                               if (_isPast_1) {
@@ -980,11 +4086,11 @@ public class MyDslGenerator extends AbstractGenerator {
                     _builder.append("\t\t");
                     _builder.newLine();
                     {
-                      boolean _isStrict_1 = m.isStrict();
-                      if (_isStrict_1) {
+                      boolean _isStrict_3 = m.isStrict();
+                      if (_isStrict_3) {
                         {
-                          boolean _isRequired_1 = m.isRequired();
-                          if (_isRequired_1) {
+                          boolean _isRequired_3 = m.isRequired();
+                          if (_isRequired_3) {
                             {
                               boolean _isFuture_2 = m.isFuture();
                               if (_isFuture_2) {
@@ -1011,8 +4117,8 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isFail_1 = m.isFail();
-                          if (_isFail_1) {
+                          boolean _isFail_3 = m.isFail();
+                          if (_isFail_3) {
                             {
                               if (((!m.isPast()) && (!m.isFuture()))) {
                                 _builder.append("\t\t");
@@ -1093,7 +4199,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               EList<Message> _messages_3 = m_1.getC().getMessages();
                               for(final Message msg_1 : _messages_3) {
                                 _builder.append("\t\t");
-                                _builder.append("+ \"!\" + \"");
+                                _builder.append("+ \"!(\" + \"");
                                 String _name_5 = msg_1.getSender().getName();
                                 _builder.append(_name_5, "\t\t");
                                 _builder.append("\" + \".\" + \"");
@@ -1102,7 +4208,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\" + \".\" + \"");
                                 String _name_7 = msg_1.getReceiver().getName();
                                 _builder.append(_name_7, "\t\t");
-                                _builder.append("\" + \" & \"");
+                                _builder.append(")\" + \" & \"");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t\t\t\t\t\t\t\t\t");
                               }
@@ -1115,12 +4221,12 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isStrict_2 = m_1.isStrict();
-                          boolean _not_1 = (!_isStrict_2);
-                          if (_not_1) {
+                          boolean _isStrict_4 = m_1.isStrict();
+                          boolean _not_2 = (!_isStrict_4);
+                          if (_not_2) {
                             {
-                              boolean _isRequired_2 = m_1.isRequired();
-                              if (_isRequired_2) {
+                              boolean _isRequired_4 = m_1.isRequired();
+                              if (_isRequired_4) {
                                 {
                                   boolean _isFuture_4 = m_1.isFuture();
                                   if (_isFuture_4) {
@@ -1159,8 +4265,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_2 = m_1.isFail();
-                              if (_isFail_2) {
+                              boolean _isFail_4 = m_1.isFail();
+                              if (_isFail_4) {
                                 {
                                   boolean _isPast_4 = m_1.isPast();
                                   if (_isPast_4) {
@@ -1230,11 +4336,11 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\t\t");
                         _builder.newLine();
                         {
-                          boolean _isStrict_3 = m_1.isStrict();
-                          if (_isStrict_3) {
+                          boolean _isStrict_5 = m_1.isStrict();
+                          if (_isStrict_5) {
                             {
-                              boolean _isRequired_3 = m_1.isRequired();
-                              if (_isRequired_3) {
+                              boolean _isRequired_5 = m_1.isRequired();
+                              if (_isRequired_5) {
                                 {
                                   boolean _isFuture_6 = m_1.isFuture();
                                   if (_isFuture_6) {
@@ -1261,8 +4367,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_3 = m_1.isFail();
-                              if (_isFail_3) {
+                              boolean _isFail_5 = m_1.isFail();
+                              if (_isFail_5) {
                                 {
                                   if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
@@ -1319,12 +4425,12 @@ public class MyDslGenerator extends AbstractGenerator {
             }
             {
               EList<Alt> _alt = sc.getAlt();
-              for(final Alt a : _alt) {
+              for(final Alt a_6 : _alt) {
                 _builder.append("\t\t");
                 _builder.append("altauto = new ArrayList<Automaton>();");
                 _builder.newLine();
                 {
-                  EList<Expression> _expressions = a.getExpressions();
+                  EList<Expression> _expressions = a_6.getExpressions();
                   for(final Expression e : _expressions) {
                     _builder.append("\t\t");
                     _builder.append("\t");
@@ -1345,7 +4451,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               for(final Message msg_2 : _messages_5) {
                                 _builder.append("\t\t");
                                 _builder.append("\t");
-                                _builder.append("+ \"!\" + \"");
+                                _builder.append("+ \"!(\" + \"");
                                 String _name_8 = msg_2.getSender().getName();
                                 _builder.append(_name_8, "\t\t\t");
                                 _builder.append("\" + \".\" + \"");
@@ -1354,7 +4460,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\" + \".\" + \"");
                                 String _name_10 = msg_2.getReceiver().getName();
                                 _builder.append(_name_10, "\t\t\t");
-                                _builder.append("\" + \" & \"");
+                                _builder.append(")\" + \" & \"");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t\t\t\t\t\t\t\t\t");
                               }
@@ -1368,12 +4474,12 @@ public class MyDslGenerator extends AbstractGenerator {
                           }
                         }
                         {
-                          boolean _isStrict_4 = m_2.isStrict();
-                          boolean _not_2 = (!_isStrict_4);
-                          if (_not_2) {
+                          boolean _isStrict_6 = m_2.isStrict();
+                          boolean _not_3 = (!_isStrict_6);
+                          if (_not_3) {
                             {
-                              boolean _isRequired_4 = m_2.isRequired();
-                              if (_isRequired_4) {
+                              boolean _isRequired_6 = m_2.isRequired();
+                              if (_isRequired_6) {
                                 {
                                   boolean _isFuture_8 = m_2.isFuture();
                                   if (_isFuture_8) {
@@ -1418,8 +4524,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_4 = m_2.isFail();
-                              if (_isFail_4) {
+                              boolean _isFail_6 = m_2.isFail();
+                              if (_isFail_6) {
                                 {
                                   boolean _isPast_7 = m_2.isPast();
                                   if (_isPast_7) {
@@ -1500,11 +4606,11 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\t");
                         _builder.newLine();
                         {
-                          boolean _isStrict_5 = m_2.isStrict();
-                          if (_isStrict_5) {
+                          boolean _isStrict_7 = m_2.isStrict();
+                          if (_isStrict_7) {
                             {
-                              boolean _isRequired_5 = m_2.isRequired();
-                              if (_isRequired_5) {
+                              boolean _isRequired_7 = m_2.isRequired();
+                              if (_isRequired_7) {
                                 {
                                   boolean _isFuture_10 = m_2.isFuture();
                                   if (_isFuture_10) {
@@ -1535,8 +4641,8 @@ public class MyDslGenerator extends AbstractGenerator {
                               }
                             }
                             {
-                              boolean _isFail_5 = m_2.isFail();
-                              if (_isFail_5) {
+                              boolean _isFail_7 = m_2.isFail();
+                              if (_isFail_7) {
                                 {
                                   if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
@@ -1612,7 +4718,7 @@ public class MyDslGenerator extends AbstractGenerator {
                       EList<Message> _messages_6 = m_3.getC().getMessages();
                       for(final Message msg_3 : _messages_6) {
                         _builder.append("\t\t");
-                        _builder.append("+ \"!\" + \"");
+                        _builder.append("+ \"!(\" + \"");
                         String _name_11 = msg_3.getSender().getName();
                         _builder.append(_name_11, "\t\t");
                         _builder.append("\" + \".\" + \"");
@@ -1621,7 +4727,7 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\" + \".\" + \"");
                         String _name_13 = msg_3.getReceiver().getName();
                         _builder.append(_name_13, "\t\t");
-                        _builder.append("\" + \" & \"");
+                        _builder.append(")\" + \" & \"");
                         _builder.newLineIfNotEmpty();
                         _builder.append("\t\t\t\t\t\t\t\t");
                       }
@@ -1634,12 +4740,12 @@ public class MyDslGenerator extends AbstractGenerator {
                   }
                 }
                 {
-                  boolean _isStrict_6 = m_3.isStrict();
-                  boolean _not_3 = (!_isStrict_6);
-                  if (_not_3) {
+                  boolean _isStrict_8 = m_3.isStrict();
+                  boolean _not_4 = (!_isStrict_8);
+                  if (_not_4) {
                     {
-                      boolean _isRequired_6 = m_3.isRequired();
-                      if (_isRequired_6) {
+                      boolean _isRequired_8 = m_3.isRequired();
+                      if (_isRequired_8) {
                         {
                           boolean _isFuture_12 = m_3.isFuture();
                           if (_isFuture_12) {
@@ -1678,8 +4784,8 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isFail_6 = m_3.isFail();
-                      if (_isFail_6) {
+                      boolean _isFail_8 = m_3.isFail();
+                      if (_isFail_8) {
                         {
                           boolean _isPast_10 = m_3.isPast();
                           if (_isPast_10) {
@@ -1749,11 +4855,11 @@ public class MyDslGenerator extends AbstractGenerator {
                 _builder.append("\t\t");
                 _builder.newLine();
                 {
-                  boolean _isStrict_7 = m_3.isStrict();
-                  if (_isStrict_7) {
+                  boolean _isStrict_9 = m_3.isStrict();
+                  if (_isStrict_9) {
                     {
-                      boolean _isRequired_7 = m_3.isRequired();
-                      if (_isRequired_7) {
+                      boolean _isRequired_9 = m_3.isRequired();
+                      if (_isRequired_9) {
                         {
                           boolean _isFuture_14 = m_3.isFuture();
                           if (_isFuture_14) {
@@ -1780,8 +4886,8 @@ public class MyDslGenerator extends AbstractGenerator {
                       }
                     }
                     {
-                      boolean _isFail_7 = m_3.isFail();
-                      if (_isFail_7) {
+                      boolean _isFail_9 = m_3.isFail();
+                      if (_isFail_9) {
                         {
                           if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
@@ -2214,7 +5320,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("for(Automaton a : specification.automatas){");
     _builder.newLine();
     _builder.append("\t\t\t");
-    _builder.append("writer.println(\"never{ /*\" + a.getId() + \"*/\");");
+    _builder.append("writer.println(\"never{ /*\" + a.getId()+ \"Monitor\" + \"*/\");");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("for(State s : a.getStates()){");
@@ -2226,7 +5332,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"T0_init:\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -2268,7 +5374,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}else if(s.getType().equals(StateType.NORMAL)){");
@@ -2277,7 +5383,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"T0_\" + s.getId() + \":\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -2319,7 +5425,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}else if(s.getType().equals(StateType.ACCEPT_ALL) && !acceptState){");
@@ -2340,7 +5446,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"T0_\" + s.getId() + \":\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -2382,7 +5488,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}else if(s.getType().equals(StateType.ACCEPT)){");
@@ -2391,7 +5497,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("writer.println(\"accept_\" + s.getId() + \":\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" do\");");
+    _builder.append("writer.println(\" if\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("for(Transition t : a.findSender(s)){");
@@ -2433,7 +5539,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("writer.println(\" od;\");");
+    _builder.append("writer.println(\" fi;\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}");
@@ -2474,7 +5580,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -2483,7 +5589,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, actualState));");
+    _builder.append("\" + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -2535,7 +5641,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t\t\t\t");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -2544,7 +5650,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\" + \" & \" + str, actualState, actualState));");
+    _builder.append("\" + \" & \" + str + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
     _builder.newLine();
@@ -2592,7 +5698,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -2601,7 +5707,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, actualState));");
+    _builder.append("\" + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
     _builder.newLine();
@@ -2617,6 +5723,233 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_5 = m.getReceiver().getName();
     _builder.append(_name_5);
     _builder.append("\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_required(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"match(\" + \"");
+    String _name = ma.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \", \" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \"))\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name_2 = ma.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \", \" + \"");
+    String _name_3 = ma.getContent().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_required(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"appear(\" + \"");
+    String _name = am.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \"))\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name_2 = am.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \".\" + \"");
+    String _name_3 = am.getEntity().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_required(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\"+ \"disappear(\" + \"");
+    String _name = dm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \"))\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name_2 = dm.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \".\" + \"");
+    String _name_3 = dm.getEntity().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changeto_required(final ChangeToMessage cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \"))\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name_3 = cm.getContext().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \".\" + \"");
+    String _name_4 = cm.getEntity().getName();
+    _builder.append(_name_4);
+    _builder.append("\" + \".\" + \"");
+    String _name_5 = cm.getAttribute().getName();
+    _builder.append(_name_5);
+    _builder.append(", ");
+    String _changevalue_1 = cm.getChangevalue();
+    _builder.append(_changevalue_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changetor_required(final ChangeToRelation cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto3\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getRelation().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \"))\", actualState, actualState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name_3 = cm.getContext().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \".\" + \"");
+    String _name_4 = cm.getRelation().getName();
+    _builder.append(_name_4);
+    _builder.append("\" + \".\" + \"");
+    String _name_5 = cm.getAttribute().getName();
+    _builder.append(_name_5);
+    _builder.append(", ");
+    String _changevalue_1 = cm.getChangevalue();
+    _builder.append(_changevalue_1);
+    _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
     _builder.newLine();
@@ -2706,6 +6039,201 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
     _builder.append("\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_fail(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name = am.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_fail(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name = dm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_fail(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name = ma.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \", \" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changeto_fail(final ChangeToMessage cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changetor_fail(final ChangeToRelation cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto5\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getRelation().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
     _builder.newLine();
@@ -2830,6 +6358,191 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
+  public CharSequence compile_match_msg(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name = ma.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \", \" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_msg(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name = am.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_msg(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name = dm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changeto_msg(final ChangeToMessage cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changetor_msg(final ChangeToRelation cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"match1\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getRelation().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\" , actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
   public CharSequence compile_strict_required_future(final Message m) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"auto8\");");
@@ -2856,7 +6569,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -2865,7 +6578,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, acceptState_new));");
+    _builder.append("\" + \")\", actualState, acceptState_new));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState_new, acceptState_new));");
     _builder.newLine();
@@ -2930,7 +6643,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append(_name_2);
     _builder.append("\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
@@ -2939,7 +6652,274 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();
     _builder.append(_name_5);
-    _builder.append("\" , actualState, acceptState));");
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_strict_required(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name = ma.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \", \" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"match(\" + \"");
+    String _name_2 = ma.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \", \" + \"");
+    String _name_3 = ma.getContent().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \"))\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_strict_required(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name = am.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"appear(\" + \"");
+    String _name_2 = am.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \".\" + \"");
+    String _name_3 = am.getEntity().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \"))\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_strict_required(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name = dm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"disappear(\" + \"");
+    String _name_2 = dm.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \".\" + \"");
+    String _name_3 = dm.getEntity().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \"))\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changeto_strict_required(final ChangeToMessage cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
+    String _name_3 = cm.getContext().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \".\" + \"");
+    String _name_4 = cm.getEntity().getName();
+    _builder.append(_name_4);
+    _builder.append("\" + \".\" + \"");
+    String _name_5 = cm.getAttribute().getName();
+    _builder.append(_name_5);
+    _builder.append(", ");
+    String _changevalue_1 = cm.getChangevalue();
+    _builder.append(_changevalue_1);
+    _builder.append("\" + \"))\" , actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changetor_strict_required(final ChangeToRelation cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto9\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getRelation().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\" , actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
+    String _name_3 = cm.getContext().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \".\" + \"");
+    String _name_4 = cm.getRelation().getName();
+    _builder.append(_name_4);
+    _builder.append("\" + \".\" + \"");
+    String _name_5 = cm.getAttribute().getName();
+    _builder.append(_name_5);
+    _builder.append(", ");
+    String _changevalue_1 = cm.getChangevalue();
+    _builder.append(_changevalue_1);
+    _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -2974,7 +6954,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("counter++;");
     _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!\" + \"");
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"");
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
@@ -2983,7 +6963,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
-    _builder.append("\", actualState, finalState));");
+    _builder.append("\" + \")\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"");
     String _name_3 = m.getSender().getName();
@@ -2995,6 +6975,273 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_5 = m.getReceiver().getName();
     _builder.append(_name_5);
     _builder.append("\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_strict_fail(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"match(\" + \"");
+    String _name = ma.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \", \" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \"))\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name_2 = ma.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \", \" + \"");
+    String _name_3 = ma.getContent().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_strict_fail(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"appear(\" + \"");
+    String _name = am.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \"))\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"appear(\" + \"");
+    String _name_2 = am.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \".\" + \"");
+    String _name_3 = am.getEntity().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_strict_fail(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"disappear(\" + \"");
+    String _name = dm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \"))\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
+    String _name_2 = dm.getContext().getName();
+    _builder.append(_name_2);
+    _builder.append("\" + \".\" + \"");
+    String _name_3 = dm.getEntity().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changeto_strict_fail(final ChangeToMessage cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \"))\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name_3 = cm.getContext().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \".\" + \"");
+    String _name_4 = cm.getEntity().getName();
+    _builder.append(_name_4);
+    _builder.append("\" + \".\" + \"");
+    String _name_5 = cm.getAttribute().getName();
+    _builder.append(_name_5);
+    _builder.append(", ");
+    String _changevalue_1 = cm.getChangevalue();
+    _builder.append(_changevalue_1);
+    _builder.append("\" + \")\", actualState, acceptState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
+    _builder.newLine();
+    _builder.append("b.addState(finalState);");
+    _builder.newLine();
+    _builder.append("b.addState(acceptState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(finalState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changetor_strict_fail(final ChangeToRelation cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto10\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"!(\" + \"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getRelation().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \"))\", actualState, finalState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name_3 = cm.getContext().getName();
+    _builder.append(_name_3);
+    _builder.append("\" + \".\" + \"");
+    String _name_4 = cm.getRelation().getName();
+    _builder.append(_name_4);
+    _builder.append("\" + \".\" + \"");
+    String _name_5 = cm.getAttribute().getName();
+    _builder.append(_name_5);
+    _builder.append(", ");
+    String _changevalue_1 = cm.getChangevalue();
+    _builder.append(_changevalue_1);
+    _builder.append("\" + \")\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
@@ -3073,6 +7320,181 @@ public class MyDslGenerator extends AbstractGenerator {
     String _name_2 = m.getReceiver().getName();
     _builder.append(_name_2);
     _builder.append("\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_match_strict(final MatchMessage ma) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"match(\" + \"");
+    String _name = ma.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \", \" + \"");
+    String _name_1 = ma.getContent().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_appear_strict(final AppearMessage am) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"appear\" + \"(\" + \"");
+    String _name = am.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = am.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_disappear_strict(final DisappearMessage dm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"disappear\" + \"(\" + \"");
+    String _name = dm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = dm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changeto_strict(final ChangeToMessage cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getEntity().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\", actualState, newState));");
+    _builder.newLineIfNotEmpty();
+    _builder.append("b.addState(newState);");
+    _builder.newLine();
+    _builder.append("b.setFinale(newState);");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile_changetor_strict(final ChangeToRelation cm) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("b = new Automaton(\"auto12\");");
+    _builder.newLine();
+    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addState(actualState);");
+    _builder.newLine();
+    _builder.append("b.setInitial(actualState);");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
+    _builder.newLine();
+    _builder.append("counter++;");
+    _builder.newLine();
+    _builder.append("b.addTransition(new Transition(\"changeTo(\" + \"");
+    String _name = cm.getContext().getName();
+    _builder.append(_name);
+    _builder.append("\" + \".\" + \"");
+    String _name_1 = cm.getRelation().getName();
+    _builder.append(_name_1);
+    _builder.append("\" + \".\" + \"");
+    String _name_2 = cm.getAttribute().getName();
+    _builder.append(_name_2);
+    _builder.append(", ");
+    String _changevalue = cm.getChangevalue();
+    _builder.append(_changevalue);
+    _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
     _builder.newLine();

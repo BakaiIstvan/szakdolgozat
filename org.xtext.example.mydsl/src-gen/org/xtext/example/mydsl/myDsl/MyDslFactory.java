@@ -33,6 +33,87 @@ public interface MyDslFactory extends EFactory
   Domain createDomain();
 
   /**
+   * Returns a new object of class '<em>Include</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Include</em>'.
+   * @generated
+   */
+  Include createInclude();
+
+  /**
+   * Returns a new object of class '<em>Context Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Model</em>'.
+   * @generated
+   */
+  ContextModel createContextModel();
+
+  /**
+   * Returns a new object of class '<em>Context Fragment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Fragment</em>'.
+   * @generated
+   */
+  ContextFragment createContextFragment();
+
+  /**
+   * Returns a new object of class '<em>Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute</em>'.
+   * @generated
+   */
+  Attribute createAttribute();
+
+  /**
+   * Returns a new object of class '<em>Fragment Attribute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fragment Attribute</em>'.
+   * @generated
+   */
+  FragmentAttribute createFragmentAttribute();
+
+  /**
+   * Returns a new object of class '<em>Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Entity</em>'.
+   * @generated
+   */
+  Entity createEntity();
+
+  /**
+   * Returns a new object of class '<em>FEntity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>FEntity</em>'.
+   * @generated
+   */
+  FEntity createFEntity();
+
+  /**
+   * Returns a new object of class '<em>Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relation</em>'.
+   * @generated
+   */
+  Relation createRelation();
+
+  /**
+   * Returns a new object of class '<em>FRelation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>FRelation</em>'.
+   * @generated
+   */
+  FRelation createFRelation();
+
+  /**
    * Returns a new object of class '<em>Scenario</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -58,6 +139,78 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Message createMessage();
+
+  /**
+   * Returns a new object of class '<em>Context Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Message</em>'.
+   * @generated
+   */
+  ContextMessage createContextMessage();
+
+  /**
+   * Returns a new object of class '<em>Context Message Content</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Message Content</em>'.
+   * @generated
+   */
+  ContextMessageContent createContextMessageContent();
+
+  /**
+   * Returns a new object of class '<em>Match Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Match Message</em>'.
+   * @generated
+   */
+  MatchMessage createMatchMessage();
+
+  /**
+   * Returns a new object of class '<em>Change Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Change Message</em>'.
+   * @generated
+   */
+  ChangeMessage createChangeMessage();
+
+  /**
+   * Returns a new object of class '<em>Appear Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Appear Message</em>'.
+   * @generated
+   */
+  AppearMessage createAppearMessage();
+
+  /**
+   * Returns a new object of class '<em>Disappear Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Disappear Message</em>'.
+   * @generated
+   */
+  DisappearMessage createDisappearMessage();
+
+  /**
+   * Returns a new object of class '<em>Change To Message</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Change To Message</em>'.
+   * @generated
+   */
+  ChangeToMessage createChangeToMessage();
+
+  /**
+   * Returns a new object of class '<em>Change To Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Change To Relation</em>'.
+   * @generated
+   */
+  ChangeToRelation createChangeToRelation();
 
   /**
    * Returns a new object of class '<em>Object Type</em>'.

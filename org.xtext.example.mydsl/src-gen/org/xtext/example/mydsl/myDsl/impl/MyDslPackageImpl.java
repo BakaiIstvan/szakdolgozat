@@ -11,16 +11,33 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.ChangeMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToMessage;
+import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.Constraint;
+import org.xtext.example.mydsl.myDsl.ContextFragment;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
+import org.xtext.example.mydsl.myDsl.ContextMessageContent;
+import org.xtext.example.mydsl.myDsl.ContextModel;
+import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.Entity;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.FEntity;
+import org.xtext.example.mydsl.myDsl.FRelation;
+import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.Loop;
+import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
@@ -44,6 +61,69 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass includeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextModelEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextFragmentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fragmentAttributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass entityEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fEntityEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass relationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fRelationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass scenarioEClass = null;
 
   /**
@@ -59,6 +139,62 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass messageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextMessageContentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass matchMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass changeMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass appearMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass disappearMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass changeToMessageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass changeToRelationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -145,7 +281,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
+   *
    * <p>This method is used to initialize {@link MyDslPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -160,7 +296,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     if (isInited) return (MyDslPackage)EPackage.Registry.INSTANCE.getEPackage(MyDslPackage.eNS_URI);
 
     // Obtain or create and register package
-    MyDslPackageImpl theMyDslPackage = (MyDslPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MyDslPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MyDslPackageImpl());
+    Object registeredMyDslPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+    MyDslPackageImpl theMyDslPackage = registeredMyDslPackage instanceof MyDslPackageImpl ? (MyDslPackageImpl)registeredMyDslPackage : new MyDslPackageImpl();
 
     isInited = true;
 
@@ -173,7 +310,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Mark meta-data to indicate it can't be changed
     theMyDslPackage.freeze();
 
-  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(MyDslPackage.eNS_URI, theMyDslPackage);
     return theMyDslPackage;
@@ -184,6 +320,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getDomain()
   {
     return domainEClass;
@@ -194,7 +331,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDomain_Name()
+  @Override
+  public EAttribute getDomain_Specification()
   {
     return (EAttribute)domainEClass.getEStructuralFeatures().get(0);
   }
@@ -204,9 +342,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Objects()
+  @Override
+  public EAttribute getDomain_Name()
   {
-    return (EReference)domainEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)domainEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -214,7 +353,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Constraints()
+  @Override
+  public EReference getDomain_Includes()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(2);
   }
@@ -224,7 +364,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Scenarios()
+  @Override
+  public EReference getDomain_Contextmodels()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(3);
   }
@@ -234,6 +375,568 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public EReference getDomain_Contextfragments()
+  {
+    return (EReference)domainEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDomain_Objects()
+  {
+    return (EReference)domainEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDomain_Constraints()
+  {
+    return (EReference)domainEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDomain_Scenarios()
+  {
+    return (EReference)domainEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getInclude()
+  {
+    return includeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getInclude_Context()
+  {
+    return (EReference)includeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getInclude_ImportURI()
+  {
+    return (EAttribute)includeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getContextModel()
+  {
+    return contextModelEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getContextModel_Name()
+  {
+    return (EAttribute)contextModelEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextModel_Entities()
+  {
+    return (EReference)contextModelEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextModel_Relations()
+  {
+    return (EReference)contextModelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getContextFragment()
+  {
+    return contextFragmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getContextFragment_Name()
+  {
+    return (EAttribute)contextFragmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextFragment_Entities()
+  {
+    return (EReference)contextFragmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextFragment_Relations()
+  {
+    return (EReference)contextFragmentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAttribute()
+  {
+    return attributeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_Int()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_Float()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_String()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_Boolean()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_Name()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAttribute_Value()
+  {
+    return (EAttribute)attributeEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFragmentAttribute()
+  {
+    return fragmentAttributeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Int()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Float()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_String()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Boolean()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Name()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Greater()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Smaller()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Greaterequals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Smallerequals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Equals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Notequals()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(10);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFragmentAttribute_Value()
+  {
+    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(11);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEntity()
+  {
+    return entityEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEntity_Name()
+  {
+    return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEntity_Attributes()
+  {
+    return (EReference)entityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFEntity()
+  {
+    return fEntityEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFEntity_Name()
+  {
+    return (EAttribute)fEntityEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFEntity_Attributes()
+  {
+    return (EReference)fEntityEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRelation()
+  {
+    return relationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRelation_Name()
+  {
+    return (EAttribute)relationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelation_Sender()
+  {
+    return (EReference)relationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelation_Receiver()
+  {
+    return (EReference)relationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelation_Attributes()
+  {
+    return (EReference)relationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFRelation()
+  {
+    return fRelationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFRelation_Name()
+  {
+    return (EAttribute)fRelationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFRelation_Sender()
+  {
+    return (EReference)fRelationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFRelation_Receiver()
+  {
+    return (EReference)fRelationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFRelation_Attributes()
+  {
+    return (EReference)fRelationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getScenario()
   {
     return scenarioEClass;
@@ -244,6 +947,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getScenario_Name()
   {
     return (EAttribute)scenarioEClass.getEStructuralFeatures().get(0);
@@ -254,6 +958,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getScenario_Scenariocontents()
   {
     return (EReference)scenarioEClass.getEStructuralFeatures().get(1);
@@ -264,6 +969,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getScenarioContent()
   {
     return scenarioContentEClass;
@@ -274,6 +980,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getScenarioContent_Alt()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(0);
@@ -284,6 +991,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getScenarioContent_Message()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(1);
@@ -294,6 +1002,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getScenarioContent_Par()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(2);
@@ -304,6 +1013,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getScenarioContent_Loop()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(3);
@@ -314,6 +1024,18 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public EReference getScenarioContent_Contextmessage()
+  {
+    return (EReference)scenarioContentEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getMessage()
   {
     return messageEClass;
@@ -324,6 +1046,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Name()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
@@ -334,6 +1057,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Required()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
@@ -344,6 +1068,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Fail()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(2);
@@ -354,6 +1079,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Strict()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(3);
@@ -364,6 +1090,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getMessage_Sender()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(4);
@@ -374,6 +1101,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getMessage_Receiver()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(5);
@@ -384,6 +1112,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Past()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(6);
@@ -394,6 +1123,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Future()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(7);
@@ -404,6 +1134,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getMessage_Constraint()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(8);
@@ -414,6 +1145,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getMessage_C()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(9);
@@ -424,6 +1156,359 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
+  public EClass getContextMessage()
+  {
+    return contextMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextMessage_Content()
+  {
+    return (EReference)contextMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getContextMessage_Required()
+  {
+    return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getContextMessage_Fail()
+  {
+    return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getContextMessage_Strict()
+  {
+    return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getContextMessageContent()
+  {
+    return contextMessageContentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextMessageContent_Match()
+  {
+    return (EReference)contextMessageContentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getContextMessageContent_Change()
+  {
+    return (EReference)contextMessageContentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getMatchMessage()
+  {
+    return matchMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMatchMessage_Context()
+  {
+    return (EReference)matchMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getMatchMessage_Content()
+  {
+    return (EReference)matchMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getChangeMessage()
+  {
+    return changeMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeMessage_Disappear()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeMessage_Appear()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeMessage_Changeto()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeMessage_Changetor()
+  {
+    return (EReference)changeMessageEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAppearMessage()
+  {
+    return appearMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAppearMessage_Context()
+  {
+    return (EReference)appearMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAppearMessage_Entity()
+  {
+    return (EReference)appearMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDisappearMessage()
+  {
+    return disappearMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDisappearMessage_Context()
+  {
+    return (EReference)disappearMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDisappearMessage_Entity()
+  {
+    return (EReference)disappearMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getChangeToMessage()
+  {
+    return changeToMessageEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeToMessage_Context()
+  {
+    return (EReference)changeToMessageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeToMessage_Entity()
+  {
+    return (EReference)changeToMessageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeToMessage_Attribute()
+  {
+    return (EReference)changeToMessageEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getChangeToMessage_Changevalue()
+  {
+    return (EAttribute)changeToMessageEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getChangeToRelation()
+  {
+    return changeToRelationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeToRelation_Context()
+  {
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeToRelation_Relation()
+  {
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getChangeToRelation_Attribute()
+  {
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getChangeToRelation_Changevalue()
+  {
+    return (EAttribute)changeToRelationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getObjectType()
   {
     return objectTypeEClass;
@@ -434,6 +1519,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getObjectType_Name()
   {
     return (EAttribute)objectTypeEClass.getEStructuralFeatures().get(0);
@@ -444,6 +1530,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getObject()
   {
     return objectEClass;
@@ -454,6 +1541,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getObject_Object()
   {
     return (EReference)objectEClass.getEStructuralFeatures().get(0);
@@ -464,6 +1552,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getObject_Name()
   {
     return (EAttribute)objectEClass.getEStructuralFeatures().get(1);
@@ -474,6 +1563,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getConstraint()
   {
     return constraintEClass;
@@ -484,6 +1574,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getConstraint_Name()
   {
     return (EAttribute)constraintEClass.getEStructuralFeatures().get(0);
@@ -494,6 +1585,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getConstraint_Messages()
   {
     return (EReference)constraintEClass.getEStructuralFeatures().get(1);
@@ -504,6 +1596,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getAlt()
   {
     return altEClass;
@@ -514,6 +1607,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getAlt_Expressions()
   {
     return (EReference)altEClass.getEStructuralFeatures().get(0);
@@ -524,6 +1618,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getExpression()
   {
     return expressionEClass;
@@ -534,6 +1629,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getExpression_Messages()
   {
     return (EReference)expressionEClass.getEStructuralFeatures().get(0);
@@ -544,6 +1640,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getPar()
   {
     return parEClass;
@@ -554,6 +1651,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getPar_Parexpression()
   {
     return (EReference)parEClass.getEStructuralFeatures().get(0);
@@ -564,6 +1662,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getParExpression()
   {
     return parExpressionEClass;
@@ -574,6 +1673,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getParExpression_Name()
   {
     return (EAttribute)parExpressionEClass.getEStructuralFeatures().get(0);
@@ -584,6 +1684,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getParExpression_Messages()
   {
     return (EReference)parExpressionEClass.getEStructuralFeatures().get(1);
@@ -594,6 +1695,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EClass getLoop()
   {
     return loopEClass;
@@ -604,6 +1706,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getLoop_Min()
   {
     return (EAttribute)loopEClass.getEStructuralFeatures().get(0);
@@ -614,6 +1717,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EAttribute getLoop_Max()
   {
     return (EAttribute)loopEClass.getEStructuralFeatures().get(1);
@@ -624,6 +1728,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EReference getLoop_Messages()
   {
     return (EReference)loopEClass.getEStructuralFeatures().get(2);
@@ -634,6 +1739,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public MyDslFactory getMyDslFactory()
   {
     return (MyDslFactory)getEFactoryInstance();
@@ -660,10 +1766,70 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     // Create classes and their features
     domainEClass = createEClass(DOMAIN);
+    createEAttribute(domainEClass, DOMAIN__SPECIFICATION);
     createEAttribute(domainEClass, DOMAIN__NAME);
+    createEReference(domainEClass, DOMAIN__INCLUDES);
+    createEReference(domainEClass, DOMAIN__CONTEXTMODELS);
+    createEReference(domainEClass, DOMAIN__CONTEXTFRAGMENTS);
     createEReference(domainEClass, DOMAIN__OBJECTS);
     createEReference(domainEClass, DOMAIN__CONSTRAINTS);
     createEReference(domainEClass, DOMAIN__SCENARIOS);
+
+    includeEClass = createEClass(INCLUDE);
+    createEReference(includeEClass, INCLUDE__CONTEXT);
+    createEAttribute(includeEClass, INCLUDE__IMPORT_URI);
+
+    contextModelEClass = createEClass(CONTEXT_MODEL);
+    createEAttribute(contextModelEClass, CONTEXT_MODEL__NAME);
+    createEReference(contextModelEClass, CONTEXT_MODEL__ENTITIES);
+    createEReference(contextModelEClass, CONTEXT_MODEL__RELATIONS);
+
+    contextFragmentEClass = createEClass(CONTEXT_FRAGMENT);
+    createEAttribute(contextFragmentEClass, CONTEXT_FRAGMENT__NAME);
+    createEReference(contextFragmentEClass, CONTEXT_FRAGMENT__ENTITIES);
+    createEReference(contextFragmentEClass, CONTEXT_FRAGMENT__RELATIONS);
+
+    attributeEClass = createEClass(ATTRIBUTE);
+    createEAttribute(attributeEClass, ATTRIBUTE__INT);
+    createEAttribute(attributeEClass, ATTRIBUTE__FLOAT);
+    createEAttribute(attributeEClass, ATTRIBUTE__STRING);
+    createEAttribute(attributeEClass, ATTRIBUTE__BOOLEAN);
+    createEAttribute(attributeEClass, ATTRIBUTE__NAME);
+    createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
+
+    fragmentAttributeEClass = createEClass(FRAGMENT_ATTRIBUTE);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__INT);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__FLOAT);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__STRING);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__BOOLEAN);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__NAME);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__GREATER);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__SMALLER);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__GREATEREQUALS);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__SMALLEREQUALS);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__EQUALS);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__NOTEQUALS);
+    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__VALUE);
+
+    entityEClass = createEClass(ENTITY);
+    createEAttribute(entityEClass, ENTITY__NAME);
+    createEReference(entityEClass, ENTITY__ATTRIBUTES);
+
+    fEntityEClass = createEClass(FENTITY);
+    createEAttribute(fEntityEClass, FENTITY__NAME);
+    createEReference(fEntityEClass, FENTITY__ATTRIBUTES);
+
+    relationEClass = createEClass(RELATION);
+    createEAttribute(relationEClass, RELATION__NAME);
+    createEReference(relationEClass, RELATION__SENDER);
+    createEReference(relationEClass, RELATION__RECEIVER);
+    createEReference(relationEClass, RELATION__ATTRIBUTES);
+
+    fRelationEClass = createEClass(FRELATION);
+    createEAttribute(fRelationEClass, FRELATION__NAME);
+    createEReference(fRelationEClass, FRELATION__SENDER);
+    createEReference(fRelationEClass, FRELATION__RECEIVER);
+    createEReference(fRelationEClass, FRELATION__ATTRIBUTES);
 
     scenarioEClass = createEClass(SCENARIO);
     createEAttribute(scenarioEClass, SCENARIO__NAME);
@@ -674,6 +1840,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__MESSAGE);
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__PAR);
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__LOOP);
+    createEReference(scenarioContentEClass, SCENARIO_CONTENT__CONTEXTMESSAGE);
 
     messageEClass = createEClass(MESSAGE);
     createEAttribute(messageEClass, MESSAGE__NAME);
@@ -686,6 +1853,46 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(messageEClass, MESSAGE__FUTURE);
     createEAttribute(messageEClass, MESSAGE__CONSTRAINT);
     createEReference(messageEClass, MESSAGE__C);
+
+    contextMessageEClass = createEClass(CONTEXT_MESSAGE);
+    createEReference(contextMessageEClass, CONTEXT_MESSAGE__CONTENT);
+    createEAttribute(contextMessageEClass, CONTEXT_MESSAGE__REQUIRED);
+    createEAttribute(contextMessageEClass, CONTEXT_MESSAGE__FAIL);
+    createEAttribute(contextMessageEClass, CONTEXT_MESSAGE__STRICT);
+
+    contextMessageContentEClass = createEClass(CONTEXT_MESSAGE_CONTENT);
+    createEReference(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__MATCH);
+    createEReference(contextMessageContentEClass, CONTEXT_MESSAGE_CONTENT__CHANGE);
+
+    matchMessageEClass = createEClass(MATCH_MESSAGE);
+    createEReference(matchMessageEClass, MATCH_MESSAGE__CONTEXT);
+    createEReference(matchMessageEClass, MATCH_MESSAGE__CONTENT);
+
+    changeMessageEClass = createEClass(CHANGE_MESSAGE);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__DISAPPEAR);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__APPEAR);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__CHANGETO);
+    createEReference(changeMessageEClass, CHANGE_MESSAGE__CHANGETOR);
+
+    appearMessageEClass = createEClass(APPEAR_MESSAGE);
+    createEReference(appearMessageEClass, APPEAR_MESSAGE__CONTEXT);
+    createEReference(appearMessageEClass, APPEAR_MESSAGE__ENTITY);
+
+    disappearMessageEClass = createEClass(DISAPPEAR_MESSAGE);
+    createEReference(disappearMessageEClass, DISAPPEAR_MESSAGE__CONTEXT);
+    createEReference(disappearMessageEClass, DISAPPEAR_MESSAGE__ENTITY);
+
+    changeToMessageEClass = createEClass(CHANGE_TO_MESSAGE);
+    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__CONTEXT);
+    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ENTITY);
+    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ATTRIBUTE);
+    createEAttribute(changeToMessageEClass, CHANGE_TO_MESSAGE__CHANGEVALUE);
+
+    changeToRelationEClass = createEClass(CHANGE_TO_RELATION);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__CONTEXT);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__RELATION);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__ATTRIBUTE);
+    createEAttribute(changeToRelationEClass, CHANGE_TO_RELATION__CHANGEVALUE);
 
     objectTypeEClass = createEClass(OBJECT_TYPE);
     createEAttribute(objectTypeEClass, OBJECT_TYPE__NAME);
@@ -749,10 +1956,70 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDomain_Specification(), ecorePackage.getEString(), "specification", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDomain_Name(), ecorePackage.getEString(), "name", null, 0, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Includes(), this.getInclude(), null, "includes", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Contextmodels(), this.getContextModel(), null, "contextmodels", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Contextfragments(), this.getContextFragment(), null, "contextfragments", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Objects(), this.getObject(), null, "objects", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Scenarios(), this.getScenario(), null, "scenarios", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(includeEClass, Include.class, "Include", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInclude_Context(), this.getContextModel(), null, "context", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInclude_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Include.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(contextModelEClass, ContextModel.class, "ContextModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getContextModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextModel_Entities(), this.getEntity(), null, "entities", null, 0, -1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextModel_Relations(), this.getRelation(), null, "relations", null, 0, -1, ContextModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(contextFragmentEClass, ContextFragment.class, "ContextFragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getContextFragment_Name(), ecorePackage.getEString(), "name", null, 0, 1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextFragment_Entities(), this.getFEntity(), null, "entities", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextFragment_Relations(), this.getFRelation(), null, "relations", null, 0, -1, ContextFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAttribute_Int(), ecorePackage.getEBoolean(), "int", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Float(), ecorePackage.getEBoolean(), "float", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_String(), ecorePackage.getEBoolean(), "string", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Boolean(), ecorePackage.getEBoolean(), "boolean", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fragmentAttributeEClass, FragmentAttribute.class, "FragmentAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFragmentAttribute_Int(), ecorePackage.getEBoolean(), "int", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Float(), ecorePackage.getEBoolean(), "float", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_String(), ecorePackage.getEBoolean(), "string", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Boolean(), ecorePackage.getEBoolean(), "boolean", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Greater(), ecorePackage.getEBoolean(), "greater", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Smaller(), ecorePackage.getEBoolean(), "smaller", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Greaterequals(), ecorePackage.getEBoolean(), "greaterequals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Smallerequals(), ecorePackage.getEBoolean(), "smallerequals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Equals(), ecorePackage.getEBoolean(), "equals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Notequals(), ecorePackage.getEBoolean(), "notequals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFragmentAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEntity_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fEntityEClass, FEntity.class, "FEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, FEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFEntity_Attributes(), this.getFragmentAttribute(), null, "attributes", null, 0, -1, FEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRelation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelation_Sender(), this.getEntity(), null, "sender", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelation_Receiver(), this.getEntity(), null, "receiver", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelation_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fRelationEClass, FRelation.class, "FRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFRelation_Name(), ecorePackage.getEString(), "name", null, 0, 1, FRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFRelation_Sender(), this.getFEntity(), null, "sender", null, 0, 1, FRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFRelation_Receiver(), this.getFEntity(), null, "receiver", null, 0, 1, FRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFRelation_Attributes(), this.getFragmentAttribute(), null, "attributes", null, 0, -1, FRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getScenario_Name(), ecorePackage.getEString(), "name", null, 0, 1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -763,6 +2030,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getScenarioContent_Message(), this.getMessage(), null, "message", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenarioContent_Par(), this.getPar(), null, "par", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getScenarioContent_Loop(), this.getLoop(), null, "loop", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getScenarioContent_Contextmessage(), this.getContextMessage(), null, "contextmessage", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMessage_Name(), ecorePackage.getEString(), "name", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -775,6 +2043,46 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getMessage_Future(), ecorePackage.getEBoolean(), "future", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Constraint(), ecorePackage.getEBoolean(), "constraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMessage_C(), this.getConstraint(), null, "c", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(contextMessageEClass, ContextMessage.class, "ContextMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextMessage_Content(), this.getContextMessageContent(), null, "content", null, 0, -1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessage_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessage_Fail(), ecorePackage.getEBoolean(), "fail", null, 0, 1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getContextMessage_Strict(), ecorePackage.getEBoolean(), "strict", null, 0, 1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(contextMessageContentEClass, ContextMessageContent.class, "ContextMessageContent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getContextMessageContent_Match(), this.getMatchMessage(), null, "match", null, 0, -1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getContextMessageContent_Change(), this.getChangeMessage(), null, "change", null, 0, -1, ContextMessageContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(matchMessageEClass, MatchMessage.class, "MatchMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMatchMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, MatchMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMatchMessage_Content(), this.getContextFragment(), null, "content", null, 0, 1, MatchMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(changeMessageEClass, ChangeMessage.class, "ChangeMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChangeMessage_Disappear(), this.getDisappearMessage(), null, "disappear", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Appear(), this.getAppearMessage(), null, "appear", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Changeto(), this.getChangeToMessage(), null, "changeto", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeMessage_Changetor(), this.getChangeToRelation(), null, "changetor", null, 0, -1, ChangeMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(appearMessageEClass, AppearMessage.class, "AppearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAppearMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, AppearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAppearMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, AppearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(disappearMessageEClass, DisappearMessage.class, "DisappearMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDisappearMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, DisappearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDisappearMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, DisappearMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(changeToMessageEClass, ChangeToMessage.class, "ChangeToMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChangeToMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToMessage_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChangeToMessage_Changevalue(), ecorePackage.getEString(), "changevalue", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(changeToRelationEClass, ChangeToRelation.class, "ChangeToRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getChangeToRelation_Context(), this.getContextModel(), null, "context", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToRelation_Relation(), this.getRelation(), null, "relation", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToRelation_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getChangeToRelation_Changevalue(), ecorePackage.getEString(), "changevalue", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectTypeEClass, ObjectType.class, "ObjectType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getObjectType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ObjectType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

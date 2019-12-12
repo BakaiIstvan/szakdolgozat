@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -36,6 +37,7 @@ import org.xtext.example.mydsl.myDsl.ScenarioContent;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getMessage <em>Message</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getPar <em>Par</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getLoop <em>Loop</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getContextmessage <em>Contextmessage</em>}</li>
  * </ul>
  *
  * @generated
@@ -83,6 +85,16 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
   protected EList<Loop> loop;
 
   /**
+   * The cached value of the '{@link #getContextmessage() <em>Contextmessage</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContextmessage()
+   * @generated
+   * @ordered
+   */
+  protected EList<ContextMessage> contextmessage;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -108,6 +120,7 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Alt> getAlt()
   {
     if (alt == null)
@@ -122,6 +135,7 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Message> getMessage()
   {
     if (message == null)
@@ -136,6 +150,7 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Par> getPar()
   {
     if (par == null)
@@ -150,6 +165,7 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public EList<Loop> getLoop()
   {
     if (loop == null)
@@ -157,6 +173,21 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
       loop = new EObjectContainmentEList<Loop>(Loop.class, this, MyDslPackage.SCENARIO_CONTENT__LOOP);
     }
     return loop;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<ContextMessage> getContextmessage()
+  {
+    if (contextmessage == null)
+    {
+      contextmessage = new EObjectContainmentEList<ContextMessage>(ContextMessage.class, this, MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE);
+    }
+    return contextmessage;
   }
 
   /**
@@ -177,6 +208,8 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getPar()).basicRemove(otherEnd, msgs);
       case MyDslPackage.SCENARIO_CONTENT__LOOP:
         return ((InternalEList<?>)getLoop()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
+        return ((InternalEList<?>)getContextmessage()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -199,6 +232,8 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return getPar();
       case MyDslPackage.SCENARIO_CONTENT__LOOP:
         return getLoop();
+      case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
+        return getContextmessage();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -230,6 +265,10 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         getLoop().clear();
         getLoop().addAll((Collection<? extends Loop>)newValue);
         return;
+      case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
+        getContextmessage().clear();
+        getContextmessage().addAll((Collection<? extends ContextMessage>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -256,6 +295,9 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.SCENARIO_CONTENT__LOOP:
         getLoop().clear();
         return;
+      case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
+        getContextmessage().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -278,6 +320,8 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return par != null && !par.isEmpty();
       case MyDslPackage.SCENARIO_CONTENT__LOOP:
         return loop != null && !loop.isEmpty();
+      case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
+        return contextmessage != null && !contextmessage.isEmpty();
     }
     return super.eIsSet(featureID);
   }
