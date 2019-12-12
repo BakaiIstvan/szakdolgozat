@@ -11,7 +11,7 @@ A forráskód generátor komponensekhez tartozó implementáció a `org.xtext.ex
 
 A projektben található összes többi fájlt az `Xtext` és `Xtend` plugin-ok generálják.
 
-## Mükődést demonstráló példák
+## Műkődést demonstráló példák
 
 A példák megtalálhatók a `https://github.com/BakaiIstvan/BatmonMinotorEnvironment` címen elérhető github repository-ban. Egy példához egy ág tartozik a repositoryban.
 
