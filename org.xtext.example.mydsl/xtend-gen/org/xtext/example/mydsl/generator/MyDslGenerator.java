@@ -20,6 +20,7 @@ import org.xtext.example.mydsl.generator.ContextFragmentGenerator;
 import org.xtext.example.mydsl.generator.ContextModelGenerator;
 import org.xtext.example.mydsl.generator.EntityGenerator;
 import org.xtext.example.mydsl.generator.EventCreatorGenerator;
+import org.xtext.example.mydsl.generator.RegularMessage;
 import org.xtext.example.mydsl.generator.RelationGenerator;
 import org.xtext.example.mydsl.generator.StateGenerator;
 import org.xtext.example.mydsl.generator.TransitionGenerator;
@@ -756,7 +757,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               boolean _isFuture_1 = m.isFuture();
                               if (_isFuture_1) {
                                 _builder.append("\t\t");
-                                CharSequence _compile_future = this.compile_future(m);
+                                CharSequence _compile_future = new RegularMessage().compile_future(m);
                                 _builder.append(_compile_future, "\t\t");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t");
@@ -768,7 +769,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               boolean _isPast_2 = m.isPast();
                               if (_isPast_2) {
                                 _builder.append("\t\t");
-                                CharSequence _compile_past = this.compile_past(m);
+                                CharSequence _compile_past = new RegularMessage().compile_past(m);
                                 _builder.append(_compile_past, "\t\t");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t");
@@ -779,7 +780,7 @@ public class MyDslGenerator extends AbstractGenerator {
                             {
                               if (((!m.isPast()) && (!m.isFuture()))) {
                                 _builder.append("\t\t");
-                                CharSequence _compile_msg = this.compile_msg(m);
+                                CharSequence _compile_msg = new RegularMessage().compile_msg(m);
                                 _builder.append(_compile_msg, "\t\t");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t");
@@ -846,7 +847,7 @@ public class MyDslGenerator extends AbstractGenerator {
                               boolean _isFuture_3 = m.isFuture();
                               if (_isFuture_3) {
                                 _builder.append("\t\t");
-                                CharSequence _compile_strict_future = this.compile_strict_future(m);
+                                CharSequence _compile_strict_future = new RegularMessage().compile_strict_future(m);
                                 _builder.append(_compile_strict_future, "\t\t");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t");
@@ -857,7 +858,7 @@ public class MyDslGenerator extends AbstractGenerator {
                             {
                               if (((!m.isPast()) && (!m.isFuture()))) {
                                 _builder.append("\t\t");
-                                CharSequence _compile_strict = this.compile_strict(m);
+                                CharSequence _compile_strict = new RegularMessage().compile_strict(m);
                                 _builder.append(_compile_strict, "\t\t");
                                 _builder.newLineIfNotEmpty();
                                 _builder.append("\t\t");
@@ -1006,7 +1007,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   boolean _isFuture_5 = m_1.isFuture();
                                   if (_isFuture_5) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_future_1 = this.compile_future(m_1);
+                                    CharSequence _compile_future_1 = new RegularMessage().compile_future(m_1);
                                     _builder.append(_compile_future_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1018,7 +1019,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   boolean _isPast_5 = m_1.isPast();
                                   if (_isPast_5) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_past_1 = this.compile_past(m_1);
+                                    CharSequence _compile_past_1 = new RegularMessage().compile_past(m_1);
                                     _builder.append(_compile_past_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1029,7 +1030,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 {
                                   if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_msg_1 = this.compile_msg(m_1);
+                                    CharSequence _compile_msg_1 = new RegularMessage().compile_msg(m_1);
                                     _builder.append(_compile_msg_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1096,7 +1097,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   boolean _isFuture_7 = m_1.isFuture();
                                   if (_isFuture_7) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict_future_1 = this.compile_strict_future(m_1);
+                                    CharSequence _compile_strict_future_1 = new RegularMessage().compile_strict_future(m_1);
                                     _builder.append(_compile_strict_future_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1107,7 +1108,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 {
                                   if (((!m_1.isPast()) && (!m_1.isFuture()))) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_strict_1 = this.compile_strict(m_1);
+                                    CharSequence _compile_strict_1 = new RegularMessage().compile_strict(m_1);
                                     _builder.append(_compile_strict_1, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1270,7 +1271,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   if (_isFuture_9) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_future_2 = this.compile_future(m_2);
+                                    CharSequence _compile_future_2 = new RegularMessage().compile_future(m_2);
                                     _builder.append(_compile_future_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1284,7 +1285,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   if (_isPast_8) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_past_2 = this.compile_past(m_2);
+                                    CharSequence _compile_past_2 = new RegularMessage().compile_past(m_2);
                                     _builder.append(_compile_past_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1297,7 +1298,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_msg_2 = this.compile_msg(m_2);
+                                    CharSequence _compile_msg_2 = new RegularMessage().compile_msg(m_2);
                                     _builder.append(_compile_msg_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1373,7 +1374,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   if (_isFuture_11) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_future_2 = this.compile_strict_future(m_2);
+                                    CharSequence _compile_strict_future_2 = new RegularMessage().compile_strict_future(m_2);
                                     _builder.append(_compile_strict_future_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1386,7 +1387,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   if (((!m_2.isPast()) && (!m_2.isFuture()))) {
                                     _builder.append("\t\t");
                                     _builder.append("\t");
-                                    CharSequence _compile_strict_2 = this.compile_strict(m_2);
+                                    CharSequence _compile_strict_2 = new RegularMessage().compile_strict(m_2);
                                     _builder.append(_compile_strict_2, "\t\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -1525,7 +1526,7 @@ public class MyDslGenerator extends AbstractGenerator {
                           boolean _isFuture_13 = m_3.isFuture();
                           if (_isFuture_13) {
                             _builder.append("\t\t");
-                            CharSequence _compile_future_3 = this.compile_future(m_3);
+                            CharSequence _compile_future_3 = new RegularMessage().compile_future(m_3);
                             _builder.append(_compile_future_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
@@ -1537,7 +1538,7 @@ public class MyDslGenerator extends AbstractGenerator {
                           boolean _isPast_11 = m_3.isPast();
                           if (_isPast_11) {
                             _builder.append("\t\t");
-                            CharSequence _compile_past_3 = this.compile_past(m_3);
+                            CharSequence _compile_past_3 = new RegularMessage().compile_past(m_3);
                             _builder.append(_compile_past_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
@@ -1548,7 +1549,7 @@ public class MyDslGenerator extends AbstractGenerator {
                         {
                           if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_msg_3 = this.compile_msg(m_3);
+                            CharSequence _compile_msg_3 = new RegularMessage().compile_msg(m_3);
                             _builder.append(_compile_msg_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
@@ -1615,7 +1616,7 @@ public class MyDslGenerator extends AbstractGenerator {
                           boolean _isFuture_15 = m_3.isFuture();
                           if (_isFuture_15) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_future_3 = this.compile_strict_future(m_3);
+                            CharSequence _compile_strict_future_3 = new RegularMessage().compile_strict_future(m_3);
                             _builder.append(_compile_strict_future_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
@@ -1626,7 +1627,7 @@ public class MyDslGenerator extends AbstractGenerator {
                         {
                           if (((!m_3.isPast()) && (!m_3.isFuture()))) {
                             _builder.append("\t\t");
-                            CharSequence _compile_strict_3 = this.compile_strict(m_3);
+                            CharSequence _compile_strict_3 = new RegularMessage().compile_strict(m_3);
                             _builder.append(_compile_strict_3, "\t\t");
                             _builder.newLineIfNotEmpty();
                             _builder.append("\t\t");
@@ -2950,122 +2951,6 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_future(final Message m) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto6\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"");
-    String _name = m.getSender().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
-    _builder.append("\" , actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(str, newState, newState));");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile_past(final Message m) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto7\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(str, actualState, actualState));");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"");
-    String _name = m.getSender().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
-    _builder.append("\", actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile_msg(final Message m) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto7\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"");
-    String _name = m.getSender().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
-    _builder.append("\" , actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
   public CharSequence compile_match_msg(final MatchMessage ma) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"match1\");");
@@ -3958,80 +3843,6 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("b.addState(acceptState);");
     _builder.newLine();
     _builder.append("b.setFinale(finalState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile_strict_future(final Message m) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto11\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"");
-    String _name = m.getSender().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
-    _builder.append("\", actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(str, newState, newState));");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile_strict(final Message m) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto12\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"");
-    String _name = m.getSender().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
-    _builder.append("\", actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
     _builder.newLine();
     return _builder;
   }

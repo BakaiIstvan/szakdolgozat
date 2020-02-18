@@ -300,15 +300,15 @@ class MyDslGenerator extends AbstractGenerator {
 									«ENDIF»
 									«IF !m.fail && !m.required»
 										«IF m.future»
-											«m.compile_future»
+											«new RegularMessage().compile_future(m)»
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF m.past»
-											«m.compile_past»
+											«new RegularMessage().compile_past(m)»
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF !m.past && !m.future»
-											«m.compile_msg»
+											«new RegularMessage().compile_msg(m)»
 											loopauto.collapse(b);
 										«ENDIF»
 									«ENDIF»
@@ -333,11 +333,11 @@ class MyDslGenerator extends AbstractGenerator {
 									«ENDIF»
 									«IF !m.fail && !m.required»
 										«IF m.future»
-											«m.compile_strict_future»
+											«new RegularMessage().compile_strict_future(m)»
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF !m.past && !m.future»
-											«m.compile_strict»
+											«new RegularMessage().compile_strict(m)»
 											loopauto.collapse(b);
 										«ENDIF» 
 									«ENDIF»
@@ -384,15 +384,15 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«m.compile_future»
+												«new RegularMessage().compile_future(m)»
 												expression.collapse(b);
 											«ENDIF»
 											«IF m.past»
-												«m.compile_past»
+												«new RegularMessage().compile_past(m)»
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«m.compile_msg»
+												«new RegularMessage().compile_msg(m)»
 												expression.collapse(b);
 											«ENDIF»
 										«ENDIF»
@@ -417,11 +417,11 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«m.compile_strict_future»
+												«new RegularMessage().compile_strict_future(m)»
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«m.compile_strict»
+												«new RegularMessage().compile_strict(m)»
 												expression.collapse(b);
 											«ENDIF» 
 										«ENDIF»
@@ -470,15 +470,15 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«m.compile_future»
+												«new RegularMessage().compile_future(m)»
 												expression.collapse(b);
 											«ENDIF»
 											«IF m.past»
-												«m.compile_past»
+												«new RegularMessage().compile_past(m)»
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«m.compile_msg»
+												«new RegularMessage().compile_msg(m)»
 												expression.collapse(b);
 											«ENDIF»
 										«ENDIF»
@@ -503,11 +503,11 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«m.compile_strict_future»
+												«new RegularMessage().compile_strict_future(m)»
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«m.compile_strict»
+												«new RegularMessage().compile_strict(m)»
 												expression.collapse(b);
 											«ENDIF» 
 										«ENDIF»
@@ -552,15 +552,15 @@ class MyDslGenerator extends AbstractGenerator {
 								«ENDIF»
 								«IF !m.fail && !m.required»
 									«IF m.future»
-										«m.compile_future»
+										«new RegularMessage().compile_future(m)»
 										a.collapse(b);
 									«ENDIF»
 									«IF m.past»
-										«m.compile_past»
+										«new RegularMessage().compile_past(m)»
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«m.compile_msg»
+										«new RegularMessage().compile_msg(m)»
 										a.collapse(b);
 									«ENDIF»
 								«ENDIF»
@@ -585,11 +585,11 @@ class MyDslGenerator extends AbstractGenerator {
 								«ENDIF»
 								«IF !m.fail && !m.required»
 									«IF m.future»
-										«m.compile_strict_future»
+										«new RegularMessage().compile_strict_future(m)»
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«m.compile_strict»
+										«new RegularMessage().compile_strict(m)»
 										a.collapse(b);
 									«ENDIF» 
 								«ENDIF»
@@ -1070,52 +1070,6 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addTransition(new Transition("1", newState, newState));
 	'''
 	
-	def compile_future(Message m)'''
-		b = new Automaton("auto6");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-											
-		b.addTransition(new Transition("1", actualState, actualState));
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, newState));
-		b.addState(newState);
-		b.addTransition(new Transition(str, newState, newState));
-		b.setFinale(newState);
-	'''
-	
-	def compile_past(Message m)'''
-		b = new Automaton("auto7");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-												
-		b.addTransition(new Transition(str, actualState, actualState));
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
-		b.addState(newState);
-		b.setFinale(newState);
-	'''
-	
-	def compile_msg(Message m)'''
-		b = new Automaton("auto7");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-											
-		b.addTransition(new Transition("1", actualState, actualState));
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, newState));
-		b.addState(newState);
-		b.setFinale(newState);
-	'''
-	
 	def compile_match_msg(MatchMessage ma)'''
 		b = new Automaton("match1");
 		actualState = new State("q" + counter, StateType.NORMAL);
@@ -1442,35 +1396,6 @@ class MyDslGenerator extends AbstractGenerator {
 		b.addState(finalState);
 		b.addState(acceptState);
 		b.setFinale(finalState);
-	'''
-	
-	def compile_strict_future(Message m)'''
-		b = new Automaton("auto11");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-											
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
-		b.addState(newState);
-		b.addTransition(new Transition(str, newState, newState));
-		b.setFinale(newState);
-	'''
-	
-	def compile_strict(Message m)'''
-		b = new Automaton("auto12");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-												
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
-		b.addState(newState);
-		b.setFinale(newState);
 	'''
 	
 	def compile_match_strict(MatchMessage ma)'''
