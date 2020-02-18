@@ -44,18 +44,16 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject
 	RelationGenerator relationGenerator
+	
+	@Inject 
+	EventCreatorGenerator eventCreatorGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		contextModelGenerator.doGenerate(resource, fsa, context);
 		contextFragmentGenerator.doGenerate(resource, fsa, context);
 		entityGenerator.doGenerate(resource, fsa, context);
 		relationGenerator.doGenerate(resource, fsa, context);
-		
-		for (m : resource.allContents.toIterable.filter(Domain)) {
-			fsa.generateFile(
-				"EventCreator.java", m.compile_eventcreator
-			)
-		}
+		eventCreatorGenerator.doGenerate(resource, fsa, context);
 		
 		fsa.generateFile("State.java", 
 			'''
@@ -337,114 +335,6 @@ class MyDslGenerator extends AbstractGenerator {
 			fsa.generateFile("Specification.java", s.compile)
 		}
 	}
-	
-	def compile_eventcreator(Domain d)'''
-		public class EventCreator {
-			«FOR i: d.includes»
-				private «i.context.name.toFirstUpper» «i.context.name.toFirstLower»;
-			«ENDFOR»
-			«FOR f: d.contextfragments»
-				private «f.name.toFirstUpper» «f.name.toFirstLower»;
-			«ENDFOR»
-			private Monitor monitorInterface;
-			
-			public EventCreator(
-				«FOR i: d.includes»
-					«i.context.name.toFirstUpper» «i.context.name.toFirstLower»,
-				«ENDFOR»
-				«FOR f: d.contextfragments»
-					«f.name.toFirstUpper» «f.name.toFirstLower»,
-				«ENDFOR»
-				Monitor monitorInterface
-			) {
-				«FOR i: d.includes»
-					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
-				«ENDFOR»
-				«FOR f: d.contextfragments»
-					this.«f.name.toFirstLower» = «f.name.toFirstLower»;
-				«ENDFOR»
-				this.monitorInterface = monitorInterface;
-			}
-			
-			«FOR i: d.includes»
-				public void set«i.context.name.toFirstUpper»(«i.context.name.toFirstUpper» «i.context.name.toFirstLower») {
-					this.«i.context.name.toFirstLower» = «i.context.name.toFirstLower»;
-				}
-			«ENDFOR»
-			
-			public void appear(String name) {
-				«FOR m: d.includes»
-					monitorInterface.update("appear(«m.context.name.toFirstUpper»." + name + ")");
-					«FOR f: d.contextfragments»
-						if («f.name.toFirstLower».match(
-							«FOR e: 0..< f.entities.size»
-								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
-								«IF e != f.entities.size - 1 || f.relations.size > 0»
-									,
-								«ENDIF»
-							«ENDFOR»
-							«FOR r: 0..< f.relations.size»
-								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
-								«IF r != f.relations.size - 1»
-									,
-								«ENDIF»
-							«ENDFOR»
-						)) {
-							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
-						}
-					«ENDFOR»
-				«ENDFOR»
-			}
-			
-			public void disappear(String name) {
-				«FOR m: d.includes»
-					monitorInterface.update("disappear(«m.context.name.toFirstUpper»." + name + ")"); 
-					«FOR f: d.contextfragments»
-						if («f.name.toFirstLower».match(
-							«FOR e: 0..< f.entities.size»
-								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
-								«IF e != f.entities.size - 1 || f.relations.size > 0»
-									,
-								«ENDIF»
-							«ENDFOR»
-							«FOR r: 0..< f.relations.size»
-								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
-								«IF r != f.relations.size - 1»
-									,
-								«ENDIF»
-							«ENDFOR»
-						)) {
-							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
-						}
-					«ENDFOR»
-				«ENDFOR»
-			}
-			
-			public void changeTo(String event) {
-				«FOR m: d.includes»
-					monitorInterface.update("changeTo(«m.context.name.toFirstUpper»." + event + ")"); 
-					«FOR f: d.contextfragments»
-						if («f.name.toFirstLower».match(
-							«FOR e: 0..< f.entities.size»
-								«m.context.name.toFirstLower».get«f.entities.get(e).name.toFirstUpper»()
-								«IF e != f.entities.size - 1 || f.relations.size > 0»
-									,
-								«ENDIF»
-							«ENDFOR»
-							«FOR r: 0..< f.relations.size»
-								«m.context.name.toFirstLower».get«f.relations.get(r).name.toFirstUpper»()
-								«IF r != f.relations.size - 1»
-									,
-								«ENDIF»
-							«ENDFOR»
-						)) {
-							monitorInterface.update("match(«m.context.name.toFirstUpper», «f.name.toFirstUpper»)");
-						}
-					«ENDFOR»
-				«ENDFOR»
-			}
-		}
-	'''
 	
 	def compile(Domain s) '''
 		import java.io.FileNotFoundException;
