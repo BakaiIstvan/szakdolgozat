@@ -78,7 +78,6 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public ContextModel getContext()
   {
     if (context != null && context.eIsProxy())
@@ -109,7 +108,6 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setContext(ContextModel newContext)
   {
     ContextModel oldContext = context;
@@ -123,7 +121,6 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public ContextFragment getContent()
   {
     if (content != null && content.eIsProxy())
@@ -154,7 +151,6 @@ public class MatchMessageImpl extends MinimalEObjectImpl.Container implements Ma
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setContent(ContextFragment newContent)
   {
     ContextFragment oldContent = content;

@@ -87,7 +87,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public ContextModel getContext()
   {
     if (context != null && context.eIsProxy())
@@ -118,7 +117,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setContext(ContextModel newContext)
   {
     ContextModel oldContext = context;
@@ -132,7 +130,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getImportURI()
   {
     return importURI;
@@ -143,7 +140,6 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setImportURI(String newImportURI)
   {
     String oldImportURI = importURI;
@@ -239,7 +235,7 @@ public class IncludeImpl extends MinimalEObjectImpl.Container implements Include
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (importURI: ");
     result.append(importURI);
     result.append(')');

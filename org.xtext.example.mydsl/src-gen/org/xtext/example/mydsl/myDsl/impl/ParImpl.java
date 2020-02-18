@@ -72,7 +72,6 @@ public class ParImpl extends MinimalEObjectImpl.Container implements Par
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<ParExpression> getParexpression()
   {
     if (parexpression == null)

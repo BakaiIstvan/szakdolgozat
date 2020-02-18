@@ -18,6 +18,7 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.example.mydsl.generator.ContextModelGenerator;
 import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.Attribute;
@@ -27,7 +28,6 @@ import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
-import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
@@ -56,36 +56,34 @@ public class MyDslGenerator extends AbstractGenerator {
   @Extension
   private IQualifiedNameProvider _iQualifiedNameProvider;
   
+  @Inject
+  private ContextModelGenerator contextModelGenerator;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
-    Iterable<ContextModel> _filter = Iterables.<ContextModel>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ContextModel.class);
-    for (final ContextModel m : _filter) {
+    this.contextModelGenerator.doGenerate(resource, fsa, context);
+    Iterable<ContextFragment> _filter = Iterables.<ContextFragment>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ContextFragment.class);
+    for (final ContextFragment m : _filter) {
       String _string = this._iQualifiedNameProvider.getFullyQualifiedName(m).toString("/");
       String _plus = (_string + ".java");
       fsa.generateFile(_plus, this.compile(m));
     }
-    Iterable<ContextFragment> _filter_1 = Iterables.<ContextFragment>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), ContextFragment.class);
-    for (final ContextFragment m_1 : _filter_1) {
+    Iterable<Entity> _filter_1 = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
+    for (final Entity m_1 : _filter_1) {
       String _string_1 = this._iQualifiedNameProvider.getFullyQualifiedName(m_1).toString("/");
       String _plus_1 = (_string_1 + ".java");
       fsa.generateFile(_plus_1, this.compile(m_1));
     }
-    Iterable<Entity> _filter_2 = Iterables.<Entity>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Entity.class);
-    for (final Entity m_2 : _filter_2) {
+    Iterable<Relation> _filter_2 = Iterables.<Relation>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Relation.class);
+    for (final Relation m_2 : _filter_2) {
       String _string_2 = this._iQualifiedNameProvider.getFullyQualifiedName(m_2).toString("/");
       String _plus_2 = (_string_2 + ".java");
       fsa.generateFile(_plus_2, this.compile(m_2));
     }
-    Iterable<Relation> _filter_3 = Iterables.<Relation>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Relation.class);
-    for (final Relation m_3 : _filter_3) {
-      String _string_3 = this._iQualifiedNameProvider.getFullyQualifiedName(m_3).toString("/");
-      String _plus_3 = (_string_3 + ".java");
-      fsa.generateFile(_plus_3, this.compile(m_3));
-    }
-    Iterable<Domain> _filter_4 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
-    for (final Domain m_4 : _filter_4) {
+    Iterable<Domain> _filter_3 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
+    for (final Domain m_3 : _filter_3) {
       fsa.generateFile(
-        "EventCreator.java", this.compile_eventcreator(m_4));
+        "EventCreator.java", this.compile_eventcreator(m_3));
     }
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("public class State {");
@@ -794,186 +792,10 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder_3.append("}");
     _builder_3.newLine();
     fsa.generateFile("Automaton.java", _builder_3);
-    Iterable<Domain> _filter_5 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
-    for (final Domain s : _filter_5) {
+    Iterable<Domain> _filter_4 = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
+    for (final Domain s : _filter_4) {
       fsa.generateFile("Specification.java", this.compile(s));
     }
-  }
-  
-  public CharSequence compile(final ContextModel m) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public class ");
-    String _firstUpper = StringExtensions.toFirstUpper(m.getName());
-    _builder.append(_firstUpper);
-    _builder.append(" {");
-    _builder.newLineIfNotEmpty();
-    {
-      EList<Entity> _entities = m.getEntities();
-      for(final Entity e : _entities) {
-        _builder.append("\t");
-        _builder.append("private ");
-        String _firstUpper_1 = StringExtensions.toFirstUpper(e.getName());
-        _builder.append(_firstUpper_1, "\t");
-        _builder.append(" ");
-        String _firstLower = StringExtensions.toFirstLower(e.getName());
-        _builder.append(_firstLower, "\t");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EList<Relation> _relations = m.getRelations();
-      for(final Relation r : _relations) {
-        _builder.append("\t");
-        _builder.append("private ");
-        String _firstUpper_2 = StringExtensions.toFirstUpper(r.getName());
-        _builder.append(_firstUpper_2, "\t");
-        _builder.append(" ");
-        String _firstLower_1 = StringExtensions.toFirstLower(r.getName());
-        _builder.append(_firstLower_1, "\t");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _firstUpper_3 = StringExtensions.toFirstUpper(m.getName());
-    _builder.append(_firstUpper_3, "\t");
-    _builder.append("() {");
-    _builder.newLineIfNotEmpty();
-    {
-      EList<Entity> _entities_1 = m.getEntities();
-      for(final Entity e_1 : _entities_1) {
-        _builder.append("\t\t");
-        String _firstLower_2 = StringExtensions.toFirstLower(e_1.getName());
-        _builder.append(_firstLower_2, "\t\t");
-        _builder.append(" = new ");
-        String _firstUpper_4 = StringExtensions.toFirstUpper(e_1.getName());
-        _builder.append(_firstUpper_4, "\t\t");
-        _builder.append("();");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EList<Relation> _relations_1 = m.getRelations();
-      for(final Relation r_1 : _relations_1) {
-        _builder.append("\t\t");
-        String _firstLower_3 = StringExtensions.toFirstLower(r_1.getName());
-        _builder.append(_firstLower_3, "\t\t");
-        _builder.append(" = new ");
-        String _firstUpper_5 = StringExtensions.toFirstUpper(r_1.getName());
-        _builder.append(_firstUpper_5, "\t\t");
-        _builder.append("(");
-        String _firstLower_4 = StringExtensions.toFirstLower(r_1.getSender().getName());
-        _builder.append(_firstLower_4, "\t\t");
-        _builder.append(", ");
-        String _firstLower_5 = StringExtensions.toFirstLower(r_1.getReceiver().getName());
-        _builder.append(_firstLower_5, "\t\t");
-        _builder.append(");");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ");
-    String _firstUpper_6 = StringExtensions.toFirstUpper(m.getName());
-    _builder.append(_firstUpper_6, "\t");
-    _builder.append("(EventCreator eventCreator) {");
-    _builder.newLineIfNotEmpty();
-    {
-      EList<Entity> _entities_2 = m.getEntities();
-      for(final Entity e_2 : _entities_2) {
-        _builder.append("\t\t");
-        String _firstLower_6 = StringExtensions.toFirstLower(e_2.getName());
-        _builder.append(_firstLower_6, "\t\t");
-        _builder.append(" = new ");
-        String _firstUpper_7 = StringExtensions.toFirstUpper(e_2.getName());
-        _builder.append(_firstUpper_7, "\t\t");
-        _builder.append("(eventCreator);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      EList<Relation> _relations_2 = m.getRelations();
-      for(final Relation r_2 : _relations_2) {
-        _builder.append("\t\t");
-        String _firstLower_7 = StringExtensions.toFirstLower(r_2.getName());
-        _builder.append(_firstLower_7, "\t\t");
-        _builder.append(" = new ");
-        String _firstUpper_8 = StringExtensions.toFirstUpper(r_2.getName());
-        _builder.append(_firstUpper_8, "\t\t");
-        _builder.append("(");
-        String _firstLower_8 = StringExtensions.toFirstLower(r_2.getSender().getName());
-        _builder.append(_firstLower_8, "\t\t");
-        _builder.append(", ");
-        String _firstLower_9 = StringExtensions.toFirstLower(r_2.getReceiver().getName());
-        _builder.append(_firstLower_9, "\t\t");
-        _builder.append(", eventCreator);");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    {
-      EList<Entity> _entities_3 = m.getEntities();
-      for(final Entity e_3 : _entities_3) {
-        _builder.append("\t");
-        _builder.append("public ");
-        String _firstUpper_9 = StringExtensions.toFirstUpper(e_3.getName());
-        _builder.append(_firstUpper_9, "\t");
-        _builder.append(" get");
-        String _firstUpper_10 = StringExtensions.toFirstUpper(e_3.getName());
-        _builder.append(_firstUpper_10, "\t");
-        _builder.append("() {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _firstLower_10 = StringExtensions.toFirstLower(e_3.getName());
-        _builder.append(_firstLower_10, "\t\t");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    {
-      EList<Relation> _relations_3 = m.getRelations();
-      for(final Relation r_3 : _relations_3) {
-        _builder.append("\t");
-        _builder.append("public ");
-        String _firstUpper_11 = StringExtensions.toFirstUpper(r_3.getName());
-        _builder.append(_firstUpper_11, "\t");
-        _builder.append(" get");
-        String _firstUpper_12 = StringExtensions.toFirstUpper(r_3.getName());
-        _builder.append(_firstUpper_12, "\t");
-        _builder.append("() {");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("\t");
-        _builder.append("return ");
-        String _firstLower_11 = StringExtensions.toFirstLower(r_3.getName());
-        _builder.append(_firstLower_11, "\t\t");
-        _builder.append(";");
-        _builder.newLineIfNotEmpty();
-        _builder.append("\t");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("}");
-    _builder.newLine();
-    return _builder;
   }
   
   public CharSequence compile(final ContextFragment m) {

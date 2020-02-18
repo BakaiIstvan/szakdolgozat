@@ -32,13 +32,12 @@ import org.xtext.example.mydsl.myDsl.ContextFragment
 class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject extension IQualifiedNameProvider
+	
+	@Inject
+	ContextModelGenerator contextModelGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		for (m : resource.allContents.toIterable.filter(ContextModel)) {
-			fsa.generateFile(
-				m.fullyQualifiedName.toString("/") + ".java", m.compile
-			)
-		}
+		contextModelGenerator.doGenerate(resource, fsa, context);
 		
 		for (m : resource.allContents.toIterable.filter(ContextFragment)) {
 			fsa.generateFile(
@@ -344,46 +343,6 @@ class MyDslGenerator extends AbstractGenerator {
 			fsa.generateFile("Specification.java", s.compile)
 		}
 	}
-	
-	def compile(ContextModel m)'''
-		public class «m.name.toFirstUpper» {
-			«FOR e: m.entities»
-				private «e.name.toFirstUpper» «e.name.toFirstLower»;
-			«ENDFOR»
-			«FOR r: m.relations»
-				private «r.name.toFirstUpper» «r.name.toFirstLower»;
-			«ENDFOR»
-			
-			public «m.name.toFirstUpper»() {
-				«FOR e: m.entities»
-					«e.name.toFirstLower» = new «e.name.toFirstUpper»();
-				«ENDFOR»
-				«FOR r: m.relations»
-					«r.name.toFirstLower» = new «r.name.toFirstUpper»(«r.sender.name.toFirstLower», «r.receiver.name.toFirstLower»);
-				«ENDFOR»
-			}
-			
-			public «m.name.toFirstUpper»(EventCreator eventCreator) {
-				«FOR e: m.entities»
-					«e.name.toFirstLower» = new «e.name.toFirstUpper»(eventCreator);
-				«ENDFOR»
-				«FOR r: m.relations»
-					«r.name.toFirstLower» = new «r.name.toFirstUpper»(«r.sender.name.toFirstLower», «r.receiver.name.toFirstLower», eventCreator);
-				«ENDFOR»
-			}
-			
-			«FOR e: m.entities»
-				public «e.name.toFirstUpper» get«e.name.toFirstUpper»() {
-					return «e.name.toFirstLower»;
-				}
-			«ENDFOR»
-			«FOR r: m.relations»
-				public «r.name.toFirstUpper» get«r.name.toFirstUpper»() {
-					return «r.name.toFirstLower»;
-				}
-			«ENDFOR»
-		}
-		'''
 	
 	def compile(ContextFragment m)'''
 		public class «m.name.toFirstUpper» {

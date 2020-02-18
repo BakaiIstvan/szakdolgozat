@@ -116,7 +116,6 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getMin()
   {
     return min;
@@ -127,7 +126,6 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setMin(String newMin)
   {
     String oldMin = min;
@@ -141,7 +139,6 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getMax()
   {
     return max;
@@ -152,7 +149,6 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setMax(String newMax)
   {
     String oldMax = max;
@@ -166,7 +162,6 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Message> getMessages()
   {
     if (messages == null)
@@ -290,7 +285,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (min: ");
     result.append(min);
     result.append(", max: ");

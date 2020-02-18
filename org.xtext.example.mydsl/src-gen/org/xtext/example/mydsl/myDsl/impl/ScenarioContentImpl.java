@@ -120,7 +120,6 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Alt> getAlt()
   {
     if (alt == null)
@@ -135,7 +134,6 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Message> getMessage()
   {
     if (message == null)
@@ -150,7 +148,6 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Par> getPar()
   {
     if (par == null)
@@ -165,7 +162,6 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<Loop> getLoop()
   {
     if (loop == null)
@@ -180,7 +176,6 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EList<ContextMessage> getContextmessage()
   {
     if (contextmessage == null)

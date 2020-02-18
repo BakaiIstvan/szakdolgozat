@@ -111,7 +111,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public ContextModel getContext()
   {
     if (context != null && context.eIsProxy())
@@ -142,7 +141,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setContext(ContextModel newContext)
   {
     ContextModel oldContext = context;
@@ -156,7 +154,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Entity getEntity()
   {
     if (entity != null && entity.eIsProxy())
@@ -187,7 +184,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setEntity(Entity newEntity)
   {
     Entity oldEntity = entity;
@@ -201,7 +197,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public Attribute getAttribute()
   {
     if (attribute != null && attribute.eIsProxy())
@@ -232,7 +227,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setAttribute(Attribute newAttribute)
   {
     Attribute oldAttribute = attribute;
@@ -246,7 +240,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public String getChangevalue()
   {
     return changevalue;
@@ -257,7 +250,6 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public void setChangevalue(String newChangevalue)
   {
     String oldChangevalue = changevalue;
@@ -375,7 +367,7 @@ public class ChangeToMessageImpl extends MinimalEObjectImpl.Container implements
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuilder result = new StringBuilder(super.toString());
+    StringBuffer result = new StringBuffer(super.toString());
     result.append(" (changevalue: ");
     result.append(changevalue);
     result.append(')');

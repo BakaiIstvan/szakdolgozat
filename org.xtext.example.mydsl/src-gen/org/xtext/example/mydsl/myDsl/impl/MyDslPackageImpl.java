@@ -281,7 +281,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
 
   /**
    * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   *
+   * 
    * <p>This method is used to initialize {@link MyDslPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
@@ -296,8 +296,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     if (isInited) return (MyDslPackage)EPackage.Registry.INSTANCE.getEPackage(MyDslPackage.eNS_URI);
 
     // Obtain or create and register package
-    Object registeredMyDslPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
-    MyDslPackageImpl theMyDslPackage = registeredMyDslPackage instanceof MyDslPackageImpl ? (MyDslPackageImpl)registeredMyDslPackage : new MyDslPackageImpl();
+    MyDslPackageImpl theMyDslPackage = (MyDslPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MyDslPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MyDslPackageImpl());
 
     isInited = true;
 
@@ -310,6 +309,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Mark meta-data to indicate it can't be changed
     theMyDslPackage.freeze();
 
+  
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(MyDslPackage.eNS_URI, theMyDslPackage);
     return theMyDslPackage;
@@ -320,7 +320,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getDomain()
   {
     return domainEClass;
@@ -331,7 +330,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getDomain_Specification()
   {
     return (EAttribute)domainEClass.getEStructuralFeatures().get(0);
@@ -342,7 +340,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getDomain_Name()
   {
     return (EAttribute)domainEClass.getEStructuralFeatures().get(1);
@@ -353,7 +350,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDomain_Includes()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(2);
@@ -364,7 +360,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDomain_Contextmodels()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(3);
@@ -375,7 +370,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDomain_Contextfragments()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(4);
@@ -386,7 +380,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDomain_Objects()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(5);
@@ -397,7 +390,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDomain_Constraints()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(6);
@@ -408,7 +400,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDomain_Scenarios()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(7);
@@ -419,7 +410,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getInclude()
   {
     return includeEClass;
@@ -430,7 +420,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getInclude_Context()
   {
     return (EReference)includeEClass.getEStructuralFeatures().get(0);
@@ -441,7 +430,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getInclude_ImportURI()
   {
     return (EAttribute)includeEClass.getEStructuralFeatures().get(1);
@@ -452,7 +440,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getContextModel()
   {
     return contextModelEClass;
@@ -463,7 +450,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getContextModel_Name()
   {
     return (EAttribute)contextModelEClass.getEStructuralFeatures().get(0);
@@ -474,7 +460,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextModel_Entities()
   {
     return (EReference)contextModelEClass.getEStructuralFeatures().get(1);
@@ -485,7 +470,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextModel_Relations()
   {
     return (EReference)contextModelEClass.getEStructuralFeatures().get(2);
@@ -496,7 +480,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getContextFragment()
   {
     return contextFragmentEClass;
@@ -507,7 +490,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getContextFragment_Name()
   {
     return (EAttribute)contextFragmentEClass.getEStructuralFeatures().get(0);
@@ -518,7 +500,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextFragment_Entities()
   {
     return (EReference)contextFragmentEClass.getEStructuralFeatures().get(1);
@@ -529,7 +510,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextFragment_Relations()
   {
     return (EReference)contextFragmentEClass.getEStructuralFeatures().get(2);
@@ -540,7 +520,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getAttribute()
   {
     return attributeEClass;
@@ -551,7 +530,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAttribute_Int()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(0);
@@ -562,7 +540,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAttribute_Float()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(1);
@@ -573,7 +550,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAttribute_String()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(2);
@@ -584,7 +560,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAttribute_Boolean()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(3);
@@ -595,7 +570,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAttribute_Name()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(4);
@@ -606,7 +580,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getAttribute_Value()
   {
     return (EAttribute)attributeEClass.getEStructuralFeatures().get(5);
@@ -617,7 +590,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getFragmentAttribute()
   {
     return fragmentAttributeEClass;
@@ -628,7 +600,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Int()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(0);
@@ -639,7 +610,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Float()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(1);
@@ -650,7 +620,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_String()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(2);
@@ -661,7 +630,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Boolean()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(3);
@@ -672,7 +640,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Name()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(4);
@@ -683,7 +650,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Greater()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(5);
@@ -694,7 +660,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Smaller()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(6);
@@ -705,7 +670,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Greaterequals()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(7);
@@ -716,7 +680,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Smallerequals()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(8);
@@ -727,7 +690,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Equals()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(9);
@@ -738,7 +700,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Notequals()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(10);
@@ -749,7 +710,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFragmentAttribute_Value()
   {
     return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(11);
@@ -760,7 +720,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getEntity()
   {
     return entityEClass;
@@ -771,7 +730,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getEntity_Name()
   {
     return (EAttribute)entityEClass.getEStructuralFeatures().get(0);
@@ -782,7 +740,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getEntity_Attributes()
   {
     return (EReference)entityEClass.getEStructuralFeatures().get(1);
@@ -793,7 +750,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getFEntity()
   {
     return fEntityEClass;
@@ -804,7 +760,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFEntity_Name()
   {
     return (EAttribute)fEntityEClass.getEStructuralFeatures().get(0);
@@ -815,7 +770,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getFEntity_Attributes()
   {
     return (EReference)fEntityEClass.getEStructuralFeatures().get(1);
@@ -826,7 +780,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getRelation()
   {
     return relationEClass;
@@ -837,7 +790,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getRelation_Name()
   {
     return (EAttribute)relationEClass.getEStructuralFeatures().get(0);
@@ -848,7 +800,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getRelation_Sender()
   {
     return (EReference)relationEClass.getEStructuralFeatures().get(1);
@@ -859,7 +810,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getRelation_Receiver()
   {
     return (EReference)relationEClass.getEStructuralFeatures().get(2);
@@ -870,7 +820,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getRelation_Attributes()
   {
     return (EReference)relationEClass.getEStructuralFeatures().get(3);
@@ -881,7 +830,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getFRelation()
   {
     return fRelationEClass;
@@ -892,7 +840,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getFRelation_Name()
   {
     return (EAttribute)fRelationEClass.getEStructuralFeatures().get(0);
@@ -903,7 +850,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getFRelation_Sender()
   {
     return (EReference)fRelationEClass.getEStructuralFeatures().get(1);
@@ -914,7 +860,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getFRelation_Receiver()
   {
     return (EReference)fRelationEClass.getEStructuralFeatures().get(2);
@@ -925,7 +870,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getFRelation_Attributes()
   {
     return (EReference)fRelationEClass.getEStructuralFeatures().get(3);
@@ -936,7 +880,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getScenario()
   {
     return scenarioEClass;
@@ -947,7 +890,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getScenario_Name()
   {
     return (EAttribute)scenarioEClass.getEStructuralFeatures().get(0);
@@ -958,7 +900,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getScenario_Scenariocontents()
   {
     return (EReference)scenarioEClass.getEStructuralFeatures().get(1);
@@ -969,7 +910,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getScenarioContent()
   {
     return scenarioContentEClass;
@@ -980,7 +920,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getScenarioContent_Alt()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(0);
@@ -991,7 +930,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getScenarioContent_Message()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(1);
@@ -1002,7 +940,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getScenarioContent_Par()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(2);
@@ -1013,7 +950,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getScenarioContent_Loop()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(3);
@@ -1024,7 +960,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getScenarioContent_Contextmessage()
   {
     return (EReference)scenarioContentEClass.getEStructuralFeatures().get(4);
@@ -1035,7 +970,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getMessage()
   {
     return messageEClass;
@@ -1046,7 +980,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Name()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
@@ -1057,7 +990,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Required()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
@@ -1068,7 +1000,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Fail()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(2);
@@ -1079,7 +1010,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Strict()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(3);
@@ -1090,7 +1020,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMessage_Sender()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(4);
@@ -1101,7 +1030,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMessage_Receiver()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(5);
@@ -1112,7 +1040,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Past()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(6);
@@ -1123,7 +1050,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Future()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(7);
@@ -1134,7 +1060,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getMessage_Constraint()
   {
     return (EAttribute)messageEClass.getEStructuralFeatures().get(8);
@@ -1145,7 +1070,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMessage_C()
   {
     return (EReference)messageEClass.getEStructuralFeatures().get(9);
@@ -1156,7 +1080,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getContextMessage()
   {
     return contextMessageEClass;
@@ -1167,7 +1090,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextMessage_Content()
   {
     return (EReference)contextMessageEClass.getEStructuralFeatures().get(0);
@@ -1178,7 +1100,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getContextMessage_Required()
   {
     return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(1);
@@ -1189,7 +1110,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getContextMessage_Fail()
   {
     return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(2);
@@ -1200,7 +1120,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getContextMessage_Strict()
   {
     return (EAttribute)contextMessageEClass.getEStructuralFeatures().get(3);
@@ -1211,7 +1130,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getContextMessageContent()
   {
     return contextMessageContentEClass;
@@ -1222,7 +1140,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextMessageContent_Match()
   {
     return (EReference)contextMessageContentEClass.getEStructuralFeatures().get(0);
@@ -1233,7 +1150,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getContextMessageContent_Change()
   {
     return (EReference)contextMessageContentEClass.getEStructuralFeatures().get(1);
@@ -1244,7 +1160,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getMatchMessage()
   {
     return matchMessageEClass;
@@ -1255,7 +1170,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMatchMessage_Context()
   {
     return (EReference)matchMessageEClass.getEStructuralFeatures().get(0);
@@ -1266,7 +1180,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getMatchMessage_Content()
   {
     return (EReference)matchMessageEClass.getEStructuralFeatures().get(1);
@@ -1277,7 +1190,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getChangeMessage()
   {
     return changeMessageEClass;
@@ -1288,7 +1200,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeMessage_Disappear()
   {
     return (EReference)changeMessageEClass.getEStructuralFeatures().get(0);
@@ -1299,7 +1210,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeMessage_Appear()
   {
     return (EReference)changeMessageEClass.getEStructuralFeatures().get(1);
@@ -1310,7 +1220,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeMessage_Changeto()
   {
     return (EReference)changeMessageEClass.getEStructuralFeatures().get(2);
@@ -1321,7 +1230,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeMessage_Changetor()
   {
     return (EReference)changeMessageEClass.getEStructuralFeatures().get(3);
@@ -1332,7 +1240,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getAppearMessage()
   {
     return appearMessageEClass;
@@ -1343,7 +1250,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getAppearMessage_Context()
   {
     return (EReference)appearMessageEClass.getEStructuralFeatures().get(0);
@@ -1354,7 +1260,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getAppearMessage_Entity()
   {
     return (EReference)appearMessageEClass.getEStructuralFeatures().get(1);
@@ -1365,7 +1270,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getDisappearMessage()
   {
     return disappearMessageEClass;
@@ -1376,7 +1280,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDisappearMessage_Context()
   {
     return (EReference)disappearMessageEClass.getEStructuralFeatures().get(0);
@@ -1387,7 +1290,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getDisappearMessage_Entity()
   {
     return (EReference)disappearMessageEClass.getEStructuralFeatures().get(1);
@@ -1398,7 +1300,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getChangeToMessage()
   {
     return changeToMessageEClass;
@@ -1409,7 +1310,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeToMessage_Context()
   {
     return (EReference)changeToMessageEClass.getEStructuralFeatures().get(0);
@@ -1420,7 +1320,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeToMessage_Entity()
   {
     return (EReference)changeToMessageEClass.getEStructuralFeatures().get(1);
@@ -1431,7 +1330,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeToMessage_Attribute()
   {
     return (EReference)changeToMessageEClass.getEStructuralFeatures().get(2);
@@ -1442,7 +1340,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getChangeToMessage_Changevalue()
   {
     return (EAttribute)changeToMessageEClass.getEStructuralFeatures().get(3);
@@ -1453,7 +1350,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getChangeToRelation()
   {
     return changeToRelationEClass;
@@ -1464,7 +1360,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeToRelation_Context()
   {
     return (EReference)changeToRelationEClass.getEStructuralFeatures().get(0);
@@ -1475,7 +1370,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeToRelation_Relation()
   {
     return (EReference)changeToRelationEClass.getEStructuralFeatures().get(1);
@@ -1486,7 +1380,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getChangeToRelation_Attribute()
   {
     return (EReference)changeToRelationEClass.getEStructuralFeatures().get(2);
@@ -1497,7 +1390,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getChangeToRelation_Changevalue()
   {
     return (EAttribute)changeToRelationEClass.getEStructuralFeatures().get(3);
@@ -1508,7 +1400,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getObjectType()
   {
     return objectTypeEClass;
@@ -1519,7 +1410,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getObjectType_Name()
   {
     return (EAttribute)objectTypeEClass.getEStructuralFeatures().get(0);
@@ -1530,7 +1420,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getObject()
   {
     return objectEClass;
@@ -1541,7 +1430,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getObject_Object()
   {
     return (EReference)objectEClass.getEStructuralFeatures().get(0);
@@ -1552,7 +1440,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getObject_Name()
   {
     return (EAttribute)objectEClass.getEStructuralFeatures().get(1);
@@ -1563,7 +1450,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getConstraint()
   {
     return constraintEClass;
@@ -1574,7 +1460,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getConstraint_Name()
   {
     return (EAttribute)constraintEClass.getEStructuralFeatures().get(0);
@@ -1585,7 +1470,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getConstraint_Messages()
   {
     return (EReference)constraintEClass.getEStructuralFeatures().get(1);
@@ -1596,7 +1480,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getAlt()
   {
     return altEClass;
@@ -1607,7 +1490,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getAlt_Expressions()
   {
     return (EReference)altEClass.getEStructuralFeatures().get(0);
@@ -1618,7 +1500,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getExpression()
   {
     return expressionEClass;
@@ -1629,7 +1510,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getExpression_Messages()
   {
     return (EReference)expressionEClass.getEStructuralFeatures().get(0);
@@ -1640,7 +1520,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getPar()
   {
     return parEClass;
@@ -1651,7 +1530,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getPar_Parexpression()
   {
     return (EReference)parEClass.getEStructuralFeatures().get(0);
@@ -1662,7 +1540,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getParExpression()
   {
     return parExpressionEClass;
@@ -1673,7 +1550,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getParExpression_Name()
   {
     return (EAttribute)parExpressionEClass.getEStructuralFeatures().get(0);
@@ -1684,7 +1560,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getParExpression_Messages()
   {
     return (EReference)parExpressionEClass.getEStructuralFeatures().get(1);
@@ -1695,7 +1570,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EClass getLoop()
   {
     return loopEClass;
@@ -1706,7 +1580,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getLoop_Min()
   {
     return (EAttribute)loopEClass.getEStructuralFeatures().get(0);
@@ -1717,7 +1590,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EAttribute getLoop_Max()
   {
     return (EAttribute)loopEClass.getEStructuralFeatures().get(1);
@@ -1728,7 +1600,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public EReference getLoop_Messages()
   {
     return (EReference)loopEClass.getEStructuralFeatures().get(2);
@@ -1739,7 +1610,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
   public MyDslFactory getMyDslFactory()
   {
     return (MyDslFactory)getEFactoryInstance();
