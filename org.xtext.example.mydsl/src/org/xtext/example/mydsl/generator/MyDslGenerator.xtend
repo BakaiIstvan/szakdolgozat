@@ -47,6 +47,9 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject 
 	EventCreatorGenerator eventCreatorGenerator
+	
+	@Inject
+	StateGenerator stateGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		contextModelGenerator.doGenerate(resource, fsa, context);
@@ -54,53 +57,8 @@ class MyDslGenerator extends AbstractGenerator {
 		entityGenerator.doGenerate(resource, fsa, context);
 		relationGenerator.doGenerate(resource, fsa, context);
 		eventCreatorGenerator.doGenerate(resource, fsa, context);
+		stateGenerator.doGenerate(resource, fsa, context);
 		
-		fsa.generateFile("State.java", 
-			'''
-				public class State {
-				    private String id;
-				    private StateType type;
-				
-				    public State() {
-				        this.id = "q0";
-				        this.type = StateType.NORMAL;
-				    }
-				
-				    public State(String id, StateType stateType) {
-				        this.id = id;
-				        this.type = stateType;
-				    }
-				
-				    public String getId() {
-				        return id;
-				    }
-				
-				    public StateType getType() {
-				        return type;
-				    }
-				
-				    public void setType(StateType type) {
-				        this.type = type;
-				    }
-				
-				    public void setId(String id) {
-				        this.id = id;
-				    }
-				    
-				    public void writeState(){
-				    	System.out.println(this.id + " " + this.type);
-				    }
-				}
-			''')
-		
-		fsa.generateFile("StateType.java",
-			'''
-				public enum StateType {
-				    NORMAL, ACCEPT, FINAL, ACCEPT_ALL
-				}
-				
-			''')
-			
 		fsa.generateFile("Transition.java",
 			'''
 				public class Transition {
