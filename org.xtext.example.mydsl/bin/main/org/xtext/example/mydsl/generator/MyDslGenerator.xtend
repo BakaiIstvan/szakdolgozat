@@ -50,6 +50,9 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject
 	StateGenerator stateGenerator
+	
+	@Inject
+	TransitionGenerator transitionGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		contextModelGenerator.doGenerate(resource, fsa, context);
@@ -58,63 +61,7 @@ class MyDslGenerator extends AbstractGenerator {
 		relationGenerator.doGenerate(resource, fsa, context);
 		eventCreatorGenerator.doGenerate(resource, fsa, context);
 		stateGenerator.doGenerate(resource, fsa, context);
-		
-		fsa.generateFile("Transition.java",
-			'''
-				public class Transition {
-				    private String id;
-				    private State sender;
-				    private State receiver;
-				    
-				    public Transition() {
-				            this.id = "t0";
-				            this.sender = new State();
-				            this.receiver = new State();
-				    }
-				
-				    public Transition(String id, State sender, State receiver) {
-				    	if(id.equals("1")){
-				    		this.id = "true";
-				    	}else{
-				        	this.id = id;
-				        }
-				        this.sender = sender;
-				        this.receiver = receiver;
-				    }
-				
-				    public String getId() {
-				        return id;
-				    }
-				
-				    public State getSender() {
-				        return sender;
-				    }
-				
-				    public State getReceiver() {
-				        return receiver;
-				    }
-				
-				    public void setReceiver(State receiver) {
-				        this.receiver = receiver;
-				    }
-				
-				    public void setSender(State sender) {
-				        this.sender = sender;
-				    }
-				
-				    public void setId(String id) {
-				        if(id.equals("1")){
-				        	this.id = "true";
-				        }else{
-				        	this.id = id;
-				        }
-				    }
-				    
-				    public void writeTransition(){
-				    	System.out.println(this.id + " " + this.sender.getId() + "->" + this.receiver.getId());
-				    }
-				}
-			''')
+		transitionGenerator.doGenerate(resource,fsa, context);
 			
 		fsa.generateFile("Automaton.java", 
 			'''
