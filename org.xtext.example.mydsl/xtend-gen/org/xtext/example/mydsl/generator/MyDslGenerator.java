@@ -19,6 +19,7 @@ import org.xtext.example.mydsl.generator.AppearMessages;
 import org.xtext.example.mydsl.generator.AutomatonGenerator;
 import org.xtext.example.mydsl.generator.ContextFragmentGenerator;
 import org.xtext.example.mydsl.generator.ContextModelGenerator;
+import org.xtext.example.mydsl.generator.DisappearMessages;
 import org.xtext.example.mydsl.generator.EntityGenerator;
 import org.xtext.example.mydsl.generator.EventCreatorGenerator;
 import org.xtext.example.mydsl.generator.FailMessage;
@@ -220,7 +221,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   EList<DisappearMessage> _disappear = ca.getDisappear();
                                   for(final DisappearMessage d : _disappear) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_disappear_strict_required = this.compile_disappear_strict_required(d);
+                                    CharSequence _compile_disappear_strict_required = new DisappearMessages().compile_disappear_strict_required(d);
                                     _builder.append(_compile_disappear_strict_required, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -295,7 +296,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   EList<DisappearMessage> _disappear_1 = ca_1.getDisappear();
                                   for(final DisappearMessage d_1 : _disappear_1) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_disappear_strict_fail = this.compile_disappear_strict_fail(d_1);
+                                    CharSequence _compile_disappear_strict_fail = new DisappearMessages().compile_disappear_strict_fail(d_1);
                                     _builder.append(_compile_disappear_strict_fail, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -369,7 +370,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   EList<DisappearMessage> _disappear_2 = ca_2.getDisappear();
                                   for(final DisappearMessage d_2 : _disappear_2) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_disappear_strict = this.compile_disappear_strict(d_2);
+                                    CharSequence _compile_disappear_strict = new DisappearMessages().compile_disappear_strict(d_2);
                                     _builder.append(_compile_disappear_strict, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -452,7 +453,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   EList<DisappearMessage> _disappear_3 = ca_3.getDisappear();
                                   for(final DisappearMessage d_3 : _disappear_3) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_disappear_required = this.compile_disappear_required(d_3);
+                                    CharSequence _compile_disappear_required = new DisappearMessages().compile_disappear_required(d_3);
                                     _builder.append(_compile_disappear_required, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -527,7 +528,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   EList<DisappearMessage> _disappear_4 = ca_4.getDisappear();
                                   for(final DisappearMessage d_4 : _disappear_4) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_disappear_fail = this.compile_disappear_fail(d_4);
+                                    CharSequence _compile_disappear_fail = new DisappearMessages().compile_disappear_fail(d_4);
                                     _builder.append(_compile_disappear_fail, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -601,7 +602,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   EList<DisappearMessage> _disappear_5 = ca_5.getDisappear();
                                   for(final DisappearMessage d_5 : _disappear_5) {
                                     _builder.append("\t\t");
-                                    CharSequence _compile_disappear_msg = this.compile_disappear_msg(d_5);
+                                    CharSequence _compile_disappear_msg = new DisappearMessages().compile_disappear_msg(d_5);
                                     _builder.append(_compile_disappear_msg, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
@@ -2279,47 +2280,6 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_disappear_required(final DisappearMessage dm) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto3\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!(\"+ \"disappear(\" + \"");
-    String _name = dm.getContext().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = dm.getEntity().getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \"))\", actualState, actualState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
-    String _name_2 = dm.getContext().getName();
-    _builder.append(_name_2);
-    _builder.append("\" + \".\" + \"");
-    String _name_3 = dm.getEntity().getName();
-    _builder.append(_name_3);
-    _builder.append("\" + \")\", actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
   public CharSequence compile_changeto_required(final ChangeToMessage cm) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"auto3\");");
@@ -2424,43 +2384,6 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_disappear_fail(final DisappearMessage dm) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto5\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
-    String _name = dm.getContext().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = dm.getEntity().getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \")\" , actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"1\", newState, newState));");
-    _builder.newLine();
-    return _builder;
-  }
-  
   public CharSequence compile_changeto_fail(final ChangeToMessage cm) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"auto5\");");
@@ -2545,41 +2468,6 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_disappear_msg(final DisappearMessage dm) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"match1\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"1\", actualState, actualState));");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
-    String _name = dm.getContext().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = dm.getEntity().getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \")\" , actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
   public CharSequence compile_changeto_msg(final ChangeToMessage cm) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"match1\");");
@@ -2656,55 +2544,6 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("b.addState(newState);");
     _builder.newLine();
     _builder.append("b.setFinale(newState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile_disappear_strict_required(final DisappearMessage dm) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto9\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.ACCEPT);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
-    String _name = dm.getContext().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = dm.getEntity().getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \")\" , actualState, finalState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"!(\" + \"disappear(\" + \"");
-    String _name_2 = dm.getContext().getName();
-    _builder.append(_name_2);
-    _builder.append("\" + \".\" + \"");
-    String _name_3 = dm.getEntity().getName();
-    _builder.append(_name_3);
-    _builder.append("\" + \"))\" , actualState, acceptState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
-    _builder.newLine();
-    _builder.append("b.addState(acceptState);");
-    _builder.newLine();
-    _builder.append("b.addState(finalState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(finalState);");
     _builder.newLine();
     return _builder;
   }
@@ -2829,55 +2668,6 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_disappear_strict_fail(final DisappearMessage dm) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto10\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"!(\" + \"disappear(\" + \"");
-    String _name = dm.getContext().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = dm.getEntity().getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \"))\", actualState, finalState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"disappear(\" + \"");
-    String _name_2 = dm.getContext().getName();
-    _builder.append(_name_2);
-    _builder.append("\" + \".\" + \"");
-    String _name_3 = dm.getEntity().getName();
-    _builder.append(_name_3);
-    _builder.append("\" + \")\", actualState, acceptState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
-    _builder.newLine();
-    _builder.append("b.addState(finalState);");
-    _builder.newLine();
-    _builder.append("b.addState(acceptState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(finalState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
   public CharSequence compile_changeto_strict_fail(final ChangeToMessage cm) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("b = new Automaton(\"auto10\");");
@@ -2994,39 +2784,6 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("b.addState(acceptState);");
     _builder.newLine();
     _builder.append("b.setFinale(finalState);");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile_disappear_strict(final DisappearMessage dm) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("b = new Automaton(\"auto12\");");
-    _builder.newLine();
-    _builder.append("actualState = new State(\"q\" + counter, StateType.NORMAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addState(actualState);");
-    _builder.newLine();
-    _builder.append("b.setInitial(actualState);");
-    _builder.newLine();
-    _builder.append("\t\t\t\t\t\t\t\t\t\t");
-    _builder.newLine();
-    _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
-    _builder.newLine();
-    _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"disappear\" + \"(\" + \"");
-    String _name = dm.getContext().getName();
-    _builder.append(_name);
-    _builder.append("\" + \".\" + \"");
-    String _name_1 = dm.getEntity().getName();
-    _builder.append(_name_1);
-    _builder.append("\" + \")\", actualState, newState));");
-    _builder.newLineIfNotEmpty();
-    _builder.append("b.addState(newState);");
-    _builder.newLine();
-    _builder.append("b.setFinale(newState);");
     _builder.newLine();
     return _builder;
   }

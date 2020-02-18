@@ -114,7 +114,7 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																											
 											«ENDFOR»
 											«FOR d : ca.disappear»
-												«d.compile_disappear_strict_required»
+												«new DisappearMessages().compile_disappear_strict_required(d)»
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
@@ -140,7 +140,7 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																										
 											«ENDFOR»
 											«FOR d : ca.disappear»
-												«d.compile_disappear_strict_fail»
+												«new DisappearMessages().compile_disappear_strict_fail(d)»
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
@@ -166,7 +166,7 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																											
 											«ENDFOR»
 											«FOR d : ca.disappear»
-												«d.compile_disappear_strict»
+												«new DisappearMessages().compile_disappear_strict(d)»
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
@@ -195,7 +195,7 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);
 											«ENDFOR»
 											«FOR d : ca.disappear»
-												«d.compile_disappear_required»
+												«new DisappearMessages().compile_disappear_required(d)»
 												a.collapse(b);
 											«ENDFOR»
 											«FOR t : ca.changeto»
@@ -221,7 +221,7 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																											
 											«ENDFOR»
 											«FOR d : ca.disappear»
-												«d.compile_disappear_fail»
+												«new DisappearMessages().compile_disappear_fail(d)»
 												a.collapse(b);																																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
@@ -247,7 +247,7 @@ class MyDslGenerator extends AbstractGenerator {
 												a.collapse(b);																								
 											«ENDFOR»
 											«FOR d : ca.disappear»
-												«d.compile_disappear_msg»
+												«new DisappearMessages().compile_disappear_msg(d)»
 												a.collapse(b);																							
 											«ENDFOR»
 											«FOR t : ca.changeto»
@@ -816,21 +816,7 @@ class MyDslGenerator extends AbstractGenerator {
 		}
 	'''
 	
-	def compile_disappear_required(DisappearMessage dm)'''
-		b = new Automaton("auto3");
-		actualState = new State("q" + counter, StateType.ACCEPT);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-		
-		
-		b.addTransition(new Transition("!("+ "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))", actualState, actualState));
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, newState));
-		b.addState(newState);
-		b.setFinale(newState);
-	'''
+	
 	
 	def compile_changeto_required(ChangeToMessage cm)'''
 		b = new Automaton("auto3");
@@ -864,21 +850,7 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	
 	
-	def compile_disappear_fail(DisappearMessage dm)'''
-		b = new Automaton("auto5");
-		actualState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-		b.setFinale(actualState);
-											
-		b.addTransition(new Transition("1", actualState, actualState));
-		newState = new State("q" + counter, StateType.ACCEPT_ALL);
-		counter++;
-		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, newState));
-		b.addState(newState);
-		b.addTransition(new Transition("1", newState, newState));
-	'''
+	
 	
 	def compile_changeto_fail(ChangeToMessage cm)'''
 		b = new Automaton("auto5");
@@ -914,20 +886,7 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	
 	
-	def compile_disappear_msg(DisappearMessage dm)'''
-		b = new Automaton("match1");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-											
-		b.addTransition(new Transition("1", actualState, actualState));
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, newState));
-		b.addState(newState);
-		b.setFinale(newState);
-	'''
+	
 	
 	def compile_changeto_msg(ChangeToMessage cm)'''
 		b = new Automaton("match1");
@@ -961,24 +920,7 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	
 	
-	def compile_disappear_strict_required(DisappearMessage dm)'''
-		b = new Automaton("auto9");
-		actualState = new State("q" + counter, StateType.ACCEPT);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-											
-		finalState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
-		counter++;
-		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")" , actualState, finalState));
-		b.addTransition(new Transition("!(" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))" , actualState, acceptState));
-		b.addTransition(new Transition("1", acceptState, acceptState));
-		b.addState(acceptState);
-		b.addState(finalState);
-		b.setFinale(finalState);
-	'''
+	
 	
 	def compile_changeto_strict_required(ChangeToMessage cm)'''
 		b = new Automaton("auto9");
@@ -1020,24 +962,7 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	
 	
-	def compile_disappear_strict_fail(DisappearMessage dm)'''
-		b = new Automaton("auto10");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-											
-		finalState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
-		counter++;
-		b.addTransition(new Transition("!(" + "disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + "))", actualState, finalState));
-		b.addTransition(new Transition("disappear(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, acceptState));
-		b.addTransition(new Transition("1", acceptState, acceptState));
-		b.addState(finalState);
-		b.addState(acceptState);
-		b.setFinale(finalState);
-	'''
+	
 	
 	def compile_changeto_strict_fail(ChangeToMessage cm)'''
 		b = new Automaton("auto10");
@@ -1079,19 +1004,7 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	
 	
-	def compile_disappear_strict(DisappearMessage dm)'''
-		b = new Automaton("auto12");
-		actualState = new State("q" + counter, StateType.NORMAL);
-		counter++;
-		b.addState(actualState);
-		b.setInitial(actualState);
-												
-		newState = new State("q" + counter, StateType.FINAL);
-		counter++;
-		b.addTransition(new Transition("disappear" + "(" + "«dm.context.name»" + "." + "«dm.entity.name»" + ")", actualState, newState));
-		b.addState(newState);
-		b.setFinale(newState);
-	'''
+	
 	
 	def compile_changeto_strict(ChangeToMessage cm)'''
 		b = new Automaton("auto12");
