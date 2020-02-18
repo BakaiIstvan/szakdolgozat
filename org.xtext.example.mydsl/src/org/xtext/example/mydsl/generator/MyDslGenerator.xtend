@@ -41,17 +41,15 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject
 	EntityGenerator entityGenerator
+	
+	@Inject
+	RelationGenerator relationGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		contextModelGenerator.doGenerate(resource, fsa, context);
 		contextFragmentGenerator.doGenerate(resource, fsa, context);
 		entityGenerator.doGenerate(resource, fsa, context);
-		
-		for (m : resource.allContents.toIterable.filter(Relation)) {
-			fsa.generateFile(
-				m.fullyQualifiedName.toString("/") + ".java", m.compile
-			)
-		}
+		relationGenerator.doGenerate(resource, fsa, context);
 		
 		for (m : resource.allContents.toIterable.filter(Domain)) {
 			fsa.generateFile(
@@ -339,138 +337,6 @@ class MyDslGenerator extends AbstractGenerator {
 			fsa.generateFile("Specification.java", s.compile)
 		}
 	}
-	
-	def compile(Relation r)'''
-		public class «r.name.toFirstUpper» {
-			private «r.sender.name.toFirstUpper» sender;
-			private «r.receiver.name.toFirstUpper» receiver;
-			private EventCreator eventCreator;
-			«FOR a: r.attributes»
-				«IF a.int»
-					private int «a.name.toFirstLower»;
-				«ENDIF»
-				«IF a.float»
-					private float «a.name.toFirstLower»;
-				«ENDIF»
-				«IF a.string»
-					private String «a.name.toFirstLower»;
-				«ENDIF»
-				«IF a.boolean»
-					private boolean «a.name.toFirstLower»;
-				«ENDIF»
-			«ENDFOR»
-			
-			public «r.name.toFirstUpper»(«r.sender.name.toFirstUpper» sender, «r.receiver.name.toFirstUpper» receiver) {
-				this.sender = sender;
-				this.receiver = receiver;
-				«FOR a: r.attributes»
-					«IF a.int»
-						«IF a.value === null»
-							«a.name.toFirstLower» = 0;
-						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
-						«ENDIF»
-					«ENDIF»
-					«IF a.float»
-						«IF a.value === null»
-							«a.name.toFirstLower» = 0;
-						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
-						«ENDIF»
-					«ENDIF»
-					«IF a.string»
-						«IF a.value === null»
-							«a.name.toFirstLower» = "default";
-						«ELSE»
-							«a.name.toFirstLower» = "«a.value»";
-						«ENDIF»
-					«ENDIF»
-					«IF a.boolean»
-						«IF a.value === null»
-							«a.name.toFirstLower» = false;
-						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
-						«ENDIF»
-					«ENDIF»
-				«ENDFOR»
-			}
-			
-			public «r.name.toFirstUpper»(«r.sender.name.toFirstUpper» sender, «r.receiver.name.toFirstUpper» receiver, EventCreator eventCreator) {
-				this.sender = sender;
-				this.receiver = receiver;
-				this.eventCreator = eventCreator;
-				«FOR a: r.attributes»
-					«IF a.int»
-						«IF a.value === null»
-							«a.name.toFirstLower» = 0;
-						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
-						«ENDIF»
-					«ENDIF»
-					«IF a.float»
-						«IF a.value === null»
-							«a.name.toFirstLower» = 0;
-						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
-						«ENDIF»
-					«ENDIF»
-					«IF a.string»
-						«IF a.value === null»
-							«a.name.toFirstLower» = "default";
-						«ELSE»
-							«a.name.toFirstLower» = "«a.value»";
-						«ENDIF»
-					«ENDIF»
-					«IF a.boolean»
-						«IF a.value === null»
-							«a.name.toFirstLower» = false;
-						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
-						«ENDIF»
-					«ENDIF»
-				«ENDFOR»
-			}
-				
-			«FOR a: r.attributes»
-				«IF a.int»
-					public int get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
-					
-					public void set«a.name.toFirstUpper»(int «a.name.toFirstLower») { 
-						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
-					}
-				«ENDIF»
-				«IF a.float»
-					public float get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
-											
-					public void set«a.name.toFirstUpper»(float «a.name.toFirstLower») { 
-						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
-					}
-				«ENDIF»
-				«IF a.string»
-					public String get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
-											
-					public void set«a.name.toFirstUpper»(String «a.name.toFirstLower») { 
-						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
-					}
-				«ENDIF»
-				«IF a.boolean»
-					public boolean get«a.name.toFirstUpper»() { return «a.name.toFirstLower»; }
-											
-					public void set«a.name.toFirstUpper»(boolean «a.name.toFirstLower») { 
-						this.«a.name.toFirstLower» = «a.name.toFirstLower»;
-						eventCreator.changeTo("«r.name.toFirstUpper».«a.name.toFirstLower», " + «a.name.toFirstLower»);
-					}
-				«ENDIF»
-			«ENDFOR»
-			
-			public «r.sender.name.toFirstUpper» getSender() { return sender; }
-			
-			public «r.receiver.name.toFirstUpper» getReceiver() { return receiver; }
-		}
-	'''
 	
 	def compile_eventcreator(Domain d)'''
 		public class EventCreator {
