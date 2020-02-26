@@ -9,6 +9,7 @@ Domain:
 	contextmodels+=ContextModel*
 	contextfragments+=ContextFragment*
 	objects+=Object*
+	parameters+=Parameter*
 	constraints+=Constraint*
 	scenarios+=Scenario* ('}')?
 ;
@@ -74,7 +75,8 @@ Scenario:
 ;
 
 ScenarioContent:
-	alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage
+	alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage | paramConstraint+=ParameterConstraint
+	| assertentity+=AssertionEntity | assertrelation+=AssertionRelation
 
 ;
 
@@ -120,8 +122,32 @@ ChangeToRelation:
 	'relationChangeTo' '(' (context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute])? (',')? (changevalue=AttributeValue)? ')'
 ;
 
+AssertionEntity:
+	'assertEntityAttribute' '(' context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ')' ';'
+;
+
+AssertionRelation:
+	'assertRelationAttribute' '(' context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ')' ';'
+;
+
 Name:
-	ID '(' (ID|Number)? ')'
+	ID '(' (params+=[Parameter])? (',' params+=[Parameter])* ')'
+;
+
+Parameter:
+	type+=Type name=ID ('=')? (value+=AttributeValue)? ';'
+;
+
+ParameterConstraint:
+	'parameterConstraint' object=[Object] '->' '[' param=[Parameter] operator+=Operator value+=AttributeValue ']' ';'
+;
+
+Operator:
+	greater?='>' | smaller?='<' | greaterequals?='>=' | smallerequals?='<=' | equals?='==' | notequals?='!='
+;
+
+enum Type:
+	integer | float | bool | string
 ;
 
 terminal Number:
@@ -150,9 +176,13 @@ Alt:
 	'alt' expressions+=Expression*
 ;
 
+AltCondition:
+	param=[Parameter] operator+=Operator value+=AttributeValue | else?='else'
+;
+
 Expression:
-	'(' (ID)? ('=')? ('>')? ('<')? ('>=')? ('<=')? (ID|Number)? ')' '{'
-	messages+=Message*
+	'(' altCondition+=AltCondition ')' '{'
+		messages+=Message*
 	'}'
 ;
 

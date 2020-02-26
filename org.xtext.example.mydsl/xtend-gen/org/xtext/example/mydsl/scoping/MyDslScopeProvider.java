@@ -8,6 +8,8 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.AssertionEntity;
+import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
@@ -42,5 +44,21 @@ public class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
   
   public IScope scope_DisappearMessage_entity(final DisappearMessage dis, final EReference ref) {
     return Scopes.scopeFor(dis.getContext().getEntities());
+  }
+  
+  public IScope scope_AssertionEntity_entity(final AssertionEntity assert_, final EReference ref) {
+    return Scopes.scopeFor(assert_.getContext().getEntities());
+  }
+  
+  public IScope scope_AssertionEntity_attribute(final AssertionEntity assert_, final EReference ref) {
+    return Scopes.scopeFor(assert_.getEntity().getAttributes());
+  }
+  
+  public IScope scope_AssertionRelation_relation(final AssertionRelation assert_, final EReference ref) {
+    return Scopes.scopeFor(assert_.getContext().getRelations());
+  }
+  
+  public IScope scope_AssertionRelation_attribute(final AssertionRelation assert_, final EReference ref) {
+    return Scopes.scopeFor(assert_.getRelation().getAttributes());
   }
 }

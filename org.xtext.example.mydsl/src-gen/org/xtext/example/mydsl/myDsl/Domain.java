@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextmodels <em>Contextmodels</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getContextfragments <em>Contextfragments</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getObjects <em>Objects</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Domain#getScenarios <em>Scenarios</em>}</li>
  * </ul>
@@ -147,6 +148,22 @@ public interface Domain extends EObject
    * @generated
    */
   EList<org.xtext.example.mydsl.myDsl.Object> getObjects();
+
+  /**
+   * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Parameter}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Parameters</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getDomain_Parameters()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Parameter> getParameters();
 
   /**
    * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.

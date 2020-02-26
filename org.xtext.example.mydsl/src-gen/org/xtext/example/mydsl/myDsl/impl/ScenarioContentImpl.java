@@ -18,11 +18,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AssertionEntity;
+import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Par;
+import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
 /**
@@ -38,6 +41,9 @@ import org.xtext.example.mydsl.myDsl.ScenarioContent;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getPar <em>Par</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getLoop <em>Loop</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getContextmessage <em>Contextmessage</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getParamConstraint <em>Param Constraint</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getAssertentity <em>Assertentity</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ScenarioContentImpl#getAssertrelation <em>Assertrelation</em>}</li>
  * </ul>
  *
  * @generated
@@ -93,6 +99,36 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<ContextMessage> contextmessage;
+
+  /**
+   * The cached value of the '{@link #getParamConstraint() <em>Param Constraint</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getParamConstraint()
+   * @generated
+   * @ordered
+   */
+  protected EList<ParameterConstraint> paramConstraint;
+
+  /**
+   * The cached value of the '{@link #getAssertentity() <em>Assertentity</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAssertentity()
+   * @generated
+   * @ordered
+   */
+  protected EList<AssertionEntity> assertentity;
+
+  /**
+   * The cached value of the '{@link #getAssertrelation() <em>Assertrelation</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAssertrelation()
+   * @generated
+   * @ordered
+   */
+  protected EList<AssertionRelation> assertrelation;
 
   /**
    * <!-- begin-user-doc -->
@@ -190,6 +226,48 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ParameterConstraint> getParamConstraint()
+  {
+    if (paramConstraint == null)
+    {
+      paramConstraint = new EObjectContainmentEList<ParameterConstraint>(ParameterConstraint.class, this, MyDslPackage.SCENARIO_CONTENT__PARAM_CONSTRAINT);
+    }
+    return paramConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<AssertionEntity> getAssertentity()
+  {
+    if (assertentity == null)
+    {
+      assertentity = new EObjectContainmentEList<AssertionEntity>(AssertionEntity.class, this, MyDslPackage.SCENARIO_CONTENT__ASSERTENTITY);
+    }
+    return assertentity;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<AssertionRelation> getAssertrelation()
+  {
+    if (assertrelation == null)
+    {
+      assertrelation = new EObjectContainmentEList<AssertionRelation>(AssertionRelation.class, this, MyDslPackage.SCENARIO_CONTENT__ASSERTRELATION);
+    }
+    return assertrelation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -205,6 +283,12 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return ((InternalEList<?>)getLoop()).basicRemove(otherEnd, msgs);
       case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
         return ((InternalEList<?>)getContextmessage()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.SCENARIO_CONTENT__PARAM_CONSTRAINT:
+        return ((InternalEList<?>)getParamConstraint()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTENTITY:
+        return ((InternalEList<?>)getAssertentity()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTRELATION:
+        return ((InternalEList<?>)getAssertrelation()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -229,6 +313,12 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return getLoop();
       case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
         return getContextmessage();
+      case MyDslPackage.SCENARIO_CONTENT__PARAM_CONSTRAINT:
+        return getParamConstraint();
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTENTITY:
+        return getAssertentity();
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTRELATION:
+        return getAssertrelation();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -264,6 +354,18 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         getContextmessage().clear();
         getContextmessage().addAll((Collection<? extends ContextMessage>)newValue);
         return;
+      case MyDslPackage.SCENARIO_CONTENT__PARAM_CONSTRAINT:
+        getParamConstraint().clear();
+        getParamConstraint().addAll((Collection<? extends ParameterConstraint>)newValue);
+        return;
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTENTITY:
+        getAssertentity().clear();
+        getAssertentity().addAll((Collection<? extends AssertionEntity>)newValue);
+        return;
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTRELATION:
+        getAssertrelation().clear();
+        getAssertrelation().addAll((Collection<? extends AssertionRelation>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -293,6 +395,15 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
         getContextmessage().clear();
         return;
+      case MyDslPackage.SCENARIO_CONTENT__PARAM_CONSTRAINT:
+        getParamConstraint().clear();
+        return;
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTENTITY:
+        getAssertentity().clear();
+        return;
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTRELATION:
+        getAssertrelation().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -317,6 +428,12 @@ public class ScenarioContentImpl extends MinimalEObjectImpl.Container implements
         return loop != null && !loop.isEmpty();
       case MyDslPackage.SCENARIO_CONTENT__CONTEXTMESSAGE:
         return contextmessage != null && !contextmessage.isEmpty();
+      case MyDslPackage.SCENARIO_CONTENT__PARAM_CONSTRAINT:
+        return paramConstraint != null && !paramConstraint.isEmpty();
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTENTITY:
+        return assertentity != null && !assertentity.isEmpty();
+      case MyDslPackage.SCENARIO_CONTENT__ASSERTRELATION:
+        return assertrelation != null && !assertrelation.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -43,6 +43,7 @@ import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
+import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Scenario;
@@ -289,7 +290,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                     _builder.append(_compile_appear_strict_fail, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
-                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
                                     _builder.newLine();
                                   }
                                 }
@@ -301,7 +302,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                     _builder.append(_compile_disappear_strict_fail, "\t\t");
                                     _builder.newLineIfNotEmpty();
                                     _builder.append("\t\t");
-                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                    _builder.append("a.collapse(b);\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
                                     _builder.newLine();
                                   }
                                 }
@@ -668,7 +669,7 @@ public class MyDslGenerator extends AbstractGenerator {
                             String _name_2 = msg.getSender().getName();
                             _builder.append(_name_2, "\t\t");
                             _builder.append("\" + \".\" + \"");
-                            String _name_3 = msg.getName();
+                            Name _name_3 = msg.getName();
                             _builder.append(_name_3, "\t\t");
                             _builder.append("\" + \".\" + \"");
                             String _name_4 = msg.getReceiver().getName();
@@ -918,7 +919,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 String _name_5 = msg_1.getSender().getName();
                                 _builder.append(_name_5, "\t\t");
                                 _builder.append("\" + \".\" + \"");
-                                String _name_6 = msg_1.getName();
+                                Name _name_6 = msg_1.getName();
                                 _builder.append(_name_6, "\t\t");
                                 _builder.append("\" + \".\" + \"");
                                 String _name_7 = msg_1.getReceiver().getName();
@@ -1170,7 +1171,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 String _name_8 = msg_2.getSender().getName();
                                 _builder.append(_name_8, "\t\t\t");
                                 _builder.append("\" + \".\" + \"");
-                                String _name_9 = msg_2.getName();
+                                Name _name_9 = msg_2.getName();
                                 _builder.append(_name_9, "\t\t\t");
                                 _builder.append("\" + \".\" + \"");
                                 String _name_10 = msg_2.getReceiver().getName();
@@ -1437,7 +1438,7 @@ public class MyDslGenerator extends AbstractGenerator {
                         String _name_11 = msg_3.getSender().getName();
                         _builder.append(_name_11, "\t\t");
                         _builder.append("\" + \".\" + \"");
-                        String _name_12 = msg_3.getName();
+                        Name _name_12 = msg_3.getName();
                         _builder.append(_name_12, "\t\t");
                         _builder.append("\" + \".\" + \"");
                         String _name_13 = msg_3.getReceiver().getName();

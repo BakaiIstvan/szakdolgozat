@@ -11,6 +11,8 @@ import org.xtext.example.mydsl.myDsl.ChangeToMessage
 import org.xtext.example.mydsl.myDsl.AppearMessage
 import org.xtext.example.mydsl.myDsl.DisappearMessage
 import org.xtext.example.mydsl.myDsl.ChangeToRelation
+import org.xtext.example.mydsl.myDsl.AssertionEntity
+import org.xtext.example.mydsl.myDsl.AssertionRelation
 
 /**
  * This class contains custom scoping description.
@@ -42,6 +44,22 @@ class MyDslScopeProvider extends AbstractDeclarativeScopeProvider {
     
     def IScope scope_DisappearMessage_entity(DisappearMessage dis, EReference ref) {
     	return Scopes.scopeFor(dis.context.entities)
+    }
+    
+    def IScope scope_AssertionEntity_entity(AssertionEntity assert, EReference ref) {
+    	return Scopes.scopeFor(assert.context.entities)
+    }
+    
+    def IScope scope_AssertionEntity_attribute(AssertionEntity assert, EReference ref) {
+    	return Scopes.scopeFor(assert.entity.attributes)
+    }
+    
+    def IScope scope_AssertionRelation_relation(AssertionRelation assert, EReference ref) {
+    	return Scopes.scopeFor(assert.context.relations)
+    }
+    
+    def IScope scope_AssertionRelation_attribute(AssertionRelation assert, EReference ref) {
+    	return Scopes.scopeFor(assert.relation.attributes)
     }
     
 

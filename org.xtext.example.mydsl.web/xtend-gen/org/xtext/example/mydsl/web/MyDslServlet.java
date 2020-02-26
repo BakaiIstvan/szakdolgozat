@@ -3,33 +3,38 @@
  */
 package org.xtext.example.mydsl.web;
 
+import com.google.inject.Injector;
+import javax.servlet.annotation.WebServlet;
+import org.eclipse.xtext.util.DisposableRegistry;
+import org.eclipse.xtext.web.servlet.XtextServlet;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.xtext.example.mydsl.web.MyDslWebSetup;
+
 /**
  * Deploy this class into a servlet container to enable DSL-specific services.
  */
-/* @WebServlet(, ) */@SuppressWarnings("all")
-public class MyDslServlet /* implements XtextServlet  */{
-  private /* DisposableRegistry */Object disposableRegistry;
+@WebServlet(name = "XtextServices", urlPatterns = "/xtext-service/*")
+@SuppressWarnings("all")
+public class MyDslServlet extends XtextServlet {
+  private DisposableRegistry disposableRegistry;
   
   @Override
-  public DisposableRegistry init() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field super is undefined"
-      + "\nThe method createInjectorAndDoEMFRegistration() is undefined for the type MyDslWebSetup"
-      + "\nThe method or field DisposableRegistry is undefined"
-      + "\nThe field MyDslServlet.disposableRegistry refers to the missing type DisposableRegistry"
-      + "\ninit cannot be resolved"
-      + "\ngetInstance cannot be resolved");
+  public void init() {
+    try {
+      super.init();
+      final Injector injector = new MyDslWebSetup().createInjectorAndDoEMFRegistration();
+      this.disposableRegistry = injector.<DisposableRegistry>getInstance(DisposableRegistry.class);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   @Override
-  public Object destroy() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field super is undefined"
-      + "\nThe field MyDslServlet.disposableRegistry refers to the missing type DisposableRegistry"
-      + "\nThe field MyDslServlet.disposableRegistry refers to the missing type DisposableRegistry"
-      + "\nThe field MyDslServlet.disposableRegistry refers to the missing type DisposableRegistry"
-      + "\n!== cannot be resolved"
-      + "\ndispose cannot be resolved"
-      + "\ndestroy cannot be resolved");
+  public void destroy() {
+    if ((this.disposableRegistry != null)) {
+      this.disposableRegistry.dispose();
+      this.disposableRegistry = null;
+    }
+    super.destroy();
   }
 }

@@ -21,6 +21,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getPar <em>Par</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getLoop <em>Loop</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getContextmessage <em>Contextmessage</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getParamConstraint <em>Param Constraint</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getAssertentity <em>Assertentity</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getAssertrelation <em>Assertrelation</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getScenarioContent()
@@ -108,5 +111,53 @@ public interface ScenarioContent extends EObject
    * @generated
    */
   EList<ContextMessage> getContextmessage();
+
+  /**
+   * Returns the value of the '<em><b>Param Constraint</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ParameterConstraint}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Param Constraint</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Param Constraint</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getScenarioContent_ParamConstraint()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ParameterConstraint> getParamConstraint();
+
+  /**
+   * Returns the value of the '<em><b>Assertentity</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.AssertionEntity}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Assertentity</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Assertentity</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getScenarioContent_Assertentity()
+   * @model containment="true"
+   * @generated
+   */
+  EList<AssertionEntity> getAssertentity();
+
+  /**
+   * Returns the value of the '<em><b>Assertrelation</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.AssertionRelation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Assertrelation</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Assertrelation</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getScenarioContent_Assertrelation()
+   * @model containment="true"
+   * @generated
+   */
+  EList<AssertionRelation> getAssertrelation();
 
 } // ScenarioContent

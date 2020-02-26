@@ -4,6 +4,7 @@
 package org.xtext.example.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Name;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,24 +42,14 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected Name name;
 
   /**
    * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
@@ -235,7 +227,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public Name getName()
   {
     return name;
   }
@@ -245,12 +237,37 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public NotificationChain basicSetName(Name newName, NotificationChain msgs)
   {
-    String oldName = name;
+    Name oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__NAME, oldName, name));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__NAME, oldName, newName);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(Name newName)
+  {
+    if (newName != name)
+    {
+      NotificationChain msgs = null;
+      if (name != null)
+        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__NAME, null, msgs);
+      if (newName != null)
+        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__NAME, null, msgs);
+      msgs = basicSetName(newName, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__NAME, newName, newName));
   }
 
   /**
@@ -526,6 +543,22 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.MESSAGE__NAME:
+        return basicSetName(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
@@ -568,7 +601,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     switch (featureID)
     {
       case MyDslPackage.MESSAGE__NAME:
-        setName((String)newValue);
+        setName((Name)newValue);
         return;
       case MyDslPackage.MESSAGE__REQUIRED:
         setRequired((Boolean)newValue);
@@ -612,7 +645,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     switch (featureID)
     {
       case MyDslPackage.MESSAGE__NAME:
-        setName(NAME_EDEFAULT);
+        setName((Name)null);
         return;
       case MyDslPackage.MESSAGE__REQUIRED:
         setRequired(REQUIRED_EDEFAULT);
@@ -656,7 +689,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     switch (featureID)
     {
       case MyDslPackage.MESSAGE__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+        return name != null;
       case MyDslPackage.MESSAGE__REQUIRED:
         return required != REQUIRED_EDEFAULT;
       case MyDslPackage.MESSAGE__FAIL:
@@ -690,9 +723,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(", required: ");
+    result.append(" (required: ");
     result.append(required);
     result.append(", fail: ");
     result.append(fail);

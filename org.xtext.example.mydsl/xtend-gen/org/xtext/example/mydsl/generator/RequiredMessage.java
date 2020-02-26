@@ -2,6 +2,7 @@ package org.xtext.example.mydsl.generator;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.xtext.example.mydsl.myDsl.Message;
+import org.xtext.example.mydsl.myDsl.Name;
 
 @SuppressWarnings("all")
 public class RequiredMessage {
@@ -23,7 +24,7 @@ public class RequiredMessage {
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
+    Name _name_1 = m.getName();
     _builder.append(_name_1);
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
@@ -42,7 +43,7 @@ public class RequiredMessage {
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
-    String _name_4 = m.getName();
+    Name _name_4 = m.getName();
     _builder.append(_name_4);
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();
@@ -84,7 +85,7 @@ public class RequiredMessage {
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
+    Name _name_1 = m.getName();
     _builder.append(_name_1);
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
@@ -103,7 +104,7 @@ public class RequiredMessage {
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
-    String _name_4 = m.getName();
+    Name _name_4 = m.getName();
     _builder.append(_name_4);
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();
@@ -141,7 +142,7 @@ public class RequiredMessage {
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
+    Name _name_1 = m.getName();
     _builder.append(_name_1);
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
@@ -156,7 +157,7 @@ public class RequiredMessage {
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
-    String _name_4 = m.getName();
+    Name _name_4 = m.getName();
     _builder.append(_name_4);
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();
@@ -200,7 +201,7 @@ public class RequiredMessage {
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
+    Name _name_1 = m.getName();
     _builder.append(_name_1);
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
@@ -213,7 +214,7 @@ public class RequiredMessage {
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
-    String _name_4 = m.getName();
+    Name _name_4 = m.getName();
     _builder.append(_name_4);
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();
@@ -263,7 +264,7 @@ public class RequiredMessage {
     String _name = m.getSender().getName();
     _builder.append(_name);
     _builder.append("\" + \".\" + \"");
-    String _name_1 = m.getName();
+    Name _name_1 = m.getName();
     _builder.append(_name_1);
     _builder.append("\" + \".\" + \"");
     String _name_2 = m.getReceiver().getName();
@@ -274,7 +275,7 @@ public class RequiredMessage {
     String _name_3 = m.getSender().getName();
     _builder.append(_name_3);
     _builder.append("\" + \".\" + \"");
-    String _name_4 = m.getName();
+    Name _name_4 = m.getName();
     _builder.append(_name_4);
     _builder.append("\" + \".\" + \"");
     String _name_5 = m.getReceiver().getName();

@@ -15,7 +15,10 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AltCondition;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
+import org.xtext.example.mydsl.myDsl.AssertionEntity;
+import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
@@ -37,9 +40,12 @@ import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.ObjectType;
+import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -62,8 +68,17 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ALT:
 				sequence_Alt(context, (Alt) semanticObject); 
 				return; 
+			case MyDslPackage.ALT_CONDITION:
+				sequence_AltCondition(context, (AltCondition) semanticObject); 
+				return; 
 			case MyDslPackage.APPEAR_MESSAGE:
 				sequence_AppearMessage(context, (AppearMessage) semanticObject); 
+				return; 
+			case MyDslPackage.ASSERTION_ENTITY:
+				sequence_AssertionEntity(context, (AssertionEntity) semanticObject); 
+				return; 
+			case MyDslPackage.ASSERTION_RELATION:
+				sequence_AssertionRelation(context, (AssertionRelation) semanticObject); 
 				return; 
 			case MyDslPackage.ATTRIBUTE:
 				sequence_Attribute(context, (Attribute) semanticObject); 
@@ -125,17 +140,29 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.MESSAGE:
 				sequence_Message(context, (Message) semanticObject); 
 				return; 
+			case MyDslPackage.NAME:
+				sequence_Name(context, (Name) semanticObject); 
+				return; 
 			case MyDslPackage.OBJECT:
 				sequence_Object(context, (org.xtext.example.mydsl.myDsl.Object) semanticObject); 
 				return; 
 			case MyDslPackage.OBJECT_TYPE:
 				sequence_ObjectType(context, (ObjectType) semanticObject); 
 				return; 
+			case MyDslPackage.OPERATOR:
+				sequence_Operator(context, (Operator) semanticObject); 
+				return; 
 			case MyDslPackage.PAR:
 				sequence_Par(context, (Par) semanticObject); 
 				return; 
 			case MyDslPackage.PAR_EXPRESSION:
 				sequence_ParExpression(context, (ParExpression) semanticObject); 
+				return; 
+			case MyDslPackage.PARAMETER:
+				sequence_Parameter(context, (org.xtext.example.mydsl.myDsl.Parameter) semanticObject); 
+				return; 
+			case MyDslPackage.PARAMETER_CONSTRAINT:
+				sequence_ParameterConstraint(context, (ParameterConstraint) semanticObject); 
 				return; 
 			case MyDslPackage.RELATION:
 				sequence_Relation(context, (Relation) semanticObject); 
@@ -150,6 +177,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     AltCondition returns AltCondition
+	 *
+	 * Constraint:
+	 *     ((param=[Parameter|ID] operator+=Operator value+=AttributeValue) | else?='else')
+	 */
+	protected void sequence_AltCondition(ISerializationContext context, AltCondition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -181,6 +220,30 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		feeder.accept(grammarAccess.getAppearMessageAccess().getContextContextModelIDTerminalRuleCall_2_0_0_1(), semanticObject.eGet(MyDslPackage.Literals.APPEAR_MESSAGE__CONTEXT, false));
 		feeder.accept(grammarAccess.getAppearMessageAccess().getEntityEntityIDTerminalRuleCall_2_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.APPEAR_MESSAGE__ENTITY, false));
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AssertionEntity returns AssertionEntity
+	 *
+	 * Constraint:
+	 *     (context=[ContextModel|ID] entity=[Entity|ID] attribute=[Attribute|ID] operator+=Operator value+=AttributeValue)
+	 */
+	protected void sequence_AssertionEntity(ISerializationContext context, AssertionEntity semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AssertionRelation returns AssertionRelation
+	 *
+	 * Constraint:
+	 *     (context=[ContextModel|ID] relation=[Relation|ID] attribute=[Attribute|ID] operator+=Operator value+=AttributeValue)
+	 */
+	protected void sequence_AssertionRelation(ISerializationContext context, AssertionRelation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -332,6 +395,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         contextmodels+=ContextModel* 
 	 *         contextfragments+=ContextFragment* 
 	 *         objects+=Object* 
+	 *         parameters+=Parameter* 
 	 *         constraints+=Constraint* 
 	 *         scenarios+=Scenario*
 	 *     )
@@ -358,7 +422,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Expression returns Expression
 	 *
 	 * Constraint:
-	 *     messages+=Message+
+	 *     (altCondition+=AltCondition messages+=Message*)
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -484,6 +548,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Name returns Name
+	 *
+	 * Constraint:
+	 *     ((params+=[Parameter|ID] params+=[Parameter|ID]+) | params+=[Parameter|ID]+)?
+	 */
+	protected void sequence_Name(ISerializationContext context, Name semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ObjectType returns ObjectType
 	 *
 	 * Constraint:
@@ -514,6 +590,25 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Operator returns Operator
+	 *
+	 * Constraint:
+	 *     (
+	 *         greater?='>' | 
+	 *         smaller?='<' | 
+	 *         greaterequals?='>=' | 
+	 *         smallerequals?='<=' | 
+	 *         equals?='==' | 
+	 *         notequals?='!='
+	 *     )
+	 */
+	protected void sequence_Operator(ISerializationContext context, Operator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ParExpression returns ParExpression
 	 *
 	 * Constraint:
@@ -538,6 +633,30 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     ParameterConstraint returns ParameterConstraint
+	 *
+	 * Constraint:
+	 *     (object=[Object|ID] param=[Parameter|ID] operator+=Operator value+=AttributeValue)
+	 */
+	protected void sequence_ParameterConstraint(ISerializationContext context, ParameterConstraint semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Parameter returns Parameter
+	 *
+	 * Constraint:
+	 *     (type+=Type name=ID value+=AttributeValue?)
+	 */
+	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.myDsl.Parameter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Relation returns Relation
 	 *
 	 * Constraint:
@@ -553,7 +672,16 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ScenarioContent returns ScenarioContent
 	 *
 	 * Constraint:
-	 *     (alt+=Alt | message+=Message | par+=Par | loop+=Loop | contextmessage+=ContextMessage)
+	 *     (
+	 *         alt+=Alt | 
+	 *         message+=Message | 
+	 *         par+=Par | 
+	 *         loop+=Loop | 
+	 *         contextmessage+=ContextMessage | 
+	 *         paramConstraint+=ParameterConstraint | 
+	 *         assertentity+=AssertionEntity | 
+	 *         assertrelation+=AssertionRelation
+	 *     )
 	 */
 	protected void sequence_ScenarioContent(ISerializationContext context, ScenarioContent semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.myDsl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -122,13 +123,22 @@ public interface MyDslPackage extends EPackage
   int DOMAIN__OBJECTS = 5;
 
   /**
+   * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__PARAMETERS = 6;
+
+  /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN__CONSTRAINTS = 6;
+  int DOMAIN__CONSTRAINTS = 7;
 
   /**
    * The feature id for the '<em><b>Scenarios</b></em>' containment reference list.
@@ -137,7 +147,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__SCENARIOS = 7;
+  int DOMAIN__SCENARIOS = 8;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -146,7 +156,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_FEATURE_COUNT = 8;
+  int DOMAIN_FEATURE_COUNT = 9;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl <em>Include</em>}' class.
@@ -754,13 +764,40 @@ public interface MyDslPackage extends EPackage
   int SCENARIO_CONTENT__CONTEXTMESSAGE = 4;
 
   /**
+   * The feature id for the '<em><b>Param Constraint</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCENARIO_CONTENT__PARAM_CONSTRAINT = 5;
+
+  /**
+   * The feature id for the '<em><b>Assertentity</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCENARIO_CONTENT__ASSERTENTITY = 6;
+
+  /**
+   * The feature id for the '<em><b>Assertrelation</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SCENARIO_CONTENT__ASSERTRELATION = 7;
+
+  /**
    * The number of structural features of the '<em>Scenario Content</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SCENARIO_CONTENT_FEATURE_COUNT = 5;
+  int SCENARIO_CONTENT_FEATURE_COUNT = 8;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
@@ -773,7 +810,7 @@ public interface MyDslPackage extends EPackage
   int MESSAGE = 12;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1240,6 +1277,336 @@ public interface MyDslPackage extends EPackage
   int CHANGE_TO_RELATION_FEATURE_COUNT = 4;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AssertionEntityImpl <em>Assertion Entity</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.AssertionEntityImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAssertionEntity()
+   * @generated
+   */
+  int ASSERTION_ENTITY = 21;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_ENTITY__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Entity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_ENTITY__ENTITY = 1;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_ENTITY__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_ENTITY__OPERATOR = 3;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_ENTITY__VALUE = 4;
+
+  /**
+   * The number of structural features of the '<em>Assertion Entity</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_ENTITY_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AssertionRelationImpl <em>Assertion Relation</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.AssertionRelationImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAssertionRelation()
+   * @generated
+   */
+  int ASSERTION_RELATION = 22;
+
+  /**
+   * The feature id for the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_RELATION__CONTEXT = 0;
+
+  /**
+   * The feature id for the '<em><b>Relation</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_RELATION__RELATION = 1;
+
+  /**
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_RELATION__ATTRIBUTE = 2;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_RELATION__OPERATOR = 3;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_RELATION__VALUE = 4;
+
+  /**
+   * The number of structural features of the '<em>Assertion Relation</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSERTION_RELATION_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.NameImpl <em>Name</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.NameImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getName_()
+   * @generated
+   */
+  int NAME = 23;
+
+  /**
+   * The feature id for the '<em><b>Params</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAME__PARAMS = 0;
+
+  /**
+   * The number of structural features of the '<em>Name</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAME_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ParameterImpl <em>Parameter</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ParameterImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParameter()
+   * @generated
+   */
+  int PARAMETER = 24;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__TYPE = 0;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__NAME = 1;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER__VALUE = 2;
+
+  /**
+   * The number of structural features of the '<em>Parameter</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl <em>Parameter Constraint</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParameterConstraint()
+   * @generated
+   */
+  int PARAMETER_CONSTRAINT = 25;
+
+  /**
+   * The feature id for the '<em><b>Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_CONSTRAINT__OBJECT = 0;
+
+  /**
+   * The feature id for the '<em><b>Param</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_CONSTRAINT__PARAM = 1;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_CONSTRAINT__OPERATOR = 2;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_CONSTRAINT__VALUE = 3;
+
+  /**
+   * The number of structural features of the '<em>Parameter Constraint</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_CONSTRAINT_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.OperatorImpl <em>Operator</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.OperatorImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getOperator()
+   * @generated
+   */
+  int OPERATOR = 26;
+
+  /**
+   * The feature id for the '<em><b>Greater</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR__GREATER = 0;
+
+  /**
+   * The feature id for the '<em><b>Smaller</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR__SMALLER = 1;
+
+  /**
+   * The feature id for the '<em><b>Greaterequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR__GREATEREQUALS = 2;
+
+  /**
+   * The feature id for the '<em><b>Smallerequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR__SMALLEREQUALS = 3;
+
+  /**
+   * The feature id for the '<em><b>Equals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR__EQUALS = 4;
+
+  /**
+   * The feature id for the '<em><b>Notequals</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR__NOTEQUALS = 5;
+
+  /**
+   * The number of structural features of the '<em>Operator</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERATOR_FEATURE_COUNT = 6;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1247,7 +1614,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 21;
+  int OBJECT_TYPE = 27;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1275,7 +1642,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 22;
+  int OBJECT = 28;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -1312,7 +1679,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 23;
+  int CONSTRAINT = 29;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1349,7 +1716,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 24;
+  int ALT = 30;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1370,6 +1737,61 @@ public interface MyDslPackage extends EPackage
   int ALT_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.AltConditionImpl <em>Alt Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.AltConditionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAltCondition()
+   * @generated
+   */
+  int ALT_CONDITION = 31;
+
+  /**
+   * The feature id for the '<em><b>Param</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALT_CONDITION__PARAM = 0;
+
+  /**
+   * The feature id for the '<em><b>Operator</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALT_CONDITION__OPERATOR = 1;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALT_CONDITION__VALUE = 2;
+
+  /**
+   * The feature id for the '<em><b>Else</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALT_CONDITION__ELSE = 3;
+
+  /**
+   * The number of structural features of the '<em>Alt Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ALT_CONDITION_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ExpressionImpl <em>Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1377,7 +1799,16 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 25;
+  int EXPRESSION = 32;
+
+  /**
+   * The feature id for the '<em><b>Alt Condition</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION__ALT_CONDITION = 0;
 
   /**
    * The feature id for the '<em><b>Messages</b></em>' containment reference list.
@@ -1386,7 +1817,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION__MESSAGES = 0;
+  int EXPRESSION__MESSAGES = 1;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1395,7 +1826,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 1;
+  int EXPRESSION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ParImpl <em>Par</em>}' class.
@@ -1405,7 +1836,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 26;
+  int PAR = 33;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -1433,7 +1864,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 27;
+  int PAR_EXPRESSION = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1470,7 +1901,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 28;
+  int LOOP = 35;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -1507,6 +1938,16 @@ public interface MyDslPackage extends EPackage
    * @ordered
    */
   int LOOP_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.Type <em>Type</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.Type
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getType()
+   * @generated
+   */
+  int TYPE = 36;
 
 
   /**
@@ -1584,6 +2025,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getDomain_Objects();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getParameters <em>Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Parameters</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getParameters()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Parameters();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getConstraints <em>Constraints</em>}'.
@@ -2213,6 +2665,39 @@ public interface MyDslPackage extends EPackage
   EReference getScenarioContent_Contextmessage();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getParamConstraint <em>Param Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Param Constraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ScenarioContent#getParamConstraint()
+   * @see #getScenarioContent()
+   * @generated
+   */
+  EReference getScenarioContent_ParamConstraint();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getAssertentity <em>Assertentity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Assertentity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ScenarioContent#getAssertentity()
+   * @see #getScenarioContent()
+   * @generated
+   */
+  EReference getScenarioContent_Assertentity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ScenarioContent#getAssertrelation <em>Assertrelation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Assertrelation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ScenarioContent#getAssertrelation()
+   * @see #getScenarioContent()
+   * @generated
+   */
+  EReference getScenarioContent_Assertrelation();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Message <em>Message</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2223,15 +2708,15 @@ public interface MyDslPackage extends EPackage
   EClass getMessage();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Message#getName <em>Name</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Message#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
+   * @return the meta object for the containment reference '<em>Name</em>'.
    * @see org.xtext.example.mydsl.myDsl.Message#getName()
    * @see #getMessage()
    * @generated
    */
-  EAttribute getMessage_Name();
+  EReference getMessage_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Message#isRequired <em>Required</em>}'.
@@ -2677,6 +3162,330 @@ public interface MyDslPackage extends EPackage
   EAttribute getChangeToRelation_Changevalue();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.AssertionEntity <em>Assertion Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assertion Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionEntity
+   * @generated
+   */
+  EClass getAssertionEntity();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AssertionEntity#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionEntity#getContext()
+   * @see #getAssertionEntity()
+   * @generated
+   */
+  EReference getAssertionEntity_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AssertionEntity#getEntity <em>Entity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Entity</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionEntity#getEntity()
+   * @see #getAssertionEntity()
+   * @generated
+   */
+  EReference getAssertionEntity_Entity();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AssertionEntity#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionEntity#getAttribute()
+   * @see #getAssertionEntity()
+   * @generated
+   */
+  EReference getAssertionEntity_Attribute();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.AssertionEntity#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Operator</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionEntity#getOperator()
+   * @see #getAssertionEntity()
+   * @generated
+   */
+  EReference getAssertionEntity_Operator();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.AssertionEntity#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionEntity#getValue()
+   * @see #getAssertionEntity()
+   * @generated
+   */
+  EAttribute getAssertionEntity_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.AssertionRelation <em>Assertion Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Assertion Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionRelation
+   * @generated
+   */
+  EClass getAssertionRelation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AssertionRelation#getContext <em>Context</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Context</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionRelation#getContext()
+   * @see #getAssertionRelation()
+   * @generated
+   */
+  EReference getAssertionRelation_Context();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AssertionRelation#getRelation <em>Relation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Relation</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionRelation#getRelation()
+   * @see #getAssertionRelation()
+   * @generated
+   */
+  EReference getAssertionRelation_Relation();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AssertionRelation#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionRelation#getAttribute()
+   * @see #getAssertionRelation()
+   * @generated
+   */
+  EReference getAssertionRelation_Attribute();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.AssertionRelation#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Operator</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionRelation#getOperator()
+   * @see #getAssertionRelation()
+   * @generated
+   */
+  EReference getAssertionRelation_Operator();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.AssertionRelation#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AssertionRelation#getValue()
+   * @see #getAssertionRelation()
+   * @generated
+   */
+  EAttribute getAssertionRelation_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Name <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Name
+   * @generated
+   */
+  EClass getName_();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.xtext.example.mydsl.myDsl.Name#getParams <em>Params</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Params</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Name#getParams()
+   * @see #getName_()
+   * @generated
+   */
+  EReference getName_Params();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Parameter <em>Parameter</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Parameter</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Parameter
+   * @generated
+   */
+  EClass getParameter();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Parameter#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Parameter#getType()
+   * @see #getParameter()
+   * @generated
+   */
+  EAttribute getParameter_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Parameter#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Parameter#getName()
+   * @see #getParameter()
+   * @generated
+   */
+  EAttribute getParameter_Name();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Parameter#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Parameter#getValue()
+   * @see #getParameter()
+   * @generated
+   */
+  EAttribute getParameter_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint <em>Parameter Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Parameter Constraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint
+   * @generated
+   */
+  EClass getParameterConstraint();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Object</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject()
+   * @see #getParameterConstraint()
+   * @generated
+   */
+  EReference getParameterConstraint_Object();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getParam <em>Param</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Param</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint#getParam()
+   * @see #getParameterConstraint()
+   * @generated
+   */
+  EReference getParameterConstraint_Param();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Operator</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint#getOperator()
+   * @see #getParameterConstraint()
+   * @generated
+   */
+  EReference getParameterConstraint_Operator();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint#getValue()
+   * @see #getParameterConstraint()
+   * @generated
+   */
+  EAttribute getParameterConstraint_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Operator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Operator</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator
+   * @generated
+   */
+  EClass getOperator();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Operator#isGreater <em>Greater</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Greater</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator#isGreater()
+   * @see #getOperator()
+   * @generated
+   */
+  EAttribute getOperator_Greater();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Operator#isSmaller <em>Smaller</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Smaller</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator#isSmaller()
+   * @see #getOperator()
+   * @generated
+   */
+  EAttribute getOperator_Smaller();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Operator#isGreaterequals <em>Greaterequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Greaterequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator#isGreaterequals()
+   * @see #getOperator()
+   * @generated
+   */
+  EAttribute getOperator_Greaterequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Operator#isSmallerequals <em>Smallerequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Smallerequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator#isSmallerequals()
+   * @see #getOperator()
+   * @generated
+   */
+  EAttribute getOperator_Smallerequals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Operator#isEquals <em>Equals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Equals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator#isEquals()
+   * @see #getOperator()
+   * @generated
+   */
+  EAttribute getOperator_Equals();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Operator#isNotequals <em>Notequals</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Notequals</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Operator#isNotequals()
+   * @see #getOperator()
+   * @generated
+   */
+  EAttribute getOperator_Notequals();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ObjectType <em>Object Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2783,6 +3592,60 @@ public interface MyDslPackage extends EPackage
   EReference getAlt_Expressions();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.AltCondition <em>Alt Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Alt Condition</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AltCondition
+   * @generated
+   */
+  EClass getAltCondition();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.AltCondition#getParam <em>Param</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Param</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AltCondition#getParam()
+   * @see #getAltCondition()
+   * @generated
+   */
+  EReference getAltCondition_Param();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.AltCondition#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Operator</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AltCondition#getOperator()
+   * @see #getAltCondition()
+   * @generated
+   */
+  EReference getAltCondition_Operator();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.AltCondition#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Value</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AltCondition#getValue()
+   * @see #getAltCondition()
+   * @generated
+   */
+  EAttribute getAltCondition_Value();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.AltCondition#isElse <em>Else</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Else</em>'.
+   * @see org.xtext.example.mydsl.myDsl.AltCondition#isElse()
+   * @see #getAltCondition()
+   * @generated
+   */
+  EAttribute getAltCondition_Else();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2791,6 +3654,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EClass getExpression();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Expression#getAltCondition <em>Alt Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Alt Condition</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Expression#getAltCondition()
+   * @see #getExpression()
+   * @generated
+   */
+  EReference getExpression_AltCondition();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Expression#getMessages <em>Messages</em>}'.
@@ -2900,6 +3774,16 @@ public interface MyDslPackage extends EPackage
   EReference getLoop_Messages();
 
   /**
+   * Returns the meta object for enum '{@link org.xtext.example.mydsl.myDsl.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Type</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Type
+   * @generated
+   */
+  EEnum getType();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2979,6 +3863,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference DOMAIN__OBJECTS = eINSTANCE.getDomain_Objects();
+
+    /**
+     * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__PARAMETERS = eINSTANCE.getDomain_Parameters();
 
     /**
      * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
@@ -3467,6 +4359,30 @@ public interface MyDslPackage extends EPackage
     EReference SCENARIO_CONTENT__CONTEXTMESSAGE = eINSTANCE.getScenarioContent_Contextmessage();
 
     /**
+     * The meta object literal for the '<em><b>Param Constraint</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SCENARIO_CONTENT__PARAM_CONSTRAINT = eINSTANCE.getScenarioContent_ParamConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Assertentity</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SCENARIO_CONTENT__ASSERTENTITY = eINSTANCE.getScenarioContent_Assertentity();
+
+    /**
+     * The meta object literal for the '<em><b>Assertrelation</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SCENARIO_CONTENT__ASSERTRELATION = eINSTANCE.getScenarioContent_Assertrelation();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl <em>Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3477,12 +4393,12 @@ public interface MyDslPackage extends EPackage
     EClass MESSAGE = eINSTANCE.getMessage();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MESSAGE__NAME = eINSTANCE.getMessage_Name();
+    EReference MESSAGE__NAME = eINSTANCE.getMessage_Name();
 
     /**
      * The meta object literal for the '<em><b>Required</b></em>' attribute feature.
@@ -3829,6 +4745,258 @@ public interface MyDslPackage extends EPackage
     EAttribute CHANGE_TO_RELATION__CHANGEVALUE = eINSTANCE.getChangeToRelation_Changevalue();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AssertionEntityImpl <em>Assertion Entity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.AssertionEntityImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAssertionEntity()
+     * @generated
+     */
+    EClass ASSERTION_ENTITY = eINSTANCE.getAssertionEntity();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_ENTITY__CONTEXT = eINSTANCE.getAssertionEntity_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Entity</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_ENTITY__ENTITY = eINSTANCE.getAssertionEntity_Entity();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_ENTITY__ATTRIBUTE = eINSTANCE.getAssertionEntity_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_ENTITY__OPERATOR = eINSTANCE.getAssertionEntity_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSERTION_ENTITY__VALUE = eINSTANCE.getAssertionEntity_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AssertionRelationImpl <em>Assertion Relation</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.AssertionRelationImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAssertionRelation()
+     * @generated
+     */
+    EClass ASSERTION_RELATION = eINSTANCE.getAssertionRelation();
+
+    /**
+     * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_RELATION__CONTEXT = eINSTANCE.getAssertionRelation_Context();
+
+    /**
+     * The meta object literal for the '<em><b>Relation</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_RELATION__RELATION = eINSTANCE.getAssertionRelation_Relation();
+
+    /**
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_RELATION__ATTRIBUTE = eINSTANCE.getAssertionRelation_Attribute();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ASSERTION_RELATION__OPERATOR = eINSTANCE.getAssertionRelation_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSERTION_RELATION__VALUE = eINSTANCE.getAssertionRelation_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.NameImpl <em>Name</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.NameImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getName_()
+     * @generated
+     */
+    EClass NAME = eINSTANCE.getName_();
+
+    /**
+     * The meta object literal for the '<em><b>Params</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NAME__PARAMS = eINSTANCE.getName_Params();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ParameterImpl <em>Parameter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ParameterImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParameter()
+     * @generated
+     */
+    EClass PARAMETER = eINSTANCE.getParameter();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER__TYPE = eINSTANCE.getParameter_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER__VALUE = eINSTANCE.getParameter_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl <em>Parameter Constraint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParameterConstraint()
+     * @generated
+     */
+    EClass PARAMETER_CONSTRAINT = eINSTANCE.getParameterConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Object</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAMETER_CONSTRAINT__OBJECT = eINSTANCE.getParameterConstraint_Object();
+
+    /**
+     * The meta object literal for the '<em><b>Param</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAMETER_CONSTRAINT__PARAM = eINSTANCE.getParameterConstraint_Param();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAMETER_CONSTRAINT__OPERATOR = eINSTANCE.getParameterConstraint_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PARAMETER_CONSTRAINT__VALUE = eINSTANCE.getParameterConstraint_Value();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.OperatorImpl <em>Operator</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.OperatorImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getOperator()
+     * @generated
+     */
+    EClass OPERATOR = eINSTANCE.getOperator();
+
+    /**
+     * The meta object literal for the '<em><b>Greater</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPERATOR__GREATER = eINSTANCE.getOperator_Greater();
+
+    /**
+     * The meta object literal for the '<em><b>Smaller</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPERATOR__SMALLER = eINSTANCE.getOperator_Smaller();
+
+    /**
+     * The meta object literal for the '<em><b>Greaterequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPERATOR__GREATEREQUALS = eINSTANCE.getOperator_Greaterequals();
+
+    /**
+     * The meta object literal for the '<em><b>Smallerequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPERATOR__SMALLEREQUALS = eINSTANCE.getOperator_Smallerequals();
+
+    /**
+     * The meta object literal for the '<em><b>Equals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPERATOR__EQUALS = eINSTANCE.getOperator_Equals();
+
+    /**
+     * The meta object literal for the '<em><b>Notequals</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OPERATOR__NOTEQUALS = eINSTANCE.getOperator_Notequals();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3917,6 +5085,48 @@ public interface MyDslPackage extends EPackage
     EReference ALT__EXPRESSIONS = eINSTANCE.getAlt_Expressions();
 
     /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.AltConditionImpl <em>Alt Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.AltConditionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAltCondition()
+     * @generated
+     */
+    EClass ALT_CONDITION = eINSTANCE.getAltCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Param</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ALT_CONDITION__PARAM = eINSTANCE.getAltCondition_Param();
+
+    /**
+     * The meta object literal for the '<em><b>Operator</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ALT_CONDITION__OPERATOR = eINSTANCE.getAltCondition_Operator();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ALT_CONDITION__VALUE = eINSTANCE.getAltCondition_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Else</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ALT_CONDITION__ELSE = eINSTANCE.getAltCondition_Else();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ExpressionImpl <em>Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3925,6 +5135,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EClass EXPRESSION = eINSTANCE.getExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Alt Condition</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXPRESSION__ALT_CONDITION = eINSTANCE.getExpression_AltCondition();
 
     /**
      * The meta object literal for the '<em><b>Messages</b></em>' containment reference list feature.
@@ -4011,6 +5229,16 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference LOOP__MESSAGES = eINSTANCE.getLoop_Messages();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.Type <em>Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.Type
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getType()
+     * @generated
+     */
+    EEnum TYPE = eINSTANCE.getType();
 
   }
 

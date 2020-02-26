@@ -137,11 +137,11 @@ class MyDslGenerator extends AbstractGenerator {
 										«FOR ca : co.change»
 											«FOR a : ca.appear»
 												«new AppearMessages().compile_appear_strict_fail(a)»
-												a.collapse(b);																										
+												a.collapse(b);																						
 											«ENDFOR»
 											«FOR d : ca.disappear»
 												«new DisappearMessages().compile_disappear_strict_fail(d)»
-												a.collapse(b);																																						
+												a.collapse(b);																						
 											«ENDFOR»
 											«FOR t : ca.changeto»
 												«new ChangeToMessages().compile_changeto_strict_fail(t)»

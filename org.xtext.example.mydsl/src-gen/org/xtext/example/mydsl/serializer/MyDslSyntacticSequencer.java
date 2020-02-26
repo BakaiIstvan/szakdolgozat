@@ -10,7 +10,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -25,17 +24,11 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ChangeToMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_ChangeToRelation_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Domain_LeftCurlyBracketKeyword_2_q;
-	protected AbstractElementAlias match_Domain_RightCurlyBracketKeyword_9_q;
-	protected AbstractElementAlias match_Expression_EqualsSignKeyword_2_q;
-	protected AbstractElementAlias match_Expression_GreaterThanSignEqualsSignKeyword_5_q;
-	protected AbstractElementAlias match_Expression_GreaterThanSignKeyword_3_q;
-	protected AbstractElementAlias match_Expression_IDTerminalRuleCall_1_q;
-	protected AbstractElementAlias match_Expression_LessThanSignEqualsSignKeyword_6_q;
-	protected AbstractElementAlias match_Expression_LessThanSignKeyword_4_q;
-	protected AbstractElementAlias match_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q;
+	protected AbstractElementAlias match_Domain_RightCurlyBracketKeyword_10_q;
 	protected AbstractElementAlias match_MatchMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Message_LeftCurlyBracketKeyword_11_q;
 	protected AbstractElementAlias match_Message_RightCurlyBracketKeyword_13_q;
+	protected AbstractElementAlias match_Parameter_EqualsSignKeyword_2_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -44,25 +37,17 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ChangeToMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getChangeToMessageAccess().getCommaKeyword_3());
 		match_ChangeToRelation_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getChangeToRelationAccess().getCommaKeyword_3());
 		match_Domain_LeftCurlyBracketKeyword_2_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getLeftCurlyBracketKeyword_2());
-		match_Domain_RightCurlyBracketKeyword_9_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_9());
-		match_Expression_EqualsSignKeyword_2_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getEqualsSignKeyword_2());
-		match_Expression_GreaterThanSignEqualsSignKeyword_5_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getGreaterThanSignEqualsSignKeyword_5());
-		match_Expression_GreaterThanSignKeyword_3_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getGreaterThanSignKeyword_3());
-		match_Expression_IDTerminalRuleCall_1_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getIDTerminalRuleCall_1());
-		match_Expression_LessThanSignEqualsSignKeyword_6_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getLessThanSignEqualsSignKeyword_6());
-		match_Expression_LessThanSignKeyword_4_q = new TokenAlias(false, true, grammarAccess.getExpressionAccess().getLessThanSignKeyword_4());
-		match_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q = new AlternativeAlias(false, true, new TokenAlias(false, false, grammarAccess.getExpressionAccess().getIDTerminalRuleCall_7_0()), new TokenAlias(false, false, grammarAccess.getExpressionAccess().getNumberTerminalRuleCall_7_1()));
+		match_Domain_RightCurlyBracketKeyword_10_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_10());
 		match_MatchMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getMatchMessageAccess().getCommaKeyword_3());
 		match_Message_LeftCurlyBracketKeyword_11_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_11());
 		match_Message_RightCurlyBracketKeyword_13_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_13());
+		match_Parameter_EqualsSignKeyword_2_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getEqualsSignKeyword_2());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (ruleCall.getRule() == grammarAccess.getIDRule())
 			return getIDToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getNumberRule())
-			return getNumberToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -70,17 +55,6 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 	 */
 	protected String getIDToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "";
-	}
-	
-	/**
-	 * terminal Number:
-	 * 	('0'..'9')*
-	 * ;
-	 */
-	protected String getNumberToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
 		return "";
@@ -100,28 +74,16 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ChangeToRelation_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Domain_LeftCurlyBracketKeyword_2_q.equals(syntax))
 				emit_Domain_LeftCurlyBracketKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Domain_RightCurlyBracketKeyword_9_q.equals(syntax))
-				emit_Domain_RightCurlyBracketKeyword_9_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression_EqualsSignKeyword_2_q.equals(syntax))
-				emit_Expression_EqualsSignKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression_GreaterThanSignEqualsSignKeyword_5_q.equals(syntax))
-				emit_Expression_GreaterThanSignEqualsSignKeyword_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression_GreaterThanSignKeyword_3_q.equals(syntax))
-				emit_Expression_GreaterThanSignKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression_IDTerminalRuleCall_1_q.equals(syntax))
-				emit_Expression_IDTerminalRuleCall_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression_LessThanSignEqualsSignKeyword_6_q.equals(syntax))
-				emit_Expression_LessThanSignEqualsSignKeyword_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression_LessThanSignKeyword_4_q.equals(syntax))
-				emit_Expression_LessThanSignKeyword_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q.equals(syntax))
-				emit_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Domain_RightCurlyBracketKeyword_10_q.equals(syntax))
+				emit_Domain_RightCurlyBracketKeyword_10_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MatchMessage_CommaKeyword_3_q.equals(syntax))
 				emit_MatchMessage_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Message_LeftCurlyBracketKeyword_11_q.equals(syntax))
 				emit_Message_LeftCurlyBracketKeyword_11_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Message_RightCurlyBracketKeyword_13_q.equals(syntax))
 				emit_Message_RightCurlyBracketKeyword_13_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Parameter_EqualsSignKeyword_2_q.equals(syntax))
+				emit_Parameter_EqualsSignKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -177,6 +139,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) contextmodels+=ContextModel
 	 *     (rule start) (ambiguity) includes+=Include
 	 *     (rule start) (ambiguity) objects+=Object
+	 *     (rule start) (ambiguity) parameters+=Parameter
 	 *     (rule start) (ambiguity) scenarios+=Scenario
 	 *     name=ID (ambiguity) '}'? (rule end)
 	 *     name=ID (ambiguity) constraints+=Constraint
@@ -184,6 +147,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) contextmodels+=ContextModel
 	 *     name=ID (ambiguity) includes+=Include
 	 *     name=ID (ambiguity) objects+=Object
+	 *     name=ID (ambiguity) parameters+=Parameter
 	 *     name=ID (ambiguity) scenarios+=Scenario
 	 *     specification='specification' (ambiguity) '}'? (rule end)
 	 *     specification='specification' (ambiguity) constraints+=Constraint
@@ -191,6 +155,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     specification='specification' (ambiguity) contextmodels+=ContextModel
 	 *     specification='specification' (ambiguity) includes+=Include
 	 *     specification='specification' (ambiguity) objects+=Object
+	 *     specification='specification' (ambiguity) parameters+=Parameter
 	 *     specification='specification' (ambiguity) scenarios+=Scenario
 	 */
 	protected void emit_Domain_LeftCurlyBracketKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -210,94 +175,11 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     includes+=Include (ambiguity) (rule end)
 	 *     name=ID '{'? (ambiguity) (rule end)
 	 *     objects+=Object (ambiguity) (rule end)
+	 *     parameters+=Parameter (ambiguity) (rule end)
 	 *     scenarios+=Scenario (ambiguity) (rule end)
 	 *     specification='specification' '{'? (ambiguity) (rule end)
 	 */
-	protected void emit_Domain_RightCurlyBracketKeyword_9_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '='?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' ID? (ambiguity) '>'? '<'? '>='? '<='? (ID | Number)? ')' '{' '}' (rule start)
-	 *     (rule start) '(' ID? (ambiguity) '>'? '<'? '>='? '<='? (ID | Number)? ')' '{' messages+=Message
-	 */
-	protected void emit_Expression_EqualsSignKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '>='?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' ID? '='? '>'? '<'? (ambiguity) '<='? (ID | Number)? ')' '{' '}' (rule start)
-	 *     (rule start) '(' ID? '='? '>'? '<'? (ambiguity) '<='? (ID | Number)? ')' '{' messages+=Message
-	 */
-	protected void emit_Expression_GreaterThanSignEqualsSignKeyword_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '>'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' ID? '='? (ambiguity) '<'? '>='? '<='? (ID | Number)? ')' '{' '}' (rule start)
-	 *     (rule start) '(' ID? '='? (ambiguity) '<'? '>='? '<='? (ID | Number)? ')' '{' messages+=Message
-	 */
-	protected void emit_Expression_GreaterThanSignKeyword_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     ID?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' (ambiguity) '='? '>'? '<'? '>='? '<='? (ID | Number)? ')' '{' '}' (rule start)
-	 *     (rule start) '(' (ambiguity) '='? '>'? '<'? '>='? '<='? (ID | Number)? ')' '{' messages+=Message
-	 */
-	protected void emit_Expression_IDTerminalRuleCall_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '<='?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' ID? '='? '>'? '<'? '>='? (ambiguity) (ID | Number)? ')' '{' '}' (rule start)
-	 *     (rule start) '(' ID? '='? '>'? '<'? '>='? (ambiguity) (ID | Number)? ')' '{' messages+=Message
-	 */
-	protected void emit_Expression_LessThanSignEqualsSignKeyword_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     '<'?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' ID? '='? '>'? (ambiguity) '>='? '<='? (ID | Number)? ')' '{' '}' (rule start)
-	 *     (rule start) '(' ID? '='? '>'? (ambiguity) '>='? '<='? (ID | Number)? ')' '{' messages+=Message
-	 */
-	protected void emit_Expression_LessThanSignKeyword_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * Ambiguous syntax:
-	 *     (ID | Number)?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) '(' ID? '='? '>'? '<'? '>='? '<='? (ambiguity) ')' '{' '}' (rule start)
-	 *     (rule start) '(' ID? '='? '>'? '<'? '>='? '<='? (ambiguity) ')' '{' messages+=Message
-	 */
-	protected void emit_Expression___IDTerminalRuleCall_7_0_or_NumberTerminalRuleCall_7_1__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Domain_RightCurlyBracketKeyword_10_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -345,6 +227,18 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     receiver=[Object|ID] '{'? (ambiguity) ';' (rule end)
 	 */
 	protected void emit_Message_RightCurlyBracketKeyword_13_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '='?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=ID (ambiguity) ';' (rule end)
+	 *     name=ID (ambiguity) value+=AttributeValue
+	 */
+	protected void emit_Parameter_EqualsSignKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

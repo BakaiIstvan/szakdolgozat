@@ -25,6 +25,7 @@ import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Include;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.Scenario;
 
 /**
@@ -41,6 +42,7 @@ import org.xtext.example.mydsl.myDsl.Scenario;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextmodels <em>Contextmodels</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextfragments <em>Contextfragments</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getObjects <em>Objects</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getScenarios <em>Scenarios</em>}</li>
  * </ul>
@@ -128,6 +130,16 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * @ordered
    */
   protected EList<org.xtext.example.mydsl.myDsl.Object> objects;
+
+  /**
+   * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getParameters()
+   * @generated
+   * @ordered
+   */
+  protected EList<Parameter> parameters;
 
   /**
    * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -277,6 +289,20 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Parameter> getParameters()
+  {
+    if (parameters == null)
+    {
+      parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, MyDslPackage.DOMAIN__PARAMETERS);
+    }
+    return parameters;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Constraint> getConstraints()
   {
     if (constraints == null)
@@ -318,6 +344,8 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         return ((InternalEList<?>)getContextfragments()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__OBJECTS:
         return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.DOMAIN__PARAMETERS:
+        return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__SCENARIOS:
@@ -348,6 +376,8 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         return getContextfragments();
       case MyDslPackage.DOMAIN__OBJECTS:
         return getObjects();
+      case MyDslPackage.DOMAIN__PARAMETERS:
+        return getParameters();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         return getConstraints();
       case MyDslPackage.DOMAIN__SCENARIOS:
@@ -389,6 +419,10 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         getObjects().clear();
         getObjects().addAll((Collection<? extends org.xtext.example.mydsl.myDsl.Object>)newValue);
         return;
+      case MyDslPackage.DOMAIN__PARAMETERS:
+        getParameters().clear();
+        getParameters().addAll((Collection<? extends Parameter>)newValue);
+        return;
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         getConstraints().clear();
         getConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -429,6 +463,9 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
       case MyDslPackage.DOMAIN__OBJECTS:
         getObjects().clear();
         return;
+      case MyDslPackage.DOMAIN__PARAMETERS:
+        getParameters().clear();
+        return;
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         getConstraints().clear();
         return;
@@ -461,6 +498,8 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         return contextfragments != null && !contextfragments.isEmpty();
       case MyDslPackage.DOMAIN__OBJECTS:
         return objects != null && !objects.isEmpty();
+      case MyDslPackage.DOMAIN__PARAMETERS:
+        return parameters != null && !parameters.isEmpty();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         return constraints != null && !constraints.isEmpty();
       case MyDslPackage.DOMAIN__SCENARIOS:

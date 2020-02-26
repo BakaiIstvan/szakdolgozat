@@ -213,6 +213,60 @@ public interface MyDslFactory extends EFactory
   ChangeToRelation createChangeToRelation();
 
   /**
+   * Returns a new object of class '<em>Assertion Entity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assertion Entity</em>'.
+   * @generated
+   */
+  AssertionEntity createAssertionEntity();
+
+  /**
+   * Returns a new object of class '<em>Assertion Relation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assertion Relation</em>'.
+   * @generated
+   */
+  AssertionRelation createAssertionRelation();
+
+  /**
+   * Returns a new object of class '<em>Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Name</em>'.
+   * @generated
+   */
+  Name createName();
+
+  /**
+   * Returns a new object of class '<em>Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parameter</em>'.
+   * @generated
+   */
+  Parameter createParameter();
+
+  /**
+   * Returns a new object of class '<em>Parameter Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Parameter Constraint</em>'.
+   * @generated
+   */
+  ParameterConstraint createParameterConstraint();
+
+  /**
+   * Returns a new object of class '<em>Operator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Operator</em>'.
+   * @generated
+   */
+  Operator createOperator();
+
+  /**
    * Returns a new object of class '<em>Object Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -247,6 +301,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Alt createAlt();
+
+  /**
+   * Returns a new object of class '<em>Alt Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Alt Condition</em>'.
+   * @generated
+   */
+  AltCondition createAltCondition();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.
