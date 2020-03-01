@@ -636,7 +636,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ParameterConstraint returns ParameterConstraint
 	 *
 	 * Constraint:
-	 *     (object=[Object|ID] param=[Parameter|ID] operator+=Operator value+=AttributeValue)
+	 *     (param=[Parameter|ID] operator+=Operator value+=AttributeValue object=[Object|ID])
 	 */
 	protected void sequence_ParameterConstraint(ISerializationContext context, ParameterConstraint semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

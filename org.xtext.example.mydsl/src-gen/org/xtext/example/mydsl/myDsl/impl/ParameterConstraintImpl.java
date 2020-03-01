@@ -33,26 +33,16 @@ import org.xtext.example.mydsl.myDsl.ParameterConstraint;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl#getObject <em>Object</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl#getParam <em>Param</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ParameterConstraintImpl#getObject <em>Object</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implements ParameterConstraint
 {
-  /**
-   * The cached value of the '{@link #getObject() <em>Object</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getObject()
-   * @generated
-   * @ordered
-   */
-  protected org.xtext.example.mydsl.myDsl.Object object;
-
   /**
    * The cached value of the '{@link #getParam() <em>Param</em>}' reference.
    * <!-- begin-user-doc -->
@@ -84,6 +74,16 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   protected EList<String> value;
 
   /**
+   * The cached value of the '{@link #getObject() <em>Object</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getObject()
+   * @generated
+   * @ordered
+   */
+  protected org.xtext.example.mydsl.myDsl.Object object;
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -102,49 +102,6 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   protected EClass eStaticClass()
   {
     return MyDslPackage.Literals.PARAMETER_CONSTRAINT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public org.xtext.example.mydsl.myDsl.Object getObject()
-  {
-    if (object != null && object.eIsProxy())
-    {
-      InternalEObject oldObject = (InternalEObject)object;
-      object = (org.xtext.example.mydsl.myDsl.Object)eResolveProxy(oldObject);
-      if (object != oldObject)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.PARAMETER_CONSTRAINT__OBJECT, oldObject, object));
-      }
-    }
-    return object;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public org.xtext.example.mydsl.myDsl.Object basicGetObject()
-  {
-    return object;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setObject(org.xtext.example.mydsl.myDsl.Object newObject)
-  {
-    org.xtext.example.mydsl.myDsl.Object oldObject = object;
-    object = newObject;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PARAMETER_CONSTRAINT__OBJECT, oldObject, object));
   }
 
   /**
@@ -223,6 +180,49 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
+  public org.xtext.example.mydsl.myDsl.Object getObject()
+  {
+    if (object != null && object.eIsProxy())
+    {
+      InternalEObject oldObject = (InternalEObject)object;
+      object = (org.xtext.example.mydsl.myDsl.Object)eResolveProxy(oldObject);
+      if (object != oldObject)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.PARAMETER_CONSTRAINT__OBJECT, oldObject, object));
+      }
+    }
+    return object;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public org.xtext.example.mydsl.myDsl.Object basicGetObject()
+  {
+    return object;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setObject(org.xtext.example.mydsl.myDsl.Object newObject)
+  {
+    org.xtext.example.mydsl.myDsl.Object oldObject = object;
+    object = newObject;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PARAMETER_CONSTRAINT__OBJECT, oldObject, object));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -244,9 +244,6 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
-        if (resolve) return getObject();
-        return basicGetObject();
       case MyDslPackage.PARAMETER_CONSTRAINT__PARAM:
         if (resolve) return getParam();
         return basicGetParam();
@@ -254,6 +251,9 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
         return getOperator();
       case MyDslPackage.PARAMETER_CONSTRAINT__VALUE:
         return getValue();
+      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
+        if (resolve) return getObject();
+        return basicGetObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -269,9 +269,6 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
-        setObject((org.xtext.example.mydsl.myDsl.Object)newValue);
-        return;
       case MyDslPackage.PARAMETER_CONSTRAINT__PARAM:
         setParam((Parameter)newValue);
         return;
@@ -282,6 +279,9 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
       case MyDslPackage.PARAMETER_CONSTRAINT__VALUE:
         getValue().clear();
         getValue().addAll((Collection<? extends String>)newValue);
+        return;
+      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
+        setObject((org.xtext.example.mydsl.myDsl.Object)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -297,9 +297,6 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
-        setObject((org.xtext.example.mydsl.myDsl.Object)null);
-        return;
       case MyDslPackage.PARAMETER_CONSTRAINT__PARAM:
         setParam((Parameter)null);
         return;
@@ -308,6 +305,9 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
         return;
       case MyDslPackage.PARAMETER_CONSTRAINT__VALUE:
         getValue().clear();
+        return;
+      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
+        setObject((org.xtext.example.mydsl.myDsl.Object)null);
         return;
     }
     super.eUnset(featureID);
@@ -323,14 +323,14 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   {
     switch (featureID)
     {
-      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
-        return object != null;
       case MyDslPackage.PARAMETER_CONSTRAINT__PARAM:
         return param != null;
       case MyDslPackage.PARAMETER_CONSTRAINT__OPERATOR:
         return operator != null && !operator.isEmpty();
       case MyDslPackage.PARAMETER_CONSTRAINT__VALUE:
         return value != null && !value.isEmpty();
+      case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
+        return object != null;
     }
     return super.eIsSet(featureID);
   }

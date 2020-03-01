@@ -1695,7 +1695,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getParameterConstraint_Object()
+  public EReference getParameterConstraint_Param()
   {
     return (EReference)parameterConstraintEClass.getEStructuralFeatures().get(0);
   }
@@ -1705,7 +1705,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getParameterConstraint_Param()
+  public EReference getParameterConstraint_Operator()
   {
     return (EReference)parameterConstraintEClass.getEStructuralFeatures().get(1);
   }
@@ -1715,9 +1715,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getParameterConstraint_Operator()
+  public EAttribute getParameterConstraint_Value()
   {
-    return (EReference)parameterConstraintEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)parameterConstraintEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1725,9 +1725,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getParameterConstraint_Value()
+  public EReference getParameterConstraint_Object()
   {
-    return (EAttribute)parameterConstraintEClass.getEStructuralFeatures().get(3);
+    return (EReference)parameterConstraintEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -2266,10 +2266,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(parameterEClass, PARAMETER__VALUE);
 
     parameterConstraintEClass = createEClass(PARAMETER_CONSTRAINT);
-    createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__OBJECT);
     createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__PARAM);
     createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__OPERATOR);
     createEAttribute(parameterConstraintEClass, PARAMETER_CONSTRAINT__VALUE);
+    createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__OBJECT);
 
     operatorEClass = createEClass(OPERATOR);
     createEAttribute(operatorEClass, OPERATOR__GREATER);
@@ -2506,10 +2506,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getParameter_Value(), ecorePackage.getEString(), "value", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parameterConstraintEClass, ParameterConstraint.class, "ParameterConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getParameterConstraint_Object(), this.getObject(), null, "object", null, 0, 1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterConstraint_Param(), this.getParameter(), null, "param", null, 0, 1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterConstraint_Operator(), this.getOperator(), null, "operator", null, 0, -1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameterConstraint_Value(), ecorePackage.getEString(), "value", null, 0, -1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParameterConstraint_Object(), this.getObject(), null, "object", null, 0, 1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOperator_Greater(), ecorePackage.getEBoolean(), "greater", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

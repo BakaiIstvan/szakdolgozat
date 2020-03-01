@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getParam <em>Param</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getValue <em>Value</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParameterConstraint()
@@ -28,32 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ParameterConstraint extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Object</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Object</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Object</em>' reference.
-   * @see #setObject(org.xtext.example.mydsl.myDsl.Object)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParameterConstraint_Object()
-   * @model
-   * @generated
-   */
-  org.xtext.example.mydsl.myDsl.Object getObject();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Object</em>' reference.
-   * @see #getObject()
-   * @generated
-   */
-  void setObject(org.xtext.example.mydsl.myDsl.Object value);
-
   /**
    * Returns the value of the '<em><b>Param</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -111,5 +85,31 @@ public interface ParameterConstraint extends EObject
    * @generated
    */
   EList<String> getValue();
+
+  /**
+   * Returns the value of the '<em><b>Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Object</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Object</em>' reference.
+   * @see #setObject(org.xtext.example.mydsl.myDsl.Object)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParameterConstraint_Object()
+   * @model
+   * @generated
+   */
+  org.xtext.example.mydsl.myDsl.Object getObject();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Object</em>' reference.
+   * @see #getObject()
+   * @generated
+   */
+  void setObject(org.xtext.example.mydsl.myDsl.Object value);
 
 } // ParameterConstraint

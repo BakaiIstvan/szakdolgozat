@@ -195,12 +195,12 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterConstraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Object"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="param" eType="#//Parameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operator" upperBound="-1"
         eType="#//Operator" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" unique="false" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Object"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="greater" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

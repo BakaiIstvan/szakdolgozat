@@ -1489,22 +1489,13 @@ public interface MyDslPackage extends EPackage
   int PARAMETER_CONSTRAINT = 25;
 
   /**
-   * The feature id for the '<em><b>Object</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PARAMETER_CONSTRAINT__OBJECT = 0;
-
-  /**
    * The feature id for the '<em><b>Param</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PARAMETER_CONSTRAINT__PARAM = 1;
+  int PARAMETER_CONSTRAINT__PARAM = 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' containment reference list.
@@ -1513,7 +1504,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER_CONSTRAINT__OPERATOR = 2;
+  int PARAMETER_CONSTRAINT__OPERATOR = 1;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute list.
@@ -1522,7 +1513,16 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PARAMETER_CONSTRAINT__VALUE = 3;
+  int PARAMETER_CONSTRAINT__VALUE = 2;
+
+  /**
+   * The feature id for the '<em><b>Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PARAMETER_CONSTRAINT__OBJECT = 3;
 
   /**
    * The number of structural features of the '<em>Parameter Constraint</em>' class.
@@ -3366,17 +3366,6 @@ public interface MyDslPackage extends EPackage
   EClass getParameterConstraint();
 
   /**
-   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Object</em>'.
-   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject()
-   * @see #getParameterConstraint()
-   * @generated
-   */
-  EReference getParameterConstraint_Object();
-
-  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getParam <em>Param</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3408,6 +3397,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EAttribute getParameterConstraint_Value();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject <em>Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Object</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ParameterConstraint#getObject()
+   * @see #getParameterConstraint()
+   * @generated
+   */
+  EReference getParameterConstraint_Object();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Operator <em>Operator</em>}'.
@@ -4907,14 +4907,6 @@ public interface MyDslPackage extends EPackage
     EClass PARAMETER_CONSTRAINT = eINSTANCE.getParameterConstraint();
 
     /**
-     * The meta object literal for the '<em><b>Object</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PARAMETER_CONSTRAINT__OBJECT = eINSTANCE.getParameterConstraint_Object();
-
-    /**
      * The meta object literal for the '<em><b>Param</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4937,6 +4929,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute PARAMETER_CONSTRAINT__VALUE = eINSTANCE.getParameterConstraint_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Object</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PARAMETER_CONSTRAINT__OBJECT = eINSTANCE.getParameterConstraint_Object();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.OperatorImpl <em>Operator</em>}' class.

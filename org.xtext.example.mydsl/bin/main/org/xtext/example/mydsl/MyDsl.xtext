@@ -37,7 +37,7 @@ Attribute:
 ;
 
 AttributeValue:
-	Number | Real | ID | 'true' | 'false'
+	Word | Real | Number | 'true' | 'false'
 ;
 
 FragmentAttribute:
@@ -123,15 +123,15 @@ ChangeToRelation:
 ;
 
 AssertionEntity:
-	'assertEntityAttribute' '(' context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ')' ';'
+	'assertEntityAttribute' '[' context=[ContextModel] '.' entity=[Entity] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ']' ';'
 ;
 
 AssertionRelation:
-	'assertRelationAttribute' '(' context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ')' ';'
+	'assertRelationAttribute' '[' context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ']' ';'
 ;
 
 Name:
-	ID '(' (params+=[Parameter])? (',' params+=[Parameter])* ')'
+	ID '(' (params+=[Parameter])? (',' params+=[Parameter])* ')' | ID '(' AttributeValue ')'
 ;
 
 Parameter:
@@ -139,7 +139,7 @@ Parameter:
 ;
 
 ParameterConstraint:
-	'parameterConstraint' object=[Object] '->' '[' param=[Parameter] operator+=Operator value+=AttributeValue ']' ';'
+	'assertParameter' '[' param=[Parameter] operator+=Operator value+=AttributeValue ']' 'in' object=[Object] ';'
 ;
 
 Operator:
@@ -156,6 +156,12 @@ terminal Number:
 
 terminal Real:
 	('0'..'9')* '.' ('0'..'9')*
+;
+
+terminal Word:
+	('"'!('"')*'"' |
+		     "'"!("'")*"'"		
+			)
 ;
 
 ObjectType:

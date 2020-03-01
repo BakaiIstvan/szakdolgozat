@@ -10,6 +10,8 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.GroupAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -28,6 +30,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_MatchMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Message_LeftCurlyBracketKeyword_11_q;
 	protected AbstractElementAlias match_Message_RightCurlyBracketKeyword_13_q;
+	protected AbstractElementAlias match_Name___IDTerminalRuleCall_0_0_LeftParenthesisKeyword_0_1_RightParenthesisKeyword_0_4___or___IDTerminalRuleCall_1_0_LeftParenthesisKeyword_1_1_AttributeValueParserRuleCall_1_2_RightParenthesisKeyword_1_3__;
 	protected AbstractElementAlias match_Parameter_EqualsSignKeyword_2_q;
 	
 	@Inject
@@ -41,14 +44,28 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_MatchMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getMatchMessageAccess().getCommaKeyword_3());
 		match_Message_LeftCurlyBracketKeyword_11_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_11());
 		match_Message_RightCurlyBracketKeyword_13_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_13());
+		match_Name___IDTerminalRuleCall_0_0_LeftParenthesisKeyword_0_1_RightParenthesisKeyword_0_4___or___IDTerminalRuleCall_1_0_LeftParenthesisKeyword_1_1_AttributeValueParserRuleCall_1_2_RightParenthesisKeyword_1_3__ = new AlternativeAlias(false, false, new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNameAccess().getIDTerminalRuleCall_0_0()), new TokenAlias(false, false, grammarAccess.getNameAccess().getLeftParenthesisKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getNameAccess().getRightParenthesisKeyword_0_4())), new GroupAlias(false, false, new TokenAlias(false, false, grammarAccess.getNameAccess().getIDTerminalRuleCall_1_0()), new TokenAlias(false, false, grammarAccess.getNameAccess().getLeftParenthesisKeyword_1_1()), new TokenAlias(false, false, grammarAccess.getNameAccess().getAttributeValueParserRuleCall_1_2()), new TokenAlias(false, false, grammarAccess.getNameAccess().getRightParenthesisKeyword_1_3())));
 		match_Parameter_EqualsSignKeyword_2_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getEqualsSignKeyword_2());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getIDRule())
+		if (ruleCall.getRule() == grammarAccess.getAttributeValueRule())
+			return getAttributeValueToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getIDRule())
 			return getIDToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * AttributeValue:
+	 * 	Word | Real | Number | 'true' | 'false'
+	 * ;
+	 */
+	protected String getAttributeValueToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "\"\"";
 	}
 	
 	/**
@@ -82,6 +99,8 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Message_LeftCurlyBracketKeyword_11_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Message_RightCurlyBracketKeyword_13_q.equals(syntax))
 				emit_Message_RightCurlyBracketKeyword_13_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Name___IDTerminalRuleCall_0_0_LeftParenthesisKeyword_0_1_RightParenthesisKeyword_0_4___or___IDTerminalRuleCall_1_0_LeftParenthesisKeyword_1_1_AttributeValueParserRuleCall_1_2_RightParenthesisKeyword_1_3__.equals(syntax))
+				emit_Name___IDTerminalRuleCall_0_0_LeftParenthesisKeyword_0_1_RightParenthesisKeyword_0_4___or___IDTerminalRuleCall_1_0_LeftParenthesisKeyword_1_1_AttributeValueParserRuleCall_1_2_RightParenthesisKeyword_1_3__(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Parameter_EqualsSignKeyword_2_q.equals(syntax))
 				emit_Parameter_EqualsSignKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -227,6 +246,17 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     receiver=[Object|ID] '{'? (ambiguity) ';' (rule end)
 	 */
 	protected void emit_Message_RightCurlyBracketKeyword_13_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     (ID '(' ')') | (ID '(' AttributeValue ')')
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 */
+	protected void emit_Name___IDTerminalRuleCall_0_0_LeftParenthesisKeyword_0_1_RightParenthesisKeyword_0_4___or___IDTerminalRuleCall_1_0_LeftParenthesisKeyword_1_1_AttributeValueParserRuleCall_1_2_RightParenthesisKeyword_1_3__(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
