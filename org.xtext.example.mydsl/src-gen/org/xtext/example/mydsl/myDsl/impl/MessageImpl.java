@@ -3,8 +3,12 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -12,10 +16,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
+import org.xtext.example.mydsl.myDsl.Params;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +34,8 @@ import org.xtext.example.mydsl.myDsl.Name;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getParams <em>Params</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getConstantparams <em>Constantparams</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isRequired <em>Required</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isFail <em>Fail</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isStrict <em>Strict</em>}</li>
@@ -42,14 +52,44 @@ import org.xtext.example.mydsl.myDsl.Name;
 public class MessageImpl extends MinimalEObjectImpl.Container implements Message
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getName()
    * @generated
    * @ordered
    */
-  protected Name name;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getParams() <em>Params</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getParams()
+   * @generated
+   * @ordered
+   */
+  protected EList<Params> params;
+
+  /**
+   * The cached value of the '{@link #getConstantparams() <em>Constantparams</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getConstantparams()
+   * @generated
+   * @ordered
+   */
+  protected EList<ConstantParams> constantparams;
 
   /**
    * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
@@ -227,7 +267,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public Name getName()
+  public String getName()
   {
     return name;
   }
@@ -237,16 +277,12 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetName(Name newName, NotificationChain msgs)
+  public void setName(String newName)
   {
-    Name oldName = name;
+    String oldName = name;
     name = newName;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__NAME, oldName, name));
   }
 
   /**
@@ -254,20 +290,27 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(Name newName)
+  public EList<Params> getParams()
   {
-    if (newName != name)
+    if (params == null)
     {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
+      params = new EObjectContainmentEList<Params>(Params.class, this, MyDslPackage.MESSAGE__PARAMS);
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__NAME, newName, newName));
+    return params;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<ConstantParams> getConstantparams()
+  {
+    if (constantparams == null)
+    {
+      constantparams = new EObjectContainmentEList<ConstantParams>(ConstantParams.class, this, MyDslPackage.MESSAGE__CONSTANTPARAMS);
+    }
+    return constantparams;
   }
 
   /**
@@ -547,8 +590,10 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
   {
     switch (featureID)
     {
-      case MyDslPackage.MESSAGE__NAME:
-        return basicSetName(null, msgs);
+      case MyDslPackage.MESSAGE__PARAMS:
+        return ((InternalEList<?>)getParams()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.MESSAGE__CONSTANTPARAMS:
+        return ((InternalEList<?>)getConstantparams()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -565,6 +610,10 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     {
       case MyDslPackage.MESSAGE__NAME:
         return getName();
+      case MyDslPackage.MESSAGE__PARAMS:
+        return getParams();
+      case MyDslPackage.MESSAGE__CONSTANTPARAMS:
+        return getConstantparams();
       case MyDslPackage.MESSAGE__REQUIRED:
         return isRequired();
       case MyDslPackage.MESSAGE__FAIL:
@@ -595,13 +644,22 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case MyDslPackage.MESSAGE__NAME:
-        setName((Name)newValue);
+        setName((String)newValue);
+        return;
+      case MyDslPackage.MESSAGE__PARAMS:
+        getParams().clear();
+        getParams().addAll((Collection<? extends Params>)newValue);
+        return;
+      case MyDslPackage.MESSAGE__CONSTANTPARAMS:
+        getConstantparams().clear();
+        getConstantparams().addAll((Collection<? extends ConstantParams>)newValue);
         return;
       case MyDslPackage.MESSAGE__REQUIRED:
         setRequired((Boolean)newValue);
@@ -645,7 +703,13 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     switch (featureID)
     {
       case MyDslPackage.MESSAGE__NAME:
-        setName((Name)null);
+        setName(NAME_EDEFAULT);
+        return;
+      case MyDslPackage.MESSAGE__PARAMS:
+        getParams().clear();
+        return;
+      case MyDslPackage.MESSAGE__CONSTANTPARAMS:
+        getConstantparams().clear();
         return;
       case MyDslPackage.MESSAGE__REQUIRED:
         setRequired(REQUIRED_EDEFAULT);
@@ -689,7 +753,11 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     switch (featureID)
     {
       case MyDslPackage.MESSAGE__NAME:
-        return name != null;
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case MyDslPackage.MESSAGE__PARAMS:
+        return params != null && !params.isEmpty();
+      case MyDslPackage.MESSAGE__CONSTANTPARAMS:
+        return constantparams != null && !constantparams.isEmpty();
       case MyDslPackage.MESSAGE__REQUIRED:
         return required != REQUIRED_EDEFAULT;
       case MyDslPackage.MESSAGE__FAIL:
@@ -723,7 +791,9 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (required: ");
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", required: ");
     result.append(required);
     result.append(", fail: ");
     result.append(fail);

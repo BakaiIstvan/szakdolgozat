@@ -13,6 +13,7 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.generator.AppearMessages;
@@ -35,6 +36,7 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
@@ -43,9 +45,9 @@ import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
@@ -668,10 +670,93 @@ public class MyDslGenerator extends AbstractGenerator {
                             _builder.append("+ \"!(\" + \"");
                             String _name_2 = msg.getSender().getName();
                             _builder.append(_name_2, "\t\t");
-                            _builder.append("\" + \".\" + \"");
-                            Name _name_3 = msg.getName();
+                            _builder.append("\" + \".\" +");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("\t\t");
+                            _builder.append("\"");
+                            String _name_3 = msg.getName();
                             _builder.append(_name_3, "\t\t");
-                            _builder.append("\" + \".\" + \"");
+                            _builder.append("\" + \"(\" +");
+                            _builder.newLineIfNotEmpty();
+                            {
+                              EList<Params> _params = msg.getParams();
+                              for(final Params p : _params) {
+                                {
+                                  int _size = p.getParams().size();
+                                  ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+                                  for(final Integer param : _doubleDotLessThan) {
+                                    {
+                                      boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
+                                      if (_startsWith) {
+                                        _builder.append("\t\t");
+                                        String _value = p.getParams().get((param).intValue()).getValue().getValue();
+                                        _builder.append(_value, "\t\t");
+                                        _builder.newLineIfNotEmpty();
+                                      } else {
+                                        _builder.append("\t\t");
+                                        _builder.append("\"");
+                                        String _value_1 = p.getParams().get((param).intValue()).getValue().getValue();
+                                        _builder.append(_value_1, "\t\t");
+                                        _builder.append("\"");
+                                        _builder.newLineIfNotEmpty();
+                                      }
+                                    }
+                                    {
+                                      int _size_1 = p.getParams().size();
+                                      int _minus = (_size_1 - 1);
+                                      boolean _notEquals = ((param).intValue() != _minus);
+                                      if (_notEquals) {
+                                        _builder.append("\t\t");
+                                        _builder.append("+ \", \" +");
+                                        _builder.newLine();
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            {
+                              EList<ConstantParams> _constantparams = msg.getConstantparams();
+                              for(final ConstantParams p_1 : _constantparams) {
+                                {
+                                  int _size_2 = p_1.getValues().size();
+                                  ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
+                                  for(final Integer param_1 : _doubleDotLessThan_1) {
+                                    {
+                                      boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
+                                      if (_startsWith_1) {
+                                        _builder.append("\t\t");
+                                        String _value_2 = p_1.getValues().get((param_1).intValue()).getValue();
+                                        _builder.append(_value_2, "\t\t");
+                                        _builder.newLineIfNotEmpty();
+                                      } else {
+                                        _builder.append("\t\t");
+                                        _builder.append("\"");
+                                        String _value_3 = p_1.getValues().get((param_1).intValue()).getValue();
+                                        _builder.append(_value_3, "\t\t");
+                                        _builder.append("\"");
+                                        _builder.newLineIfNotEmpty();
+                                      }
+                                    }
+                                    {
+                                      int _size_3 = p_1.getValues().size();
+                                      int _minus_1 = (_size_3 - 1);
+                                      boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
+                                      if (_notEquals_1) {
+                                        _builder.append("\t\t");
+                                        _builder.append("+ \", \" +");
+                                        _builder.newLine();
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                            _builder.append("\t\t");
+                            _builder.append("+ \")\"");
+                            _builder.newLine();
+                            _builder.append("\t\t");
+                            _builder.append("+ \".\" + \"");
                             String _name_4 = msg.getReceiver().getName();
                             _builder.append(_name_4, "\t\t");
                             _builder.append(")\" + \" & \"");
@@ -892,12 +977,12 @@ public class MyDslGenerator extends AbstractGenerator {
             }
             {
               EList<Par> _par = sc.getPar();
-              for(final Par p : _par) {
+              for(final Par p_2 : _par) {
                 _builder.append("\t\t");
                 _builder.append("parauto = new ArrayList<Automaton>();");
                 _builder.newLine();
                 {
-                  EList<ParExpression> _parexpression = p.getParexpression();
+                  EList<ParExpression> _parexpression = p_2.getParexpression();
                   for(final ParExpression pe : _parexpression) {
                     _builder.append("\t\t");
                     _builder.append("expression = new Automaton(\"expauto\" + counter);");
@@ -918,10 +1003,95 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("+ \"!(\" + \"");
                                 String _name_5 = msg_1.getSender().getName();
                                 _builder.append(_name_5, "\t\t");
-                                _builder.append("\" + \".\" + \"");
-                                Name _name_6 = msg_1.getName();
+                                _builder.append("\" + \".\" + ");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("\"");
+                                String _name_6 = msg_1.getName();
                                 _builder.append(_name_6, "\t\t");
-                                _builder.append("\" + \".\" + \"");
+                                _builder.append("\" + \"(\" +");
+                                _builder.newLineIfNotEmpty();
+                                {
+                                  EList<Params> _params_1 = msg_1.getParams();
+                                  for(final Params p1 : _params_1) {
+                                    {
+                                      int _size_4 = p1.getParams().size();
+                                      ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
+                                      for(final Integer param_2 : _doubleDotLessThan_2) {
+                                        {
+                                          boolean _startsWith_2 = p1.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
+                                          if (_startsWith_2) {
+                                            _builder.append("\t\t");
+                                            String _value_4 = p1.getParams().get((param_2).intValue()).getValue().getValue();
+                                            _builder.append(_value_4, "\t\t");
+                                            _builder.newLineIfNotEmpty();
+                                          } else {
+                                            _builder.append("\t\t");
+                                            _builder.append("\"");
+                                            String _value_5 = p1.getParams().get((param_2).intValue()).getValue().getValue();
+                                            _builder.append(_value_5, "\t\t");
+                                            _builder.append("\"");
+                                            _builder.newLineIfNotEmpty();
+                                          }
+                                        }
+                                        {
+                                          int _size_5 = p1.getParams().size();
+                                          int _minus_2 = (_size_5 - 1);
+                                          boolean _notEquals_2 = ((param_2).intValue() != _minus_2);
+                                          if (_notEquals_2) {
+                                            _builder.append("\t\t");
+                                            _builder.append("+ \", \" +");
+                                            _builder.newLine();
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                                {
+                                  EList<ConstantParams> _constantparams_1 = msg_1.getConstantparams();
+                                  for(final ConstantParams p1_1 : _constantparams_1) {
+                                    {
+                                      int _size_6 = p1_1.getValues().size();
+                                      ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_6, true);
+                                      for(final Integer param_3 : _doubleDotLessThan_3) {
+                                        {
+                                          boolean _startsWith_3 = p1_1.getValues().get((param_3).intValue()).getValue().startsWith("\"");
+                                          if (_startsWith_3) {
+                                            _builder.append("\t\t");
+                                            String _value_6 = p1_1.getValues().get((param_3).intValue()).getValue();
+                                            _builder.append(_value_6, "\t\t");
+                                            _builder.newLineIfNotEmpty();
+                                          } else {
+                                            _builder.append("\t\t");
+                                            _builder.append("\"");
+                                            String _value_7 = p1_1.getValues().get((param_3).intValue()).getValue();
+                                            _builder.append(_value_7, "\t\t");
+                                            _builder.append("\"");
+                                            _builder.newLineIfNotEmpty();
+                                          }
+                                        }
+                                        {
+                                          int _size_7 = p1_1.getValues().size();
+                                          int _minus_3 = (_size_7 - 1);
+                                          boolean _notEquals_3 = ((param_3).intValue() != _minus_3);
+                                          if (_notEquals_3) {
+                                            _builder.append("\t\t");
+                                            _builder.append("+ \", \" +");
+                                            _builder.newLine();
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                                _builder.append("\t\t");
+                                _builder.append("+ \")\" ");
+                                _builder.newLine();
+                                _builder.append("\t\t");
+                                _builder.newLine();
+                                _builder.append("\t\t");
+                                _builder.append("+ \".\" + \"");
                                 String _name_7 = msg_1.getReceiver().getName();
                                 _builder.append(_name_7, "\t\t");
                                 _builder.append(")\" + \" & \"");
@@ -1170,10 +1340,105 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("+ \"!(\" + \"");
                                 String _name_8 = msg_2.getSender().getName();
                                 _builder.append(_name_8, "\t\t\t");
-                                _builder.append("\" + \".\" + \"");
-                                Name _name_9 = msg_2.getName();
+                                _builder.append("\" + \".\" +");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("\t\t");
+                                _builder.append("\t");
+                                _builder.append("\"");
+                                String _name_9 = msg_2.getName();
                                 _builder.append(_name_9, "\t\t\t");
-                                _builder.append("\" + \".\" + \"");
+                                _builder.append("\" + \"(\" +");
+                                _builder.newLineIfNotEmpty();
+                                {
+                                  EList<Params> _params_2 = msg_2.getParams();
+                                  for(final Params p_3 : _params_2) {
+                                    {
+                                      int _size_8 = p_3.getParams().size();
+                                      ExclusiveRange _doubleDotLessThan_4 = new ExclusiveRange(0, _size_8, true);
+                                      for(final Integer param_4 : _doubleDotLessThan_4) {
+                                        {
+                                          boolean _startsWith_4 = p_3.getParams().get((param_4).intValue()).getValue().getValue().startsWith("\"");
+                                          if (_startsWith_4) {
+                                            _builder.append("\t\t");
+                                            _builder.append("\t");
+                                            String _value_8 = p_3.getParams().get((param_4).intValue()).getValue().getValue();
+                                            _builder.append(_value_8, "\t\t\t");
+                                            _builder.newLineIfNotEmpty();
+                                          } else {
+                                            _builder.append("\t\t");
+                                            _builder.append("\t");
+                                            _builder.append("\"");
+                                            String _value_9 = p_3.getParams().get((param_4).intValue()).getValue().getValue();
+                                            _builder.append(_value_9, "\t\t\t");
+                                            _builder.append("\"");
+                                            _builder.newLineIfNotEmpty();
+                                          }
+                                        }
+                                        {
+                                          int _size_9 = p_3.getParams().size();
+                                          int _minus_4 = (_size_9 - 1);
+                                          boolean _notEquals_4 = ((param_4).intValue() != _minus_4);
+                                          if (_notEquals_4) {
+                                            _builder.append("\t\t");
+                                            _builder.append("\t");
+                                            _builder.append("+ \", \" +");
+                                            _builder.newLine();
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                                {
+                                  EList<ConstantParams> _constantparams_2 = msg_2.getConstantparams();
+                                  for(final ConstantParams p_4 : _constantparams_2) {
+                                    {
+                                      int _size_10 = p_4.getValues().size();
+                                      ExclusiveRange _doubleDotLessThan_5 = new ExclusiveRange(0, _size_10, true);
+                                      for(final Integer param_5 : _doubleDotLessThan_5) {
+                                        {
+                                          boolean _startsWith_5 = p_4.getValues().get((param_5).intValue()).getValue().startsWith("\"");
+                                          if (_startsWith_5) {
+                                            _builder.append("\t\t");
+                                            _builder.append("\t");
+                                            String _value_10 = p_4.getValues().get((param_5).intValue()).getValue();
+                                            _builder.append(_value_10, "\t\t\t");
+                                            _builder.newLineIfNotEmpty();
+                                          } else {
+                                            _builder.append("\t\t");
+                                            _builder.append("\t");
+                                            _builder.append("\"");
+                                            String _value_11 = p_4.getValues().get((param_5).intValue()).getValue();
+                                            _builder.append(_value_11, "\t\t\t");
+                                            _builder.append("\"");
+                                            _builder.newLineIfNotEmpty();
+                                          }
+                                        }
+                                        {
+                                          int _size_11 = p_4.getValues().size();
+                                          int _minus_5 = (_size_11 - 1);
+                                          boolean _notEquals_5 = ((param_5).intValue() != _minus_5);
+                                          if (_notEquals_5) {
+                                            _builder.append("\t\t");
+                                            _builder.append("\t");
+                                            _builder.append("+ \", \" +");
+                                            _builder.newLine();
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                                _builder.append("\t\t");
+                                _builder.append("\t");
+                                _builder.append("+ \")\"");
+                                _builder.newLine();
+                                _builder.append("\t\t");
+                                _builder.append("\t");
+                                _builder.newLine();
+                                _builder.append("\t\t");
+                                _builder.append("\t");
+                                _builder.append("+ \".\" + \"");
                                 String _name_10 = msg_2.getReceiver().getName();
                                 _builder.append(_name_10, "\t\t\t");
                                 _builder.append(")\" + \" & \"");
@@ -1437,10 +1702,93 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("+ \"!(\" + \"");
                         String _name_11 = msg_3.getSender().getName();
                         _builder.append(_name_11, "\t\t");
-                        _builder.append("\" + \".\" + \"");
-                        Name _name_12 = msg_3.getName();
+                        _builder.append("\" + \".\" +");
+                        _builder.newLineIfNotEmpty();
+                        _builder.append("\t\t");
+                        _builder.append("\"");
+                        String _name_12 = msg_3.getName();
                         _builder.append(_name_12, "\t\t");
-                        _builder.append("\" + \".\" + \"");
+                        _builder.append("\" + \"(\" +");
+                        _builder.newLineIfNotEmpty();
+                        {
+                          EList<Params> _params_3 = msg_3.getParams();
+                          for(final Params p_5 : _params_3) {
+                            {
+                              int _size_12 = p_5.getParams().size();
+                              ExclusiveRange _doubleDotLessThan_6 = new ExclusiveRange(0, _size_12, true);
+                              for(final Integer param_6 : _doubleDotLessThan_6) {
+                                {
+                                  boolean _startsWith_6 = p_5.getParams().get((param_6).intValue()).getValue().getValue().startsWith("\"");
+                                  if (_startsWith_6) {
+                                    _builder.append("\t\t");
+                                    String _value_12 = p_5.getParams().get((param_6).intValue()).getValue().getValue();
+                                    _builder.append(_value_12, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                  } else {
+                                    _builder.append("\t\t");
+                                    _builder.append("\"");
+                                    String _value_13 = p_5.getParams().get((param_6).intValue()).getValue().getValue();
+                                    _builder.append(_value_13, "\t\t");
+                                    _builder.append("\"");
+                                    _builder.newLineIfNotEmpty();
+                                  }
+                                }
+                                {
+                                  int _size_13 = p_5.getParams().size();
+                                  int _minus_6 = (_size_13 - 1);
+                                  boolean _notEquals_6 = ((param_6).intValue() != _minus_6);
+                                  if (_notEquals_6) {
+                                    _builder.append("\t\t");
+                                    _builder.append("+ \", \" +");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                        {
+                          EList<ConstantParams> _constantparams_3 = msg_3.getConstantparams();
+                          for(final ConstantParams p_6 : _constantparams_3) {
+                            {
+                              int _size_14 = p_6.getValues().size();
+                              ExclusiveRange _doubleDotLessThan_7 = new ExclusiveRange(0, _size_14, true);
+                              for(final Integer param_7 : _doubleDotLessThan_7) {
+                                {
+                                  boolean _startsWith_7 = p_6.getValues().get((param_7).intValue()).getValue().startsWith("\"");
+                                  if (_startsWith_7) {
+                                    _builder.append("\t\t");
+                                    String _value_14 = p_6.getValues().get((param_7).intValue()).getValue();
+                                    _builder.append(_value_14, "\t\t");
+                                    _builder.newLineIfNotEmpty();
+                                  } else {
+                                    _builder.append("\t\t");
+                                    _builder.append("\"");
+                                    String _value_15 = p_6.getValues().get((param_7).intValue()).getValue();
+                                    _builder.append(_value_15, "\t\t");
+                                    _builder.append("\"");
+                                    _builder.newLineIfNotEmpty();
+                                  }
+                                }
+                                {
+                                  int _size_15 = p_6.getValues().size();
+                                  int _minus_7 = (_size_15 - 1);
+                                  boolean _notEquals_7 = ((param_7).intValue() != _minus_7);
+                                  if (_notEquals_7) {
+                                    _builder.append("\t\t");
+                                    _builder.append("+ \", \" +");
+                                    _builder.newLine();
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                        _builder.append("\t\t");
+                        _builder.append("+ \")\"");
+                        _builder.newLine();
+                        _builder.append("\t\t");
+                        _builder.append("+ \".\" + \"");
                         String _name_13 = msg_3.getReceiver().getName();
                         _builder.append(_name_13, "\t\t");
                         _builder.append(")\" + \" & \"");

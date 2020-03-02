@@ -16,9 +16,11 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -36,13 +38,13 @@ import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
+import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -136,6 +138,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createAttributeAdapter();
       }
       @Override
+      public Adapter caseAttributeValue(AttributeValue object)
+      {
+        return createAttributeValueAdapter();
+      }
+      @Override
       public Adapter caseFragmentAttribute(FragmentAttribute object)
       {
         return createFragmentAttributeAdapter();
@@ -226,9 +233,14 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createAssertionRelationAdapter();
       }
       @Override
-      public Adapter caseName(Name object)
+      public Adapter caseParams(Params object)
       {
-        return createNameAdapter();
+        return createParamsAdapter();
+      }
+      @Override
+      public Adapter caseConstantParams(ConstantParams object)
+      {
+        return createConstantParamsAdapter();
       }
       @Override
       public Adapter caseParameter(Parameter object)
@@ -383,6 +395,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createAttributeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.AttributeValue <em>Attribute Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.AttributeValue
+   * @generated
+   */
+  public Adapter createAttributeValueAdapter()
   {
     return null;
   }
@@ -658,16 +685,31 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Name <em>Name</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Params <em>Params</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.Name
+   * @see org.xtext.example.mydsl.myDsl.Params
    * @generated
    */
-  public Adapter createNameAdapter()
+  public Adapter createParamsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ConstantParams <em>Constant Params</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ConstantParams
+   * @generated
+   */
+  public Adapter createConstantParamsAdapter()
   {
     return null;
   }

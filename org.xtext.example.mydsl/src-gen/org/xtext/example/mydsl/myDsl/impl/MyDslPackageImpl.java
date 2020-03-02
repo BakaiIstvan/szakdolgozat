@@ -17,9 +17,11 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -38,13 +40,13 @@ import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
+import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -92,6 +94,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass attributeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass attributeValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -224,7 +233,14 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass nameEClass = null;
+  private EClass paramsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass constantParamsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -655,9 +671,29 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAttribute_Value()
+  public EReference getAttribute_Value()
   {
-    return (EAttribute)attributeEClass.getEStructuralFeatures().get(5);
+    return (EReference)attributeEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAttributeValue()
+  {
+    return attributeValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getAttributeValue_Value()
+  {
+    return (EAttribute)attributeValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -785,9 +821,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFragmentAttribute_Value()
+  public EReference getFragmentAttribute_Value()
   {
-    return (EAttribute)fragmentAttributeEClass.getEStructuralFeatures().get(11);
+    return (EReference)fragmentAttributeEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -1085,9 +1121,29 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMessage_Name()
+  public EAttribute getMessage_Name()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMessage_Params()
+  {
+    return (EReference)messageEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMessage_Constantparams()
+  {
+    return (EReference)messageEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1097,7 +1153,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Required()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1107,7 +1163,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Fail()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1117,7 +1173,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Strict()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -1127,7 +1183,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_Sender()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(4);
+    return (EReference)messageEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -1137,7 +1193,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_Receiver()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(5);
+    return (EReference)messageEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -1147,7 +1203,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Past()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(6);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -1157,7 +1213,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Future()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(7);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -1167,7 +1223,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Constraint()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(8);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -1177,7 +1233,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_C()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(9);
+    return (EReference)messageEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -1445,9 +1501,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getChangeToMessage_Changevalue()
+  public EReference getChangeToMessage_Changevalue()
   {
-    return (EAttribute)changeToMessageEClass.getEStructuralFeatures().get(3);
+    return (EReference)changeToMessageEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1495,9 +1551,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getChangeToRelation_Changevalue()
+  public EReference getChangeToRelation_Changevalue()
   {
-    return (EAttribute)changeToRelationEClass.getEStructuralFeatures().get(3);
+    return (EReference)changeToRelationEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1555,9 +1611,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAssertionEntity_Value()
+  public EReference getAssertionEntity_Value()
   {
-    return (EAttribute)assertionEntityEClass.getEStructuralFeatures().get(4);
+    return (EReference)assertionEntityEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1615,9 +1671,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAssertionRelation_Value()
+  public EReference getAssertionRelation_Value()
   {
-    return (EAttribute)assertionRelationEClass.getEStructuralFeatures().get(4);
+    return (EReference)assertionRelationEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1625,9 +1681,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getName_()
+  public EClass getParams()
   {
-    return nameEClass;
+    return paramsEClass;
   }
 
   /**
@@ -1635,9 +1691,29 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getName_Params()
+  public EReference getParams_Params()
   {
-    return (EReference)nameEClass.getEStructuralFeatures().get(0);
+    return (EReference)paramsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConstantParams()
+  {
+    return constantParamsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConstantParams_Values()
+  {
+    return (EReference)constantParamsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1675,9 +1751,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getParameter_Value()
+  public EReference getParameter_Value()
   {
-    return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
+    return (EReference)parameterEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1715,9 +1791,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getParameterConstraint_Value()
+  public EReference getParameterConstraint_Value()
   {
-    return (EAttribute)parameterConstraintEClass.getEStructuralFeatures().get(2);
+    return (EReference)parameterConstraintEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1935,9 +2011,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getAltCondition_Value()
+  public EReference getAltCondition_Value()
   {
-    return (EAttribute)altConditionEClass.getEStructuralFeatures().get(2);
+    return (EReference)altConditionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2141,7 +2217,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(attributeEClass, ATTRIBUTE__STRING);
     createEAttribute(attributeEClass, ATTRIBUTE__BOOLEAN);
     createEAttribute(attributeEClass, ATTRIBUTE__NAME);
-    createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
+    createEReference(attributeEClass, ATTRIBUTE__VALUE);
+
+    attributeValueEClass = createEClass(ATTRIBUTE_VALUE);
+    createEAttribute(attributeValueEClass, ATTRIBUTE_VALUE__VALUE);
 
     fragmentAttributeEClass = createEClass(FRAGMENT_ATTRIBUTE);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__INT);
@@ -2155,7 +2234,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__SMALLEREQUALS);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__EQUALS);
     createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__NOTEQUALS);
-    createEAttribute(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__VALUE);
+    createEReference(fragmentAttributeEClass, FRAGMENT_ATTRIBUTE__VALUE);
 
     entityEClass = createEClass(ENTITY);
     createEAttribute(entityEClass, ENTITY__NAME);
@@ -2192,7 +2271,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(scenarioContentEClass, SCENARIO_CONTENT__ASSERTRELATION);
 
     messageEClass = createEClass(MESSAGE);
-    createEReference(messageEClass, MESSAGE__NAME);
+    createEAttribute(messageEClass, MESSAGE__NAME);
+    createEReference(messageEClass, MESSAGE__PARAMS);
+    createEReference(messageEClass, MESSAGE__CONSTANTPARAMS);
     createEAttribute(messageEClass, MESSAGE__REQUIRED);
     createEAttribute(messageEClass, MESSAGE__FAIL);
     createEAttribute(messageEClass, MESSAGE__STRICT);
@@ -2235,40 +2316,43 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__CONTEXT);
     createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ENTITY);
     createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__ATTRIBUTE);
-    createEAttribute(changeToMessageEClass, CHANGE_TO_MESSAGE__CHANGEVALUE);
+    createEReference(changeToMessageEClass, CHANGE_TO_MESSAGE__CHANGEVALUE);
 
     changeToRelationEClass = createEClass(CHANGE_TO_RELATION);
     createEReference(changeToRelationEClass, CHANGE_TO_RELATION__CONTEXT);
     createEReference(changeToRelationEClass, CHANGE_TO_RELATION__RELATION);
     createEReference(changeToRelationEClass, CHANGE_TO_RELATION__ATTRIBUTE);
-    createEAttribute(changeToRelationEClass, CHANGE_TO_RELATION__CHANGEVALUE);
+    createEReference(changeToRelationEClass, CHANGE_TO_RELATION__CHANGEVALUE);
 
     assertionEntityEClass = createEClass(ASSERTION_ENTITY);
     createEReference(assertionEntityEClass, ASSERTION_ENTITY__CONTEXT);
     createEReference(assertionEntityEClass, ASSERTION_ENTITY__ENTITY);
     createEReference(assertionEntityEClass, ASSERTION_ENTITY__ATTRIBUTE);
     createEReference(assertionEntityEClass, ASSERTION_ENTITY__OPERATOR);
-    createEAttribute(assertionEntityEClass, ASSERTION_ENTITY__VALUE);
+    createEReference(assertionEntityEClass, ASSERTION_ENTITY__VALUE);
 
     assertionRelationEClass = createEClass(ASSERTION_RELATION);
     createEReference(assertionRelationEClass, ASSERTION_RELATION__CONTEXT);
     createEReference(assertionRelationEClass, ASSERTION_RELATION__RELATION);
     createEReference(assertionRelationEClass, ASSERTION_RELATION__ATTRIBUTE);
     createEReference(assertionRelationEClass, ASSERTION_RELATION__OPERATOR);
-    createEAttribute(assertionRelationEClass, ASSERTION_RELATION__VALUE);
+    createEReference(assertionRelationEClass, ASSERTION_RELATION__VALUE);
 
-    nameEClass = createEClass(NAME);
-    createEReference(nameEClass, NAME__PARAMS);
+    paramsEClass = createEClass(PARAMS);
+    createEReference(paramsEClass, PARAMS__PARAMS);
+
+    constantParamsEClass = createEClass(CONSTANT_PARAMS);
+    createEReference(constantParamsEClass, CONSTANT_PARAMS__VALUES);
 
     parameterEClass = createEClass(PARAMETER);
     createEAttribute(parameterEClass, PARAMETER__TYPE);
     createEAttribute(parameterEClass, PARAMETER__NAME);
-    createEAttribute(parameterEClass, PARAMETER__VALUE);
+    createEReference(parameterEClass, PARAMETER__VALUE);
 
     parameterConstraintEClass = createEClass(PARAMETER_CONSTRAINT);
     createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__PARAM);
     createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__OPERATOR);
-    createEAttribute(parameterConstraintEClass, PARAMETER_CONSTRAINT__VALUE);
+    createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__VALUE);
     createEReference(parameterConstraintEClass, PARAMETER_CONSTRAINT__OBJECT);
 
     operatorEClass = createEClass(OPERATOR);
@@ -2296,7 +2380,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     altConditionEClass = createEClass(ALT_CONDITION);
     createEReference(altConditionEClass, ALT_CONDITION__PARAM);
     createEReference(altConditionEClass, ALT_CONDITION__OPERATOR);
-    createEAttribute(altConditionEClass, ALT_CONDITION__VALUE);
+    createEReference(altConditionEClass, ALT_CONDITION__VALUE);
     createEAttribute(altConditionEClass, ALT_CONDITION__ELSE);
 
     expressionEClass = createEClass(EXPRESSION);
@@ -2381,7 +2465,10 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getAttribute_String(), ecorePackage.getEBoolean(), "string", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_Boolean(), ecorePackage.getEBoolean(), "boolean", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAttribute_Name(), ecorePackage.getEString(), "name", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAttribute_Value(), this.getAttributeValue(), null, "value", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(attributeValueEClass, AttributeValue.class, "AttributeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAttributeValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, AttributeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fragmentAttributeEClass, FragmentAttribute.class, "FragmentAttribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFragmentAttribute_Int(), ecorePackage.getEBoolean(), "int", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2395,7 +2482,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getFragmentAttribute_Smallerequals(), ecorePackage.getEBoolean(), "smallerequals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFragmentAttribute_Equals(), ecorePackage.getEBoolean(), "equals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFragmentAttribute_Notequals(), ecorePackage.getEBoolean(), "notequals", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFragmentAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFragmentAttribute_Value(), this.getAttributeValue(), null, "value", null, 0, 1, FragmentAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(entityEClass, Entity.class, "Entity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEntity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2432,7 +2519,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getScenarioContent_Assertrelation(), this.getAssertionRelation(), null, "assertrelation", null, 0, -1, ScenarioContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(messageEClass, Message.class, "Message", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMessage_Name(), this.getName_(), null, "name", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMessage_Name(), ecorePackage.getEString(), "name", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMessage_Params(), this.getParams(), null, "params", null, 0, -1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMessage_Constantparams(), this.getConstantParams(), null, "constantparams", null, 0, -1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Fail(), ecorePackage.getEBoolean(), "fail", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Strict(), ecorePackage.getEBoolean(), "strict", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2475,40 +2564,43 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getChangeToMessage_Context(), this.getContextModel(), null, "context", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeToMessage_Entity(), this.getEntity(), null, "entity", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeToMessage_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getChangeToMessage_Changevalue(), ecorePackage.getEString(), "changevalue", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToMessage_Changevalue(), this.getAttributeValue(), null, "changevalue", null, 0, 1, ChangeToMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(changeToRelationEClass, ChangeToRelation.class, "ChangeToRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getChangeToRelation_Context(), this.getContextModel(), null, "context", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeToRelation_Relation(), this.getRelation(), null, "relation", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChangeToRelation_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getChangeToRelation_Changevalue(), ecorePackage.getEString(), "changevalue", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChangeToRelation_Changevalue(), this.getAttributeValue(), null, "changevalue", null, 0, 1, ChangeToRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(assertionEntityEClass, AssertionEntity.class, "AssertionEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssertionEntity_Context(), this.getContextModel(), null, "context", null, 0, 1, AssertionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssertionEntity_Entity(), this.getEntity(), null, "entity", null, 0, 1, AssertionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssertionEntity_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, AssertionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssertionEntity_Operator(), this.getOperator(), null, "operator", null, 0, -1, AssertionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAssertionEntity_Value(), ecorePackage.getEString(), "value", null, 0, -1, AssertionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssertionEntity_Value(), this.getAttributeValue(), null, "value", null, 0, -1, AssertionEntity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(assertionRelationEClass, AssertionRelation.class, "AssertionRelation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssertionRelation_Context(), this.getContextModel(), null, "context", null, 0, 1, AssertionRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssertionRelation_Relation(), this.getRelation(), null, "relation", null, 0, 1, AssertionRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssertionRelation_Attribute(), this.getAttribute(), null, "attribute", null, 0, 1, AssertionRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssertionRelation_Operator(), this.getOperator(), null, "operator", null, 0, -1, AssertionRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAssertionRelation_Value(), ecorePackage.getEString(), "value", null, 0, -1, AssertionRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssertionRelation_Value(), this.getAttributeValue(), null, "value", null, 0, -1, AssertionRelation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(nameEClass, Name.class, "Name", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getName_Params(), this.getParameter(), null, "params", null, 0, -1, Name.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(paramsEClass, Params.class, "Params", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getParams_Params(), this.getParameter(), null, "params", null, 0, -1, Params.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(constantParamsEClass, ConstantParams.class, "ConstantParams", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConstantParams_Values(), this.getAttributeValue(), null, "values", null, 0, -1, ConstantParams.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getParameter_Type(), this.getType(), "type", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getParameter_Value(), ecorePackage.getEString(), "value", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParameter_Value(), this.getAttributeValue(), null, "value", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parameterConstraintEClass, ParameterConstraint.class, "ParameterConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getParameterConstraint_Param(), this.getParameter(), null, "param", null, 0, 1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterConstraint_Operator(), this.getOperator(), null, "operator", null, 0, -1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getParameterConstraint_Value(), ecorePackage.getEString(), "value", null, 0, -1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParameterConstraint_Value(), this.getAttributeValue(), null, "value", null, 0, -1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getParameterConstraint_Object(), this.getObject(), null, "object", null, 0, 1, ParameterConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2536,7 +2628,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEClass(altConditionEClass, AltCondition.class, "AltCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAltCondition_Param(), this.getParameter(), null, "param", null, 0, 1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAltCondition_Operator(), this.getOperator(), null, "operator", null, 0, -1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAltCondition_Value(), ecorePackage.getEString(), "value", null, 0, -1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAltCondition_Value(), this.getAttributeValue(), null, "value", null, 0, -1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAltCondition_Else(), ecorePackage.getEBoolean(), "else", null, 0, 1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

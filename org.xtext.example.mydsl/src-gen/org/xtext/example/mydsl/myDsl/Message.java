@@ -3,6 +3,8 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,6 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getParams <em>Params</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getConstantparams <em>Constantparams</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isRequired <em>Required</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isFail <em>Fail</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isStrict <em>Strict</em>}</li>
@@ -33,30 +37,62 @@ import org.eclipse.emf.ecore.EObject;
 public interface Message extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' containment reference.
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' containment reference.
-   * @see #setName(Name)
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Name()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  Name getName();
+  String getName();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#getName <em>Name</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' containment reference.
+   * @param value the new value of the '<em>Name</em>' attribute.
    * @see #getName()
    * @generated
    */
-  void setName(Name value);
+  void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Params</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Params}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Params</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Params</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Params()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Params> getParams();
+
+  /**
+   * Returns the value of the '<em><b>Constantparams</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.ConstantParams}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Constantparams</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Constantparams</em>' containment reference list.
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Constantparams()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ConstantParams> getConstantparams();
 
   /**
    * Returns the value of the '<em><b>Required</b></em>' attribute.

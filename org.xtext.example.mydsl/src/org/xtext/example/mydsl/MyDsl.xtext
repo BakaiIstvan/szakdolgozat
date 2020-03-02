@@ -37,7 +37,7 @@ Attribute:
 ;
 
 AttributeValue:
-	Word | Real | Number | 'true' | 'false'
+	value=Word | value=Real | value=Number | value='true' | value='false'
 ;
 
 FragmentAttribute:
@@ -81,7 +81,7 @@ ScenarioContent:
 ;
 
 Message:
-	 'message' name=Name (required?='required')? (fail?='fail')? (strict?='strict')?
+	 'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' (required?='required')? (fail?='fail')? (strict?='strict')?
 	 sender=[Object] '->' receiver=[Object]
 	 (past?='past')? (future?='future')? (constraint?='constraint')?
 	 ('{')? (c=[Constraint])? ('}')? ';'
@@ -130,12 +130,16 @@ AssertionRelation:
 	'assertRelationAttribute' '[' context=[ContextModel] '.' relation=[Relation] '.' attribute=[Attribute] operator+=Operator value+=AttributeValue ']' ';'
 ;
 
-Name:
-	ID '(' (params+=[Parameter])? (',' params+=[Parameter])* ')' | ID '(' AttributeValue ')'
+Params:
+	 (params+=[Parameter])? (',' params+=[Parameter])* 
+;
+
+ConstantParams:
+	(values+=AttributeValue)? (',' values+=AttributeValue)* 
 ;
 
 Parameter:
-	type+=Type name=ID ('=')? (value+=AttributeValue)? ';'
+	type+=Type name=ID ('=')? (value=AttributeValue)? ';'
 ;
 
 ParameterConstraint:

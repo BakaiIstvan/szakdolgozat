@@ -14,6 +14,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.Relation;
 
 @SuppressWarnings("all")
@@ -130,7 +131,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isInt_1 = a_1.isInt();
           if (_isInt_1) {
             {
-              String _value = a_1.getValue();
+              AttributeValue _value = a_1.getValue();
               boolean _tripleEquals = (_value == null);
               if (_tripleEquals) {
                 _builder.append("\t\t");
@@ -143,7 +144,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_5 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_5, "\t\t");
                 _builder.append(" = ");
-                String _value_1 = a_1.getValue();
+                AttributeValue _value_1 = a_1.getValue();
                 _builder.append(_value_1, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -155,7 +156,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isFloat_1 = a_1.isFloat();
           if (_isFloat_1) {
             {
-              String _value_2 = a_1.getValue();
+              AttributeValue _value_2 = a_1.getValue();
               boolean _tripleEquals_1 = (_value_2 == null);
               if (_tripleEquals_1) {
                 _builder.append("\t\t");
@@ -168,7 +169,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_7 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_7, "\t\t");
                 _builder.append(" = ");
-                String _value_3 = a_1.getValue();
+                AttributeValue _value_3 = a_1.getValue();
                 _builder.append(_value_3, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -180,7 +181,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isString_1 = a_1.isString();
           if (_isString_1) {
             {
-              String _value_4 = a_1.getValue();
+              AttributeValue _value_4 = a_1.getValue();
               boolean _tripleEquals_2 = (_value_4 == null);
               if (_tripleEquals_2) {
                 _builder.append("\t\t");
@@ -193,7 +194,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_9 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_9, "\t\t");
                 _builder.append(" = \"");
-                String _value_5 = a_1.getValue();
+                AttributeValue _value_5 = a_1.getValue();
                 _builder.append(_value_5, "\t\t");
                 _builder.append("\";");
                 _builder.newLineIfNotEmpty();
@@ -205,7 +206,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isBoolean_1 = a_1.isBoolean();
           if (_isBoolean_1) {
             {
-              String _value_6 = a_1.getValue();
+              AttributeValue _value_6 = a_1.getValue();
               boolean _tripleEquals_3 = (_value_6 == null);
               if (_tripleEquals_3) {
                 _builder.append("\t\t");
@@ -218,7 +219,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_11 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_11, "\t\t");
                 _builder.append(" = ");
-                String _value_7 = a_1.getValue();
+                AttributeValue _value_7 = a_1.getValue();
                 _builder.append(_value_7, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -261,7 +262,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isInt_2 = a_2.isInt();
           if (_isInt_2) {
             {
-              String _value_8 = a_2.getValue();
+              AttributeValue _value_8 = a_2.getValue();
               boolean _tripleEquals_4 = (_value_8 == null);
               if (_tripleEquals_4) {
                 _builder.append("\t\t");
@@ -274,7 +275,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_13 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_13, "\t\t");
                 _builder.append(" = ");
-                String _value_9 = a_2.getValue();
+                AttributeValue _value_9 = a_2.getValue();
                 _builder.append(_value_9, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -286,7 +287,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isFloat_2 = a_2.isFloat();
           if (_isFloat_2) {
             {
-              String _value_10 = a_2.getValue();
+              AttributeValue _value_10 = a_2.getValue();
               boolean _tripleEquals_5 = (_value_10 == null);
               if (_tripleEquals_5) {
                 _builder.append("\t\t");
@@ -299,7 +300,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_15 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_15, "\t\t");
                 _builder.append(" = ");
-                String _value_11 = a_2.getValue();
+                AttributeValue _value_11 = a_2.getValue();
                 _builder.append(_value_11, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -311,7 +312,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isString_2 = a_2.isString();
           if (_isString_2) {
             {
-              String _value_12 = a_2.getValue();
+              AttributeValue _value_12 = a_2.getValue();
               boolean _tripleEquals_6 = (_value_12 == null);
               if (_tripleEquals_6) {
                 _builder.append("\t\t");
@@ -324,7 +325,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_17 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_17, "\t\t");
                 _builder.append(" = \"");
-                String _value_13 = a_2.getValue();
+                AttributeValue _value_13 = a_2.getValue();
                 _builder.append(_value_13, "\t\t");
                 _builder.append("\";");
                 _builder.newLineIfNotEmpty();
@@ -336,7 +337,7 @@ public class RelationGenerator extends AbstractGenerator {
           boolean _isBoolean_2 = a_2.isBoolean();
           if (_isBoolean_2) {
             {
-              String _value_14 = a_2.getValue();
+              AttributeValue _value_14 = a_2.getValue();
               boolean _tripleEquals_7 = (_value_14 == null);
               if (_tripleEquals_7) {
                 _builder.append("\t\t");
@@ -349,7 +350,7 @@ public class RelationGenerator extends AbstractGenerator {
                 String _firstLower_19 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_19, "\t\t");
                 _builder.append(" = ");
-                String _value_15 = a_2.getValue();
+                AttributeValue _value_15 = a_2.getValue();
                 _builder.append(_value_15, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();

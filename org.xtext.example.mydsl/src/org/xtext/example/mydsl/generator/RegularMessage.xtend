@@ -14,7 +14,36 @@ class RegularMessage {
 			b.addTransition(new Transition("1", actualState, actualState));
 			newState = new State("q" + counter, StateType.FINAL);
 			counter++;
-			b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, newState));
+			b.addTransition(new Transition("«m.sender.name»" + "." +
+			
+			"«m.name»" + "(" +
+			«FOR p: m.params»
+				«FOR param: 0..<p.params.size»
+					«IF p.params.get(param).value.value.startsWith("\"")»
+						«p.params.get(param).value.value»
+					«ELSE»
+					"«p.params.get(param).value.value»"
+					«ENDIF»
+					«IF param != p.params.size - 1»
+						+ ", " +
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			«FOR p: m.constantparams»
+				«FOR param: 0..<p.values.size»
+					«IF p.values.get(param).value.startsWith("\"")»
+						«p.values.get(param).value»
+					«ELSE»
+					"«p.values.get(param).value»"
+					«ENDIF»
+					«IF param != p.values.size - 1»
+						+ ", " +
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			+ ")"
+			
+			+ "." + "«m.receiver.name»" , actualState, newState));
 			b.addState(newState);
 			b.setFinale(newState);
 	'''
@@ -29,7 +58,36 @@ class RegularMessage {
 			b.addTransition(new Transition("1", actualState, actualState));
 			newState = new State("q" + counter, StateType.FINAL);
 			counter++;
-			b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»" , actualState, newState));
+			b.addTransition(new Transition("«m.sender.name»" + "." +
+			
+			"«m.name»" + "(" +
+			«FOR p: m.params»
+				«FOR param: 0..<p.params.size»
+					«IF p.params.get(param).value.value.startsWith("\"")»
+						«p.params.get(param).value.value»
+					«ELSE»
+					"«p.params.get(param).value.value»"
+					«ENDIF»
+					«IF param != p.params.size - 1»
+						+ ", " +
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			«FOR p: m.constantparams»
+				«FOR param: 0..<p.values.size»
+					«IF p.values.get(param).value.startsWith("\"")»
+						«p.values.get(param).value»
+					«ELSE»
+					"«p.values.get(param).value»"
+					«ENDIF»
+					«IF param != p.values.size - 1»
+						+ ", " +
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			+ ")"
+			
+			+ "." + "«m.receiver.name»" , actualState, newState));
 			b.addState(newState);
 			b.addTransition(new Transition(str, newState, newState));
 			b.setFinale(newState);
@@ -45,7 +103,34 @@ class RegularMessage {
 		b.addTransition(new Transition(str, actualState, actualState));
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
+		b.addTransition(new Transition("«m.sender.name»" + "." +
+		"«m.name»" + "(" +
+		«FOR p: m.params»
+			«FOR param: 0..<p.params.size»
+				«IF p.params.get(param).value.value.startsWith("\"")»
+					«p.params.get(param).value.value»
+				«ELSE»
+				"«p.params.get(param).value.value»"
+				«ENDIF»
+				«IF param != p.params.size - 1»
+					+ ", " +
+				«ENDIF»
+			«ENDFOR»
+		«ENDFOR»
+		«FOR p: m.constantparams»
+			«FOR param: 0..<p.values.size»
+				«IF p.values.get(param).value.startsWith("\"")»
+					«p.values.get(param).value»
+				«ELSE»
+				"«p.values.get(param).value»"
+				«ENDIF»
+				«IF param != p.values.size - 1»
+					+ ", " +
+				«ENDIF»
+			«ENDFOR»
+		«ENDFOR»
+		+ ")"
+		+ "." + "«m.receiver.name»", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''
@@ -59,7 +144,35 @@ class RegularMessage {
 											
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
+		b.addTransition(new Transition("«m.sender.name»" + "." +
+		"«m.name»" + "(" +
+		«FOR p: m.params»
+			«FOR param: 0..<p.params.size»
+				«IF p.params.get(param).value.value.startsWith("\"")»
+					«p.params.get(param).value.value»
+				«ELSE»
+				"«p.params.get(param).value.value»"
+				«ENDIF»
+				«IF param != p.params.size - 1»
+					+ ", " +
+				«ENDIF»
+			«ENDFOR»
+		«ENDFOR»
+		«FOR p: m.constantparams»
+			«FOR param: 0..<p.values.size»
+				«IF p.values.get(param).value.startsWith("\"")»
+					«p.values.get(param).value»
+				«ELSE»
+				"«p.values.get(param).value»"
+				«ENDIF»
+				«IF param != p.values.size - 1»
+					+ ", " +
+				«ENDIF»
+			«ENDFOR»
+		«ENDFOR»
+		+ ")"
+		
+		+ "." + "«m.receiver.name»", actualState, newState));
 		b.addState(newState);
 		b.addTransition(new Transition(str, newState, newState));
 		b.setFinale(newState);
@@ -74,7 +187,34 @@ class RegularMessage {
 												
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
-		b.addTransition(new Transition("«m.sender.name»" + "." + "«m.name»" + "." + "«m.receiver.name»", actualState, newState));
+		b.addTransition(new Transition("«m.sender.name»" + "." +
+		"«m.name»" + "(" +
+		«FOR p: m.params»
+			«FOR param: 0..<p.params.size»
+				«IF p.params.get(param).value.value.startsWith("\"")»
+					«p.params.get(param).value.value»
+				«ELSE»
+				"«p.params.get(param).value.value»"
+				«ENDIF»
+				«IF param != p.params.size - 1»
+					+ ", " +
+				«ENDIF»
+			«ENDFOR»
+		«ENDFOR»
+		«FOR p: m.constantparams»
+			«FOR param: 0..<p.values.size»
+				«IF p.values.get(param).value.startsWith("\"")»
+					«p.values.get(param).value»
+				«ELSE»
+				"«p.values.get(param).value»"
+				«ENDIF»
+				«IF param != p.values.size - 1»
+					+ ", " +
+				«ENDIF»
+			«ENDFOR»
+		«ENDFOR»
+		+ ")"
+		+ "." + "«m.receiver.name»", actualState, newState));
 		b.addState(newState);
 		b.setFinale(newState);
 	'''

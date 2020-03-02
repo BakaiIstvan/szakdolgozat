@@ -72,19 +72,29 @@ public interface Parameter extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute list.
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(AttributeValue)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParameter_Value()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getValue();
+  AttributeValue getValue();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Parameter#getValue <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(AttributeValue value);
 
 } // Parameter

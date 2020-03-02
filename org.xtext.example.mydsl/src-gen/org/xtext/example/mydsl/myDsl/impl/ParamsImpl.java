@@ -14,23 +14,23 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.Parameter;
+import org.xtext.example.mydsl.myDsl.Params;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Name</b></em>'.
+ * An implementation of the model object '<em><b>Params</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.NameImpl#getParams <em>Params</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ParamsImpl#getParams <em>Params</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NameImpl extends MinimalEObjectImpl.Container implements Name
+public class ParamsImpl extends MinimalEObjectImpl.Container implements Params
 {
   /**
    * The cached value of the '{@link #getParams() <em>Params</em>}' reference list.
@@ -47,7 +47,7 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NameImpl()
+  protected ParamsImpl()
   {
     super();
   }
@@ -60,7 +60,7 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
   @Override
   protected EClass eStaticClass()
   {
-    return MyDslPackage.Literals.NAME;
+    return MyDslPackage.Literals.PARAMS;
   }
 
   /**
@@ -72,7 +72,7 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
   {
     if (params == null)
     {
-      params = new EObjectResolvingEList<Parameter>(Parameter.class, this, MyDslPackage.NAME__PARAMS);
+      params = new EObjectResolvingEList<Parameter>(Parameter.class, this, MyDslPackage.PARAMS__PARAMS);
     }
     return params;
   }
@@ -87,7 +87,7 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
   {
     switch (featureID)
     {
-      case MyDslPackage.NAME__PARAMS:
+      case MyDslPackage.PARAMS__PARAMS:
         return getParams();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -104,7 +104,7 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
   {
     switch (featureID)
     {
-      case MyDslPackage.NAME__PARAMS:
+      case MyDslPackage.PARAMS__PARAMS:
         getParams().clear();
         getParams().addAll((Collection<? extends Parameter>)newValue);
         return;
@@ -122,7 +122,7 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
   {
     switch (featureID)
     {
-      case MyDslPackage.NAME__PARAMS:
+      case MyDslPackage.PARAMS__PARAMS:
         getParams().clear();
         return;
     }
@@ -139,10 +139,10 @@ public class NameImpl extends MinimalEObjectImpl.Container implements Name
   {
     switch (featureID)
     {
-      case MyDslPackage.NAME__PARAMS:
+      case MyDslPackage.PARAMS__PARAMS:
         return params != null && !params.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //NameImpl
+} //ParamsImpl

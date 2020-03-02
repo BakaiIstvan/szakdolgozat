@@ -69,6 +69,15 @@ public interface MyDslFactory extends EFactory
   Attribute createAttribute();
 
   /**
+   * Returns a new object of class '<em>Attribute Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Attribute Value</em>'.
+   * @generated
+   */
+  AttributeValue createAttributeValue();
+
+  /**
    * Returns a new object of class '<em>Fragment Attribute</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -231,13 +240,22 @@ public interface MyDslFactory extends EFactory
   AssertionRelation createAssertionRelation();
 
   /**
-   * Returns a new object of class '<em>Name</em>'.
+   * Returns a new object of class '<em>Params</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Name</em>'.
+   * @return a new object of class '<em>Params</em>'.
    * @generated
    */
-  Name createName();
+  Params createParams();
+
+  /**
+   * Returns a new object of class '<em>Constant Params</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constant Params</em>'.
+   * @generated
+   */
+  ConstantParams createConstantParams();
 
   /**
    * Returns a new object of class '<em>Parameter</em>'.

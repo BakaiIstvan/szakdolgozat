@@ -18,9 +18,11 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -39,13 +41,13 @@ import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
+import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -108,6 +110,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.CONTEXT_MODEL: return createContextModel();
       case MyDslPackage.CONTEXT_FRAGMENT: return createContextFragment();
       case MyDslPackage.ATTRIBUTE: return createAttribute();
+      case MyDslPackage.ATTRIBUTE_VALUE: return createAttributeValue();
       case MyDslPackage.FRAGMENT_ATTRIBUTE: return createFragmentAttribute();
       case MyDslPackage.ENTITY: return createEntity();
       case MyDslPackage.FENTITY: return createFEntity();
@@ -126,7 +129,8 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.CHANGE_TO_RELATION: return createChangeToRelation();
       case MyDslPackage.ASSERTION_ENTITY: return createAssertionEntity();
       case MyDslPackage.ASSERTION_RELATION: return createAssertionRelation();
-      case MyDslPackage.NAME: return createName();
+      case MyDslPackage.PARAMS: return createParams();
+      case MyDslPackage.CONSTANT_PARAMS: return createConstantParams();
       case MyDslPackage.PARAMETER: return createParameter();
       case MyDslPackage.PARAMETER_CONSTRAINT: return createParameterConstraint();
       case MyDslPackage.OPERATOR: return createOperator();
@@ -231,6 +235,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     AttributeImpl attribute = new AttributeImpl();
     return attribute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeValue createAttributeValue()
+  {
+    AttributeValueImpl attributeValue = new AttributeValueImpl();
+    return attributeValue;
   }
 
   /**
@@ -436,10 +451,21 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Name createName()
+  public Params createParams()
   {
-    NameImpl name = new NameImpl();
-    return name;
+    ParamsImpl params = new ParamsImpl();
+    return params;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ConstantParams createConstantParams()
+  {
+    ConstantParamsImpl constantParams = new ConstantParamsImpl();
+    return constantParams;
   }
 
   /**

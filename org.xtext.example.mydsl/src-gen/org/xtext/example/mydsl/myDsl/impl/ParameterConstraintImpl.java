@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Parameter;
@@ -64,14 +64,14 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
   protected EList<Operator> operator;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EList<String> value;
+  protected EList<AttributeValue> value;
 
   /**
    * The cached value of the '{@link #getObject() <em>Object</em>}' reference.
@@ -166,11 +166,11 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getValue()
+  public EList<AttributeValue> getValue()
   {
     if (value == null)
     {
-      value = new EDataTypeEList<String>(String.class, this, MyDslPackage.PARAMETER_CONSTRAINT__VALUE);
+      value = new EObjectContainmentEList<AttributeValue>(AttributeValue.class, this, MyDslPackage.PARAMETER_CONSTRAINT__VALUE);
     }
     return value;
   }
@@ -230,6 +230,8 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
     {
       case MyDslPackage.PARAMETER_CONSTRAINT__OPERATOR:
         return ((InternalEList<?>)getOperator()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.PARAMETER_CONSTRAINT__VALUE:
+        return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -278,7 +280,7 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
         return;
       case MyDslPackage.PARAMETER_CONSTRAINT__VALUE:
         getValue().clear();
-        getValue().addAll((Collection<? extends String>)newValue);
+        getValue().addAll((Collection<? extends AttributeValue>)newValue);
         return;
       case MyDslPackage.PARAMETER_CONSTRAINT__OBJECT:
         setObject((org.xtext.example.mydsl.myDsl.Object)newValue);
@@ -333,23 +335,6 @@ public class ParameterConstraintImpl extends MinimalEObjectImpl.Container implem
         return object != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
-    result.append(value);
-    result.append(')');
-    return result.toString();
   }
 
 } //ParameterConstraintImpl

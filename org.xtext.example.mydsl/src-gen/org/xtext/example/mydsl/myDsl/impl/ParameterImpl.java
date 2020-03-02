@@ -6,16 +6,19 @@ package org.xtext.example.mydsl.myDsl.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.Type;
@@ -68,14 +71,14 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EList<String> value;
+  protected AttributeValue value;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,13 +143,63 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getValue()
+  public AttributeValue getValue()
   {
-    if (value == null)
-    {
-      value = new EDataTypeEList<String>(String.class, this, MyDslPackage.PARAMETER__VALUE);
-    }
     return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValue(AttributeValue newValue, NotificationChain msgs)
+  {
+    AttributeValue oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.PARAMETER__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(AttributeValue newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.PARAMETER__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.PARAMETER__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PARAMETER__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.PARAMETER__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -188,8 +241,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         setName((String)newValue);
         return;
       case MyDslPackage.PARAMETER__VALUE:
-        getValue().clear();
-        getValue().addAll((Collection<? extends String>)newValue);
+        setValue((AttributeValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -212,7 +264,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         setName(NAME_EDEFAULT);
         return;
       case MyDslPackage.PARAMETER__VALUE:
-        getValue().clear();
+        setValue((AttributeValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -233,7 +285,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
       case MyDslPackage.PARAMETER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.PARAMETER__VALUE:
-        return value != null && !value.isEmpty();
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
@@ -253,8 +305,6 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     result.append(type);
     result.append(", name: ");
     result.append(name);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }

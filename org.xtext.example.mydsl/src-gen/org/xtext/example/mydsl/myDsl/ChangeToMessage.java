@@ -105,29 +105,29 @@ public interface ChangeToMessage extends EObject
   void setAttribute(Attribute value);
 
   /**
-   * Returns the value of the '<em><b>Changevalue</b></em>' attribute.
+   * Returns the value of the '<em><b>Changevalue</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Changevalue</em>' attribute isn't clear,
+   * If the meaning of the '<em>Changevalue</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Changevalue</em>' attribute.
-   * @see #setChangevalue(String)
+   * @return the value of the '<em>Changevalue</em>' containment reference.
+   * @see #setChangevalue(AttributeValue)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getChangeToMessage_Changevalue()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getChangevalue();
+  AttributeValue getChangevalue();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.ChangeToMessage#getChangevalue <em>Changevalue</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Changevalue</em>' attribute.
+   * @param value the new value of the '<em>Changevalue</em>' containment reference.
    * @see #getChangevalue()
    * @generated
    */
-  void setChangevalue(String value);
+  void setChangevalue(AttributeValue value);
 
 } // ChangeToMessage

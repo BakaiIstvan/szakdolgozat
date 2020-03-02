@@ -1,6 +1,7 @@
 package org.xtext.example.mydsl.generator;
 
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
 
@@ -29,7 +30,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
@@ -47,7 +48,7 @@ public class ChangeToMessages {
     String _name_5 = cm.getAttribute().getName();
     _builder.append(_name_5);
     _builder.append(", ");
-    String _changevalue_1 = cm.getChangevalue();
+    AttributeValue _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
     _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -81,7 +82,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \"))\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
@@ -99,7 +100,7 @@ public class ChangeToMessages {
     String _name_5 = cm.getAttribute().getName();
     _builder.append(_name_5);
     _builder.append(", ");
-    String _changevalue_1 = cm.getChangevalue();
+    AttributeValue _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
     _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -141,7 +142,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -183,7 +184,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -223,7 +224,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -263,7 +264,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -305,7 +306,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
@@ -319,7 +320,7 @@ public class ChangeToMessages {
     String _name_5 = cm.getAttribute().getName();
     _builder.append(_name_5);
     _builder.append(", ");
-    String _changevalue_1 = cm.getChangevalue();
+    AttributeValue _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
     _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
@@ -365,7 +366,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
@@ -379,7 +380,7 @@ public class ChangeToMessages {
     String _name_5 = cm.getAttribute().getName();
     _builder.append(_name_5);
     _builder.append(", ");
-    String _changevalue_1 = cm.getChangevalue();
+    AttributeValue _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
     _builder.append("\" + \"))\" , actualState, acceptState));");
     _builder.newLineIfNotEmpty();
@@ -425,7 +426,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
@@ -439,7 +440,7 @@ public class ChangeToMessages {
     String _name_5 = cm.getAttribute().getName();
     _builder.append(_name_5);
     _builder.append(", ");
-    String _changevalue_1 = cm.getChangevalue();
+    AttributeValue _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
     _builder.append("\" + \")\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
@@ -485,7 +486,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \"))\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
@@ -499,7 +500,7 @@ public class ChangeToMessages {
     String _name_5 = cm.getAttribute().getName();
     _builder.append(_name_5);
     _builder.append(", ");
-    String _changevalue_1 = cm.getChangevalue();
+    AttributeValue _changevalue_1 = cm.getChangevalue();
     _builder.append(_changevalue_1);
     _builder.append("\" + \")\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
@@ -541,7 +542,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();
@@ -579,7 +580,7 @@ public class ChangeToMessages {
     String _name_2 = cm.getAttribute().getName();
     _builder.append(_name_2);
     _builder.append(", ");
-    String _changevalue = cm.getChangevalue();
+    AttributeValue _changevalue = cm.getChangevalue();
     _builder.append(_changevalue);
     _builder.append("\" + \")\", actualState, newState));");
     _builder.newLineIfNotEmpty();

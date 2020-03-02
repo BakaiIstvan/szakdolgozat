@@ -14,9 +14,11 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -34,13 +36,13 @@ import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
+import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -140,6 +142,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Attribute attribute = (Attribute)theEObject;
         T result = caseAttribute(attribute);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.ATTRIBUTE_VALUE:
+      {
+        AttributeValue attributeValue = (AttributeValue)theEObject;
+        T result = caseAttributeValue(attributeValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -269,10 +278,17 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.NAME:
+      case MyDslPackage.PARAMS:
       {
-        Name name = (Name)theEObject;
-        T result = caseName(name);
+        Params params = (Params)theEObject;
+        T result = caseParams(params);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.CONSTANT_PARAMS:
+      {
+        ConstantParams constantParams = (ConstantParams)theEObject;
+        T result = caseConstantParams(constantParams);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -440,6 +456,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseAttribute(Attribute object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Attribute Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Attribute Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAttributeValue(AttributeValue object)
   {
     return null;
   }
@@ -733,17 +765,33 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Name</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Params</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Name</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Params</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseName(Name object)
+  public T caseParams(Params object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Constant Params</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Constant Params</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConstantParams(ConstantParams object)
   {
     return null;
   }

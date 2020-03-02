@@ -71,20 +71,20 @@ public interface ParameterConstraint extends EObject
   EList<Operator> getOperator();
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.AttributeValue}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Value</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute list.
+   * @return the value of the '<em>Value</em>' containment reference list.
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParameterConstraint_Value()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getValue();
+  EList<AttributeValue> getValue();
 
   /**
    * Returns the value of the '<em><b>Object</b></em>' reference.

@@ -16,12 +16,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Operator;
@@ -87,14 +87,14 @@ public class AssertionRelationImpl extends MinimalEObjectImpl.Container implemen
   protected EList<Operator> operator;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EList<String> value;
+  protected EList<AttributeValue> value;
 
   /**
    * <!-- begin-user-doc -->
@@ -265,11 +265,11 @@ public class AssertionRelationImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getValue()
+  public EList<AttributeValue> getValue()
   {
     if (value == null)
     {
-      value = new EDataTypeEList<String>(String.class, this, MyDslPackage.ASSERTION_RELATION__VALUE);
+      value = new EObjectContainmentEList<AttributeValue>(AttributeValue.class, this, MyDslPackage.ASSERTION_RELATION__VALUE);
     }
     return value;
   }
@@ -286,6 +286,8 @@ public class AssertionRelationImpl extends MinimalEObjectImpl.Container implemen
     {
       case MyDslPackage.ASSERTION_RELATION__OPERATOR:
         return ((InternalEList<?>)getOperator()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.ASSERTION_RELATION__VALUE:
+        return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -343,7 +345,7 @@ public class AssertionRelationImpl extends MinimalEObjectImpl.Container implemen
         return;
       case MyDslPackage.ASSERTION_RELATION__VALUE:
         getValue().clear();
-        getValue().addAll((Collection<? extends String>)newValue);
+        getValue().addAll((Collection<? extends AttributeValue>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -400,23 +402,6 @@ public class AssertionRelationImpl extends MinimalEObjectImpl.Container implemen
         return value != null && !value.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
-    result.append(value);
-    result.append(')');
-    return result.toString();
   }
 
 } //AssertionRelationImpl

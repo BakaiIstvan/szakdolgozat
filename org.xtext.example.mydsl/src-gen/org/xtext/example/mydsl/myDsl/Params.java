@@ -9,21 +9,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Name</b></em>'.
+ * A representation of the model object '<em><b>Params</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Name#getParams <em>Params</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Params#getParams <em>Params</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getName_()
+ * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParams()
  * @model
  * @generated
  */
-public interface Name extends EObject
+public interface Params extends EObject
 {
   /**
    * Returns the value of the '<em><b>Params</b></em>' reference list.
@@ -35,10 +35,10 @@ public interface Name extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Params</em>' reference list.
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getName_Params()
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParams_Params()
    * @model
    * @generated
    */
   EList<Parameter> getParams();
 
-} // Name
+} // Params

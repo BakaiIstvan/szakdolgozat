@@ -4,12 +4,15 @@
 package org.xtext.example.mydsl.myDsl.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 
@@ -260,24 +263,14 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
   protected boolean notequals = NOTEQUALS_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
+  protected AttributeValue value;
 
   /**
    * <!-- begin-user-doc -->
@@ -558,7 +551,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
+  public AttributeValue getValue()
   {
     return value;
   }
@@ -568,12 +561,53 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(String newValue)
+  public NotificationChain basicSetValue(AttributeValue newValue, NotificationChain msgs)
   {
-    String oldValue = value;
+    AttributeValue oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(AttributeValue newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -658,7 +692,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
         setNotequals((Boolean)newValue);
         return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
-        setValue((String)newValue);
+        setValue((AttributeValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -708,7 +742,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
         setNotequals(NOTEQUALS_EDEFAULT);
         return;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue((AttributeValue)null);
         return;
     }
     super.eUnset(featureID);
@@ -747,7 +781,7 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
       case MyDslPackage.FRAGMENT_ATTRIBUTE__NOTEQUALS:
         return notequals != NOTEQUALS_EDEFAULT;
       case MyDslPackage.FRAGMENT_ATTRIBUTE__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
@@ -785,8 +819,6 @@ public class FragmentAttributeImpl extends MinimalEObjectImpl.Container implemen
     result.append(equals);
     result.append(", notequals: ");
     result.append(notequals);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }

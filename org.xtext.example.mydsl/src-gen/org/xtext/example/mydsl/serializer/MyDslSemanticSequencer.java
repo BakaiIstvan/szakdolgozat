@@ -20,9 +20,11 @@ import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextMessage;
@@ -40,12 +42,12 @@ import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
-import org.xtext.example.mydsl.myDsl.Name;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
+import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -83,6 +85,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ATTRIBUTE:
 				sequence_Attribute(context, (Attribute) semanticObject); 
 				return; 
+			case MyDslPackage.ATTRIBUTE_VALUE:
+				sequence_AttributeValue(context, (AttributeValue) semanticObject); 
+				return; 
 			case MyDslPackage.CHANGE_MESSAGE:
 				sequence_ChangeMessage(context, (ChangeMessage) semanticObject); 
 				return; 
@@ -91,6 +96,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.CHANGE_TO_RELATION:
 				sequence_ChangeToRelation(context, (ChangeToRelation) semanticObject); 
+				return; 
+			case MyDslPackage.CONSTANT_PARAMS:
+				sequence_ConstantParams(context, (ConstantParams) semanticObject); 
 				return; 
 			case MyDslPackage.CONSTRAINT:
 				sequence_Constraint(context, (Constraint) semanticObject); 
@@ -140,9 +148,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.MESSAGE:
 				sequence_Message(context, (Message) semanticObject); 
 				return; 
-			case MyDslPackage.NAME:
-				sequence_Name(context, (Name) semanticObject); 
-				return; 
 			case MyDslPackage.OBJECT:
 				sequence_Object(context, (org.xtext.example.mydsl.myDsl.Object) semanticObject); 
 				return; 
@@ -163,6 +168,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.PARAMETER_CONSTRAINT:
 				sequence_ParameterConstraint(context, (ParameterConstraint) semanticObject); 
+				return; 
+			case MyDslPackage.PARAMS:
+				sequence_Params(context, (Params) semanticObject); 
 				return; 
 			case MyDslPackage.RELATION:
 				sequence_Relation(context, (Relation) semanticObject); 
@@ -249,6 +257,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     AttributeValue returns AttributeValue
+	 *
+	 * Constraint:
+	 *     (value=Word | value=Real | value=Number | value='true' | value='false')
+	 */
+	protected void sequence_AttributeValue(ISerializationContext context, AttributeValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
@@ -298,6 +318,18 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ((context=[ContextModel|ID] relation=[Relation|ID] attribute=[Attribute|ID])? changevalue=AttributeValue?)
 	 */
 	protected void sequence_ChangeToRelation(ISerializationContext context, ChangeToRelation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ConstantParams returns ConstantParams
+	 *
+	 * Constraint:
+	 *     ((values+=AttributeValue values+=AttributeValue+) | values+=AttributeValue+)?
+	 */
+	protected void sequence_ConstantParams(ISerializationContext context, ConstantParams semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -529,7 +561,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=Name 
+	 *         name=ID 
+	 *         (params+=Params | constantparams+=ConstantParams) 
 	 *         required?='required'? 
 	 *         fail?='fail'? 
 	 *         strict?='strict'? 
@@ -542,18 +575,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     )
 	 */
 	protected void sequence_Message(ISerializationContext context, Message semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Name returns Name
-	 *
-	 * Constraint:
-	 *     ((params+=[Parameter|ID] params+=[Parameter|ID]+) | params+=[Parameter|ID]+)?
-	 */
-	protected void sequence_Name(ISerializationContext context, Name semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -648,9 +669,21 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (type+=Type name=ID value+=AttributeValue?)
+	 *     (type+=Type name=ID value=AttributeValue?)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.myDsl.Parameter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Params returns Params
+	 *
+	 * Constraint:
+	 *     ((params+=[Parameter|ID] params+=[Parameter|ID]+) | params+=[Parameter|ID]+)?
+	 */
+	protected void sequence_Params(ISerializationContext context, Params semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
