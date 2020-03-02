@@ -38,7 +38,7 @@ public class RegularMessage {
     _builder.append("\"");
     String _name_1 = m.getName();
     _builder.append(_name_1);
-    _builder.append("\" + \"(\" +");
+    _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
       EList<Params> _params = m.getParams();
@@ -47,6 +47,8 @@ public class RegularMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
               if (_startsWith) {
@@ -66,7 +68,7 @@ public class RegularMessage {
               int _minus = (_size_1 - 1);
               boolean _notEquals = ((param).intValue() != _minus);
               if (_notEquals) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -81,6 +83,8 @@ public class RegularMessage {
           int _size_2 = p_1.getValues().size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
           for(final Integer param_1 : _doubleDotLessThan_1) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
               if (_startsWith_1) {
@@ -100,7 +104,7 @@ public class RegularMessage {
               int _minus_1 = (_size_3 - 1);
               boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
               if (_notEquals_1) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -152,7 +156,7 @@ public class RegularMessage {
     _builder.append("\"");
     String _name_1 = m.getName();
     _builder.append(_name_1);
-    _builder.append("\" + \"(\" +");
+    _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
       EList<Params> _params = m.getParams();
@@ -161,6 +165,8 @@ public class RegularMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
               if (_startsWith) {
@@ -180,7 +186,7 @@ public class RegularMessage {
               int _minus = (_size_1 - 1);
               boolean _notEquals = ((param).intValue() != _minus);
               if (_notEquals) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -195,6 +201,8 @@ public class RegularMessage {
           int _size_2 = p_1.getValues().size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
           for(final Integer param_1 : _doubleDotLessThan_1) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
               if (_startsWith_1) {
@@ -214,7 +222,7 @@ public class RegularMessage {
               int _minus_1 = (_size_3 - 1);
               boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
               if (_notEquals_1) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -267,7 +275,7 @@ public class RegularMessage {
     _builder.append("\"");
     String _name_1 = m.getName();
     _builder.append(_name_1);
-    _builder.append("\" + \"(\" +");
+    _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
       EList<Params> _params = m.getParams();
@@ -276,6 +284,8 @@ public class RegularMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
               if (_startsWith) {
@@ -295,7 +305,7 @@ public class RegularMessage {
               int _minus = (_size_1 - 1);
               boolean _notEquals = ((param).intValue() != _minus);
               if (_notEquals) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -310,6 +320,8 @@ public class RegularMessage {
           int _size_2 = p_1.getValues().size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
           for(final Integer param_1 : _doubleDotLessThan_1) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
               if (_startsWith_1) {
@@ -329,7 +341,7 @@ public class RegularMessage {
               int _minus_1 = (_size_3 - 1);
               boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
               if (_notEquals_1) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -377,7 +389,7 @@ public class RegularMessage {
     _builder.append("\"");
     String _name_1 = m.getName();
     _builder.append(_name_1);
-    _builder.append("\" + \"(\" +");
+    _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
       EList<Params> _params = m.getParams();
@@ -386,6 +398,8 @@ public class RegularMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
               if (_startsWith) {
@@ -405,7 +419,7 @@ public class RegularMessage {
               int _minus = (_size_1 - 1);
               boolean _notEquals = ((param).intValue() != _minus);
               if (_notEquals) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -420,6 +434,8 @@ public class RegularMessage {
           int _size_2 = p_1.getValues().size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
           for(final Integer param_1 : _doubleDotLessThan_1) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
               if (_startsWith_1) {
@@ -439,7 +455,7 @@ public class RegularMessage {
               int _minus_1 = (_size_3 - 1);
               boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
               if (_notEquals_1) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -490,7 +506,7 @@ public class RegularMessage {
     _builder.append("\"");
     String _name_1 = m.getName();
     _builder.append(_name_1);
-    _builder.append("\" + \"(\" +");
+    _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
       EList<Params> _params = m.getParams();
@@ -499,6 +515,8 @@ public class RegularMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
               if (_startsWith) {
@@ -518,7 +536,7 @@ public class RegularMessage {
               int _minus = (_size_1 - 1);
               boolean _notEquals = ((param).intValue() != _minus);
               if (_notEquals) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }
@@ -533,6 +551,8 @@ public class RegularMessage {
           int _size_2 = p_1.getValues().size();
           ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
           for(final Integer param_1 : _doubleDotLessThan_1) {
+            _builder.append("+");
+            _builder.newLine();
             {
               boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
               if (_startsWith_1) {
@@ -552,7 +572,7 @@ public class RegularMessage {
               int _minus_1 = (_size_3 - 1);
               boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
               if (_notEquals_1) {
-                _builder.append("+ \", \" +");
+                _builder.append("+ \", \"");
                 _builder.newLine();
               }
             }

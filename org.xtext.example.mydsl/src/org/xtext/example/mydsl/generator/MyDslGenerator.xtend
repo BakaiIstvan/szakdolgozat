@@ -270,28 +270,30 @@ class MyDslGenerator extends AbstractGenerator {
 									str = "" 
 									«FOR msg : m.c.messages»
 										+ "!(" + "«msg.sender.name»" + "." +
-										"«msg.name»" + "(" +
+										"«msg.name»" + "(" 
 										«FOR p: msg.params»
 											«FOR param: 0..<p.params.size»
+												+
 												«IF p.params.get(param).value.value.startsWith("\"")»
 													«p.params.get(param).value.value»
 												«ELSE»
 												"«p.params.get(param).value.value»"
 												«ENDIF»
 												«IF param != p.params.size - 1»
-													+ ", " +
+													+ ", "
 												«ENDIF»
 											«ENDFOR»
 										«ENDFOR»
 										«FOR p: msg.constantparams»
 											«FOR param: 0..<p.values.size»
+												+
 												«IF p.values.get(param).value.startsWith("\"")»
 													«p.values.get(param).value»
 												«ELSE»
 												"«p.values.get(param).value»"
 												«ENDIF»
 												«IF param != p.values.size - 1»
-													+ ", " +
+													+ ", " 
 												«ENDIF»
 											«ENDFOR»
 										«ENDFOR»
@@ -381,28 +383,30 @@ class MyDslGenerator extends AbstractGenerator {
 										str = "" 
 										«FOR msg : m.c.messages»
 											+ "!(" + "«msg.sender.name»" + "." + 
-											"«msg.name»" + "(" +
+											"«msg.name»" + "("
 											«FOR p1: msg.params»
 												«FOR param: 0..<p1.params.size»
+													+
 													«IF p1.params.get(param).value.value.startsWith("\"")»
 														«p1.params.get(param).value.value»
 													«ELSE»
 													"«p1.params.get(param).value.value»"
 													«ENDIF»
 													«IF param != p1.params.size - 1»
-														+ ", " +
+														+ ", " 
 													«ENDIF»
 												«ENDFOR»
 											«ENDFOR»
 											«FOR p1: msg.constantparams»
 												«FOR param: 0..<p1.values.size»
+													+
 													«IF p1.values.get(param).value.startsWith("\"")»
 														«p1.values.get(param).value»
 													«ELSE»
 													"«p1.values.get(param).value»"
 													«ENDIF»
 													«IF param != p1.values.size - 1»
-														+ ", " +
+														+ ", "
 													«ENDIF»
 												«ENDFOR»
 											«ENDFOR»
@@ -495,28 +499,30 @@ class MyDslGenerator extends AbstractGenerator {
 										str = "" 
 										«FOR msg : m.c.messages»
 											+ "!(" + "«msg.sender.name»" + "." +
-											"«msg.name»" + "(" +
+											"«msg.name»" + "("
 											«FOR p: msg.params»
 												«FOR param: 0..<p.params.size»
+													+
 													«IF p.params.get(param).value.value.startsWith("\"")»
 														«p.params.get(param).value.value»
 													«ELSE»
 													"«p.params.get(param).value.value»"
 													«ENDIF»
 													«IF param != p.params.size - 1»
-														+ ", " +
+														+ ", " 
 													«ENDIF»
 												«ENDFOR»
 											«ENDFOR»
 											«FOR p: msg.constantparams»
 												«FOR param: 0..<p.values.size»
+													+
 													«IF p.values.get(param).value.startsWith("\"")»
 														«p.values.get(param).value»
 													«ELSE»
 													"«p.values.get(param).value»"
 													«ENDIF»
 													«IF param != p.values.size - 1»
-														+ ", " +
+														+ ", "
 													«ENDIF»
 												«ENDFOR»
 											«ENDFOR»
@@ -605,28 +611,30 @@ class MyDslGenerator extends AbstractGenerator {
 								str = "" 
 								«FOR msg : m.c.messages»
 									+ "!(" + "«msg.sender.name»" + "." +
-									"«msg.name»" + "(" +
+									"«msg.name»" + "("
 									«FOR p: msg.params»
 										«FOR param: 0..<p.params.size»
+											+
 											«IF p.params.get(param).value.value.startsWith("\"")»
 												«p.params.get(param).value.value»
 											«ELSE»
 											"«p.params.get(param).value.value»"
 											«ENDIF»
 											«IF param != p.params.size - 1»
-												+ ", " +
+												+ ", "
 											«ENDIF»
 										«ENDFOR»
 									«ENDFOR»
 									«FOR p: msg.constantparams»
 										«FOR param: 0..<p.values.size»
+											+
 											«IF p.values.get(param).value.startsWith("\"")»
 												«p.values.get(param).value»
 											«ELSE»
 											"«p.values.get(param).value»"
 											«ENDIF»
 											«IF param != p.values.size - 1»
-												+ ", " +
+												+ ", "
 											«ENDIF»
 										«ENDFOR»
 									«ENDFOR»

@@ -676,7 +676,7 @@ public class MyDslGenerator extends AbstractGenerator {
                             _builder.append("\"");
                             String _name_3 = msg.getName();
                             _builder.append(_name_3, "\t\t");
-                            _builder.append("\" + \"(\" +");
+                            _builder.append("\" + \"(\" ");
                             _builder.newLineIfNotEmpty();
                             {
                               EList<Params> _params = msg.getParams();
@@ -685,6 +685,9 @@ public class MyDslGenerator extends AbstractGenerator {
                                   int _size = p.getParams().size();
                                   ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
                                   for(final Integer param : _doubleDotLessThan) {
+                                    _builder.append("\t\t");
+                                    _builder.append("+");
+                                    _builder.newLine();
                                     {
                                       boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
                                       if (_startsWith) {
@@ -707,7 +710,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                       boolean _notEquals = ((param).intValue() != _minus);
                                       if (_notEquals) {
                                         _builder.append("\t\t");
-                                        _builder.append("+ \", \" +");
+                                        _builder.append("+ \", \"");
                                         _builder.newLine();
                                       }
                                     }
@@ -722,6 +725,9 @@ public class MyDslGenerator extends AbstractGenerator {
                                   int _size_2 = p_1.getValues().size();
                                   ExclusiveRange _doubleDotLessThan_1 = new ExclusiveRange(0, _size_2, true);
                                   for(final Integer param_1 : _doubleDotLessThan_1) {
+                                    _builder.append("\t\t");
+                                    _builder.append("+");
+                                    _builder.newLine();
                                     {
                                       boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
                                       if (_startsWith_1) {
@@ -744,7 +750,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                       boolean _notEquals_1 = ((param_1).intValue() != _minus_1);
                                       if (_notEquals_1) {
                                         _builder.append("\t\t");
-                                        _builder.append("+ \", \" +");
+                                        _builder.append("+ \", \" ");
                                         _builder.newLine();
                                       }
                                     }
@@ -1009,7 +1015,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\"");
                                 String _name_6 = msg_1.getName();
                                 _builder.append(_name_6, "\t\t");
-                                _builder.append("\" + \"(\" +");
+                                _builder.append("\" + \"(\"");
                                 _builder.newLineIfNotEmpty();
                                 {
                                   EList<Params> _params_1 = msg_1.getParams();
@@ -1018,6 +1024,9 @@ public class MyDslGenerator extends AbstractGenerator {
                                       int _size_4 = p1.getParams().size();
                                       ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
                                       for(final Integer param_2 : _doubleDotLessThan_2) {
+                                        _builder.append("\t\t");
+                                        _builder.append("+");
+                                        _builder.newLine();
                                         {
                                           boolean _startsWith_2 = p1.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
                                           if (_startsWith_2) {
@@ -1040,7 +1049,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                           boolean _notEquals_2 = ((param_2).intValue() != _minus_2);
                                           if (_notEquals_2) {
                                             _builder.append("\t\t");
-                                            _builder.append("+ \", \" +");
+                                            _builder.append("+ \", \" ");
                                             _builder.newLine();
                                           }
                                         }
@@ -1055,6 +1064,9 @@ public class MyDslGenerator extends AbstractGenerator {
                                       int _size_6 = p1_1.getValues().size();
                                       ExclusiveRange _doubleDotLessThan_3 = new ExclusiveRange(0, _size_6, true);
                                       for(final Integer param_3 : _doubleDotLessThan_3) {
+                                        _builder.append("\t\t");
+                                        _builder.append("+");
+                                        _builder.newLine();
                                         {
                                           boolean _startsWith_3 = p1_1.getValues().get((param_3).intValue()).getValue().startsWith("\"");
                                           if (_startsWith_3) {
@@ -1077,7 +1089,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                           boolean _notEquals_3 = ((param_3).intValue() != _minus_3);
                                           if (_notEquals_3) {
                                             _builder.append("\t\t");
-                                            _builder.append("+ \", \" +");
+                                            _builder.append("+ \", \"");
                                             _builder.newLine();
                                           }
                                         }
@@ -1347,7 +1359,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\"");
                                 String _name_9 = msg_2.getName();
                                 _builder.append(_name_9, "\t\t\t");
-                                _builder.append("\" + \"(\" +");
+                                _builder.append("\" + \"(\"");
                                 _builder.newLineIfNotEmpty();
                                 {
                                   EList<Params> _params_2 = msg_2.getParams();
@@ -1356,6 +1368,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                       int _size_8 = p_3.getParams().size();
                                       ExclusiveRange _doubleDotLessThan_4 = new ExclusiveRange(0, _size_8, true);
                                       for(final Integer param_4 : _doubleDotLessThan_4) {
+                                        _builder.append("\t\t");
+                                        _builder.append("\t");
+                                        _builder.append("+");
+                                        _builder.newLine();
                                         {
                                           boolean _startsWith_4 = p_3.getParams().get((param_4).intValue()).getValue().getValue().startsWith("\"");
                                           if (_startsWith_4) {
@@ -1381,7 +1397,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                           if (_notEquals_4) {
                                             _builder.append("\t\t");
                                             _builder.append("\t");
-                                            _builder.append("+ \", \" +");
+                                            _builder.append("+ \", \" ");
                                             _builder.newLine();
                                           }
                                         }
@@ -1396,6 +1412,10 @@ public class MyDslGenerator extends AbstractGenerator {
                                       int _size_10 = p_4.getValues().size();
                                       ExclusiveRange _doubleDotLessThan_5 = new ExclusiveRange(0, _size_10, true);
                                       for(final Integer param_5 : _doubleDotLessThan_5) {
+                                        _builder.append("\t\t");
+                                        _builder.append("\t");
+                                        _builder.append("+");
+                                        _builder.newLine();
                                         {
                                           boolean _startsWith_5 = p_4.getValues().get((param_5).intValue()).getValue().startsWith("\"");
                                           if (_startsWith_5) {
@@ -1421,7 +1441,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                           if (_notEquals_5) {
                                             _builder.append("\t\t");
                                             _builder.append("\t");
-                                            _builder.append("+ \", \" +");
+                                            _builder.append("+ \", \"");
                                             _builder.newLine();
                                           }
                                         }
@@ -1708,7 +1728,7 @@ public class MyDslGenerator extends AbstractGenerator {
                         _builder.append("\"");
                         String _name_12 = msg_3.getName();
                         _builder.append(_name_12, "\t\t");
-                        _builder.append("\" + \"(\" +");
+                        _builder.append("\" + \"(\"");
                         _builder.newLineIfNotEmpty();
                         {
                           EList<Params> _params_3 = msg_3.getParams();
@@ -1717,6 +1737,9 @@ public class MyDslGenerator extends AbstractGenerator {
                               int _size_12 = p_5.getParams().size();
                               ExclusiveRange _doubleDotLessThan_6 = new ExclusiveRange(0, _size_12, true);
                               for(final Integer param_6 : _doubleDotLessThan_6) {
+                                _builder.append("\t\t");
+                                _builder.append("+");
+                                _builder.newLine();
                                 {
                                   boolean _startsWith_6 = p_5.getParams().get((param_6).intValue()).getValue().getValue().startsWith("\"");
                                   if (_startsWith_6) {
@@ -1739,7 +1762,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   boolean _notEquals_6 = ((param_6).intValue() != _minus_6);
                                   if (_notEquals_6) {
                                     _builder.append("\t\t");
-                                    _builder.append("+ \", \" +");
+                                    _builder.append("+ \", \"");
                                     _builder.newLine();
                                   }
                                 }
@@ -1754,6 +1777,9 @@ public class MyDslGenerator extends AbstractGenerator {
                               int _size_14 = p_6.getValues().size();
                               ExclusiveRange _doubleDotLessThan_7 = new ExclusiveRange(0, _size_14, true);
                               for(final Integer param_7 : _doubleDotLessThan_7) {
+                                _builder.append("\t\t");
+                                _builder.append("+");
+                                _builder.newLine();
                                 {
                                   boolean _startsWith_7 = p_6.getValues().get((param_7).intValue()).getValue().startsWith("\"");
                                   if (_startsWith_7) {
@@ -1776,7 +1802,7 @@ public class MyDslGenerator extends AbstractGenerator {
                                   boolean _notEquals_7 = ((param_7).intValue() != _minus_7);
                                   if (_notEquals_7) {
                                     _builder.append("\t\t");
-                                    _builder.append("+ \", \" +");
+                                    _builder.append("+ \", \"");
                                     _builder.newLine();
                                   }
                                 }
