@@ -26,6 +26,7 @@ import org.xtext.example.mydsl.generator.EntityGenerator;
 import org.xtext.example.mydsl.generator.EventCreatorGenerator;
 import org.xtext.example.mydsl.generator.FailMessage;
 import org.xtext.example.mydsl.generator.MatchMessages;
+import org.xtext.example.mydsl.generator.ParameterConstraints;
 import org.xtext.example.mydsl.generator.RegularMessage;
 import org.xtext.example.mydsl.generator.RelationGenerator;
 import org.xtext.example.mydsl.generator.RequiredMessage;
@@ -47,6 +48,7 @@ import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
@@ -182,6 +184,18 @@ public class MyDslGenerator extends AbstractGenerator {
         {
           EList<ScenarioContent> _scenariocontents = scenario.getScenariocontents();
           for(final ScenarioContent sc : _scenariocontents) {
+            {
+              EList<ParameterConstraint> _paramConstraint = sc.getParamConstraint();
+              for(final ParameterConstraint pc : _paramConstraint) {
+                _builder.append("\t\t");
+                CharSequence _compile_param_constraint = new ParameterConstraints().compile_param_constraint(pc);
+                _builder.append(_compile_param_constraint, "\t\t");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t\t");
+                _builder.append("a.collapse(b);");
+                _builder.newLine();
+              }
+            }
             {
               EList<ContextMessage> _contextmessage = sc.getContextmessage();
               for(final ContextMessage cm : _contextmessage) {
