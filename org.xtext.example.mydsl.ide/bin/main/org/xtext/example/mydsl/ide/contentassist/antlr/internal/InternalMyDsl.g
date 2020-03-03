@@ -7951,9 +7951,9 @@ rule__AttributeValue__ValueAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getAttributeValueAccess().getValueWordTerminalRuleCall_0_0()); }
-		RULE_WORD
-		{ after(grammarAccess.getAttributeValueAccess().getValueWordTerminalRuleCall_0_0()); }
+		{ before(grammarAccess.getAttributeValueAccess().getValueSTRINGTerminalRuleCall_0_0()); }
+		RULE_STRING
+		{ after(grammarAccess.getAttributeValueAccess().getValueSTRINGTerminalRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -9980,8 +9980,6 @@ finally {
 RULE_NUMBER : ('0'..'9')*;
 
 RULE_REAL : ('0'..'9')* '.' ('0'..'9')*;
-
-RULE_WORD : ('"' ~('"')* '"'|'\'' ~('\'')* '\'');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

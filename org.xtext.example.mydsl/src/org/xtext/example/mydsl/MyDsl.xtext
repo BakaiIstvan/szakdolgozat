@@ -37,7 +37,7 @@ Attribute:
 ;
 
 AttributeValue:
-	value=Word | value=Real | value=Number | value='true' | value='false'
+	value=STRING | value=Real | value=Number | value='true' | value='false'
 ;
 
 FragmentAttribute:
@@ -160,12 +160,6 @@ terminal Number:
 
 terminal Real:
 	('0'..'9')* '.' ('0'..'9')*
-;
-
-terminal Word:
-	('"'!('"')*'"' |
-		     "'"!("'")*"'"		
-			)
 ;
 
 ObjectType:

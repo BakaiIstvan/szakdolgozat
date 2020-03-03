@@ -260,7 +260,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AttributeValue returns AttributeValue
 	 *
 	 * Constraint:
-	 *     (value=Word | value=Real | value=Number | value='true' | value='false')
+	 *     (value=STRING | value=Real | value=Number | value='true' | value='false')
 	 */
 	protected void sequence_AttributeValue(ISerializationContext context, AttributeValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

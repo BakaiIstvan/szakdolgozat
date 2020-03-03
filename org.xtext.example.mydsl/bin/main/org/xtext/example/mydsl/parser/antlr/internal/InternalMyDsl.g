@@ -633,9 +633,9 @@ ruleAttributeValue returns [EObject current=null]
 	(
 		(
 			(
-				lv_value_0_0=RULE_WORD
+				lv_value_0_0=RULE_STRING
 				{
-					newLeafNode(lv_value_0_0, grammarAccess.getAttributeValueAccess().getValueWordTerminalRuleCall_0_0());
+					newLeafNode(lv_value_0_0, grammarAccess.getAttributeValueAccess().getValueSTRINGTerminalRuleCall_0_0());
 				}
 				{
 					if ($current==null) {
@@ -645,7 +645,7 @@ ruleAttributeValue returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_0_0,
-						"org.xtext.example.mydsl.MyDsl.Word");
+						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)
 		)
@@ -3673,8 +3673,6 @@ ruleType returns [Enumerator current=null]
 RULE_NUMBER : ('0'..'9')*;
 
 RULE_REAL : ('0'..'9')* '.' ('0'..'9')*;
-
-RULE_WORD : ('"' ~('"')* '"'|'\'' ~('\'')* '\'');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

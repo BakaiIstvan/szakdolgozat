@@ -340,7 +340,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.AttributeValue");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cValueWordTerminalRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cValueRealTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		private final Assignment cValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
@@ -351,17 +351,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cValueFalseKeyword_4_0 = (Keyword)cValueAssignment_4.eContents().get(0);
 		
 		//AttributeValue:
-		//	value=Word | value=Real | value=Number | value='true' | value='false';
+		//	value=STRING | value=Real | value=Number | value='true' | value='false';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//value=Word | value=Real | value=Number | value='true' | value='false'
+		//value=STRING | value=Real | value=Number | value='true' | value='false'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//value=Word
+		//value=STRING
 		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
 		
-		//Word
-		public RuleCall getValueWordTerminalRuleCall_0_0() { return cValueWordTerminalRuleCall_0_0; }
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_0_0() { return cValueSTRINGTerminalRuleCall_0_0; }
 		
 		//value=Real
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
@@ -2316,7 +2316,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final TypeElements eType;
 	private final TerminalRule tNumber;
 	private final TerminalRule tReal;
-	private final TerminalRule tWord;
 	private final ObjectTypeElements pObjectType;
 	private final ObjectElements pObject;
 	private final ConstraintElements pConstraint;
@@ -2368,7 +2367,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.eType = new TypeElements();
 		this.tNumber = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Number");
 		this.tReal = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Real");
-		this.tWord = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Word");
 		this.pObjectType = new ObjectTypeElements();
 		this.pObject = new ObjectElements();
 		this.pConstraint = new ConstraintElements();
@@ -2471,7 +2469,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AttributeValue:
-	//	value=Word | value=Real | value=Number | value='true' | value='false';
+	//	value=STRING | value=Real | value=Number | value='true' | value='false';
 	public AttributeValueElements getAttributeValueAccess() {
 		return pAttributeValue;
 	}
@@ -2752,13 +2750,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	'0'..'9'* '.' '0'..'9'*;
 	public TerminalRule getRealRule() {
 		return tReal;
-	}
-	
-	//terminal Word:
-	//	'"' !'"'* '"' |
-	//	"'" !"'"* "'";
-	public TerminalRule getWordRule() {
-		return tWord;
 	}
 	
 	//ObjectType:

@@ -18,6 +18,7 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.mydsl.generator.AppearMessages;
 import org.xtext.example.mydsl.generator.AssertionEntities;
+import org.xtext.example.mydsl.generator.AssertionRelations;
 import org.xtext.example.mydsl.generator.AutomatonGenerator;
 import org.xtext.example.mydsl.generator.ChangeToMessages;
 import org.xtext.example.mydsl.generator.ContextFragmentGenerator;
@@ -36,6 +37,7 @@ import org.xtext.example.mydsl.generator.TransitionGenerator;
 import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
+import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -199,10 +201,22 @@ public class MyDslGenerator extends AbstractGenerator {
               }
             }
             {
-              EList<ParameterConstraint> _paramConstraint = sc.getParamConstraint();
-              for(final ParameterConstraint pc_1 : _paramConstraint) {
+              EList<AssertionRelation> _assertrelation = sc.getAssertrelation();
+              for(final AssertionRelation pc_1 : _assertrelation) {
                 _builder.append("\t\t");
-                CharSequence _compile_param_constraint = new ParameterConstraints().compile_param_constraint(pc_1);
+                CharSequence _compile_assertion_relation = new AssertionRelations().compile_assertion_relation(pc_1);
+                _builder.append(_compile_assertion_relation, "\t\t");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t\t");
+                _builder.append("a.collapse(b);");
+                _builder.newLine();
+              }
+            }
+            {
+              EList<ParameterConstraint> _paramConstraint = sc.getParamConstraint();
+              for(final ParameterConstraint pc_2 : _paramConstraint) {
+                _builder.append("\t\t");
+                CharSequence _compile_param_constraint = new ParameterConstraints().compile_param_constraint(pc_2);
                 _builder.append(_compile_param_constraint, "\t\t");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t\t");
