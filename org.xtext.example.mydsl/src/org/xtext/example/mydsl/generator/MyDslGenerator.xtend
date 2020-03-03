@@ -100,6 +100,10 @@ class MyDslGenerator extends AbstractGenerator {
 					int counter = 0;
 					
 					«FOR sc : scenario.scenariocontents»
+						«FOR pc :sc.assertentity»
+						«new AssertionEntities().compile_assertion_entity(pc)»
+						a.collapse(b);
+						«ENDFOR»
 						«FOR pc :sc.paramConstraint»
 							«new ParameterConstraints().compile_param_constraint(pc)»
 							a.collapse(b);
