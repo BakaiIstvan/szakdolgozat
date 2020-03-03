@@ -45,28 +45,28 @@ class EntityGenerator extends AbstractGenerator {
 						«IF a.value === null»
 							«a.name.toFirstLower» = 0;
 						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
+							«a.name.toFirstLower» = «a.value.value»;
 						«ENDIF»
 					«ENDIF»
 					«IF a.float»
 						«IF a.value === null»
 							«a.name.toFirstLower» = 0;
 						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
+							«a.name.toFirstLower» = «a.value.value»;
 						«ENDIF»
 					«ENDIF»
 					«IF a.string»
 						«IF a.value === null»
 							«a.name.toFirstLower» = "default";
 						«ELSE»
-							«a.name.toFirstLower» = "«a.value»";
+							«a.name.toFirstLower» = "«a.value.value»";
 						«ENDIF»
 					«ENDIF»
 					«IF a.boolean»
 						«IF a.value === null»
 							«a.name.toFirstLower» = false;
 						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
+							«a.name.toFirstLower» = «a.value.value»;
 						«ENDIF»
 					«ENDIF»
 				«ENDFOR»
@@ -79,28 +79,28 @@ class EntityGenerator extends AbstractGenerator {
 						«IF a.value === null»
 							«a.name.toFirstLower» = 0;
 						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
+							«a.name.toFirstLower» = «a.value.value»;
 						«ENDIF»
 					«ENDIF»
 					«IF a.float»
 						«IF a.value === null»
 							«a.name.toFirstLower» = 0;
 						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
+							«a.name.toFirstLower» = «a.value.value»;
 						«ENDIF»
 					«ENDIF»
 					«IF a.string»
 						«IF a.value === null»
 							«a.name.toFirstLower» = "default";
 						«ELSE»
-							«a.name.toFirstLower» = "«a.value»";
+							«a.name.toFirstLower» = "«a.value.value»";
 						«ENDIF»
 					«ENDIF»
 					«IF a.boolean»
 						«IF a.value === null»
 							«a.name.toFirstLower» = false;
 						«ELSE»
-							«a.name.toFirstLower» = «a.value»;
+							«a.name.toFirstLower» = «a.value.value»;
 						«ENDIF»
 					«ENDIF»
 				«ENDFOR»

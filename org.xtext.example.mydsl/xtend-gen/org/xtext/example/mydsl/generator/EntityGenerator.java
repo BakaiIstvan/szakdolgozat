@@ -123,7 +123,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_5 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_5, "\t\t");
                 _builder.append(" = ");
-                AttributeValue _value_1 = a_1.getValue();
+                String _value_1 = a_1.getValue().getValue();
                 _builder.append(_value_1, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -148,7 +148,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_7 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_7, "\t\t");
                 _builder.append(" = ");
-                AttributeValue _value_3 = a_1.getValue();
+                String _value_3 = a_1.getValue().getValue();
                 _builder.append(_value_3, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -173,7 +173,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_9 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_9, "\t\t");
                 _builder.append(" = \"");
-                AttributeValue _value_5 = a_1.getValue();
+                String _value_5 = a_1.getValue().getValue();
                 _builder.append(_value_5, "\t\t");
                 _builder.append("\";");
                 _builder.newLineIfNotEmpty();
@@ -198,7 +198,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_11 = StringExtensions.toFirstLower(a_1.getName());
                 _builder.append(_firstLower_11, "\t\t");
                 _builder.append(" = ");
-                AttributeValue _value_7 = a_1.getValue();
+                String _value_7 = a_1.getValue().getValue();
                 _builder.append(_value_7, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -242,7 +242,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_13 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_13, "\t\t");
                 _builder.append(" = ");
-                AttributeValue _value_9 = a_2.getValue();
+                String _value_9 = a_2.getValue().getValue();
                 _builder.append(_value_9, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -267,7 +267,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_15 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_15, "\t\t");
                 _builder.append(" = ");
-                AttributeValue _value_11 = a_2.getValue();
+                String _value_11 = a_2.getValue().getValue();
                 _builder.append(_value_11, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();
@@ -292,7 +292,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_17 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_17, "\t\t");
                 _builder.append(" = \"");
-                AttributeValue _value_13 = a_2.getValue();
+                String _value_13 = a_2.getValue().getValue();
                 _builder.append(_value_13, "\t\t");
                 _builder.append("\";");
                 _builder.newLineIfNotEmpty();
@@ -317,7 +317,7 @@ public class EntityGenerator extends AbstractGenerator {
                 String _firstLower_19 = StringExtensions.toFirstLower(a_2.getName());
                 _builder.append(_firstLower_19, "\t\t");
                 _builder.append(" = ");
-                AttributeValue _value_15 = a_2.getValue();
+                String _value_15 = a_2.getValue().getValue();
                 _builder.append(_value_15, "\t\t");
                 _builder.append(";");
                 _builder.newLineIfNotEmpty();

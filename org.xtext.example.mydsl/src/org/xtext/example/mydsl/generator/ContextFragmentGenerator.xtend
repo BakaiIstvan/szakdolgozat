@@ -73,58 +73,58 @@ class ContextFragmentGenerator extends AbstractGenerator {
 					if («FOR a: e.attributes»
 							«IF a.int»
 								«IF a.greater»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»() > «a.value»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() > «a.value.value»
 								«ENDIF»
 								«IF a.smaller»
-								 	 «e.name.toFirstLower».get«a.name.toFirstUpper»() < «a.value»
+								 	 «e.name.toFirstLower».get«a.name.toFirstUpper»() < «a.value.value»
 								«ENDIF»
 								«IF a.greaterequals»
-									 «e.name.toFirstLower».get«a.name.toFirstUpper»()>= «a.value»
+									 «e.name.toFirstLower».get«a.name.toFirstUpper»()>= «a.value.value»
 								«ENDIF»
 								«IF a.smallerequals»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»() <= «a.value»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() <= «a.value.value»
 								«ENDIF»
 								«IF a.equals»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value.value»)
 								«ENDIF»
 								«IF a.notequals»
-									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value.value»)
 								«ENDIF»
 							«ENDIF»
 							«IF a.float»
 								«IF a.greater»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»() > «a.value»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() > «a.value.value»
 								«ENDIF»
 								«IF a.smaller»
-								 	 «e.name.toFirstLower».get«a.name.toFirstUpper»() < «a.value»
+								 	 «e.name.toFirstLower».get«a.name.toFirstUpper»() < «a.value.value»
 								«ENDIF»
 								«IF a.greaterequals»
-									 «e.name.toFirstLower».get«a.name.toFirstUpper»()>= «a.value»
+									 «e.name.toFirstLower».get«a.name.toFirstUpper»()>= «a.value.value»
 								«ENDIF»
 								«IF a.smallerequals»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»() <= «a.value»
+									«e.name.toFirstLower».get«a.name.toFirstUpper»() <= «a.value.value»
 								«ENDIF»
 								«IF a.equals»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value.value»)
 								«ENDIF»
 								«IF a.notequals»
-									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value.value»)
 								«ENDIF»
 							«ENDIF»
 							«IF a.string»
 								«IF a.equals»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals("«a.value»")
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals("«a.value.value»")
 								«ENDIF»
 								«IF a.notequals»
-									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals("«a.value»")
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals("«a.value.value»")
 								«ENDIF»
 							«ENDIF»
 							«IF a.boolean»
 								«IF a.equals»
-									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+									«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value.value»)
 								«ENDIF»
 								«IF a.notequals»
-									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value»)
+									!«e.name.toFirstLower».get«a.name.toFirstUpper»().equals(«a.value.value»)
 								«ENDIF»
 							«ENDIF» &&
 						«ENDFOR»
@@ -140,58 +140,58 @@ class ContextFragmentGenerator extends AbstractGenerator {
 					if («FOR a: 0..<r.attributes.size»
 							«IF r.attributes.get(a).int»
 								«IF r.attributes.get(a).greater»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() > «r.attributes.get(a).value»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() > «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).smaller»
-								 	 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() < «r.attributes.get(a).value»
+								 	 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() < «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).greaterequals»
-									 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()>= «r.attributes.get(a).value»
+									 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()>= «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).smallerequals»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() <= «r.attributes.get(a).value»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() <= «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).equals»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value.value»)
 								«ENDIF»
 								«IF r.attributes.get(a).notequals»
-									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value.value»)
 								«ENDIF»
 							«ENDIF»
 							«IF r.attributes.get(a).float»
 								«IF r.attributes.get(a).greater»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() > «r.attributes.get(a).value»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() > «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).smaller»
-								 	 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() < «r.attributes.get(a).value»
+								 	 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() < «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).greaterequals»
-									 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()>= «r.attributes.get(a).value»
+									 «r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»()>= «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).smallerequals»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() <= «r.attributes.get(a).value»
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»() <= «r.attributes.get(a).value.value»
 								«ENDIF»
 								«IF r.attributes.get(a).equals»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value.value»)
 								«ENDIF»
 								«IF r.attributes.get(a).notequals»
-									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value.value»)
 								«ENDIF»
 							«ENDIF»
 							«IF r.attributes.get(a).string»
 								«IF r.attributes.get(a).equals»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals("«r.attributes.get(a).value»")
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals("«r.attributes.get(a).value.value»")
 								«ENDIF»
 								«IF r.attributes.get(a).notequals»
-									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals("«r.attributes.get(a).value»")
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals("«r.attributes.get(a).value.value»")
 								«ENDIF»
 							«ENDIF»
 							«IF r.attributes.get(a).boolean»
 								«IF a.equals»
-									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+									«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value.value»)
 								«ENDIF»
 								«IF r.attributes.get(a).notequals»
-									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value»)
+									!«r.name.toFirstLower».get«r.attributes.get(a).name.toFirstUpper»().equals(«r.attributes.get(a).value.value»)
 								«ENDIF»
 							«ENDIF»
 							«IF a != r.attributes.size - 1» && «ENDIF»

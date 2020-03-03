@@ -15,7 +15,6 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
@@ -234,7 +233,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_7 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_7, "\t\t");
                     _builder.append("() > ");
-                    AttributeValue _value = a.getValue();
+                    String _value = a.getValue().getValue();
                     _builder.append(_value, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -250,7 +249,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_8 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_8, "\t\t");
                     _builder.append("() < ");
-                    AttributeValue _value_1 = a.getValue();
+                    String _value_1 = a.getValue().getValue();
                     _builder.append(_value_1, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -266,7 +265,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_9 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_9, "\t\t");
                     _builder.append("()>= ");
-                    AttributeValue _value_2 = a.getValue();
+                    String _value_2 = a.getValue().getValue();
                     _builder.append(_value_2, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -282,7 +281,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_10 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_10, "\t\t");
                     _builder.append("() <= ");
-                    AttributeValue _value_3 = a.getValue();
+                    String _value_3 = a.getValue().getValue();
                     _builder.append(_value_3, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -298,7 +297,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_11 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_11, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_4 = a.getValue();
+                    String _value_4 = a.getValue().getValue();
                     _builder.append(_value_4, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -316,7 +315,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_12 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_12, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_5 = a.getValue();
+                    String _value_5 = a.getValue().getValue();
                     _builder.append(_value_5, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -338,7 +337,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_13 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_13, "\t\t");
                     _builder.append("() > ");
-                    AttributeValue _value_6 = a.getValue();
+                    String _value_6 = a.getValue().getValue();
                     _builder.append(_value_6, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -354,7 +353,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_14 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_14, "\t\t");
                     _builder.append("() < ");
-                    AttributeValue _value_7 = a.getValue();
+                    String _value_7 = a.getValue().getValue();
                     _builder.append(_value_7, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -370,7 +369,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_15 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_15, "\t\t");
                     _builder.append("()>= ");
-                    AttributeValue _value_8 = a.getValue();
+                    String _value_8 = a.getValue().getValue();
                     _builder.append(_value_8, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -386,7 +385,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_16 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_16, "\t\t");
                     _builder.append("() <= ");
-                    AttributeValue _value_9 = a.getValue();
+                    String _value_9 = a.getValue().getValue();
                     _builder.append(_value_9, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -402,7 +401,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_17 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_17, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_10 = a.getValue();
+                    String _value_10 = a.getValue().getValue();
                     _builder.append(_value_10, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -420,7 +419,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_18 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_18, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_11 = a.getValue();
+                    String _value_11 = a.getValue().getValue();
                     _builder.append(_value_11, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -442,7 +441,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_19 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_19, "\t\t");
                     _builder.append("().equals(\"");
-                    AttributeValue _value_12 = a.getValue();
+                    String _value_12 = a.getValue().getValue();
                     _builder.append(_value_12, "\t\t");
                     _builder.append("\")");
                     _builder.newLineIfNotEmpty();
@@ -460,7 +459,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_20 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_20, "\t\t");
                     _builder.append("().equals(\"");
-                    AttributeValue _value_13 = a.getValue();
+                    String _value_13 = a.getValue().getValue();
                     _builder.append(_value_13, "\t\t");
                     _builder.append("\")");
                     _builder.newLineIfNotEmpty();
@@ -482,7 +481,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_21 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_21, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_14 = a.getValue();
+                    String _value_14 = a.getValue().getValue();
                     _builder.append(_value_14, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -500,7 +499,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_22 = StringExtensions.toFirstUpper(a.getName());
                     _builder.append(_firstUpper_22, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_15 = a.getValue();
+                    String _value_15 = a.getValue().getValue();
                     _builder.append(_value_15, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -576,7 +575,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_25 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_25, "\t\t");
                     _builder.append("() > ");
-                    AttributeValue _value_16 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_16 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_16, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -592,7 +591,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_26 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_26, "\t\t");
                     _builder.append("() < ");
-                    AttributeValue _value_17 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_17 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_17, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -608,7 +607,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_27 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_27, "\t\t");
                     _builder.append("()>= ");
-                    AttributeValue _value_18 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_18 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_18, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -624,7 +623,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_28 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_28, "\t\t");
                     _builder.append("() <= ");
-                    AttributeValue _value_19 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_19 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_19, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -640,7 +639,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_29 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_29, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_20 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_20 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_20, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -658,7 +657,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_30 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_30, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_21 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_21 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_21, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -680,7 +679,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_31 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_31, "\t\t");
                     _builder.append("() > ");
-                    AttributeValue _value_22 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_22 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_22, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -696,7 +695,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_32 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_32, "\t\t");
                     _builder.append("() < ");
-                    AttributeValue _value_23 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_23 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_23, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -712,7 +711,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_33 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_33, "\t\t");
                     _builder.append("()>= ");
-                    AttributeValue _value_24 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_24 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_24, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -728,7 +727,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_34 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_34, "\t\t");
                     _builder.append("() <= ");
-                    AttributeValue _value_25 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_25 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_25, "\t\t");
                     _builder.newLineIfNotEmpty();
                   }
@@ -744,7 +743,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_35 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_35, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_26 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_26 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_26, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -762,7 +761,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_36 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_36, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_27 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_27 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_27, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -784,7 +783,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_37 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_37, "\t\t");
                     _builder.append("().equals(\"");
-                    AttributeValue _value_28 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_28 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_28, "\t\t");
                     _builder.append("\")");
                     _builder.newLineIfNotEmpty();
@@ -802,7 +801,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_38 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_38, "\t\t");
                     _builder.append("().equals(\"");
-                    AttributeValue _value_29 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_29 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_29, "\t\t");
                     _builder.append("\")");
                     _builder.newLineIfNotEmpty();
@@ -824,7 +823,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_39 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_39, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_30 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_30 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_30, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
@@ -842,7 +841,7 @@ public class ContextFragmentGenerator extends AbstractGenerator {
                     String _firstUpper_40 = StringExtensions.toFirstUpper(r_2.getAttributes().get((a_1).intValue()).getName());
                     _builder.append(_firstUpper_40, "\t\t");
                     _builder.append("().equals(");
-                    AttributeValue _value_31 = r_2.getAttributes().get((a_1).intValue()).getValue();
+                    String _value_31 = r_2.getAttributes().get((a_1).intValue()).getValue().getValue();
                     _builder.append(_value_31, "\t\t");
                     _builder.append(")");
                     _builder.newLineIfNotEmpty();
