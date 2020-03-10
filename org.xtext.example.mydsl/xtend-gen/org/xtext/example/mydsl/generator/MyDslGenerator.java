@@ -38,6 +38,7 @@ import org.xtext.example.mydsl.myDsl.Alt;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
+import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -52,6 +53,7 @@ import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
+import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Scenario;
@@ -2450,6 +2452,48 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("for(Automaton a : specification.automatas){");
+    _builder.newLine();
+    {
+      EList<Parameter> _parameters = s.getParameters();
+      for(final Parameter param_8 : _parameters) {
+        {
+          AttributeValue _value_16 = param_8.getValue();
+          boolean _tripleNotEquals = (_value_16 != null);
+          if (_tripleNotEquals) {
+            _builder.append("\t\t\t");
+            _builder.append("writer.println(\"");
+            String _string = param_8.getType().toString();
+            int _length = param_8.getType().toString().length();
+            int _minus_8 = (_length - 1);
+            String _substring = _string.substring(1, _minus_8);
+            _builder.append(_substring, "\t\t\t");
+            _builder.append(" ");
+            String _name_15 = param_8.getName();
+            _builder.append(_name_15, "\t\t\t");
+            _builder.append(" = ");
+            String _value_17 = param_8.getValue().getValue();
+            _builder.append(_value_17, "\t\t\t");
+            _builder.append(";\");");
+            _builder.newLineIfNotEmpty();
+          } else {
+            _builder.append("\t\t\t");
+            _builder.append("writer.println(\"");
+            String _string_1 = param_8.getType().toString();
+            int _length_1 = param_8.getType().toString().length();
+            int _minus_9 = (_length_1 - 1);
+            String _substring_1 = _string_1.substring(1, _minus_9);
+            _builder.append(_substring_1, "\t\t\t");
+            _builder.append(" ");
+            String _name_16 = param_8.getName();
+            _builder.append(_name_16, "\t\t\t");
+            _builder.append(";\");");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.append("writer.println(\"\");");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("writer.println(\"never{ /*\" + a.getId()+ \"Monitor\" + \"*/\");");

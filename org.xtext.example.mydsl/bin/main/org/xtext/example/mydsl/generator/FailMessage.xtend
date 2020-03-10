@@ -22,12 +22,7 @@ class FailMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 				«IF param != p.params.size - 1»
 					+ ", "
 				«ENDIF»
@@ -69,12 +64,7 @@ class FailMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 				«IF param != p.params.size - 1»
 					+ ", "
 				«ENDIF»
@@ -114,12 +104,7 @@ class FailMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 				«IF param != p.params.size - 1»
 					+ ", "
 				«ENDIF»
@@ -144,12 +129,7 @@ class FailMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 				«IF param != p.params.size - 1»
 					+ ", "
 				«ENDIF»

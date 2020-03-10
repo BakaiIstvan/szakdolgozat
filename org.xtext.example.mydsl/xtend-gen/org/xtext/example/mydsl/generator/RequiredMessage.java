@@ -40,22 +40,11 @@ public class RequiredMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith) {
-                String _value = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_1 = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value_1);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_2 = p.getParams().get((param).intValue()).getName();
+            _builder.append(_name_2);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_1 = p.getParams().size();
               int _minus = (_size_1 - 1);
@@ -79,15 +68,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
-              if (_startsWith_1) {
-                String _value_2 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_2);
+              boolean _startsWith = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
+              if (_startsWith) {
+                String _value = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_3 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_3);
+                String _value_1 = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value_1);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -108,8 +97,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
+    String _name_3 = m.getReceiver().getName();
+    _builder.append(_name_3);
     _builder.append("\" + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("finalState = new State(\"q\" + counter, StateType.FINAL);");
@@ -121,13 +110,13 @@ public class RequiredMessage {
     _builder.append("counter++;");
     _builder.newLine();
     _builder.append("b.addTransition(new Transition(\"");
-    String _name_3 = m.getSender().getName();
-    _builder.append(_name_3);
+    String _name_4 = m.getSender().getName();
+    _builder.append(_name_4);
     _builder.append("\" + \".\" +");
     _builder.newLineIfNotEmpty();
     _builder.append("\"");
-    String _name_4 = m.getName();
-    _builder.append(_name_4);
+    String _name_5 = m.getName();
+    _builder.append(_name_5);
     _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
@@ -137,22 +126,11 @@ public class RequiredMessage {
           int _size_4 = p_2.getParams().size();
           ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
           for(final Integer param_2 : _doubleDotLessThan_2) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith_2 = p_2.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith_2) {
-                String _value_4 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_4);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_5 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_5);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_6 = p_2.getParams().get((param_2).intValue()).getName();
+            _builder.append(_name_6);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_5 = p_2.getParams().size();
               int _minus_2 = (_size_5 - 1);
@@ -176,15 +154,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_3 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
-              if (_startsWith_3) {
-                String _value_6 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_6);
+              boolean _startsWith_1 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
+              if (_startsWith_1) {
+                String _value_2 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_2);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_7 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_7);
+                String _value_3 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_3);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -205,8 +183,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_5 = m.getReceiver().getName();
-    _builder.append(_name_5);
+    String _name_7 = m.getReceiver().getName();
+    _builder.append(_name_7);
     _builder.append("\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(str, finalState, finalState));");
@@ -257,22 +235,11 @@ public class RequiredMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith) {
-                String _value = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_1 = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value_1);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_2 = p.getParams().get((param).intValue()).getName();
+            _builder.append(_name_2);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_1 = p.getParams().size();
               int _minus = (_size_1 - 1);
@@ -296,15 +263,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
-              if (_startsWith_1) {
-                String _value_2 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_2);
+              boolean _startsWith = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
+              if (_startsWith) {
+                String _value = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_3 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_3);
+                String _value_1 = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value_1);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -325,8 +292,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
+    String _name_3 = m.getReceiver().getName();
+    _builder.append(_name_3);
     _builder.append("\" + \" & \" + str + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
@@ -338,13 +305,13 @@ public class RequiredMessage {
     _builder.append("counter++;");
     _builder.newLine();
     _builder.append("b.addTransition(new Transition(\"");
-    String _name_3 = m.getSender().getName();
-    _builder.append(_name_3);
+    String _name_4 = m.getSender().getName();
+    _builder.append(_name_4);
     _builder.append("\" + \".\" +");
     _builder.newLineIfNotEmpty();
     _builder.append("\"");
-    String _name_4 = m.getName();
-    _builder.append(_name_4);
+    String _name_5 = m.getName();
+    _builder.append(_name_5);
     _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
@@ -354,22 +321,11 @@ public class RequiredMessage {
           int _size_4 = p_2.getParams().size();
           ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
           for(final Integer param_2 : _doubleDotLessThan_2) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith_2 = p_2.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith_2) {
-                String _value_4 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_4);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_5 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_5);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_6 = p_2.getParams().get((param_2).intValue()).getName();
+            _builder.append(_name_6);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_5 = p_2.getParams().size();
               int _minus_2 = (_size_5 - 1);
@@ -393,15 +349,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_3 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
-              if (_startsWith_3) {
-                String _value_6 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_6);
+              boolean _startsWith_1 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
+              if (_startsWith_1) {
+                String _value_2 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_2);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_7 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_7);
+                String _value_3 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_3);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -422,8 +378,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_5 = m.getReceiver().getName();
-    _builder.append(_name_5);
+    String _name_7 = m.getReceiver().getName();
+    _builder.append(_name_7);
     _builder.append("\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"!\" + \"(\" + str + \")\", actualState, acceptState));");
@@ -470,22 +426,11 @@ public class RequiredMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith) {
-                String _value = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_1 = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value_1);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_2 = p.getParams().get((param).intValue()).getName();
+            _builder.append(_name_2);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_1 = p.getParams().size();
               int _minus = (_size_1 - 1);
@@ -509,15 +454,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
-              if (_startsWith_1) {
-                String _value_2 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_2);
+              boolean _startsWith = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
+              if (_startsWith) {
+                String _value = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_3 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_3);
+                String _value_1 = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value_1);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -539,8 +484,8 @@ public class RequiredMessage {
     _builder.newLine();
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
+    String _name_3 = m.getReceiver().getName();
+    _builder.append(_name_3);
     _builder.append("\" + \")\", actualState, actualState));");
     _builder.newLineIfNotEmpty();
     _builder.append("newState = new State(\"q\" + counter, StateType.FINAL);");
@@ -548,13 +493,13 @@ public class RequiredMessage {
     _builder.append("counter++;");
     _builder.newLine();
     _builder.append("b.addTransition(new Transition(\"");
-    String _name_3 = m.getSender().getName();
-    _builder.append(_name_3);
+    String _name_4 = m.getSender().getName();
+    _builder.append(_name_4);
     _builder.append("\" + \".\" +");
     _builder.newLineIfNotEmpty();
     _builder.append("\"");
-    String _name_4 = m.getName();
-    _builder.append(_name_4);
+    String _name_5 = m.getName();
+    _builder.append(_name_5);
     _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
@@ -564,22 +509,11 @@ public class RequiredMessage {
           int _size_4 = p_2.getParams().size();
           ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
           for(final Integer param_2 : _doubleDotLessThan_2) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith_2 = p_2.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith_2) {
-                String _value_4 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_4);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_5 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_5);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_6 = p_2.getParams().get((param_2).intValue()).getName();
+            _builder.append(_name_6);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_5 = p_2.getParams().size();
               int _minus_2 = (_size_5 - 1);
@@ -603,15 +537,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_3 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
-              if (_startsWith_3) {
-                String _value_6 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_6);
+              boolean _startsWith_1 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
+              if (_startsWith_1) {
+                String _value_2 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_2);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_7 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_7);
+                String _value_3 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_3);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -632,8 +566,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_5 = m.getReceiver().getName();
-    _builder.append(_name_5);
+    String _name_7 = m.getReceiver().getName();
+    _builder.append(_name_7);
     _builder.append("\", actualState, newState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addState(newState);");
@@ -686,22 +620,11 @@ public class RequiredMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith) {
-                String _value = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_1 = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value_1);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_2 = p.getParams().get((param).intValue()).getName();
+            _builder.append(_name_2);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_1 = p.getParams().size();
               int _minus = (_size_1 - 1);
@@ -725,15 +648,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
-              if (_startsWith_1) {
-                String _value_2 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_2);
+              boolean _startsWith = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
+              if (_startsWith) {
+                String _value = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_3 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_3);
+                String _value_1 = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value_1);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -755,20 +678,20 @@ public class RequiredMessage {
     _builder.newLine();
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
+    String _name_3 = m.getReceiver().getName();
+    _builder.append(_name_3);
     _builder.append("\" + \")\", actualState, acceptState_new));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState_new, acceptState_new));");
     _builder.newLine();
     _builder.append("b.addTransition(new Transition(\"");
-    String _name_3 = m.getSender().getName();
-    _builder.append(_name_3);
+    String _name_4 = m.getSender().getName();
+    _builder.append(_name_4);
     _builder.append("\" + \".\" +");
     _builder.newLineIfNotEmpty();
     _builder.append("\"");
-    String _name_4 = m.getName();
-    _builder.append(_name_4);
+    String _name_5 = m.getName();
+    _builder.append(_name_5);
     _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
@@ -778,22 +701,11 @@ public class RequiredMessage {
           int _size_4 = p_2.getParams().size();
           ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
           for(final Integer param_2 : _doubleDotLessThan_2) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith_2 = p_2.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith_2) {
-                String _value_4 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_4);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_5 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_5);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_6 = p_2.getParams().get((param_2).intValue()).getName();
+            _builder.append(_name_6);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_5 = p_2.getParams().size();
               int _minus_2 = (_size_5 - 1);
@@ -817,15 +729,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_3 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
-              if (_startsWith_3) {
-                String _value_6 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_6);
+              boolean _startsWith_1 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
+              if (_startsWith_1) {
+                String _value_2 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_2);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_7 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_7);
+                String _value_3 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_3);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -846,8 +758,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_5 = m.getReceiver().getName();
-    _builder.append(_name_5);
+    String _name_7 = m.getReceiver().getName();
+    _builder.append(_name_7);
     _builder.append("\", actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(str, finalState, finalState));");
@@ -906,22 +818,11 @@ public class RequiredMessage {
           int _size = p.getParams().size();
           ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
           for(final Integer param : _doubleDotLessThan) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith = p.getParams().get((param).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith) {
-                String _value = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_1 = p.getParams().get((param).intValue()).getValue().getValue();
-                _builder.append(_value_1);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_2 = p.getParams().get((param).intValue()).getName();
+            _builder.append(_name_2);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_1 = p.getParams().size();
               int _minus = (_size_1 - 1);
@@ -945,15 +846,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_1 = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
-              if (_startsWith_1) {
-                String _value_2 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_2);
+              boolean _startsWith = p_1.getValues().get((param_1).intValue()).getValue().startsWith("\"");
+              if (_startsWith) {
+                String _value = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_3 = p_1.getValues().get((param_1).intValue()).getValue();
-                _builder.append(_value_3);
+                String _value_1 = p_1.getValues().get((param_1).intValue()).getValue();
+                _builder.append(_value_1);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -974,18 +875,18 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_2 = m.getReceiver().getName();
-    _builder.append(_name_2);
+    String _name_3 = m.getReceiver().getName();
+    _builder.append(_name_3);
     _builder.append("\" , actualState, finalState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"!(\" + \"");
-    String _name_3 = m.getSender().getName();
-    _builder.append(_name_3);
+    String _name_4 = m.getSender().getName();
+    _builder.append(_name_4);
     _builder.append("\" + \".\" +");
     _builder.newLineIfNotEmpty();
     _builder.append("\"");
-    String _name_4 = m.getName();
-    _builder.append(_name_4);
+    String _name_5 = m.getName();
+    _builder.append(_name_5);
     _builder.append("\" + \"(\"");
     _builder.newLineIfNotEmpty();
     {
@@ -995,22 +896,11 @@ public class RequiredMessage {
           int _size_4 = p_2.getParams().size();
           ExclusiveRange _doubleDotLessThan_2 = new ExclusiveRange(0, _size_4, true);
           for(final Integer param_2 : _doubleDotLessThan_2) {
-            _builder.append("+");
-            _builder.newLine();
-            {
-              boolean _startsWith_2 = p_2.getParams().get((param_2).intValue()).getValue().getValue().startsWith("\"");
-              if (_startsWith_2) {
-                String _value_4 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_4);
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\"");
-                String _value_5 = p_2.getParams().get((param_2).intValue()).getValue().getValue();
-                _builder.append(_value_5);
-                _builder.append("\"");
-                _builder.newLineIfNotEmpty();
-              }
-            }
+            _builder.append("+ \"");
+            String _name_6 = p_2.getParams().get((param_2).intValue()).getName();
+            _builder.append(_name_6);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
             {
               int _size_5 = p_2.getParams().size();
               int _minus_2 = (_size_5 - 1);
@@ -1034,15 +924,15 @@ public class RequiredMessage {
             _builder.append("+");
             _builder.newLine();
             {
-              boolean _startsWith_3 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
-              if (_startsWith_3) {
-                String _value_6 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_6);
+              boolean _startsWith_1 = p_3.getValues().get((param_3).intValue()).getValue().startsWith("\"");
+              if (_startsWith_1) {
+                String _value_2 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_2);
                 _builder.newLineIfNotEmpty();
               } else {
                 _builder.append("\"");
-                String _value_7 = p_3.getValues().get((param_3).intValue()).getValue();
-                _builder.append(_value_7);
+                String _value_3 = p_3.getValues().get((param_3).intValue()).getValue();
+                _builder.append(_value_3);
                 _builder.append("\"");
                 _builder.newLineIfNotEmpty();
               }
@@ -1063,8 +953,8 @@ public class RequiredMessage {
     _builder.append("+ \")\"");
     _builder.newLine();
     _builder.append("+ \".\" + \"");
-    String _name_5 = m.getReceiver().getName();
-    _builder.append(_name_5);
+    String _name_7 = m.getReceiver().getName();
+    _builder.append(_name_7);
     _builder.append("\" + \")\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");

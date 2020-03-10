@@ -862,6 +862,14 @@ class MyDslGenerator extends AbstractGenerator {
 				
 				PrintWriter writer = new PrintWriter("«s.name»" + ".txt", "UTF-8");
 				for(Automaton a : specification.automatas){
+					«FOR param : s.parameters»
+						«IF param.value !== null»
+							writer.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name» = «param.value.value»;");
+						«ELSE»
+							writer.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name»;");
+						«ENDIF»
+					«ENDFOR»
+					writer.println("");
 					writer.println("never{ /*" + a.getId()+ "Monitor" + "*/");
 					for(State s : a.getStates()){
 						if(s == a.getInitial()){

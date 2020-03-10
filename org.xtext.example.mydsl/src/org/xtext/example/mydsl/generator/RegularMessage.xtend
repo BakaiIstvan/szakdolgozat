@@ -19,12 +19,7 @@ class RegularMessage {
 			"«m.name»" + "("
 			«FOR p: m.params»
 				«FOR param: 0..<p.params.size»
-					+
-					«IF p.params.get(param).value.value.startsWith("\"")»
-						«p.params.get(param).value.value»
-					«ELSE»
-					"«p.params.get(param).value.value»"
-					«ENDIF»
+					+ "«p.params.get(param).name»"
 					«IF param != p.params.size - 1»
 						+ ", "
 					«ENDIF»
@@ -65,12 +60,7 @@ class RegularMessage {
 			"«m.name»" + "("
 			«FOR p: m.params»
 				«FOR param: 0..<p.params.size»
-					+
-					«IF p.params.get(param).value.value.startsWith("\"")»
-						«p.params.get(param).value.value»
-					«ELSE»
-					"«p.params.get(param).value.value»"
-					«ENDIF»
+					+ "«p.params.get(param).name»"
 					«IF param != p.params.size - 1»
 						+ ", "
 					«ENDIF»
@@ -111,15 +101,7 @@ class RegularMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
-				«IF param != p.params.size - 1»
-					+ ", "
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 			«ENDFOR»
 		«ENDFOR»
 		«FOR p: m.constantparams»
@@ -154,12 +136,7 @@ class RegularMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 				«IF param != p.params.size - 1»
 					+ ", "
 				«ENDIF»
@@ -199,12 +176,7 @@ class RegularMessage {
 		"«m.name»" + "("
 		«FOR p: m.params»
 			«FOR param: 0..<p.params.size»
-				+
-				«IF p.params.get(param).value.value.startsWith("\"")»
-					«p.params.get(param).value.value»
-				«ELSE»
-				"«p.params.get(param).value.value»"
-				«ENDIF»
+				+ "«p.params.get(param).name»"
 				«IF param != p.params.size - 1»
 					+ ", "
 				«ENDIF»
