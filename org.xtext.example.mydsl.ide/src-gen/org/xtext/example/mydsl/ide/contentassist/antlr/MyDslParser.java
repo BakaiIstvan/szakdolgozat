@@ -34,6 +34,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAttributeValueAccess().getAlternatives(), "rule__AttributeValue__Alternatives");
 			builder.put(grammarAccess.getScenarioContentAccess().getAlternatives(), "rule__ScenarioContent__Alternatives");
 			builder.put(grammarAccess.getMessageAccess().getAlternatives_3(), "rule__Message__Alternatives_3");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getAlternatives(), "rule__ClockConstraintExpression__Alternatives");
 			builder.put(grammarAccess.getContextMessageContentAccess().getAlternatives(), "rule__ContextMessageContent__Alternatives");
 			builder.put(grammarAccess.getChangeMessageAccess().getAlternatives(), "rule__ChangeMessage__Alternatives");
 			builder.put(grammarAccess.getOperatorAccess().getAlternatives(), "rule__Operator__Alternatives");
@@ -51,6 +52,10 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFRelationAccess().getGroup(), "rule__FRelation__Group__0");
 			builder.put(grammarAccess.getScenarioAccess().getGroup(), "rule__Scenario__Group__0");
 			builder.put(grammarAccess.getMessageAccess().getGroup(), "rule__Message__Group__0");
+			builder.put(grammarAccess.getMessageAccess().getGroup_19(), "rule__Message__Group_19__0");
+			builder.put(grammarAccess.getClockConstraintAccess().getGroup(), "rule__ClockConstraint__Group__0");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getGroup_1(), "rule__ClockConstraintExpression__Group_1__0");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getGroup_2(), "rule__ClockConstraintExpression__Group_2__0");
 			builder.put(grammarAccess.getContextMessageAccess().getGroup(), "rule__ContextMessage__Group__0");
 			builder.put(grammarAccess.getMatchMessageAccess().getGroup(), "rule__MatchMessage__Group__0");
 			builder.put(grammarAccess.getAppearMessageAccess().getGroup(), "rule__AppearMessage__Group__0");
@@ -69,6 +74,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConstantParamsAccess().getGroup_1(), "rule__ConstantParams__Group_1__0");
 			builder.put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
 			builder.put(grammarAccess.getParameterConstraintAccess().getGroup(), "rule__ParameterConstraint__Group__0");
+			builder.put(grammarAccess.getClockAccess().getGroup(), "rule__Clock__Group__0");
 			builder.put(grammarAccess.getObjectTypeAccess().getGroup(), "rule__ObjectType__Group__0");
 			builder.put(grammarAccess.getObjectAccess().getGroup(), "rule__Object__Group__0");
 			builder.put(grammarAccess.getConstraintAccess().getGroup(), "rule__Constraint__Group__0");
@@ -85,8 +91,9 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDomainAccess().getContextfragmentsAssignment_5(), "rule__Domain__ContextfragmentsAssignment_5");
 			builder.put(grammarAccess.getDomainAccess().getObjectsAssignment_6(), "rule__Domain__ObjectsAssignment_6");
 			builder.put(grammarAccess.getDomainAccess().getParametersAssignment_7(), "rule__Domain__ParametersAssignment_7");
-			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_8(), "rule__Domain__ConstraintsAssignment_8");
-			builder.put(grammarAccess.getDomainAccess().getScenariosAssignment_9(), "rule__Domain__ScenariosAssignment_9");
+			builder.put(grammarAccess.getDomainAccess().getClocksAssignment_8(), "rule__Domain__ClocksAssignment_8");
+			builder.put(grammarAccess.getDomainAccess().getConstraintsAssignment_9(), "rule__Domain__ConstraintsAssignment_9");
+			builder.put(grammarAccess.getDomainAccess().getScenariosAssignment_10(), "rule__Domain__ScenariosAssignment_10");
 			builder.put(grammarAccess.getIncludeAccess().getContextAssignment_1(), "rule__Include__ContextAssignment_1");
 			builder.put(grammarAccess.getIncludeAccess().getImportURIAssignment_3(), "rule__Include__ImportURIAssignment_3");
 			builder.put(grammarAccess.getContextModelAccess().getNameAssignment_1(), "rule__ContextModel__NameAssignment_1");
@@ -152,6 +159,18 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMessageAccess().getFutureAssignment_12(), "rule__Message__FutureAssignment_12");
 			builder.put(grammarAccess.getMessageAccess().getConstraintAssignment_13(), "rule__Message__ConstraintAssignment_13");
 			builder.put(grammarAccess.getMessageAccess().getCAssignment_15(), "rule__Message__CAssignment_15");
+			builder.put(grammarAccess.getMessageAccess().getConstraintexpAssignment_17(), "rule__Message__ConstraintexpAssignment_17");
+			builder.put(grammarAccess.getMessageAccess().getClockconstraintAssignment_19_0(), "rule__Message__ClockconstraintAssignment_19_0");
+			builder.put(grammarAccess.getMessageAccess().getCConstraintAssignment_21(), "rule__Message__CConstraintAssignment_21");
+			builder.put(grammarAccess.getMessageAccess().getResetAssignment_23(), "rule__Message__ResetAssignment_23");
+			builder.put(grammarAccess.getMessageAccess().getResetclockAssignment_24(), "rule__Message__ResetclockAssignment_24");
+			builder.put(grammarAccess.getClockConstraintAccess().getClockAssignment_0(), "rule__ClockConstraint__ClockAssignment_0");
+			builder.put(grammarAccess.getClockConstraintAccess().getOpAssignment_1(), "rule__ClockConstraint__OpAssignment_1");
+			builder.put(grammarAccess.getClockConstraintAccess().getConstantAssignment_2(), "rule__ClockConstraint__ConstantAssignment_2");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getLclockconstraintAssignment_0(), "rule__ClockConstraintExpression__LclockconstraintAssignment_0");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getLclockconstraintAssignment_1_2(), "rule__ClockConstraintExpression__LclockconstraintAssignment_1_2");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getLclockconstraintAssignment_2_0(), "rule__ClockConstraintExpression__LclockconstraintAssignment_2_0");
+			builder.put(grammarAccess.getClockConstraintExpressionAccess().getRclockconstraintAssignment_2_2(), "rule__ClockConstraintExpression__RclockconstraintAssignment_2_2");
 			builder.put(grammarAccess.getContextMessageAccess().getContentAssignment_0(), "rule__ContextMessage__ContentAssignment_0");
 			builder.put(grammarAccess.getContextMessageAccess().getRequiredAssignment_1(), "rule__ContextMessage__RequiredAssignment_1");
 			builder.put(grammarAccess.getContextMessageAccess().getFailAssignment_2(), "rule__ContextMessage__FailAssignment_2");
@@ -203,6 +222,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOperatorAccess().getSmallerequalsAssignment_3(), "rule__Operator__SmallerequalsAssignment_3");
 			builder.put(grammarAccess.getOperatorAccess().getEqualsAssignment_4(), "rule__Operator__EqualsAssignment_4");
 			builder.put(grammarAccess.getOperatorAccess().getNotequalsAssignment_5(), "rule__Operator__NotequalsAssignment_5");
+			builder.put(grammarAccess.getClockAccess().getNameAssignment_1(), "rule__Clock__NameAssignment_1");
 			builder.put(grammarAccess.getObjectTypeAccess().getNameAssignment_1(), "rule__ObjectType__NameAssignment_1");
 			builder.put(grammarAccess.getObjectAccess().getObjectAssignment_0(), "rule__Object__ObjectAssignment_0");
 			builder.put(grammarAccess.getObjectAccess().getNameAssignment_1(), "rule__Object__NameAssignment_1");

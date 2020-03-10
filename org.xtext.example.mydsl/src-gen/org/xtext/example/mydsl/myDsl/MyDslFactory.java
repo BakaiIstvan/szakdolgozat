@@ -150,6 +150,24 @@ public interface MyDslFactory extends EFactory
   Message createMessage();
 
   /**
+   * Returns a new object of class '<em>Clock Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Clock Constraint</em>'.
+   * @generated
+   */
+  ClockConstraint createClockConstraint();
+
+  /**
+   * Returns a new object of class '<em>Clock Constraint Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Clock Constraint Expression</em>'.
+   * @generated
+   */
+  ClockConstraintExpression createClockConstraintExpression();
+
+  /**
    * Returns a new object of class '<em>Context Message</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -283,6 +301,15 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Operator createOperator();
+
+  /**
+   * Returns a new object of class '<em>Clock</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Clock</em>'.
+   * @generated
+   */
+  Clock createClock();
 
   /**
    * Returns a new object of class '<em>Object Type</em>'.

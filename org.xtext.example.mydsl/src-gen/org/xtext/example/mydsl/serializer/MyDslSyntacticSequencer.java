@@ -24,10 +24,13 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_ChangeToMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_ChangeToRelation_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Domain_LeftCurlyBracketKeyword_2_q;
-	protected AbstractElementAlias match_Domain_RightCurlyBracketKeyword_10_q;
+	protected AbstractElementAlias match_Domain_RightCurlyBracketKeyword_11_q;
 	protected AbstractElementAlias match_MatchMessage_CommaKeyword_3_q;
 	protected AbstractElementAlias match_Message_LeftCurlyBracketKeyword_14_q;
-	protected AbstractElementAlias match_Message_RightCurlyBracketKeyword_16_q;
+	protected AbstractElementAlias match_Message_LeftCurlyBracketKeyword_20_q;
+	protected AbstractElementAlias match_Message_RightCurlyBracketKeyword_18_q;
+	protected AbstractElementAlias match_Message_RightCurlyBracketKeyword_22_q;
+	protected AbstractElementAlias match_Message_SemicolonKeyword_16_q;
 	protected AbstractElementAlias match_Parameter_EqualsSignKeyword_2_q;
 	
 	@Inject
@@ -37,10 +40,13 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_ChangeToMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getChangeToMessageAccess().getCommaKeyword_3());
 		match_ChangeToRelation_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getChangeToRelationAccess().getCommaKeyword_3());
 		match_Domain_LeftCurlyBracketKeyword_2_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getLeftCurlyBracketKeyword_2());
-		match_Domain_RightCurlyBracketKeyword_10_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_10());
+		match_Domain_RightCurlyBracketKeyword_11_q = new TokenAlias(false, true, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_11());
 		match_MatchMessage_CommaKeyword_3_q = new TokenAlias(false, true, grammarAccess.getMatchMessageAccess().getCommaKeyword_3());
 		match_Message_LeftCurlyBracketKeyword_14_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_14());
-		match_Message_RightCurlyBracketKeyword_16_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_16());
+		match_Message_LeftCurlyBracketKeyword_20_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_20());
+		match_Message_RightCurlyBracketKeyword_18_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_18());
+		match_Message_RightCurlyBracketKeyword_22_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_22());
+		match_Message_SemicolonKeyword_16_q = new TokenAlias(false, true, grammarAccess.getMessageAccess().getSemicolonKeyword_16());
 		match_Parameter_EqualsSignKeyword_2_q = new TokenAlias(false, true, grammarAccess.getParameterAccess().getEqualsSignKeyword_2());
 	}
 	
@@ -64,14 +70,20 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_ChangeToRelation_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Domain_LeftCurlyBracketKeyword_2_q.equals(syntax))
 				emit_Domain_LeftCurlyBracketKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Domain_RightCurlyBracketKeyword_10_q.equals(syntax))
-				emit_Domain_RightCurlyBracketKeyword_10_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Domain_RightCurlyBracketKeyword_11_q.equals(syntax))
+				emit_Domain_RightCurlyBracketKeyword_11_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_MatchMessage_CommaKeyword_3_q.equals(syntax))
 				emit_MatchMessage_CommaKeyword_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Message_LeftCurlyBracketKeyword_14_q.equals(syntax))
 				emit_Message_LeftCurlyBracketKeyword_14_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Message_RightCurlyBracketKeyword_16_q.equals(syntax))
-				emit_Message_RightCurlyBracketKeyword_16_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Message_LeftCurlyBracketKeyword_20_q.equals(syntax))
+				emit_Message_LeftCurlyBracketKeyword_20_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Message_RightCurlyBracketKeyword_18_q.equals(syntax))
+				emit_Message_RightCurlyBracketKeyword_18_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Message_RightCurlyBracketKeyword_22_q.equals(syntax))
+				emit_Message_RightCurlyBracketKeyword_22_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Message_SemicolonKeyword_16_q.equals(syntax))
+				emit_Message_SemicolonKeyword_16_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Parameter_EqualsSignKeyword_2_q.equals(syntax))
 				emit_Parameter_EqualsSignKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -124,6 +136,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) '}'? (rule start)
+	 *     (rule start) (ambiguity) clocks+=Clock
 	 *     (rule start) (ambiguity) constraints+=Constraint
 	 *     (rule start) (ambiguity) contextfragments+=ContextFragment
 	 *     (rule start) (ambiguity) contextmodels+=ContextModel
@@ -132,6 +145,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) parameters+=Parameter
 	 *     (rule start) (ambiguity) scenarios+=Scenario
 	 *     name=ID (ambiguity) '}'? (rule end)
+	 *     name=ID (ambiguity) clocks+=Clock
 	 *     name=ID (ambiguity) constraints+=Constraint
 	 *     name=ID (ambiguity) contextfragments+=ContextFragment
 	 *     name=ID (ambiguity) contextmodels+=ContextModel
@@ -140,6 +154,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) parameters+=Parameter
 	 *     name=ID (ambiguity) scenarios+=Scenario
 	 *     specification='specification' (ambiguity) '}'? (rule end)
+	 *     specification='specification' (ambiguity) clocks+=Clock
 	 *     specification='specification' (ambiguity) constraints+=Constraint
 	 *     specification='specification' (ambiguity) contextfragments+=ContextFragment
 	 *     specification='specification' (ambiguity) contextmodels+=ContextModel
@@ -159,6 +174,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) '{' (ambiguity) (rule start)
 	 *     (rule start) '{'? (ambiguity) (rule start)
+	 *     clocks+=Clock (ambiguity) (rule end)
 	 *     constraints+=Constraint (ambiguity) (rule end)
 	 *     contextfragments+=ContextFragment (ambiguity) (rule end)
 	 *     contextmodels+=ContextModel (ambiguity) (rule end)
@@ -169,7 +185,7 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     scenarios+=Scenario (ambiguity) (rule end)
 	 *     specification='specification' '{'? (ambiguity) (rule end)
 	 */
-	protected void emit_Domain_RightCurlyBracketKeyword_10_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Domain_RightCurlyBracketKeyword_11_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -192,13 +208,33 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '{'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     constraint?='constraint' (ambiguity) '}'? ';' (rule end)
+	 *     constraint?='constraint' (ambiguity) ';'? '}'? '{'? '}'? ';' (rule end)
+	 *     constraint?='constraint' (ambiguity) ';'? '}'? '{'? '}'? reset?='reset'
+	 *     constraint?='constraint' (ambiguity) ';'? '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     constraint?='constraint' (ambiguity) ';'? '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     constraint?='constraint' (ambiguity) ';'? '}'? clockconstraint?='clock'
+	 *     constraint?='constraint' (ambiguity) ';'? constraintexp=ClockConstraintExpression
 	 *     constraint?='constraint' (ambiguity) c=[Constraint|ID]
-	 *     future?='future' (ambiguity) '}'? ';' (rule end)
+	 *     future?='future' (ambiguity) ';'? '}'? '{'? '}'? ';' (rule end)
+	 *     future?='future' (ambiguity) ';'? '}'? '{'? '}'? reset?='reset'
+	 *     future?='future' (ambiguity) ';'? '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     future?='future' (ambiguity) ';'? '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     future?='future' (ambiguity) ';'? '}'? clockconstraint?='clock'
+	 *     future?='future' (ambiguity) ';'? constraintexp=ClockConstraintExpression
 	 *     future?='future' (ambiguity) c=[Constraint|ID]
-	 *     past?='past' (ambiguity) '}'? ';' (rule end)
+	 *     past?='past' (ambiguity) ';'? '}'? '{'? '}'? ';' (rule end)
+	 *     past?='past' (ambiguity) ';'? '}'? '{'? '}'? reset?='reset'
+	 *     past?='past' (ambiguity) ';'? '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     past?='past' (ambiguity) ';'? '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     past?='past' (ambiguity) ';'? '}'? clockconstraint?='clock'
+	 *     past?='past' (ambiguity) ';'? constraintexp=ClockConstraintExpression
 	 *     past?='past' (ambiguity) c=[Constraint|ID]
-	 *     receiver=[Object|ID] (ambiguity) '}'? ';' (rule end)
+	 *     receiver=[Object|ID] (ambiguity) ';'? '}'? '{'? '}'? ';' (rule end)
+	 *     receiver=[Object|ID] (ambiguity) ';'? '}'? '{'? '}'? reset?='reset'
+	 *     receiver=[Object|ID] (ambiguity) ';'? '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     receiver=[Object|ID] (ambiguity) ';'? '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     receiver=[Object|ID] (ambiguity) ';'? '}'? clockconstraint?='clock'
+	 *     receiver=[Object|ID] (ambiguity) ';'? constraintexp=ClockConstraintExpression
 	 *     receiver=[Object|ID] (ambiguity) c=[Constraint|ID]
 	 */
 	protected void emit_Message_LeftCurlyBracketKeyword_14_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
@@ -207,16 +243,153 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	/**
 	 * Ambiguous syntax:
+	 *     '{'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     c=[Constraint|ID] ';'? '}'? (ambiguity) '}'? ';' (rule end)
+	 *     c=[Constraint|ID] ';'? '}'? (ambiguity) '}'? reset?='reset'
+	 *     c=[Constraint|ID] ';'? '}'? (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     c=[Constraint|ID] ';'? '}'? (ambiguity) cConstraint=ClockConstraintExpression
+	 *     clockconstraint?='clock' 'constraint' (ambiguity) '}'? ';' (rule end)
+	 *     clockconstraint?='clock' 'constraint' (ambiguity) '}'? reset?='reset'
+	 *     clockconstraint?='clock' 'constraint' (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     clockconstraint?='clock' 'constraint' (ambiguity) cConstraint=ClockConstraintExpression
+	 *     constraint?='constraint' '{'? ';'? '}'? (ambiguity) '}'? ';' (rule end)
+	 *     constraint?='constraint' '{'? ';'? '}'? (ambiguity) '}'? reset?='reset'
+	 *     constraint?='constraint' '{'? ';'? '}'? (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     constraint?='constraint' '{'? ';'? '}'? (ambiguity) cConstraint=ClockConstraintExpression
+	 *     constraintexp=ClockConstraintExpression '}'? (ambiguity) '}'? ';' (rule end)
+	 *     constraintexp=ClockConstraintExpression '}'? (ambiguity) '}'? reset?='reset'
+	 *     constraintexp=ClockConstraintExpression '}'? (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     constraintexp=ClockConstraintExpression '}'? (ambiguity) cConstraint=ClockConstraintExpression
+	 *     future?='future' '{'? ';'? '}'? (ambiguity) '}'? ';' (rule end)
+	 *     future?='future' '{'? ';'? '}'? (ambiguity) '}'? reset?='reset'
+	 *     future?='future' '{'? ';'? '}'? (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     future?='future' '{'? ';'? '}'? (ambiguity) cConstraint=ClockConstraintExpression
+	 *     past?='past' '{'? ';'? '}'? (ambiguity) '}'? ';' (rule end)
+	 *     past?='past' '{'? ';'? '}'? (ambiguity) '}'? reset?='reset'
+	 *     past?='past' '{'? ';'? '}'? (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     past?='past' '{'? ';'? '}'? (ambiguity) cConstraint=ClockConstraintExpression
+	 *     receiver=[Object|ID] '{'? ';'? '}'? (ambiguity) '}'? ';' (rule end)
+	 *     receiver=[Object|ID] '{'? ';'? '}'? (ambiguity) '}'? reset?='reset'
+	 *     receiver=[Object|ID] '{'? ';'? '}'? (ambiguity) '}'? resetclock=[Clock|ID]
+	 *     receiver=[Object|ID] '{'? ';'? '}'? (ambiguity) cConstraint=ClockConstraintExpression
+	 */
+	protected void emit_Message_LeftCurlyBracketKeyword_20_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
 	 *     '}'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     c=[Constraint|ID] (ambiguity) ';' (rule end)
-	 *     constraint?='constraint' '{'? (ambiguity) ';' (rule end)
-	 *     future?='future' '{'? (ambiguity) ';' (rule end)
-	 *     past?='past' '{'? (ambiguity) ';' (rule end)
-	 *     receiver=[Object|ID] '{'? (ambiguity) ';' (rule end)
+	 *     c=[Constraint|ID] ';'? (ambiguity) '{'? '}'? ';' (rule end)
+	 *     c=[Constraint|ID] ';'? (ambiguity) '{'? '}'? reset?='reset'
+	 *     c=[Constraint|ID] ';'? (ambiguity) '{'? '}'? resetclock=[Clock|ID]
+	 *     c=[Constraint|ID] ';'? (ambiguity) '{'? cConstraint=ClockConstraintExpression
+	 *     c=[Constraint|ID] ';'? (ambiguity) clockconstraint?='clock'
+	 *     constraint?='constraint' '{'? ';'? (ambiguity) '{'? '}'? ';' (rule end)
+	 *     constraint?='constraint' '{'? ';'? (ambiguity) '{'? '}'? reset?='reset'
+	 *     constraint?='constraint' '{'? ';'? (ambiguity) '{'? '}'? resetclock=[Clock|ID]
+	 *     constraint?='constraint' '{'? ';'? (ambiguity) '{'? cConstraint=ClockConstraintExpression
+	 *     constraint?='constraint' '{'? ';'? (ambiguity) clockconstraint?='clock'
+	 *     constraintexp=ClockConstraintExpression (ambiguity) '{'? '}'? ';' (rule end)
+	 *     constraintexp=ClockConstraintExpression (ambiguity) '{'? '}'? reset?='reset'
+	 *     constraintexp=ClockConstraintExpression (ambiguity) '{'? '}'? resetclock=[Clock|ID]
+	 *     constraintexp=ClockConstraintExpression (ambiguity) '{'? cConstraint=ClockConstraintExpression
+	 *     constraintexp=ClockConstraintExpression (ambiguity) clockconstraint?='clock'
+	 *     future?='future' '{'? ';'? (ambiguity) '{'? '}'? ';' (rule end)
+	 *     future?='future' '{'? ';'? (ambiguity) '{'? '}'? reset?='reset'
+	 *     future?='future' '{'? ';'? (ambiguity) '{'? '}'? resetclock=[Clock|ID]
+	 *     future?='future' '{'? ';'? (ambiguity) '{'? cConstraint=ClockConstraintExpression
+	 *     future?='future' '{'? ';'? (ambiguity) clockconstraint?='clock'
+	 *     past?='past' '{'? ';'? (ambiguity) '{'? '}'? ';' (rule end)
+	 *     past?='past' '{'? ';'? (ambiguity) '{'? '}'? reset?='reset'
+	 *     past?='past' '{'? ';'? (ambiguity) '{'? '}'? resetclock=[Clock|ID]
+	 *     past?='past' '{'? ';'? (ambiguity) '{'? cConstraint=ClockConstraintExpression
+	 *     past?='past' '{'? ';'? (ambiguity) clockconstraint?='clock'
+	 *     receiver=[Object|ID] '{'? ';'? (ambiguity) '{'? '}'? ';' (rule end)
+	 *     receiver=[Object|ID] '{'? ';'? (ambiguity) '{'? '}'? reset?='reset'
+	 *     receiver=[Object|ID] '{'? ';'? (ambiguity) '{'? '}'? resetclock=[Clock|ID]
+	 *     receiver=[Object|ID] '{'? ';'? (ambiguity) '{'? cConstraint=ClockConstraintExpression
+	 *     receiver=[Object|ID] '{'? ';'? (ambiguity) clockconstraint?='clock'
 	 */
-	protected void emit_Message_RightCurlyBracketKeyword_16_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Message_RightCurlyBracketKeyword_18_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     '}'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     c=[Constraint|ID] ';'? '}'? '{'? (ambiguity) ';' (rule end)
+	 *     c=[Constraint|ID] ';'? '}'? '{'? (ambiguity) reset?='reset'
+	 *     c=[Constraint|ID] ';'? '}'? '{'? (ambiguity) resetclock=[Clock|ID]
+	 *     cConstraint=ClockConstraintExpression (ambiguity) ';' (rule end)
+	 *     cConstraint=ClockConstraintExpression (ambiguity) reset?='reset'
+	 *     cConstraint=ClockConstraintExpression (ambiguity) resetclock=[Clock|ID]
+	 *     clockconstraint?='clock' 'constraint' '{'? (ambiguity) ';' (rule end)
+	 *     clockconstraint?='clock' 'constraint' '{'? (ambiguity) reset?='reset'
+	 *     clockconstraint?='clock' 'constraint' '{'? (ambiguity) resetclock=[Clock|ID]
+	 *     constraint?='constraint' '{'? ';'? '}'? '{'? (ambiguity) ';' (rule end)
+	 *     constraint?='constraint' '{'? ';'? '}'? '{'? (ambiguity) reset?='reset'
+	 *     constraint?='constraint' '{'? ';'? '}'? '{'? (ambiguity) resetclock=[Clock|ID]
+	 *     constraintexp=ClockConstraintExpression '}'? '{'? (ambiguity) ';' (rule end)
+	 *     constraintexp=ClockConstraintExpression '}'? '{'? (ambiguity) reset?='reset'
+	 *     constraintexp=ClockConstraintExpression '}'? '{'? (ambiguity) resetclock=[Clock|ID]
+	 *     future?='future' '{'? ';'? '}'? '{'? (ambiguity) ';' (rule end)
+	 *     future?='future' '{'? ';'? '}'? '{'? (ambiguity) reset?='reset'
+	 *     future?='future' '{'? ';'? '}'? '{'? (ambiguity) resetclock=[Clock|ID]
+	 *     past?='past' '{'? ';'? '}'? '{'? (ambiguity) ';' (rule end)
+	 *     past?='past' '{'? ';'? '}'? '{'? (ambiguity) reset?='reset'
+	 *     past?='past' '{'? ';'? '}'? '{'? (ambiguity) resetclock=[Clock|ID]
+	 *     receiver=[Object|ID] '{'? ';'? '}'? '{'? (ambiguity) ';' (rule end)
+	 *     receiver=[Object|ID] '{'? ';'? '}'? '{'? (ambiguity) reset?='reset'
+	 *     receiver=[Object|ID] '{'? ';'? '}'? '{'? (ambiguity) resetclock=[Clock|ID]
+	 */
+	protected void emit_Message_RightCurlyBracketKeyword_22_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ';'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     c=[Constraint|ID] (ambiguity) '}'? '{'? '}'? ';' (rule end)
+	 *     c=[Constraint|ID] (ambiguity) '}'? '{'? '}'? reset?='reset'
+	 *     c=[Constraint|ID] (ambiguity) '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     c=[Constraint|ID] (ambiguity) '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     c=[Constraint|ID] (ambiguity) '}'? clockconstraint?='clock'
+	 *     c=[Constraint|ID] (ambiguity) constraintexp=ClockConstraintExpression
+	 *     constraint?='constraint' '{'? (ambiguity) '}'? '{'? '}'? ';' (rule end)
+	 *     constraint?='constraint' '{'? (ambiguity) '}'? '{'? '}'? reset?='reset'
+	 *     constraint?='constraint' '{'? (ambiguity) '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     constraint?='constraint' '{'? (ambiguity) '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     constraint?='constraint' '{'? (ambiguity) '}'? clockconstraint?='clock'
+	 *     constraint?='constraint' '{'? (ambiguity) constraintexp=ClockConstraintExpression
+	 *     future?='future' '{'? (ambiguity) '}'? '{'? '}'? ';' (rule end)
+	 *     future?='future' '{'? (ambiguity) '}'? '{'? '}'? reset?='reset'
+	 *     future?='future' '{'? (ambiguity) '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     future?='future' '{'? (ambiguity) '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     future?='future' '{'? (ambiguity) '}'? clockconstraint?='clock'
+	 *     future?='future' '{'? (ambiguity) constraintexp=ClockConstraintExpression
+	 *     past?='past' '{'? (ambiguity) '}'? '{'? '}'? ';' (rule end)
+	 *     past?='past' '{'? (ambiguity) '}'? '{'? '}'? reset?='reset'
+	 *     past?='past' '{'? (ambiguity) '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     past?='past' '{'? (ambiguity) '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     past?='past' '{'? (ambiguity) '}'? clockconstraint?='clock'
+	 *     past?='past' '{'? (ambiguity) constraintexp=ClockConstraintExpression
+	 *     receiver=[Object|ID] '{'? (ambiguity) '}'? '{'? '}'? ';' (rule end)
+	 *     receiver=[Object|ID] '{'? (ambiguity) '}'? '{'? '}'? reset?='reset'
+	 *     receiver=[Object|ID] '{'? (ambiguity) '}'? '{'? '}'? resetclock=[Clock|ID]
+	 *     receiver=[Object|ID] '{'? (ambiguity) '}'? '{'? cConstraint=ClockConstraintExpression
+	 *     receiver=[Object|ID] '{'? (ambiguity) '}'? clockconstraint?='clock'
+	 *     receiver=[Object|ID] '{'? (ambiguity) constraintexp=ClockConstraintExpression
+	 */
+	protected void emit_Message_SemicolonKeyword_16_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

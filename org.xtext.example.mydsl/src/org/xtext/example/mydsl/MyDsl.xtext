@@ -10,6 +10,7 @@ Domain:
 	contextfragments+=ContextFragment*
 	objects+=Object*
 	parameters+=Parameter*
+	clocks+=Clock*
 	constraints+=Constraint*
 	scenarios+=Scenario* ('}')?
 ;
@@ -84,8 +85,20 @@ Message:
 	 'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' (required?='required')? (fail?='fail')? (strict?='strict')?
 	 sender=[Object] '->' receiver=[Object]
 	 (past?='past')? (future?='future')? (constraint?='constraint')?
-	 ('{')? (c=[Constraint])? ('}')? ';'
+	 ('{')? (c=[Constraint])? (';')? (constraintexp=ClockConstraintExpression)? ('}')? 
+	 (clockconstraint?='clock' 'constraint')? 
+	 ('{')? (cConstraint=ClockConstraintExpression)? ('}')? 
+	 (reset?='reset')? (resetclock=[Clock])?';'
+;
 
+ClockConstraint:
+	clock=[Clock] op+=Operator constant=Number
+;
+
+ClockConstraintExpression:
+	lclockconstraint=ClockConstraint
+	| 'not' '(' lclockconstraint=ClockConstraint ')'
+	| lclockconstraint=ClockConstraint 'and' rclockconstraint=ClockConstraint
 ;
 
 ContextMessage:
@@ -148,6 +161,10 @@ ParameterConstraint:
 
 Operator:
 	greater?='>' | smaller?='<' | greaterequals?='>=' | smallerequals?='<=' | equals?='==' | notequals?='!='
+;
+
+Clock:
+	'clock' name=ID ';'
 ;
 
 enum Type:

@@ -14,6 +14,8 @@
         eType="#//Object" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clocks" upperBound="-1"
+        eType="#//Clock" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scenarios" upperBound="-1"
@@ -126,6 +128,25 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="future" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="#//Constraint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraintexp" eType="#//ClockConstraintExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockconstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cConstraint" eType="#//ClockConstraintExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resetclock" eType="#//Clock"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClockConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clock" eType="#//Clock"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" upperBound="-1" eType="#//Operator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClockConstraintExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lclockconstraint" eType="#//ClockConstraint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rclockconstraint" eType="#//ClockConstraint"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContextMessage">
     <eStructuralFeatures xsi:type="ecore:EReference" name="content" upperBound="-1"
@@ -224,6 +245,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="smallerequals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="equals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="notequals" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Clock">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Type">
     <eLiterals name="integer" literal="integer"/>

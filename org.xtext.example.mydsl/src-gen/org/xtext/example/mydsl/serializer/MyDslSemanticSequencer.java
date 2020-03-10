@@ -24,6 +24,9 @@ import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.Clock;
+import org.xtext.example.mydsl.myDsl.ClockConstraint;
+import org.xtext.example.mydsl.myDsl.ClockConstraintExpression;
 import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
@@ -96,6 +99,15 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.CHANGE_TO_RELATION:
 				sequence_ChangeToRelation(context, (ChangeToRelation) semanticObject); 
+				return; 
+			case MyDslPackage.CLOCK:
+				sequence_Clock(context, (Clock) semanticObject); 
+				return; 
+			case MyDslPackage.CLOCK_CONSTRAINT:
+				sequence_ClockConstraint(context, (ClockConstraint) semanticObject); 
+				return; 
+			case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION:
+				sequence_ClockConstraintExpression(context, (ClockConstraintExpression) semanticObject); 
 				return; 
 			case MyDslPackage.CONSTANT_PARAMS:
 				sequence_ConstantParams(context, (ConstantParams) semanticObject); 
@@ -324,6 +336,48 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     ClockConstraintExpression returns ClockConstraintExpression
+	 *
+	 * Constraint:
+	 *     (lclockconstraint=ClockConstraint | lclockconstraint=ClockConstraint | (lclockconstraint=ClockConstraint rclockconstraint=ClockConstraint))
+	 */
+	protected void sequence_ClockConstraintExpression(ISerializationContext context, ClockConstraintExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ClockConstraint returns ClockConstraint
+	 *
+	 * Constraint:
+	 *     (clock=[Clock|ID] op+=Operator constant=Number)
+	 */
+	protected void sequence_ClockConstraint(ISerializationContext context, ClockConstraint semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Clock returns Clock
+	 *
+	 * Constraint:
+	 *     name=ID
+	 */
+	protected void sequence_Clock(ISerializationContext context, Clock semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CLOCK__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CLOCK__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getClockAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ConstantParams returns ConstantParams
 	 *
 	 * Constraint:
@@ -428,6 +482,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         contextfragments+=ContextFragment* 
 	 *         objects+=Object* 
 	 *         parameters+=Parameter* 
+	 *         clocks+=Clock* 
 	 *         constraints+=Constraint* 
 	 *         scenarios+=Scenario*
 	 *     )
@@ -571,7 +626,12 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         past?='past'? 
 	 *         future?='future'? 
 	 *         constraint?='constraint'? 
-	 *         c=[Constraint|ID]?
+	 *         c=[Constraint|ID]? 
+	 *         constraintexp=ClockConstraintExpression? 
+	 *         clockconstraint?='clock'? 
+	 *         cConstraint=ClockConstraintExpression? 
+	 *         reset?='reset'? 
+	 *         resetclock=[Clock|ID]?
 	 *     )
 	 */
 	protected void sequence_Message(ISerializationContext context, Message semanticObject) {

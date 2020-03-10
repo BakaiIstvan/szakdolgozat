@@ -213,9 +213,28 @@ ruleDomain returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getConstraintsConstraintParserRuleCall_8_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getClocksClockParserRuleCall_8_0());
 				}
-				lv_constraints_8_0=ruleConstraint
+				lv_clocks_8_0=ruleClock
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDomainRule());
+					}
+					add(
+						$current,
+						"clocks",
+						lv_clocks_8_0,
+						"org.xtext.example.mydsl.MyDsl.Clock");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDomainAccess().getConstraintsConstraintParserRuleCall_9_0());
+				}
+				lv_constraints_9_0=ruleConstraint
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -223,7 +242,7 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"constraints",
-						lv_constraints_8_0,
+						lv_constraints_9_0,
 						"org.xtext.example.mydsl.MyDsl.Constraint");
 					afterParserOrEnumRuleCall();
 				}
@@ -232,9 +251,9 @@ ruleDomain returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDomainAccess().getScenariosScenarioParserRuleCall_9_0());
+					newCompositeNode(grammarAccess.getDomainAccess().getScenariosScenarioParserRuleCall_10_0());
 				}
-				lv_scenarios_9_0=ruleScenario
+				lv_scenarios_10_0=ruleScenario
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDomainRule());
@@ -242,16 +261,16 @@ ruleDomain returns [EObject current=null]
 					add(
 						$current,
 						"scenarios",
-						lv_scenarios_9_0,
+						lv_scenarios_10_0,
 						"org.xtext.example.mydsl.MyDsl.Scenario");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)*
 		(
-			otherlv_10='}'
+			otherlv_11='}'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_10());
+				newLeafNode(otherlv_11, grammarAccess.getDomainAccess().getRightCurlyBracketKeyword_11());
 			}
 		)?
 	)
@@ -1739,15 +1758,304 @@ ruleMessage returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_17='}'
+			otherlv_17=';'
 			{
-				newLeafNode(otherlv_17, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_16());
+				newLeafNode(otherlv_17, grammarAccess.getMessageAccess().getSemicolonKeyword_16());
 			}
 		)?
-		otherlv_18=';'
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMessageAccess().getConstraintexpClockConstraintExpressionParserRuleCall_17_0());
+				}
+				lv_constraintexp_18_0=ruleClockConstraintExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMessageRule());
+					}
+					set(
+						$current,
+						"constraintexp",
+						lv_constraintexp_18_0,
+						"org.xtext.example.mydsl.MyDsl.ClockConstraintExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			otherlv_19='}'
+			{
+				newLeafNode(otherlv_19, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_18());
+			}
+		)?
+		(
+			(
+				(
+					lv_clockconstraint_20_0='clock'
+					{
+						newLeafNode(lv_clockconstraint_20_0, grammarAccess.getMessageAccess().getClockconstraintClockKeyword_19_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMessageRule());
+						}
+						setWithLastConsumed($current, "clockconstraint", true, "clock");
+					}
+				)
+			)
+			otherlv_21='constraint'
+			{
+				newLeafNode(otherlv_21, grammarAccess.getMessageAccess().getConstraintKeyword_19_1());
+			}
+		)?
+		(
+			otherlv_22='{'
+			{
+				newLeafNode(otherlv_22, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_20());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMessageAccess().getCConstraintClockConstraintExpressionParserRuleCall_21_0());
+				}
+				lv_cConstraint_23_0=ruleClockConstraintExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMessageRule());
+					}
+					set(
+						$current,
+						"cConstraint",
+						lv_cConstraint_23_0,
+						"org.xtext.example.mydsl.MyDsl.ClockConstraintExpression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			otherlv_24='}'
+			{
+				newLeafNode(otherlv_24, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_22());
+			}
+		)?
+		(
+			(
+				lv_reset_25_0='reset'
+				{
+					newLeafNode(lv_reset_25_0, grammarAccess.getMessageAccess().getResetResetKeyword_23_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMessageRule());
+					}
+					setWithLastConsumed($current, "reset", true, "reset");
+				}
+			)
+		)?
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMessageRule());
+					}
+				}
+				otherlv_26=RULE_ID
+				{
+					newLeafNode(otherlv_26, grammarAccess.getMessageAccess().getResetclockClockCrossReference_24_0());
+				}
+			)
+		)?
+		otherlv_27=';'
 		{
-			newLeafNode(otherlv_18, grammarAccess.getMessageAccess().getSemicolonKeyword_17());
+			newLeafNode(otherlv_27, grammarAccess.getMessageAccess().getSemicolonKeyword_25());
 		}
+	)
+;
+
+// Entry rule entryRuleClockConstraint
+entryRuleClockConstraint returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClockConstraintRule()); }
+	iv_ruleClockConstraint=ruleClockConstraint
+	{ $current=$iv_ruleClockConstraint.current; }
+	EOF;
+
+// Rule ClockConstraint
+ruleClockConstraint returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getClockConstraintRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getClockConstraintAccess().getClockClockCrossReference_0_0());
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getClockConstraintAccess().getOpOperatorParserRuleCall_1_0());
+				}
+				lv_op_1_0=ruleOperator
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClockConstraintRule());
+					}
+					add(
+						$current,
+						"op",
+						lv_op_1_0,
+						"org.xtext.example.mydsl.MyDsl.Operator");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				lv_constant_2_0=RULE_NUMBER
+				{
+					newLeafNode(lv_constant_2_0, grammarAccess.getClockConstraintAccess().getConstantNumberTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getClockConstraintRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"constant",
+						lv_constant_2_0,
+						"org.xtext.example.mydsl.MyDsl.Number");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleClockConstraintExpression
+entryRuleClockConstraintExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClockConstraintExpressionRule()); }
+	iv_ruleClockConstraintExpression=ruleClockConstraintExpression
+	{ $current=$iv_ruleClockConstraintExpression.current; }
+	EOF;
+
+// Rule ClockConstraintExpression
+ruleClockConstraintExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getClockConstraintExpressionAccess().getLclockconstraintClockConstraintParserRuleCall_0_0());
+				}
+				lv_lclockconstraint_0_0=ruleClockConstraint
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClockConstraintExpressionRule());
+					}
+					set(
+						$current,
+						"lclockconstraint",
+						lv_lclockconstraint_0_0,
+						"org.xtext.example.mydsl.MyDsl.ClockConstraint");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			otherlv_1='not'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getClockConstraintExpressionAccess().getNotKeyword_1_0());
+			}
+			otherlv_2='('
+			{
+				newLeafNode(otherlv_2, grammarAccess.getClockConstraintExpressionAccess().getLeftParenthesisKeyword_1_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getClockConstraintExpressionAccess().getLclockconstraintClockConstraintParserRuleCall_1_2_0());
+					}
+					lv_lclockconstraint_3_0=ruleClockConstraint
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getClockConstraintExpressionRule());
+						}
+						set(
+							$current,
+							"lclockconstraint",
+							lv_lclockconstraint_3_0,
+							"org.xtext.example.mydsl.MyDsl.ClockConstraint");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_4=')'
+			{
+				newLeafNode(otherlv_4, grammarAccess.getClockConstraintExpressionAccess().getRightParenthesisKeyword_1_3());
+			}
+		)
+		    |
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getClockConstraintExpressionAccess().getLclockconstraintClockConstraintParserRuleCall_2_0_0());
+					}
+					lv_lclockconstraint_5_0=ruleClockConstraint
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getClockConstraintExpressionRule());
+						}
+						set(
+							$current,
+							"lclockconstraint",
+							lv_lclockconstraint_5_0,
+							"org.xtext.example.mydsl.MyDsl.ClockConstraint");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_6='and'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getClockConstraintExpressionAccess().getAndKeyword_2_1());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getClockConstraintExpressionAccess().getRclockconstraintClockConstraintParserRuleCall_2_2_0());
+					}
+					lv_rclockconstraint_7_0=ruleClockConstraint
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getClockConstraintExpressionRule());
+						}
+						set(
+							$current,
+							"rclockconstraint",
+							lv_rclockconstraint_7_0,
+							"org.xtext.example.mydsl.MyDsl.ClockConstraint");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
 	)
 ;
 
@@ -3037,6 +3345,51 @@ ruleOperator returns [EObject current=null]
 				}
 			)
 		)
+	)
+;
+
+// Entry rule entryRuleClock
+entryRuleClock returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getClockRule()); }
+	iv_ruleClock=ruleClock
+	{ $current=$iv_ruleClock.current; }
+	EOF;
+
+// Rule Clock
+ruleClock returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='clock'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getClockAccess().getClockKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getClockAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getClockRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_2=';'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getClockAccess().getSemicolonKeyword_2());
+		}
 	)
 ;
 

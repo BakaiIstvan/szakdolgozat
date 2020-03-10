@@ -132,13 +132,22 @@ public interface MyDslPackage extends EPackage
   int DOMAIN__PARAMETERS = 6;
 
   /**
+   * The feature id for the '<em><b>Clocks</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOMAIN__CLOCKS = 7;
+
+  /**
    * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN__CONSTRAINTS = 7;
+  int DOMAIN__CONSTRAINTS = 8;
 
   /**
    * The feature id for the '<em><b>Scenarios</b></em>' containment reference list.
@@ -147,7 +156,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN__SCENARIOS = 8;
+  int DOMAIN__SCENARIOS = 9;
 
   /**
    * The number of structural features of the '<em>Domain</em>' class.
@@ -156,7 +165,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOMAIN_FEATURE_COUNT = 9;
+  int DOMAIN_FEATURE_COUNT = 10;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.IncludeImpl <em>Include</em>}' class.
@@ -946,13 +955,141 @@ public interface MyDslPackage extends EPackage
   int MESSAGE__C = 11;
 
   /**
+   * The feature id for the '<em><b>Constraintexp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MESSAGE__CONSTRAINTEXP = 12;
+
+  /**
+   * The feature id for the '<em><b>Clockconstraint</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MESSAGE__CLOCKCONSTRAINT = 13;
+
+  /**
+   * The feature id for the '<em><b>CConstraint</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MESSAGE__CCONSTRAINT = 14;
+
+  /**
+   * The feature id for the '<em><b>Reset</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MESSAGE__RESET = 15;
+
+  /**
+   * The feature id for the '<em><b>Resetclock</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MESSAGE__RESETCLOCK = 16;
+
+  /**
    * The number of structural features of the '<em>Message</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MESSAGE_FEATURE_COUNT = 12;
+  int MESSAGE_FEATURE_COUNT = 17;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintImpl <em>Clock Constraint</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ClockConstraintImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getClockConstraint()
+   * @generated
+   */
+  int CLOCK_CONSTRAINT = 14;
+
+  /**
+   * The feature id for the '<em><b>Clock</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT__CLOCK = 0;
+
+  /**
+   * The feature id for the '<em><b>Op</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT__OP = 1;
+
+  /**
+   * The feature id for the '<em><b>Constant</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT__CONSTANT = 2;
+
+  /**
+   * The number of structural features of the '<em>Clock Constraint</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl <em>Clock Constraint Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getClockConstraintExpression()
+   * @generated
+   */
+  int CLOCK_CONSTRAINT_EXPRESSION = 15;
+
+  /**
+   * The feature id for the '<em><b>Lclockconstraint</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT = 0;
+
+  /**
+   * The feature id for the '<em><b>Rclockconstraint</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT_EXPRESSION__RCLOCKCONSTRAINT = 1;
+
+  /**
+   * The number of structural features of the '<em>Clock Constraint Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_CONSTRAINT_EXPRESSION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl <em>Context Message</em>}' class.
@@ -962,7 +1099,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessage()
    * @generated
    */
-  int CONTEXT_MESSAGE = 14;
+  int CONTEXT_MESSAGE = 16;
 
   /**
    * The feature id for the '<em><b>Content</b></em>' containment reference list.
@@ -1017,7 +1154,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getContextMessageContent()
    * @generated
    */
-  int CONTEXT_MESSAGE_CONTENT = 15;
+  int CONTEXT_MESSAGE_CONTENT = 17;
 
   /**
    * The feature id for the '<em><b>Match</b></em>' containment reference list.
@@ -1054,7 +1191,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getMatchMessage()
    * @generated
    */
-  int MATCH_MESSAGE = 16;
+  int MATCH_MESSAGE = 18;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1091,7 +1228,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeMessage()
    * @generated
    */
-  int CHANGE_MESSAGE = 17;
+  int CHANGE_MESSAGE = 19;
 
   /**
    * The feature id for the '<em><b>Disappear</b></em>' containment reference list.
@@ -1146,7 +1283,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAppearMessage()
    * @generated
    */
-  int APPEAR_MESSAGE = 18;
+  int APPEAR_MESSAGE = 20;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1183,7 +1320,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getDisappearMessage()
    * @generated
    */
-  int DISAPPEAR_MESSAGE = 19;
+  int DISAPPEAR_MESSAGE = 21;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1220,7 +1357,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToMessage()
    * @generated
    */
-  int CHANGE_TO_MESSAGE = 20;
+  int CHANGE_TO_MESSAGE = 22;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1275,7 +1412,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getChangeToRelation()
    * @generated
    */
-  int CHANGE_TO_RELATION = 21;
+  int CHANGE_TO_RELATION = 23;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1330,7 +1467,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAssertionEntity()
    * @generated
    */
-  int ASSERTION_ENTITY = 22;
+  int ASSERTION_ENTITY = 24;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1394,7 +1531,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAssertionRelation()
    * @generated
    */
-  int ASSERTION_RELATION = 23;
+  int ASSERTION_RELATION = 25;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' reference.
@@ -1458,7 +1595,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParams()
    * @generated
    */
-  int PARAMS = 24;
+  int PARAMS = 26;
 
   /**
    * The feature id for the '<em><b>Params</b></em>' reference list.
@@ -1486,7 +1623,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstantParams()
    * @generated
    */
-  int CONSTANT_PARAMS = 25;
+  int CONSTANT_PARAMS = 27;
 
   /**
    * The feature id for the '<em><b>Values</b></em>' containment reference list.
@@ -1514,7 +1651,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParameter()
    * @generated
    */
-  int PARAMETER = 26;
+  int PARAMETER = 28;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute list.
@@ -1560,7 +1697,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParameterConstraint()
    * @generated
    */
-  int PARAMETER_CONSTRAINT = 27;
+  int PARAMETER_CONSTRAINT = 29;
 
   /**
    * The feature id for the '<em><b>Param</b></em>' reference.
@@ -1615,7 +1752,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getOperator()
    * @generated
    */
-  int OPERATOR = 28;
+  int OPERATOR = 30;
 
   /**
    * The feature id for the '<em><b>Greater</b></em>' attribute.
@@ -1681,6 +1818,34 @@ public interface MyDslPackage extends EPackage
   int OPERATOR_FEATURE_COUNT = 6;
 
   /**
+   * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ClockImpl <em>Clock</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.mydsl.myDsl.impl.ClockImpl
+   * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getClock()
+   * @generated
+   */
+  int CLOCK = 31;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK__NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Clock</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLOCK_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1688,7 +1853,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObjectType()
    * @generated
    */
-  int OBJECT_TYPE = 29;
+  int OBJECT_TYPE = 32;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1716,7 +1881,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 30;
+  int OBJECT = 33;
 
   /**
    * The feature id for the '<em><b>Object</b></em>' containment reference list.
@@ -1753,7 +1918,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 31;
+  int CONSTRAINT = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1790,7 +1955,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAlt()
    * @generated
    */
-  int ALT = 32;
+  int ALT = 35;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1818,7 +1983,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getAltCondition()
    * @generated
    */
-  int ALT_CONDITION = 33;
+  int ALT_CONDITION = 36;
 
   /**
    * The feature id for the '<em><b>Param</b></em>' reference.
@@ -1873,7 +2038,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 34;
+  int EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Alt Condition</b></em>' containment reference list.
@@ -1910,7 +2075,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getPar()
    * @generated
    */
-  int PAR = 35;
+  int PAR = 38;
 
   /**
    * The feature id for the '<em><b>Parexpression</b></em>' containment reference list.
@@ -1938,7 +2103,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getParExpression()
    * @generated
    */
-  int PAR_EXPRESSION = 36;
+  int PAR_EXPRESSION = 39;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1975,7 +2140,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getLoop()
    * @generated
    */
-  int LOOP = 37;
+  int LOOP = 40;
 
   /**
    * The feature id for the '<em><b>Min</b></em>' attribute.
@@ -2021,7 +2186,7 @@ public interface MyDslPackage extends EPackage
    * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getType()
    * @generated
    */
-  int TYPE = 38;
+  int TYPE = 41;
 
 
   /**
@@ -2110,6 +2275,17 @@ public interface MyDslPackage extends EPackage
    * @generated
    */
   EReference getDomain_Parameters();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getClocks <em>Clocks</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Clocks</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Domain#getClocks()
+   * @see #getDomain()
+   * @generated
+   */
+  EReference getDomain_Clocks();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Domain#getConstraints <em>Constraints</em>}'.
@@ -2935,6 +3111,136 @@ public interface MyDslPackage extends EPackage
   EReference getMessage_C();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Message#getConstraintexp <em>Constraintexp</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Constraintexp</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Message#getConstraintexp()
+   * @see #getMessage()
+   * @generated
+   */
+  EReference getMessage_Constraintexp();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Message#isClockconstraint <em>Clockconstraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Clockconstraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Message#isClockconstraint()
+   * @see #getMessage()
+   * @generated
+   */
+  EAttribute getMessage_Clockconstraint();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Message#getCConstraint <em>CConstraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>CConstraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Message#getCConstraint()
+   * @see #getMessage()
+   * @generated
+   */
+  EReference getMessage_CConstraint();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Message#isReset <em>Reset</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Reset</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Message#isReset()
+   * @see #getMessage()
+   * @generated
+   */
+  EAttribute getMessage_Reset();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Message#getResetclock <em>Resetclock</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Resetclock</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Message#getResetclock()
+   * @see #getMessage()
+   * @generated
+   */
+  EReference getMessage_Resetclock();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ClockConstraint <em>Clock Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Clock Constraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraint
+   * @generated
+   */
+  EClass getClockConstraint();
+
+  /**
+   * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.ClockConstraint#getClock <em>Clock</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Clock</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraint#getClock()
+   * @see #getClockConstraint()
+   * @generated
+   */
+  EReference getClockConstraint_Clock();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.ClockConstraint#getOp <em>Op</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Op</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraint#getOp()
+   * @see #getClockConstraint()
+   * @generated
+   */
+  EReference getClockConstraint_Op();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.ClockConstraint#getConstant <em>Constant</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Constant</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraint#getConstant()
+   * @see #getClockConstraint()
+   * @generated
+   */
+  EAttribute getClockConstraint_Constant();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ClockConstraintExpression <em>Clock Constraint Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Clock Constraint Expression</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraintExpression
+   * @generated
+   */
+  EClass getClockConstraintExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ClockConstraintExpression#getLclockconstraint <em>Lclockconstraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Lclockconstraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraintExpression#getLclockconstraint()
+   * @see #getClockConstraintExpression()
+   * @generated
+   */
+  EReference getClockConstraintExpression_Lclockconstraint();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.ClockConstraintExpression#getRclockconstraint <em>Rclockconstraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Rclockconstraint</em>'.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraintExpression#getRclockconstraint()
+   * @see #getClockConstraintExpression()
+   * @generated
+   */
+  EReference getClockConstraintExpression_Rclockconstraint();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ContextMessage <em>Context Message</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3624,6 +3930,27 @@ public interface MyDslPackage extends EPackage
   EAttribute getOperator_Notequals();
 
   /**
+   * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.Clock <em>Clock</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Clock</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Clock
+   * @generated
+   */
+  EClass getClock();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Clock#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.xtext.example.mydsl.myDsl.Clock#getName()
+   * @see #getClock()
+   * @generated
+   */
+  EAttribute getClock_Name();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.mydsl.myDsl.ObjectType <em>Object Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4009,6 +4336,14 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EReference DOMAIN__PARAMETERS = eINSTANCE.getDomain_Parameters();
+
+    /**
+     * The meta object literal for the '<em><b>Clocks</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOMAIN__CLOCKS = eINSTANCE.getDomain_Clocks();
 
     /**
      * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
@@ -4645,6 +4980,106 @@ public interface MyDslPackage extends EPackage
     EReference MESSAGE__C = eINSTANCE.getMessage_C();
 
     /**
+     * The meta object literal for the '<em><b>Constraintexp</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MESSAGE__CONSTRAINTEXP = eINSTANCE.getMessage_Constraintexp();
+
+    /**
+     * The meta object literal for the '<em><b>Clockconstraint</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MESSAGE__CLOCKCONSTRAINT = eINSTANCE.getMessage_Clockconstraint();
+
+    /**
+     * The meta object literal for the '<em><b>CConstraint</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MESSAGE__CCONSTRAINT = eINSTANCE.getMessage_CConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Reset</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MESSAGE__RESET = eINSTANCE.getMessage_Reset();
+
+    /**
+     * The meta object literal for the '<em><b>Resetclock</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MESSAGE__RESETCLOCK = eINSTANCE.getMessage_Resetclock();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintImpl <em>Clock Constraint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ClockConstraintImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getClockConstraint()
+     * @generated
+     */
+    EClass CLOCK_CONSTRAINT = eINSTANCE.getClockConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Clock</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLOCK_CONSTRAINT__CLOCK = eINSTANCE.getClockConstraint_Clock();
+
+    /**
+     * The meta object literal for the '<em><b>Op</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLOCK_CONSTRAINT__OP = eINSTANCE.getClockConstraint_Op();
+
+    /**
+     * The meta object literal for the '<em><b>Constant</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CLOCK_CONSTRAINT__CONSTANT = eINSTANCE.getClockConstraint_Constant();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl <em>Clock Constraint Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getClockConstraintExpression()
+     * @generated
+     */
+    EClass CLOCK_CONSTRAINT_EXPRESSION = eINSTANCE.getClockConstraintExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Lclockconstraint</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT = eINSTANCE.getClockConstraintExpression_Lclockconstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Rclockconstraint</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CLOCK_CONSTRAINT_EXPRESSION__RCLOCKCONSTRAINT = eINSTANCE.getClockConstraintExpression_Rclockconstraint();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ContextMessageImpl <em>Context Message</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5185,6 +5620,24 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute OPERATOR__NOTEQUALS = eINSTANCE.getOperator_Notequals();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ClockImpl <em>Clock</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.mydsl.myDsl.impl.ClockImpl
+     * @see org.xtext.example.mydsl.myDsl.impl.MyDslPackageImpl#getClock()
+     * @generated
+     */
+    EClass CLOCK = eINSTANCE.getClock();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CLOCK__NAME = eINSTANCE.getClock_Name();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.mydsl.myDsl.impl.ObjectTypeImpl <em>Object Type</em>}' class.

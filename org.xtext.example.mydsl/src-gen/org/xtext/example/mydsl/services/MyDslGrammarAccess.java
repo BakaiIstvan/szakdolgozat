@@ -44,11 +44,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cObjectsObjectParserRuleCall_6_0 = (RuleCall)cObjectsAssignment_6.eContents().get(0);
 		private final Assignment cParametersAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cParametersParameterParserRuleCall_7_0 = (RuleCall)cParametersAssignment_7.eContents().get(0);
-		private final Assignment cConstraintsAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final RuleCall cConstraintsConstraintParserRuleCall_8_0 = (RuleCall)cConstraintsAssignment_8.eContents().get(0);
-		private final Assignment cScenariosAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cScenariosScenarioParserRuleCall_9_0 = (RuleCall)cScenariosAssignment_9.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cClocksAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cClocksClockParserRuleCall_8_0 = (RuleCall)cClocksAssignment_8.eContents().get(0);
+		private final Assignment cConstraintsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cConstraintsConstraintParserRuleCall_9_0 = (RuleCall)cConstraintsAssignment_9.eContents().get(0);
+		private final Assignment cScenariosAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cScenariosScenarioParserRuleCall_10_0 = (RuleCall)cScenariosAssignment_10.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//Domain:
 		//	specification='specification'? name=ID? '{'?
@@ -57,12 +59,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//	contextfragments+=ContextFragment*
 		//	objects+=Object*
 		//	parameters+=Parameter*
+		//	clocks+=Clock*
 		//	constraints+=Constraint*
 		//	scenarios+=Scenario* '}'?;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//specification='specification'? name=ID? '{'? includes+=Include* contextmodels+=ContextModel*
-		//contextfragments+=ContextFragment* objects+=Object* parameters+=Parameter* constraints+=Constraint*
+		//contextfragments+=ContextFragment* objects+=Object* parameters+=Parameter* clocks+=Clock* constraints+=Constraint*
 		//scenarios+=Scenario* '}'?
 		public Group getGroup() { return cGroup; }
 		
@@ -111,20 +114,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//Parameter
 		public RuleCall getParametersParameterParserRuleCall_7_0() { return cParametersParameterParserRuleCall_7_0; }
 		
+		//clocks+=Clock*
+		public Assignment getClocksAssignment_8() { return cClocksAssignment_8; }
+		
+		//Clock
+		public RuleCall getClocksClockParserRuleCall_8_0() { return cClocksClockParserRuleCall_8_0; }
+		
 		//constraints+=Constraint*
-		public Assignment getConstraintsAssignment_8() { return cConstraintsAssignment_8; }
+		public Assignment getConstraintsAssignment_9() { return cConstraintsAssignment_9; }
 		
 		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_8_0() { return cConstraintsConstraintParserRuleCall_8_0; }
+		public RuleCall getConstraintsConstraintParserRuleCall_9_0() { return cConstraintsConstraintParserRuleCall_9_0; }
 		
 		//scenarios+=Scenario*
-		public Assignment getScenariosAssignment_9() { return cScenariosAssignment_9; }
+		public Assignment getScenariosAssignment_10() { return cScenariosAssignment_10; }
 		
 		//Scenario
-		public RuleCall getScenariosScenarioParserRuleCall_9_0() { return cScenariosScenarioParserRuleCall_9_0; }
+		public RuleCall getScenariosScenarioParserRuleCall_10_0() { return cScenariosScenarioParserRuleCall_10_0; }
 		
 		//'}'?
-		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 	}
 	public class IncludeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Include");
@@ -895,19 +904,38 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCAssignment_15 = (Assignment)cGroup.eContents().get(15);
 		private final CrossReference cCConstraintCrossReference_15_0 = (CrossReference)cCAssignment_15.eContents().get(0);
 		private final RuleCall cCConstraintIDTerminalRuleCall_15_0_1 = (RuleCall)cCConstraintCrossReference_15_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_16 = (Keyword)cGroup.eContents().get(16);
-		private final Keyword cSemicolonKeyword_17 = (Keyword)cGroup.eContents().get(17);
+		private final Keyword cSemicolonKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Assignment cConstraintexpAssignment_17 = (Assignment)cGroup.eContents().get(17);
+		private final RuleCall cConstraintexpClockConstraintExpressionParserRuleCall_17_0 = (RuleCall)cConstraintexpAssignment_17.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_18 = (Keyword)cGroup.eContents().get(18);
+		private final Group cGroup_19 = (Group)cGroup.eContents().get(19);
+		private final Assignment cClockconstraintAssignment_19_0 = (Assignment)cGroup_19.eContents().get(0);
+		private final Keyword cClockconstraintClockKeyword_19_0_0 = (Keyword)cClockconstraintAssignment_19_0.eContents().get(0);
+		private final Keyword cConstraintKeyword_19_1 = (Keyword)cGroup_19.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_20 = (Keyword)cGroup.eContents().get(20);
+		private final Assignment cCConstraintAssignment_21 = (Assignment)cGroup.eContents().get(21);
+		private final RuleCall cCConstraintClockConstraintExpressionParserRuleCall_21_0 = (RuleCall)cCConstraintAssignment_21.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_22 = (Keyword)cGroup.eContents().get(22);
+		private final Assignment cResetAssignment_23 = (Assignment)cGroup.eContents().get(23);
+		private final Keyword cResetResetKeyword_23_0 = (Keyword)cResetAssignment_23.eContents().get(0);
+		private final Assignment cResetclockAssignment_24 = (Assignment)cGroup.eContents().get(24);
+		private final CrossReference cResetclockClockCrossReference_24_0 = (CrossReference)cResetclockAssignment_24.eContents().get(0);
+		private final RuleCall cResetclockClockIDTerminalRuleCall_24_0_1 = (RuleCall)cResetclockClockCrossReference_24_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_25 = (Keyword)cGroup.eContents().get(25);
 		
 		//Message:
 		//	'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' required?='required'? fail?='fail'?
 		//	strict?='strict'?
 		//	sender=[Object] '->' receiver=[Object] past?='past'? future?='future'? constraint?='constraint'?
-		//	'{'? c=[Constraint]? '}'? ';';
+		//	'{'? c=[Constraint]? ';'? constraintexp=ClockConstraintExpression? '}'? (clockconstraint?='clock' 'constraint')?
+		//	'{'? cConstraint=ClockConstraintExpression? '}'?
+		//	reset?='reset'? resetclock=[Clock]? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' required?='required'? fail?='fail'?
 		//strict?='strict'? sender=[Object] '->' receiver=[Object] past?='past'? future?='future'? constraint?='constraint'?
-		//'{'? c=[Constraint]? '}'? ';'
+		//'{'? c=[Constraint]? ';'? constraintexp=ClockConstraintExpression? '}'? (clockconstraint?='clock' 'constraint')? '{'?
+		//cConstraint=ClockConstraintExpression? '}'? reset?='reset'? resetclock=[Clock]? ';'
 		public Group getGroup() { return cGroup; }
 		
 		//'message'
@@ -1009,11 +1037,168 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getCConstraintIDTerminalRuleCall_15_0_1() { return cCConstraintIDTerminalRuleCall_15_0_1; }
 		
+		//';'?
+		public Keyword getSemicolonKeyword_16() { return cSemicolonKeyword_16; }
+		
+		//constraintexp=ClockConstraintExpression?
+		public Assignment getConstraintexpAssignment_17() { return cConstraintexpAssignment_17; }
+		
+		//ClockConstraintExpression
+		public RuleCall getConstraintexpClockConstraintExpressionParserRuleCall_17_0() { return cConstraintexpClockConstraintExpressionParserRuleCall_17_0; }
+		
 		//'}'?
-		public Keyword getRightCurlyBracketKeyword_16() { return cRightCurlyBracketKeyword_16; }
+		public Keyword getRightCurlyBracketKeyword_18() { return cRightCurlyBracketKeyword_18; }
+		
+		//(clockconstraint?='clock' 'constraint')?
+		public Group getGroup_19() { return cGroup_19; }
+		
+		//clockconstraint?='clock'
+		public Assignment getClockconstraintAssignment_19_0() { return cClockconstraintAssignment_19_0; }
+		
+		//'clock'
+		public Keyword getClockconstraintClockKeyword_19_0_0() { return cClockconstraintClockKeyword_19_0_0; }
+		
+		//'constraint'
+		public Keyword getConstraintKeyword_19_1() { return cConstraintKeyword_19_1; }
+		
+		//'{'?
+		public Keyword getLeftCurlyBracketKeyword_20() { return cLeftCurlyBracketKeyword_20; }
+		
+		//cConstraint=ClockConstraintExpression?
+		public Assignment getCConstraintAssignment_21() { return cCConstraintAssignment_21; }
+		
+		//ClockConstraintExpression
+		public RuleCall getCConstraintClockConstraintExpressionParserRuleCall_21_0() { return cCConstraintClockConstraintExpressionParserRuleCall_21_0; }
+		
+		//'}'?
+		public Keyword getRightCurlyBracketKeyword_22() { return cRightCurlyBracketKeyword_22; }
+		
+		//reset?='reset'?
+		public Assignment getResetAssignment_23() { return cResetAssignment_23; }
+		
+		//'reset'
+		public Keyword getResetResetKeyword_23_0() { return cResetResetKeyword_23_0; }
+		
+		//resetclock=[Clock]?
+		public Assignment getResetclockAssignment_24() { return cResetclockAssignment_24; }
+		
+		//[Clock]
+		public CrossReference getResetclockClockCrossReference_24_0() { return cResetclockClockCrossReference_24_0; }
+		
+		//ID
+		public RuleCall getResetclockClockIDTerminalRuleCall_24_0_1() { return cResetclockClockIDTerminalRuleCall_24_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_17() { return cSemicolonKeyword_17; }
+		public Keyword getSemicolonKeyword_25() { return cSemicolonKeyword_25; }
+	}
+	public class ClockConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ClockConstraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cClockAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cClockClockCrossReference_0_0 = (CrossReference)cClockAssignment_0.eContents().get(0);
+		private final RuleCall cClockClockIDTerminalRuleCall_0_0_1 = (RuleCall)cClockClockCrossReference_0_0.eContents().get(1);
+		private final Assignment cOpAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOpOperatorParserRuleCall_1_0 = (RuleCall)cOpAssignment_1.eContents().get(0);
+		private final Assignment cConstantAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConstantNumberTerminalRuleCall_2_0 = (RuleCall)cConstantAssignment_2.eContents().get(0);
+		
+		//ClockConstraint:
+		//	clock=[Clock] op+=Operator constant=Number;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//clock=[Clock] op+=Operator constant=Number
+		public Group getGroup() { return cGroup; }
+		
+		//clock=[Clock]
+		public Assignment getClockAssignment_0() { return cClockAssignment_0; }
+		
+		//[Clock]
+		public CrossReference getClockClockCrossReference_0_0() { return cClockClockCrossReference_0_0; }
+		
+		//ID
+		public RuleCall getClockClockIDTerminalRuleCall_0_0_1() { return cClockClockIDTerminalRuleCall_0_0_1; }
+		
+		//op+=Operator
+		public Assignment getOpAssignment_1() { return cOpAssignment_1; }
+		
+		//Operator
+		public RuleCall getOpOperatorParserRuleCall_1_0() { return cOpOperatorParserRuleCall_1_0; }
+		
+		//constant=Number
+		public Assignment getConstantAssignment_2() { return cConstantAssignment_2; }
+		
+		//Number
+		public RuleCall getConstantNumberTerminalRuleCall_2_0() { return cConstantNumberTerminalRuleCall_2_0; }
+	}
+	public class ClockConstraintExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ClockConstraintExpression");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cLclockconstraintAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cLclockconstraintClockConstraintParserRuleCall_0_0 = (RuleCall)cLclockconstraintAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cNotKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
+		private final Assignment cLclockconstraintAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cLclockconstraintClockConstraintParserRuleCall_1_2_0 = (RuleCall)cLclockconstraintAssignment_1_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
+		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
+		private final Assignment cLclockconstraintAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cLclockconstraintClockConstraintParserRuleCall_2_0_0 = (RuleCall)cLclockconstraintAssignment_2_0.eContents().get(0);
+		private final Keyword cAndKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
+		private final Assignment cRclockconstraintAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cRclockconstraintClockConstraintParserRuleCall_2_2_0 = (RuleCall)cRclockconstraintAssignment_2_2.eContents().get(0);
+		
+		//ClockConstraintExpression:
+		//	lclockconstraint=ClockConstraint
+		//	| 'not' '(' lclockconstraint=ClockConstraint ')'
+		//	| lclockconstraint=ClockConstraint 'and' rclockconstraint=ClockConstraint;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//lclockconstraint=ClockConstraint | 'not' '(' lclockconstraint=ClockConstraint ')' | lclockconstraint=ClockConstraint
+		//'and' rclockconstraint=ClockConstraint
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//lclockconstraint=ClockConstraint
+		public Assignment getLclockconstraintAssignment_0() { return cLclockconstraintAssignment_0; }
+		
+		//ClockConstraint
+		public RuleCall getLclockconstraintClockConstraintParserRuleCall_0_0() { return cLclockconstraintClockConstraintParserRuleCall_0_0; }
+		
+		//'not' '(' lclockconstraint=ClockConstraint ')'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'not'
+		public Keyword getNotKeyword_1_0() { return cNotKeyword_1_0; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
+		
+		//lclockconstraint=ClockConstraint
+		public Assignment getLclockconstraintAssignment_1_2() { return cLclockconstraintAssignment_1_2; }
+		
+		//ClockConstraint
+		public RuleCall getLclockconstraintClockConstraintParserRuleCall_1_2_0() { return cLclockconstraintClockConstraintParserRuleCall_1_2_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_1_3() { return cRightParenthesisKeyword_1_3; }
+		
+		//lclockconstraint=ClockConstraint 'and' rclockconstraint=ClockConstraint
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//lclockconstraint=ClockConstraint
+		public Assignment getLclockconstraintAssignment_2_0() { return cLclockconstraintAssignment_2_0; }
+		
+		//ClockConstraint
+		public RuleCall getLclockconstraintClockConstraintParserRuleCall_2_0_0() { return cLclockconstraintClockConstraintParserRuleCall_2_0_0; }
+		
+		//'and'
+		public Keyword getAndKeyword_2_1() { return cAndKeyword_2_1; }
+		
+		//rclockconstraint=ClockConstraint
+		public Assignment getRclockconstraintAssignment_2_2() { return cRclockconstraintAssignment_2_2; }
+		
+		//ClockConstraint
+		public RuleCall getRclockconstraintClockConstraintParserRuleCall_2_2_0() { return cRclockconstraintClockConstraintParserRuleCall_2_2_0; }
 	}
 	public class ContextMessageElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ContextMessage");
@@ -1894,6 +2079,33 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'!='
 		public Keyword getNotequalsExclamationMarkEqualsSignKeyword_5_0() { return cNotequalsExclamationMarkEqualsSignKeyword_5_0; }
 	}
+	public class ClockElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Clock");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cClockKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//Clock:
+		//	'clock' name=ID ';';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'clock' name=ID ';'
+		public Group getGroup() { return cGroup; }
+		
+		//'clock'
+		public Keyword getClockKeyword_0() { return cClockKeyword_0; }
+		
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_2() { return cSemicolonKeyword_2; }
+	}
 	public class ObjectTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.ObjectType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2298,6 +2510,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final ScenarioElements pScenario;
 	private final ScenarioContentElements pScenarioContent;
 	private final MessageElements pMessage;
+	private final ClockConstraintElements pClockConstraint;
+	private final ClockConstraintExpressionElements pClockConstraintExpression;
 	private final ContextMessageElements pContextMessage;
 	private final ContextMessageContentElements pContextMessageContent;
 	private final MatchMessageElements pMatchMessage;
@@ -2313,6 +2527,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	private final ParameterElements pParameter;
 	private final ParameterConstraintElements pParameterConstraint;
 	private final OperatorElements pOperator;
+	private final ClockElements pClock;
 	private final TypeElements eType;
 	private final TerminalRule tNumber;
 	private final TerminalRule tReal;
@@ -2349,6 +2564,8 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pScenario = new ScenarioElements();
 		this.pScenarioContent = new ScenarioContentElements();
 		this.pMessage = new MessageElements();
+		this.pClockConstraint = new ClockConstraintElements();
+		this.pClockConstraintExpression = new ClockConstraintExpressionElements();
 		this.pContextMessage = new ContextMessageElements();
 		this.pContextMessageContent = new ContextMessageContentElements();
 		this.pMatchMessage = new MatchMessageElements();
@@ -2364,6 +2581,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.pParameter = new ParameterElements();
 		this.pParameterConstraint = new ParameterConstraintElements();
 		this.pOperator = new OperatorElements();
+		this.pClock = new ClockElements();
 		this.eType = new TypeElements();
 		this.tNumber = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Number");
 		this.tReal = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.Real");
@@ -2412,6 +2630,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	contextfragments+=ContextFragment*
 	//	objects+=Object*
 	//	parameters+=Parameter*
+	//	clocks+=Clock*
 	//	constraints+=Constraint*
 	//	scenarios+=Scenario* '}'?;
 	public DomainElements getDomainAccess() {
@@ -2565,13 +2784,37 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	//	'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' required?='required'? fail?='fail'?
 	//	strict?='strict'?
 	//	sender=[Object] '->' receiver=[Object] past?='past'? future?='future'? constraint?='constraint'?
-	//	'{'? c=[Constraint]? '}'? ';';
+	//	'{'? c=[Constraint]? ';'? constraintexp=ClockConstraintExpression? '}'? (clockconstraint?='clock' 'constraint')?
+	//	'{'? cConstraint=ClockConstraintExpression? '}'?
+	//	reset?='reset'? resetclock=[Clock]? ';';
 	public MessageElements getMessageAccess() {
 		return pMessage;
 	}
 	
 	public ParserRule getMessageRule() {
 		return getMessageAccess().getRule();
+	}
+	
+	//ClockConstraint:
+	//	clock=[Clock] op+=Operator constant=Number;
+	public ClockConstraintElements getClockConstraintAccess() {
+		return pClockConstraint;
+	}
+	
+	public ParserRule getClockConstraintRule() {
+		return getClockConstraintAccess().getRule();
+	}
+	
+	//ClockConstraintExpression:
+	//	lclockconstraint=ClockConstraint
+	//	| 'not' '(' lclockconstraint=ClockConstraint ')'
+	//	| lclockconstraint=ClockConstraint 'and' rclockconstraint=ClockConstraint;
+	public ClockConstraintExpressionElements getClockConstraintExpressionAccess() {
+		return pClockConstraintExpression;
+	}
+	
+	public ParserRule getClockConstraintExpressionRule() {
+		return getClockConstraintExpressionAccess().getRule();
 	}
 	
 	//ContextMessage:
@@ -2728,6 +2971,16 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getOperatorRule() {
 		return getOperatorAccess().getRule();
+	}
+	
+	//Clock:
+	//	'clock' name=ID ';';
+	public ClockElements getClockAccess() {
+		return pClock;
+	}
+	
+	public ParserRule getClockRule() {
+		return getClockAccess().getRule();
 	}
 	
 	//enum Type:

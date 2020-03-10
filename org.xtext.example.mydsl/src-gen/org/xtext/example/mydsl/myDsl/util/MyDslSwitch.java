@@ -18,6 +18,9 @@ import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.Clock;
+import org.xtext.example.mydsl.myDsl.ClockConstraint;
+import org.xtext.example.mydsl.myDsl.ClockConstraintExpression;
 import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
@@ -208,6 +211,20 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case MyDslPackage.CLOCK_CONSTRAINT:
+      {
+        ClockConstraint clockConstraint = (ClockConstraint)theEObject;
+        T result = caseClockConstraint(clockConstraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION:
+      {
+        ClockConstraintExpression clockConstraintExpression = (ClockConstraintExpression)theEObject;
+        T result = caseClockConstraintExpression(clockConstraintExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case MyDslPackage.CONTEXT_MESSAGE:
       {
         ContextMessage contextMessage = (ContextMessage)theEObject;
@@ -310,6 +327,13 @@ public class MyDslSwitch<T> extends Switch<T>
       {
         Operator operator = (Operator)theEObject;
         T result = caseOperator(operator);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.CLOCK:
+      {
+        Clock clock = (Clock)theEObject;
+        T result = caseClock(clock);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -605,6 +629,38 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Clock Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Clock Constraint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseClockConstraint(ClockConstraint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Clock Constraint Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Clock Constraint Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseClockConstraintExpression(ClockConstraintExpression object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Context Message</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -840,6 +896,22 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseOperator(Operator object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Clock</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Clock</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseClock(Clock object)
   {
     return null;
   }

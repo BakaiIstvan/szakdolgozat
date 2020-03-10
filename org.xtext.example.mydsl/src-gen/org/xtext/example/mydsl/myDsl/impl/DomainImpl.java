@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.xtext.example.mydsl.myDsl.Clock;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
 import org.xtext.example.mydsl.myDsl.ContextModel;
@@ -43,6 +44,7 @@ import org.xtext.example.mydsl.myDsl.Scenario;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getContextfragments <em>Contextfragments</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getClocks <em>Clocks</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.DomainImpl#getScenarios <em>Scenarios</em>}</li>
  * </ul>
@@ -140,6 +142,16 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * @ordered
    */
   protected EList<Parameter> parameters;
+
+  /**
+   * The cached value of the '{@link #getClocks() <em>Clocks</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getClocks()
+   * @generated
+   * @ordered
+   */
+  protected EList<Clock> clocks;
 
   /**
    * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -303,6 +315,20 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Clock> getClocks()
+  {
+    if (clocks == null)
+    {
+      clocks = new EObjectContainmentEList<Clock>(Clock.class, this, MyDslPackage.DOMAIN__CLOCKS);
+    }
+    return clocks;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Constraint> getConstraints()
   {
     if (constraints == null)
@@ -346,6 +372,8 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__PARAMETERS:
         return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+      case MyDslPackage.DOMAIN__CLOCKS:
+        return ((InternalEList<?>)getClocks()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
       case MyDslPackage.DOMAIN__SCENARIOS:
@@ -378,6 +406,8 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         return getObjects();
       case MyDslPackage.DOMAIN__PARAMETERS:
         return getParameters();
+      case MyDslPackage.DOMAIN__CLOCKS:
+        return getClocks();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         return getConstraints();
       case MyDslPackage.DOMAIN__SCENARIOS:
@@ -423,6 +453,10 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         getParameters().clear();
         getParameters().addAll((Collection<? extends Parameter>)newValue);
         return;
+      case MyDslPackage.DOMAIN__CLOCKS:
+        getClocks().clear();
+        getClocks().addAll((Collection<? extends Clock>)newValue);
+        return;
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         getConstraints().clear();
         getConstraints().addAll((Collection<? extends Constraint>)newValue);
@@ -466,6 +500,9 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
       case MyDslPackage.DOMAIN__PARAMETERS:
         getParameters().clear();
         return;
+      case MyDslPackage.DOMAIN__CLOCKS:
+        getClocks().clear();
+        return;
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         getConstraints().clear();
         return;
@@ -500,6 +537,8 @@ public class DomainImpl extends MinimalEObjectImpl.Container implements Domain
         return objects != null && !objects.isEmpty();
       case MyDslPackage.DOMAIN__PARAMETERS:
         return parameters != null && !parameters.isEmpty();
+      case MyDslPackage.DOMAIN__CLOCKS:
+        return clocks != null && !clocks.isEmpty();
       case MyDslPackage.DOMAIN__CONSTRAINTS:
         return constraints != null && !constraints.isEmpty();
       case MyDslPackage.DOMAIN__SCENARIOS:

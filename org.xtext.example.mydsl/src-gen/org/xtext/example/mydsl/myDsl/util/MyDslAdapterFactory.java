@@ -20,6 +20,9 @@ import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.Clock;
+import org.xtext.example.mydsl.myDsl.ClockConstraint;
+import org.xtext.example.mydsl.myDsl.ClockConstraintExpression;
 import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
@@ -183,6 +186,16 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createMessageAdapter();
       }
       @Override
+      public Adapter caseClockConstraint(ClockConstraint object)
+      {
+        return createClockConstraintAdapter();
+      }
+      @Override
+      public Adapter caseClockConstraintExpression(ClockConstraintExpression object)
+      {
+        return createClockConstraintExpressionAdapter();
+      }
+      @Override
       public Adapter caseContextMessage(ContextMessage object)
       {
         return createContextMessageAdapter();
@@ -256,6 +269,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseOperator(Operator object)
       {
         return createOperatorAdapter();
+      }
+      @Override
+      public Adapter caseClock(Clock object)
+      {
+        return createClockAdapter();
       }
       @Override
       public Adapter caseObjectType(ObjectType object)
@@ -535,6 +553,36 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ClockConstraint <em>Clock Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraint
+   * @generated
+   */
+  public Adapter createClockConstraintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ClockConstraintExpression <em>Clock Constraint Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ClockConstraintExpression
+   * @generated
+   */
+  public Adapter createClockConstraintExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ContextMessage <em>Context Message</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -755,6 +803,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createOperatorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Clock <em>Clock</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.Clock
+   * @generated
+   */
+  public Adapter createClockAdapter()
   {
     return null;
   }

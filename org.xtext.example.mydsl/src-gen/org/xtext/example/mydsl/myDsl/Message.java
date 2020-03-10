@@ -28,6 +28,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isFuture <em>Future</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isConstraint <em>Constraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getC <em>C</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getConstraintexp <em>Constraintexp</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isClockconstraint <em>Clockconstraint</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getCConstraint <em>CConstraint</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isReset <em>Reset</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getResetclock <em>Resetclock</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage()
@@ -327,5 +332,135 @@ public interface Message extends EObject
    * @generated
    */
   void setC(Constraint value);
+
+  /**
+   * Returns the value of the '<em><b>Constraintexp</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Constraintexp</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Constraintexp</em>' containment reference.
+   * @see #setConstraintexp(ClockConstraintExpression)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Constraintexp()
+   * @model containment="true"
+   * @generated
+   */
+  ClockConstraintExpression getConstraintexp();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#getConstraintexp <em>Constraintexp</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Constraintexp</em>' containment reference.
+   * @see #getConstraintexp()
+   * @generated
+   */
+  void setConstraintexp(ClockConstraintExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Clockconstraint</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Clockconstraint</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Clockconstraint</em>' attribute.
+   * @see #setClockconstraint(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Clockconstraint()
+   * @model
+   * @generated
+   */
+  boolean isClockconstraint();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#isClockconstraint <em>Clockconstraint</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Clockconstraint</em>' attribute.
+   * @see #isClockconstraint()
+   * @generated
+   */
+  void setClockconstraint(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>CConstraint</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>CConstraint</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>CConstraint</em>' containment reference.
+   * @see #setCConstraint(ClockConstraintExpression)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_CConstraint()
+   * @model containment="true"
+   * @generated
+   */
+  ClockConstraintExpression getCConstraint();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#getCConstraint <em>CConstraint</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>CConstraint</em>' containment reference.
+   * @see #getCConstraint()
+   * @generated
+   */
+  void setCConstraint(ClockConstraintExpression value);
+
+  /**
+   * Returns the value of the '<em><b>Reset</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Reset</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Reset</em>' attribute.
+   * @see #setReset(boolean)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Reset()
+   * @model
+   * @generated
+   */
+  boolean isReset();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#isReset <em>Reset</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Reset</em>' attribute.
+   * @see #isReset()
+   * @generated
+   */
+  void setReset(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Resetclock</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Resetclock</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Resetclock</em>' reference.
+   * @see #setResetclock(Clock)
+   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Resetclock()
+   * @model
+   * @generated
+   */
+  Clock getResetclock();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#getResetclock <em>Resetclock</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Resetclock</em>' reference.
+   * @see #getResetclock()
+   * @generated
+   */
+  void setResetclock(Clock value);
 
 } // Message

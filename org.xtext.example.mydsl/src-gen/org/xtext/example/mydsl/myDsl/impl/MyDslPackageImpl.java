@@ -21,6 +21,9 @@ import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.Clock;
+import org.xtext.example.mydsl.myDsl.ClockConstraint;
+import org.xtext.example.mydsl.myDsl.ClockConstraintExpression;
 import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
@@ -163,6 +166,20 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass clockConstraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass clockConstraintExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass contextMessageEClass = null;
 
   /**
@@ -262,6 +279,13 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * @generated
    */
   private EClass operatorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass clockEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -481,7 +505,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Constraints()
+  public EReference getDomain_Clocks()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(7);
   }
@@ -491,9 +515,19 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Scenarios()
+  public EReference getDomain_Constraints()
   {
     return (EReference)domainEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDomain_Scenarios()
+  {
+    return (EReference)domainEClass.getEStructuralFeatures().get(9);
   }
 
   /**
@@ -1241,6 +1275,126 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getMessage_Constraintexp()
+  {
+    return (EReference)messageEClass.getEStructuralFeatures().get(12);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMessage_Clockconstraint()
+  {
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(13);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMessage_CConstraint()
+  {
+    return (EReference)messageEClass.getEStructuralFeatures().get(14);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMessage_Reset()
+  {
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(15);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMessage_Resetclock()
+  {
+    return (EReference)messageEClass.getEStructuralFeatures().get(16);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getClockConstraint()
+  {
+    return clockConstraintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClockConstraint_Clock()
+  {
+    return (EReference)clockConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClockConstraint_Op()
+  {
+    return (EReference)clockConstraintEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getClockConstraint_Constant()
+  {
+    return (EAttribute)clockConstraintEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getClockConstraintExpression()
+  {
+    return clockConstraintExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClockConstraintExpression_Lclockconstraint()
+  {
+    return (EReference)clockConstraintExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getClockConstraintExpression_Rclockconstraint()
+  {
+    return (EReference)clockConstraintExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getContextMessage()
   {
     return contextMessageEClass;
@@ -1881,6 +2035,26 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getClock()
+  {
+    return clockEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getClock_Name()
+  {
+    return (EAttribute)clockEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getObjectType()
   {
     return objectTypeEClass;
@@ -2194,6 +2368,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(domainEClass, DOMAIN__CONTEXTFRAGMENTS);
     createEReference(domainEClass, DOMAIN__OBJECTS);
     createEReference(domainEClass, DOMAIN__PARAMETERS);
+    createEReference(domainEClass, DOMAIN__CLOCKS);
     createEReference(domainEClass, DOMAIN__CONSTRAINTS);
     createEReference(domainEClass, DOMAIN__SCENARIOS);
 
@@ -2283,6 +2458,20 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(messageEClass, MESSAGE__FUTURE);
     createEAttribute(messageEClass, MESSAGE__CONSTRAINT);
     createEReference(messageEClass, MESSAGE__C);
+    createEReference(messageEClass, MESSAGE__CONSTRAINTEXP);
+    createEAttribute(messageEClass, MESSAGE__CLOCKCONSTRAINT);
+    createEReference(messageEClass, MESSAGE__CCONSTRAINT);
+    createEAttribute(messageEClass, MESSAGE__RESET);
+    createEReference(messageEClass, MESSAGE__RESETCLOCK);
+
+    clockConstraintEClass = createEClass(CLOCK_CONSTRAINT);
+    createEReference(clockConstraintEClass, CLOCK_CONSTRAINT__CLOCK);
+    createEReference(clockConstraintEClass, CLOCK_CONSTRAINT__OP);
+    createEAttribute(clockConstraintEClass, CLOCK_CONSTRAINT__CONSTANT);
+
+    clockConstraintExpressionEClass = createEClass(CLOCK_CONSTRAINT_EXPRESSION);
+    createEReference(clockConstraintExpressionEClass, CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT);
+    createEReference(clockConstraintExpressionEClass, CLOCK_CONSTRAINT_EXPRESSION__RCLOCKCONSTRAINT);
 
     contextMessageEClass = createEClass(CONTEXT_MESSAGE);
     createEReference(contextMessageEClass, CONTEXT_MESSAGE__CONTENT);
@@ -2363,6 +2552,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEAttribute(operatorEClass, OPERATOR__EQUALS);
     createEAttribute(operatorEClass, OPERATOR__NOTEQUALS);
 
+    clockEClass = createEClass(CLOCK);
+    createEAttribute(clockEClass, CLOCK__NAME);
+
     objectTypeEClass = createEClass(OBJECT_TYPE);
     createEAttribute(objectTypeEClass, OBJECT_TYPE__NAME);
 
@@ -2442,6 +2634,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getDomain_Contextfragments(), this.getContextFragment(), null, "contextfragments", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Objects(), this.getObject(), null, "objects", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDomain_Clocks(), this.getClock(), null, "clocks", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDomain_Scenarios(), this.getScenario(), null, "scenarios", null, 0, -1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2531,6 +2724,20 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getMessage_Future(), ecorePackage.getEBoolean(), "future", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Constraint(), ecorePackage.getEBoolean(), "constraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMessage_C(), this.getConstraint(), null, "c", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMessage_Constraintexp(), this.getClockConstraintExpression(), null, "constraintexp", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMessage_Clockconstraint(), ecorePackage.getEBoolean(), "clockconstraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMessage_CConstraint(), this.getClockConstraintExpression(), null, "cConstraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMessage_Reset(), ecorePackage.getEBoolean(), "reset", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMessage_Resetclock(), this.getClock(), null, "resetclock", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(clockConstraintEClass, ClockConstraint.class, "ClockConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getClockConstraint_Clock(), this.getClock(), null, "clock", null, 0, 1, ClockConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getClockConstraint_Op(), this.getOperator(), null, "op", null, 0, -1, ClockConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getClockConstraint_Constant(), ecorePackage.getEString(), "constant", null, 0, 1, ClockConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(clockConstraintExpressionEClass, ClockConstraintExpression.class, "ClockConstraintExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getClockConstraintExpression_Lclockconstraint(), this.getClockConstraint(), null, "lclockconstraint", null, 0, 1, ClockConstraintExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getClockConstraintExpression_Rclockconstraint(), this.getClockConstraint(), null, "rclockconstraint", null, 0, 1, ClockConstraintExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(contextMessageEClass, ContextMessage.class, "ContextMessage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getContextMessage_Content(), this.getContextMessageContent(), null, "content", null, 0, -1, ContextMessage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2610,6 +2817,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEAttribute(getOperator_Smallerequals(), ecorePackage.getEBoolean(), "smallerequals", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOperator_Equals(), ecorePackage.getEBoolean(), "equals", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOperator_Notequals(), ecorePackage.getEBoolean(), "notequals", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(clockEClass, Clock.class, "Clock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getClock_Name(), ecorePackage.getEString(), "name", null, 0, 1, Clock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectTypeEClass, ObjectType.class, "ObjectType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getObjectType_Name(), ecorePackage.getEString(), "name", null, 0, 1, ObjectType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -22,6 +22,9 @@ import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
+import org.xtext.example.mydsl.myDsl.Clock;
+import org.xtext.example.mydsl.myDsl.ClockConstraint;
+import org.xtext.example.mydsl.myDsl.ClockConstraintExpression;
 import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.ContextFragment;
@@ -119,6 +122,8 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.SCENARIO: return createScenario();
       case MyDslPackage.SCENARIO_CONTENT: return createScenarioContent();
       case MyDslPackage.MESSAGE: return createMessage();
+      case MyDslPackage.CLOCK_CONSTRAINT: return createClockConstraint();
+      case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION: return createClockConstraintExpression();
       case MyDslPackage.CONTEXT_MESSAGE: return createContextMessage();
       case MyDslPackage.CONTEXT_MESSAGE_CONTENT: return createContextMessageContent();
       case MyDslPackage.MATCH_MESSAGE: return createMatchMessage();
@@ -134,6 +139,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.PARAMETER: return createParameter();
       case MyDslPackage.PARAMETER_CONSTRAINT: return createParameterConstraint();
       case MyDslPackage.OPERATOR: return createOperator();
+      case MyDslPackage.CLOCK: return createClock();
       case MyDslPackage.OBJECT_TYPE: return createObjectType();
       case MyDslPackage.OBJECT: return createObject();
       case MyDslPackage.CONSTRAINT: return createConstraint();
@@ -341,6 +347,28 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public ClockConstraint createClockConstraint()
+  {
+    ClockConstraintImpl clockConstraint = new ClockConstraintImpl();
+    return clockConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ClockConstraintExpression createClockConstraintExpression()
+  {
+    ClockConstraintExpressionImpl clockConstraintExpression = new ClockConstraintExpressionImpl();
+    return clockConstraintExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ContextMessage createContextMessage()
   {
     ContextMessageImpl contextMessage = new ContextMessageImpl();
@@ -499,6 +527,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     OperatorImpl operator = new OperatorImpl();
     return operator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Clock createClock()
+  {
+    ClockImpl clock = new ClockImpl();
+    return clock;
   }
 
   /**
