@@ -11,7 +11,33 @@ class RegularMessage {
 			b.addState(actualState);
 			b.setInitial(actualState);
 												
-			b.addTransition(new Transition("1", actualState, actualState));
+			b.addTransition(new Transition("!(" + "«m.sender.name»" + "." +	
+				"«m.name»" + "("
+				«FOR p: m.params»
+					«FOR param: 0..<p.params.size»
+						+ "«p.params.get(param).name»"
+						«IF param != p.params.size - 1»
+							+ ", "
+						«ENDIF»
+					«ENDFOR»
+				«ENDFOR»
+				«FOR p: m.constantparams»
+					«FOR param: 0..<p.values.size»
+						+
+						«IF p.values.get(param).value.startsWith("\"")»
+							«p.values.get(param).value»
+						«ELSE»
+						"«p.values.get(param).value»"
+						«ENDIF»
+						«IF param != p.values.size - 1»
+							+ ", "
+						«ENDIF»
+					«ENDFOR»
+				«ENDFOR»
+				+ ")"
+				
+				+ "." + "«m.receiver.name»)", actualState, actualState));
+			
 			newState = new State("q" + counter, StateType.FINAL);
 			counter++;
 			b.addTransition(new Transition("«m.sender.name»" + "." +
@@ -52,8 +78,34 @@ class RegularMessage {
 			b.addState(actualState);
 			b.setInitial(actualState);
 												
-			b.addTransition(new Transition("1", actualState, actualState));
-			newState = new State("q" + counter, StateType.FINAL);
+			b.addTransition(new Transition("!(" + "«m.sender.name»" + "." +	
+				"«m.name»" + "("
+				«FOR p: m.params»
+					«FOR param: 0..<p.params.size»
+						+ "«p.params.get(param).name»"
+						«IF param != p.params.size - 1»
+							+ ", "
+						«ENDIF»
+					«ENDFOR»
+				«ENDFOR»
+				«FOR p: m.constantparams»
+					«FOR param: 0..<p.values.size»
+						+
+						«IF p.values.get(param).value.startsWith("\"")»
+							«p.values.get(param).value»
+						«ELSE»
+						"«p.values.get(param).value»"
+						«ENDIF»
+						«IF param != p.values.size - 1»
+							+ ", "
+						«ENDIF»
+					«ENDFOR»
+				«ENDFOR»
+				+ ")"
+				
+				+ "." + "«m.receiver.name»)", actualState, actualState));
+							
+			newState = new State("q" + counter, StateType.NORMAL);
 			counter++;
 			b.addTransition(new Transition("«m.sender.name»" + "." +
 			
@@ -83,8 +135,12 @@ class RegularMessage {
 			
 			+ "." + "«m.receiver.name»" , actualState, newState));
 			b.addState(newState);
-			b.addTransition(new Transition(str, newState, newState));
-			b.setFinale(newState);
+			b.addTransition(new Transition("!(" + str + ")", newState, actualState));
+			finalState = new State("q" + counter, StateType.FINAL);
+			counter++;
+			b.addTransition(new Transition(str, newState, finalState));
+			b.addState(finalState);
+			b.setFinale(finalState);
 	'''
 	
 	def compile_past(Message m)'''
@@ -94,7 +150,33 @@ class RegularMessage {
 		b.addState(actualState);
 		b.setInitial(actualState);
 												
-		b.addTransition(new Transition(str, actualState, actualState));
+		b.addTransition(new Transition(str + " & " + "!(" + "«m.sender.name»" + "." +	
+			"«m.name»" + "("
+			«FOR p: m.params»
+				«FOR param: 0..<p.params.size»
+					+ "«p.params.get(param).name»"
+					«IF param != p.params.size - 1»
+						+ ", "
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			«FOR p: m.constantparams»
+				«FOR param: 0..<p.values.size»
+					+
+					«IF p.values.get(param).value.startsWith("\"")»
+						«p.values.get(param).value»
+					«ELSE»
+					"«p.values.get(param).value»"
+					«ENDIF»
+					«IF param != p.values.size - 1»
+						+ ", "
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			+ ")"
+			
+			+ "." + "«m.receiver.name»)", actualState, actualState));
+						
 		newState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." +
@@ -130,7 +212,7 @@ class RegularMessage {
 		b.addState(actualState);
 		b.setInitial(actualState);
 											
-		newState = new State("q" + counter, StateType.FINAL);
+		newState = new State("q" + counter, StateType.NORMAL);
 		counter++;
 		b.addTransition(new Transition("«m.sender.name»" + "." +
 		"«m.name»" + "("
@@ -159,7 +241,10 @@ class RegularMessage {
 		
 		+ "." + "«m.receiver.name»", actualState, newState));
 		b.addState(newState);
-		b.addTransition(new Transition(str, newState, newState));
+		b.addTransition(new Transition("!(" + str + ")", newState, actualState));
+		finalState = new State("q" + counter, StateType.FINAL);
+		b.addTransition(new Transition(str, newState, finalState));
+		b.addState(finalState);
 		b.setFinale(newState);
 	'''
 	
