@@ -1,0 +1,26 @@
+specification spec1 {
+	
+	object c c;
+	object ArmA arm;
+	
+	integer a = 1;
+	float b = 2.0;
+	string c = "hello";
+	bool valami;
+	
+	clock x;
+	
+	constraint a {
+		message msg1("hi") c -> arm;
+		message msg3(b) arm -> c;
+	}
+	
+	scenario arms {
+		message msg2(a, c) c -> arm;
+		assertParameter [a <= 10] in arm;
+		message msg4(a) required arm -> c future constraint { a ; x < 5 } clock constraint { not(x < 10) } reset x;
+		message msg5("strin") c -> arm past constraint {a};
+		assertParameter [c == 12] in arm;
+		message msg6() strict arm -> c;
+	}
+}
