@@ -24,6 +24,7 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl#isNot <em>Not</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl#getLclockconstraint <em>Lclockconstraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.ClockConstraintExpressionImpl#getRclockconstraint <em>Rclockconstraint</em>}</li>
  * </ul>
@@ -32,6 +33,26 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
  */
 public class ClockConstraintExpressionImpl extends MinimalEObjectImpl.Container implements ClockConstraintExpression
 {
+  /**
+   * The default value of the '{@link #isNot() <em>Not</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNot()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean NOT_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isNot() <em>Not</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isNot()
+   * @generated
+   * @ordered
+   */
+  protected boolean not = NOT_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getLclockconstraint() <em>Lclockconstraint</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -71,6 +92,29 @@ public class ClockConstraintExpressionImpl extends MinimalEObjectImpl.Container 
   protected EClass eStaticClass()
   {
     return MyDslPackage.Literals.CLOCK_CONSTRAINT_EXPRESSION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isNot()
+  {
+    return not;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNot(boolean newNot)
+  {
+    boolean oldNot = not;
+    not = newNot;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__NOT, oldNot, not));
   }
 
   /**
@@ -197,6 +241,8 @@ public class ClockConstraintExpressionImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
+      case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__NOT:
+        return isNot();
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT:
         return getLclockconstraint();
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__RCLOCKCONSTRAINT:
@@ -215,6 +261,9 @@ public class ClockConstraintExpressionImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
+      case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__NOT:
+        setNot((Boolean)newValue);
+        return;
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT:
         setLclockconstraint((ClockConstraint)newValue);
         return;
@@ -235,6 +284,9 @@ public class ClockConstraintExpressionImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
+      case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__NOT:
+        setNot(NOT_EDEFAULT);
+        return;
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT:
         setLclockconstraint((ClockConstraint)null);
         return;
@@ -255,12 +307,31 @@ public class ClockConstraintExpressionImpl extends MinimalEObjectImpl.Container 
   {
     switch (featureID)
     {
+      case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__NOT:
+        return not != NOT_EDEFAULT;
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__LCLOCKCONSTRAINT:
         return lclockconstraint != null;
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION__RCLOCKCONSTRAINT:
         return rclockconstraint != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (not: ");
+    result.append(not);
+    result.append(')');
+    return result.toString();
   }
 
 } //ClockConstraintExpressionImpl

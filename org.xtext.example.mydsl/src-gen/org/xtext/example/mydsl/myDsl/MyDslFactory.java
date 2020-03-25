@@ -150,6 +150,15 @@ public interface MyDslFactory extends EFactory
   Message createMessage();
 
   /**
+   * Returns a new object of class '<em>Reset Clock</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reset Clock</em>'.
+   * @generated
+   */
+  ResetClock createResetClock();
+
+  /**
    * Returns a new object of class '<em>Clock Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

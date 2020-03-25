@@ -3,21 +3,14 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.Clock;
 import org.xtext.example.mydsl.myDsl.ClockConstraint;
@@ -52,14 +45,14 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
   protected Clock clock;
 
   /**
-   * The cached value of the '{@link #getOp() <em>Op</em>}' containment reference list.
+   * The cached value of the '{@link #getOp() <em>Op</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getOp()
    * @generated
    * @ordered
    */
-  protected EList<Operator> op;
+  protected Operator op;
 
   /**
    * The default value of the '{@link #getConstant() <em>Constant</em>}' attribute.
@@ -150,13 +143,47 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Operator> getOp()
+  public Operator getOp()
   {
-    if (op == null)
-    {
-      op = new EObjectContainmentEList<Operator>(Operator.class, this, MyDslPackage.CLOCK_CONSTRAINT__OP);
-    }
     return op;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetOp(Operator newOp, NotificationChain msgs)
+  {
+    Operator oldOp = op;
+    op = newOp;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.CLOCK_CONSTRAINT__OP, oldOp, newOp);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOp(Operator newOp)
+  {
+    if (newOp != op)
+    {
+      NotificationChain msgs = null;
+      if (op != null)
+        msgs = ((InternalEObject)op).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLOCK_CONSTRAINT__OP, null, msgs);
+      if (newOp != null)
+        msgs = ((InternalEObject)newOp).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.CLOCK_CONSTRAINT__OP, null, msgs);
+      msgs = basicSetOp(newOp, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.CLOCK_CONSTRAINT__OP, newOp, newOp));
   }
 
   /**
@@ -193,7 +220,7 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
     switch (featureID)
     {
       case MyDslPackage.CLOCK_CONSTRAINT__OP:
-        return ((InternalEList<?>)getOp()).basicRemove(otherEnd, msgs);
+        return basicSetOp(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -224,7 +251,6 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -234,8 +260,7 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
         setClock((Clock)newValue);
         return;
       case MyDslPackage.CLOCK_CONSTRAINT__OP:
-        getOp().clear();
-        getOp().addAll((Collection<? extends Operator>)newValue);
+        setOp((Operator)newValue);
         return;
       case MyDslPackage.CLOCK_CONSTRAINT__CONSTANT:
         setConstant((String)newValue);
@@ -258,7 +283,7 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
         setClock((Clock)null);
         return;
       case MyDslPackage.CLOCK_CONSTRAINT__OP:
-        getOp().clear();
+        setOp((Operator)null);
         return;
       case MyDslPackage.CLOCK_CONSTRAINT__CONSTANT:
         setConstant(CONSTANT_EDEFAULT);
@@ -280,7 +305,7 @@ public class ClockConstraintImpl extends MinimalEObjectImpl.Container implements
       case MyDslPackage.CLOCK_CONSTRAINT__CLOCK:
         return clock != null;
       case MyDslPackage.CLOCK_CONSTRAINT__OP:
-        return op != null && !op.isEmpty();
+        return op != null;
       case MyDslPackage.CLOCK_CONSTRAINT__CONSTANT:
         return CONSTANT_EDEFAULT == null ? constant != null : !CONSTANT_EDEFAULT.equals(constant);
     }

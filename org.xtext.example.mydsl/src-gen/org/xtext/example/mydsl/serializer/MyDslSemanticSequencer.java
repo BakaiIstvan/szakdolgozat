@@ -52,6 +52,7 @@ import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
+import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 import org.xtext.example.mydsl.services.MyDslGrammarAccess;
@@ -186,6 +187,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.RELATION:
 				sequence_Relation(context, (Relation) semanticObject); 
+				return; 
+			case MyDslPackage.RESET_CLOCK:
+				sequence_ResetClock(context, (ResetClock) semanticObject); 
 				return; 
 			case MyDslPackage.SCENARIO:
 				sequence_Scenario(context, (Scenario) semanticObject); 
@@ -339,7 +343,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ClockConstraintExpression returns ClockConstraintExpression
 	 *
 	 * Constraint:
-	 *     (lclockconstraint=ClockConstraint | lclockconstraint=ClockConstraint | (lclockconstraint=ClockConstraint rclockconstraint=ClockConstraint))
+	 *     ((not?='not'? lclockconstraint=ClockConstraint) | (lclockconstraint=ClockConstraint rclockconstraint=ClockConstraint))
 	 */
 	protected void sequence_ClockConstraintExpression(ISerializationContext context, ClockConstraintExpression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -351,10 +355,22 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ClockConstraint returns ClockConstraint
 	 *
 	 * Constraint:
-	 *     (clock=[Clock|ID] op+=Operator constant=Number)
+	 *     (clock=[Clock|ID] op=Operator constant=Number)
 	 */
 	protected void sequence_ClockConstraint(ISerializationContext context, ClockConstraint semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CLOCK_CONSTRAINT__CLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CLOCK_CONSTRAINT__CLOCK));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CLOCK_CONSTRAINT__OP) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CLOCK_CONSTRAINT__OP));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.CLOCK_CONSTRAINT__CONSTANT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.CLOCK_CONSTRAINT__CONSTANT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getClockConstraintAccess().getClockClockIDTerminalRuleCall_0_0_1(), semanticObject.eGet(MyDslPackage.Literals.CLOCK_CONSTRAINT__CLOCK, false));
+		feeder.accept(grammarAccess.getClockConstraintAccess().getOpOperatorParserRuleCall_1_0(), semanticObject.getOp());
+		feeder.accept(grammarAccess.getClockConstraintAccess().getConstantNumberTerminalRuleCall_2_0(), semanticObject.getConstant());
+		feeder.finish();
 	}
 	
 	
@@ -628,10 +644,10 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         constraint?='constraint'? 
 	 *         c=[Constraint|ID]? 
 	 *         constraintexp=ClockConstraintExpression? 
-	 *         clockconstraint?='clock'? 
+	 *         resetinconstraint=ResetClock? 
+	 *         clockconstraint?='clockConstraint'? 
 	 *         cConstraint=ClockConstraintExpression? 
-	 *         reset?='reset'? 
-	 *         resetclock=[Clock|ID]?
+	 *         resetclock=ResetClock?
 	 *     )
 	 */
 	protected void sequence_Message(ISerializationContext context, Message semanticObject) {
@@ -757,6 +773,24 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Relation(ISerializationContext context, Relation semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ResetClock returns ResetClock
+	 *
+	 * Constraint:
+	 *     clock=[Clock|ID]
+	 */
+	protected void sequence_ResetClock(ISerializationContext context, ResetClock semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.RESET_CLOCK__CLOCK) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.RESET_CLOCK__CLOCK));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getResetClockAccess().getClockClockIDTerminalRuleCall_1_0_1(), semanticObject.eGet(MyDslPackage.Literals.RESET_CLOCK__CLOCK, false));
+		feeder.finish();
 	}
 	
 	

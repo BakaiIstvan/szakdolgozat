@@ -620,40 +620,7 @@ class MyDslGenerator extends AbstractGenerator {
 						«ENDFOR»
 						«FOR m : sc.message»
 							«IF m.constraint»
-								str = "" 
-								«FOR msg : m.c.messages»
-									+ "!(" + "«msg.sender.name»" + "." +
-									"«msg.name»" + "("
-									«FOR p: msg.params»
-										«FOR param: 0..<p.params.size»
-											+
-											«IF p.params.get(param).value.value.startsWith("\"")»
-												«p.params.get(param).value.value»
-											«ELSE»
-											"«p.params.get(param).value.value»"
-											«ENDIF»
-											«IF param != p.params.size - 1»
-												+ ", "
-											«ENDIF»
-										«ENDFOR»
-									«ENDFOR»
-									«FOR p: msg.constantparams»
-										«FOR param: 0..<p.values.size»
-											+
-											«IF p.values.get(param).value.startsWith("\"")»
-												«p.values.get(param).value»
-											«ELSE»
-											"«p.values.get(param).value»"
-											«ENDIF»
-											«IF param != p.values.size - 1»
-												+ ", "
-											«ENDIF»
-										«ENDFOR»
-									«ENDFOR»
-									+ ")"
-									+ "." + "«msg.receiver.name»)" + " & "
-								«ENDFOR»;
-								str= str.substring(0, str.length() - 3);
+								«compile_constraint_msg(m)»
 							«ENDIF»
 							«IF !m.strict»
 								«IF m.required»
@@ -682,15 +649,27 @@ class MyDslGenerator extends AbstractGenerator {
 								«ENDIF»
 								«IF !m.fail && !m.required»
 									«IF m.future»
-										«new RegularMessage().compile_future(m)»
+										«IF m.clockconstraint»
+											«new ClockRegularMessage().compile_future_clock(m)»
+										«ELSE»
+											«new RegularMessage().compile_future(m)»
+										«ENDIF»
 										a.collapse(b);
 									«ENDIF»
 									«IF m.past»
-										«new RegularMessage().compile_past(m)»
+										«IF m.clockconstraint»
+											«new ClockRegularMessage().compile_past_clock(m)»
+										«ELSE»
+											«new RegularMessage().compile_past(m)»
+										«ENDIF»
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«new RegularMessage().compile_msg(m)»
+										«IF m.clockconstraint»
+											«new ClockRegularMessage().compile_msg_clock(m)»							
+										«ELSE»
+											«new RegularMessage().compile_msg(m)»
+										«ENDIF»
 										a.collapse(b);
 									«ENDIF»
 								«ENDIF»
@@ -715,11 +694,19 @@ class MyDslGenerator extends AbstractGenerator {
 								«ENDIF»
 								«IF !m.fail && !m.required»
 									«IF m.future»
-										«new RegularMessage().compile_strict_future(m)»
+										«IF m.clockconstraint»
+											«new ClockRegularMessage().compile_future_strict_clock(m)»							
+										«ELSE»
+											«new RegularMessage().compile_strict_future(m)»
+										«ENDIF»
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«new RegularMessage().compile_strict(m)»
+										«IF m.clockconstraint»
+											«new ClockRegularMessage().compile_strict_clock(m)»							
+										«ELSE»
+											«new RegularMessage().compile_strict(m)»
+										«ENDIF»
 										a.collapse(b);
 									«ENDIF» 
 								«ENDIF»
@@ -952,5 +939,114 @@ class MyDslGenerator extends AbstractGenerator {
 				writer.close();
 			}
 		}
+	'''
+	
+	def compile_constraint_msg(Message m)'''
+		str = "" 
+		«FOR msg : m.c.messages»
+			+ "!(" + "«msg.sender.name»" + "." +
+			"«msg.name»" + "("
+			«FOR p: msg.params»
+				«FOR param: 0..<p.params.size»
+					+
+					«IF p.params.get(param).value.value.startsWith("\"")»
+						«p.params.get(param).value.value»
+					«ELSE»
+					"«p.params.get(param).value.value»"
+					«ENDIF»
+					«IF param != p.params.size - 1»
+						+ ", "
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			«FOR p: msg.constantparams»
+				«FOR param: 0..<p.values.size»
+					+
+					«IF p.values.get(param).value.startsWith("\"")»
+						«p.values.get(param).value»
+					«ELSE»
+					"«p.values.get(param).value»"
+					«ENDIF»
+					«IF param != p.values.size - 1»
+						+ ", "
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			+ ")"
+			+ "." + "«msg.receiver.name»)" + " & "
+		«ENDFOR»;
+		str= str.substring(0, str.length() - 3);
+		
+		«IF m.constraintexp !== null»
+			str+= ", " +
+			«IF m.constraintexp.rclockconstraint === null»
+				«IF m.constraintexp.not»
+					"!" + 
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.greater»
+					"«m.constraintexp.lclockconstraint.clock.name» > «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smaller»
+				 	 "«m.constraintexp.lclockconstraint.clock.name» < «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.greaterequals»
+					 "«m.constraintexp.lclockconstraint.clock.name» >= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smallerequals»
+					"«m.constraintexp.lclockconstraint.clock.name» <= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.equals»
+					"«m.constraintexp.lclockconstraint.clock.name» == «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.notequals»
+					"«m.constraintexp.lclockconstraint.clock.name» != «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+			«ELSE»
+				«IF m.constraintexp.lclockconstraint.op.greater»
+					"«m.constraintexp.lclockconstraint.clock.name» > «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smaller»
+				 	 "«m.constraintexp.lclockconstraint.clock.name» < «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.greaterequals»
+					 "«m.constraintexp.lclockconstraint.clock.name» >= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smallerequals»
+					"«m.constraintexp.lclockconstraint.clock.name» <= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.equals»
+					"«m.constraintexp.lclockconstraint.clock.name» == «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.notequals»
+					"«m.constraintexp.lclockconstraint.clock.name» != «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				
+				+ " & " + 
+				
+				«IF m.constraintexp.rclockconstraint.op.greater»
+					"«m.constraintexp.rclockconstraint.clock.name» > «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.smaller»
+				 	 "«m.constraintexp.rclockconstraint.clock.name» < «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.greaterequals»
+					 "«m.constraintexp.rclockconstraint.clock.name» >= «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.smallerequals»
+					"«m.constraintexp.rclockconstraint.clock.name» <= «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.equals»
+					"«m.constraintexp.rclockconstraint.clock.name» == «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.notequals»
+					"«m.constraintexp.rclockconstraint.clock.name» != «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+			«ENDIF»
+			
+			«IF m.resetinconstraint !== null»
+				+ ", «m.resetinconstraint.clock.name» := 0"
+			«ENDIF»
+			;
+		«ENDIF»
 	'''
 }

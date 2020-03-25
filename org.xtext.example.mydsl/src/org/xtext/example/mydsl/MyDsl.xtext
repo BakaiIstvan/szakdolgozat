@@ -85,19 +85,22 @@ Message:
 	 'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' (required?='required')? (fail?='fail')? (strict?='strict')?
 	 sender=[Object] '->' receiver=[Object]
 	 (past?='past')? (future?='future')? (constraint?='constraint')?
-	 ('{')? (c=[Constraint])? (';')? (constraintexp=ClockConstraintExpression)? ('}')? 
-	 (clockconstraint?='clock' 'constraint')? 
+	 ('{')? (c=[Constraint])? (',')? (constraintexp=ClockConstraintExpression)? (',')? (resetinconstraint=ResetClock)? ('}')? 
+	 (clockconstraint?='clockConstraint')? 
 	 ('{')? (cConstraint=ClockConstraintExpression)? ('}')? 
-	 (reset?='reset')? (resetclock=[Clock])?';'
+	 (resetclock=ResetClock)?';'
+;
+
+ResetClock:
+	'reset' clock=[Clock]
 ;
 
 ClockConstraint:
-	clock=[Clock] op+=Operator constant=Number
+	clock=[Clock] op=Operator constant=Number
 ;
 
 ClockConstraintExpression:
-	lclockconstraint=ClockConstraint
-	| 'not' '(' lclockconstraint=ClockConstraint ')'
+	  (not?='not')? ('(')? lclockconstraint=ClockConstraint (')')?
 	| lclockconstraint=ClockConstraint 'and' rclockconstraint=ClockConstraint
 ;
 

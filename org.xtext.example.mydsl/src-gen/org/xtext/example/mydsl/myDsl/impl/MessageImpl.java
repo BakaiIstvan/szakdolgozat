@@ -19,13 +19,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.xtext.example.mydsl.myDsl.Clock;
 import org.xtext.example.mydsl.myDsl.ClockConstraintExpression;
 import org.xtext.example.mydsl.myDsl.ConstantParams;
 import org.xtext.example.mydsl.myDsl.Constraint;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
 import org.xtext.example.mydsl.myDsl.Params;
+import org.xtext.example.mydsl.myDsl.ResetClock;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,9 +48,9 @@ import org.xtext.example.mydsl.myDsl.Params;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isConstraint <em>Constraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getC <em>C</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getConstraintexp <em>Constraintexp</em>}</li>
+ *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getResetinconstraint <em>Resetinconstraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isClockconstraint <em>Clockconstraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getCConstraint <em>CConstraint</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isReset <em>Reset</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getResetclock <em>Resetclock</em>}</li>
  * </ul>
  *
@@ -259,6 +259,16 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
   protected ClockConstraintExpression constraintexp;
 
   /**
+   * The cached value of the '{@link #getResetinconstraint() <em>Resetinconstraint</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getResetinconstraint()
+   * @generated
+   * @ordered
+   */
+  protected ResetClock resetinconstraint;
+
+  /**
    * The default value of the '{@link #isClockconstraint() <em>Clockconstraint</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -289,34 +299,14 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
   protected ClockConstraintExpression cConstraint;
 
   /**
-   * The default value of the '{@link #isReset() <em>Reset</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isReset()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean RESET_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isReset() <em>Reset</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isReset()
-   * @generated
-   * @ordered
-   */
-  protected boolean reset = RESET_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getResetclock() <em>Resetclock</em>}' reference.
+   * The cached value of the '{@link #getResetclock() <em>Resetclock</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getResetclock()
    * @generated
    * @ordered
    */
-  protected Clock resetclock;
+  protected ResetClock resetclock;
 
   /**
    * <!-- begin-user-doc -->
@@ -710,6 +700,54 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
+  public ResetClock getResetinconstraint()
+  {
+    return resetinconstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetResetinconstraint(ResetClock newResetinconstraint, NotificationChain msgs)
+  {
+    ResetClock oldResetinconstraint = resetinconstraint;
+    resetinconstraint = newResetinconstraint;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__RESETINCONSTRAINT, oldResetinconstraint, newResetinconstraint);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setResetinconstraint(ResetClock newResetinconstraint)
+  {
+    if (newResetinconstraint != resetinconstraint)
+    {
+      NotificationChain msgs = null;
+      if (resetinconstraint != null)
+        msgs = ((InternalEObject)resetinconstraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__RESETINCONSTRAINT, null, msgs);
+      if (newResetinconstraint != null)
+        msgs = ((InternalEObject)newResetinconstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__RESETINCONSTRAINT, null, msgs);
+      msgs = basicSetResetinconstraint(newResetinconstraint, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__RESETINCONSTRAINT, newResetinconstraint, newResetinconstraint));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public boolean isClockconstraint()
   {
     return clockconstraint;
@@ -781,50 +819,7 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isReset()
-  {
-    return reset;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setReset(boolean newReset)
-  {
-    boolean oldReset = reset;
-    reset = newReset;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__RESET, oldReset, reset));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Clock getResetclock()
-  {
-    if (resetclock != null && resetclock.eIsProxy())
-    {
-      InternalEObject oldResetclock = (InternalEObject)resetclock;
-      resetclock = (Clock)eResolveProxy(oldResetclock);
-      if (resetclock != oldResetclock)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MyDslPackage.MESSAGE__RESETCLOCK, oldResetclock, resetclock));
-      }
-    }
-    return resetclock;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Clock basicGetResetclock()
+  public ResetClock getResetclock()
   {
     return resetclock;
   }
@@ -834,12 +829,37 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setResetclock(Clock newResetclock)
+  public NotificationChain basicSetResetclock(ResetClock newResetclock, NotificationChain msgs)
   {
-    Clock oldResetclock = resetclock;
+    ResetClock oldResetclock = resetclock;
     resetclock = newResetclock;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__RESETCLOCK, oldResetclock, resetclock));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__RESETCLOCK, oldResetclock, newResetclock);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setResetclock(ResetClock newResetclock)
+  {
+    if (newResetclock != resetclock)
+    {
+      NotificationChain msgs = null;
+      if (resetclock != null)
+        msgs = ((InternalEObject)resetclock).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__RESETCLOCK, null, msgs);
+      if (newResetclock != null)
+        msgs = ((InternalEObject)newResetclock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.MESSAGE__RESETCLOCK, null, msgs);
+      msgs = basicSetResetclock(newResetclock, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__RESETCLOCK, newResetclock, newResetclock));
   }
 
   /**
@@ -858,8 +878,12 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
         return ((InternalEList<?>)getConstantparams()).basicRemove(otherEnd, msgs);
       case MyDslPackage.MESSAGE__CONSTRAINTEXP:
         return basicSetConstraintexp(null, msgs);
+      case MyDslPackage.MESSAGE__RESETINCONSTRAINT:
+        return basicSetResetinconstraint(null, msgs);
       case MyDslPackage.MESSAGE__CCONSTRAINT:
         return basicSetCConstraint(null, msgs);
+      case MyDslPackage.MESSAGE__RESETCLOCK:
+        return basicSetResetclock(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -903,15 +927,14 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
         return basicGetC();
       case MyDslPackage.MESSAGE__CONSTRAINTEXP:
         return getConstraintexp();
+      case MyDslPackage.MESSAGE__RESETINCONSTRAINT:
+        return getResetinconstraint();
       case MyDslPackage.MESSAGE__CLOCKCONSTRAINT:
         return isClockconstraint();
       case MyDslPackage.MESSAGE__CCONSTRAINT:
         return getCConstraint();
-      case MyDslPackage.MESSAGE__RESET:
-        return isReset();
       case MyDslPackage.MESSAGE__RESETCLOCK:
-        if (resolve) return getResetclock();
-        return basicGetResetclock();
+        return getResetclock();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -968,17 +991,17 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
       case MyDslPackage.MESSAGE__CONSTRAINTEXP:
         setConstraintexp((ClockConstraintExpression)newValue);
         return;
+      case MyDslPackage.MESSAGE__RESETINCONSTRAINT:
+        setResetinconstraint((ResetClock)newValue);
+        return;
       case MyDslPackage.MESSAGE__CLOCKCONSTRAINT:
         setClockconstraint((Boolean)newValue);
         return;
       case MyDslPackage.MESSAGE__CCONSTRAINT:
         setCConstraint((ClockConstraintExpression)newValue);
         return;
-      case MyDslPackage.MESSAGE__RESET:
-        setReset((Boolean)newValue);
-        return;
       case MyDslPackage.MESSAGE__RESETCLOCK:
-        setResetclock((Clock)newValue);
+        setResetclock((ResetClock)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -1033,17 +1056,17 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
       case MyDslPackage.MESSAGE__CONSTRAINTEXP:
         setConstraintexp((ClockConstraintExpression)null);
         return;
+      case MyDslPackage.MESSAGE__RESETINCONSTRAINT:
+        setResetinconstraint((ResetClock)null);
+        return;
       case MyDslPackage.MESSAGE__CLOCKCONSTRAINT:
         setClockconstraint(CLOCKCONSTRAINT_EDEFAULT);
         return;
       case MyDslPackage.MESSAGE__CCONSTRAINT:
         setCConstraint((ClockConstraintExpression)null);
         return;
-      case MyDslPackage.MESSAGE__RESET:
-        setReset(RESET_EDEFAULT);
-        return;
       case MyDslPackage.MESSAGE__RESETCLOCK:
-        setResetclock((Clock)null);
+        setResetclock((ResetClock)null);
         return;
     }
     super.eUnset(featureID);
@@ -1085,12 +1108,12 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
         return c != null;
       case MyDslPackage.MESSAGE__CONSTRAINTEXP:
         return constraintexp != null;
+      case MyDslPackage.MESSAGE__RESETINCONSTRAINT:
+        return resetinconstraint != null;
       case MyDslPackage.MESSAGE__CLOCKCONSTRAINT:
         return clockconstraint != CLOCKCONSTRAINT_EDEFAULT;
       case MyDslPackage.MESSAGE__CCONSTRAINT:
         return cConstraint != null;
-      case MyDslPackage.MESSAGE__RESET:
-        return reset != RESET_EDEFAULT;
       case MyDslPackage.MESSAGE__RESETCLOCK:
         return resetclock != null;
     }
@@ -1124,8 +1147,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     result.append(constraint);
     result.append(", clockconstraint: ");
     result.append(clockconstraint);
-    result.append(", reset: ");
-    result.append(reset);
     result.append(')');
     return result.toString();
   }

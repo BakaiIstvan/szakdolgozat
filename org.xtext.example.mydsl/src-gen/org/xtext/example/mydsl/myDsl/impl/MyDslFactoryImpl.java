@@ -52,6 +52,7 @@ import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
+import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 import org.xtext.example.mydsl.myDsl.Type;
@@ -122,6 +123,7 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.SCENARIO: return createScenario();
       case MyDslPackage.SCENARIO_CONTENT: return createScenarioContent();
       case MyDslPackage.MESSAGE: return createMessage();
+      case MyDslPackage.RESET_CLOCK: return createResetClock();
       case MyDslPackage.CLOCK_CONSTRAINT: return createClockConstraint();
       case MyDslPackage.CLOCK_CONSTRAINT_EXPRESSION: return createClockConstraintExpression();
       case MyDslPackage.CONTEXT_MESSAGE: return createContextMessage();
@@ -340,6 +342,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
   {
     MessageImpl message = new MessageImpl();
     return message;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ResetClock createResetClock()
+  {
+    ResetClockImpl resetClock = new ResetClockImpl();
+    return resetClock;
   }
 
   /**

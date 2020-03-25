@@ -130,19 +130,25 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="#//Constraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraintexp" eType="#//ClockConstraintExpression"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resetinconstraint" eType="#//ResetClock"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockconstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="cConstraint" eType="#//ClockConstraintExpression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="resetclock" eType="#//Clock"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resetclock" eType="#//ResetClock"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResetClock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clock" eType="#//Clock"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClockConstraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="clock" eType="#//Clock"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="op" upperBound="-1" eType="#//Operator"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="op" eType="#//Operator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClockConstraintExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="not" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="lclockconstraint" eType="#//ClockConstraint"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rclockconstraint" eType="#//ClockConstraint"

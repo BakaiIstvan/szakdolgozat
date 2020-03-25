@@ -49,6 +49,7 @@ import org.xtext.example.mydsl.myDsl.Parameter;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
 import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.Relation;
+import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 
@@ -184,6 +185,11 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
       public Adapter caseMessage(Message object)
       {
         return createMessageAdapter();
+      }
+      @Override
+      public Adapter caseResetClock(ResetClock object)
+      {
+        return createResetClockAdapter();
       }
       @Override
       public Adapter caseClockConstraint(ClockConstraint object)
@@ -548,6 +554,21 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMessageAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.ResetClock <em>Reset Clock</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.ResetClock
+   * @generated
+   */
+  public Adapter createResetClockAdapter()
   {
     return null;
   }
