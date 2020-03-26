@@ -3,6 +3,111 @@ package org.xtext.example.mydsl.generator
 import org.xtext.example.mydsl.myDsl.Message
 
 class ClockRequiredMessage {
+	def compile_constraint_msg(Message m)'''
+		str1 = "" 
+		«FOR msg : m.c.messages»
+			+ "!(" + "«msg.sender.name»" + "." +
+			"«msg.name»" + "("
+			«FOR p: msg.params»
+				«FOR param: 0..<p.params.size»
+					+
+					«IF p.params.get(param).value.value.startsWith("\"")»
+						«p.params.get(param).value.value»
+					«ELSE»
+					"«p.params.get(param).value.value»"
+					«ENDIF»
+					«IF param != p.params.size - 1»
+						+ ", "
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			«FOR p: msg.constantparams»
+				«FOR param: 0..<p.values.size»
+					+
+					«IF p.values.get(param).value.startsWith("\"")»
+						«p.values.get(param).value»
+					«ELSE»
+					"«p.values.get(param).value»"
+					«ENDIF»
+					«IF param != p.values.size - 1»
+						+ ", "
+					«ENDIF»
+				«ENDFOR»
+			«ENDFOR»
+			+ ")"
+			+ "." + "«msg.receiver.name»)" + " & "
+		«ENDFOR»;
+		str1= str1.substring(0, str1.length() - 3);
+		
+		«IF m.constraintexp !== null»
+			str1+= ", " +
+			«IF m.constraintexp.rclockconstraint === null»
+				«IF m.constraintexp.not»
+					"!" + 
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.greater»
+					"«m.constraintexp.lclockconstraint.clock.name» > «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smaller»
+				 	 "«m.constraintexp.lclockconstraint.clock.name» < «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.greaterequals»
+					 "«m.constraintexp.lclockconstraint.clock.name» >= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smallerequals»
+					"«m.constraintexp.lclockconstraint.clock.name» <= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.equals»
+					"«m.constraintexp.lclockconstraint.clock.name» == «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.notequals»
+					"«m.constraintexp.lclockconstraint.clock.name» != «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+			«ELSE»
+				«IF m.constraintexp.lclockconstraint.op.greater»
+					"«m.constraintexp.lclockconstraint.clock.name» > «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smaller»
+				 	 "«m.constraintexp.lclockconstraint.clock.name» < «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.greaterequals»
+					 "«m.constraintexp.lclockconstraint.clock.name» >= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.smallerequals»
+					"«m.constraintexp.lclockconstraint.clock.name» <= «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.equals»
+					"«m.constraintexp.lclockconstraint.clock.name» == «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.lclockconstraint.op.notequals»
+					"«m.constraintexp.lclockconstraint.clock.name» != «m.constraintexp.lclockconstraint.constant»"
+				«ENDIF»
+				
+				+ " & " + 
+				
+				«IF m.constraintexp.rclockconstraint.op.greater»
+					"«m.constraintexp.rclockconstraint.clock.name» > «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.smaller»
+				 	 "«m.constraintexp.rclockconstraint.clock.name» < «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.greaterequals»
+					 "«m.constraintexp.rclockconstraint.clock.name» >= «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.smallerequals»
+					"«m.constraintexp.rclockconstraint.clock.name» <= «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.equals»
+					"«m.constraintexp.rclockconstraint.clock.name» == «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+				«IF m.constraintexp.rclockconstraint.op.notequals»
+					"«m.constraintexp.rclockconstraint.clock.name» != «m.constraintexp.rclockconstraint.constant»"
+				«ENDIF»
+			«ENDIF»
+			;
+		«ENDIF»
+	'''
+	
 	def compile_required_message(Message m)'''
 		"«m.sender.name»" + "." +
 		"«m.name»" + "("
@@ -410,6 +515,7 @@ class ClockRequiredMessage {
 	'''
 	
 	def compile_required_past_clock(Message m)'''
+		«compile_constraint_msg(m)»
 		b = new Automaton("auto2");
 		actualState = new State("q" + counter, StateType.NORMAL);
 		counter++;
@@ -479,7 +585,7 @@ class ClockRequiredMessage {
 		«ENDIF»
 		
 		, actualState, finalState));
-		b.addTransition(new Transition("(!" + "(" + str + "), " + «compile_clock_constraint(m)» + ") || " + "(" + "«m.sender.name»" + "." +
+		b.addTransition(new Transition("(!" + "(" + str1 + "), " + «compile_clock_constraint(m)» + ") || " + "(" + "«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
 				«FOR param: 0..<p.params.size»
@@ -511,6 +617,7 @@ class ClockRequiredMessage {
 	'''
 	
 	def compile_required_future_clock(Message m)'''
+		«compile_constraint_msg(m)»
 		b = new Automaton("auto1");
 		actualState = new State("q" + counter, StateType.NORMAL);
 		counter++;
@@ -607,7 +714,7 @@ class ClockRequiredMessage {
 		
 		, actualState, finalState));
 		b.addTransition(new Transition(str, finalState, finalState));
-		b.addTransition(new Transition("!" + "(" + str + ")", finalState, acceptState));
+		b.addTransition(new Transition("!" + "(" + str1 + ")", finalState, acceptState));
 		b.addState(acceptState);
 		b.addState(acceptState_new);
 		b.addState(finalState);
@@ -615,6 +722,7 @@ class ClockRequiredMessage {
 	'''
 	
 	def compile_strict_required_future_clock(Message m)'''
+		«compile_constraint_msg(m)»
 		b = new Automaton("auto1");
 		actualState = new State("q" + counter, StateType.NORMAL);
 		counter++;
@@ -690,7 +798,7 @@ class ClockRequiredMessage {
 		
 		, actualState, finalState));
 		b.addTransition(new Transition(str, finalState, finalState));
-		b.addTransition(new Transition("!" + "(" + str + ")", finalState, acceptState));
+		b.addTransition(new Transition("!" + "(" + str1 + ")", finalState, acceptState));
 		b.addState(acceptState);
 		b.addState(acceptState_new);
 		b.addState(finalState);

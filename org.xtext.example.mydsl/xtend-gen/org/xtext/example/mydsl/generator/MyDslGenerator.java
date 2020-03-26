@@ -149,6 +149,9 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("String str;");
     _builder.newLine();
     _builder.append("\t\t");
+    _builder.append("String str1;");
+    _builder.newLine();
+    _builder.append("\t\t");
     _builder.append("State actualState;");
     _builder.newLine();
     _builder.append("\t\t");
