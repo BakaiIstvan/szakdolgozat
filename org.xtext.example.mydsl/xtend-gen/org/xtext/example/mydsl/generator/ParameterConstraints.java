@@ -21,11 +21,9 @@ public class ParameterConstraints {
     _builder.append("b.setInitial(actualState);");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT_ALL);");
+    _builder.append("acceptState = new State(\"q\" + counter, StateType.ACCEPT);");
     _builder.newLine();
     _builder.append("counter++;");
-    _builder.newLine();
-    _builder.append("b.addTransition(new Transition(\"1\", acceptState, acceptState));");
     _builder.newLine();
     _builder.append("b.addTransition(new Transition(\"!\" + \"[\" + \"");
     String _name = pc.getParam().getName();

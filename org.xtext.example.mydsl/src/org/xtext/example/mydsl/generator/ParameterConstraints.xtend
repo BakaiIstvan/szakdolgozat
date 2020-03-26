@@ -10,9 +10,8 @@ class ParameterConstraints {
 		b.addState(actualState);
 		b.setInitial(actualState);
 		
-		acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+		acceptState = new State("q" + counter, StateType.ACCEPT);
 		counter++;
-		b.addTransition(new Transition("1", acceptState, acceptState));
 		b.addTransition(new Transition("!" + "[" + "«pc.param.name»" +
 				«FOR a: pc.operator»
 					«IF a.greater»

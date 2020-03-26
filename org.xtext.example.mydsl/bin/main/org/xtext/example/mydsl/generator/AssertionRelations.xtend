@@ -10,9 +10,8 @@ class AssertionRelations {
 				b.addState(actualState);
 				b.setInitial(actualState);
 				
-				acceptState = new State("q" + counter, StateType.ACCEPT_ALL);
+				acceptState = new State("q" + counter, StateType.ACCEPT);
 				counter++;
-						b.addTransition(new Transition("1", acceptState, acceptState));
 						b.addTransition(new Transition("!" +
 						"[" + "«relation.context.name».«relation.relation.name».«relation.attribute.name» " +
 						«FOR a: relation.operator»
