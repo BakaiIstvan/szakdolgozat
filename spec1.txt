@@ -1,0 +1,59 @@
+integer a = 1;
+float b = 2.0;
+string c = hello;
+bool valami;
+
+never{ /*armsMonitor*/
+T0_init:
+ if
+ :: (!(c.msg2(a, c).arm)) -> goto T0_init
+ :: (c.msg2(a, c).arm) -> goto T0_q1
+ fi;
+T0_q1:
+ if
+ :: (![a<=10] in arm) -> goto accept_q2
+ :: ([a<=10] in arm) -> goto T0_q3
+ fi;
+accept_q2:
+ if
+ fi;
+T0_q3:
+ if
+ :: (!(arm.msg4(a).c), x < 10 & x > 1) -> goto T0_q3
+ :: (arm.msg4(a).c, pre(x < 10 & x > 1) || 1, succ(x < 10 & x > 1)) -> goto accept_q5
+ :: (arm.msg4(a).c, x < 10 & x > 1, x := 0) -> goto T0_q6
+ fi;
+accept_q4:
+ if
+ fi;
+accept_q5:
+ if
+ fi;
+T0_q6:
+ if
+ :: (!(c.msg1(hi).arm) & !(arm.msg3(2.0).c), x < 5, x := 0) -> goto T0_q6
+ :: (!(!(c.msg1(hi).arm) & !(arm.msg3(2.0).c), x < 5)) -> goto accept_q4
+ :: (!(c.msg5(strin).arm)) -> goto T0_q6
+ :: (c.msg5(strin).arm) -> goto T0_q7
+ fi;
+T0_q7:
+ if
+ :: (![c==12] in arm) -> goto accept_q8
+ :: ([c==12] in arm) -> goto T0_q9
+ fi;
+accept_q8:
+ if
+ fi;
+T0_q9:
+ if
+ :: (arm.msg6().c) -> goto T0_q10
+ fi;
+T0_q10:
+ if
+ :: (!(c.msg7().c), x > 20) -> goto T0_q10
+ :: (c.msg7().c, x > 20) -> goto T0_q11
+ fi;
+T0_q11:
+ if
+ fi;
+}
