@@ -639,9 +639,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         strict?='strict'? 
 	 *         sender=[Object|ID] 
 	 *         receiver=[Object|ID] 
-	 *         past?='past'? 
-	 *         future?='future'? 
-	 *         constraint?='constraint'? 
+	 *         past?='pastConstraint'? 
+	 *         future?='futureConstraint'? 
 	 *         c=[Constraint|ID]? 
 	 *         constraintexp=ClockConstraintExpression? 
 	 *         resetinconstraint=ResetClock? 

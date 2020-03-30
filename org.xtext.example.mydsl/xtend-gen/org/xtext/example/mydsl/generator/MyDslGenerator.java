@@ -710,8 +710,7 @@ public class MyDslGenerator extends AbstractGenerator {
                   EList<Message> _messages = l.getMessages();
                   for(final Message m : _messages) {
                     {
-                      boolean _isConstraint = m.isConstraint();
-                      if (_isConstraint) {
+                      if ((m.isPast() || m.isFuture())) {
                         _builder.append("\t\t");
                         _builder.append("str = \"\" ");
                         _builder.newLine();
@@ -1049,8 +1048,7 @@ public class MyDslGenerator extends AbstractGenerator {
                       EList<Message> _messages_2 = pe.getMessages();
                       for(final Message m_1 : _messages_2) {
                         {
-                          boolean _isConstraint_1 = m_1.isConstraint();
-                          if (_isConstraint_1) {
+                          if ((m_1.isPast() || m_1.isFuture())) {
                             _builder.append("\t\t");
                             _builder.append("str = \"\" ");
                             _builder.newLine();
@@ -1390,8 +1388,7 @@ public class MyDslGenerator extends AbstractGenerator {
                       EList<Message> _messages_4 = e.getMessages();
                       for(final Message m_2 : _messages_4) {
                         {
-                          boolean _isConstraint_2 = m_2.isConstraint();
-                          if (_isConstraint_2) {
+                          if ((m_2.isPast() || m_2.isFuture())) {
                             _builder.append("\t\t");
                             _builder.append("\t");
                             _builder.append("str = \"\" ");
@@ -1762,8 +1759,7 @@ public class MyDslGenerator extends AbstractGenerator {
               EList<Message> _message = sc.getMessage();
               for(final Message m_3 : _message) {
                 {
-                  boolean _isConstraint_3 = m_3.isConstraint();
-                  if (_isConstraint_3) {
+                  if ((m_3.isPast() || m_3.isFuture())) {
                     _builder.append("\t\t");
                     CharSequence _compile_constraint_msg = this.compile_constraint_msg(m_3);
                     _builder.append(_compile_constraint_msg, "\t\t");

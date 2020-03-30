@@ -45,7 +45,6 @@ import org.xtext.example.mydsl.myDsl.ResetClock;
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getReceiver <em>Receiver</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isPast <em>Past</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isFuture <em>Future</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#isConstraint <em>Constraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getC <em>C</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getConstraintexp <em>Constraintexp</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.impl.MessageImpl#getResetinconstraint <em>Resetinconstraint</em>}</li>
@@ -217,26 +216,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * @ordered
    */
   protected boolean future = FUTURE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #isConstraint() <em>Constraint</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isConstraint()
-   * @generated
-   * @ordered
-   */
-  protected static final boolean CONSTRAINT_EDEFAULT = false;
-
-  /**
-   * The cached value of the '{@link #isConstraint() <em>Constraint</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #isConstraint()
-   * @generated
-   * @ordered
-   */
-  protected boolean constraint = CONSTRAINT_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getC() <em>C</em>}' reference.
@@ -586,29 +565,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean isConstraint()
-  {
-    return constraint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setConstraint(boolean newConstraint)
-  {
-    boolean oldConstraint = constraint;
-    constraint = newConstraint;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.MESSAGE__CONSTRAINT, oldConstraint, constraint));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Constraint getC()
   {
     if (c != null && c.eIsProxy())
@@ -920,8 +876,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
         return isPast();
       case MyDslPackage.MESSAGE__FUTURE:
         return isFuture();
-      case MyDslPackage.MESSAGE__CONSTRAINT:
-        return isConstraint();
       case MyDslPackage.MESSAGE__C:
         if (resolve) return getC();
         return basicGetC();
@@ -981,9 +935,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
         return;
       case MyDslPackage.MESSAGE__FUTURE:
         setFuture((Boolean)newValue);
-        return;
-      case MyDslPackage.MESSAGE__CONSTRAINT:
-        setConstraint((Boolean)newValue);
         return;
       case MyDslPackage.MESSAGE__C:
         setC((Constraint)newValue);
@@ -1047,9 +998,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
       case MyDslPackage.MESSAGE__FUTURE:
         setFuture(FUTURE_EDEFAULT);
         return;
-      case MyDslPackage.MESSAGE__CONSTRAINT:
-        setConstraint(CONSTRAINT_EDEFAULT);
-        return;
       case MyDslPackage.MESSAGE__C:
         setC((Constraint)null);
         return;
@@ -1102,8 +1050,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
         return past != PAST_EDEFAULT;
       case MyDslPackage.MESSAGE__FUTURE:
         return future != FUTURE_EDEFAULT;
-      case MyDslPackage.MESSAGE__CONSTRAINT:
-        return constraint != CONSTRAINT_EDEFAULT;
       case MyDslPackage.MESSAGE__C:
         return c != null;
       case MyDslPackage.MESSAGE__CONSTRAINTEXP:
@@ -1143,8 +1089,6 @@ public class MessageImpl extends MinimalEObjectImpl.Container implements Message
     result.append(past);
     result.append(", future: ");
     result.append(future);
-    result.append(", constraint: ");
-    result.append(constraint);
     result.append(", clockconstraint: ");
     result.append(clockconstraint);
     result.append(')');

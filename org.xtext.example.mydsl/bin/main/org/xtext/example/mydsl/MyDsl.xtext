@@ -84,7 +84,7 @@ ScenarioContent:
 Message:
 	 'message' name=ID '(' (params+=Params | constantparams+=ConstantParams) ')' (required?='required')? (fail?='fail')? (strict?='strict')?
 	 sender=[Object] '->' receiver=[Object]
-	 (past?='past')? (future?='future')? (constraint?='constraint')?
+	 (past?='pastConstraint')? (future?='futureConstraint')?
 	 ('{')? (c=[Constraint])? (',')? (constraintexp=ClockConstraintExpression)? (',')? (resetinconstraint=ResetClock)? ('}')? 
 	 (clockconstraint?='clockConstraint')? 
 	 ('{')? (cConstraint=ClockConstraintExpression)? ('}')? 

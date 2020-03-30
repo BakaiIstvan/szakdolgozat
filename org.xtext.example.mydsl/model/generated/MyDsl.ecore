@@ -126,7 +126,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="receiver" eType="#//Object"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="past" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="future" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="c" eType="#//Constraint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraintexp" eType="#//ClockConstraintExpression"
         containment="true"/>

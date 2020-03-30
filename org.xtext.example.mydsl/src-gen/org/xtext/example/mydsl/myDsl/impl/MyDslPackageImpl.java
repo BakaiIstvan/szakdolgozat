@@ -1263,19 +1263,9 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMessage_Constraint()
-  {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(10);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getMessage_C()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(11);
+    return (EReference)messageEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -1285,7 +1275,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_Constraintexp()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(12);
+    return (EReference)messageEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -1295,7 +1285,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_Resetinconstraint()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(13);
+    return (EReference)messageEClass.getEStructuralFeatures().get(12);
   }
 
   /**
@@ -1305,7 +1295,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EAttribute getMessage_Clockconstraint()
   {
-    return (EAttribute)messageEClass.getEStructuralFeatures().get(14);
+    return (EAttribute)messageEClass.getEStructuralFeatures().get(13);
   }
 
   /**
@@ -1315,7 +1305,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_CConstraint()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(15);
+    return (EReference)messageEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -1325,7 +1315,7 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    */
   public EReference getMessage_Resetclock()
   {
-    return (EReference)messageEClass.getEStructuralFeatures().get(16);
+    return (EReference)messageEClass.getEStructuralFeatures().get(15);
   }
 
   /**
@@ -2494,7 +2484,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     createEReference(messageEClass, MESSAGE__RECEIVER);
     createEAttribute(messageEClass, MESSAGE__PAST);
     createEAttribute(messageEClass, MESSAGE__FUTURE);
-    createEAttribute(messageEClass, MESSAGE__CONSTRAINT);
     createEReference(messageEClass, MESSAGE__C);
     createEReference(messageEClass, MESSAGE__CONSTRAINTEXP);
     createEReference(messageEClass, MESSAGE__RESETINCONSTRAINT);
@@ -2764,7 +2753,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getMessage_Receiver(), this.getObject(), null, "receiver", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Past(), ecorePackage.getEBoolean(), "past", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMessage_Future(), ecorePackage.getEBoolean(), "future", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMessage_Constraint(), ecorePackage.getEBoolean(), "constraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMessage_C(), this.getConstraint(), null, "c", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMessage_Constraintexp(), this.getClockConstraintExpression(), null, "constraintexp", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMessage_Resetinconstraint(), this.getResetClock(), null, "resetinconstraint", null, 0, 1, Message.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -279,7 +279,7 @@ class MyDslGenerator extends AbstractGenerator {
 						«FOR l :sc.loop»
 							loopauto = new Automaton("loopauto" + counter);
 							«FOR m : l.messages»
-								«IF m.constraint»
+								«IF m.past || m.future»
 									str = "" 
 									«FOR msg : m.c.messages»
 										+ "!(" + "«msg.sender.name»" + "." +
@@ -392,7 +392,7 @@ class MyDslGenerator extends AbstractGenerator {
 							«FOR pe : p.parexpression»
 								expression = new Automaton("expauto" + counter);
 								«FOR m : pe.messages»
-									«IF m.constraint»
+									«IF m.past || m.future»
 										str = "" 
 										«FOR msg : m.c.messages»
 											+ "!(" + "«msg.sender.name»" + "." + 
@@ -508,7 +508,7 @@ class MyDslGenerator extends AbstractGenerator {
 							«FOR e : a.expressions»
 								expression = new Automaton("expauto" + counter);
 								«FOR m : e.messages»
-									«IF m.constraint»
+									«IF m.past || m.future»
 										str = "" 
 										«FOR msg : m.c.messages»
 											+ "!(" + "«msg.sender.name»" + "." +
@@ -620,7 +620,7 @@ class MyDslGenerator extends AbstractGenerator {
 							a.merge(altauto);
 						«ENDFOR»
 						«FOR m : sc.message»
-							«IF m.constraint»
+							«IF m.past || m.future»
 								«compile_constraint_msg(m)»
 							«ENDIF»
 							«IF !m.strict»

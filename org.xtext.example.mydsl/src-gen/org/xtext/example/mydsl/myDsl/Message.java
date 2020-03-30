@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getReceiver <em>Receiver</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isPast <em>Past</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isFuture <em>Future</em>}</li>
- *   <li>{@link org.xtext.example.mydsl.myDsl.Message#isConstraint <em>Constraint</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getC <em>C</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getConstraintexp <em>Constraintexp</em>}</li>
  *   <li>{@link org.xtext.example.mydsl.myDsl.Message#getResetinconstraint <em>Resetinconstraint</em>}</li>
@@ -280,32 +279,6 @@ public interface Message extends EObject
    * @generated
    */
   void setFuture(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Constraint</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Constraint</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Constraint</em>' attribute.
-   * @see #setConstraint(boolean)
-   * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getMessage_Constraint()
-   * @model
-   * @generated
-   */
-  boolean isConstraint();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Message#isConstraint <em>Constraint</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Constraint</em>' attribute.
-   * @see #isConstraint()
-   * @generated
-   */
-  void setConstraint(boolean value);
 
   /**
    * Returns the value of the '<em><b>C</b></em>' reference.

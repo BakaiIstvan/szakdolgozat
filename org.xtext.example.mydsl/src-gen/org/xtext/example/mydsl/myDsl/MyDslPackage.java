@@ -937,22 +937,13 @@ public interface MyDslPackage extends EPackage
   int MESSAGE__FUTURE = 9;
 
   /**
-   * The feature id for the '<em><b>Constraint</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MESSAGE__CONSTRAINT = 10;
-
-  /**
    * The feature id for the '<em><b>C</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MESSAGE__C = 11;
+  int MESSAGE__C = 10;
 
   /**
    * The feature id for the '<em><b>Constraintexp</b></em>' containment reference.
@@ -961,7 +952,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MESSAGE__CONSTRAINTEXP = 12;
+  int MESSAGE__CONSTRAINTEXP = 11;
 
   /**
    * The feature id for the '<em><b>Resetinconstraint</b></em>' containment reference.
@@ -970,7 +961,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MESSAGE__RESETINCONSTRAINT = 13;
+  int MESSAGE__RESETINCONSTRAINT = 12;
 
   /**
    * The feature id for the '<em><b>Clockconstraint</b></em>' attribute.
@@ -979,7 +970,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MESSAGE__CLOCKCONSTRAINT = 14;
+  int MESSAGE__CLOCKCONSTRAINT = 13;
 
   /**
    * The feature id for the '<em><b>CConstraint</b></em>' containment reference.
@@ -988,7 +979,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MESSAGE__CCONSTRAINT = 15;
+  int MESSAGE__CCONSTRAINT = 14;
 
   /**
    * The feature id for the '<em><b>Resetclock</b></em>' containment reference.
@@ -997,7 +988,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MESSAGE__RESETCLOCK = 16;
+  int MESSAGE__RESETCLOCK = 15;
 
   /**
    * The number of structural features of the '<em>Message</em>' class.
@@ -1006,7 +997,7 @@ public interface MyDslPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MESSAGE_FEATURE_COUNT = 17;
+  int MESSAGE_FEATURE_COUNT = 16;
 
   /**
    * The meta object id for the '{@link org.xtext.example.mydsl.myDsl.impl.ResetClockImpl <em>Reset Clock</em>}' class.
@@ -3126,17 +3117,6 @@ public interface MyDslPackage extends EPackage
   EAttribute getMessage_Future();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Message#isConstraint <em>Constraint</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Constraint</em>'.
-   * @see org.xtext.example.mydsl.myDsl.Message#isConstraint()
-   * @see #getMessage()
-   * @generated
-   */
-  EAttribute getMessage_Constraint();
-
-  /**
    * Returns the meta object for the reference '{@link org.xtext.example.mydsl.myDsl.Message#getC <em>C</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5031,14 +5011,6 @@ public interface MyDslPackage extends EPackage
      * @generated
      */
     EAttribute MESSAGE__FUTURE = eINSTANCE.getMessage_Future();
-
-    /**
-     * The meta object literal for the '<em><b>Constraint</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MESSAGE__CONSTRAINT = eINSTANCE.getMessage_Constraint();
 
     /**
      * The meta object literal for the '<em><b>C</b></em>' reference feature.
