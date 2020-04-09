@@ -86,6 +86,8 @@ class MyDslGenerator extends AbstractGenerator {
 				automatas = new ArrayList<Automaton>();
 				String str;
 				String str1;
+				String pre;
+				String succ;
 				State actualState;
 				State acceptState;
 				State finalState;

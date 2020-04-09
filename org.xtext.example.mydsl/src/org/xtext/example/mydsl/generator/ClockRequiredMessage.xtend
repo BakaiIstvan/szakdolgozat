@@ -108,6 +108,46 @@ class ClockRequiredMessage {
 		«ENDIF»
 	'''
 	
+	def compile_pre(Message m)'''
+		pre = 
+		«IF m.CConstraint.rclockconstraint !== null»
+			«IF m.CConstraint.lclockconstraint.op.greater»
+				"«m.CConstraint.lclockconstraint.clock.name» < «m.CConstraint.lclockconstraint.constant»"
+			«ENDIF»
+			«IF m.CConstraint.lclockconstraint.op.greaterequals»
+				 "«m.CConstraint.lclockconstraint.clock.name» <= «m.CConstraint.lclockconstraint.constant»"
+			«ENDIF»
+			
+			«IF m.CConstraint.rclockconstraint.op.greater»
+				"«m.CConstraint.rclockconstraint.clock.name» < «m.CConstraint.rclockconstraint.constant»"
+			«ENDIF»
+			«IF m.CConstraint.rclockconstraint.op.greaterequals»
+				 "«m.CConstraint.rclockconstraint.clock.name» <= «m.CConstraint.rclockconstraint.constant»"
+			«ENDIF»
+		«ENDIF»
+		;
+	'''
+	
+	def compile_succ(Message m)'''
+		succ =
+		«IF m.CConstraint.rclockconstraint !== null»
+			«IF m.CConstraint.lclockconstraint.op.smaller»
+				"«m.CConstraint.lclockconstraint.clock.name» > «m.CConstraint.lclockconstraint.constant»"
+			«ENDIF»
+			«IF m.CConstraint.lclockconstraint.op.smallerequals»
+				 "«m.CConstraint.lclockconstraint.clock.name» >= «m.CConstraint.lclockconstraint.constant»"
+			«ENDIF»
+			
+			«IF m.CConstraint.rclockconstraint.op.smaller»
+				"«m.CConstraint.rclockconstraint.clock.name» > «m.CConstraint.rclockconstraint.constant»"
+			«ENDIF»
+			«IF m.CConstraint.rclockconstraint.op.smallerequals»
+				 "«m.CConstraint.rclockconstraint.clock.name» >= «m.CConstraint.rclockconstraint.constant»"
+			«ENDIF»
+		«ENDIF»
+		;
+	'''
+	
 	def compile_required_message(Message m)'''
 		"«m.sender.name»" + "." +
 		"«m.name»" + "("
@@ -304,6 +344,9 @@ class ClockRequiredMessage {
 		acceptState = new State("q" + counter, StateType.ACCEPT);
 		counter++;
 		
+		
+		«compile_pre(m)»
+		«compile_succ(m)»
 		b.addTransition(new Transition("(" + "«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
@@ -331,8 +374,8 @@ class ClockRequiredMessage {
 			
 			+ "." + "«m.receiver.name», " + 
 			
-			"pre(" + «compile_clock_constraint(m)» +
-			")) || (1, succ(" + «compile_clock_constraint(m)» + ")", actualState, acceptState));
+			pre +
+			")) || (1, " + succ + ")", actualState, acceptState));
 		
 		b.addState(acceptState);
 		
@@ -481,6 +524,8 @@ class ClockRequiredMessage {
 		«ENDIF»
 		
 		, actualState, finalState));
+		«compile_pre(m)»
+		«compile_succ(m)»
 		b.addTransition(new Transition("!(" + "«m.sender.name»" + "." +
 		"«m.name»" + "("
 		«FOR p: m.params»
@@ -506,7 +551,7 @@ class ClockRequiredMessage {
 		«ENDFOR»
 		+ ")"
 		+ "." + "«m.receiver.name»" + "), " + «compile_clock_constraint(m)»
-		+ " || (" + «compile_required_message(m)» +", pre(" + «compile_clock_constraint(m)» + ")) || (1, succ(" + «compile_clock_constraint(m)» + "))"
+		+ " || (" + «compile_required_message(m)» +", " + pre + ")) || (1, " + succ + "))"
 		
 		, actualState, acceptState));
 		b.addState(acceptState);
@@ -585,6 +630,8 @@ class ClockRequiredMessage {
 		«ENDIF»
 		
 		, actualState, finalState));
+		«compile_pre(m)»
+		«compile_succ(m)»
 		b.addTransition(new Transition("(!" + "(" + str1 + "), " + «compile_clock_constraint(m)» + ") || " + "(" + "«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
@@ -609,7 +656,7 @@ class ClockRequiredMessage {
 				«ENDFOR»
 			«ENDFOR»
 			+ ")"
-			+ "." + "«m.receiver.name», pre(" + «compile_clock_constraint(m)» + ")) || (1, succ(" + «compile_clock_constraint(m)» + "))", actualState, acceptState));
+			+ "." + "«m.receiver.name», " + pre + ")) || (1, " + succ + "))", actualState, acceptState));
 				
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -656,6 +703,8 @@ class ClockRequiredMessage {
 		acceptState_new = new State("q" + counter, StateType.ACCEPT);
 		counter++;
 		
+		«compile_pre(m)»
+		«compile_succ(m)»
 		b.addTransition(new Transition("«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
@@ -680,7 +729,7 @@ class ClockRequiredMessage {
 				«ENDFOR»
 			«ENDFOR»
 			+ ")"
-			+ "." + "«m.receiver.name», pre(" + «compile_clock_constraint(m)» + ") || 1, succ(" + «compile_clock_constraint(m)» + ")", actualState, acceptState_new));
+			+ "." + "«m.receiver.name», " + pre + ") || (1, " + succ + ")", actualState, acceptState_new));
 		
 		b.addTransition(new Transition("«m.sender.name»" + "." +
 		"«m.name»" + "("
@@ -736,6 +785,8 @@ class ClockRequiredMessage {
 		acceptState_new = new State("q" + counter, StateType.ACCEPT);
 		counter++;
 		
+		«compile_pre(m)»
+		«compile_succ(m)»
 		b.addTransition(new Transition("«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
@@ -760,7 +811,7 @@ class ClockRequiredMessage {
 				«ENDFOR»
 			«ENDFOR»
 			+ ")"
-			+ "." + "«m.receiver.name», pre(" + «compile_clock_constraint(m)» + ") || 1, succ(" + «compile_clock_constraint(m)» + ") || "
+			+ "." + "«m.receiver.name», " + pre + ") || (1, " + succ + ") || "
 			
 			+ "!(" + «compile_required_message(m)» + "), " + «compile_clock_constraint(m)» 
 			
