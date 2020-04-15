@@ -112,17 +112,17 @@ class ClockRequiredMessage {
 		pre = 
 		«IF m.CConstraint.rclockconstraint !== null»
 			«IF m.CConstraint.lclockconstraint.op.greater»
-				"«m.CConstraint.lclockconstraint.clock.name» < «m.CConstraint.lclockconstraint.constant»"
+				"«m.CConstraint.lclockconstraint.clock.name» <= «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
 			«IF m.CConstraint.lclockconstraint.op.greaterequals»
-				 "«m.CConstraint.lclockconstraint.clock.name» <= «m.CConstraint.lclockconstraint.constant»"
+				 "«m.CConstraint.lclockconstraint.clock.name» < «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
 			
 			«IF m.CConstraint.rclockconstraint.op.greater»
-				"«m.CConstraint.rclockconstraint.clock.name» < «m.CConstraint.rclockconstraint.constant»"
+				"«m.CConstraint.rclockconstraint.clock.name» <= «m.CConstraint.rclockconstraint.constant»"
 			«ENDIF»
 			«IF m.CConstraint.rclockconstraint.op.greaterequals»
-				 "«m.CConstraint.rclockconstraint.clock.name» <= «m.CConstraint.rclockconstraint.constant»"
+				 "«m.CConstraint.rclockconstraint.clock.name» < «m.CConstraint.rclockconstraint.constant»"
 			«ENDIF»
 		«ENDIF»
 		;
@@ -132,17 +132,17 @@ class ClockRequiredMessage {
 		succ =
 		«IF m.CConstraint.rclockconstraint !== null»
 			«IF m.CConstraint.lclockconstraint.op.smaller»
-				"«m.CConstraint.lclockconstraint.clock.name» > «m.CConstraint.lclockconstraint.constant»"
+				"«m.CConstraint.lclockconstraint.clock.name» >= «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
 			«IF m.CConstraint.lclockconstraint.op.smallerequals»
-				 "«m.CConstraint.lclockconstraint.clock.name» >= «m.CConstraint.lclockconstraint.constant»"
+				 "«m.CConstraint.lclockconstraint.clock.name» > «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
 			
 			«IF m.CConstraint.rclockconstraint.op.smaller»
-				"«m.CConstraint.rclockconstraint.clock.name» > «m.CConstraint.rclockconstraint.constant»"
+				"«m.CConstraint.rclockconstraint.clock.name» >= «m.CConstraint.rclockconstraint.constant»"
 			«ENDIF»
 			«IF m.CConstraint.rclockconstraint.op.smallerequals»
-				 "«m.CConstraint.rclockconstraint.clock.name» >= «m.CConstraint.rclockconstraint.constant»"
+				 "«m.CConstraint.rclockconstraint.clock.name» > «m.CConstraint.rclockconstraint.constant»"
 			«ENDIF»
 		«ENDIF»
 		;

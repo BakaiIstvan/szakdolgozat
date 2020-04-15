@@ -979,6 +979,47 @@ class MyDslGenerator extends AbstractGenerator {
 					writer.println("}");
 				}
 				writer.close();
+				
+				PrintWriter xmlWriter = new PrintWriter("«s.name»" + ".xml", "UTF-8");
+				xmlWriter.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+				xmlWriter.println("<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>");
+				xmlWriter.println("<nta>");
+				for (Automaton a : specification.automatas) {
+					xmlWriter.println("\t<template>");
+					xmlWriter.println("\t\t<name>" + a.getId() + "</name>");
+					xmlWriter.println("\t\t<declaration>");
+					«FOR param : s.parameters»
+						«IF param.value !== null»
+							xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name» = «param.value.value»;");
+						«ELSE»
+							xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name»;");
+						«ENDIF»
+					«ENDFOR»
+					
+					«FOR clock : s.clocks»
+						xmlWriter.println("clock «clock.name»;");
+					«ENDFOR»
+					
+					xmlWriter.println("\t\t</declaration>");
+					
+					for (State s : a.getStates()) {
+						xmlWriter.println("\t\t<location id=\"" + s.getId() + "\" x=\"" + "y=\">");
+						xmlWriter.println("\t\t</location>");
+					}
+					
+					for (Transition t : a.getTransitions()) {
+						xmlWriter.println("\t\t<transition>");
+						xmlWriter.println("\t\t\t<source ref=\"" + t.getSender().getId() + "\"/>");
+						xmlWriter.println("\t\t\t<target ref=\"" + t.getReceiver().getId() + "\"/>");
+						xmlWriter.println("\t\t\t<label>" + t.getId() + "</label>");
+						xmlWriter.println("\t\t</transition>");
+					}
+					
+					xmlWriter.println("\t</template>");
+				}
+				
+				xmlWriter.println("</nta>");
+				xmlWriter.close();
 			}
 		}
 	'''

@@ -395,7 +395,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name);
-            _builder.append(" < ");
+            _builder.append(" <= ");
             String _constant = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant);
             _builder.append("\"");
@@ -408,7 +408,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name_1 = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name_1);
-            _builder.append(" <= ");
+            _builder.append(" < ");
             String _constant_1 = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant_1);
             _builder.append("\"");
@@ -422,7 +422,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name_2 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_2);
-            _builder.append(" < ");
+            _builder.append(" <= ");
             String _constant_2 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_2);
             _builder.append("\"");
@@ -435,7 +435,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name_3 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_3);
-            _builder.append(" <= ");
+            _builder.append(" < ");
             String _constant_3 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_3);
             _builder.append("\"");
@@ -463,7 +463,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name);
-            _builder.append(" > ");
+            _builder.append(" >= ");
             String _constant = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant);
             _builder.append("\"");
@@ -476,7 +476,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name_1 = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name_1);
-            _builder.append(" >= ");
+            _builder.append(" > ");
             String _constant_1 = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant_1);
             _builder.append("\"");
@@ -490,7 +490,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name_2 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_2);
-            _builder.append(" > ");
+            _builder.append(" >= ");
             String _constant_2 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_2);
             _builder.append("\"");
@@ -503,7 +503,7 @@ public class ClockRequiredMessage {
             _builder.append("\"");
             String _name_3 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_3);
-            _builder.append(" >= ");
+            _builder.append(" > ");
             String _constant_3 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_3);
             _builder.append("\"");
