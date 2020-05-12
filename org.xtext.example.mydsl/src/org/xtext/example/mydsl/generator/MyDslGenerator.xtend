@@ -992,7 +992,11 @@ class MyDslGenerator extends AbstractGenerator {
 					xmlWriter.println("\t\t<declaration>");
 					«FOR param : s.parameters»
 						«IF param.value !== null»
-							xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name» = «param.value.value»;");
+							«IF param.type.toString().substring(1, param.type.toString().length - 1) == "integer"»
+								xmlWriter.println("int «param.name» = «param.value.value»;");
+							«ELSE»
+								xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name» = «param.value.value»;");
+							«ENDIF»
 						«ELSE»
 							xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name»;");
 						«ENDIF»
@@ -1022,20 +1026,20 @@ class MyDslGenerator extends AbstractGenerator {
 						xmlWriter.println("\t\t\t<source ref=\"" + t.getSender().getId() + "\"/>");
 						xmlWriter.println("\t\t\t<target ref=\"" + t.getReceiver().getId() + "\"/>");
 						if (t.getId().startsWith("[") || t.getId().startsWith("![")) {
-							xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + t.getId().substring(0, t.getId().indexOf("]")).replaceAll("<", "&lt").replaceAll(">", "&gt").replace("[", "") + "</label>");
+							xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + t.getId().substring(0, t.getId().indexOf("]")).replaceAll("<", "&lt;").replaceAll(">", "&gt;").replace("[", "") + "</label>");
 						} else {
 							List<String> items = Arrays.asList(t.getId().split("\\s*;\\s*"));
 							
 							if (items.size() >= 1) {
-								xmlWriter.println("\t\t\t<label kind=\"synchronisation\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(0).replaceAll("&", "&amp") + "?</label>");
+								xmlWriter.println("\t\t\t<label kind=\"synchronisation\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(0).replaceAll("&", "&amp;") + "?</label>");
 							}
 							
 							if (items.size() >= 2) {
-								xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(1).replaceAll("&", "&amp") + "</label>");
+								xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(1).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</label>");
 							}
 							
 							if (items.size() >= 3) {
-								xmlWriter.println("\t\t\t<label kind=\"update\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(2).replaceAll("&", "&amp") + "</label>");
+								xmlWriter.println("\t\t\t<label kind=\"update\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(2).replaceAll("&", "&amp;") + "</label>");
 							}
 						}
 						xmlWriter.println("\t\t</transition>");

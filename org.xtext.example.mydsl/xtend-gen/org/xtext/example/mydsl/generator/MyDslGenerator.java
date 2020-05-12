@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
@@ -2736,32 +2737,51 @@ public class MyDslGenerator extends AbstractGenerator {
           AttributeValue _value_2 = param_1.getValue();
           boolean _tripleNotEquals_1 = (_value_2 != null);
           if (_tripleNotEquals_1) {
-            _builder.append("\t\t\t");
-            _builder.append("xmlWriter.println(\"");
-            String _string_2 = param_1.getType().toString();
-            int _length_2 = param_1.getType().toString().length();
-            int _minus_2 = (_length_2 - 1);
-            String _substring_2 = _string_2.substring(1, _minus_2);
-            _builder.append(_substring_2, "\t\t\t");
-            _builder.append(" ");
-            String _name_6 = param_1.getName();
-            _builder.append(_name_6, "\t\t\t");
-            _builder.append(" = ");
-            String _value_3 = param_1.getValue().getValue();
-            _builder.append(_value_3, "\t\t\t");
-            _builder.append(";\");");
-            _builder.newLineIfNotEmpty();
+            {
+              String _string_2 = param_1.getType().toString();
+              int _length_2 = param_1.getType().toString().length();
+              int _minus_2 = (_length_2 - 1);
+              String _substring_2 = _string_2.substring(1, _minus_2);
+              boolean _equals = Objects.equal(_substring_2, "integer");
+              if (_equals) {
+                _builder.append("\t\t\t");
+                _builder.append("xmlWriter.println(\"int ");
+                String _name_6 = param_1.getName();
+                _builder.append(_name_6, "\t\t\t");
+                _builder.append(" = ");
+                String _value_3 = param_1.getValue().getValue();
+                _builder.append(_value_3, "\t\t\t");
+                _builder.append(";\");");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("\t\t\t");
+                _builder.append("xmlWriter.println(\"");
+                String _string_3 = param_1.getType().toString();
+                int _length_3 = param_1.getType().toString().length();
+                int _minus_3 = (_length_3 - 1);
+                String _substring_3 = _string_3.substring(1, _minus_3);
+                _builder.append(_substring_3, "\t\t\t");
+                _builder.append(" ");
+                String _name_7 = param_1.getName();
+                _builder.append(_name_7, "\t\t\t");
+                _builder.append(" = ");
+                String _value_4 = param_1.getValue().getValue();
+                _builder.append(_value_4, "\t\t\t");
+                _builder.append(";\");");
+                _builder.newLineIfNotEmpty();
+              }
+            }
           } else {
             _builder.append("\t\t\t");
             _builder.append("xmlWriter.println(\"");
-            String _string_3 = param_1.getType().toString();
-            int _length_3 = param_1.getType().toString().length();
-            int _minus_3 = (_length_3 - 1);
-            String _substring_3 = _string_3.substring(1, _minus_3);
-            _builder.append(_substring_3, "\t\t\t");
+            String _string_4 = param_1.getType().toString();
+            int _length_4 = param_1.getType().toString().length();
+            int _minus_4 = (_length_4 - 1);
+            String _substring_4 = _string_4.substring(1, _minus_4);
+            _builder.append(_substring_4, "\t\t\t");
             _builder.append(" ");
-            String _name_7 = param_1.getName();
-            _builder.append(_name_7, "\t\t\t");
+            String _name_8 = param_1.getName();
+            _builder.append(_name_8, "\t\t\t");
             _builder.append(";\");");
             _builder.newLineIfNotEmpty();
           }
@@ -2775,8 +2795,8 @@ public class MyDslGenerator extends AbstractGenerator {
       for(final Clock clock : _clocks) {
         _builder.append("\t\t\t");
         _builder.append("xmlWriter.println(\"clock ");
-        String _name_8 = clock.getName();
-        _builder.append(_name_8, "\t\t\t");
+        String _name_9 = clock.getName();
+        _builder.append(_name_9, "\t\t\t");
         _builder.append(";\");");
         _builder.newLineIfNotEmpty();
       }
@@ -2841,7 +2861,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("if (t.getId().startsWith(\"[\") || t.getId().startsWith(\"![\")) {");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"guard\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + t.getId().substring(0, t.getId().indexOf(\"]\")).replaceAll(\"<\", \"&lt\").replaceAll(\">\", \"&gt\").replace(\"[\", \"\") + \"</label>\");");
+    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"guard\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + t.getId().substring(0, t.getId().indexOf(\"]\")).replaceAll(\"<\", \"&lt;\").replaceAll(\">\", \"&gt;\").replace(\"[\", \"\") + \"</label>\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("} else {");
@@ -2855,7 +2875,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("if (items.size() >= 1) {");
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t");
-    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"synchronisation\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + items.get(0).replaceAll(\"&\", \"&amp\") + \"?</label>\");");
+    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"synchronisation\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + items.get(0).replaceAll(\"&\", \"&amp;\") + \"?</label>\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("}");
@@ -2866,7 +2886,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("if (items.size() >= 2) {");
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t");
-    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"guard\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + items.get(1).replaceAll(\"&\", \"&amp\") + \"</label>\");");
+    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"guard\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + items.get(1).replaceAll(\"&\", \"&amp;\").replaceAll(\"<\", \"&lt;\").replaceAll(\">\", \"&gt;\") + \"</label>\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("}");
@@ -2877,7 +2897,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("if (items.size() >= 3) {");
     _builder.newLine();
     _builder.append("\t\t\t\t\t\t");
-    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"update\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + items.get(2).replaceAll(\"&\", \"&amp\") + \"</label>\");");
+    _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"update\\\" x=\\\"\" + t.getSender().getId().substring(1) + \".5\\\" y=\\\"\" + t.getSender().getId().substring(1) + \".5\\\">\" + items.get(2).replaceAll(\"&\", \"&amp;\") + \"</label>\");");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
     _builder.append("}");
