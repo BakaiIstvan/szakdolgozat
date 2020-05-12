@@ -77,6 +77,8 @@ class MyDslGenerator extends AbstractGenerator {
 		import java.io.PrintWriter;
 		import java.io.UnsupportedEncodingException;
 		import java.util.ArrayList;
+		import java.util.Arrays;
+		import java.util.List;
 		
 		public class Specification{
 			private String id = "«s.name»";
@@ -982,7 +984,7 @@ class MyDslGenerator extends AbstractGenerator {
 				
 				PrintWriter xmlWriter = new PrintWriter("«s.name»" + ".xml", "UTF-8");
 				xmlWriter.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-				xmlWriter.println("<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>");
+				xmlWriter.println("<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'>");
 				xmlWriter.println("<nta>");
 				for (Automaton a : specification.automatas) {
 					xmlWriter.println("\t<template>");
@@ -1002,16 +1004,40 @@ class MyDslGenerator extends AbstractGenerator {
 					
 					xmlWriter.println("\t\t</declaration>");
 					
+					int statecounter = 0;
+					
 					for (State s : a.getStates()) {
-						xmlWriter.println("\t\t<location id=\"" + s.getId() + "\" x=\"" + "y=\">");
+						xmlWriter.println("\t\t<location id=\"" + s.getId() + "\" x=\"" + statecounter + "\" y=\"" + statecounter + "\">");
+							if (s.getType().equals(StateType.NORMAL)) {
+								xmlWriter.println("\t\t\t<name x=\"" + statecounter + "\" y=\"" + (statecounter + 0.5) + "\">" + s.getId() + "</name>");
+							} else if (s.getType().equals(StateType.ACCEPT)) {
+								xmlWriter.println("\t\t\t<name x=\"" + statecounter + "\" y=\"" + (statecounter + 0.5) + "\">ACCEPT_" + s.getId() + "</name>");
+							}
 						xmlWriter.println("\t\t</location>");
+						statecounter++;
 					}
 					
 					for (Transition t : a.getTransitions()) {
 						xmlWriter.println("\t\t<transition>");
 						xmlWriter.println("\t\t\t<source ref=\"" + t.getSender().getId() + "\"/>");
 						xmlWriter.println("\t\t\t<target ref=\"" + t.getReceiver().getId() + "\"/>");
-						xmlWriter.println("\t\t\t<label>" + t.getId() + "</label>");
+						if (t.getId().startsWith("[") || t.getId().startsWith("![")) {
+							xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + t.getId().substring(0, t.getId().indexOf("]")).replaceAll("<", "&lt").replaceAll(">", "&gt").replace("[", "") + "</label>");
+						} else {
+							List<String> items = Arrays.asList(t.getId().split("\\s*;\\s*"));
+							
+							if (items.size() >= 1) {
+								xmlWriter.println("\t\t\t<label kind=\"synchronisation\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(0).replaceAll("&", "&amp") + "?</label>");
+							}
+							
+							if (items.size() >= 2) {
+								xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(1).replaceAll("&", "&amp") + "</label>");
+							}
+							
+							if (items.size() >= 3) {
+								xmlWriter.println("\t\t\t<label kind=\"update\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(2).replaceAll("&", "&amp") + "</label>");
+							}
+						}
 						xmlWriter.println("\t\t</transition>");
 					}
 					
@@ -1061,7 +1087,7 @@ class MyDslGenerator extends AbstractGenerator {
 		str= str.substring(0, str.length() - 3);
 		
 		«IF m.constraintexp !== null»
-			str+= ", " +
+			str+= "; " +
 			«IF m.constraintexp.rclockconstraint === null»
 				«IF m.constraintexp.not»
 					"!" + 
@@ -1127,7 +1153,7 @@ class MyDslGenerator extends AbstractGenerator {
 			«ENDIF»
 			
 			«IF m.resetinconstraint !== null»
-				+ ", «m.resetinconstraint.clock.name» := 0"
+				+ "; «m.resetinconstraint.clock.name» = 0"
 			«ENDIF»
 			;
 		«ENDIF»

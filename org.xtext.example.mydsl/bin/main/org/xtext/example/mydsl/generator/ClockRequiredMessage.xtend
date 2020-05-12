@@ -40,7 +40,7 @@ class ClockRequiredMessage {
 		str1= str1.substring(0, str1.length() - 3);
 		
 		«IF m.constraintexp !== null»
-			str1+= ", " +
+			str1+= "; " +
 			«IF m.constraintexp.rclockconstraint === null»
 				«IF m.constraintexp.not»
 					"!" + 
@@ -273,7 +273,7 @@ class ClockRequiredMessage {
 		«ENDFOR»
 		+ ")"
 		
-		+ "." + "«m.receiver.name»" + "), " +
+		+ "." + "«m.receiver.name»" + "); " +
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -372,7 +372,7 @@ class ClockRequiredMessage {
 			«ENDFOR»
 			+ ")"
 			
-			+ "." + "«m.receiver.name», " + 
+			+ "." + "«m.receiver.name»; " + 
 			
 			pre +
 			")) || (1, " + succ + ")", actualState, acceptState));
@@ -405,7 +405,7 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name», " +
+		+ "." + "«m.receiver.name»; " +
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -472,7 +472,7 @@ class ClockRequiredMessage {
 		«ENDIF»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, newState));
@@ -515,12 +515,12 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»" + 
+		+ "." + "«m.receiver.name»;" + 
 		
 		«compile_clock_constraint(m)»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, finalState));
@@ -550,7 +550,7 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»" + "), " + «compile_clock_constraint(m)»
+		+ "." + "«m.receiver.name»" + "); " + «compile_clock_constraint(m)»
 		+ " || (" + «compile_required_message(m)» +", " + pre + ")) || (1, " + succ + "))"
 		
 		, actualState, acceptState));
@@ -592,7 +592,7 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»), " + «compile_clock_constraint(m)» + " & " + str + ")", actualState, actualState));
+		+ "." + "«m.receiver.name»); " + «compile_clock_constraint(m)» + " & " + str + ")", actualState, actualState));
 		acceptState = new State("q" + counter, StateType.ACCEPT);
 		counter++;
 		finalState = new State("q" + counter, StateType.FINAL);
@@ -621,18 +621,18 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name», " + 
+		+ "." + "«m.receiver.name»; " + 
 		
 		«compile_clock_constraint(m)»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, finalState));
 		«compile_pre(m)»
 		«compile_succ(m)»
-		b.addTransition(new Transition("(!" + "(" + str1 + "), " + «compile_clock_constraint(m)» + ") || " + "(" + "«m.sender.name»" + "." +
+		b.addTransition(new Transition("(!" + "(" + str1 + "); " + «compile_clock_constraint(m)» + ") || " + "(" + "«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
 				«FOR param: 0..<p.params.size»
@@ -656,7 +656,7 @@ class ClockRequiredMessage {
 				«ENDFOR»
 			«ENDFOR»
 			+ ")"
-			+ "." + "«m.receiver.name», " + pre + ")) || (1, " + succ + "))", actualState, acceptState));
+			+ "." + "«m.receiver.name»; " + pre + ")) || (1, " + succ + "))", actualState, acceptState));
 				
 		b.addState(acceptState);
 		b.addState(finalState);
@@ -695,7 +695,7 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»" + "), " + «compile_clock_constraint(m)», actualState, actualState));
+		+ "." + "«m.receiver.name»" + "); " + «compile_clock_constraint(m)», actualState, actualState));
 		finalState = new State("q" + counter, StateType.FINAL);
 		counter++;
 		acceptState = new State("q" + counter, StateType.ACCEPT);
@@ -729,7 +729,7 @@ class ClockRequiredMessage {
 				«ENDFOR»
 			«ENDFOR»
 			+ ")"
-			+ "." + "«m.receiver.name», " + pre + ") || (1, " + succ + ")", actualState, acceptState_new));
+			+ "." + "«m.receiver.name»; (" + pre + ") || (1, " + succ + ")", actualState, acceptState_new));
 		
 		b.addTransition(new Transition("«m.sender.name»" + "." +
 		"«m.name»" + "("
@@ -755,10 +755,10 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name», " + «compile_clock_constraint(m)»
+		+ "." + "«m.receiver.name»; " + «compile_clock_constraint(m)»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, finalState));
@@ -811,9 +811,9 @@ class ClockRequiredMessage {
 				«ENDFOR»
 			«ENDFOR»
 			+ ")"
-			+ "." + "«m.receiver.name», " + pre + ") || (1, " + succ + ") || "
+			+ "." + "«m.receiver.name»; (" + pre + ") || (1, " + succ + ") || "
 			
-			+ "!(" + «compile_required_message(m)» + "), " + «compile_clock_constraint(m)» 
+			+ "!(" + «compile_required_message(m)» + "); " + «compile_clock_constraint(m)» 
 			
 			, actualState, acceptState_new));
 		
@@ -841,10 +841,10 @@ class ClockRequiredMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name», " + «compile_clock_constraint(m)»
+		+ "." + "«m.receiver.name»; " + «compile_clock_constraint(m)»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, finalState));

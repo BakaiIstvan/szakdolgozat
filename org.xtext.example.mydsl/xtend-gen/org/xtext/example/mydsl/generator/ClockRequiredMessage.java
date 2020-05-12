@@ -120,7 +120,7 @@ public class ClockRequiredMessage {
       ClockConstraintExpression _constraintexp = m.getConstraintexp();
       boolean _tripleNotEquals = (_constraintexp != null);
       if (_tripleNotEquals) {
-        _builder.append("str1+= \", \" +");
+        _builder.append("str1+= \"; \" +");
         _builder.newLine();
         {
           ClockConstraint _rclockconstraint = m.getConstraintexp().getRclockconstraint();
@@ -940,7 +940,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3);
-    _builder.append("\" + \"), \" +");
+    _builder.append("\" + \"); \" +");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -1298,7 +1298,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_25 = m.getReceiver().getName();
     _builder.append(_name_25, "\t");
-    _builder.append(", \" + ");
+    _builder.append("; \" + ");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -1392,7 +1392,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_29 = m.getReceiver().getName();
     _builder.append(_name_29);
-    _builder.append(", \" +");
+    _builder.append("; \" +");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -1652,10 +1652,10 @@ public class ClockRequiredMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_48 = m.getResetclock().getClock().getName();
         _builder.append(_name_48);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1767,7 +1767,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3);
-    _builder.append("\" + ");
+    _builder.append(";\" + ");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     CharSequence _compile_clock_constraint = this.compile_clock_constraint(m);
@@ -1778,10 +1778,10 @@ public class ClockRequiredMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_4 = m.getResetclock().getClock().getName();
         _builder.append(_name_4);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1870,7 +1870,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_8 = m.getReceiver().getName();
     _builder.append(_name_8);
-    _builder.append("\" + \"), \" + ");
+    _builder.append("\" + \"); \" + ");
     CharSequence _compile_clock_constraint_1 = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint_1);
     _builder.newLineIfNotEmpty();
@@ -1985,7 +1985,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3);
-    _builder.append("), \" + ");
+    _builder.append("); \" + ");
     CharSequence _compile_clock_constraint = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint);
     _builder.append(" + \" & \" + str + \")\", actualState, actualState));");
@@ -2074,7 +2074,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_7 = m.getReceiver().getName();
     _builder.append(_name_7);
-    _builder.append(", \" + ");
+    _builder.append("; \" + ");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     CharSequence _compile_clock_constraint_1 = this.compile_clock_constraint(m);
@@ -2085,10 +2085,10 @@ public class ClockRequiredMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_8 = m.getResetclock().getClock().getName();
         _builder.append(_name_8);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -2101,7 +2101,7 @@ public class ClockRequiredMessage {
     CharSequence _compile_succ = this.compile_succ(m);
     _builder.append(_compile_succ);
     _builder.newLineIfNotEmpty();
-    _builder.append("b.addTransition(new Transition(\"(!\" + \"(\" + str1 + \"), \" + ");
+    _builder.append("b.addTransition(new Transition(\"(!\" + \"(\" + str1 + \"); \" + ");
     CharSequence _compile_clock_constraint_2 = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint_2);
     _builder.append(" + \") || \" + \"(\" + \"");
@@ -2189,7 +2189,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_12 = m.getReceiver().getName();
     _builder.append(_name_12, "\t");
-    _builder.append(", \" + pre + \")) || (1, \" + succ + \"))\", actualState, acceptState));");
+    _builder.append("; \" + pre + \")) || (1, \" + succ + \"))\", actualState, acceptState));");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.newLine();
@@ -2295,7 +2295,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3);
-    _builder.append("\" + \"), \" + ");
+    _builder.append("\" + \"); \" + ");
     CharSequence _compile_clock_constraint = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint);
     _builder.append(", actualState, actualState));");
@@ -2404,7 +2404,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_7 = m.getReceiver().getName();
     _builder.append(_name_7, "\t");
-    _builder.append(", \" + pre + \") || (1, \" + succ + \")\", actualState, acceptState_new));");
+    _builder.append("; (\" + pre + \") || (1, \" + succ + \")\", actualState, acceptState_new));");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("b.addTransition(new Transition(\"");
@@ -2483,7 +2483,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_11 = m.getReceiver().getName();
     _builder.append(_name_11);
-    _builder.append(", \" + ");
+    _builder.append("; \" + ");
     CharSequence _compile_clock_constraint_1 = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint_1);
     _builder.newLineIfNotEmpty();
@@ -2492,10 +2492,10 @@ public class ClockRequiredMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_12 = m.getResetclock().getClock().getName();
         _builder.append(_name_12);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -2638,7 +2638,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3, "\t");
-    _builder.append(", \" + pre + \") || (1, \" + succ + \") || \"");
+    _builder.append("; (\" + pre + \") || (1, \" + succ + \") || \"");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -2646,7 +2646,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \"!(\" + ");
     CharSequence _compile_required_message = this.compile_required_message(m);
     _builder.append(_compile_required_message, "\t");
-    _builder.append(" + \"), \" + ");
+    _builder.append(" + \"); \" + ");
     CharSequence _compile_clock_constraint = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint, "\t");
     _builder.append(" ");
@@ -2733,7 +2733,7 @@ public class ClockRequiredMessage {
     _builder.append("+ \".\" + \"");
     String _name_7 = m.getReceiver().getName();
     _builder.append(_name_7);
-    _builder.append(", \" + ");
+    _builder.append("; \" + ");
     CharSequence _compile_clock_constraint_1 = this.compile_clock_constraint(m);
     _builder.append(_compile_clock_constraint_1);
     _builder.newLineIfNotEmpty();
@@ -2742,10 +2742,10 @@ public class ClockRequiredMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_8 = m.getResetclock().getClock().getName();
         _builder.append(_name_8);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }

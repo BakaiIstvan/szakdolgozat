@@ -120,7 +120,7 @@ public class ClockRegularMessage {
       ClockConstraintExpression _constraintexp = m.getConstraintexp();
       boolean _tripleNotEquals = (_constraintexp != null);
       if (_tripleNotEquals) {
-        _builder.append("str1+= \", \" +");
+        _builder.append("str1+= \"; \" +");
         _builder.newLine();
         {
           ClockConstraint _rclockconstraint = m.getConstraintexp().getRclockconstraint();
@@ -482,7 +482,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3, "\t");
-    _builder.append("), \" + ");
+    _builder.append("); \" + ");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -848,7 +848,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_25 = m.getReceiver().getName();
     _builder.append(_name_25);
-    _builder.append(", \" +");
+    _builder.append("; \" +");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -1108,10 +1108,10 @@ public class ClockRegularMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_44 = m.getResetclock().getClock().getName();
         _builder.append(_name_44);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1220,7 +1220,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3);
-    _builder.append("\" +");
+    _builder.append(";\" +");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -1480,10 +1480,10 @@ public class ClockRegularMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_22 = m.getResetclock().getClock().getName();
         _builder.append(_name_22);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -1598,7 +1598,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3, "\t");
-    _builder.append("), \" + ");
+    _builder.append("); \" + ");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -1954,7 +1954,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_25 = m.getReceiver().getName();
     _builder.append(_name_25);
-    _builder.append("\" + ");
+    _builder.append(";\" + ");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -2214,10 +2214,10 @@ public class ClockRegularMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_44 = m.getResetclock().getClock().getName();
         _builder.append(_name_44);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -2332,7 +2332,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3, "\t");
-    _builder.append("), \" + ");
+    _builder.append("); \" + ");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.newLine();
@@ -2697,7 +2697,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_25 = m.getReceiver().getName();
     _builder.append(_name_25);
-    _builder.append(", \" +");
+    _builder.append("; \" +");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -2957,10 +2957,10 @@ public class ClockRegularMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_44 = m.getResetclock().getClock().getName();
         _builder.append(_name_44);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -3083,7 +3083,7 @@ public class ClockRegularMessage {
     _builder.append("+ \".\" + \"");
     String _name_3 = m.getReceiver().getName();
     _builder.append(_name_3);
-    _builder.append("\" +");
+    _builder.append(";\" +");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
@@ -3343,10 +3343,10 @@ public class ClockRegularMessage {
       ResetClock _resetclock = m.getResetclock();
       boolean _tripleNotEquals = (_resetclock != null);
       if (_tripleNotEquals) {
-        _builder.append("+ \", ");
+        _builder.append("+ \"; ");
         String _name_22 = m.getResetclock().getClock().getName();
         _builder.append(_name_22);
-        _builder.append(" := 0\"");
+        _builder.append(" = 0\"");
         _builder.newLineIfNotEmpty();
       }
     }

@@ -41,7 +41,7 @@ class ClockRegularMessage {
 		str1= str1.substring(0, str1.length() - 3);
 		
 		«IF m.constraintexp !== null»
-			str1+= ", " +
+			str1+= "; " +
 			«IF m.constraintexp.rclockconstraint === null»
 				«IF m.constraintexp.not»
 					"!" + 
@@ -141,7 +141,7 @@ class ClockRegularMessage {
 			«ENDFOR»
 			+ ")"
 			
-			+ "." + "«m.receiver.name»), " + 
+			+ "." + "«m.receiver.name»); " + 
 			
 			«IF m.CConstraint.rclockconstraint === null»
 				«IF m.CConstraint.not»
@@ -237,7 +237,7 @@ class ClockRegularMessage {
 		«ENDFOR»
 		+ ")"
 		
-		+ "." + "«m.receiver.name», " +
+		+ "." + "«m.receiver.name»; " +
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -304,7 +304,7 @@ class ClockRegularMessage {
 		«ENDIF»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		 , actualState, newState));
@@ -345,7 +345,7 @@ class ClockRegularMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»" +
+		+ "." + "«m.receiver.name»;" +
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -412,7 +412,7 @@ class ClockRegularMessage {
 		«ENDIF»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, newState));
@@ -452,7 +452,7 @@ class ClockRegularMessage {
 			«ENDFOR»
 			+ ")"
 			
-			+ "." + "«m.receiver.name»), " + 
+			+ "." + "«m.receiver.name»); " + 
 			
 			«IF m.CConstraint.rclockconstraint === null»
 				«IF m.CConstraint.not»
@@ -543,7 +543,7 @@ class ClockRegularMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»" + 
+		+ "." + "«m.receiver.name»;" + 
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -610,7 +610,7 @@ class ClockRegularMessage {
 		«ENDIF»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, newState));
@@ -650,7 +650,7 @@ class ClockRegularMessage {
 			«ENDFOR»
 			+ ")"
 			
-			+ "." + "«m.receiver.name»), " + 
+			+ "." + "«m.receiver.name»); " + 
 			
 			«IF m.CConstraint.rclockconstraint === null»
 				«IF m.CConstraint.not»
@@ -745,7 +745,7 @@ class ClockRegularMessage {
 		«ENDFOR»
 		+ ")"
 		
-		+ "." + "«m.receiver.name», " +
+		+ "." + "«m.receiver.name»; " +
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -812,7 +812,7 @@ class ClockRegularMessage {
 		«ENDIF»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		 , actualState, newState));
@@ -861,7 +861,7 @@ class ClockRegularMessage {
 			«ENDFOR»
 		«ENDFOR»
 		+ ")"
-		+ "." + "«m.receiver.name»" +
+		+ "." + "«m.receiver.name»;" +
 		
 		«IF m.CConstraint.rclockconstraint === null»
 			«IF m.CConstraint.not»
@@ -928,7 +928,7 @@ class ClockRegularMessage {
 		«ENDIF»
 		
 		«IF m.resetclock !== null»
-			+ ", «m.resetclock.clock.name» := 0"
+			+ "; «m.resetclock.clock.name» = 0"
 		«ENDIF»
 		
 		, actualState, newState));
