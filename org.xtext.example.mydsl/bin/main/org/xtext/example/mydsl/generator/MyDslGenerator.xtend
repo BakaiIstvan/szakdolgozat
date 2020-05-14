@@ -987,9 +987,17 @@ class MyDslGenerator extends AbstractGenerator {
 				xmlWriter.println("<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'>");
 				xmlWriter.println("<nta>");
 				for (Automaton a : specification.automatas) {
-					xmlWriter.println("\t<template>");
-					xmlWriter.println("\t\t<name>" + a.getId() + "</name>");
-					xmlWriter.println("\t\t<declaration>");
+					xmlWriter.println("\t<declaration>");
+					String previous = "";
+					for (Transition t : a.getTransitions()) {
+						List<String> items = Arrays.asList(t.getId().split("\\s*;\\s*"));
+						if (t.getId().startsWith("[") || t.getId().startsWith("![")) {
+						} else if (!previous.equals(items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", ""))){
+							xmlWriter.println("chan " + items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "") + ";");
+							previous = items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "");
+						}
+					}
+					
 					«FOR param : s.parameters»
 						«IF param.value !== null»
 							«IF param.type.toString().substring(1, param.type.toString().length - 1) == "integer"»
@@ -1006,6 +1014,10 @@ class MyDslGenerator extends AbstractGenerator {
 						xmlWriter.println("clock «clock.name»;");
 					«ENDFOR»
 					
+					xmlWriter.println("\t</declaration>");
+					xmlWriter.println("\t<template>");
+					xmlWriter.println("\t\t<name>" + a.getId() + "</name>");
+					xmlWriter.println("\t\t<declaration>");
 					xmlWriter.println("\t\t</declaration>");
 					
 					int statecounter = 0;
@@ -1021,6 +1033,8 @@ class MyDslGenerator extends AbstractGenerator {
 						statecounter++;
 					}
 					
+					xmlWriter.println("\t\t<init ref=\"q0\"/>");
+					
 					for (Transition t : a.getTransitions()) {
 						xmlWriter.println("\t\t<transition>");
 						xmlWriter.println("\t\t\t<source ref=\"" + t.getSender().getId() + "\"/>");
@@ -1029,15 +1043,19 @@ class MyDslGenerator extends AbstractGenerator {
 							xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + t.getId().substring(0, t.getId().indexOf("]")).replaceAll("<", "&lt;").replaceAll(">", "&gt;").replace("[", "") + "</label>");
 						} else {
 							List<String> items = Arrays.asList(t.getId().split("\\s*;\\s*"));
-							
+
 							if (items.size() >= 1) {
-								xmlWriter.println("\t\t\t<label kind=\"synchronisation\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(0).replaceAll("&", "&amp;") + "?</label>");
+								xmlWriter.println("\t\t\t<label kind=\"synchronisation\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "") + "?</label>");
 							}
-							
+
 							if (items.size() >= 2) {
-								xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(1).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</label>");
+								if (!items.get(1).startsWith("(")) {
+									xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(1).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(",", "and") + "</label>");
+								} else {
+									xmlWriter.println("\t\t\t<label kind=\"guard\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(1).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll(",", "and") + "</label>");
+								}
 							}
-							
+
 							if (items.size() >= 3) {
 								xmlWriter.println("\t\t\t<label kind=\"update\" x=\"" + t.getSender().getId().substring(1) + ".5\" y=\"" + t.getSender().getId().substring(1) + ".5\">" + items.get(2).replaceAll("&", "&amp;") + "</label>");
 							}
