@@ -38,6 +38,7 @@ import org.xtext.example.mydsl.generator.RequiredMessage;
 import org.xtext.example.mydsl.generator.StateGenerator;
 import org.xtext.example.mydsl.generator.TransitionGenerator;
 import org.xtext.example.mydsl.myDsl.Alt;
+import org.xtext.example.mydsl.myDsl.AltCondition;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
@@ -65,6 +66,7 @@ import org.xtext.example.mydsl.myDsl.Params;
 import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
+import org.xtext.example.mydsl.myDsl.Type;
 
 /**
  * Generates code from your model files on save.
@@ -127,9 +129,15 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("import java.util.ArrayList;");
     _builder.newLine();
+    _builder.append("import java.util.HashMap;");
+    _builder.newLine();
+    _builder.append("import java.util.Collections;");
+    _builder.newLine();
     _builder.append("import java.util.Arrays;");
     _builder.newLine();
     _builder.append("import java.util.List;");
+    _builder.newLine();
+    _builder.append("import java.util.Map;");
     _builder.newLine();
     _builder.newLine();
     _builder.append("public class Specification{");
@@ -191,7 +199,7 @@ public class MyDslGenerator extends AbstractGenerator {
         _builder.append("Automaton b;");
         _builder.newLine();
         _builder.append("\t\t");
-        _builder.append("ArrayList<Automaton> altauto;");
+        _builder.append("Map<String, Automaton> altauto;");
         _builder.newLine();
         _builder.append("\t\t");
         _builder.append("ArrayList<Automaton> parauto;");
@@ -1363,7 +1371,7 @@ public class MyDslGenerator extends AbstractGenerator {
               EList<Alt> _alt = sc.getAlt();
               for(final Alt a_6 : _alt) {
                 _builder.append("\t\t");
-                _builder.append("altauto = new ArrayList<Automaton>();");
+                _builder.append("altauto = new HashMap<String, Automaton>();");
                 _builder.newLine();
                 {
                   EList<Expression> _expressions = a_6.getExpressions();
@@ -1716,8 +1724,11 @@ public class MyDslGenerator extends AbstractGenerator {
                     }
                     _builder.append("\t\t");
                     _builder.append("\t");
-                    _builder.append("altauto.add(expression);\t\t\t\t\t\t");
-                    _builder.newLine();
+                    _builder.append("altauto.put(\"");
+                    CharSequence _compile_alt_condition = this.compile_alt_condition(e.getAltCondition());
+                    _builder.append(_compile_alt_condition, "\t\t\t");
+                    _builder.append("\", expression);");
+                    _builder.newLineIfNotEmpty();
                   }
                 }
                 _builder.append("\t\t");
@@ -2728,22 +2739,34 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("String previous = \"\";");
     _builder.newLine();
     _builder.append("\t\t\t");
+    _builder.append("List<String> existingChannels = new ArrayList<String>();");
+    _builder.newLine();
+    _builder.append("\t\t\t");
     _builder.append("for (Transition t : a.getTransitions()) {");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("List<String> items = Arrays.asList(t.getId().split(\"\\\\s*;\\\\s*\"));");
     _builder.newLine();
     _builder.append("\t\t\t\t");
+    _builder.append("if (Collections.frequency(existingChannels, items.get(0)) == 0) {");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
     _builder.append("if (t.getId().startsWith(\"[\") || t.getId().startsWith(\"![\")) {");
     _builder.newLine();
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t\t\t");
     _builder.append("} else if (!previous.equals(items.get(0).replaceAll(\"\\\\(\", \"_\").replaceAll(\"\\\\)\", \"_\").replaceAll(\"\\\\.\", \"__\").replaceAll(\"!\", \"not\").replaceAll(\"&\", \"_and_\").replaceAll(\"\\\\s\", \"\"))){");
     _builder.newLine();
-    _builder.append("\t\t\t\t\t");
+    _builder.append("\t\t\t\t\t\t");
     _builder.append("xmlWriter.println(\"chan \" + items.get(0).replaceAll(\"\\\\(\", \"_\").replaceAll(\"\\\\)\", \"_\").replaceAll(\"\\\\.\", \"__\").replaceAll(\"!\", \"not\").replaceAll(\"&\", \"_and_\").replaceAll(\"\\\\s\", \"\") + \";\");");
     _builder.newLine();
-    _builder.append("\t\t\t\t\t");
+    _builder.append("\t\t\t\t\t\t");
     _builder.append("previous = items.get(0).replaceAll(\"\\\\(\", \"_\").replaceAll(\"\\\\)\", \"_\").replaceAll(\"\\\\.\", \"__\").replaceAll(\"!\", \"not\").replaceAll(\"&\", \"_and_\").replaceAll(\"\\\\s\", \"\");");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t\t");
+    _builder.append("existingChannels.add(items.get(0));");
+    _builder.newLine();
+    _builder.append("\t\t\t\t\t");
+    _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}");
@@ -2780,10 +2803,7 @@ public class MyDslGenerator extends AbstractGenerator {
                 _builder.append("\t\t\t");
                 _builder.append("xmlWriter.println(\"");
                 String _string_3 = param_1.getType().toString();
-                int _length_3 = param_1.getType().toString().length();
-                int _minus_3 = (_length_3 - 1);
-                String _substring_3 = _string_3.substring(1, _minus_3);
-                _builder.append(_substring_3, "\t\t\t");
+                _builder.append(_string_3, "\t\t\t");
                 _builder.append(" ");
                 String _name_7 = param_1.getName();
                 _builder.append(_name_7, "\t\t\t");
@@ -2798,10 +2818,7 @@ public class MyDslGenerator extends AbstractGenerator {
             _builder.append("\t\t\t");
             _builder.append("xmlWriter.println(\"");
             String _string_4 = param_1.getType().toString();
-            int _length_4 = param_1.getType().toString().length();
-            int _minus_4 = (_length_4 - 1);
-            String _substring_4 = _string_4.substring(1, _minus_4);
-            _builder.append(_substring_4, "\t\t\t");
+            _builder.append(_string_4, "\t\t\t");
             _builder.append(" ");
             String _name_8 = param_1.getName();
             _builder.append(_name_8, "\t\t\t");
@@ -3133,6 +3150,40 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("\t\t\t");
     _builder.append("xmlWriter.println(\"\\t\\t<init ref=\\\"q0\\\"/>\");");
     _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    {
+      EList<Parameter> _parameters_2 = s.getParameters();
+      for(final Parameter param_2 : _parameters_2) {
+        {
+          Type _type = param_2.getType();
+          boolean _equals_1 = Objects.equal(_type, Type.BOOL);
+          if (_equals_1) {
+            _builder.append("\t\t\t");
+            _builder.append("xmlWriter.println(\"\\t\\t<transition>\");");
+            _builder.newLine();
+            _builder.append("\t\t\t");
+            _builder.append("xmlWriter.println(\"\\t\\t\\t<source ref=\\\"q0\\\"/>\");");
+            _builder.newLine();
+            _builder.append("\t\t\t");
+            _builder.append("xmlWriter.println(\"\\t\\t\\t<target ref=\\\"q0\\\"/>\");");
+            _builder.newLine();
+            _builder.append("\t\t\t");
+            _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"select\\\" x=\\\"50\\\" y=\\\"10\\\">b : int[0, 1]</label>\");");
+            _builder.newLine();
+            _builder.append("\t\t\t");
+            _builder.append("xmlWriter.println(\"\\t\\t\\t<label kind=\\\"assignment\\\" x=\\\"51\\\" y=\\\"11\\\">");
+            String _name_10 = param_2.getName();
+            _builder.append(_name_10, "\t\t\t");
+            _builder.append(" = b</label>\");");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t\t\t");
+            _builder.append("xmlWriter.println(\"\\t\\t</transition>\");");
+            _builder.newLine();
+          }
+        }
+      }
+    }
     _builder.append("\t\t\t");
     _builder.newLine();
     _builder.append("\t\t\t");
@@ -3770,6 +3821,51 @@ public class MyDslGenerator extends AbstractGenerator {
         _builder.newLine();
       }
     }
+    return _builder;
+  }
+  
+  public CharSequence compile_alt_condition(final AltCondition a) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = a.getParam().getName();
+    _builder.append(_name);
+    {
+      boolean _isGreater = a.getOperator().isGreater();
+      if (_isGreater) {
+        _builder.append(">");
+      }
+    }
+    {
+      boolean _isSmaller = a.getOperator().isSmaller();
+      if (_isSmaller) {
+        _builder.append("<");
+      }
+    }
+    {
+      boolean _isGreaterequals = a.getOperator().isGreaterequals();
+      if (_isGreaterequals) {
+        _builder.append(">=");
+      }
+    }
+    {
+      boolean _isSmallerequals = a.getOperator().isSmallerequals();
+      if (_isSmallerequals) {
+        _builder.append("<=");
+      }
+    }
+    {
+      boolean _isEquals = a.getOperator().isEquals();
+      if (_isEquals) {
+        _builder.append("==");
+      }
+    }
+    {
+      boolean _isNotequals = a.getOperator().isNotequals();
+      if (_isNotequals) {
+        _builder.append("!=");
+      }
+    }
+    String _value = a.getValue().getValue();
+    _builder.append(_value);
     return _builder;
   }
 }

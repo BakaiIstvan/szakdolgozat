@@ -207,7 +207,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AltCondition returns AltCondition
 	 *
 	 * Constraint:
-	 *     ((param=[Parameter|ID] operator+=Operator value+=AttributeValue) | else?='else')
+	 *     ((param=[Parameter|ID] operator=Operator value=AttributeValue) | else?='else')
 	 */
 	protected void sequence_AltCondition(ISerializationContext context, AltCondition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -525,7 +525,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Expression returns Expression
 	 *
 	 * Constraint:
-	 *     (altCondition+=AltCondition messages+=Message*)
+	 *     (altCondition=AltCondition messages+=Message*)
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -744,7 +744,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Parameter returns Parameter
 	 *
 	 * Constraint:
-	 *     (type+=Type name=ID value=AttributeValue?)
+	 *     (type=Type name=ID value=AttributeValue?)
 	 */
 	protected void sequence_Parameter(ISerializationContext context, org.xtext.example.mydsl.myDsl.Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

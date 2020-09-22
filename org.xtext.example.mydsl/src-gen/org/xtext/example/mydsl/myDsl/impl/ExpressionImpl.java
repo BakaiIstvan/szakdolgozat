@@ -5,6 +5,7 @@ package org.xtext.example.mydsl.myDsl.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -39,14 +41,14 @@ import org.xtext.example.mydsl.myDsl.MyDslPackage;
 public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
 {
   /**
-   * The cached value of the '{@link #getAltCondition() <em>Alt Condition</em>}' containment reference list.
+   * The cached value of the '{@link #getAltCondition() <em>Alt Condition</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getAltCondition()
    * @generated
    * @ordered
    */
-  protected EList<AltCondition> altCondition;
+  protected AltCondition altCondition;
 
   /**
    * The cached value of the '{@link #getMessages() <em>Messages</em>}' containment reference list.
@@ -84,13 +86,47 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<AltCondition> getAltCondition()
+  public AltCondition getAltCondition()
   {
-    if (altCondition == null)
-    {
-      altCondition = new EObjectContainmentEList<AltCondition>(AltCondition.class, this, MyDslPackage.EXPRESSION__ALT_CONDITION);
-    }
     return altCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetAltCondition(AltCondition newAltCondition, NotificationChain msgs)
+  {
+    AltCondition oldAltCondition = altCondition;
+    altCondition = newAltCondition;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.EXPRESSION__ALT_CONDITION, oldAltCondition, newAltCondition);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAltCondition(AltCondition newAltCondition)
+  {
+    if (newAltCondition != altCondition)
+    {
+      NotificationChain msgs = null;
+      if (altCondition != null)
+        msgs = ((InternalEObject)altCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EXPRESSION__ALT_CONDITION, null, msgs);
+      if (newAltCondition != null)
+        msgs = ((InternalEObject)newAltCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.EXPRESSION__ALT_CONDITION, null, msgs);
+      msgs = basicSetAltCondition(newAltCondition, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.EXPRESSION__ALT_CONDITION, newAltCondition, newAltCondition));
   }
 
   /**
@@ -118,7 +154,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case MyDslPackage.EXPRESSION__ALT_CONDITION:
-        return ((InternalEList<?>)getAltCondition()).basicRemove(otherEnd, msgs);
+        return basicSetAltCondition(null, msgs);
       case MyDslPackage.EXPRESSION__MESSAGES:
         return ((InternalEList<?>)getMessages()).basicRemove(otherEnd, msgs);
     }
@@ -155,8 +191,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case MyDslPackage.EXPRESSION__ALT_CONDITION:
-        getAltCondition().clear();
-        getAltCondition().addAll((Collection<? extends AltCondition>)newValue);
+        setAltCondition((AltCondition)newValue);
         return;
       case MyDslPackage.EXPRESSION__MESSAGES:
         getMessages().clear();
@@ -177,7 +212,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case MyDslPackage.EXPRESSION__ALT_CONDITION:
-        getAltCondition().clear();
+        setAltCondition((AltCondition)null);
         return;
       case MyDslPackage.EXPRESSION__MESSAGES:
         getMessages().clear();
@@ -197,7 +232,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
     switch (featureID)
     {
       case MyDslPackage.EXPRESSION__ALT_CONDITION:
-        return altCondition != null && !altCondition.isEmpty();
+        return altCondition != null;
       case MyDslPackage.EXPRESSION__MESSAGES:
         return messages != null && !messages.isEmpty();
     }

@@ -385,31 +385,33 @@ public class ClockRequiredMessage {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("pre = ");
     _builder.newLine();
-    _builder.append("\"");
     {
       ClockConstraint _rclockconstraint = m.getCConstraint().getRclockconstraint();
       boolean _tripleNotEquals = (_rclockconstraint != null);
       if (_tripleNotEquals) {
-        _builder.newLineIfNotEmpty();
         {
           boolean _isGreater = m.getCConstraint().getLclockconstraint().getOp().isGreater();
           if (_isGreater) {
+            _builder.append("\"");
             String _name = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name);
             _builder.append(" <= ");
             String _constant = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
         {
           boolean _isGreaterequals = m.getCConstraint().getLclockconstraint().getOp().isGreaterequals();
           if (_isGreaterequals) {
+            _builder.append("\"");
             String _name_1 = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name_1);
             _builder.append(" < ");
             String _constant_1 = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant_1);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -417,30 +419,56 @@ public class ClockRequiredMessage {
         {
           boolean _isGreater_1 = m.getCConstraint().getRclockconstraint().getOp().isGreater();
           if (_isGreater_1) {
+            _builder.append("\"");
             String _name_2 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_2);
             _builder.append(" <= ");
             String _constant_2 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_2);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
         {
           boolean _isGreaterequals_1 = m.getCConstraint().getRclockconstraint().getOp().isGreaterequals();
           if (_isGreaterequals_1) {
+            _builder.append("\"");
             String _name_3 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_3);
             _builder.append(" < ");
             String _constant_3 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_3);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
-        _builder.append("\t\t");
+      } else {
+        {
+          if ((m.getCConstraint().getLclockconstraint().getOp().isGreater() || m.getCConstraint().getLclockconstraint().getOp().isSmaller())) {
+            _builder.append("\"");
+            String _name_4 = m.getCConstraint().getLclockconstraint().getClock().getName();
+            _builder.append(_name_4);
+            _builder.append(" <= ");
+            String _constant_4 = m.getCConstraint().getLclockconstraint().getConstant();
+            _builder.append(_constant_4);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          if ((m.getCConstraint().getLclockconstraint().getOp().isGreaterequals() || m.getCConstraint().getLclockconstraint().getOp().isSmallerequals())) {
+            _builder.append("\"");
+            String _name_5 = m.getCConstraint().getLclockconstraint().getClock().getName();
+            _builder.append(_name_5);
+            _builder.append(" < ");
+            String _constant_5 = m.getCConstraint().getLclockconstraint().getConstant();
+            _builder.append(_constant_5);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
-    _builder.append("\"");
-    _builder.newLineIfNotEmpty();
     _builder.append(";");
     _builder.newLine();
     return _builder;
@@ -450,31 +478,33 @@ public class ClockRequiredMessage {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("succ =");
     _builder.newLine();
-    _builder.append("\"");
     {
       ClockConstraint _rclockconstraint = m.getCConstraint().getRclockconstraint();
       boolean _tripleNotEquals = (_rclockconstraint != null);
       if (_tripleNotEquals) {
-        _builder.newLineIfNotEmpty();
         {
           boolean _isSmaller = m.getCConstraint().getLclockconstraint().getOp().isSmaller();
           if (_isSmaller) {
+            _builder.append("\"");
             String _name = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name);
             _builder.append(" >= ");
             String _constant = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
         {
           boolean _isSmallerequals = m.getCConstraint().getLclockconstraint().getOp().isSmallerequals();
           if (_isSmallerequals) {
+            _builder.append("\"");
             String _name_1 = m.getCConstraint().getLclockconstraint().getClock().getName();
             _builder.append(_name_1);
             _builder.append(" > ");
             String _constant_1 = m.getCConstraint().getLclockconstraint().getConstant();
             _builder.append(_constant_1);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -482,30 +512,56 @@ public class ClockRequiredMessage {
         {
           boolean _isSmaller_1 = m.getCConstraint().getRclockconstraint().getOp().isSmaller();
           if (_isSmaller_1) {
+            _builder.append("\"");
             String _name_2 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_2);
             _builder.append(" >= ");
             String _constant_2 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_2);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
         {
           boolean _isSmallerequals_1 = m.getCConstraint().getRclockconstraint().getOp().isSmallerequals();
           if (_isSmallerequals_1) {
+            _builder.append("\"");
             String _name_3 = m.getCConstraint().getRclockconstraint().getClock().getName();
             _builder.append(_name_3);
             _builder.append(" > ");
             String _constant_3 = m.getCConstraint().getRclockconstraint().getConstant();
             _builder.append(_constant_3);
+            _builder.append("\"");
             _builder.newLineIfNotEmpty();
           }
         }
-        _builder.append("\t\t");
+      } else {
+        {
+          if ((m.getCConstraint().getLclockconstraint().getOp().isSmaller() || m.getCConstraint().getLclockconstraint().getOp().isGreater())) {
+            _builder.append("\"");
+            String _name_4 = m.getCConstraint().getLclockconstraint().getClock().getName();
+            _builder.append(_name_4);
+            _builder.append(" >= ");
+            String _constant_4 = m.getCConstraint().getLclockconstraint().getConstant();
+            _builder.append(_constant_4);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          if ((m.getCConstraint().getLclockconstraint().getOp().isSmallerequals() || m.getCConstraint().getLclockconstraint().getOp().isGreaterequals())) {
+            _builder.append("\"");
+            String _name_5 = m.getCConstraint().getLclockconstraint().getClock().getName();
+            _builder.append(_name_5);
+            _builder.append(" > ");
+            String _constant_5 = m.getCConstraint().getLclockconstraint().getConstant();
+            _builder.append(_constant_5);
+            _builder.append("\"");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
-    _builder.append("\"");
-    _builder.newLineIfNotEmpty();
     _builder.append(";");
     _builder.newLine();
     return _builder;

@@ -3,21 +3,14 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.mydsl.myDsl.AltCondition;
 import org.xtext.example.mydsl.myDsl.AttributeValue;
@@ -54,24 +47,24 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
   protected Parameter param;
 
   /**
-   * The cached value of the '{@link #getOperator() <em>Operator</em>}' containment reference list.
+   * The cached value of the '{@link #getOperator() <em>Operator</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getOperator()
    * @generated
    * @ordered
    */
-  protected EList<Operator> operator;
+  protected Operator operator;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference list.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected EList<AttributeValue> value;
+  protected AttributeValue value;
 
   /**
    * The default value of the '{@link #isElse() <em>Else</em>}' attribute.
@@ -162,12 +155,8 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Operator> getOperator()
+  public Operator getOperator()
   {
-    if (operator == null)
-    {
-      operator = new EObjectContainmentEList<Operator>(Operator.class, this, MyDslPackage.ALT_CONDITION__OPERATOR);
-    }
     return operator;
   }
 
@@ -176,13 +165,85 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<AttributeValue> getValue()
+  public NotificationChain basicSetOperator(Operator newOperator, NotificationChain msgs)
   {
-    if (value == null)
+    Operator oldOperator = operator;
+    operator = newOperator;
+    if (eNotificationRequired())
     {
-      value = new EObjectContainmentEList<AttributeValue>(AttributeValue.class, this, MyDslPackage.ALT_CONDITION__VALUE);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.ALT_CONDITION__OPERATOR, oldOperator, newOperator);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperator(Operator newOperator)
+  {
+    if (newOperator != operator)
+    {
+      NotificationChain msgs = null;
+      if (operator != null)
+        msgs = ((InternalEObject)operator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.ALT_CONDITION__OPERATOR, null, msgs);
+      if (newOperator != null)
+        msgs = ((InternalEObject)newOperator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.ALT_CONDITION__OPERATOR, null, msgs);
+      msgs = basicSetOperator(newOperator, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ALT_CONDITION__OPERATOR, newOperator, newOperator));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AttributeValue getValue()
+  {
     return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetValue(AttributeValue newValue, NotificationChain msgs)
+  {
+    AttributeValue oldValue = value;
+    value = newValue;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MyDslPackage.ALT_CONDITION__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setValue(AttributeValue newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.ALT_CONDITION__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MyDslPackage.ALT_CONDITION__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.ALT_CONDITION__VALUE, newValue, newValue));
   }
 
   /**
@@ -219,9 +280,9 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
     switch (featureID)
     {
       case MyDslPackage.ALT_CONDITION__OPERATOR:
-        return ((InternalEList<?>)getOperator()).basicRemove(otherEnd, msgs);
+        return basicSetOperator(null, msgs);
       case MyDslPackage.ALT_CONDITION__VALUE:
-        return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
+        return basicSetValue(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -254,7 +315,6 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -264,12 +324,10 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
         setParam((Parameter)newValue);
         return;
       case MyDslPackage.ALT_CONDITION__OPERATOR:
-        getOperator().clear();
-        getOperator().addAll((Collection<? extends Operator>)newValue);
+        setOperator((Operator)newValue);
         return;
       case MyDslPackage.ALT_CONDITION__VALUE:
-        getValue().clear();
-        getValue().addAll((Collection<? extends AttributeValue>)newValue);
+        setValue((AttributeValue)newValue);
         return;
       case MyDslPackage.ALT_CONDITION__ELSE:
         setElse((Boolean)newValue);
@@ -292,10 +350,10 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
         setParam((Parameter)null);
         return;
       case MyDslPackage.ALT_CONDITION__OPERATOR:
-        getOperator().clear();
+        setOperator((Operator)null);
         return;
       case MyDslPackage.ALT_CONDITION__VALUE:
-        getValue().clear();
+        setValue((AttributeValue)null);
         return;
       case MyDslPackage.ALT_CONDITION__ELSE:
         setElse(ELSE_EDEFAULT);
@@ -317,9 +375,9 @@ public class AltConditionImpl extends MinimalEObjectImpl.Container implements Al
       case MyDslPackage.ALT_CONDITION__PARAM:
         return param != null;
       case MyDslPackage.ALT_CONDITION__OPERATOR:
-        return operator != null && !operator.isEmpty();
+        return operator != null;
       case MyDslPackage.ALT_CONDITION__VALUE:
-        return value != null && !value.isEmpty();
+        return value != null;
       case MyDslPackage.ALT_CONDITION__ELSE:
         return else_ != ELSE_EDEFAULT;
     }

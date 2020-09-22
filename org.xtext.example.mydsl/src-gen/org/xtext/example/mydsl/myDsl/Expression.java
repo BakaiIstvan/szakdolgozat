@@ -27,20 +27,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface Expression extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Alt Condition</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.AltCondition}.
+   * Returns the value of the '<em><b>Alt Condition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Alt Condition</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Alt Condition</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Alt Condition</em>' containment reference list.
+   * @return the value of the '<em>Alt Condition</em>' containment reference.
+   * @see #setAltCondition(AltCondition)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getExpression_AltCondition()
    * @model containment="true"
    * @generated
    */
-  EList<AltCondition> getAltCondition();
+  AltCondition getAltCondition();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Expression#getAltCondition <em>Alt Condition</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Alt Condition</em>' containment reference.
+   * @see #getAltCondition()
+   * @generated
+   */
+  void setAltCondition(AltCondition value);
 
   /**
    * Returns the value of the '<em><b>Messages</b></em>' containment reference list.

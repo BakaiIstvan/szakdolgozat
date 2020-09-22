@@ -3,8 +3,6 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,22 +26,33 @@ import org.eclipse.emf.ecore.EObject;
 public interface Parameter extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Type</b></em>' attribute list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Type}.
+   * Returns the value of the '<em><b>Type</b></em>' attribute.
    * The literals are from the enumeration {@link org.xtext.example.mydsl.myDsl.Type}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Type</em>' attribute list isn't clear,
+   * If the meaning of the '<em>Type</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' attribute list.
+   * @return the value of the '<em>Type</em>' attribute.
    * @see org.xtext.example.mydsl.myDsl.Type
+   * @see #setType(Type)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getParameter_Type()
-   * @model unique="false"
+   * @model
    * @generated
    */
-  EList<Type> getType();
+  Type getType();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Parameter#getType <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' attribute.
+   * @see org.xtext.example.mydsl.myDsl.Type
+   * @see #getType()
+   * @generated
+   */
+  void setType(Type value);
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -7651,7 +7651,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             					if (current==null) {
             						current = createModelElementForParent(grammarAccess.getParameterRule());
             					}
-            					add(
+            					set(
             						current,
             						"type",
             						lv_type_0_0,
@@ -9044,7 +9044,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
                     						if (current==null) {
                     							current = createModelElementForParent(grammarAccess.getAltConditionRule());
                     						}
-                    						add(
+                    						set(
                     							current,
                     							"operator",
                     							lv_operator_1_0,
@@ -9075,7 +9075,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
                     						if (current==null) {
                     							current = createModelElementForParent(grammarAccess.getAltConditionRule());
                     						}
-                    						add(
+                    						set(
                     							current,
                     							"value",
                     							lv_value_2_0,
@@ -9226,7 +9226,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
             					if (current==null) {
             						current = createModelElementForParent(grammarAccess.getExpressionRule());
             					}
-            					add(
+            					set(
             						current,
             						"altCondition",
             						lv_altCondition_1_0,

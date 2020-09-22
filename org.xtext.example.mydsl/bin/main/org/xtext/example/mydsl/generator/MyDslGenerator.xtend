@@ -23,6 +23,8 @@ import org.xtext.example.mydsl.myDsl.ChangeToRelation
 import org.xtext.example.mydsl.myDsl.FEntity
 import org.xtext.example.mydsl.myDsl.FRelation
 import org.xtext.example.mydsl.myDsl.ContextFragment
+import org.xtext.example.mydsl.myDsl.AltCondition
+import org.xtext.example.mydsl.myDsl.Type
 
 /**
  * Generates code from your model files on save.
@@ -77,8 +79,11 @@ class MyDslGenerator extends AbstractGenerator {
 		import java.io.PrintWriter;
 		import java.io.UnsupportedEncodingException;
 		import java.util.ArrayList;
+		import java.util.HashMap;
+		import java.util.Collections;
 		import java.util.Arrays;
 		import java.util.List;
+		import java.util.Map;
 		
 		public class Specification{
 			private String id = "«s.name»";
@@ -98,7 +103,7 @@ class MyDslGenerator extends AbstractGenerator {
 				«FOR scenario:s.scenarios»
 					Automaton a = new Automaton("«scenario.name»");
 					Automaton b;
-					ArrayList<Automaton> altauto;
+					Map<String, Automaton> altauto;
 					ArrayList<Automaton> parauto;
 					Automaton loopauto;
 					Automaton expression;
@@ -521,7 +526,7 @@ class MyDslGenerator extends AbstractGenerator {
 							a.merge(par(parauto));
 						«ENDFOR»
 						«FOR a : sc.alt»
-						altauto = new ArrayList<Automaton>();
+						altauto = new HashMap<String, Automaton>();
 							«FOR e : a.expressions»
 								expression = new Automaton("expauto" + counter);
 								«FOR m : e.messages»
@@ -638,7 +643,7 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 									«ENDIF»
 								«ENDFOR»
-								altauto.add(expression);						
+								altauto.put("«compile_alt_condition(e.altCondition)»", expression);
 							«ENDFOR»
 							a.merge(altauto);
 						«ENDFOR»
@@ -989,12 +994,16 @@ class MyDslGenerator extends AbstractGenerator {
 				for (Automaton a : specification.automatas) {
 					xmlWriter.println("\t<declaration>");
 					String previous = "";
+					List<String> existingChannels = new ArrayList<String>();
 					for (Transition t : a.getTransitions()) {
 						List<String> items = Arrays.asList(t.getId().split("\\s*;\\s*"));
-						if (t.getId().startsWith("[") || t.getId().startsWith("![")) {
-						} else if (!previous.equals(items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", ""))){
-							xmlWriter.println("chan " + items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "") + ";");
-							previous = items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "");
+						if (Collections.frequency(existingChannels, items.get(0)) == 0) {
+							if (t.getId().startsWith("[") || t.getId().startsWith("![")) {
+							} else if (!previous.equals(items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", ""))){
+								xmlWriter.println("chan " + items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "") + ";");
+								previous = items.get(0).replaceAll("\\(", "_").replaceAll("\\)", "_").replaceAll("\\.", "__").replaceAll("!", "not").replaceAll("&", "_and_").replaceAll("\\s", "");
+								existingChannels.add(items.get(0));
+							}
 						}
 					}
 					
@@ -1003,10 +1012,10 @@ class MyDslGenerator extends AbstractGenerator {
 							«IF param.type.toString().substring(1, param.type.toString().length - 1) == "integer"»
 								xmlWriter.println("int «param.name» = «param.value.value»;");
 							«ELSE»
-								xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name» = «param.value.value»;");
+								xmlWriter.println("«param.type.toString()» «param.name» = «param.value.value»;");
 							«ENDIF»
 						«ELSE»
-							xmlWriter.println("«param.type.toString().substring(1, param.type.toString().length - 1)» «param.name»;");
+							xmlWriter.println("«param.type.toString()» «param.name»;");
 						«ENDIF»
 					«ENDFOR»
 					
@@ -1122,6 +1131,17 @@ class MyDslGenerator extends AbstractGenerator {
 					xmlWriter.println("\t\t\t<name x=\"1\" y=\"1\">q0</name>");
 					xmlWriter.println("\t\t</location>");
 					xmlWriter.println("\t\t<init ref=\"q0\"/>");
+					
+					«FOR param : s.parameters»
+						«IF param.type == Type.BOOL»
+							xmlWriter.println("\t\t<transition>");
+							xmlWriter.println("\t\t\t<source ref=\"q0\"/>");
+							xmlWriter.println("\t\t\t<target ref=\"q0\"/>");
+							xmlWriter.println("\t\t\t<label kind=\"select\" x=\"50\" y=\"10\">b : int[0, 1]</label>");
+							xmlWriter.println("\t\t\t<label kind=\"assignment\" x=\"51\" y=\"11\">«param.name» = b</label>");
+							xmlWriter.println("\t\t</transition>");
+						«ENDIF»
+					«ENDFOR»
 					
 					for (Transition t : a.getTransitions()) {
 						boolean doubletransition = false;
@@ -1322,4 +1342,8 @@ class MyDslGenerator extends AbstractGenerator {
 			;
 		«ENDIF»
 	'''
+	
+	def compile_alt_condition(AltCondition a)'''
+		«a.param.name»«IF a.operator.greater»>«ENDIF»«IF a.operator.smaller»<«ENDIF»«IF a.operator.greaterequals»>=«ENDIF»«IF a.operator.smallerequals»<=«ENDIF»«IF a.operator.equals»==«ENDIF»«IF a.operator.notequals»!=«ENDIF»«a.value.value»'''
+
 }

@@ -11,6 +11,7 @@ class AutomatonGenerator extends AbstractGenerator {
 		fsa.generateFile("Automaton.java", 
 			'''
 				import java.util.ArrayList;
+				import java.util.Map;
 				
 				public class Automaton {
 				    private String id;
@@ -145,40 +146,38 @@ class AutomatonGenerator extends AbstractGenerator {
 				               this.finale = automaton.finale;
 				           }
 				   }
-				   public void merge(ArrayList<Automaton> automatas){
-				   
-				           State qinit = new State("qinit", StateType.NORMAL);
-				           State qfinal = new State("qfinal", StateType.FINAL);
-				           
-				           if(this.states.isEmpty() && this.transitions.isEmpty()){
-				               this.initial = qinit;
-				           }else{
-				               this.addTransition(new Transition("epsilon", this.finale, qinit));
-				           }
-				   
-				           this.addState(qinit);
-				           this.addState(qfinal);
-				           this.finale = qfinal;
-				           
-				           State qaccepting = new State("qaccepting", StateType.ACCEPT_ALL);
-				           this.addState(qaccepting);
-				   
-				           for (Automaton a : automatas) {
-				               for (Transition t : a.transitions)
-				                   this.addTransition(t);
-				   
-				   
-				               for (State s : a.states) {
-				                   this.addState(s);
-				                   if (s.getType().equals(StateType.FINAL))
-				                       this.addTransition(new Transition("epsilon", s, qfinal));
-				                   if (s.getType().equals(StateType.ACCEPT_ALL))
-				                       this.addTransition(new Transition("epsilon", s, qaccepting));
-				               }
-				               this.addTransition(new Transition("epsilon", qinit, a.initial));
-				           }
-				           
-				    }
+				   public void merge(Map<String, Automaton> automatas){
+				      
+		              State qinit = new State("qinit", StateType.NORMAL);
+		              State qfinal = new State("qfinal", StateType.FINAL);
+		              
+		              if(this.states.isEmpty() && this.transitions.isEmpty()){
+		                  this.initial = qinit;
+		              }else{
+		                  this.addTransition(new Transition("epsilon", this.finale, qinit));
+		              }
+		      
+		              this.addState(qinit);
+		              this.addState(qfinal);
+		              this.finale = qfinal;
+		              
+		              State qaccepting = new State("qaccepting", StateType.ACCEPT_ALL);
+		              this.addState(qaccepting);
+		      
+		              for (Map.Entry<String, Automaton> a : automatas.entrySet()) {
+		                  for (Transition t : a.getValue().transitions)
+		                      this.addTransition(t);
+		   
+		                  for (State s : a.getValue().states) {
+		                      this.addState(s);
+		                      if (s.getType().equals(StateType.FINAL))
+		                          this.addTransition(new Transition("epsilon", s, qfinal));
+		                      if (s.getType().equals(StateType.ACCEPT_ALL))
+		                          this.addTransition(new Transition("epsilon", s, qaccepting));
+		                  }
+		                  this.addTransition(new Transition("epsilon; " + a.getKey(), qinit, a.getValue().initial));
+		              }   
+		       		}
 				}
 			''')
 	}

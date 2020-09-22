@@ -1926,13 +1926,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Parameter:
-		//	type+=Type name=ID '='? value=AttributeValue? ';';
+		//	type=Type name=ID '='? value=AttributeValue? ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//type+=Type name=ID '='? value=AttributeValue? ';'
+		//type=Type name=ID '='? value=AttributeValue? ';'
 		public Group getGroup() { return cGroup; }
 		
-		//type+=Type
+		//type=Type
 		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
 		
 		//Type
@@ -2246,13 +2246,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cElseElseKeyword_1_0 = (Keyword)cElseAssignment_1.eContents().get(0);
 		
 		//AltCondition:
-		//	param=[Parameter] operator+=Operator value+=AttributeValue | else?='else';
+		//	param=[Parameter] operator=Operator value=AttributeValue | else?='else';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//param=[Parameter] operator+=Operator value+=AttributeValue | else?='else'
+		//param=[Parameter] operator=Operator value=AttributeValue | else?='else'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//param=[Parameter] operator+=Operator value+=AttributeValue
+		//param=[Parameter] operator=Operator value=AttributeValue
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//param=[Parameter]
@@ -2264,13 +2264,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getParamParameterIDTerminalRuleCall_0_0_0_1() { return cParamParameterIDTerminalRuleCall_0_0_0_1; }
 		
-		//operator+=Operator
+		//operator=Operator
 		public Assignment getOperatorAssignment_0_1() { return cOperatorAssignment_0_1; }
 		
 		//Operator
 		public RuleCall getOperatorOperatorParserRuleCall_0_1_0() { return cOperatorOperatorParserRuleCall_0_1_0; }
 		
-		//value+=AttributeValue
+		//value=AttributeValue
 		public Assignment getValueAssignment_0_2() { return cValueAssignment_0_2; }
 		
 		//AttributeValue
@@ -2295,18 +2295,18 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//Expression:
-		//	'(' altCondition+=AltCondition ')' '{'
+		//	'(' altCondition=AltCondition ')' '{'
 		//	messages+=Message*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'(' altCondition+=AltCondition ')' '{' messages+=Message* '}'
+		//'(' altCondition=AltCondition ')' '{' messages+=Message* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_0() { return cLeftParenthesisKeyword_0; }
 		
-		//altCondition+=AltCondition
+		//altCondition=AltCondition
 		public Assignment getAltConditionAssignment_1() { return cAltConditionAssignment_1; }
 		
 		//AltCondition
@@ -2963,7 +2963,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Parameter:
-	//	type+=Type name=ID '='? value=AttributeValue? ';';
+	//	type=Type name=ID '='? value=AttributeValue? ';';
 	public ParameterElements getParameterAccess() {
 		return pParameter;
 	}
@@ -3067,7 +3067,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AltCondition:
-	//	param=[Parameter] operator+=Operator value+=AttributeValue | else?='else';
+	//	param=[Parameter] operator=Operator value=AttributeValue | else?='else';
 	public AltConditionElements getAltConditionAccess() {
 		return pAltCondition;
 	}
@@ -3077,7 +3077,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Expression:
-	//	'(' altCondition+=AltCondition ')' '{'
+	//	'(' altCondition=AltCondition ')' '{'
 	//	messages+=Message*
 	//	'}';
 	public ExpressionElements getExpressionAccess() {

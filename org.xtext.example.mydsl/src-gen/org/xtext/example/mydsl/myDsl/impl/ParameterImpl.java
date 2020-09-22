@@ -3,20 +3,14 @@
  */
 package org.xtext.example.mydsl.myDsl.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.xtext.example.mydsl.myDsl.AttributeValue;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
@@ -41,14 +35,24 @@ import org.xtext.example.mydsl.myDsl.Type;
 public class ParameterImpl extends MinimalEObjectImpl.Container implements Parameter
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute list.
+   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected EList<Type> type;
+  protected static final Type TYPE_EDEFAULT = Type.INTEGER;
+
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected Type type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -106,13 +110,22 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Type> getType()
+  public Type getType()
   {
-    if (type == null)
-    {
-      type = new EDataTypeEList<Type>(Type.class, this, MyDslPackage.PARAMETER__TYPE);
-    }
     return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(Type newType)
+  {
+    Type oldType = type;
+    type = newType == null ? TYPE_EDEFAULT : newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.PARAMETER__TYPE, oldType, type));
   }
 
   /**
@@ -227,15 +240,13 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
       case MyDslPackage.PARAMETER__TYPE:
-        getType().clear();
-        getType().addAll((Collection<? extends Type>)newValue);
+        setType((Type)newValue);
         return;
       case MyDslPackage.PARAMETER__NAME:
         setName((String)newValue);
@@ -258,7 +269,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     switch (featureID)
     {
       case MyDslPackage.PARAMETER__TYPE:
-        getType().clear();
+        setType(TYPE_EDEFAULT);
         return;
       case MyDslPackage.PARAMETER__NAME:
         setName(NAME_EDEFAULT);
@@ -281,7 +292,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
     switch (featureID)
     {
       case MyDslPackage.PARAMETER__TYPE:
-        return type != null && !type.isEmpty();
+        return type != TYPE_EDEFAULT;
       case MyDslPackage.PARAMETER__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case MyDslPackage.PARAMETER__VALUE:

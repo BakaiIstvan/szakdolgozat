@@ -3,8 +3,6 @@
  */
 package org.xtext.example.mydsl.myDsl;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -55,36 +53,56 @@ public interface AltCondition extends EObject
   void setParam(Parameter value);
 
   /**
-   * Returns the value of the '<em><b>Operator</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.Operator}.
+   * Returns the value of the '<em><b>Operator</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Operator</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Operator</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' containment reference list.
+   * @return the value of the '<em>Operator</em>' containment reference.
+   * @see #setOperator(Operator)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAltCondition_Operator()
    * @model containment="true"
    * @generated
    */
-  EList<Operator> getOperator();
+  Operator getOperator();
 
   /**
-   * Returns the value of the '<em><b>Value</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.mydsl.myDsl.AttributeValue}.
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.AltCondition#getOperator <em>Operator</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Operator</em>' containment reference.
+   * @see #getOperator()
+   * @generated
+   */
+  void setOperator(Operator value);
+
+  /**
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Value</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Value</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' containment reference list.
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(AttributeValue)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getAltCondition_Value()
    * @model containment="true"
    * @generated
    */
-  EList<AttributeValue> getValue();
+  AttributeValue getValue();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.AltCondition#getValue <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
+   * @generated
+   */
+  void setValue(AttributeValue value);
 
   /**
    * Returns the value of the '<em><b>Else</b></em>' attribute.

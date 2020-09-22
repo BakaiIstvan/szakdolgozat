@@ -1682,7 +1682,7 @@ public interface MyDslPackage extends EPackage
   int PARAMETER = 29;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' attribute list.
+   * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2023,7 +2023,7 @@ public interface MyDslPackage extends EPackage
   int ALT_CONDITION__PARAM = 0;
 
   /**
-   * The feature id for the '<em><b>Operator</b></em>' containment reference list.
+   * The feature id for the '<em><b>Operator</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2032,7 +2032,7 @@ public interface MyDslPackage extends EPackage
   int ALT_CONDITION__OPERATOR = 1;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference list.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2069,7 +2069,7 @@ public interface MyDslPackage extends EPackage
   int EXPRESSION = 38;
 
   /**
-   * The feature id for the '<em><b>Alt Condition</b></em>' containment reference list.
+   * The feature id for the '<em><b>Alt Condition</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -3816,10 +3816,10 @@ public interface MyDslPackage extends EPackage
   EClass getParameter();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.mydsl.myDsl.Parameter#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.mydsl.myDsl.Parameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Type</em>'.
+   * @return the meta object for the attribute '<em>Type</em>'.
    * @see org.xtext.example.mydsl.myDsl.Parameter#getType()
    * @see #getParameter()
    * @generated
@@ -4127,10 +4127,10 @@ public interface MyDslPackage extends EPackage
   EReference getAltCondition_Param();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.AltCondition#getOperator <em>Operator</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.AltCondition#getOperator <em>Operator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Operator</em>'.
+   * @return the meta object for the containment reference '<em>Operator</em>'.
    * @see org.xtext.example.mydsl.myDsl.AltCondition#getOperator()
    * @see #getAltCondition()
    * @generated
@@ -4138,10 +4138,10 @@ public interface MyDslPackage extends EPackage
   EReference getAltCondition_Operator();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.AltCondition#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.AltCondition#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Value</em>'.
+   * @return the meta object for the containment reference '<em>Value</em>'.
    * @see org.xtext.example.mydsl.myDsl.AltCondition#getValue()
    * @see #getAltCondition()
    * @generated
@@ -4170,10 +4170,10 @@ public interface MyDslPackage extends EPackage
   EClass getExpression();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.mydsl.myDsl.Expression#getAltCondition <em>Alt Condition</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.mydsl.myDsl.Expression#getAltCondition <em>Alt Condition</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Alt Condition</em>'.
+   * @return the meta object for the containment reference '<em>Alt Condition</em>'.
    * @see org.xtext.example.mydsl.myDsl.Expression#getAltCondition()
    * @see #getExpression()
    * @generated
@@ -5565,7 +5565,7 @@ public interface MyDslPackage extends EPackage
     EClass PARAMETER = eINSTANCE.getParameter();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5813,7 +5813,7 @@ public interface MyDslPackage extends EPackage
     EReference ALT_CONDITION__PARAM = eINSTANCE.getAltCondition_Param();
 
     /**
-     * The meta object literal for the '<em><b>Operator</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Operator</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5821,7 +5821,7 @@ public interface MyDslPackage extends EPackage
     EReference ALT_CONDITION__OPERATOR = eINSTANCE.getAltCondition_Operator();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -5847,7 +5847,7 @@ public interface MyDslPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
-     * The meta object literal for the '<em><b>Alt Condition</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Alt Condition</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

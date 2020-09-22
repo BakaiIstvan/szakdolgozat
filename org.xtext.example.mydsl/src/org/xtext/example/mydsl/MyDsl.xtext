@@ -155,7 +155,7 @@ ConstantParams:
 ;
 
 Parameter:
-	type+=Type name=ID ('=')? (value=AttributeValue)? ';'
+	type=Type name=ID ('=')? (value=AttributeValue)? ';'
 ;
 
 ParameterConstraint:
@@ -201,11 +201,11 @@ Alt:
 ;
 
 AltCondition:
-	param=[Parameter] operator+=Operator value+=AttributeValue | else?='else'
+	param=[Parameter] operator=Operator value=AttributeValue | else?='else'
 ;
 
 Expression:
-	'(' altCondition+=AltCondition ')' '{'
+	'(' altCondition=AltCondition ')' '{'
 		messages+=Message*
 	'}'
 ;
