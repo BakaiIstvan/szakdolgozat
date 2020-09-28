@@ -813,18 +813,18 @@ class MyDslGenerator extends AbstractGenerator {
 		        return result;
 		    }
 		    
-		    public ArrayList<Automaton> loopSetup(Automaton loopauto, int min, int max) {
-	            ArrayList<Automaton> result = new ArrayList<>();
-	    
+		    public Map<String, Automaton> loopSetup(Automaton loopauto, int min, int max) {
+	        	Map<String, Automaton> result = new HashMap<>();
+	    	    
 	            for (int i = min; i <= max; i++) {
-	                Automaton newauto = new Automaton("loopauto");
+	                Automaton newauto = new Automaton("loopauto" + i);
 	                for (int j = 0; j < i; j++) {
 	                    newauto.collapse(copyAutomaton(loopauto));
 	                }
-	                result.add(newauto);
+	                result.put("", newauto);
 	            }
 	            return result;
-		    }
+	        }
 		    
 		    public Automaton copyAutomaton(Automaton referenceAuto) {
 		            Automaton result = new Automaton("copy automaton");
