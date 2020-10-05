@@ -38,7 +38,7 @@ Attribute:
 ;
 
 AttributeValue:
-	value=STRING | value=Real | value=Number | value='true' | value='false'
+	value=STRING | value=REAL | value=NUMBER | value='true' | value='false'
 ;
 
 FragmentAttribute:
@@ -96,7 +96,7 @@ ResetClock:
 ;
 
 ClockConstraint:
-	clock=[Clock] op=Operator constant=Number
+	clock=[Clock] op=Operator constant=NUMBER
 ;
 
 ClockConstraintExpression:
@@ -174,11 +174,11 @@ enum Type:
 	integer | float | bool | string
 ;
 
-terminal Number:
+terminal NUMBER:
 	('0'..'9')*
 ;
 
-terminal Real:
+terminal REAL:
 	('0'..'9')* '.' ('0'..'9')*
 ;
 
@@ -200,14 +200,51 @@ Alt:
 	'alt' expressions+=Expression*
 ;
 
-AltCondition:
-	param=[Parameter] operator=Operator value=AttributeValue | else?='else'
-;
-
 Expression:
-	'(' altCondition=AltCondition ')' '{'
+	'(' altCondition=LogicalExpression ')' '{'
 		messages+=Message*
 	'}'
+;
+
+LogicalExpression:
+	UnaryLogicalExpression | BinaryLogicalExpression
+;
+
+BinaryLogicalExpression:
+	EqualsExpression | EqualsBooleanExpression | GreaterThanExpression | LesserThanExpression |
+	AndExpression | OrExpression
+;
+
+AndExpression:
+	'AND' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
+;
+
+OrExpression:
+	'OR' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
+;
+
+EqualsExpression:
+	'EQUALS' '(' lhs=[Parameter] ',' rhs=INT ')'
+;
+
+EqualsBooleanExpression:
+	'EQUALS' '(' lhs=[Parameter] ',' rhs='true' ')' | 'EQUALS' '(' lhs=[Parameter] ',' rhs='false' ')'
+;
+
+GreaterThanExpression:
+	'GREATER' '(' lhs=[Parameter] ',' rhs=INT ')'
+;
+
+LesserThanExpression:
+	'LESSER' '(' lhs=[Parameter] ',' rhs=INT ')'
+;
+
+UnaryLogicalExpression:
+	NotLogicalExpression
+;
+
+NotLogicalExpression:
+	'NOT' '(' operand=LogicalExpression ')'
 ;
 
 Par:
@@ -219,7 +256,7 @@ ParExpression:
 ;
 
 Loop:
-	'loop' '(' min=Number ',' max=Number ')' '{' 
+	'loop' '(' min=INT ',' max=INT ')' '{' 
 		messages+=Message*
 	'}'
 ;

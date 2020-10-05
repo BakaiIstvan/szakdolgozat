@@ -276,19 +276,46 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
         eType="#//Expression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AltCondition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="param" eType="#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="#//Operator"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//AttributeValue"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="else" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="altCondition" eType="#//AltCondition"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="altCondition" eType="#//LogicalExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
         eType="#//Message" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryLogicalExpression" eSuperTypes="#//LogicalExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//BinaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//LogicalExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//LogicalExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//BinaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//LogicalExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//LogicalExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualsExpression" eSuperTypes="#//BinaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualsBooleanExpression" eSuperTypes="#//BinaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterThanExpression" eSuperTypes="#//BinaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LesserThanExpression" eSuperTypes="#//BinaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryLogicalExpression" eSuperTypes="#//LogicalExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NotLogicalExpression" eSuperTypes="#//UnaryLogicalExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//LogicalExpression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Par">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parexpression" upperBound="-1"
@@ -300,8 +327,8 @@
         eType="#//Message" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Loop">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="max" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
         eType="#//Message" containment="true"/>
   </eClassifiers>

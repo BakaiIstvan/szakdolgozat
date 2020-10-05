@@ -35,12 +35,12 @@ public interface Expression extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Alt Condition</em>' containment reference.
-   * @see #setAltCondition(AltCondition)
+   * @see #setAltCondition(LogicalExpression)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getExpression_AltCondition()
    * @model containment="true"
    * @generated
    */
-  AltCondition getAltCondition();
+  LogicalExpression getAltCondition();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Expression#getAltCondition <em>Alt Condition</em>}' containment reference.
@@ -50,7 +50,7 @@ public interface Expression extends EObject
    * @see #getAltCondition()
    * @generated
    */
-  void setAltCondition(AltCondition value);
+  void setAltCondition(LogicalExpression value);
 
   /**
    * Returns the value of the '<em><b>Messages</b></em>' containment reference list.

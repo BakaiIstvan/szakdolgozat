@@ -224,15 +224,39 @@
     <genClasses ecoreClass="MyDsl.ecore#//Alt">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Alt/expressions"/>
     </genClasses>
-    <genClasses ecoreClass="MyDsl.ecore#//AltCondition">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AltCondition/param"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AltCondition/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AltCondition/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//AltCondition/else"/>
-    </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Expression/altCondition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Expression/messages"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//LogicalExpression"/>
+    <genClasses ecoreClass="MyDsl.ecore#//BinaryLogicalExpression"/>
+    <genClasses ecoreClass="MyDsl.ecore#//AndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AndExpression/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//AndExpression/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//OrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//OrExpression/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//OrExpression/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//EqualsExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//EqualsExpression/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EqualsExpression/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//EqualsBooleanExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//EqualsBooleanExpression/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//EqualsBooleanExpression/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//GreaterThanExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//GreaterThanExpression/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//GreaterThanExpression/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//LesserThanExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MyDsl.ecore#//LesserThanExpression/lhs"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MyDsl.ecore#//LesserThanExpression/rhs"/>
+    </genClasses>
+    <genClasses ecoreClass="MyDsl.ecore#//UnaryLogicalExpression"/>
+    <genClasses ecoreClass="MyDsl.ecore#//NotLogicalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//NotLogicalExpression/operand"/>
     </genClasses>
     <genClasses ecoreClass="MyDsl.ecore#//Par">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MyDsl.ecore#//Par/parexpression"/>

@@ -12,12 +12,13 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.mydsl.myDsl.Alt;
-import org.xtext.example.mydsl.myDsl.AltCondition;
+import org.xtext.example.mydsl.myDsl.AndExpression;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.AttributeValue;
+import org.xtext.example.mydsl.myDsl.BinaryLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -33,18 +34,25 @@ import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression;
+import org.xtext.example.mydsl.myDsl.EqualsExpression;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression;
 import org.xtext.example.mydsl.myDsl.Include;
+import org.xtext.example.mydsl.myDsl.LesserThanExpression;
+import org.xtext.example.mydsl.myDsl.LogicalExpression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
@@ -55,6 +63,7 @@ import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 import org.xtext.example.mydsl.myDsl.Type;
+import org.xtext.example.mydsl.myDsl.UnaryLogicalExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -328,14 +337,77 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass altConditionEClass = null;
+  private EClass expressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass expressionEClass = null;
+  private EClass logicalExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass binaryLogicalExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass andExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass equalsExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass equalsBooleanExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass greaterThanExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass lesserThanExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unaryLogicalExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass notLogicalExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2183,56 +2255,6 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getAltCondition()
-  {
-    return altConditionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAltCondition_Param()
-  {
-    return (EReference)altConditionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAltCondition_Operator()
-  {
-    return (EReference)altConditionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAltCondition_Value()
-  {
-    return (EReference)altConditionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getAltCondition_Else()
-  {
-    return (EAttribute)altConditionEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getExpression()
   {
     return expressionEClass;
@@ -2256,6 +2278,236 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
   public EReference getExpression_Messages()
   {
     return (EReference)expressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLogicalExpression()
+  {
+    return logicalExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBinaryLogicalExpression()
+  {
+    return binaryLogicalExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAndExpression()
+  {
+    return andExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAndExpression_Lhs()
+  {
+    return (EReference)andExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAndExpression_Rhs()
+  {
+    return (EReference)andExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOrExpression()
+  {
+    return orExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrExpression_Lhs()
+  {
+    return (EReference)orExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrExpression_Rhs()
+  {
+    return (EReference)orExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEqualsExpression()
+  {
+    return equalsExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEqualsExpression_Lhs()
+  {
+    return (EReference)equalsExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEqualsExpression_Rhs()
+  {
+    return (EAttribute)equalsExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEqualsBooleanExpression()
+  {
+    return equalsBooleanExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEqualsBooleanExpression_Lhs()
+  {
+    return (EReference)equalsBooleanExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEqualsBooleanExpression_Rhs()
+  {
+    return (EAttribute)equalsBooleanExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getGreaterThanExpression()
+  {
+    return greaterThanExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getGreaterThanExpression_Lhs()
+  {
+    return (EReference)greaterThanExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getGreaterThanExpression_Rhs()
+  {
+    return (EAttribute)greaterThanExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLesserThanExpression()
+  {
+    return lesserThanExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLesserThanExpression_Lhs()
+  {
+    return (EReference)lesserThanExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLesserThanExpression_Rhs()
+  {
+    return (EAttribute)lesserThanExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnaryLogicalExpression()
+  {
+    return unaryLogicalExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNotLogicalExpression()
+  {
+    return notLogicalExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNotLogicalExpression_Operand()
+  {
+    return (EReference)notLogicalExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2600,15 +2852,42 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     altEClass = createEClass(ALT);
     createEReference(altEClass, ALT__EXPRESSIONS);
 
-    altConditionEClass = createEClass(ALT_CONDITION);
-    createEReference(altConditionEClass, ALT_CONDITION__PARAM);
-    createEReference(altConditionEClass, ALT_CONDITION__OPERATOR);
-    createEReference(altConditionEClass, ALT_CONDITION__VALUE);
-    createEAttribute(altConditionEClass, ALT_CONDITION__ELSE);
-
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__ALT_CONDITION);
     createEReference(expressionEClass, EXPRESSION__MESSAGES);
+
+    logicalExpressionEClass = createEClass(LOGICAL_EXPRESSION);
+
+    binaryLogicalExpressionEClass = createEClass(BINARY_LOGICAL_EXPRESSION);
+
+    andExpressionEClass = createEClass(AND_EXPRESSION);
+    createEReference(andExpressionEClass, AND_EXPRESSION__LHS);
+    createEReference(andExpressionEClass, AND_EXPRESSION__RHS);
+
+    orExpressionEClass = createEClass(OR_EXPRESSION);
+    createEReference(orExpressionEClass, OR_EXPRESSION__LHS);
+    createEReference(orExpressionEClass, OR_EXPRESSION__RHS);
+
+    equalsExpressionEClass = createEClass(EQUALS_EXPRESSION);
+    createEReference(equalsExpressionEClass, EQUALS_EXPRESSION__LHS);
+    createEAttribute(equalsExpressionEClass, EQUALS_EXPRESSION__RHS);
+
+    equalsBooleanExpressionEClass = createEClass(EQUALS_BOOLEAN_EXPRESSION);
+    createEReference(equalsBooleanExpressionEClass, EQUALS_BOOLEAN_EXPRESSION__LHS);
+    createEAttribute(equalsBooleanExpressionEClass, EQUALS_BOOLEAN_EXPRESSION__RHS);
+
+    greaterThanExpressionEClass = createEClass(GREATER_THAN_EXPRESSION);
+    createEReference(greaterThanExpressionEClass, GREATER_THAN_EXPRESSION__LHS);
+    createEAttribute(greaterThanExpressionEClass, GREATER_THAN_EXPRESSION__RHS);
+
+    lesserThanExpressionEClass = createEClass(LESSER_THAN_EXPRESSION);
+    createEReference(lesserThanExpressionEClass, LESSER_THAN_EXPRESSION__LHS);
+    createEAttribute(lesserThanExpressionEClass, LESSER_THAN_EXPRESSION__RHS);
+
+    unaryLogicalExpressionEClass = createEClass(UNARY_LOGICAL_EXPRESSION);
+
+    notLogicalExpressionEClass = createEClass(NOT_LOGICAL_EXPRESSION);
+    createEReference(notLogicalExpressionEClass, NOT_LOGICAL_EXPRESSION__OPERAND);
 
     parEClass = createEClass(PAR);
     createEReference(parEClass, PAR__PAREXPRESSION);
@@ -2655,6 +2934,15 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    binaryLogicalExpressionEClass.getESuperTypes().add(this.getLogicalExpression());
+    andExpressionEClass.getESuperTypes().add(this.getBinaryLogicalExpression());
+    orExpressionEClass.getESuperTypes().add(this.getBinaryLogicalExpression());
+    equalsExpressionEClass.getESuperTypes().add(this.getBinaryLogicalExpression());
+    equalsBooleanExpressionEClass.getESuperTypes().add(this.getBinaryLogicalExpression());
+    greaterThanExpressionEClass.getESuperTypes().add(this.getBinaryLogicalExpression());
+    lesserThanExpressionEClass.getESuperTypes().add(this.getBinaryLogicalExpression());
+    unaryLogicalExpressionEClass.getESuperTypes().add(this.getLogicalExpression());
+    notLogicalExpressionEClass.getESuperTypes().add(this.getUnaryLogicalExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2869,15 +3157,42 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEClass(altEClass, Alt.class, "Alt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAlt_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, Alt.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(altConditionEClass, AltCondition.class, "AltCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAltCondition_Param(), this.getParameter(), null, "param", null, 0, 1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAltCondition_Operator(), this.getOperator(), null, "operator", null, 0, 1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAltCondition_Value(), this.getAttributeValue(), null, "value", null, 0, 1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAltCondition_Else(), ecorePackage.getEBoolean(), "else", null, 0, 1, AltCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExpression_AltCondition(), this.getAltCondition(), null, "altCondition", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpression_AltCondition(), this.getLogicalExpression(), null, "altCondition", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExpression_Messages(), this.getMessage(), null, "messages", null, 0, -1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(logicalExpressionEClass, LogicalExpression.class, "LogicalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(binaryLogicalExpressionEClass, BinaryLogicalExpression.class, "BinaryLogicalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(andExpressionEClass, AndExpression.class, "AndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAndExpression_Lhs(), this.getLogicalExpression(), null, "lhs", null, 0, 1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAndExpression_Rhs(), this.getLogicalExpression(), null, "rhs", null, 0, 1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(orExpressionEClass, OrExpression.class, "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOrExpression_Lhs(), this.getLogicalExpression(), null, "lhs", null, 0, 1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOrExpression_Rhs(), this.getLogicalExpression(), null, "rhs", null, 0, 1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(equalsExpressionEClass, EqualsExpression.class, "EqualsExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEqualsExpression_Lhs(), this.getParameter(), null, "lhs", null, 0, 1, EqualsExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEqualsExpression_Rhs(), ecorePackage.getEInt(), "rhs", null, 0, 1, EqualsExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(equalsBooleanExpressionEClass, EqualsBooleanExpression.class, "EqualsBooleanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEqualsBooleanExpression_Lhs(), this.getParameter(), null, "lhs", null, 0, 1, EqualsBooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEqualsBooleanExpression_Rhs(), ecorePackage.getEString(), "rhs", null, 0, 1, EqualsBooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(greaterThanExpressionEClass, GreaterThanExpression.class, "GreaterThanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getGreaterThanExpression_Lhs(), this.getParameter(), null, "lhs", null, 0, 1, GreaterThanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getGreaterThanExpression_Rhs(), ecorePackage.getEInt(), "rhs", null, 0, 1, GreaterThanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(lesserThanExpressionEClass, LesserThanExpression.class, "LesserThanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLesserThanExpression_Lhs(), this.getParameter(), null, "lhs", null, 0, 1, LesserThanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLesserThanExpression_Rhs(), ecorePackage.getEInt(), "rhs", null, 0, 1, LesserThanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unaryLogicalExpressionEClass, UnaryLogicalExpression.class, "UnaryLogicalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(notLogicalExpressionEClass, NotLogicalExpression.class, "NotLogicalExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNotLogicalExpression_Operand(), this.getLogicalExpression(), null, "operand", null, 0, 1, NotLogicalExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(parEClass, Par.class, "Par", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPar_Parexpression(), this.getParExpression(), null, "parexpression", null, 0, -1, Par.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2887,8 +3202,8 @@ public class MyDslPackageImpl extends EPackageImpl implements MyDslPackage
     initEReference(getParExpression_Messages(), this.getMessage(), null, "messages", null, 0, -1, ParExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(loopEClass, Loop.class, "Loop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLoop_Min(), ecorePackage.getEString(), "min", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getLoop_Max(), ecorePackage.getEString(), "max", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoop_Min(), ecorePackage.getEInt(), "min", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLoop_Max(), ecorePackage.getEInt(), "max", null, 0, 1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLoop_Messages(), this.getMessage(), null, "messages", null, 0, -1, Loop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals

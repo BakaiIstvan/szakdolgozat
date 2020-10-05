@@ -11,12 +11,13 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.xtext.example.mydsl.myDsl.Alt;
-import org.xtext.example.mydsl.myDsl.AltCondition;
+import org.xtext.example.mydsl.myDsl.AndExpression;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.AttributeValue;
+import org.xtext.example.mydsl.myDsl.BinaryLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -32,17 +33,24 @@ import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression;
+import org.xtext.example.mydsl.myDsl.EqualsExpression;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression;
 import org.xtext.example.mydsl.myDsl.Include;
+import org.xtext.example.mydsl.myDsl.LesserThanExpression;
+import org.xtext.example.mydsl.myDsl.LogicalExpression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
@@ -52,6 +60,7 @@ import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
+import org.xtext.example.mydsl.myDsl.UnaryLogicalExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -302,14 +311,59 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
         return createAltAdapter();
       }
       @Override
-      public Adapter caseAltCondition(AltCondition object)
-      {
-        return createAltConditionAdapter();
-      }
-      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
+      }
+      @Override
+      public Adapter caseLogicalExpression(LogicalExpression object)
+      {
+        return createLogicalExpressionAdapter();
+      }
+      @Override
+      public Adapter caseBinaryLogicalExpression(BinaryLogicalExpression object)
+      {
+        return createBinaryLogicalExpressionAdapter();
+      }
+      @Override
+      public Adapter caseAndExpression(AndExpression object)
+      {
+        return createAndExpressionAdapter();
+      }
+      @Override
+      public Adapter caseOrExpression(OrExpression object)
+      {
+        return createOrExpressionAdapter();
+      }
+      @Override
+      public Adapter caseEqualsExpression(EqualsExpression object)
+      {
+        return createEqualsExpressionAdapter();
+      }
+      @Override
+      public Adapter caseEqualsBooleanExpression(EqualsBooleanExpression object)
+      {
+        return createEqualsBooleanExpressionAdapter();
+      }
+      @Override
+      public Adapter caseGreaterThanExpression(GreaterThanExpression object)
+      {
+        return createGreaterThanExpressionAdapter();
+      }
+      @Override
+      public Adapter caseLesserThanExpression(LesserThanExpression object)
+      {
+        return createLesserThanExpressionAdapter();
+      }
+      @Override
+      public Adapter caseUnaryLogicalExpression(UnaryLogicalExpression object)
+      {
+        return createUnaryLogicalExpressionAdapter();
+      }
+      @Override
+      public Adapter caseNotLogicalExpression(NotLogicalExpression object)
+      {
+        return createNotLogicalExpressionAdapter();
       }
       @Override
       public Adapter casePar(Par object)
@@ -904,21 +958,6 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.AltCondition <em>Alt Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.mydsl.myDsl.AltCondition
-   * @generated
-   */
-  public Adapter createAltConditionAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -929,6 +968,156 @@ public class MyDslAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.LogicalExpression <em>Logical Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.LogicalExpression
+   * @generated
+   */
+  public Adapter createLogicalExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.BinaryLogicalExpression <em>Binary Logical Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.BinaryLogicalExpression
+   * @generated
+   */
+  public Adapter createBinaryLogicalExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.AndExpression <em>And Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.AndExpression
+   * @generated
+   */
+  public Adapter createAndExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.OrExpression <em>Or Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.OrExpression
+   * @generated
+   */
+  public Adapter createOrExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.EqualsExpression <em>Equals Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.EqualsExpression
+   * @generated
+   */
+  public Adapter createEqualsExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.EqualsBooleanExpression <em>Equals Boolean Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.EqualsBooleanExpression
+   * @generated
+   */
+  public Adapter createEqualsBooleanExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.GreaterThanExpression <em>Greater Than Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.GreaterThanExpression
+   * @generated
+   */
+  public Adapter createGreaterThanExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.LesserThanExpression <em>Lesser Than Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.LesserThanExpression
+   * @generated
+   */
+  public Adapter createLesserThanExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.UnaryLogicalExpression <em>Unary Logical Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.UnaryLogicalExpression
+   * @generated
+   */
+  public Adapter createUnaryLogicalExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.mydsl.myDsl.NotLogicalExpression <em>Not Logical Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.mydsl.myDsl.NotLogicalExpression
+   * @generated
+   */
+  public Adapter createNotLogicalExpressionAdapter()
   {
     return null;
   }

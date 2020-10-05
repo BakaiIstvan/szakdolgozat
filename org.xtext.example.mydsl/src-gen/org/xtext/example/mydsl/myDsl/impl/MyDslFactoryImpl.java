@@ -13,12 +13,13 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.xtext.example.mydsl.myDsl.Alt;
-import org.xtext.example.mydsl.myDsl.AltCondition;
+import org.xtext.example.mydsl.myDsl.AndExpression;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.AttributeValue;
+import org.xtext.example.mydsl.myDsl.BinaryLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -34,18 +35,25 @@ import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression;
+import org.xtext.example.mydsl.myDsl.EqualsExpression;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression;
 import org.xtext.example.mydsl.myDsl.Include;
+import org.xtext.example.mydsl.myDsl.LesserThanExpression;
+import org.xtext.example.mydsl.myDsl.LogicalExpression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslFactory;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
@@ -56,6 +64,7 @@ import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
 import org.xtext.example.mydsl.myDsl.Type;
+import org.xtext.example.mydsl.myDsl.UnaryLogicalExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,8 +155,17 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
       case MyDslPackage.OBJECT: return createObject();
       case MyDslPackage.CONSTRAINT: return createConstraint();
       case MyDslPackage.ALT: return createAlt();
-      case MyDslPackage.ALT_CONDITION: return createAltCondition();
       case MyDslPackage.EXPRESSION: return createExpression();
+      case MyDslPackage.LOGICAL_EXPRESSION: return createLogicalExpression();
+      case MyDslPackage.BINARY_LOGICAL_EXPRESSION: return createBinaryLogicalExpression();
+      case MyDslPackage.AND_EXPRESSION: return createAndExpression();
+      case MyDslPackage.OR_EXPRESSION: return createOrExpression();
+      case MyDslPackage.EQUALS_EXPRESSION: return createEqualsExpression();
+      case MyDslPackage.EQUALS_BOOLEAN_EXPRESSION: return createEqualsBooleanExpression();
+      case MyDslPackage.GREATER_THAN_EXPRESSION: return createGreaterThanExpression();
+      case MyDslPackage.LESSER_THAN_EXPRESSION: return createLesserThanExpression();
+      case MyDslPackage.UNARY_LOGICAL_EXPRESSION: return createUnaryLogicalExpression();
+      case MyDslPackage.NOT_LOGICAL_EXPRESSION: return createNotLogicalExpression();
       case MyDslPackage.PAR: return createPar();
       case MyDslPackage.PAR_EXPRESSION: return createParExpression();
       case MyDslPackage.LOOP: return createLoop();
@@ -602,10 +620,10 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public AltCondition createAltCondition()
+  public Expression createExpression()
   {
-    AltConditionImpl altCondition = new AltConditionImpl();
-    return altCondition;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -613,10 +631,109 @@ public class MyDslFactoryImpl extends EFactoryImpl implements MyDslFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expression createExpression()
+  public LogicalExpression createLogicalExpression()
   {
-    ExpressionImpl expression = new ExpressionImpl();
-    return expression;
+    LogicalExpressionImpl logicalExpression = new LogicalExpressionImpl();
+    return logicalExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BinaryLogicalExpression createBinaryLogicalExpression()
+  {
+    BinaryLogicalExpressionImpl binaryLogicalExpression = new BinaryLogicalExpressionImpl();
+    return binaryLogicalExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AndExpression createAndExpression()
+  {
+    AndExpressionImpl andExpression = new AndExpressionImpl();
+    return andExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OrExpression createOrExpression()
+  {
+    OrExpressionImpl orExpression = new OrExpressionImpl();
+    return orExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EqualsExpression createEqualsExpression()
+  {
+    EqualsExpressionImpl equalsExpression = new EqualsExpressionImpl();
+    return equalsExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EqualsBooleanExpression createEqualsBooleanExpression()
+  {
+    EqualsBooleanExpressionImpl equalsBooleanExpression = new EqualsBooleanExpressionImpl();
+    return equalsBooleanExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public GreaterThanExpression createGreaterThanExpression()
+  {
+    GreaterThanExpressionImpl greaterThanExpression = new GreaterThanExpressionImpl();
+    return greaterThanExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LesserThanExpression createLesserThanExpression()
+  {
+    LesserThanExpressionImpl lesserThanExpression = new LesserThanExpressionImpl();
+    return lesserThanExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UnaryLogicalExpression createUnaryLogicalExpression()
+  {
+    UnaryLogicalExpressionImpl unaryLogicalExpression = new UnaryLogicalExpressionImpl();
+    return unaryLogicalExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotLogicalExpression createNotLogicalExpression()
+  {
+    NotLogicalExpressionImpl notLogicalExpression = new NotLogicalExpressionImpl();
+    return notLogicalExpression;
   }
 
   /**

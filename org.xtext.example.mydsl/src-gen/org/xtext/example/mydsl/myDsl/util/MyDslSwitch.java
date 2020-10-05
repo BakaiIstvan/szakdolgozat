@@ -9,12 +9,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.xtext.example.mydsl.myDsl.Alt;
-import org.xtext.example.mydsl.myDsl.AltCondition;
+import org.xtext.example.mydsl.myDsl.AndExpression;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
 import org.xtext.example.mydsl.myDsl.Attribute;
 import org.xtext.example.mydsl.myDsl.AttributeValue;
+import org.xtext.example.mydsl.myDsl.BinaryLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ChangeMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToMessage;
 import org.xtext.example.mydsl.myDsl.ChangeToRelation;
@@ -30,17 +31,24 @@ import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression;
+import org.xtext.example.mydsl.myDsl.EqualsExpression;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression;
 import org.xtext.example.mydsl.myDsl.Include;
+import org.xtext.example.mydsl.myDsl.LesserThanExpression;
+import org.xtext.example.mydsl.myDsl.LogicalExpression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
@@ -50,6 +58,7 @@ import org.xtext.example.mydsl.myDsl.Relation;
 import org.xtext.example.mydsl.myDsl.ResetClock;
 import org.xtext.example.mydsl.myDsl.Scenario;
 import org.xtext.example.mydsl.myDsl.ScenarioContent;
+import org.xtext.example.mydsl.myDsl.UnaryLogicalExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -373,17 +382,96 @@ public class MyDslSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MyDslPackage.ALT_CONDITION:
-      {
-        AltCondition altCondition = (AltCondition)theEObject;
-        T result = caseAltCondition(altCondition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case MyDslPackage.EXPRESSION:
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.LOGICAL_EXPRESSION:
+      {
+        LogicalExpression logicalExpression = (LogicalExpression)theEObject;
+        T result = caseLogicalExpression(logicalExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.BINARY_LOGICAL_EXPRESSION:
+      {
+        BinaryLogicalExpression binaryLogicalExpression = (BinaryLogicalExpression)theEObject;
+        T result = caseBinaryLogicalExpression(binaryLogicalExpression);
+        if (result == null) result = caseLogicalExpression(binaryLogicalExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.AND_EXPRESSION:
+      {
+        AndExpression andExpression = (AndExpression)theEObject;
+        T result = caseAndExpression(andExpression);
+        if (result == null) result = caseBinaryLogicalExpression(andExpression);
+        if (result == null) result = caseLogicalExpression(andExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.OR_EXPRESSION:
+      {
+        OrExpression orExpression = (OrExpression)theEObject;
+        T result = caseOrExpression(orExpression);
+        if (result == null) result = caseBinaryLogicalExpression(orExpression);
+        if (result == null) result = caseLogicalExpression(orExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.EQUALS_EXPRESSION:
+      {
+        EqualsExpression equalsExpression = (EqualsExpression)theEObject;
+        T result = caseEqualsExpression(equalsExpression);
+        if (result == null) result = caseBinaryLogicalExpression(equalsExpression);
+        if (result == null) result = caseLogicalExpression(equalsExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.EQUALS_BOOLEAN_EXPRESSION:
+      {
+        EqualsBooleanExpression equalsBooleanExpression = (EqualsBooleanExpression)theEObject;
+        T result = caseEqualsBooleanExpression(equalsBooleanExpression);
+        if (result == null) result = caseBinaryLogicalExpression(equalsBooleanExpression);
+        if (result == null) result = caseLogicalExpression(equalsBooleanExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.GREATER_THAN_EXPRESSION:
+      {
+        GreaterThanExpression greaterThanExpression = (GreaterThanExpression)theEObject;
+        T result = caseGreaterThanExpression(greaterThanExpression);
+        if (result == null) result = caseBinaryLogicalExpression(greaterThanExpression);
+        if (result == null) result = caseLogicalExpression(greaterThanExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.LESSER_THAN_EXPRESSION:
+      {
+        LesserThanExpression lesserThanExpression = (LesserThanExpression)theEObject;
+        T result = caseLesserThanExpression(lesserThanExpression);
+        if (result == null) result = caseBinaryLogicalExpression(lesserThanExpression);
+        if (result == null) result = caseLogicalExpression(lesserThanExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.UNARY_LOGICAL_EXPRESSION:
+      {
+        UnaryLogicalExpression unaryLogicalExpression = (UnaryLogicalExpression)theEObject;
+        T result = caseUnaryLogicalExpression(unaryLogicalExpression);
+        if (result == null) result = caseLogicalExpression(unaryLogicalExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case MyDslPackage.NOT_LOGICAL_EXPRESSION:
+      {
+        NotLogicalExpression notLogicalExpression = (NotLogicalExpression)theEObject;
+        T result = caseNotLogicalExpression(notLogicalExpression);
+        if (result == null) result = caseUnaryLogicalExpression(notLogicalExpression);
+        if (result == null) result = caseLogicalExpression(notLogicalExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1005,22 +1093,6 @@ public class MyDslSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Alt Condition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Alt Condition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAltCondition(AltCondition object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1032,6 +1104,166 @@ public class MyDslSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExpression(Expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Logical Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLogicalExpression(LogicalExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Binary Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Binary Logical Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBinaryLogicalExpression(BinaryLogicalExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>And Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAndExpression(AndExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Or Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOrExpression(OrExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Equals Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Equals Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEqualsExpression(EqualsExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Equals Boolean Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Equals Boolean Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEqualsBooleanExpression(EqualsBooleanExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Greater Than Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Greater Than Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseGreaterThanExpression(GreaterThanExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lesser Than Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lesser Than Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLesserThanExpression(LesserThanExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Unary Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Unary Logical Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseUnaryLogicalExpression(UnaryLogicalExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Not Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Not Logical Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNotLogicalExpression(NotLogicalExpression object)
   {
     return null;
   }

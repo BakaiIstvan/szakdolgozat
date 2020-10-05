@@ -15,7 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.mydsl.myDsl.Alt;
-import org.xtext.example.mydsl.myDsl.AltCondition;
+import org.xtext.example.mydsl.myDsl.AndExpression;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
@@ -36,17 +36,23 @@ import org.xtext.example.mydsl.myDsl.ContextModel;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
 import org.xtext.example.mydsl.myDsl.Entity;
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression;
+import org.xtext.example.mydsl.myDsl.EqualsExpression;
 import org.xtext.example.mydsl.myDsl.Expression;
 import org.xtext.example.mydsl.myDsl.FEntity;
 import org.xtext.example.mydsl.myDsl.FRelation;
 import org.xtext.example.mydsl.myDsl.FragmentAttribute;
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression;
 import org.xtext.example.mydsl.myDsl.Include;
+import org.xtext.example.mydsl.myDsl.LesserThanExpression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
 import org.xtext.example.mydsl.myDsl.MyDslPackage;
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression;
 import org.xtext.example.mydsl.myDsl.ObjectType;
 import org.xtext.example.mydsl.myDsl.Operator;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.ParameterConstraint;
@@ -74,8 +80,8 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ALT:
 				sequence_Alt(context, (Alt) semanticObject); 
 				return; 
-			case MyDslPackage.ALT_CONDITION:
-				sequence_AltCondition(context, (AltCondition) semanticObject); 
+			case MyDslPackage.AND_EXPRESSION:
+				sequence_AndExpression(context, (AndExpression) semanticObject); 
 				return; 
 			case MyDslPackage.APPEAR_MESSAGE:
 				sequence_AppearMessage(context, (AppearMessage) semanticObject); 
@@ -137,6 +143,12 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.ENTITY:
 				sequence_Entity(context, (Entity) semanticObject); 
 				return; 
+			case MyDslPackage.EQUALS_BOOLEAN_EXPRESSION:
+				sequence_EqualsBooleanExpression(context, (EqualsBooleanExpression) semanticObject); 
+				return; 
+			case MyDslPackage.EQUALS_EXPRESSION:
+				sequence_EqualsExpression(context, (EqualsExpression) semanticObject); 
+				return; 
 			case MyDslPackage.EXPRESSION:
 				sequence_Expression(context, (Expression) semanticObject); 
 				return; 
@@ -149,8 +161,14 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.FRAGMENT_ATTRIBUTE:
 				sequence_FragmentAttribute(context, (FragmentAttribute) semanticObject); 
 				return; 
+			case MyDslPackage.GREATER_THAN_EXPRESSION:
+				sequence_GreaterThanExpression(context, (GreaterThanExpression) semanticObject); 
+				return; 
 			case MyDslPackage.INCLUDE:
 				sequence_Include(context, (Include) semanticObject); 
+				return; 
+			case MyDslPackage.LESSER_THAN_EXPRESSION:
+				sequence_LesserThanExpression(context, (LesserThanExpression) semanticObject); 
 				return; 
 			case MyDslPackage.LOOP:
 				sequence_Loop(context, (Loop) semanticObject); 
@@ -161,6 +179,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case MyDslPackage.MESSAGE:
 				sequence_Message(context, (Message) semanticObject); 
 				return; 
+			case MyDslPackage.NOT_LOGICAL_EXPRESSION:
+				sequence_NotLogicalExpression(context, (NotLogicalExpression) semanticObject); 
+				return; 
 			case MyDslPackage.OBJECT:
 				sequence_Object(context, (org.xtext.example.mydsl.myDsl.Object) semanticObject); 
 				return; 
@@ -169,6 +190,9 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case MyDslPackage.OPERATOR:
 				sequence_Operator(context, (Operator) semanticObject); 
+				return; 
+			case MyDslPackage.OR_EXPRESSION:
+				sequence_OrExpression(context, (OrExpression) semanticObject); 
 				return; 
 			case MyDslPackage.PAR:
 				sequence_Par(context, (Par) semanticObject); 
@@ -204,18 +228,6 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     AltCondition returns AltCondition
-	 *
-	 * Constraint:
-	 *     ((param=[Parameter|ID] operator=Operator value=AttributeValue) | else?='else')
-	 */
-	protected void sequence_AltCondition(ISerializationContext context, AltCondition semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Alt returns Alt
 	 *
 	 * Constraint:
@@ -223,6 +235,29 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Alt(ISerializationContext context, Alt semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LogicalExpression returns AndExpression
+	 *     BinaryLogicalExpression returns AndExpression
+	 *     AndExpression returns AndExpression
+	 *
+	 * Constraint:
+	 *     (lhs=LogicalExpression rhs=LogicalExpression)
+	 */
+	protected void sequence_AndExpression(ISerializationContext context, AndExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.AND_EXPRESSION__LHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.AND_EXPRESSION__LHS));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.AND_EXPRESSION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.AND_EXPRESSION__RHS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAndExpressionAccess().getLhsLogicalExpressionParserRuleCall_2_0(), semanticObject.getLhs());
+		feeder.accept(grammarAccess.getAndExpressionAccess().getRhsLogicalExpressionParserRuleCall_4_0(), semanticObject.getRhs());
+		feeder.finish();
 	}
 	
 	
@@ -276,7 +311,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AttributeValue returns AttributeValue
 	 *
 	 * Constraint:
-	 *     (value=STRING | value=Real | value=Number | value='true' | value='false')
+	 *     (value=STRING | value=REAL | value=NUMBER | value='true' | value='false')
 	 */
 	protected void sequence_AttributeValue(ISerializationContext context, AttributeValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -355,7 +390,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     ClockConstraint returns ClockConstraint
 	 *
 	 * Constraint:
-	 *     (clock=[Clock|ID] op=Operator constant=Number)
+	 *     (clock=[Clock|ID] op=Operator constant=NUMBER)
 	 */
 	protected void sequence_ClockConstraint(ISerializationContext context, ClockConstraint semanticObject) {
 		if (errorAcceptor != null) {
@@ -369,7 +404,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getClockConstraintAccess().getClockClockIDTerminalRuleCall_0_0_1(), semanticObject.eGet(MyDslPackage.Literals.CLOCK_CONSTRAINT__CLOCK, false));
 		feeder.accept(grammarAccess.getClockConstraintAccess().getOpOperatorParserRuleCall_1_0(), semanticObject.getOp());
-		feeder.accept(grammarAccess.getClockConstraintAccess().getConstantNumberTerminalRuleCall_2_0(), semanticObject.getConstant());
+		feeder.accept(grammarAccess.getClockConstraintAccess().getConstantNUMBERTerminalRuleCall_2_0(), semanticObject.getConstant());
 		feeder.finish();
 	}
 	
@@ -522,10 +557,47 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     LogicalExpression returns EqualsBooleanExpression
+	 *     BinaryLogicalExpression returns EqualsBooleanExpression
+	 *     EqualsBooleanExpression returns EqualsBooleanExpression
+	 *
+	 * Constraint:
+	 *     ((lhs=[Parameter|ID] rhs='true') | (lhs=[Parameter|ID] rhs='false'))
+	 */
+	protected void sequence_EqualsBooleanExpression(ISerializationContext context, EqualsBooleanExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LogicalExpression returns EqualsExpression
+	 *     BinaryLogicalExpression returns EqualsExpression
+	 *     EqualsExpression returns EqualsExpression
+	 *
+	 * Constraint:
+	 *     (lhs=[Parameter|ID] rhs=INT)
+	 */
+	protected void sequence_EqualsExpression(ISerializationContext context, EqualsExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EQUALS_EXPRESSION__LHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EQUALS_EXPRESSION__LHS));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.EQUALS_EXPRESSION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.EQUALS_EXPRESSION__RHS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEqualsExpressionAccess().getLhsParameterIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.EQUALS_EXPRESSION__LHS, false));
+		feeder.accept(grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0(), semanticObject.getRhs());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Expression returns Expression
 	 *
 	 * Constraint:
-	 *     (altCondition=AltCondition messages+=Message*)
+	 *     (altCondition=LogicalExpression messages+=Message*)
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -583,6 +655,29 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     LogicalExpression returns GreaterThanExpression
+	 *     BinaryLogicalExpression returns GreaterThanExpression
+	 *     GreaterThanExpression returns GreaterThanExpression
+	 *
+	 * Constraint:
+	 *     (lhs=[Parameter|ID] rhs=INT)
+	 */
+	protected void sequence_GreaterThanExpression(ISerializationContext context, GreaterThanExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.GREATER_THAN_EXPRESSION__LHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.GREATER_THAN_EXPRESSION__LHS));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.GREATER_THAN_EXPRESSION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.GREATER_THAN_EXPRESSION__RHS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getGreaterThanExpressionAccess().getLhsParameterIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.GREATER_THAN_EXPRESSION__LHS, false));
+		feeder.accept(grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0(), semanticObject.getRhs());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Include returns Include
 	 *
 	 * Constraint:
@@ -604,10 +699,33 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     LogicalExpression returns LesserThanExpression
+	 *     BinaryLogicalExpression returns LesserThanExpression
+	 *     LesserThanExpression returns LesserThanExpression
+	 *
+	 * Constraint:
+	 *     (lhs=[Parameter|ID] rhs=INT)
+	 */
+	protected void sequence_LesserThanExpression(ISerializationContext context, LesserThanExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.LESSER_THAN_EXPRESSION__LHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.LESSER_THAN_EXPRESSION__LHS));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.LESSER_THAN_EXPRESSION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.LESSER_THAN_EXPRESSION__RHS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLesserThanExpressionAccess().getLhsParameterIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.LESSER_THAN_EXPRESSION__LHS, false));
+		feeder.accept(grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0(), semanticObject.getRhs());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Loop returns Loop
 	 *
 	 * Constraint:
-	 *     (min=Number max=Number messages+=Message*)
+	 *     (min=INT max=INT messages+=Message*)
 	 */
 	protected void sequence_Loop(ISerializationContext context, Loop semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -651,6 +769,26 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Message(ISerializationContext context, Message semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LogicalExpression returns NotLogicalExpression
+	 *     UnaryLogicalExpression returns NotLogicalExpression
+	 *     NotLogicalExpression returns NotLogicalExpression
+	 *
+	 * Constraint:
+	 *     operand=LogicalExpression
+	 */
+	protected void sequence_NotLogicalExpression(ISerializationContext context, NotLogicalExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.NOT_LOGICAL_EXPRESSION__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.NOT_LOGICAL_EXPRESSION__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNotLogicalExpressionAccess().getOperandLogicalExpressionParserRuleCall_2_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
@@ -700,6 +838,29 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_Operator(ISerializationContext context, Operator semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LogicalExpression returns OrExpression
+	 *     BinaryLogicalExpression returns OrExpression
+	 *     OrExpression returns OrExpression
+	 *
+	 * Constraint:
+	 *     (lhs=LogicalExpression rhs=LogicalExpression)
+	 */
+	protected void sequence_OrExpression(ISerializationContext context, OrExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__LHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__LHS));
+			if (transientValues.isValueTransient(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MyDslPackage.Literals.OR_EXPRESSION__RHS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOrExpressionAccess().getLhsLogicalExpressionParserRuleCall_2_0(), semanticObject.getLhs());
+		feeder.accept(grammarAccess.getOrExpressionAccess().getRhsLogicalExpressionParserRuleCall_4_0(), semanticObject.getRhs());
+		feeder.finish();
 	}
 	
 	

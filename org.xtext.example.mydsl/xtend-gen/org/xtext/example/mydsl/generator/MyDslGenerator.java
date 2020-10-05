@@ -6,6 +6,7 @@ package org.xtext.example.mydsl.generator;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
+import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,7 +39,7 @@ import org.xtext.example.mydsl.generator.RequiredMessage;
 import org.xtext.example.mydsl.generator.StateGenerator;
 import org.xtext.example.mydsl.generator.TransitionGenerator;
 import org.xtext.example.mydsl.myDsl.Alt;
-import org.xtext.example.mydsl.myDsl.AltCondition;
+import org.xtext.example.mydsl.myDsl.AndExpression;
 import org.xtext.example.mydsl.myDsl.AppearMessage;
 import org.xtext.example.mydsl.myDsl.AssertionEntity;
 import org.xtext.example.mydsl.myDsl.AssertionRelation;
@@ -54,10 +55,17 @@ import org.xtext.example.mydsl.myDsl.ContextMessage;
 import org.xtext.example.mydsl.myDsl.ContextMessageContent;
 import org.xtext.example.mydsl.myDsl.DisappearMessage;
 import org.xtext.example.mydsl.myDsl.Domain;
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression;
+import org.xtext.example.mydsl.myDsl.EqualsExpression;
 import org.xtext.example.mydsl.myDsl.Expression;
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression;
+import org.xtext.example.mydsl.myDsl.LesserThanExpression;
+import org.xtext.example.mydsl.myDsl.LogicalExpression;
 import org.xtext.example.mydsl.myDsl.Loop;
 import org.xtext.example.mydsl.myDsl.MatchMessage;
 import org.xtext.example.mydsl.myDsl.Message;
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression;
+import org.xtext.example.mydsl.myDsl.OrExpression;
 import org.xtext.example.mydsl.myDsl.Par;
 import org.xtext.example.mydsl.myDsl.ParExpression;
 import org.xtext.example.mydsl.myDsl.Parameter;
@@ -1032,10 +1040,10 @@ public class MyDslGenerator extends AbstractGenerator {
                 }
                 _builder.append("\t\t");
                 _builder.append("a.merge(loopSetup(loopauto, ");
-                String _min = l.getMin();
+                int _min = l.getMin();
                 _builder.append(_min, "\t\t");
                 _builder.append(", ");
-                String _max = l.getMax();
+                int _max = l.getMax();
                 _builder.append(_max, "\t\t");
                 _builder.append("));");
                 _builder.newLineIfNotEmpty();
@@ -3824,48 +3832,104 @@ public class MyDslGenerator extends AbstractGenerator {
     return _builder;
   }
   
-  public CharSequence compile_alt_condition(final AltCondition a) {
+  public CharSequence compile_alt_condition(final LogicalExpression a) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = a.getParam().getName();
-    _builder.append(_name);
-    {
-      boolean _isGreater = a.getOperator().isGreater();
-      if (_isGreater) {
-        _builder.append(">");
-      }
-    }
-    {
-      boolean _isSmaller = a.getOperator().isSmaller();
-      if (_isSmaller) {
-        _builder.append("<");
-      }
-    }
-    {
-      boolean _isGreaterequals = a.getOperator().isGreaterequals();
-      if (_isGreaterequals) {
-        _builder.append(">=");
-      }
-    }
-    {
-      boolean _isSmallerequals = a.getOperator().isSmallerequals();
-      if (_isSmallerequals) {
-        _builder.append("<=");
-      }
-    }
-    {
-      boolean _isEquals = a.getOperator().isEquals();
-      if (_isEquals) {
-        _builder.append("==");
-      }
-    }
-    {
-      boolean _isNotequals = a.getOperator().isNotequals();
-      if (_isNotequals) {
-        _builder.append("!=");
-      }
-    }
-    String _value = a.getValue().getValue();
-    _builder.append(_value);
+    CharSequence _generateLogicalExpression = this.generateLogicalExpression(a);
+    _builder.append(_generateLogicalExpression);
     return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final AndExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("(");
+    LogicalExpression _lhs = expression.getLhs();
+    _builder.append(_lhs);
+    _builder.append(") && (");
+    LogicalExpression _rhs = expression.getRhs();
+    _builder.append(_rhs);
+    _builder.append(")");
+    return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final OrExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("(");
+    LogicalExpression _lhs = expression.getLhs();
+    _builder.append(_lhs);
+    _builder.append(") || (");
+    LogicalExpression _rhs = expression.getRhs();
+    _builder.append(_rhs);
+    _builder.append(")");
+    return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final EqualsExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = expression.getLhs().getName();
+    _builder.append(_name);
+    _builder.append(" == ");
+    int _rhs = expression.getRhs();
+    _builder.append(_rhs);
+    return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final EqualsBooleanExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = expression.getLhs().getName();
+    _builder.append(_name);
+    _builder.append(" == ");
+    String _rhs = expression.getRhs();
+    _builder.append(_rhs);
+    return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final GreaterThanExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = expression.getLhs().getName();
+    _builder.append(_name);
+    _builder.append(" > ");
+    int _rhs = expression.getRhs();
+    _builder.append(_rhs);
+    return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final LesserThanExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = expression.getLhs().getName();
+    _builder.append(_name);
+    _builder.append(" < ");
+    int _rhs = expression.getRhs();
+    _builder.append(_rhs);
+    return _builder;
+  }
+  
+  protected CharSequence _generateLogicalExpression(final NotLogicalExpression expression) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("!(");
+    LogicalExpression _operand = expression.getOperand();
+    _builder.append(_operand);
+    _builder.append(")");
+    return _builder;
+  }
+  
+  public CharSequence generateLogicalExpression(final LogicalExpression expression) {
+    if (expression instanceof AndExpression) {
+      return _generateLogicalExpression((AndExpression)expression);
+    } else if (expression instanceof EqualsBooleanExpression) {
+      return _generateLogicalExpression((EqualsBooleanExpression)expression);
+    } else if (expression instanceof EqualsExpression) {
+      return _generateLogicalExpression((EqualsExpression)expression);
+    } else if (expression instanceof GreaterThanExpression) {
+      return _generateLogicalExpression((GreaterThanExpression)expression);
+    } else if (expression instanceof LesserThanExpression) {
+      return _generateLogicalExpression((LesserThanExpression)expression);
+    } else if (expression instanceof NotLogicalExpression) {
+      return _generateLogicalExpression((NotLogicalExpression)expression);
+    } else if (expression instanceof OrExpression) {
+      return _generateLogicalExpression((OrExpression)expression);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(expression).toString());
+    }
   }
 }

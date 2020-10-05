@@ -48,7 +48,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * @generated
    * @ordered
    */
-  protected static final String MIN_EDEFAULT = null;
+  protected static final int MIN_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getMin() <em>Min</em>}' attribute.
@@ -58,7 +58,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * @generated
    * @ordered
    */
-  protected String min = MIN_EDEFAULT;
+  protected int min = MIN_EDEFAULT;
 
   /**
    * The default value of the '{@link #getMax() <em>Max</em>}' attribute.
@@ -68,7 +68,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * @generated
    * @ordered
    */
-  protected static final String MAX_EDEFAULT = null;
+  protected static final int MAX_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getMax() <em>Max</em>}' attribute.
@@ -78,7 +78,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * @generated
    * @ordered
    */
-  protected String max = MAX_EDEFAULT;
+  protected int max = MAX_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getMessages() <em>Messages</em>}' containment reference list.
@@ -116,7 +116,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getMin()
+  public int getMin()
   {
     return min;
   }
@@ -126,9 +126,9 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMin(String newMin)
+  public void setMin(int newMin)
   {
-    String oldMin = min;
+    int oldMin = min;
     min = newMin;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.LOOP__MIN, oldMin, min));
@@ -139,7 +139,7 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getMax()
+  public int getMax()
   {
     return max;
   }
@@ -149,9 +149,9 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setMax(String newMax)
+  public void setMax(int newMax)
   {
-    String oldMax = max;
+    int oldMax = max;
     max = newMax;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.LOOP__MAX, oldMax, max));
@@ -219,10 +219,10 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
     switch (featureID)
     {
       case MyDslPackage.LOOP__MIN:
-        setMin((String)newValue);
+        setMin((Integer)newValue);
         return;
       case MyDslPackage.LOOP__MAX:
-        setMax((String)newValue);
+        setMax((Integer)newValue);
         return;
       case MyDslPackage.LOOP__MESSAGES:
         getMessages().clear();
@@ -266,9 +266,9 @@ public class LoopImpl extends MinimalEObjectImpl.Container implements Loop
     switch (featureID)
     {
       case MyDslPackage.LOOP__MIN:
-        return MIN_EDEFAULT == null ? min != null : !MIN_EDEFAULT.equals(min);
+        return min != MIN_EDEFAULT;
       case MyDslPackage.LOOP__MAX:
-        return MAX_EDEFAULT == null ? max != null : !MAX_EDEFAULT.equals(max);
+        return max != MAX_EDEFAULT;
       case MyDslPackage.LOOP__MESSAGES:
         return messages != null && !messages.isEmpty();
     }

@@ -7,24 +7,19 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import org.xtext.example.mydsl.myDsl.Scenario
 import org.xtext.example.mydsl.myDsl.Domain
 import org.xtext.example.mydsl.myDsl.Message
-import org.xtext.example.mydsl.myDsl.MatchMessage
-import org.xtext.example.mydsl.myDsl.AppearMessage
-import org.xtext.example.mydsl.myDsl.DisappearMessage
-import org.xtext.example.mydsl.myDsl.ChangeToMessage
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import com.google.inject.Inject
-import org.xtext.example.mydsl.myDsl.ContextModel
-import org.xtext.example.mydsl.myDsl.Entity
-import org.xtext.example.mydsl.myDsl.Relation
-import org.xtext.example.mydsl.myDsl.ChangeToRelation
-import org.xtext.example.mydsl.myDsl.FEntity
-import org.xtext.example.mydsl.myDsl.FRelation
-import org.xtext.example.mydsl.myDsl.ContextFragment
-import org.xtext.example.mydsl.myDsl.AltCondition
 import org.xtext.example.mydsl.myDsl.Type
+import org.xtext.example.mydsl.myDsl.AndExpression
+import org.xtext.example.mydsl.myDsl.OrExpression
+import org.xtext.example.mydsl.myDsl.EqualsExpression
+import org.xtext.example.mydsl.myDsl.GreaterThanExpression
+import org.xtext.example.mydsl.myDsl.LesserThanExpression
+import org.xtext.example.mydsl.myDsl.NotLogicalExpression
+import org.xtext.example.mydsl.myDsl.LogicalExpression
+import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression
 
 /**
  * Generates code from your model files on save.
@@ -1343,7 +1338,27 @@ class MyDslGenerator extends AbstractGenerator {
 		«ENDIF»
 	'''
 	
-	def compile_alt_condition(AltCondition a)'''
-		«a.param.name»«IF a.operator.greater»>«ENDIF»«IF a.operator.smaller»<«ENDIF»«IF a.operator.greaterequals»>=«ENDIF»«IF a.operator.smallerequals»<=«ENDIF»«IF a.operator.equals»==«ENDIF»«IF a.operator.notequals»!=«ENDIF»«a.value.value»'''
+	def compile_alt_condition(LogicalExpression a)
+	'''«a.generateLogicalExpression»'''
 
+	def dispatch generateLogicalExpression(AndExpression expression)
+	'''(«expression.lhs») && («expression.rhs»)'''
+	
+	def dispatch generateLogicalExpression(OrExpression expression)
+	'''(«expression.lhs») || («expression.rhs»)'''
+	
+	def dispatch generateLogicalExpression(EqualsExpression expression) 
+	'''«expression.lhs.name» == «expression.rhs»'''
+	
+	def dispatch generateLogicalExpression(EqualsBooleanExpression expression) 
+	'''«expression.lhs.name» == «expression.rhs»'''
+	
+	def dispatch generateLogicalExpression(GreaterThanExpression expression)
+	'''«expression.lhs.name» > «expression.rhs»'''
+	
+	def dispatch generateLogicalExpression(LesserThanExpression expression)
+	'''«expression.lhs.name» < «expression.rhs»'''
+	
+	def dispatch generateLogicalExpression(NotLogicalExpression expression)
+	'''!(«expression.operand»)'''
 }

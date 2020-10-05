@@ -357,15 +357,6 @@ public interface MyDslFactory extends EFactory
   Alt createAlt();
 
   /**
-   * Returns a new object of class '<em>Alt Condition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Alt Condition</em>'.
-   * @generated
-   */
-  AltCondition createAltCondition();
-
-  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -373,6 +364,96 @@ public interface MyDslFactory extends EFactory
    * @generated
    */
   Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Logical Expression</em>'.
+   * @generated
+   */
+  LogicalExpression createLogicalExpression();
+
+  /**
+   * Returns a new object of class '<em>Binary Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Binary Logical Expression</em>'.
+   * @generated
+   */
+  BinaryLogicalExpression createBinaryLogicalExpression();
+
+  /**
+   * Returns a new object of class '<em>And Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And Expression</em>'.
+   * @generated
+   */
+  AndExpression createAndExpression();
+
+  /**
+   * Returns a new object of class '<em>Or Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or Expression</em>'.
+   * @generated
+   */
+  OrExpression createOrExpression();
+
+  /**
+   * Returns a new object of class '<em>Equals Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equals Expression</em>'.
+   * @generated
+   */
+  EqualsExpression createEqualsExpression();
+
+  /**
+   * Returns a new object of class '<em>Equals Boolean Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equals Boolean Expression</em>'.
+   * @generated
+   */
+  EqualsBooleanExpression createEqualsBooleanExpression();
+
+  /**
+   * Returns a new object of class '<em>Greater Than Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Greater Than Expression</em>'.
+   * @generated
+   */
+  GreaterThanExpression createGreaterThanExpression();
+
+  /**
+   * Returns a new object of class '<em>Lesser Than Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lesser Than Expression</em>'.
+   * @generated
+   */
+  LesserThanExpression createLesserThanExpression();
+
+  /**
+   * Returns a new object of class '<em>Unary Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Unary Logical Expression</em>'.
+   * @generated
+   */
+  UnaryLogicalExpression createUnaryLogicalExpression();
+
+  /**
+   * Returns a new object of class '<em>Not Logical Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Not Logical Expression</em>'.
+   * @generated
+   */
+  NotLogicalExpression createNotLogicalExpression();
 
   /**
    * Returns a new object of class '<em>Par</em>'.
