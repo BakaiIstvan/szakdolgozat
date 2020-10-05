@@ -216,27 +216,27 @@ BinaryLogicalExpression:
 ;
 
 AndExpression:
-	'AND' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
+	'and' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
 ;
 
 OrExpression:
-	'OR' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
+	'or' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
 ;
 
 EqualsExpression:
-	'EQUALS' '(' lhs=[Parameter] ',' rhs=INT ')'
+	'equals' '(' lhs=[Parameter] ',' rhs=NUMBER ')'
 ;
 
 EqualsBooleanExpression:
-	'EQUALS' '(' lhs=[Parameter] ',' rhs='true' ')' | 'EQUALS' '(' lhs=[Parameter] ',' rhs='false' ')'
+	'equals' '(' lhs=[Parameter] ',' rhs='true' ')' | 'equals' '(' lhs=[Parameter] ',' rhs='false' ')'
 ;
 
 GreaterThanExpression:
-	'GREATER' '(' lhs=[Parameter] ',' rhs=INT ')'
+	'greater' '(' lhs=[Parameter] ',' rhs=NUMBER ')'
 ;
 
 LesserThanExpression:
-	'LESSER' '(' lhs=[Parameter] ',' rhs=INT ')'
+	'lesser' '(' lhs=[Parameter] ',' rhs=NUMBER ')'
 ;
 
 UnaryLogicalExpression:
@@ -244,7 +244,7 @@ UnaryLogicalExpression:
 ;
 
 NotLogicalExpression:
-	'NOT' '(' operand=LogicalExpression ')'
+	'not' '(' operand=LogicalExpression ')'
 ;
 
 Par:

@@ -58,12 +58,12 @@ public interface EqualsExpression extends BinaryLogicalExpression
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Rhs</em>' attribute.
-   * @see #setRhs(int)
+   * @see #setRhs(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getEqualsExpression_Rhs()
    * @model
    * @generated
    */
-  int getRhs();
+  String getRhs();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.EqualsExpression#getRhs <em>Rhs</em>}' attribute.
@@ -73,6 +73,6 @@ public interface EqualsExpression extends BinaryLogicalExpression
    * @see #getRhs()
    * @generated
    */
-  void setRhs(int value);
+  void setRhs(String value);
 
 } // EqualsExpression

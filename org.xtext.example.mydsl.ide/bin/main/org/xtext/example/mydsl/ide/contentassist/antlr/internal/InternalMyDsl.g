@@ -8087,9 +8087,9 @@ rule__AndExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getAndExpressionAccess().getANDKeyword_0()); }
-	'AND'
-	{ after(grammarAccess.getAndExpressionAccess().getANDKeyword_0()); }
+	{ before(grammarAccess.getAndExpressionAccess().getAndKeyword_0()); }
+	'and'
+	{ after(grammarAccess.getAndExpressionAccess().getAndKeyword_0()); }
 )
 ;
 finally {
@@ -8249,9 +8249,9 @@ rule__OrExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getOrExpressionAccess().getORKeyword_0()); }
-	'OR'
-	{ after(grammarAccess.getOrExpressionAccess().getORKeyword_0()); }
+	{ before(grammarAccess.getOrExpressionAccess().getOrKeyword_0()); }
+	'or'
+	{ after(grammarAccess.getOrExpressionAccess().getOrKeyword_0()); }
 )
 ;
 finally {
@@ -8411,9 +8411,9 @@ rule__EqualsExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEqualsExpressionAccess().getEQUALSKeyword_0()); }
-	'EQUALS'
-	{ after(grammarAccess.getEqualsExpressionAccess().getEQUALSKeyword_0()); }
+	{ before(grammarAccess.getEqualsExpressionAccess().getEqualsKeyword_0()); }
+	'equals'
+	{ after(grammarAccess.getEqualsExpressionAccess().getEqualsKeyword_0()); }
 )
 ;
 finally {
@@ -8573,9 +8573,9 @@ rule__EqualsBooleanExpression__Group_0__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_0_0()); }
-	'EQUALS'
-	{ after(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_0_0()); }
+	{ before(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_0_0()); }
+	'equals'
+	{ after(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_0_0()); }
 )
 ;
 finally {
@@ -8735,9 +8735,9 @@ rule__EqualsBooleanExpression__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_1_0()); }
-	'EQUALS'
-	{ after(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_1_0()); }
+	{ before(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_1_0()); }
+	'equals'
+	{ after(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_1_0()); }
 )
 ;
 finally {
@@ -8897,9 +8897,9 @@ rule__GreaterThanExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getGreaterThanExpressionAccess().getGREATERKeyword_0()); }
-	'GREATER'
-	{ after(grammarAccess.getGreaterThanExpressionAccess().getGREATERKeyword_0()); }
+	{ before(grammarAccess.getGreaterThanExpressionAccess().getGreaterKeyword_0()); }
+	'greater'
+	{ after(grammarAccess.getGreaterThanExpressionAccess().getGreaterKeyword_0()); }
 )
 ;
 finally {
@@ -9059,9 +9059,9 @@ rule__LesserThanExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getLesserThanExpressionAccess().getLESSERKeyword_0()); }
-	'LESSER'
-	{ after(grammarAccess.getLesserThanExpressionAccess().getLESSERKeyword_0()); }
+	{ before(grammarAccess.getLesserThanExpressionAccess().getLesserKeyword_0()); }
+	'lesser'
+	{ after(grammarAccess.getLesserThanExpressionAccess().getLesserKeyword_0()); }
 )
 ;
 finally {
@@ -9221,9 +9221,9 @@ rule__NotLogicalExpression__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getNotLogicalExpressionAccess().getNOTKeyword_0()); }
-	'NOT'
-	{ after(grammarAccess.getNotLogicalExpressionAccess().getNOTKeyword_0()); }
+	{ before(grammarAccess.getNotLogicalExpressionAccess().getNotKeyword_0()); }
+	'not'
+	{ after(grammarAccess.getNotLogicalExpressionAccess().getNotKeyword_0()); }
 )
 ;
 finally {
@@ -12347,9 +12347,9 @@ rule__EqualsExpression__RhsAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0()); }
-		RULE_INT
-		{ after(grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0()); }
+		{ before(grammarAccess.getEqualsExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); }
+		RULE_NUMBER
+		{ after(grammarAccess.getEqualsExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); }
 	)
 ;
 finally {
@@ -12457,9 +12457,9 @@ rule__GreaterThanExpression__RhsAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); }
-		RULE_INT
-		{ after(grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); }
+		{ before(grammarAccess.getGreaterThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); }
+		RULE_NUMBER
+		{ after(grammarAccess.getGreaterThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); }
 	)
 ;
 finally {
@@ -12491,9 +12491,9 @@ rule__LesserThanExpression__RhsAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); }
-		RULE_INT
-		{ after(grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); }
+		{ before(grammarAccess.getLesserThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); }
+		RULE_NUMBER
+		{ after(grammarAccess.getLesserThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); }
 	)
 ;
 finally {

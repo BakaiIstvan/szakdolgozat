@@ -576,7 +576,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     EqualsExpression returns EqualsExpression
 	 *
 	 * Constraint:
-	 *     (lhs=[Parameter|ID] rhs=INT)
+	 *     (lhs=[Parameter|ID] rhs=NUMBER)
 	 */
 	protected void sequence_EqualsExpression(ISerializationContext context, EqualsExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -587,7 +587,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEqualsExpressionAccess().getLhsParameterIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.EQUALS_EXPRESSION__LHS, false));
-		feeder.accept(grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0(), semanticObject.getRhs());
+		feeder.accept(grammarAccess.getEqualsExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0(), semanticObject.getRhs());
 		feeder.finish();
 	}
 	
@@ -660,7 +660,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     GreaterThanExpression returns GreaterThanExpression
 	 *
 	 * Constraint:
-	 *     (lhs=[Parameter|ID] rhs=INT)
+	 *     (lhs=[Parameter|ID] rhs=NUMBER)
 	 */
 	protected void sequence_GreaterThanExpression(ISerializationContext context, GreaterThanExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -671,7 +671,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getGreaterThanExpressionAccess().getLhsParameterIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.GREATER_THAN_EXPRESSION__LHS, false));
-		feeder.accept(grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0(), semanticObject.getRhs());
+		feeder.accept(grammarAccess.getGreaterThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0(), semanticObject.getRhs());
 		feeder.finish();
 	}
 	
@@ -704,7 +704,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     LesserThanExpression returns LesserThanExpression
 	 *
 	 * Constraint:
-	 *     (lhs=[Parameter|ID] rhs=INT)
+	 *     (lhs=[Parameter|ID] rhs=NUMBER)
 	 */
 	protected void sequence_LesserThanExpression(ISerializationContext context, LesserThanExpression semanticObject) {
 		if (errorAcceptor != null) {
@@ -715,7 +715,7 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLesserThanExpressionAccess().getLhsParameterIDTerminalRuleCall_2_0_1(), semanticObject.eGet(MyDslPackage.Literals.LESSER_THAN_EXPRESSION__LHS, false));
-		feeder.accept(grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0(), semanticObject.getRhs());
+		feeder.accept(grammarAccess.getLesserThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0(), semanticObject.getRhs());
 		feeder.finish();
 	}
 	

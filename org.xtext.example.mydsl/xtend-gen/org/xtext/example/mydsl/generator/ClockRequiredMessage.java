@@ -1356,7 +1356,7 @@ public class ClockRequiredMessage {
     _builder.append("pre +");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("\")) || (1, \" + succ + \")\", actualState, acceptState));");
+    _builder.append("\") || (1, \" + succ + \")\", actualState, acceptState));");
     _builder.newLine();
     _builder.newLine();
     _builder.append("b.addState(acceptState);");

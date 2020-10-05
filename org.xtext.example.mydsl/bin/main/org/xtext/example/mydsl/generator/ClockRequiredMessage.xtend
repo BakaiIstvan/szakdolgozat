@@ -389,7 +389,7 @@ class ClockRequiredMessage {
 			+ "." + "«m.receiver.name»; " + 
 			
 			pre +
-			")) || (1, " + succ + ")", actualState, acceptState));
+			") || (1, " + succ + ")", actualState, acceptState));
 		
 		b.addState(acceptState);
 		

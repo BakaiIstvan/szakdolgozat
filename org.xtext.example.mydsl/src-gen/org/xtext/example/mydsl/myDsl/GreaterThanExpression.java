@@ -58,12 +58,12 @@ public interface GreaterThanExpression extends BinaryLogicalExpression
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Rhs</em>' attribute.
-   * @see #setRhs(int)
+   * @see #setRhs(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getGreaterThanExpression_Rhs()
    * @model
    * @generated
    */
-  int getRhs();
+  String getRhs();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.GreaterThanExpression#getRhs <em>Rhs</em>}' attribute.
@@ -73,6 +73,6 @@ public interface GreaterThanExpression extends BinaryLogicalExpression
    * @see #getRhs()
    * @generated
    */
-  void setRhs(int value);
+  void setRhs(String value);
 
 } // GreaterThanExpression

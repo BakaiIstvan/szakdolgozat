@@ -2334,7 +2334,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class AndExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.AndExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cANDKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cAndKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cLhsLogicalExpressionParserRuleCall_2_0 = (RuleCall)cLhsAssignment_2.eContents().get(0);
@@ -2344,14 +2344,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//AndExpression:
-		//	'AND' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
+		//	'and' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'AND' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
+		//'and' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'AND'
-		public Keyword getANDKeyword_0() { return cANDKeyword_0; }
+		//'and'
+		public Keyword getAndKeyword_0() { return cAndKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -2377,7 +2377,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class OrExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.OrExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cORKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cOrKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cLhsLogicalExpressionParserRuleCall_2_0 = (RuleCall)cLhsAssignment_2.eContents().get(0);
@@ -2387,14 +2387,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//OrExpression:
-		//	'OR' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
+		//	'or' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'OR' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
+		//'or' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'OR'
-		public Keyword getORKeyword_0() { return cORKeyword_0; }
+		//'or'
+		public Keyword getOrKeyword_0() { return cOrKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -2420,25 +2420,25 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class EqualsExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.EqualsExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEQUALSKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLhsParameterCrossReference_2_0 = (CrossReference)cLhsAssignment_2.eContents().get(0);
 		private final RuleCall cLhsParameterIDTerminalRuleCall_2_0_1 = (RuleCall)cLhsParameterCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRhsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRhsINTTerminalRuleCall_4_0 = (RuleCall)cRhsAssignment_4.eContents().get(0);
+		private final RuleCall cRhsNUMBERTerminalRuleCall_4_0 = (RuleCall)cRhsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//EqualsExpression:
-		//	'EQUALS' '(' lhs=[Parameter] ',' rhs=INT ')';
+		//	'equals' '(' lhs=[Parameter] ',' rhs=NUMBER ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'EQUALS' '(' lhs=[Parameter] ',' rhs=INT ')'
+		//'equals' '(' lhs=[Parameter] ',' rhs=NUMBER ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'EQUALS'
-		public Keyword getEQUALSKeyword_0() { return cEQUALSKeyword_0; }
+		//'equals'
+		public Keyword getEqualsKeyword_0() { return cEqualsKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -2455,11 +2455,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rhs=INT
+		//rhs=NUMBER
 		public Assignment getRhsAssignment_4() { return cRhsAssignment_4; }
 		
-		//INT
-		public RuleCall getRhsINTTerminalRuleCall_4_0() { return cRhsINTTerminalRuleCall_4_0; }
+		//NUMBER
+		public RuleCall getRhsNUMBERTerminalRuleCall_4_0() { return cRhsNUMBERTerminalRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -2468,7 +2468,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.EqualsBooleanExpression");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Keyword cEQUALSKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
+		private final Keyword cEqualsKeyword_0_0 = (Keyword)cGroup_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Assignment cLhsAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final CrossReference cLhsParameterCrossReference_0_2_0 = (CrossReference)cLhsAssignment_0_2.eContents().get(0);
@@ -2478,7 +2478,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRhsTrueKeyword_0_4_0 = (Keyword)cRhsAssignment_0_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_0_5 = (Keyword)cGroup_0.eContents().get(5);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cEQUALSKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cEqualsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cLhsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final CrossReference cLhsParameterCrossReference_1_2_0 = (CrossReference)cLhsAssignment_1_2.eContents().get(0);
@@ -2489,17 +2489,17 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_1_5 = (Keyword)cGroup_1.eContents().get(5);
 		
 		//EqualsBooleanExpression:
-		//	'EQUALS' '(' lhs=[Parameter] ',' rhs='true' ')' | 'EQUALS' '(' lhs=[Parameter] ',' rhs='false' ')';
+		//	'equals' '(' lhs=[Parameter] ',' rhs='true' ')' | 'equals' '(' lhs=[Parameter] ',' rhs='false' ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'EQUALS' '(' lhs=[Parameter] ',' rhs='true' ')' | 'EQUALS' '(' lhs=[Parameter] ',' rhs='false' ')'
+		//'equals' '(' lhs=[Parameter] ',' rhs='true' ')' | 'equals' '(' lhs=[Parameter] ',' rhs='false' ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//'EQUALS' '(' lhs=[Parameter] ',' rhs='true' ')'
+		//'equals' '(' lhs=[Parameter] ',' rhs='true' ')'
 		public Group getGroup_0() { return cGroup_0; }
 		
-		//'EQUALS'
-		public Keyword getEQUALSKeyword_0_0() { return cEQUALSKeyword_0_0; }
+		//'equals'
+		public Keyword getEqualsKeyword_0_0() { return cEqualsKeyword_0_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_0_1() { return cLeftParenthesisKeyword_0_1; }
@@ -2525,11 +2525,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_0_5() { return cRightParenthesisKeyword_0_5; }
 		
-		//'EQUALS' '(' lhs=[Parameter] ',' rhs='false' ')'
+		//'equals' '(' lhs=[Parameter] ',' rhs='false' ')'
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//'EQUALS'
-		public Keyword getEQUALSKeyword_1_0() { return cEQUALSKeyword_1_0; }
+		//'equals'
+		public Keyword getEqualsKeyword_1_0() { return cEqualsKeyword_1_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1_1() { return cLeftParenthesisKeyword_1_1; }
@@ -2558,25 +2558,25 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class GreaterThanExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.GreaterThanExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cGREATERKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cGreaterKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLhsParameterCrossReference_2_0 = (CrossReference)cLhsAssignment_2.eContents().get(0);
 		private final RuleCall cLhsParameterIDTerminalRuleCall_2_0_1 = (RuleCall)cLhsParameterCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRhsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRhsINTTerminalRuleCall_4_0 = (RuleCall)cRhsAssignment_4.eContents().get(0);
+		private final RuleCall cRhsNUMBERTerminalRuleCall_4_0 = (RuleCall)cRhsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//GreaterThanExpression:
-		//	'GREATER' '(' lhs=[Parameter] ',' rhs=INT ')';
+		//	'greater' '(' lhs=[Parameter] ',' rhs=NUMBER ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'GREATER' '(' lhs=[Parameter] ',' rhs=INT ')'
+		//'greater' '(' lhs=[Parameter] ',' rhs=NUMBER ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'GREATER'
-		public Keyword getGREATERKeyword_0() { return cGREATERKeyword_0; }
+		//'greater'
+		public Keyword getGreaterKeyword_0() { return cGreaterKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -2593,11 +2593,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rhs=INT
+		//rhs=NUMBER
 		public Assignment getRhsAssignment_4() { return cRhsAssignment_4; }
 		
-		//INT
-		public RuleCall getRhsINTTerminalRuleCall_4_0() { return cRhsINTTerminalRuleCall_4_0; }
+		//NUMBER
+		public RuleCall getRhsNUMBERTerminalRuleCall_4_0() { return cRhsNUMBERTerminalRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -2605,25 +2605,25 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class LesserThanExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.LesserThanExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLESSERKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cLesserKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLhsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cLhsParameterCrossReference_2_0 = (CrossReference)cLhsAssignment_2.eContents().get(0);
 		private final RuleCall cLhsParameterIDTerminalRuleCall_2_0_1 = (RuleCall)cLhsParameterCrossReference_2_0.eContents().get(1);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cRhsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRhsINTTerminalRuleCall_4_0 = (RuleCall)cRhsAssignment_4.eContents().get(0);
+		private final RuleCall cRhsNUMBERTerminalRuleCall_4_0 = (RuleCall)cRhsAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//LesserThanExpression:
-		//	'LESSER' '(' lhs=[Parameter] ',' rhs=INT ')';
+		//	'lesser' '(' lhs=[Parameter] ',' rhs=NUMBER ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'LESSER' '(' lhs=[Parameter] ',' rhs=INT ')'
+		//'lesser' '(' lhs=[Parameter] ',' rhs=NUMBER ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'LESSER'
-		public Keyword getLESSERKeyword_0() { return cLESSERKeyword_0; }
+		//'lesser'
+		public Keyword getLesserKeyword_0() { return cLesserKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -2640,11 +2640,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//rhs=INT
+		//rhs=NUMBER
 		public Assignment getRhsAssignment_4() { return cRhsAssignment_4; }
 		
-		//INT
-		public RuleCall getRhsINTTerminalRuleCall_4_0() { return cRhsINTTerminalRuleCall_4_0; }
+		//NUMBER
+		public RuleCall getRhsNUMBERTerminalRuleCall_4_0() { return cRhsNUMBERTerminalRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -2663,21 +2663,21 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class NotLogicalExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.NotLogicalExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cNOTKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cNotKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperandLogicalExpressionParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//NotLogicalExpression:
-		//	'NOT' '(' operand=LogicalExpression ')';
+		//	'not' '(' operand=LogicalExpression ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'NOT' '(' operand=LogicalExpression ')'
+		//'not' '(' operand=LogicalExpression ')'
 		public Group getGroup() { return cGroup; }
 		
-		//'NOT'
-		public Keyword getNOTKeyword_0() { return cNOTKeyword_0; }
+		//'not'
+		public Keyword getNotKeyword_0() { return cNotKeyword_0; }
 		
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -3482,7 +3482,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//AndExpression:
-	//	'AND' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
+	//	'and' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
 	public AndExpressionElements getAndExpressionAccess() {
 		return pAndExpression;
 	}
@@ -3492,7 +3492,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//OrExpression:
-	//	'OR' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
+	//	'or' '(' lhs=LogicalExpression ',' rhs=LogicalExpression ')';
 	public OrExpressionElements getOrExpressionAccess() {
 		return pOrExpression;
 	}
@@ -3502,7 +3502,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EqualsExpression:
-	//	'EQUALS' '(' lhs=[Parameter] ',' rhs=INT ')';
+	//	'equals' '(' lhs=[Parameter] ',' rhs=NUMBER ')';
 	public EqualsExpressionElements getEqualsExpressionAccess() {
 		return pEqualsExpression;
 	}
@@ -3512,7 +3512,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//EqualsBooleanExpression:
-	//	'EQUALS' '(' lhs=[Parameter] ',' rhs='true' ')' | 'EQUALS' '(' lhs=[Parameter] ',' rhs='false' ')';
+	//	'equals' '(' lhs=[Parameter] ',' rhs='true' ')' | 'equals' '(' lhs=[Parameter] ',' rhs='false' ')';
 	public EqualsBooleanExpressionElements getEqualsBooleanExpressionAccess() {
 		return pEqualsBooleanExpression;
 	}
@@ -3522,7 +3522,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//GreaterThanExpression:
-	//	'GREATER' '(' lhs=[Parameter] ',' rhs=INT ')';
+	//	'greater' '(' lhs=[Parameter] ',' rhs=NUMBER ')';
 	public GreaterThanExpressionElements getGreaterThanExpressionAccess() {
 		return pGreaterThanExpression;
 	}
@@ -3532,7 +3532,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//LesserThanExpression:
-	//	'LESSER' '(' lhs=[Parameter] ',' rhs=INT ')';
+	//	'lesser' '(' lhs=[Parameter] ',' rhs=NUMBER ')';
 	public LesserThanExpressionElements getLesserThanExpressionAccess() {
 		return pLesserThanExpression;
 	}
@@ -3552,7 +3552,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//NotLogicalExpression:
-	//	'NOT' '(' operand=LogicalExpression ')';
+	//	'not' '(' operand=LogicalExpression ')';
 	public NotLogicalExpressionElements getNotLogicalExpressionAccess() {
 		return pNotLogicalExpression;
 	}

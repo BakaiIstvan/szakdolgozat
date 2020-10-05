@@ -160,9 +160,6 @@ class AutomatonGenerator extends AbstractGenerator {
 		              this.addState(qinit);
 		              this.addState(qfinal);
 		              this.finale = qfinal;
-		              
-		              State qaccepting = new State("qaccepting", StateType.ACCEPT_ALL);
-		              this.addState(qaccepting);
 		      
 		              for (Map.Entry<String, Automaton> a : automatas.entrySet()) {
 		                  for (Transition t : a.getValue().transitions)
@@ -172,8 +169,6 @@ class AutomatonGenerator extends AbstractGenerator {
 		                      this.addState(s);
 		                      if (s.getType().equals(StateType.FINAL))
 		                          this.addTransition(new Transition("epsilon", s, qfinal));
-		                      if (s.getType().equals(StateType.ACCEPT_ALL))
-		                          this.addTransition(new Transition("epsilon", s, qaccepting));
 		                  }
 		                  this.addTransition(new Transition("epsilon; " + a.getKey(), qinit, a.getValue().initial));
 		              }   

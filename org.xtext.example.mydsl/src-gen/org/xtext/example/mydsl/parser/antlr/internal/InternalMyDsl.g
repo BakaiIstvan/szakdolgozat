@@ -3828,9 +3828,9 @@ ruleAndExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='AND'
+		otherlv_0='and'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getAndExpressionAccess().getANDKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getAndExpressionAccess().getAndKeyword_0());
 		}
 		otherlv_1='('
 		{
@@ -3901,9 +3901,9 @@ ruleOrExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='OR'
+		otherlv_0='or'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getOrExpressionAccess().getORKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getOrExpressionAccess().getOrKeyword_0());
 		}
 		otherlv_1='('
 		{
@@ -3974,9 +3974,9 @@ ruleEqualsExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='EQUALS'
+		otherlv_0='equals'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getEqualsExpressionAccess().getEQUALSKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getEqualsExpressionAccess().getEqualsKeyword_0());
 		}
 		otherlv_1='('
 		{
@@ -4001,9 +4001,9 @@ ruleEqualsExpression returns [EObject current=null]
 		}
 		(
 			(
-				lv_rhs_4_0=RULE_INT
+				lv_rhs_4_0=RULE_NUMBER
 				{
-					newLeafNode(lv_rhs_4_0, grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0());
+					newLeafNode(lv_rhs_4_0, grammarAccess.getEqualsExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -4013,7 +4013,7 @@ ruleEqualsExpression returns [EObject current=null]
 						$current,
 						"rhs",
 						lv_rhs_4_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"org.xtext.example.mydsl.MyDsl.NUMBER");
 				}
 			)
 		)
@@ -4041,9 +4041,9 @@ ruleEqualsBooleanExpression returns [EObject current=null]
 }:
 	(
 		(
-			otherlv_0='EQUALS'
+			otherlv_0='equals'
 			{
-				newLeafNode(otherlv_0, grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_0_0());
+				newLeafNode(otherlv_0, grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_0_0());
 			}
 			otherlv_1='('
 			{
@@ -4087,9 +4087,9 @@ ruleEqualsBooleanExpression returns [EObject current=null]
 		)
 		    |
 		(
-			otherlv_6='EQUALS'
+			otherlv_6='equals'
 			{
-				newLeafNode(otherlv_6, grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_1_0());
+				newLeafNode(otherlv_6, grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_1_0());
 			}
 			otherlv_7='('
 			{
@@ -4150,9 +4150,9 @@ ruleGreaterThanExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='GREATER'
+		otherlv_0='greater'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getGreaterThanExpressionAccess().getGREATERKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getGreaterThanExpressionAccess().getGreaterKeyword_0());
 		}
 		otherlv_1='('
 		{
@@ -4177,9 +4177,9 @@ ruleGreaterThanExpression returns [EObject current=null]
 		}
 		(
 			(
-				lv_rhs_4_0=RULE_INT
+				lv_rhs_4_0=RULE_NUMBER
 				{
-					newLeafNode(lv_rhs_4_0, grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0());
+					newLeafNode(lv_rhs_4_0, grammarAccess.getGreaterThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -4189,7 +4189,7 @@ ruleGreaterThanExpression returns [EObject current=null]
 						$current,
 						"rhs",
 						lv_rhs_4_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"org.xtext.example.mydsl.MyDsl.NUMBER");
 				}
 			)
 		)
@@ -4216,9 +4216,9 @@ ruleLesserThanExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='LESSER'
+		otherlv_0='lesser'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getLesserThanExpressionAccess().getLESSERKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getLesserThanExpressionAccess().getLesserKeyword_0());
 		}
 		otherlv_1='('
 		{
@@ -4243,9 +4243,9 @@ ruleLesserThanExpression returns [EObject current=null]
 		}
 		(
 			(
-				lv_rhs_4_0=RULE_INT
+				lv_rhs_4_0=RULE_NUMBER
 				{
-					newLeafNode(lv_rhs_4_0, grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0());
+					newLeafNode(lv_rhs_4_0, grammarAccess.getLesserThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -4255,7 +4255,7 @@ ruleLesserThanExpression returns [EObject current=null]
 						$current,
 						"rhs",
 						lv_rhs_4_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"org.xtext.example.mydsl.MyDsl.NUMBER");
 				}
 			)
 		)
@@ -4307,9 +4307,9 @@ ruleNotLogicalExpression returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='NOT'
+		otherlv_0='not'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getNotLogicalExpressionAccess().getNOTKeyword_0());
+			newLeafNode(otherlv_0, grammarAccess.getNotLogicalExpressionAccess().getNotKeyword_0());
 		}
 		otherlv_1='('
 		{

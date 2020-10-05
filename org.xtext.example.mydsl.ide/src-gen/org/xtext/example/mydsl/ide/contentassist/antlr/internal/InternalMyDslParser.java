@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_REAL", "RULE_NUMBER", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'integer'", "'float'", "'bool'", "'string'", "'{'", "'}'", "'import'", "'from'", "'contextmodel'", "'contextfragment'", "'attribute'", "'='", "';'", "'attributeconstraint'", "'entity'", "'entityconstraint'", "'relation'", "'('", "','", "')'", "'relationconstraint'", "'scenario'", "'message'", "'->'", "'reset'", "'and'", "'match'", "'appear'", "'.'", "'disappear'", "'changeTo'", "'relationChangeTo'", "'assertEntityAttribute'", "'['", "']'", "'assertRelationAttribute'", "'assertParameter'", "'in'", "'clock'", "'object'", "'constraint'", "'alt'", "'AND'", "'OR'", "'EQUALS'", "'GREATER'", "'LESSER'", "'NOT'", "'par'", "'case'", "'loop'", "'specification'", "'int'", "'boolean'", "'true'", "'false'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'required'", "'fail'", "'strict'", "'pastConstraint'", "'futureConstraint'", "'clockConstraint'", "'not'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_REAL", "RULE_NUMBER", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'integer'", "'float'", "'bool'", "'string'", "'{'", "'}'", "'import'", "'from'", "'contextmodel'", "'contextfragment'", "'attribute'", "'='", "';'", "'attributeconstraint'", "'entity'", "'entityconstraint'", "'relation'", "'('", "','", "')'", "'relationconstraint'", "'scenario'", "'message'", "'->'", "'reset'", "'and'", "'match'", "'appear'", "'.'", "'disappear'", "'changeTo'", "'relationChangeTo'", "'assertEntityAttribute'", "'['", "']'", "'assertRelationAttribute'", "'assertParameter'", "'in'", "'clock'", "'object'", "'constraint'", "'alt'", "'or'", "'equals'", "'greater'", "'lesser'", "'not'", "'par'", "'case'", "'loop'", "'specification'", "'int'", "'boolean'", "'true'", "'false'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", "'required'", "'fail'", "'strict'", "'pastConstraint'", "'futureConstraint'", "'clockConstraint'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -88,8 +88,6 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final int T__75=75;
     public static final int T__32=32;
     public static final int T__76=76;
-    public static final int T__80=80;
-    public static final int T__81=81;
     public static final int RULE_WS=11;
     public static final int RULE_ANY_OTHER=12;
     public static final int RULE_NUMBER=7;
@@ -4132,12 +4130,12 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 alt1=3;
                 }
                 break;
-            case 67:
+            case 66:
                 {
                 alt1=4;
                 }
                 break;
-            case 68:
+            case 67:
                 {
                 alt1=5;
                 }
@@ -4312,12 +4310,12 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 alt2=2;
                 }
                 break;
-            case 61:
+            case 60:
                 {
                 alt2=3;
                 }
                 break;
-            case 63:
+            case 62:
                 {
                 alt2=4;
                 }
@@ -4590,7 +4588,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 {
                 int LA3_2 = input.LA(2);
 
-                if ( ((LA3_2>=RULE_STRING && LA3_2<=RULE_NUMBER)||(LA3_2>=67 && LA3_2<=68)) ) {
+                if ( ((LA3_2>=RULE_STRING && LA3_2<=RULE_NUMBER)||(LA3_2>=66 && LA3_2<=67)) ) {
                     alt3=2;
                 }
                 else if ( (LA3_2==RULE_ID) ) {
@@ -4612,8 +4610,8 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             case RULE_STRING:
             case RULE_REAL:
             case RULE_NUMBER:
+            case 66:
             case 67:
-            case 68:
                 {
                 alt3=2;
                 }
@@ -5027,32 +5025,32 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:1539:1: ( ( ( rule__Operator__GreaterAssignment_0 ) ) | ( ( rule__Operator__SmallerAssignment_1 ) ) | ( ( rule__Operator__GreaterequalsAssignment_2 ) ) | ( ( rule__Operator__SmallerequalsAssignment_3 ) ) | ( ( rule__Operator__EqualsAssignment_4 ) ) | ( ( rule__Operator__NotequalsAssignment_5 ) ) )
             int alt7=6;
             switch ( input.LA(1) ) {
-            case 69:
+            case 68:
                 {
                 alt7=1;
                 }
                 break;
-            case 70:
+            case 69:
                 {
                 alt7=2;
                 }
                 break;
-            case 71:
+            case 70:
                 {
                 alt7=3;
                 }
                 break;
-            case 72:
+            case 71:
                 {
                 alt7=4;
                 }
                 break;
-            case 73:
+            case 72:
                 {
                 alt7=5;
                 }
                 break;
-            case 74:
+            case 73:
                 {
                 alt7=6;
                 }
@@ -5243,10 +5241,10 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==60) ) {
+            if ( (LA8_0==59) ) {
                 alt8=1;
             }
-            else if ( ((LA8_0>=55 && LA8_0<=59)) ) {
+            else if ( (LA8_0==38||(LA8_0>=55 && LA8_0<=58)) ) {
                 alt8=2;
             }
             else {
@@ -5464,7 +5462,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt10=2;
             int LA10_0 = input.LA(1);
 
-            if ( (LA10_0==57) ) {
+            if ( (LA10_0==56) ) {
                 int LA10_1 = input.LA(2);
 
                 if ( (LA10_1==30) ) {
@@ -5476,10 +5474,10 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                         if ( (LA10_3==31) ) {
                             int LA10_4 = input.LA(5);
 
-                            if ( (LA10_4==68) ) {
+                            if ( (LA10_4==67) ) {
                                 alt10=2;
                             }
-                            else if ( (LA10_4==67) ) {
+                            else if ( (LA10_4==66) ) {
                                 alt10=1;
                             }
                             else {
@@ -5779,7 +5777,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt12=2;
             int LA12_0 = input.LA(1);
 
-            if ( (LA12_0==64) ) {
+            if ( (LA12_0==63) ) {
                 alt12=1;
             }
             switch (alt12) {
@@ -8386,7 +8384,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt28=2;
             int LA28_0 = input.LA(1);
 
-            if ( (LA28_0==65) ) {
+            if ( (LA28_0==64) ) {
                 alt28=1;
             }
             switch (alt28) {
@@ -8674,7 +8672,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt31=2;
             int LA31_0 = input.LA(1);
 
-            if ( (LA31_0==66) ) {
+            if ( (LA31_0==65) ) {
                 alt31=1;
             }
             switch (alt31) {
@@ -8947,7 +8945,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt33=2;
             int LA33_0 = input.LA(1);
 
-            if ( ((LA33_0>=RULE_STRING && LA33_0<=RULE_NUMBER)||(LA33_0>=67 && LA33_0<=68)) ) {
+            if ( ((LA33_0>=RULE_STRING && LA33_0<=RULE_NUMBER)||(LA33_0>=66 && LA33_0<=67)) ) {
                 alt33=1;
             }
             switch (alt33) {
@@ -9188,7 +9186,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt34=2;
             int LA34_0 = input.LA(1);
 
-            if ( (LA34_0==65) ) {
+            if ( (LA34_0==64) ) {
                 alt34=1;
             }
             switch (alt34) {
@@ -9476,7 +9474,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt37=2;
             int LA37_0 = input.LA(1);
 
-            if ( (LA37_0==66) ) {
+            if ( (LA37_0==65) ) {
                 alt37=1;
             }
             switch (alt37) {
@@ -9657,7 +9655,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt38=2;
             int LA38_0 = input.LA(1);
 
-            if ( (LA38_0==69) ) {
+            if ( (LA38_0==68) ) {
                 alt38=1;
             }
             switch (alt38) {
@@ -9753,7 +9751,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt39=2;
             int LA39_0 = input.LA(1);
 
-            if ( (LA39_0==70) ) {
+            if ( (LA39_0==69) ) {
                 alt39=1;
             }
             switch (alt39) {
@@ -9849,7 +9847,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt40=2;
             int LA40_0 = input.LA(1);
 
-            if ( (LA40_0==71) ) {
+            if ( (LA40_0==70) ) {
                 alt40=1;
             }
             switch (alt40) {
@@ -9945,7 +9943,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt41=2;
             int LA41_0 = input.LA(1);
 
-            if ( (LA41_0==72) ) {
+            if ( (LA41_0==71) ) {
                 alt41=1;
             }
             switch (alt41) {
@@ -10041,7 +10039,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt42=2;
             int LA42_0 = input.LA(1);
 
-            if ( (LA42_0==73) ) {
+            if ( (LA42_0==72) ) {
                 alt42=1;
             }
             switch (alt42) {
@@ -10137,7 +10135,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt43=2;
             int LA43_0 = input.LA(1);
 
-            if ( (LA43_0==74) ) {
+            if ( (LA43_0==73) ) {
                 alt43=1;
             }
             switch (alt43) {
@@ -13047,7 +13045,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 int alt48=2;
                 int LA48_0 = input.LA(1);
 
-                if ( (LA48_0==35||(LA48_0>=39 && LA48_0<=40)||(LA48_0>=42 && LA48_0<=45)||(LA48_0>=48 && LA48_0<=49)||LA48_0==54||LA48_0==61||LA48_0==63) ) {
+                if ( (LA48_0==35||(LA48_0>=39 && LA48_0<=40)||(LA48_0>=42 && LA48_0<=45)||(LA48_0>=48 && LA48_0<=49)||LA48_0==54||LA48_0==60||LA48_0==62) ) {
                     alt48=1;
                 }
 
@@ -13613,7 +13611,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt49=2;
             int LA49_0 = input.LA(1);
 
-            if ( (LA49_0==75) ) {
+            if ( (LA49_0==74) ) {
                 alt49=1;
             }
             switch (alt49) {
@@ -13709,7 +13707,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt50=2;
             int LA50_0 = input.LA(1);
 
-            if ( (LA50_0==76) ) {
+            if ( (LA50_0==75) ) {
                 alt50=1;
             }
             switch (alt50) {
@@ -13805,7 +13803,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt51=2;
             int LA51_0 = input.LA(1);
 
-            if ( (LA51_0==77) ) {
+            if ( (LA51_0==76) ) {
                 alt51=1;
             }
             switch (alt51) {
@@ -14146,7 +14144,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt52=2;
             int LA52_0 = input.LA(1);
 
-            if ( (LA52_0==78) ) {
+            if ( (LA52_0==77) ) {
                 alt52=1;
             }
             switch (alt52) {
@@ -14242,7 +14240,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt53=2;
             int LA53_0 = input.LA(1);
 
-            if ( (LA53_0==79) ) {
+            if ( (LA53_0==78) ) {
                 alt53=1;
             }
             switch (alt53) {
@@ -14433,7 +14431,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             if ( (LA55_0==RULE_ID) ) {
                 int LA55_1 = input.LA(2);
 
-                if ( (LA55_1==RULE_ID||(LA55_1>=17 && LA55_1<=18)||LA55_1==25||(LA55_1>=30 && LA55_1<=31)||LA55_1==37||(LA55_1>=80 && LA55_1<=81)) ) {
+                if ( (LA55_1==RULE_ID||(LA55_1>=17 && LA55_1<=18)||LA55_1==25||(LA55_1>=30 && LA55_1<=31)||LA55_1==37||LA55_1==59||LA55_1==79) ) {
                     alt55=1;
                 }
             }
@@ -14998,7 +14996,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt61=2;
             int LA61_0 = input.LA(1);
 
-            if ( (LA61_0==80) ) {
+            if ( (LA61_0==79) ) {
                 alt61=1;
             }
             switch (alt61) {
@@ -15186,7 +15184,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt63=2;
             int LA63_0 = input.LA(1);
 
-            if ( (LA63_0==RULE_ID||LA63_0==30||LA63_0==81) ) {
+            if ( (LA63_0==RULE_ID||LA63_0==30||LA63_0==59) ) {
                 alt63=1;
             }
             switch (alt63) {
@@ -15945,7 +15943,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt66=2;
             int LA66_0 = input.LA(1);
 
-            if ( (LA66_0==81) ) {
+            if ( (LA66_0==59) ) {
                 alt66=1;
             }
             switch (alt66) {
@@ -16630,7 +16628,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt69=2;
             int LA69_0 = input.LA(1);
 
-            if ( (LA69_0==75) ) {
+            if ( (LA69_0==74) ) {
                 alt69=1;
             }
             switch (alt69) {
@@ -16726,7 +16724,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt70=2;
             int LA70_0 = input.LA(1);
 
-            if ( (LA70_0==76) ) {
+            if ( (LA70_0==75) ) {
                 alt70=1;
             }
             switch (alt70) {
@@ -16822,7 +16820,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt71=2;
             int LA71_0 = input.LA(1);
 
-            if ( (LA71_0==77) ) {
+            if ( (LA71_0==76) ) {
                 alt71=1;
             }
             switch (alt71) {
@@ -18942,7 +18940,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt79=2;
             int LA79_0 = input.LA(1);
 
-            if ( ((LA79_0>=RULE_STRING && LA79_0<=RULE_NUMBER)||(LA79_0>=67 && LA79_0<=68)) ) {
+            if ( ((LA79_0>=RULE_STRING && LA79_0<=RULE_NUMBER)||(LA79_0>=66 && LA79_0<=67)) ) {
                 alt79=1;
             }
             switch (alt79) {
@@ -19846,7 +19844,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt82=2;
             int LA82_0 = input.LA(1);
 
-            if ( ((LA82_0>=RULE_STRING && LA82_0<=RULE_NUMBER)||(LA82_0>=67 && LA82_0<=68)) ) {
+            if ( ((LA82_0>=RULE_STRING && LA82_0<=RULE_NUMBER)||(LA82_0>=66 && LA82_0<=67)) ) {
                 alt82=1;
             }
             switch (alt82) {
@@ -22501,7 +22499,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt85=2;
             int LA85_0 = input.LA(1);
 
-            if ( ((LA85_0>=RULE_STRING && LA85_0<=RULE_NUMBER)||(LA85_0>=67 && LA85_0<=68)) ) {
+            if ( ((LA85_0>=RULE_STRING && LA85_0<=RULE_NUMBER)||(LA85_0>=66 && LA85_0<=67)) ) {
                 alt85=1;
             }
             switch (alt85) {
@@ -23112,7 +23110,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             int alt88=2;
             int LA88_0 = input.LA(1);
 
-            if ( ((LA88_0>=RULE_STRING && LA88_0<=RULE_NUMBER)||(LA88_0>=67 && LA88_0<=68)) ) {
+            if ( ((LA88_0>=RULE_STRING && LA88_0<=RULE_NUMBER)||(LA88_0>=66 && LA88_0<=67)) ) {
                 alt88=1;
             }
             switch (alt88) {
@@ -25660,21 +25658,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AndExpression__Group__0__Impl"
-    // InternalMyDsl.g:8084:1: rule__AndExpression__Group__0__Impl : ( 'AND' ) ;
+    // InternalMyDsl.g:8084:1: rule__AndExpression__Group__0__Impl : ( 'and' ) ;
     public final void rule__AndExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:8088:1: ( ( 'AND' ) )
-            // InternalMyDsl.g:8089:1: ( 'AND' )
+            // InternalMyDsl.g:8088:1: ( ( 'and' ) )
+            // InternalMyDsl.g:8089:1: ( 'and' )
             {
-            // InternalMyDsl.g:8089:1: ( 'AND' )
-            // InternalMyDsl.g:8090:2: 'AND'
+            // InternalMyDsl.g:8089:1: ( 'and' )
+            // InternalMyDsl.g:8090:2: 'and'
             {
-             before(grammarAccess.getAndExpressionAccess().getANDKeyword_0()); 
-            match(input,55,FOLLOW_2); 
-             after(grammarAccess.getAndExpressionAccess().getANDKeyword_0()); 
+             before(grammarAccess.getAndExpressionAccess().getAndKeyword_0()); 
+            match(input,38,FOLLOW_2); 
+             after(grammarAccess.getAndExpressionAccess().getAndKeyword_0()); 
 
             }
 
@@ -26125,21 +26123,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__OrExpression__Group__0__Impl"
-    // InternalMyDsl.g:8246:1: rule__OrExpression__Group__0__Impl : ( 'OR' ) ;
+    // InternalMyDsl.g:8246:1: rule__OrExpression__Group__0__Impl : ( 'or' ) ;
     public final void rule__OrExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:8250:1: ( ( 'OR' ) )
-            // InternalMyDsl.g:8251:1: ( 'OR' )
+            // InternalMyDsl.g:8250:1: ( ( 'or' ) )
+            // InternalMyDsl.g:8251:1: ( 'or' )
             {
-            // InternalMyDsl.g:8251:1: ( 'OR' )
-            // InternalMyDsl.g:8252:2: 'OR'
+            // InternalMyDsl.g:8251:1: ( 'or' )
+            // InternalMyDsl.g:8252:2: 'or'
             {
-             before(grammarAccess.getOrExpressionAccess().getORKeyword_0()); 
-            match(input,56,FOLLOW_2); 
-             after(grammarAccess.getOrExpressionAccess().getORKeyword_0()); 
+             before(grammarAccess.getOrExpressionAccess().getOrKeyword_0()); 
+            match(input,55,FOLLOW_2); 
+             after(grammarAccess.getOrExpressionAccess().getOrKeyword_0()); 
 
             }
 
@@ -26590,21 +26588,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EqualsExpression__Group__0__Impl"
-    // InternalMyDsl.g:8408:1: rule__EqualsExpression__Group__0__Impl : ( 'EQUALS' ) ;
+    // InternalMyDsl.g:8408:1: rule__EqualsExpression__Group__0__Impl : ( 'equals' ) ;
     public final void rule__EqualsExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:8412:1: ( ( 'EQUALS' ) )
-            // InternalMyDsl.g:8413:1: ( 'EQUALS' )
+            // InternalMyDsl.g:8412:1: ( ( 'equals' ) )
+            // InternalMyDsl.g:8413:1: ( 'equals' )
             {
-            // InternalMyDsl.g:8413:1: ( 'EQUALS' )
-            // InternalMyDsl.g:8414:2: 'EQUALS'
+            // InternalMyDsl.g:8413:1: ( 'equals' )
+            // InternalMyDsl.g:8414:2: 'equals'
             {
-             before(grammarAccess.getEqualsExpressionAccess().getEQUALSKeyword_0()); 
-            match(input,57,FOLLOW_2); 
-             after(grammarAccess.getEqualsExpressionAccess().getEQUALSKeyword_0()); 
+             before(grammarAccess.getEqualsExpressionAccess().getEqualsKeyword_0()); 
+            match(input,56,FOLLOW_2); 
+             after(grammarAccess.getEqualsExpressionAccess().getEqualsKeyword_0()); 
 
             }
 
@@ -26796,7 +26794,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:8481:1: ( rule__EqualsExpression__Group__3__Impl rule__EqualsExpression__Group__4 )
             // InternalMyDsl.g:8482:2: rule__EqualsExpression__Group__3__Impl rule__EqualsExpression__Group__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_40);
             rule__EqualsExpression__Group__3__Impl();
 
             state._fsp--;
@@ -27055,21 +27053,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EqualsBooleanExpression__Group_0__0__Impl"
-    // InternalMyDsl.g:8570:1: rule__EqualsBooleanExpression__Group_0__0__Impl : ( 'EQUALS' ) ;
+    // InternalMyDsl.g:8570:1: rule__EqualsBooleanExpression__Group_0__0__Impl : ( 'equals' ) ;
     public final void rule__EqualsBooleanExpression__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:8574:1: ( ( 'EQUALS' ) )
-            // InternalMyDsl.g:8575:1: ( 'EQUALS' )
+            // InternalMyDsl.g:8574:1: ( ( 'equals' ) )
+            // InternalMyDsl.g:8575:1: ( 'equals' )
             {
-            // InternalMyDsl.g:8575:1: ( 'EQUALS' )
-            // InternalMyDsl.g:8576:2: 'EQUALS'
+            // InternalMyDsl.g:8575:1: ( 'equals' )
+            // InternalMyDsl.g:8576:2: 'equals'
             {
-             before(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_0_0()); 
-            match(input,57,FOLLOW_2); 
-             after(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_0_0()); 
+             before(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_0_0()); 
+            match(input,56,FOLLOW_2); 
+             after(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_0_0()); 
 
             }
 
@@ -27261,7 +27259,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:8643:1: ( rule__EqualsBooleanExpression__Group_0__3__Impl rule__EqualsBooleanExpression__Group_0__4 )
             // InternalMyDsl.g:8644:2: rule__EqualsBooleanExpression__Group_0__3__Impl rule__EqualsBooleanExpression__Group_0__4
             {
-            pushFollow(FOLLOW_59);
+            pushFollow(FOLLOW_58);
             rule__EqualsBooleanExpression__Group_0__3__Impl();
 
             state._fsp--;
@@ -27520,21 +27518,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EqualsBooleanExpression__Group_1__0__Impl"
-    // InternalMyDsl.g:8732:1: rule__EqualsBooleanExpression__Group_1__0__Impl : ( 'EQUALS' ) ;
+    // InternalMyDsl.g:8732:1: rule__EqualsBooleanExpression__Group_1__0__Impl : ( 'equals' ) ;
     public final void rule__EqualsBooleanExpression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:8736:1: ( ( 'EQUALS' ) )
-            // InternalMyDsl.g:8737:1: ( 'EQUALS' )
+            // InternalMyDsl.g:8736:1: ( ( 'equals' ) )
+            // InternalMyDsl.g:8737:1: ( 'equals' )
             {
-            // InternalMyDsl.g:8737:1: ( 'EQUALS' )
-            // InternalMyDsl.g:8738:2: 'EQUALS'
+            // InternalMyDsl.g:8737:1: ( 'equals' )
+            // InternalMyDsl.g:8738:2: 'equals'
             {
-             before(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_1_0()); 
-            match(input,57,FOLLOW_2); 
-             after(grammarAccess.getEqualsBooleanExpressionAccess().getEQUALSKeyword_1_0()); 
+             before(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_1_0()); 
+            match(input,56,FOLLOW_2); 
+             after(grammarAccess.getEqualsBooleanExpressionAccess().getEqualsKeyword_1_0()); 
 
             }
 
@@ -27726,7 +27724,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:8805:1: ( rule__EqualsBooleanExpression__Group_1__3__Impl rule__EqualsBooleanExpression__Group_1__4 )
             // InternalMyDsl.g:8806:2: rule__EqualsBooleanExpression__Group_1__3__Impl rule__EqualsBooleanExpression__Group_1__4
             {
-            pushFollow(FOLLOW_60);
+            pushFollow(FOLLOW_59);
             rule__EqualsBooleanExpression__Group_1__3__Impl();
 
             state._fsp--;
@@ -27985,21 +27983,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GreaterThanExpression__Group__0__Impl"
-    // InternalMyDsl.g:8894:1: rule__GreaterThanExpression__Group__0__Impl : ( 'GREATER' ) ;
+    // InternalMyDsl.g:8894:1: rule__GreaterThanExpression__Group__0__Impl : ( 'greater' ) ;
     public final void rule__GreaterThanExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:8898:1: ( ( 'GREATER' ) )
-            // InternalMyDsl.g:8899:1: ( 'GREATER' )
+            // InternalMyDsl.g:8898:1: ( ( 'greater' ) )
+            // InternalMyDsl.g:8899:1: ( 'greater' )
             {
-            // InternalMyDsl.g:8899:1: ( 'GREATER' )
-            // InternalMyDsl.g:8900:2: 'GREATER'
+            // InternalMyDsl.g:8899:1: ( 'greater' )
+            // InternalMyDsl.g:8900:2: 'greater'
             {
-             before(grammarAccess.getGreaterThanExpressionAccess().getGREATERKeyword_0()); 
-            match(input,58,FOLLOW_2); 
-             after(grammarAccess.getGreaterThanExpressionAccess().getGREATERKeyword_0()); 
+             before(grammarAccess.getGreaterThanExpressionAccess().getGreaterKeyword_0()); 
+            match(input,57,FOLLOW_2); 
+             after(grammarAccess.getGreaterThanExpressionAccess().getGreaterKeyword_0()); 
 
             }
 
@@ -28191,7 +28189,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:8967:1: ( rule__GreaterThanExpression__Group__3__Impl rule__GreaterThanExpression__Group__4 )
             // InternalMyDsl.g:8968:2: rule__GreaterThanExpression__Group__3__Impl rule__GreaterThanExpression__Group__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_40);
             rule__GreaterThanExpression__Group__3__Impl();
 
             state._fsp--;
@@ -28450,21 +28448,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LesserThanExpression__Group__0__Impl"
-    // InternalMyDsl.g:9056:1: rule__LesserThanExpression__Group__0__Impl : ( 'LESSER' ) ;
+    // InternalMyDsl.g:9056:1: rule__LesserThanExpression__Group__0__Impl : ( 'lesser' ) ;
     public final void rule__LesserThanExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:9060:1: ( ( 'LESSER' ) )
-            // InternalMyDsl.g:9061:1: ( 'LESSER' )
+            // InternalMyDsl.g:9060:1: ( ( 'lesser' ) )
+            // InternalMyDsl.g:9061:1: ( 'lesser' )
             {
-            // InternalMyDsl.g:9061:1: ( 'LESSER' )
-            // InternalMyDsl.g:9062:2: 'LESSER'
+            // InternalMyDsl.g:9061:1: ( 'lesser' )
+            // InternalMyDsl.g:9062:2: 'lesser'
             {
-             before(grammarAccess.getLesserThanExpressionAccess().getLESSERKeyword_0()); 
-            match(input,59,FOLLOW_2); 
-             after(grammarAccess.getLesserThanExpressionAccess().getLESSERKeyword_0()); 
+             before(grammarAccess.getLesserThanExpressionAccess().getLesserKeyword_0()); 
+            match(input,58,FOLLOW_2); 
+             after(grammarAccess.getLesserThanExpressionAccess().getLesserKeyword_0()); 
 
             }
 
@@ -28656,7 +28654,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9129:1: ( rule__LesserThanExpression__Group__3__Impl rule__LesserThanExpression__Group__4 )
             // InternalMyDsl.g:9130:2: rule__LesserThanExpression__Group__3__Impl rule__LesserThanExpression__Group__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_40);
             rule__LesserThanExpression__Group__3__Impl();
 
             state._fsp--;
@@ -28915,21 +28913,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__NotLogicalExpression__Group__0__Impl"
-    // InternalMyDsl.g:9218:1: rule__NotLogicalExpression__Group__0__Impl : ( 'NOT' ) ;
+    // InternalMyDsl.g:9218:1: rule__NotLogicalExpression__Group__0__Impl : ( 'not' ) ;
     public final void rule__NotLogicalExpression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:9222:1: ( ( 'NOT' ) )
-            // InternalMyDsl.g:9223:1: ( 'NOT' )
+            // InternalMyDsl.g:9222:1: ( ( 'not' ) )
+            // InternalMyDsl.g:9223:1: ( 'not' )
             {
-            // InternalMyDsl.g:9223:1: ( 'NOT' )
-            // InternalMyDsl.g:9224:2: 'NOT'
+            // InternalMyDsl.g:9223:1: ( 'not' )
+            // InternalMyDsl.g:9224:2: 'not'
             {
-             before(grammarAccess.getNotLogicalExpressionAccess().getNOTKeyword_0()); 
-            match(input,60,FOLLOW_2); 
-             after(grammarAccess.getNotLogicalExpressionAccess().getNOTKeyword_0()); 
+             before(grammarAccess.getNotLogicalExpressionAccess().getNotKeyword_0()); 
+            match(input,59,FOLLOW_2); 
+             after(grammarAccess.getNotLogicalExpressionAccess().getNotKeyword_0()); 
 
             }
 
@@ -29233,7 +29231,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9332:2: 'par'
             {
              before(grammarAccess.getParAccess().getParKeyword_0()); 
-            match(input,61,FOLLOW_2); 
+            match(input,60,FOLLOW_2); 
              after(grammarAccess.getParAccess().getParKeyword_0()); 
 
             }
@@ -29266,7 +29264,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9345:1: ( rule__Par__Group__1__Impl rule__Par__Group__2 )
             // InternalMyDsl.g:9346:2: rule__Par__Group__1__Impl rule__Par__Group__2
             {
-            pushFollow(FOLLOW_61);
+            pushFollow(FOLLOW_60);
             rule__Par__Group__1__Impl();
 
             state._fsp--;
@@ -29341,7 +29339,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9372:1: ( rule__Par__Group__2__Impl rule__Par__Group__3 )
             // InternalMyDsl.g:9373:2: rule__Par__Group__2__Impl rule__Par__Group__3
             {
-            pushFollow(FOLLOW_61);
+            pushFollow(FOLLOW_60);
             rule__Par__Group__2__Impl();
 
             state._fsp--;
@@ -29389,7 +29387,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
                 int alt92=2;
                 int LA92_0 = input.LA(1);
 
-                if ( (LA92_0==62) ) {
+                if ( (LA92_0==61) ) {
                     alt92=1;
                 }
 
@@ -29398,7 +29396,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             	case 1 :
             	    // InternalMyDsl.g:9387:3: rule__Par__ParexpressionAssignment_2
             	    {
-            	    pushFollow(FOLLOW_62);
+            	    pushFollow(FOLLOW_61);
             	    rule__Par__ParexpressionAssignment_2();
 
             	    state._fsp--;
@@ -29556,7 +29554,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9440:2: 'case'
             {
              before(grammarAccess.getParExpressionAccess().getCaseKeyword_0()); 
-            match(input,62,FOLLOW_2); 
+            match(input,61,FOLLOW_2); 
              after(grammarAccess.getParExpressionAccess().getCaseKeyword_0()); 
 
             }
@@ -29964,7 +29962,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9575:2: 'loop'
             {
              before(grammarAccess.getLoopAccess().getLoopKeyword_0()); 
-            match(input,63,FOLLOW_2); 
+            match(input,62,FOLLOW_2); 
              after(grammarAccess.getLoopAccess().getLoopKeyword_0()); 
 
             }
@@ -29997,7 +29995,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9588:1: ( rule__Loop__Group__1__Impl rule__Loop__Group__2 )
             // InternalMyDsl.g:9589:2: rule__Loop__Group__1__Impl rule__Loop__Group__2
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_62);
             rule__Loop__Group__1__Impl();
 
             state._fsp--;
@@ -30157,7 +30155,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9642:1: ( rule__Loop__Group__3__Impl rule__Loop__Group__4 )
             // InternalMyDsl.g:9643:2: rule__Loop__Group__3__Impl rule__Loop__Group__4
             {
-            pushFollow(FOLLOW_58);
+            pushFollow(FOLLOW_62);
             rule__Loop__Group__3__Impl();
 
             state._fsp--;
@@ -30648,7 +30646,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9808:4: 'specification'
             {
              before(grammarAccess.getDomainAccess().getSpecificationSpecificationKeyword_0_0()); 
-            match(input,64,FOLLOW_2); 
+            match(input,63,FOLLOW_2); 
              after(grammarAccess.getDomainAccess().getSpecificationSpecificationKeyword_0_0()); 
 
             }
@@ -31378,7 +31376,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10086:4: 'int'
             {
              before(grammarAccess.getAttributeAccess().getIntIntKeyword_1_0()); 
-            match(input,65,FOLLOW_2); 
+            match(input,64,FOLLOW_2); 
              after(grammarAccess.getAttributeAccess().getIntIntKeyword_1_0()); 
 
             }
@@ -31513,7 +31511,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10143:4: 'boolean'
             {
              before(grammarAccess.getAttributeAccess().getBooleanBooleanKeyword_4_0()); 
-            match(input,66,FOLLOW_2); 
+            match(input,65,FOLLOW_2); 
              after(grammarAccess.getAttributeAccess().getBooleanBooleanKeyword_4_0()); 
 
             }
@@ -31747,7 +31745,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10237:4: 'true'
             {
              before(grammarAccess.getAttributeValueAccess().getValueTrueKeyword_3_0()); 
-            match(input,67,FOLLOW_2); 
+            match(input,66,FOLLOW_2); 
              after(grammarAccess.getAttributeValueAccess().getValueTrueKeyword_3_0()); 
 
             }
@@ -31792,7 +31790,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10256:4: 'false'
             {
              before(grammarAccess.getAttributeValueAccess().getValueFalseKeyword_4_0()); 
-            match(input,68,FOLLOW_2); 
+            match(input,67,FOLLOW_2); 
              after(grammarAccess.getAttributeValueAccess().getValueFalseKeyword_4_0()); 
 
             }
@@ -31837,7 +31835,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10275:4: 'int'
             {
              before(grammarAccess.getFragmentAttributeAccess().getIntIntKeyword_1_0()); 
-            match(input,65,FOLLOW_2); 
+            match(input,64,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getIntIntKeyword_1_0()); 
 
             }
@@ -31972,7 +31970,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10332:4: 'boolean'
             {
              before(grammarAccess.getFragmentAttributeAccess().getBooleanBooleanKeyword_4_0()); 
-            match(input,66,FOLLOW_2); 
+            match(input,65,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getBooleanBooleanKeyword_4_0()); 
 
             }
@@ -32054,7 +32052,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10366:4: '>'
             {
              before(grammarAccess.getFragmentAttributeAccess().getGreaterGreaterThanSignKeyword_6_0()); 
-            match(input,69,FOLLOW_2); 
+            match(input,68,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getGreaterGreaterThanSignKeyword_6_0()); 
 
             }
@@ -32099,7 +32097,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10385:4: '<'
             {
              before(grammarAccess.getFragmentAttributeAccess().getSmallerLessThanSignKeyword_7_0()); 
-            match(input,70,FOLLOW_2); 
+            match(input,69,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getSmallerLessThanSignKeyword_7_0()); 
 
             }
@@ -32144,7 +32142,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10404:4: '>='
             {
              before(grammarAccess.getFragmentAttributeAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_8_0()); 
-            match(input,71,FOLLOW_2); 
+            match(input,70,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_8_0()); 
 
             }
@@ -32189,7 +32187,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10423:4: '<='
             {
              before(grammarAccess.getFragmentAttributeAccess().getSmallerequalsLessThanSignEqualsSignKeyword_9_0()); 
-            match(input,72,FOLLOW_2); 
+            match(input,71,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getSmallerequalsLessThanSignEqualsSignKeyword_9_0()); 
 
             }
@@ -32234,7 +32232,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10442:4: '=='
             {
              before(grammarAccess.getFragmentAttributeAccess().getEqualsEqualsSignEqualsSignKeyword_10_0()); 
-            match(input,73,FOLLOW_2); 
+            match(input,72,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getEqualsEqualsSignEqualsSignKeyword_10_0()); 
 
             }
@@ -32279,7 +32277,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10461:4: '!='
             {
              before(grammarAccess.getFragmentAttributeAccess().getNotequalsExclamationMarkEqualsSignKeyword_11_0()); 
-            match(input,74,FOLLOW_2); 
+            match(input,73,FOLLOW_2); 
              after(grammarAccess.getFragmentAttributeAccess().getNotequalsExclamationMarkEqualsSignKeyword_11_0()); 
 
             }
@@ -33382,7 +33380,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10886:4: 'required'
             {
              before(grammarAccess.getMessageAccess().getRequiredRequiredKeyword_5_0()); 
-            match(input,75,FOLLOW_2); 
+            match(input,74,FOLLOW_2); 
              after(grammarAccess.getMessageAccess().getRequiredRequiredKeyword_5_0()); 
 
             }
@@ -33427,7 +33425,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10905:4: 'fail'
             {
              before(grammarAccess.getMessageAccess().getFailFailKeyword_6_0()); 
-            match(input,76,FOLLOW_2); 
+            match(input,75,FOLLOW_2); 
              after(grammarAccess.getMessageAccess().getFailFailKeyword_6_0()); 
 
             }
@@ -33472,7 +33470,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10924:4: 'strict'
             {
              before(grammarAccess.getMessageAccess().getStrictStrictKeyword_7_0()); 
-            match(input,77,FOLLOW_2); 
+            match(input,76,FOLLOW_2); 
              after(grammarAccess.getMessageAccess().getStrictStrictKeyword_7_0()); 
 
             }
@@ -33607,7 +33605,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:10981:4: 'pastConstraint'
             {
              before(grammarAccess.getMessageAccess().getPastPastConstraintKeyword_11_0()); 
-            match(input,78,FOLLOW_2); 
+            match(input,77,FOLLOW_2); 
              after(grammarAccess.getMessageAccess().getPastPastConstraintKeyword_11_0()); 
 
             }
@@ -33652,7 +33650,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:11000:4: 'futureConstraint'
             {
              before(grammarAccess.getMessageAccess().getFutureFutureConstraintKeyword_12_0()); 
-            match(input,79,FOLLOW_2); 
+            match(input,78,FOLLOW_2); 
              after(grammarAccess.getMessageAccess().getFutureFutureConstraintKeyword_12_0()); 
 
             }
@@ -33824,7 +33822,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:11068:4: 'clockConstraint'
             {
              before(grammarAccess.getMessageAccess().getClockconstraintClockConstraintKeyword_20_0()); 
-            match(input,80,FOLLOW_2); 
+            match(input,79,FOLLOW_2); 
              after(grammarAccess.getMessageAccess().getClockconstraintClockConstraintKeyword_20_0()); 
 
             }
@@ -34119,7 +34117,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:11185:4: 'not'
             {
              before(grammarAccess.getClockConstraintExpressionAccess().getNotNotKeyword_0_0_0()); 
-            match(input,81,FOLLOW_2); 
+            match(input,59,FOLLOW_2); 
              after(grammarAccess.getClockConstraintExpressionAccess().getNotNotKeyword_0_0_0()); 
 
             }
@@ -34328,7 +34326,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:11264:4: 'required'
             {
              before(grammarAccess.getContextMessageAccess().getRequiredRequiredKeyword_1_0()); 
-            match(input,75,FOLLOW_2); 
+            match(input,74,FOLLOW_2); 
              after(grammarAccess.getContextMessageAccess().getRequiredRequiredKeyword_1_0()); 
 
             }
@@ -34373,7 +34371,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:11283:4: 'fail'
             {
              before(grammarAccess.getContextMessageAccess().getFailFailKeyword_2_0()); 
-            match(input,76,FOLLOW_2); 
+            match(input,75,FOLLOW_2); 
              after(grammarAccess.getContextMessageAccess().getFailFailKeyword_2_0()); 
 
             }
@@ -34418,7 +34416,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:11302:4: 'strict'
             {
              before(grammarAccess.getContextMessageAccess().getStrictStrictKeyword_3_0()); 
-            match(input,77,FOLLOW_2); 
+            match(input,76,FOLLOW_2); 
              after(grammarAccess.getContextMessageAccess().getStrictStrictKeyword_3_0()); 
 
             }
@@ -36228,7 +36226,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12024:4: '>'
             {
              before(grammarAccess.getOperatorAccess().getGreaterGreaterThanSignKeyword_0_0()); 
-            match(input,69,FOLLOW_2); 
+            match(input,68,FOLLOW_2); 
              after(grammarAccess.getOperatorAccess().getGreaterGreaterThanSignKeyword_0_0()); 
 
             }
@@ -36273,7 +36271,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12043:4: '<'
             {
              before(grammarAccess.getOperatorAccess().getSmallerLessThanSignKeyword_1_0()); 
-            match(input,70,FOLLOW_2); 
+            match(input,69,FOLLOW_2); 
              after(grammarAccess.getOperatorAccess().getSmallerLessThanSignKeyword_1_0()); 
 
             }
@@ -36318,7 +36316,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12062:4: '>='
             {
              before(grammarAccess.getOperatorAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_2_0()); 
-            match(input,71,FOLLOW_2); 
+            match(input,70,FOLLOW_2); 
              after(grammarAccess.getOperatorAccess().getGreaterequalsGreaterThanSignEqualsSignKeyword_2_0()); 
 
             }
@@ -36363,7 +36361,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12081:4: '<='
             {
              before(grammarAccess.getOperatorAccess().getSmallerequalsLessThanSignEqualsSignKeyword_3_0()); 
-            match(input,72,FOLLOW_2); 
+            match(input,71,FOLLOW_2); 
              after(grammarAccess.getOperatorAccess().getSmallerequalsLessThanSignEqualsSignKeyword_3_0()); 
 
             }
@@ -36408,7 +36406,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12100:4: '=='
             {
              before(grammarAccess.getOperatorAccess().getEqualsEqualsSignEqualsSignKeyword_4_0()); 
-            match(input,73,FOLLOW_2); 
+            match(input,72,FOLLOW_2); 
              after(grammarAccess.getOperatorAccess().getEqualsEqualsSignEqualsSignKeyword_4_0()); 
 
             }
@@ -36453,7 +36451,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12119:4: '!='
             {
              before(grammarAccess.getOperatorAccess().getNotequalsExclamationMarkEqualsSignKeyword_5_0()); 
-            match(input,74,FOLLOW_2); 
+            match(input,73,FOLLOW_2); 
              after(grammarAccess.getOperatorAccess().getNotequalsExclamationMarkEqualsSignKeyword_5_0()); 
 
             }
@@ -37043,21 +37041,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__EqualsExpression__RhsAssignment_4"
-    // InternalMyDsl.g:12344:1: rule__EqualsExpression__RhsAssignment_4 : ( RULE_INT ) ;
+    // InternalMyDsl.g:12344:1: rule__EqualsExpression__RhsAssignment_4 : ( RULE_NUMBER ) ;
     public final void rule__EqualsExpression__RhsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:12348:1: ( ( RULE_INT ) )
-            // InternalMyDsl.g:12349:2: ( RULE_INT )
+            // InternalMyDsl.g:12348:1: ( ( RULE_NUMBER ) )
+            // InternalMyDsl.g:12349:2: ( RULE_NUMBER )
             {
-            // InternalMyDsl.g:12349:2: ( RULE_INT )
-            // InternalMyDsl.g:12350:3: RULE_INT
+            // InternalMyDsl.g:12349:2: ( RULE_NUMBER )
+            // InternalMyDsl.g:12350:3: RULE_NUMBER
             {
-             before(grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getEqualsExpressionAccess().getRhsINTTerminalRuleCall_4_0()); 
+             before(grammarAccess.getEqualsExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); 
+            match(input,RULE_NUMBER,FOLLOW_2); 
+             after(grammarAccess.getEqualsExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); 
 
             }
 
@@ -37142,7 +37140,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12386:4: 'true'
             {
              before(grammarAccess.getEqualsBooleanExpressionAccess().getRhsTrueKeyword_0_4_0()); 
-            match(input,67,FOLLOW_2); 
+            match(input,66,FOLLOW_2); 
              after(grammarAccess.getEqualsBooleanExpressionAccess().getRhsTrueKeyword_0_4_0()); 
 
             }
@@ -37232,7 +37230,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:12424:4: 'false'
             {
              before(grammarAccess.getEqualsBooleanExpressionAccess().getRhsFalseKeyword_1_4_0()); 
-            match(input,68,FOLLOW_2); 
+            match(input,67,FOLLOW_2); 
              after(grammarAccess.getEqualsBooleanExpressionAccess().getRhsFalseKeyword_1_4_0()); 
 
             }
@@ -37305,21 +37303,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__GreaterThanExpression__RhsAssignment_4"
-    // InternalMyDsl.g:12454:1: rule__GreaterThanExpression__RhsAssignment_4 : ( RULE_INT ) ;
+    // InternalMyDsl.g:12454:1: rule__GreaterThanExpression__RhsAssignment_4 : ( RULE_NUMBER ) ;
     public final void rule__GreaterThanExpression__RhsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:12458:1: ( ( RULE_INT ) )
-            // InternalMyDsl.g:12459:2: ( RULE_INT )
+            // InternalMyDsl.g:12458:1: ( ( RULE_NUMBER ) )
+            // InternalMyDsl.g:12459:2: ( RULE_NUMBER )
             {
-            // InternalMyDsl.g:12459:2: ( RULE_INT )
-            // InternalMyDsl.g:12460:3: RULE_INT
+            // InternalMyDsl.g:12459:2: ( RULE_NUMBER )
+            // InternalMyDsl.g:12460:3: RULE_NUMBER
             {
-             before(grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getGreaterThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); 
+             before(grammarAccess.getGreaterThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); 
+            match(input,RULE_NUMBER,FOLLOW_2); 
+             after(grammarAccess.getGreaterThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); 
 
             }
 
@@ -37387,21 +37385,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LesserThanExpression__RhsAssignment_4"
-    // InternalMyDsl.g:12488:1: rule__LesserThanExpression__RhsAssignment_4 : ( RULE_INT ) ;
+    // InternalMyDsl.g:12488:1: rule__LesserThanExpression__RhsAssignment_4 : ( RULE_NUMBER ) ;
     public final void rule__LesserThanExpression__RhsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:12492:1: ( ( RULE_INT ) )
-            // InternalMyDsl.g:12493:2: ( RULE_INT )
+            // InternalMyDsl.g:12492:1: ( ( RULE_NUMBER ) )
+            // InternalMyDsl.g:12493:2: ( RULE_NUMBER )
             {
-            // InternalMyDsl.g:12493:2: ( RULE_INT )
-            // InternalMyDsl.g:12494:3: RULE_INT
+            // InternalMyDsl.g:12493:2: ( RULE_NUMBER )
+            // InternalMyDsl.g:12494:3: RULE_NUMBER
             {
-             before(grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getLesserThanExpressionAccess().getRhsINTTerminalRuleCall_4_0()); 
+             before(grammarAccess.getLesserThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); 
+            match(input,RULE_NUMBER,FOLLOW_2); 
+             after(grammarAccess.getLesserThanExpressionAccess().getRhsNUMBERTerminalRuleCall_4_0()); 
 
             }
 
@@ -37705,12 +37703,12 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     protected DFA57 dfa57 = new DFA57(this);
     static final String dfa_1s = "\13\uffff";
     static final String dfa_2s = "\11\uffff\1\1\1\uffff";
-    static final String dfa_3s = "\1\4\1\uffff\1\105\6\7\1\4\1\uffff";
-    static final String dfa_4s = "\1\121\1\uffff\1\112\6\7\1\121\1\uffff";
+    static final String dfa_3s = "\1\4\1\uffff\1\104\6\7\1\4\1\uffff";
+    static final String dfa_4s = "\1\73\1\uffff\1\111\6\7\1\117\1\uffff";
     static final String dfa_5s = "\1\uffff\1\1\10\uffff\1\2";
     static final String dfa_6s = "\13\uffff}>";
     static final String[] dfa_7s = {
-            "\1\2\31\uffff\1\1\62\uffff\1\1",
+            "\1\2\31\uffff\1\1\34\uffff\1\1",
             "",
             "\1\3\1\4\1\5\1\6\1\7\1\10",
             "\1\11",
@@ -37719,7 +37717,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             "\1\11",
             "\1\11",
             "\1\11",
-            "\1\1\14\uffff\2\1\6\uffff\1\1\4\uffff\3\1\4\uffff\1\1\1\12\51\uffff\2\1",
+            "\1\1\14\uffff\2\1\6\uffff\1\1\4\uffff\3\1\4\uffff\1\1\1\12\24\uffff\1\1\23\uffff\1\1",
             ""
     };
 
@@ -37748,11 +37746,11 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             return "1460:1: rule__ClockConstraintExpression__Alternatives : ( ( ( rule__ClockConstraintExpression__Group_0__0 ) ) | ( ( rule__ClockConstraintExpression__Group_1__0 ) ) );";
         }
     }
-    static final String dfa_8s = "\1\67\1\36\4\uffff\1\4\1\37\1\10\2\uffff";
-    static final String dfa_9s = "\1\73\1\36\4\uffff\1\4\1\37\1\104\2\uffff";
+    static final String dfa_8s = "\1\46\1\36\4\uffff\1\4\1\37\1\7\2\uffff";
+    static final String dfa_9s = "\1\72\1\36\4\uffff\1\4\1\37\1\103\2\uffff";
     static final String dfa_10s = "\2\uffff\1\3\1\4\1\5\1\6\3\uffff\1\2\1\1";
     static final String[] dfa_11s = {
-            "\1\4\1\5\1\1\1\2\1\3",
+            "\1\4\20\uffff\1\5\1\1\1\2\1\3",
             "\1\6",
             "",
             "",
@@ -37787,12 +37785,12 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
         }
     }
     static final String dfa_12s = "\24\uffff";
-    static final String dfa_13s = "\3\4\1\105\1\uffff\1\105\14\7\2\uffff";
-    static final String dfa_14s = "\1\121\1\36\1\4\1\112\1\uffff\1\112\14\7\2\uffff";
+    static final String dfa_13s = "\3\4\1\104\1\uffff\1\104\14\7\2\uffff";
+    static final String dfa_14s = "\1\117\1\36\1\4\1\111\1\uffff\1\111\14\7\2\uffff";
     static final String dfa_15s = "\4\uffff\1\2\15\uffff\2\1";
     static final String dfa_16s = "\24\uffff}>";
     static final String[] dfa_17s = {
-            "\1\3\14\uffff\2\4\6\uffff\1\4\4\uffff\1\2\1\4\5\uffff\1\4\52\uffff\1\4\1\1",
+            "\1\3\14\uffff\2\4\6\uffff\1\4\4\uffff\1\2\1\4\5\uffff\1\4\25\uffff\1\1\23\uffff\1\4",
             "\1\5\31\uffff\1\2",
             "\1\5",
             "\1\6\1\7\1\10\1\11\1\12\1\13",
@@ -37861,9 +37859,9 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000210040000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000010000002L});
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000200000002L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000014010L,0x0000000000000006L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x00000000030000E0L,0x0000000000000018L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x00000000000000E0L,0x00000000000007F8L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000014010L,0x0000000000000003L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x00000000030000E0L,0x000000000000000CL});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x00000000000000E0L,0x00000000000003FCL});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000000840000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000800002L});
@@ -37872,23 +37870,23 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0xA0433D8800040000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0xA0433D8800000002L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x00000000800000F0L,0x0000000000000018L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000010L,0x0000000000003800L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x50433D8800040000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x50433D8800000002L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x00000000800000F0L,0x000000000000000CL});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000010L,0x0000000000001C00L});
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x00000020C2060010L,0x000000000003C000L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000000000L,0x00000000000007E0L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x08000020C2060010L,0x000000000000E000L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000000000L,0x00000000000003F0L});
     public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000000080L});
-    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0000000040000010L,0x0000000000020000L});
+    public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x0800000040000010L});
     public static final BitSet FOLLOW_42 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000002000000L,0x0000000000003800L});
+    public static final BitSet FOLLOW_43 = new BitSet(new long[]{0x0000000002000000L,0x0000000000001C00L});
     public static final BitSet FOLLOW_44 = new BitSet(new long[]{0x0000000180000010L});
     public static final BitSet FOLLOW_45 = new BitSet(new long[]{0x0000000100000010L});
     public static final BitSet FOLLOW_46 = new BitSet(new long[]{0x0000020000000000L});
-    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x00000001800000F0L,0x0000000000000018L});
+    public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x00000001800000F0L,0x000000000000000CL});
     public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x00000000000000E0L,0x0000000000000018L});
+    public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x00000000000000E0L,0x000000000000000CL});
     public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x0000800000000000L});
     public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000080000010L});
     public static final BitSet FOLLOW_52 = new BitSet(new long[]{0x0000000080000002L});
@@ -37896,11 +37894,11 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_54 = new BitSet(new long[]{0x0000000800040000L});
     public static final BitSet FOLLOW_55 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_56 = new BitSet(new long[]{0x0000000040000002L});
-    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x1F80000000000000L});
-    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_57 = new BitSet(new long[]{0x0F80004000000000L});
+    public static final BitSet FOLLOW_58 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
     public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x4000000000040000L});
-    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x4000000000000002L});
+    public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x2000000000040000L});
+    public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x2000000000000002L});
+    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000100L});
 
 }

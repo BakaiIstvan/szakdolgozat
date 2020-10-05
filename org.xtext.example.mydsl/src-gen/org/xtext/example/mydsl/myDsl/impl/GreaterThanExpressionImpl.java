@@ -48,7 +48,7 @@ public class GreaterThanExpressionImpl extends BinaryLogicalExpressionImpl imple
    * @generated
    * @ordered
    */
-  protected static final int RHS_EDEFAULT = 0;
+  protected static final String RHS_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getRhs() <em>Rhs</em>}' attribute.
@@ -58,7 +58,7 @@ public class GreaterThanExpressionImpl extends BinaryLogicalExpressionImpl imple
    * @generated
    * @ordered
    */
-  protected int rhs = RHS_EDEFAULT;
+  protected String rhs = RHS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public class GreaterThanExpressionImpl extends BinaryLogicalExpressionImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public int getRhs()
+  public String getRhs()
   {
     return rhs;
   }
@@ -139,9 +139,9 @@ public class GreaterThanExpressionImpl extends BinaryLogicalExpressionImpl imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRhs(int newRhs)
+  public void setRhs(String newRhs)
   {
-    int oldRhs = rhs;
+    String oldRhs = rhs;
     rhs = newRhs;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, MyDslPackage.GREATER_THAN_EXPRESSION__RHS, oldRhs, rhs));
@@ -180,7 +180,7 @@ public class GreaterThanExpressionImpl extends BinaryLogicalExpressionImpl imple
         setLhs((Parameter)newValue);
         return;
       case MyDslPackage.GREATER_THAN_EXPRESSION__RHS:
-        setRhs((Integer)newValue);
+        setRhs((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -219,7 +219,7 @@ public class GreaterThanExpressionImpl extends BinaryLogicalExpressionImpl imple
       case MyDslPackage.GREATER_THAN_EXPRESSION__LHS:
         return lhs != null;
       case MyDslPackage.GREATER_THAN_EXPRESSION__RHS:
-        return rhs != RHS_EDEFAULT;
+        return RHS_EDEFAULT == null ? rhs != null : !RHS_EDEFAULT.equals(rhs);
     }
     return super.eIsSet(featureID);
   }

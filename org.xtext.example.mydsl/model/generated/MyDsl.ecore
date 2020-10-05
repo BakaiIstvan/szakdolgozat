@@ -298,7 +298,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EqualsExpression" eSuperTypes="#//BinaryLogicalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EqualsBooleanExpression" eSuperTypes="#//BinaryLogicalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
@@ -306,11 +306,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GreaterThanExpression" eSuperTypes="#//BinaryLogicalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LesserThanExpression" eSuperTypes="#//BinaryLogicalExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rhs" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnaryLogicalExpression" eSuperTypes="#//LogicalExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="NotLogicalExpression" eSuperTypes="#//UnaryLogicalExpression">

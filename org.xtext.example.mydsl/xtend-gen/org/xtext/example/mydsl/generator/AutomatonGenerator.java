@@ -419,14 +419,6 @@ public class AutomatonGenerator extends AbstractGenerator {
     _builder.append("\t\t              ");
     _builder.append("this.finale = qfinal;");
     _builder.newLine();
-    _builder.append("\t\t              ");
-    _builder.newLine();
-    _builder.append("\t\t              ");
-    _builder.append("State qaccepting = new State(\"qaccepting\", StateType.ACCEPT_ALL);");
-    _builder.newLine();
-    _builder.append("\t\t              ");
-    _builder.append("this.addState(qaccepting);");
-    _builder.newLine();
     _builder.append("\t\t      ");
     _builder.newLine();
     _builder.append("\t\t              ");
@@ -451,12 +443,6 @@ public class AutomatonGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t                          ");
     _builder.append("this.addTransition(new Transition(\"epsilon\", s, qfinal));");
-    _builder.newLine();
-    _builder.append("\t\t                      ");
-    _builder.append("if (s.getType().equals(StateType.ACCEPT_ALL))");
-    _builder.newLine();
-    _builder.append("\t\t                          ");
-    _builder.append("this.addTransition(new Transition(\"epsilon\", s, qaccepting));");
     _builder.newLine();
     _builder.append("\t\t                  ");
     _builder.append("}");
