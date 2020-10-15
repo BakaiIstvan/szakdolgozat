@@ -124,13 +124,15 @@ class ClockRequiredMessage {
 			«IF m.CConstraint.rclockconstraint.op.greaterequals»
 				 "«m.CConstraint.rclockconstraint.clock.name» < «m.CConstraint.rclockconstraint.constant»"
 			«ENDIF»
-		«ELSE»
-			«IF m.CConstraint.lclockconstraint.op.greater || m.CConstraint.lclockconstraint.op.smaller»
+		«ELSEIF m.CConstraint.lclockconstraint.op.greater || m.CConstraint.lclockconstraint.op.greaterequals»
+			«IF m.CConstraint.lclockconstraint.op.greater»
 				"«m.CConstraint.lclockconstraint.clock.name» <= «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
-			«IF m.CConstraint.lclockconstraint.op.greaterequals || m.CConstraint.lclockconstraint.op.smallerequals»
+			«IF m.CConstraint.lclockconstraint.op.greaterequals»
 				 "«m.CConstraint.lclockconstraint.clock.name» < «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
+		«ELSE»
+			""
 		«ENDIF»
 		;
 	'''
@@ -151,13 +153,15 @@ class ClockRequiredMessage {
 			«IF m.CConstraint.rclockconstraint.op.smallerequals»
 				 "«m.CConstraint.rclockconstraint.clock.name» > «m.CConstraint.rclockconstraint.constant»"
 			«ENDIF»
-		«ELSE»
-			«IF m.CConstraint.lclockconstraint.op.smaller || m.CConstraint.lclockconstraint.op.greater»
+		«ELSEIF m.CConstraint.lclockconstraint.op.smaller || m.CConstraint.lclockconstraint.op.smallerequals»
+			«IF m.CConstraint.lclockconstraint.op.smaller»
 				"«m.CConstraint.lclockconstraint.clock.name» >= «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
-			«IF m.CConstraint.lclockconstraint.op.smallerequals || m.CConstraint.lclockconstraint.op.greaterequals»
+			«IF m.CConstraint.lclockconstraint.op.smallerequals»
 				 "«m.CConstraint.lclockconstraint.clock.name» > «m.CConstraint.lclockconstraint.constant»"
 			«ENDIF»
+		«ELSE»
+			""
 		«ENDIF»
 		;
 	'''
@@ -361,7 +365,7 @@ class ClockRequiredMessage {
 		
 		«compile_pre(m)»
 		«compile_succ(m)»
-		b.addTransition(new Transition("(" + "«m.sender.name»" + "." +
+		b.addTransition(new Transition((!pre.equals("")? "(" + "«m.sender.name»" + "." +
 			"«m.name»" + "("
 			«FOR p: m.params»
 				«FOR param: 0..<p.params.size»
@@ -386,10 +390,9 @@ class ClockRequiredMessage {
 			«ENDFOR»
 			+ ")"
 			
-			+ "." + "«m.receiver.name»; " + 
-			
-			pre +
-			") || (1, " + succ + ")", actualState, acceptState));
+			+ "." + "«m.receiver.name» " +
+			"; (" + pre + ")" : "") +
+			((!pre.equals("") && !succ.equals(""))? " || " : "") + (!pre.equals("") ? ";" : "") + (succ.equals("") ? "" : "(1; " + succ + ")"), actualState, acceptState));
 		
 		b.addState(acceptState);
 		
