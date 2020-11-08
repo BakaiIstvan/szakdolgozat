@@ -53,6 +53,9 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject
 	AutomatonGenerator automatonGenerator
+	
+	@Inject
+	IMonitorGenerator iMonitorGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		contextModelGenerator.doGenerate(resource, fsa, context);
@@ -63,6 +66,7 @@ class MyDslGenerator extends AbstractGenerator {
 		stateGenerator.doGenerate(resource, fsa, context);
 		transitionGenerator.doGenerate(resource,fsa, context);
 		automatonGenerator.doGenerate(resource, fsa, context);
+		iMonitorGenerator.doGenerate(resource, fsa, context);
 				
 		for(s : resource.allContents.toIterable.filter(Domain)){
 			fsa.generateFile("Specification.java", s.compile)
@@ -705,7 +709,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«ENDIF»
 									«IF !m.past && !m.future»
 										«IF m.clockconstraint»
-											«new ClockRegularMessage().compile_msg_clock(m)»							
+											«new ClockRegularMessage().compile_msg_clock(m)»
 										«ELSE»
 											«new RegularMessage().compile_msg(m)»
 										«ENDIF»
@@ -775,6 +779,10 @@ class MyDslGenerator extends AbstractGenerator {
 						t.writeTransition();
 					}
 				}
+			}
+			
+			public List<Automaton> getAutomata() {
+				return automatas;
 			}
 			
 			public ArrayList<Automaton> par(ArrayList<Automaton> automatas) {

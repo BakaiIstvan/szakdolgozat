@@ -30,6 +30,51 @@ class TransitionGenerator extends AbstractGenerator {
 				        this.sender = sender;
 				        this.receiver = receiver;
 				    }
+				    
+				    public String getMessageType() {
+				    	String messageType = this.id.substring(2, this.id.length() - 1);
+				 
+				    	messageType = messageType.substring(messageType.indexOf(".") + 1);
+				    	messageType = messageType.substring(0, messageType.indexOf("("));
+				
+				    	return messageType;
+				    }
+				    
+				    public String[] getParameters() {
+				    	String messageType = this.id.substring(2, this.id.length() - 1);
+				    	 
+				    	messageType = messageType.substring(messageType.indexOf("(") + 1);
+				    	messageType = messageType.substring(0, messageType.indexOf(")"));
+				
+				    	if (messageType.equals("")) {
+				    		return new String[0];
+				    	}
+				    	
+				    	return messageType.split(",");
+				    }
+				    
+				    public String getSenderName() {
+				    	String sender = this.id;
+				    	if (this.id.contains("!")) {
+				    		sender = this.id.substring(2, this.id.length() - 1);
+				    	}
+				    	
+				    	sender = sender.substring(0, sender.indexOf("."));
+				    	
+				    	return sender;
+				    }
+				    
+				    public String getReceiverName() {
+				    	String receiver = this.id;
+				    	if (this.id.contains("!")) {
+				    		receiver = this.id.substring(2, this.id.length() - 1);
+				    	}
+				    	
+				    	receiver = receiver.substring(receiver.indexOf(")") + 2);
+				    	
+				    	return receiver;
+				    }
+				
 				
 				    public String getId() {
 				        return id;
@@ -63,6 +108,7 @@ class TransitionGenerator extends AbstractGenerator {
 				    	System.out.println(this.id + " " + this.sender.getId() + "->" + this.receiver.getId());
 				    }
 				}
+
 			''')
 	}
 	

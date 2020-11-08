@@ -31,6 +31,7 @@ import org.xtext.example.mydsl.generator.DisappearMessages;
 import org.xtext.example.mydsl.generator.EntityGenerator;
 import org.xtext.example.mydsl.generator.EventCreatorGenerator;
 import org.xtext.example.mydsl.generator.FailMessage;
+import org.xtext.example.mydsl.generator.IMonitorGenerator;
 import org.xtext.example.mydsl.generator.MatchMessages;
 import org.xtext.example.mydsl.generator.ParameterConstraints;
 import org.xtext.example.mydsl.generator.RegularMessage;
@@ -111,6 +112,9 @@ public class MyDslGenerator extends AbstractGenerator {
   @Inject
   private AutomatonGenerator automatonGenerator;
   
+  @Inject
+  private IMonitorGenerator iMonitorGenerator;
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     this.contextModelGenerator.doGenerate(resource, fsa, context);
@@ -121,6 +125,7 @@ public class MyDslGenerator extends AbstractGenerator {
     this.stateGenerator.doGenerate(resource, fsa, context);
     this.transitionGenerator.doGenerate(resource, fsa, context);
     this.automatonGenerator.doGenerate(resource, fsa, context);
+    this.iMonitorGenerator.doGenerate(resource, fsa, context);
     Iterable<Domain> _filter = Iterables.<Domain>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Domain.class);
     for (final Domain s : _filter) {
       fsa.generateFile("Specification.java", this.compile(s));
@@ -1918,7 +1923,6 @@ public class MyDslGenerator extends AbstractGenerator {
                                 _builder.append("\t\t");
                                 CharSequence _compile_msg_clock_3 = new ClockRegularMessage().compile_msg_clock(m_3);
                                 _builder.append(_compile_msg_clock_3, "\t\t");
-                                _builder.append("\t\t\t\t\t\t\t");
                                 _builder.newLineIfNotEmpty();
                               } else {
                                 _builder.append("\t\t");
@@ -2101,6 +2105,17 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public List<Automaton> getAutomata() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return automatas;");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
