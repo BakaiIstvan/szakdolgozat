@@ -44,25 +44,31 @@ class IMonitorGenerator extends AbstractGenerator {
 					@Override
 					public void update(String sender, String receiver, String messageType, String[] parameters) {
 						List<Transition> transitions = automaton.findSender(this.actualState);
+						String receivedMessage = getReceivedMessage(sender, receiver, messageType, parameters);
+				
 						for (Transition transition : transitions) {
-							if (!transition.getId().contains("!")
-						     && transition.getMessageType().equals(messageType)
-						     && transition.getSenderName().equals(sender)
-						     && transition.getReceiverName().equals(receiver)
-						     && Arrays.equals(transition.getParameters(), parameters)) {
-				
+							if (!transition.getId().contains("&")) {
+								if (!transition.getId().contains("!")
+							     && transition.getMessageType().equals(messageType)
+							     && transition.getSenderName().equals(sender)
+							     && transition.getReceiverName().equals(receiver)
+							     && Arrays.equals(transition.getParameters(), parameters)) {
+					
+									this.actualState = transition.getReceiver();
+									System.out.println("transition: " + transition.getId());
+									break;
+								} else if (transition.getId().contains("!")
+										&& (!transition.getMessageType().equals(messageType)
+										|| !transition.getSenderName().equals(sender)
+										|| !transition.getReceiverName().equals(receiver)
+										|| !Arrays.equals(transition.getParameters(), parameters))) {
+					
+									this.actualState = transition.getReceiver();
+									System.out.println("transition: " + transition.getId());
+									break;
+								}
+							} else if (!transition.getId().contains(receivedMessage)) {
 								this.actualState = transition.getReceiver();
-								System.out.println("transition: " + transition.getId());
-								break;
-							} else if (transition.getId().contains("!")
-									&& (!transition.getMessageType().equals(messageType)
-									|| !transition.getSenderName().equals(sender)
-									|| !transition.getReceiverName().equals(receiver)
-									|| !Arrays.equals(transition.getParameters(), parameters))) {
-				
-								this.actualState = transition.getReceiver();
-								System.out.println("transition: " + transition.getId());
-								break;
 							}
 						}
 						
@@ -73,6 +79,19 @@ class IMonitorGenerator extends AbstractGenerator {
 						} else {
 							Main.monitorStatus("System is in bad state.");
 						}
+					}
+					
+					String getReceivedMessage(String sender, String receiver, String messageType, String[] parameters) {
+						String receivedMessage = sender + "." + messageType + "(";
+						for (String param : parameters) {
+							receivedMessage += param;
+							if (!(parameters[parameters.length - 1]).equals(param)) {
+								receivedMessage += ", ";
+							}
+						}
+						receivedMessage += ")." + receiver;
+						
+						return receivedMessage;
 					}
 				
 					@Override
@@ -85,7 +104,6 @@ class IMonitorGenerator extends AbstractGenerator {
 						// TODO Auto-generated method stub
 						
 					}
-				
 				}
 				''')
 	}
