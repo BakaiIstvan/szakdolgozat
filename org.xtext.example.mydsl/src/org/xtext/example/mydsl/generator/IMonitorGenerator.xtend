@@ -28,17 +28,19 @@ class IMonitorGenerator extends AbstractGenerator {
 					private Automaton automaton;
 					private State actualState;
 					private List<State> goodStates;
+					private boolean requirementFullfilled;
 					
 					public Monitor(Automaton automaton) {
 						this.automaton = automaton;
 						this.actualState = automaton.getInitial();
 						this.goodStates = new ArrayList<State>();
 						this.goodStates.add(automaton.getFinale());
+						this.requirementFullfilled = true;
 					}
 					
 					@Override
 					public boolean goodStateReached() {
-						return this.goodStates.contains(actualState);
+						return this.goodStates.contains(actualState) && this.requirementFullfilled;
 					}
 				
 					@Override
@@ -55,8 +57,8 @@ class IMonitorGenerator extends AbstractGenerator {
 							     && Arrays.equals(transition.getParameters(), parameters)) {
 					
 									this.actualState = transition.getReceiver();
-									System.out.println("transition: " + transition.getId());
-									break;
+									updateMonitorStatus(transition);
+									return;
 								} else if (transition.getId().contains("!")
 										&& (!transition.getMessageType().equals(messageType)
 										|| !transition.getSenderName().equals(sender)
@@ -64,16 +66,24 @@ class IMonitorGenerator extends AbstractGenerator {
 										|| !Arrays.equals(transition.getParameters(), parameters))) {
 					
 									this.actualState = transition.getReceiver();
-									System.out.println("transition: " + transition.getId());
-									break;
+									updateMonitorStatus(transition);
+									return;
 								}
 							} else if (!transition.getId().contains(receivedMessage)) {
 								this.actualState = transition.getReceiver();
+								updateMonitorStatus(transition);
+								return;
 							}
 						}
 						
+						this.requirementFullfilled = false;
+						System.out.println("Failure: receivedMessage didn't match any transitions.");
+					}
+					
+					void updateMonitorStatus(Transition transition) {
+						System.out.println("transition: " + transition.getId());
 						System.out.println(actualState.getId());
-						
+								
 						if (goodStateReached()) {
 							Main.monitorStatus("System is in good state.");
 						} else {
