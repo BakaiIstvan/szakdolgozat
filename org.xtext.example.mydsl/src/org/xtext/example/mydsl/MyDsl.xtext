@@ -256,7 +256,7 @@ ParExpression:
 ;
 
 Loop:
-	'loop' '(' min=INT ',' max=INT ')' '{' 
+	'loop' '(' min=NUMBER ',' max=NUMBER ')' '{' 
 		messages+=Message*
 	'}'
 ;

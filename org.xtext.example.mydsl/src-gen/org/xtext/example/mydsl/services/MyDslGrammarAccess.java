@@ -2767,10 +2767,10 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLoopKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cMinAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cMinINTTerminalRuleCall_2_0 = (RuleCall)cMinAssignment_2.eContents().get(0);
+		private final RuleCall cMinNUMBERTerminalRuleCall_2_0 = (RuleCall)cMinAssignment_2.eContents().get(0);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cMaxAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cMaxINTTerminalRuleCall_4_0 = (RuleCall)cMaxAssignment_4.eContents().get(0);
+		private final RuleCall cMaxNUMBERTerminalRuleCall_4_0 = (RuleCall)cMaxAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cMessagesAssignment_7 = (Assignment)cGroup.eContents().get(7);
@@ -2778,12 +2778,12 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//Loop:
-		//	'loop' '(' min=INT ',' max=INT ')' '{'
+		//	'loop' '(' min=NUMBER ',' max=NUMBER ')' '{'
 		//	messages+=Message*
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'loop' '(' min=INT ',' max=INT ')' '{' messages+=Message* '}'
+		//'loop' '(' min=NUMBER ',' max=NUMBER ')' '{' messages+=Message* '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'loop'
@@ -2792,20 +2792,20 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//'('
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 		
-		//min=INT
+		//min=NUMBER
 		public Assignment getMinAssignment_2() { return cMinAssignment_2; }
 		
-		//INT
-		public RuleCall getMinINTTerminalRuleCall_2_0() { return cMinINTTerminalRuleCall_2_0; }
+		//NUMBER
+		public RuleCall getMinNUMBERTerminalRuleCall_2_0() { return cMinNUMBERTerminalRuleCall_2_0; }
 		
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
 		
-		//max=INT
+		//max=NUMBER
 		public Assignment getMaxAssignment_4() { return cMaxAssignment_4; }
 		
-		//INT
-		public RuleCall getMaxINTTerminalRuleCall_4_0() { return cMaxINTTerminalRuleCall_4_0; }
+		//NUMBER
+		public RuleCall getMaxNUMBERTerminalRuleCall_4_0() { return cMaxNUMBERTerminalRuleCall_4_0; }
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
@@ -3582,7 +3582,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//Loop:
-	//	'loop' '(' min=INT ',' max=INT ')' '{'
+	//	'loop' '(' min=NUMBER ',' max=NUMBER ')' '{'
 	//	messages+=Message*
 	//	'}';
 	public LoopElements getLoopAccess() {

@@ -29995,7 +29995,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9588:1: ( rule__Loop__Group__1__Impl rule__Loop__Group__2 )
             // InternalMyDsl.g:9589:2: rule__Loop__Group__1__Impl rule__Loop__Group__2
             {
-            pushFollow(FOLLOW_62);
+            pushFollow(FOLLOW_40);
             rule__Loop__Group__1__Impl();
 
             state._fsp--;
@@ -30155,7 +30155,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:9642:1: ( rule__Loop__Group__3__Impl rule__Loop__Group__4 )
             // InternalMyDsl.g:9643:2: rule__Loop__Group__3__Impl rule__Loop__Group__4
             {
-            pushFollow(FOLLOW_62);
+            pushFollow(FOLLOW_40);
             rule__Loop__Group__3__Impl();
 
             state._fsp--;
@@ -37582,21 +37582,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Loop__MinAssignment_2"
-    // InternalMyDsl.g:12563:1: rule__Loop__MinAssignment_2 : ( RULE_INT ) ;
+    // InternalMyDsl.g:12563:1: rule__Loop__MinAssignment_2 : ( RULE_NUMBER ) ;
     public final void rule__Loop__MinAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:12567:1: ( ( RULE_INT ) )
-            // InternalMyDsl.g:12568:2: ( RULE_INT )
+            // InternalMyDsl.g:12567:1: ( ( RULE_NUMBER ) )
+            // InternalMyDsl.g:12568:2: ( RULE_NUMBER )
             {
-            // InternalMyDsl.g:12568:2: ( RULE_INT )
-            // InternalMyDsl.g:12569:3: RULE_INT
+            // InternalMyDsl.g:12568:2: ( RULE_NUMBER )
+            // InternalMyDsl.g:12569:3: RULE_NUMBER
             {
-             before(grammarAccess.getLoopAccess().getMinINTTerminalRuleCall_2_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getMinINTTerminalRuleCall_2_0()); 
+             before(grammarAccess.getLoopAccess().getMinNUMBERTerminalRuleCall_2_0()); 
+            match(input,RULE_NUMBER,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getMinNUMBERTerminalRuleCall_2_0()); 
 
             }
 
@@ -37619,21 +37619,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Loop__MaxAssignment_4"
-    // InternalMyDsl.g:12578:1: rule__Loop__MaxAssignment_4 : ( RULE_INT ) ;
+    // InternalMyDsl.g:12578:1: rule__Loop__MaxAssignment_4 : ( RULE_NUMBER ) ;
     public final void rule__Loop__MaxAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:12582:1: ( ( RULE_INT ) )
-            // InternalMyDsl.g:12583:2: ( RULE_INT )
+            // InternalMyDsl.g:12582:1: ( ( RULE_NUMBER ) )
+            // InternalMyDsl.g:12583:2: ( RULE_NUMBER )
             {
-            // InternalMyDsl.g:12583:2: ( RULE_INT )
-            // InternalMyDsl.g:12584:3: RULE_INT
+            // InternalMyDsl.g:12583:2: ( RULE_NUMBER )
+            // InternalMyDsl.g:12584:3: RULE_NUMBER
             {
-             before(grammarAccess.getLoopAccess().getMaxINTTerminalRuleCall_4_0()); 
-            match(input,RULE_INT,FOLLOW_2); 
-             after(grammarAccess.getLoopAccess().getMaxINTTerminalRuleCall_4_0()); 
+             before(grammarAccess.getLoopAccess().getMaxNUMBERTerminalRuleCall_4_0()); 
+            match(input,RULE_NUMBER,FOLLOW_2); 
+             after(grammarAccess.getLoopAccess().getMaxNUMBERTerminalRuleCall_4_0()); 
 
             }
 
@@ -37899,6 +37899,5 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_59 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000008L});
     public static final BitSet FOLLOW_60 = new BitSet(new long[]{0x2000000000040000L});
     public static final BitSet FOLLOW_61 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_62 = new BitSet(new long[]{0x0000000000000100L});
 
 }

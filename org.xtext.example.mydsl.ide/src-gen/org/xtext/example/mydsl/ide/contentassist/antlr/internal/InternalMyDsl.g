@@ -12566,9 +12566,9 @@ rule__Loop__MinAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getLoopAccess().getMinINTTerminalRuleCall_2_0()); }
-		RULE_INT
-		{ after(grammarAccess.getLoopAccess().getMinINTTerminalRuleCall_2_0()); }
+		{ before(grammarAccess.getLoopAccess().getMinNUMBERTerminalRuleCall_2_0()); }
+		RULE_NUMBER
+		{ after(grammarAccess.getLoopAccess().getMinNUMBERTerminalRuleCall_2_0()); }
 	)
 ;
 finally {
@@ -12581,9 +12581,9 @@ rule__Loop__MaxAssignment_4
 	}
 :
 	(
-		{ before(grammarAccess.getLoopAccess().getMaxINTTerminalRuleCall_4_0()); }
-		RULE_INT
-		{ after(grammarAccess.getLoopAccess().getMaxINTTerminalRuleCall_4_0()); }
+		{ before(grammarAccess.getLoopAccess().getMaxNUMBERTerminalRuleCall_4_0()); }
+		RULE_NUMBER
+		{ after(grammarAccess.getLoopAccess().getMaxNUMBERTerminalRuleCall_4_0()); }
 	)
 ;
 finally {

@@ -827,7 +827,7 @@ class MyDslGenerator extends AbstractGenerator {
 	                for (int j = 0; j < i; j++) {
 	                    newauto.collapse(copyAutomaton(loopauto));
 	                }
-	                result.put("", newauto);
+	                result.put("loop" + i, newauto);
 	            }
 	            return result;
 	        }

@@ -65,10 +65,15 @@ class IMonitorGenerator extends AbstractGenerator {
 								Transition prevTransition = iterator.previous();
 								System.out.println("PrevTransition: " + prevTransition.getId());
 								
-								this.actualState = transition.getReceiver();
-								updateMonitorStatus(transition);
+								if (transitions.size() == 1) {
+									this.actualState = transition.getReceiver();
+									updateMonitorStatus(transition);
+								}
 								
 								iterator.remove();
+								if (!transitions.stream().anyMatch(t -> t.getId().contains("epsilon"))) {
+									iterator = transitions.listIterator();
+								}
 							} else if(transitions.stream().anyMatch(t -> t.getId().contains("epsilon"))) {
 								// do nothing
 							} else {

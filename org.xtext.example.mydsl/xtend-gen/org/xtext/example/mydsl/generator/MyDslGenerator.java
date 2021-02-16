@@ -1051,10 +1051,10 @@ public class MyDslGenerator extends AbstractGenerator {
                 }
                 _builder.append("\t\t");
                 _builder.append("a.merge(loopSetup(loopauto, ");
-                int _min = l.getMin();
+                String _min = l.getMin();
                 _builder.append(_min, "\t\t");
                 _builder.append(", ");
-                int _max = l.getMax();
+                String _max = l.getMax();
                 _builder.append(_max, "\t\t");
                 _builder.append("));");
                 _builder.newLineIfNotEmpty();
@@ -2241,7 +2241,7 @@ public class MyDslGenerator extends AbstractGenerator {
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t                ");
-    _builder.append("result.put(\"\", newauto);");
+    _builder.append("result.put(\"loop\" + i, newauto);");
     _builder.newLine();
     _builder.append("\t            ");
     _builder.append("}");

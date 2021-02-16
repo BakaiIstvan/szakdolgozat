@@ -4485,9 +4485,9 @@ ruleLoop returns [EObject current=null]
 		}
 		(
 			(
-				lv_min_2_0=RULE_INT
+				lv_min_2_0=RULE_NUMBER
 				{
-					newLeafNode(lv_min_2_0, grammarAccess.getLoopAccess().getMinINTTerminalRuleCall_2_0());
+					newLeafNode(lv_min_2_0, grammarAccess.getLoopAccess().getMinNUMBERTerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -4497,7 +4497,7 @@ ruleLoop returns [EObject current=null]
 						$current,
 						"min",
 						lv_min_2_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"org.xtext.example.mydsl.MyDsl.NUMBER");
 				}
 			)
 		)
@@ -4507,9 +4507,9 @@ ruleLoop returns [EObject current=null]
 		}
 		(
 			(
-				lv_max_4_0=RULE_INT
+				lv_max_4_0=RULE_NUMBER
 				{
-					newLeafNode(lv_max_4_0, grammarAccess.getLoopAccess().getMaxINTTerminalRuleCall_4_0());
+					newLeafNode(lv_max_4_0, grammarAccess.getLoopAccess().getMaxNUMBERTerminalRuleCall_4_0());
 				}
 				{
 					if ($current==null) {
@@ -4519,7 +4519,7 @@ ruleLoop returns [EObject current=null]
 						$current,
 						"max",
 						lv_max_4_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"org.xtext.example.mydsl.MyDsl.NUMBER");
 				}
 			)
 		)

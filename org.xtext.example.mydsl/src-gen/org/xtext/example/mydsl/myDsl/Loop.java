@@ -36,12 +36,12 @@ public interface Loop extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Min</em>' attribute.
-   * @see #setMin(int)
+   * @see #setMin(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getLoop_Min()
    * @model
    * @generated
    */
-  int getMin();
+  String getMin();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Loop#getMin <em>Min</em>}' attribute.
@@ -51,7 +51,7 @@ public interface Loop extends EObject
    * @see #getMin()
    * @generated
    */
-  void setMin(int value);
+  void setMin(String value);
 
   /**
    * Returns the value of the '<em><b>Max</b></em>' attribute.
@@ -62,12 +62,12 @@ public interface Loop extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Max</em>' attribute.
-   * @see #setMax(int)
+   * @see #setMax(String)
    * @see org.xtext.example.mydsl.myDsl.MyDslPackage#getLoop_Max()
    * @model
    * @generated
    */
-  int getMax();
+  String getMax();
 
   /**
    * Sets the value of the '{@link org.xtext.example.mydsl.myDsl.Loop#getMax <em>Max</em>}' attribute.
@@ -77,7 +77,7 @@ public interface Loop extends EObject
    * @see #getMax()
    * @generated
    */
-  void setMax(int value);
+  void setMax(String value);
 
   /**
    * Returns the value of the '<em><b>Messages</b></em>' containment reference list.
