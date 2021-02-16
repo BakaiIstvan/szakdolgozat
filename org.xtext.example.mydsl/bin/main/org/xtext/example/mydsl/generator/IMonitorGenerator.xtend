@@ -23,6 +23,7 @@ class IMonitorGenerator extends AbstractGenerator {
 				import java.util.ArrayList;
 				import java.util.Arrays;
 				import java.util.List;
+				import java.util.ListIterator;
 				
 				public class Monitor implements IMonitor {
 					private Automaton automaton;
@@ -47,40 +48,91 @@ class IMonitorGenerator extends AbstractGenerator {
 					public void update(String sender, String receiver, String messageType, String[] parameters) {
 						List<Transition> transitions = automaton.findSender(this.actualState);
 						String receivedMessage = getReceivedMessage(sender, receiver, messageType, parameters);
+						System.out.println("Received Message: " + receivedMessage);
+						boolean edgeTriggered = false;
+						
+						ListIterator<Transition> iterator = transitions.listIterator();
+						while (iterator.hasNext()) {
+							Transition transition = iterator.next();
+							System.out.println("Transition: " + transition.getId());
+							if (transition.getId().contains("epsilon")) {
+								List<Transition> newTransitions = new ArrayList<Transition>(automaton.findSender(transition.getReceiver()));
 				
-						for (Transition transition : transitions) {
-							if (!transition.getId().contains("&")) {
-								if (!transition.getId().contains("!")
-							     && transition.getMessageType().equals(messageType)
-							     && transition.getSenderName().equals(sender)
-							     && transition.getReceiverName().equals(receiver)
-							     && Arrays.equals(transition.getParameters(), parameters)) {
-					
-									this.actualState = transition.getReceiver();
-									updateMonitorStatus(transition);
-									return;
-								} else if (transition.getId().contains("!")
-										&& (!transition.getMessageType().equals(messageType)
-										|| !transition.getSenderName().equals(sender)
-										|| !transition.getReceiverName().equals(receiver)
-										|| !Arrays.equals(transition.getParameters(), parameters))) {
-					
-									this.actualState = transition.getReceiver();
-									updateMonitorStatus(transition);
-									return;
+								for (Transition t : newTransitions) {
+									iterator.add(t);
+									iterator.previous();
 								}
-							} else if (!transition.getId().contains(receivedMessage)) {
+								Transition prevTransition = iterator.previous();
+								System.out.println("PrevTransition: " + prevTransition.getId());
+								
 								this.actualState = transition.getReceiver();
 								updateMonitorStatus(transition);
-								return;
+								
+								iterator.remove();
+							} else if(transitions.stream().anyMatch(t -> t.getId().contains("epsilon"))) {
+								// do nothing
+							} else {
+								edgeTriggered = updateState(transition, messageType, sender, receiver, parameters, receivedMessage);
+							}
+							
+							if (edgeTriggered) {
+								break;
 							}
 						}
 						
-						this.requirementFullfilled = false;
-						System.out.println("Failure: receivedMessage didn't match any transitions.");
+						if (!edgeTriggered) {
+							this.requirementFullfilled = false;
+							System.out.println("Failure: receivedMessage didn't match any transitions.");
+						}
 					}
 					
-					void updateMonitorStatus(Transition transition) {
+					private boolean updateState(Transition transition
+										   , String messageType
+										   , String sender
+										   , String receiver
+										   , String[] parameters
+										   , String receivedMessage) {
+				
+						if (!transition.getId().contains("&")) {
+							if (!transition.getId().contains("!")
+						     && transition.getMessageType().equals(messageType)
+						     && transition.getSenderName().equals(sender)
+						     && transition.getReceiverName().equals(receiver)
+						     && Arrays.equals(transition.getParameters(), parameters)) {
+				
+								this.actualState = transition.getReceiver();
+								updateMonitorStatus(transition);
+								return true;
+							} else if (transition.getId().contains("!")
+									&& (!transition.getMessageType().equals(messageType)
+									|| !transition.getSenderName().equals(sender)
+									|| !transition.getReceiverName().equals(receiver)
+									|| !Arrays.equals(transition.getParameters(), parameters))) {
+				
+								this.actualState = transition.getReceiver();
+								updateMonitorStatus(transition);
+								return true;
+							}
+						} else if (!transition.getId().contains(receivedMessage)) {
+							this.actualState = transition.getReceiver();
+							updateMonitorStatus(transition);
+							return true;
+						}
+						
+						return false;
+					}
+					
+					private void updateMonitorStatus(Transition transition) {
+						if (actualState.getType().equals(StateType.FINAL)) {
+							List<Transition> transitions = automaton.findSender(this.actualState);
+							if (transitions.size() == 1 
+							 && transitions.stream().anyMatch(t -> t.getId().equals("epsilon"))
+							 && transitions.get(0).getReceiver().getType().equals(StateType.FINAL)) {
+								transition = transitions.get(0);
+								this.actualState = transition.getReceiver();
+							}
+						}
+						
 						System.out.println("transition: " + transition.getId());
 						System.out.println(actualState.getId());
 								
@@ -91,7 +143,7 @@ class IMonitorGenerator extends AbstractGenerator {
 						}
 					}
 					
-					String getReceivedMessage(String sender, String receiver, String messageType, String[] parameters) {
+					private String getReceivedMessage(String sender, String receiver, String messageType, String[] parameters) {
 						String receivedMessage = sender + "." + messageType + "(";
 						for (String param : parameters) {
 							receivedMessage += param;
