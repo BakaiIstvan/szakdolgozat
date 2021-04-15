@@ -30,13 +30,16 @@ class IMonitorGenerator extends AbstractGenerator {
 					private State actualState;
 					private List<State> goodStates;
 					private boolean requirementFullfilled;
+					private IClock clock;
 					
-					public Monitor(Automaton automaton) {
+					public Monitor(Automaton automaton
+								 , IClock clock) {
 						this.automaton = automaton;
 						this.actualState = automaton.getInitial();
 						this.goodStates = new ArrayList<State>();
 						this.goodStates.add(automaton.getFinale());
 						this.requirementFullfilled = true;
+						this.clock = clock;
 					}
 					
 					@Override
@@ -74,8 +77,12 @@ class IMonitorGenerator extends AbstractGenerator {
 								if (!transitions.stream().anyMatch(t -> t.getId().contains("epsilon"))) {
 									iterator = transitions.listIterator();
 								}
-							} else if(transitions.stream().anyMatch(t -> t.getId().contains("epsilon"))) {
+							} else if (transitions.stream().anyMatch(t -> t.getId().contains("epsilon"))) {
 								// do nothing
+							} else if (transition.hasClock()) {
+								if (transition.clockConditionSatisfied(clock.getClock(transition.getClock()))) {
+									edgeTriggered = updateState(transition, messageType, sender, receiver, parameters, receivedMessage);
+								}
 							} else {
 								edgeTriggered = updateState(transition, messageType, sender, receiver, parameters, receivedMessage);
 							}
@@ -138,13 +145,17 @@ class IMonitorGenerator extends AbstractGenerator {
 							}
 						}
 						
-						System.out.println("transition: " + transition.getId());
+						System.out.println("transition triggered: " + transition.getId());
 						System.out.println(actualState.getId());
 								
 						if (goodStateReached()) {
 							Main.monitorStatus("System is in good state.");
 						} else {
 							Main.monitorStatus("System is in bad state.");
+						}
+						
+						if (transition.hasReset()) {
+							clock.resetClock(transition.getReset());
 						}
 					}
 					

@@ -20,6 +20,7 @@ import org.xtext.example.mydsl.myDsl.LesserThanExpression
 import org.xtext.example.mydsl.myDsl.NotLogicalExpression
 import org.xtext.example.mydsl.myDsl.LogicalExpression
 import org.xtext.example.mydsl.myDsl.EqualsBooleanExpression
+import org.xtext.example.mydsl.myDsl.MyDslPackage
 
 /**
  * Generates code from your model files on save.
@@ -56,6 +57,9 @@ class MyDslGenerator extends AbstractGenerator {
 	
 	@Inject
 	IMonitorGenerator iMonitorGenerator
+	
+	@Inject
+	IClockGenerator iClockGenerator
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		contextModelGenerator.doGenerate(resource, fsa, context);
@@ -67,6 +71,7 @@ class MyDslGenerator extends AbstractGenerator {
 		transitionGenerator.doGenerate(resource,fsa, context);
 		automatonGenerator.doGenerate(resource, fsa, context);
 		iMonitorGenerator.doGenerate(resource, fsa, context);
+		iClockGenerator.doGenerate(resource, fsa, context);
 				
 		for(s : resource.allContents.toIterable.filter(Domain)){
 			fsa.generateFile("Specification.java", s.compile)
@@ -296,7 +301,7 @@ class MyDslGenerator extends AbstractGenerator {
 								«IF !m.strict»
 									«IF m.required»
 										«IF m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRequiredMessage().compile_required_future_clock(m)»
 											«ELSE»
 												«new RequiredMessage().compile_required_future(m)»
@@ -304,7 +309,7 @@ class MyDslGenerator extends AbstractGenerator {
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF m.past»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRequiredMessage().compile_required_past_clock(m)»
 											«ELSE»
 												«new RequiredMessage().compile_required_past(m)»
@@ -312,7 +317,7 @@ class MyDslGenerator extends AbstractGenerator {
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF !m.past && !m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRequiredMessage().compile_required_clock(m)»
 											«ELSE»
 												«new RequiredMessage().compile_required(m)»
@@ -332,7 +337,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«ENDIF»
 									«IF !m.fail && !m.required»
 										«IF m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRegularMessage().compile_future_clock(m)»
 											«ELSE»
 												«new RegularMessage().compile_future(m)»
@@ -340,7 +345,7 @@ class MyDslGenerator extends AbstractGenerator {
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF m.past»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRegularMessage().compile_past_clock(m)»
 											«ELSE»
 												«new RegularMessage().compile_past(m)»
@@ -348,7 +353,7 @@ class MyDslGenerator extends AbstractGenerator {
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF !m.past && !m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRegularMessage().compile_msg_clock(m)»
 											«ELSE»
 												«new RegularMessage().compile_msg(m)»
@@ -361,7 +366,7 @@ class MyDslGenerator extends AbstractGenerator {
 								«IF m.strict»
 									«IF m.required»
 										«IF m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRequiredMessage().compile_strict_required_future_clock(m)»
 											«ELSE»
 												«new RequiredMessage().compile_strict_required_future(m)»
@@ -369,7 +374,7 @@ class MyDslGenerator extends AbstractGenerator {
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF !m.past && !m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRequiredMessage().compile_strict_required_clock(m)»
 											«ELSE»
 												«new RequiredMessage().compile_strict_required(m)»
@@ -385,7 +390,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«ENDIF»
 									«IF !m.fail && !m.required»
 										«IF m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRegularMessage().compile_future_strict_clock(m)»
 											«ELSE»
 												«new RegularMessage().compile_strict_future(m)»
@@ -393,7 +398,7 @@ class MyDslGenerator extends AbstractGenerator {
 											loopauto.collapse(b);
 										«ENDIF»
 										«IF !m.past && !m.future»
-											«IF m.clockconstraint»
+											«IF m.clockconstraint || m.resetclock !== null»
 												«new ClockRegularMessage().compile_strict_clock(m)»
 											«ELSE»
 												«new RegularMessage().compile_strict(m)»
@@ -416,7 +421,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF !m.strict»
 										«IF m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_required_future_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_required_future(m)»
@@ -424,7 +429,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF m.past»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_required_past_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_required_past(m)»
@@ -432,7 +437,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_required_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_required(m)»
@@ -452,7 +457,7 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_future_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_future(m)»
@@ -460,7 +465,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF m.past»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_past_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_past(m)»
@@ -468,7 +473,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_msg_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_msg(m)»
@@ -481,7 +486,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF m.strict»
 										«IF m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_strict_required_future_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_strict_required_future(m)»
@@ -489,7 +494,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_strict_required_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_strict_required(m)»
@@ -505,7 +510,7 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_future_strict_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_strict_future(m)»
@@ -513,7 +518,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_strict_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_strict(m)»
@@ -538,7 +543,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF !m.strict»
 										«IF m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_required_future_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_required_future(m)»
@@ -546,7 +551,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF m.past»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_required_past_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_required_past(m)»
@@ -554,7 +559,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_required_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_required(m)»
@@ -574,7 +579,7 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_future_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_future(m)»
@@ -582,7 +587,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF m.past»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_past_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_past(m)»
@@ -590,7 +595,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_msg_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_msg(m)»
@@ -603,7 +608,7 @@ class MyDslGenerator extends AbstractGenerator {
 									«IF m.strict»
 										«IF m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_strict_required_future_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_strict_required_future(m)»
@@ -611,7 +616,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRequiredMessage().compile_strict_required_clock(m)»
 												«ELSE»
 													«new RequiredMessage().compile_strict_required(m)»
@@ -627,7 +632,7 @@ class MyDslGenerator extends AbstractGenerator {
 										«ENDIF»
 										«IF !m.fail && !m.required»
 											«IF m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_future_strict_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_strict_future(m)»
@@ -635,7 +640,7 @@ class MyDslGenerator extends AbstractGenerator {
 												expression.collapse(b);
 											«ENDIF»
 											«IF !m.past && !m.future»
-												«IF m.clockconstraint»
+												«IF m.clockconstraint || m.resetclock !== null»
 													«new ClockRegularMessage().compile_strict_clock(m)»
 												«ELSE»
 													«new RegularMessage().compile_strict(m)»
@@ -656,7 +661,7 @@ class MyDslGenerator extends AbstractGenerator {
 							«IF !m.strict»
 								«IF m.required»
 									«IF m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRequiredMessage().compile_required_future_clock(m)»
 										«ELSE»
 											«new RequiredMessage().compile_required_future(m)»
@@ -664,7 +669,7 @@ class MyDslGenerator extends AbstractGenerator {
 										a.collapse(b);
 									«ENDIF»
 									«IF m.past»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRequiredMessage().compile_required_past_clock(m)»
 										«ELSE»
 											«new RequiredMessage().compile_required_past(m)»
@@ -672,7 +677,7 @@ class MyDslGenerator extends AbstractGenerator {
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRequiredMessage().compile_required_clock(m)»
 										«ELSE»
 											«new RequiredMessage().compile_required(m)»
@@ -692,7 +697,7 @@ class MyDslGenerator extends AbstractGenerator {
 								«ENDIF»
 								«IF !m.fail && !m.required»
 									«IF m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRegularMessage().compile_future_clock(m)»
 										«ELSE»
 											«new RegularMessage().compile_future(m)»
@@ -700,7 +705,7 @@ class MyDslGenerator extends AbstractGenerator {
 										a.collapse(b);
 									«ENDIF»
 									«IF m.past»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRegularMessage().compile_past_clock(m)»
 										«ELSE»
 											«new RegularMessage().compile_past(m)»
@@ -708,7 +713,10 @@ class MyDslGenerator extends AbstractGenerator {
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«IF m.clockconstraint»
+										«IF m.resetinconstraint !== null»
+											msg reset clock is set
+										«ENDIF»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRegularMessage().compile_msg_clock(m)»
 										«ELSE»
 											«new RegularMessage().compile_msg(m)»
@@ -721,7 +729,7 @@ class MyDslGenerator extends AbstractGenerator {
 							«IF m.strict»
 								«IF m.required»
 									«IF m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRequiredMessage().compile_strict_required_future_clock(m)»
 										«ELSE»
 											«new RequiredMessage().compile_strict_required_future(m)»
@@ -729,7 +737,7 @@ class MyDslGenerator extends AbstractGenerator {
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRequiredMessage().compile_strict_required_clock(m)»
 										«ELSE»
 											«new RequiredMessage().compile_strict_required(m)»
@@ -745,7 +753,7 @@ class MyDslGenerator extends AbstractGenerator {
 								«ENDIF»
 								«IF !m.fail && !m.required»
 									«IF m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRegularMessage().compile_future_strict_clock(m)»							
 										«ELSE»
 											«new RegularMessage().compile_strict_future(m)»
@@ -753,7 +761,7 @@ class MyDslGenerator extends AbstractGenerator {
 										a.collapse(b);
 									«ENDIF»
 									«IF !m.past && !m.future»
-										«IF m.clockconstraint»
+										«IF m.clockconstraint || m.resetclock !== null»
 											«new ClockRegularMessage().compile_strict_clock(m)»							
 										«ELSE»
 											«new RegularMessage().compile_strict(m)»

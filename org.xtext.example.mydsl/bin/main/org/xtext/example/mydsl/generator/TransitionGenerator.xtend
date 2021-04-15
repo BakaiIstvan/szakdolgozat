@@ -10,15 +10,25 @@ class TransitionGenerator extends AbstractGenerator {
 	override doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		fsa.generateFile("Transition.java",
 			'''
+			import java.util.ArrayList;
+			import java.util.Arrays;
+			import java.util.List;
+			
 			public class Transition {
 			    private String id;
 			    private State sender;
 			    private State receiver;
 			    
+			    private String reset;
+			    private String clock;
+			    private int value;
+			    private boolean smaller;
+			    
 			    public Transition() {
 			            this.id = "t0";
 			            this.sender = new State();
 			            this.receiver = new State();
+			            this.smaller = false;
 			    }
 			
 			    public Transition(String id, State sender, State receiver) {
@@ -28,9 +38,23 @@ class TransitionGenerator extends AbstractGenerator {
 			        	this.id = id;
 			        }
 			    	
-			    	if (countChar(this.id, '!') % 2 == 0 && this.id.contains("!")) {
-			    		formatID();
+			    	if (id.contains(";")) {
+			    		List<String> list = new ArrayList<String>(Arrays.asList(id.split(";")));
+			    		this.id = list.get(0);
+			    		if (list.get(1) != null) {
+			    			if (list.get(1).contains(" = 0")) {
+			    				this.reset = list.get(1).substring(1, 2);
+			    			} else if (list.get(1).contains("<")) {
+			    				this.value = Integer.parseInt(list.get(1).substring(list.get(1).length() - 2, list.get(1).length())) * 1000000000;
+			    				this.clock = list.get(1).substring(1, 2);
+			    				this.smaller = true;
+			    			}
+			    		}
 			    	}
+			    	
+			    	/*if (countChar(this.id, '!') % 2 == 0 && this.id.contains("!")) {
+			    		formatID();
+			    	}*/
 			    	
 			        this.sender = sender;
 			        this.receiver = receiver;
@@ -47,6 +71,30 @@ class TransitionGenerator extends AbstractGenerator {
 					
 					return count;
 				}
+			    
+			    public boolean hasReset() {
+			    	return reset != null && !reset.isEmpty();
+			    }
+			    
+			    public String getReset() {
+			    	return reset;
+			    }
+			    
+			    public boolean hasClock() {
+			    	return clock != null && !clock.isEmpty();
+			    }
+			    
+			    public String getClock() {
+			    	return clock;
+			    }
+			    
+			    public boolean clockConditionSatisfied(long time) {
+			    	if (this.smaller) {
+			    		return time < value;
+			    	}
+			    	
+			    	return false;
+			    }
 			    
 			    void formatID() {
 					this.id = this.id.substring(5, this.id.length() - 1);

@@ -1727,83 +1727,81 @@ ruleMessage returns [EObject current=null]
 		(
 			otherlv_14='{'
 			{
-				newLeafNode(otherlv_14, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_13());
+				newLeafNode(otherlv_14, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_13_0());
 			}
-		)?
-		(
 			(
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMessageRule());
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMessageRule());
+						}
 					}
-				}
-				otherlv_15=RULE_ID
-				{
-					newLeafNode(otherlv_15, grammarAccess.getMessageAccess().getCConstraintCrossReference_14_0());
-				}
-			)
-		)?
-		(
-			otherlv_16=','
-			{
-				newLeafNode(otherlv_16, grammarAccess.getMessageAccess().getCommaKeyword_15());
-			}
-		)?
-		(
+					otherlv_15=RULE_ID
+					{
+						newLeafNode(otherlv_15, grammarAccess.getMessageAccess().getCConstraintCrossReference_13_1_0());
+					}
+				)
+			)?
 			(
+				otherlv_16=','
 				{
-					newCompositeNode(grammarAccess.getMessageAccess().getConstraintexpClockConstraintExpressionParserRuleCall_16_0());
+					newLeafNode(otherlv_16, grammarAccess.getMessageAccess().getCommaKeyword_13_2());
 				}
-				lv_constraintexp_17_0=ruleClockConstraintExpression
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getMessageRule());
-					}
-					set(
-						$current,
-						"constraintexp",
-						lv_constraintexp_17_0,
-						"org.xtext.example.mydsl.MyDsl.ClockConstraintExpression");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		(
-			otherlv_18=','
-			{
-				newLeafNode(otherlv_18, grammarAccess.getMessageAccess().getCommaKeyword_17());
-			}
-		)?
-		(
+			)?
 			(
-				{
-					newCompositeNode(grammarAccess.getMessageAccess().getResetinconstraintResetClockParserRuleCall_18_0());
-				}
-				lv_resetinconstraint_19_0=ruleResetClock
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getMessageRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getMessageAccess().getConstraintexpClockConstraintExpressionParserRuleCall_13_3_0());
 					}
-					set(
-						$current,
-						"resetinconstraint",
-						lv_resetinconstraint_19_0,
-						"org.xtext.example.mydsl.MyDsl.ResetClock");
-					afterParserOrEnumRuleCall();
+					lv_constraintexp_17_0=ruleClockConstraintExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMessageRule());
+						}
+						set(
+							$current,
+							"constraintexp",
+							lv_constraintexp_17_0,
+							"org.xtext.example.mydsl.MyDsl.ClockConstraintExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
+			(
+				otherlv_18=','
+				{
+					newLeafNode(otherlv_18, grammarAccess.getMessageAccess().getCommaKeyword_13_4());
 				}
-			)
-		)?
-		(
+			)?
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getMessageAccess().getResetinconstraintResetClockParserRuleCall_13_5_0());
+					}
+					lv_resetinconstraint_19_0=ruleResetClock
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMessageRule());
+						}
+						set(
+							$current,
+							"resetinconstraint",
+							lv_resetinconstraint_19_0,
+							"org.xtext.example.mydsl.MyDsl.ResetClock");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)?
 			otherlv_20='}'
 			{
-				newLeafNode(otherlv_20, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_19());
+				newLeafNode(otherlv_20, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_13_6());
 			}
 		)?
 		(
 			(
 				lv_clockconstraint_21_0='clockConstraint'
 				{
-					newLeafNode(lv_clockconstraint_21_0, grammarAccess.getMessageAccess().getClockconstraintClockConstraintKeyword_20_0());
+					newLeafNode(lv_clockconstraint_21_0, grammarAccess.getMessageAccess().getClockconstraintClockConstraintKeyword_14_0());
 				}
 				{
 					if ($current==null) {
@@ -1816,13 +1814,13 @@ ruleMessage returns [EObject current=null]
 		(
 			otherlv_22='{'
 			{
-				newLeafNode(otherlv_22, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_21());
+				newLeafNode(otherlv_22, grammarAccess.getMessageAccess().getLeftCurlyBracketKeyword_15());
 			}
 		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMessageAccess().getCConstraintClockConstraintExpressionParserRuleCall_22_0());
+					newCompositeNode(grammarAccess.getMessageAccess().getCConstraintClockConstraintExpressionParserRuleCall_16_0());
 				}
 				lv_cConstraint_23_0=ruleClockConstraintExpression
 				{
@@ -1841,13 +1839,13 @@ ruleMessage returns [EObject current=null]
 		(
 			otherlv_24='}'
 			{
-				newLeafNode(otherlv_24, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_23());
+				newLeafNode(otherlv_24, grammarAccess.getMessageAccess().getRightCurlyBracketKeyword_17());
 			}
 		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getMessageAccess().getResetclockResetClockParserRuleCall_24_0());
+					newCompositeNode(grammarAccess.getMessageAccess().getResetclockResetClockParserRuleCall_18_0());
 				}
 				lv_resetclock_25_0=ruleResetClock
 				{
@@ -1865,7 +1863,7 @@ ruleMessage returns [EObject current=null]
 		)?
 		otherlv_26=';'
 		{
-			newLeafNode(otherlv_26, grammarAccess.getMessageAccess().getSemicolonKeyword_25());
+			newLeafNode(otherlv_26, grammarAccess.getMessageAccess().getSemicolonKeyword_19());
 		}
 	)
 ;
